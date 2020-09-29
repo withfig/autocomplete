@@ -19,6 +19,8 @@ curl https://codeload.github.com/withfig/completion-specs/tar.gz/master | \
 tar -xz --strip=2 completion-specs-master/specs
 ```
 
+3. In the Mac status bar (top right corner of the screen), click the Fig icon, and make sure *Autocomplete* is selected. If Autocomplete ever stops working, just toggle this button.
+
 ### Make Your Own Spec
 1. Check out our docs: [https://docs.withfig.com/autocomplete](https://docs.withfig.com/autocomplete)  
 2. Add your spec to `~/.fig/autocomplete`
