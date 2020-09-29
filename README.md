@@ -1,5 +1,6 @@
 # Visual Autocomplete For your Terminal
-Fig adds app, shortcuts, and autocomplete to your Terminal.  
+Fig adds app, shortcuts, and autocomplete to your Terminal. <br />
+
 ![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/fig_autocomplete_gif.gif)
 
 **Note**: We currently only work on iTerm2 on macOS.
