@@ -26,5 +26,5 @@ tar -xz --strip=2 completion-specs-master/specs
 Make a pull request or issue :)  
 
 <br />
-<p>Email us any time:<a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
+<p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
 
