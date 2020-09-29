@@ -1,6 +1,11 @@
 # Visual Autocomplete For your Terminal
+Fig adds app, shortcuts, and autocomplete to your Terminal.  
+![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/fig_autocomplete_gif.gif)
 
-1. Make sure you have Fig (version 1.0.20 or above) installed. We are currently in private beta. Sign up to our waitlist here: [https://withfig.com](https://withfig.com)
+**Note**: We currently only work on iTerm2 on macOS.
+
+### Installation
+1. Make sure you have Fig (version 1.0.20 or above) installed. We are currently in private beta. Sign up to our waitlist here: [https://withfig.com](https://withfig.com?ref=github)
 
 2. Install the completion specs
 
@@ -13,10 +18,14 @@ curl https://codeload.github.com/withfig/completion-specs/tar.gz/master | \
 tar -xz --strip=2 completion-specs-master/specs
 ```
 
-3. If you want to make your own spec, check out our docs: [https://docs.withfig.com/autocomplete](https://docs.withfig.com/autocomplete)  
+### Make Your Own Spec
+1. Check out our docs: [https://docs.withfig.com/autocomplete](https://docs.withfig.com/autocomplete)  
+2. Add your spec to `~/.fig/autocomplete`
+
+### Contribute
+Make a pull request or issue :)  
+
+<br />
+Email us any time: [hello@withfig.com](mailto:hello@withfig.com) 
 
 
-All completion specs must be added to your `~/.fig/autocomplete` directory to work
-
-
-Something up? Create a pull request or message us: [hello@withfig.com](mailto:hello@withfig.com)
