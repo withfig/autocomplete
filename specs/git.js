@@ -5,13 +5,6 @@ var completionSpec = {
     description: "the stupid content tracker",
     // arg: { },
     children: [
-        {
-            type: "shortcut",
-            name: "add, commit, pull, and push",
-            insertValue: "add .; git commit -m '{cursor}'; git pull --all; git push origin master",
-            description: "my shortcut",
-            children: [ ]
-        },
 
         {
             
