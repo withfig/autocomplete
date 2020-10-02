@@ -52,8 +52,14 @@ var completionSpec = {
                 staticSuggestions: ["."], // these can also be objects with type, name, and value
                 templateSuggestions: ["files", "folders"],
                 shellSuggestions: {
-                    cmd: "echo 'hello'",
-                    splitOn: "\n"
+                    cmd: "git status --porcelain",
+                    splitOn: "\n",
+                    postprocess: function(out) {
+                        if (out.startsWith("fatal:")) {
+                            return []
+                        }
+                        return out.split('\n').map((file) => { return file.substring(2)})
+                    }
                 },
                 // hideSuggestions: ["."]
             },
@@ -84,7 +90,12 @@ var completionSpec = {
                     takesInput: true,
                     shellSuggestions: {
                         cmd: "git branch --no-color",
-                        splitOn: "\n"
+                        postprocess: function(out) {
+                            if (out.startsWith("fatal:")) {
+                                return []
+                            }
+                            return out.split('\n').map((file) => { return file.replace(" *", "") })
+                        }
                     }
                 }
             ]
