@@ -58,7 +58,7 @@ var completionSpec = {
                         if (out.startsWith("fatal:")) {
                             return []
                         }
-                        return out.split('\n').map((file) => { return file.substring(2)})
+                        return out.split('\n').map((file) => { return file.substring(3)})
                     }
                 },
                 // hideSuggestions: ["."]
