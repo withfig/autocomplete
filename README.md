@@ -3,7 +3,7 @@ Fig adds app, shortcuts, and autocomplete to your Terminal. <br />
 
 ![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/fig_autocomplete_gif.gif)
 
-**Note**: We currently only work on iTerm2 on macOS.
+**Note**: We currently only work on iTerm2 and the native Terminal on macOS.
 
 ### Installation
 1. Make sure you have Fig (version 1.0.20 or above) installed. We are currently in private beta. Sign up to our waitlist here: [https://withfig.com](https://withfig.com?ref=github)
