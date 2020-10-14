@@ -31,7 +31,13 @@ var completionSpec = {
             description: "add files for staging",
             args: {
                 variadic: true, // default is false
-                staticSuggestions: ["."], // these can also be objects with type, name, and value
+                staticSuggestions: [
+                    {   
+                        name:".",
+                        description: "current directory",
+                        insertValue: "."
+                    }
+                ], // these can also be objects with type, name, and value
                 templateSuggestions: ["files", "folders"],
                 // shellSuggestions: {
                 //     cmd: "git status --porcelain",
