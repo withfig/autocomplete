@@ -1,35 +1,25 @@
 var completionSpec = {
 
     name: "curl",
-    type: "root",
     description: "transfer a URL",
-    arg: {},
-    children: [
+    options: [
         {
-            type: "option",
             name: ["-X","--request"],
-            insertValue: "-X ",
-            description: " Specify request command to use",
-            arg: {
+            description: "Specify request command to use",
+            args: {
                 staticSuggestions: ["POST", "GET", "PATCH", "UPDATE"]
-
             },
-            children: []
         },
         {
-            type: "option",
             name: ["-H","--header"],
-            insertValue: "-H ",
             description: "Pass custom header(s) to serve",
-            arg: {
+            args: {
                 staticSuggestions: ["'Content-Type: application/json'","'Content-Type: application/x-www-form-urlencoded'"]
             },
-            children: []
         },
         {
-            type: "option",
             name: ["-d","--data"],
-            insertValue: "-d \"\"\033[D",
+            insertValue: "-d '{cursor}'",
             description: "HTTP POST data",
         }
     ]

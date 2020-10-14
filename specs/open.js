@@ -1,13 +1,8 @@
 var completionSpec = {
 
     name: "open",
-    type: "root",
     description: "open files using default application",
-    arg: 
-        {
-            takesInput: true,
+    args: {
             templateSuggestions: ["files", "folders"] 
-        },
-        
-    children: [ ]
+        }
 }
