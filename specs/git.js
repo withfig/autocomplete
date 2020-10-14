@@ -33,16 +33,16 @@ var completionSpec = {
                 variadic: true, // default is false
                 staticSuggestions: ["."], // these can also be objects with type, name, and value
                 templateSuggestions: ["files", "folders"],
-                shellSuggestions: {
-                    cmd: "git status --porcelain",
-                    splitOn: "\n",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-                        return out.split('\n').map((file) => { return file.substring(3) })
-                    }
-                },
+                // shellSuggestions: {
+                //     cmd: "git status --porcelain",
+                //     splitOn: "\n",
+                //     postProcess: function (out) {
+                //         if (out.startsWith("fatal:")) {
+                //             return []
+                //         }
+                //         return out.split('\n').map((file) => { return file.substring(3) })
+                //     }
+                // },
                 // hideSuggestions: ["."]
             },
         },
