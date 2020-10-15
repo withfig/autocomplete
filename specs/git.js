@@ -6,7 +6,7 @@ var completionSpec = {
         {
             name: "commit",
             description: "dummy commit description!",
-            args: {},
+            insertValue: "commit ",
             options: [
                 {
                     name: ["-m", "--message"],
