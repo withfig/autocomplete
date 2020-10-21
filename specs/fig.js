@@ -1,7 +1,9 @@
 var completionSpec = {
   name: "fig",
-  description: "Visual shortcuts for the terminal",
+  description: "Autocomplete for your terminal",
   subcommands: [
+    { name: "update", description: "Update Fig's autocompletion specs" },
+
     {
       name: "invite",
       description: "share Fig with a teammate ⭐",
@@ -11,23 +13,37 @@ var completionSpec = {
         variadic: true, // default is false
         staticSuggestions: [
           {
-            name: "brendan@withfig.com",
-            description: ""
+            name: "<email>",
+            description: "Input a list of emails separated by spaces"
           }
         ]
       }
     },
 
-    { name: "dir", description: "browse your file system" },
-    { name: "curl", description: "build http requests" },
     {
-      name: "git", description: "a lightweight UI for git",
-      subcommands: [{ name: "diff", description: "GUI for git diff" }]
+      name: "feedback", description: "Send feedback Fig's founders",
+
+      options: [
+        {
+          name: ["-m", "--message"],
+          insertValue: "-m '{cursor}'",
+          description: "Your message to send to Fig",
+          args: {},
+        },
+      ]
     },
-    { name: "sftp", description: "browse files on remote servers" },
-    { name: "psql", description: "view and query Postgres databases" },
-    { name: "monitor", description: "visualize CPU usage by process" },
-    { name: "readme", description: "preview markdown documents", args: { templateSuggestions: ["files"] } },
+    { name: "docs", description: "Build your own Autocomplete spec" },
+
+    // { name: "dir", description: "browse your file system" },
+    // { name: "curl", description: "build http requests" },
+    // {
+    //   name: "git", description: "a lightweight UI for git",
+    //   subcommands: [{ name: "diff", description: "GUI for git diff" }]
+    // },
+    // { name: "sftp", description: "browse files on remote servers" },
+    // { name: "psql", description: "view and query Postgres databases" },
+    // { name: "monitor", description: "visualize CPU usage by process" },
+    // { name: "readme", description: "preview markdown documents", args: { templateSuggestions: ["files"] } },
 
   ],
   options: [
@@ -38,22 +54,8 @@ var completionSpec = {
     },
     {
       name: ["--version"],
-      description: "Version",
-      args: [{name: "test", description: "this is a file"}, {name: "2", description: "nice"}, {name: "test", description: "number 3"}]
+      description: "Your current Fig version",
     }
-  ],
-  shortcuts: [
-    {
-      name: ["↪ quicksearch"],
-      insertValue: "\n",
-      description: "Search apps & runbooks",
-    },
-  ],
-  args: {
-    shellSuggestions: {
-      cmd: `ls -1 ~/run | grep ".run" | sed 's/.run//'`,
-      splitOn: "\n",
-    }
-  },
+  ]
 }
 
