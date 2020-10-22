@@ -14,7 +14,7 @@ var completionSpec = {
                     description: "app to run command against",
                     args: {
                         shellSuggestions: {
-                            cmd: String.raw`node -p "const a = $( heroku apps --json ); const b = a.map(elm => elm.name); console.log(b.join('\n'))"`,
+                            cmd: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 return out.split("\n").slice(0, -2)
@@ -37,7 +37,7 @@ var completionSpec = {
                     description: "app to run command against",
                     args: {
                         shellSuggestions: {
-                            cmd: String.raw`node -p "const a = $( heroku apps --json ); const b = a.map(elm => elm.name); console.log(b.join('\n'))"`,
+                            cmd: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 return out.split("\n").slice(0, -2)
