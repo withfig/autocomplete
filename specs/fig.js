@@ -14,7 +14,7 @@ var completionSpec = {
         staticSuggestions: [
           {
             name: "<email>",
-            insertValue: "",
+            insertValue: " ",
             description: "Input a list of emails separated by spaces"
           }
         ]
@@ -33,7 +33,7 @@ var completionSpec = {
         },
       ]
     },
-    { name: "docs", description: "Build your own Autocomplete spec" },
+    { name: "docs", description: "Build your own completion spec" },
 
     // { name: "dir", description: "browse your file system" },
     // { name: "curl", description: "build http requests" },
@@ -54,7 +54,7 @@ var completionSpec = {
     },
     {
       name: ["--version"],
-      description: "Your current Fig version",
+      description: "The current Fig version",
     }
   ]
 }
