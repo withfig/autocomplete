@@ -14,6 +14,7 @@ var completionSpec = {
         staticSuggestions: [
           {
             name: "<email>",
+            insertValue: "",
             description: "Input a list of emails separated by spaces"
           }
         ]
