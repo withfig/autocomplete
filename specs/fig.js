@@ -50,8 +50,7 @@ var completionSpec = {
   options: [
     {
       name: ["-h", "--help"],
-      description: "Overview of Fig CLI",
-      args: [{}, {}]
+      description: "Overview of Fig CLI"
     },
     {
       name: ["--version"],
