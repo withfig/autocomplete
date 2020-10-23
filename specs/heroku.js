@@ -17,7 +17,14 @@ var completionSpec = {
                             cmd: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
-                                return out.split("\n").slice(0, -2)
+                                try {
+                                    return JSON.parse(out).map(app => {
+                                        return app.name
+                                    })
+
+                                } catch(e) {
+                                    return []
+                                }
                             }
                         }
                     },
@@ -40,7 +47,14 @@ var completionSpec = {
                             cmd: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
-                                return out.split("\n").slice(0, -2)
+                                try {
+                                    return JSON.parse(out).map(app => {
+                                        return app.name
+                                    })
+                                    
+                                } catch(e) {
+                                    return []
+                                }
                             }
                         }
                     },
