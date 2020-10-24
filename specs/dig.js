@@ -29,6 +29,32 @@ var completionSpec = {
       ],
     },
     {
+      name: "CNAME",
+      description: "Query Domain CNAME Record",
+      insertValue: "CNAME ",
+      options: [
+        {
+          name: ["+short", ""],
+          insertValue: "+short {cursor}",
+          description: "only print meaningful results",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "TXT",
+      description: "Query Domain TXT Record",
+      insertValue: "TXT ",
+      options: [
+        {
+          name: ["+short", ""],
+          insertValue: "+short {cursor}",
+          description: "only print meaningful results",
+          args: {},
+        },
+      ],
+    },
+    {
       name: "NS",
       description: "Query MX Record",
       insertValue: "NS ",
