@@ -47,7 +47,7 @@ var completionSpec = {
                 ], // these can also be objects with type, name, and value
                 // templateSuggestions: ["files", "folders"],
                 shellSuggestions: {
-                    cmd: "git status --porcelain",
+                    cmd: "git status --short",
                     postProcess: function (out) {
                         if (out.startsWith("fatal:")) {
                             return []
