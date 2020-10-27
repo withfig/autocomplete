@@ -29,26 +29,46 @@ var completionSpec = {
         {
             name: "add",
             description: "Add file contents to the index",
+            // options:[
+            //     {
+            //         name: ["-A", "--all", "--no-ignore-removal"],
+            //         description: "Update all files in the entire working tree"
+            //     }
+            // ],
             args: {
                 variadic: true, // default is false
                 staticSuggestions: [
                     {   
                         name:".",
                         description: "current directory",
-                        insertValue: "."
+                        insertValue: ".",
+                        icon: "fig://icon?type=folder"
                     }
                 ], // these can also be objects with type, name, and value
-                templateSuggestions: ["files", "folders"],
-                // shellSuggestions: {
-                //     cmd: "git status --porcelain",
-                //     splitOn: "\n",
-                //     postProcess: function (out) {
-                //         if (out.startsWith("fatal:")) {
-                //             return []
-                //         }
-                //         return out.split('\n').map((file) => { return file.substring(3) })
-                //     }
-                // },
+                // templateSuggestions: ["files", "folders"],
+                shellSuggestions: {
+                    cmd: "git status --porcelain",
+                    postProcess: function (out) {
+                        if (out.startsWith("fatal:")) {
+                            return []
+                        }
+
+                        var files = out.split('\n').map((file) => { return file.substring(3) }).slice(0,-1)
+
+                        return files.map(file => {
+                            var ext = ""
+                            try {
+                                ext = file.split('.').slice(-1)[0]
+                            } catch(e){}
+
+                            if (file.endsWith('/')) {
+                                ext = "folder"
+                            }
+
+                            return { name: file, icon: `fig://icon?type=${ext}`, description: "Updated file"}
+                        })
+                    }
+                },
                 // hideSuggestions: ["."]
             },
         },
@@ -65,7 +85,11 @@ var completionSpec = {
                 {
                     shellSuggestions: {
                         cmd: "git remote",
-                        splitOn: "\n"
+                        postProcess: function(out) {
+                            return out.split('\n').map(remote => {
+                                return { name: remote, description: "remote"}
+                            }).slice(0, -1)
+                        }
                     }
                 },
                 {
@@ -75,7 +99,7 @@ var completionSpec = {
                             if (out.startsWith("fatal:")) {
                                 return []
                             }
-                            return out.split('\n').map((elm) => { return elm.replace("*", "").trim() })
+                            return out.split('\n').map((elm) => { return { name: elm.replace("*", "").trim(), description: "branch" } }).slice(0, -1)
                         }
                     }
                 }
