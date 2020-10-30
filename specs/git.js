@@ -53,9 +53,10 @@ var completionSpec = {
                             return []
                         }
 
-                        var files = out.split('\n').map((file) => { return file.substring(3) }).slice(0,-1)
+                        var items = out.split('\n').map((file) => { return { working: file.substring(1,2), file: file.substring(3) } }).slice(0,-1)
 
-                        return files.map(file => {
+                        return items.map(item => {
+                            let file = item.file
                             var ext = ""
                             try {
                                 ext = file.split('.').slice(-1)[0]
@@ -65,7 +66,7 @@ var completionSpec = {
                                 ext = "folder"
                             }
 
-                            return { name: file, icon: `fig://icon?type=${ext}`, description: "Updated file"}
+                            return { name: file, icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`, description: "Updated file"}
                         })
                     }
                 },

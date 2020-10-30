@@ -10,12 +10,12 @@ var completionSpec = {
       args: {
         name: "Email",
         description: "Email address of the user you want to invite",
-        variadic: true, // default is false
+        variadic: true,
         staticSuggestions: [
           {
             name: "<email>",
             insertValue: " ",
-            description: "Input a list of emails separated by spaces"
+            description: "Email to invite"
           }
         ]
       }
@@ -34,6 +34,8 @@ var completionSpec = {
       ]
     },
     { name: "docs", description: "Build your own completion spec" },
+    { name: "source", description: "(re)connect fig to the current shell session" },
+
 
     // { name: "dir", description: "browse your file system" },
     // { name: "curl", description: "build http requests" },
