@@ -31,25 +31,14 @@ var completionSpec = {
             description: "Add file contents to the index",
             args: {
                 variadic: true, // default is false
-                staticSuggestions: [
+                suggestions: [
                     {   
                         name:".",
                         description: "current directory",
                         insertValue: "."
                     }
                 ], // these can also be objects with type, name, and value
-                templateSuggestions: ["files", "folders"],
-                // shellSuggestions: {
-                //     cmd: "git status --porcelain",
-                //     splitOn: "\n",
-                //     postProcess: function (out) {
-                //         if (out.startsWith("fatal:")) {
-                //             return []
-                //         }
-                //         return out.split('\n').map((file) => { return file.substring(3) })
-                //     }
-                // },
-                // hideSuggestions: ["."]
+                template: "filepaths"
             },
         },
         {
@@ -63,14 +52,14 @@ var completionSpec = {
             // children: [ ],
             args: [
                 {
-                    shellSuggestions: {
-                        cmd: "git remote",
+                    generator: {
+                        script: "git remote",
                         splitOn: "\n"
                     }
                 },
                 {
-                    shellSuggestions: {
-                        cmd: "git branch --no-color",
+                    generator: {
+                        script: "git branch --no-color",
                         postProcess: function (out) {
                             if (out.startsWith("fatal:")) {
                                 return []
@@ -87,14 +76,14 @@ var completionSpec = {
             // children: [ ],
             args: [
                 {
-                    shellSuggestions: {
-                        cmd: "git remote",
+                    generator: {
+                        script: "git remote",
                         splitOn: "\n"
                     }
                 },
                 {
-                    shellSuggestions: {
-                        cmd: "git branch --no-color",
+                    generator: {
+                        script: "git branch --no-color",
                         postProcess: function (out) {
                             if (out.startsWith("fatal:")) {
                                 return []

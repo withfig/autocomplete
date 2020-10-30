@@ -6,8 +6,8 @@ var completionSpec = {
  {name: "run", description:"", args:
  	[ 
  		{ 
- 			shellSuggestions: {
-	            cmd: "cat package.json",
+ 			generator: {
+	            script: "cat package.json",
 	            // splitOn: "\n",
 	            postProcess: function (out) {
 	            	if (out.trim() == "") {

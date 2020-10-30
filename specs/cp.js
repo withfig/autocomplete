@@ -4,10 +4,10 @@ var completionSpec = {
     description: "copy files and directories",
     args: [
         {
-            templateSuggestions: ["files", "folders"] 
+            template: "filepaths"
         },
         {
-            templateSuggestions: ["files", "folders"] 
+            template: "filepaths"
         }
     ],
     options: [

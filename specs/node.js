@@ -2,8 +2,8 @@ var completionSpec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
-        shellSuggestions: {
-            cmd: "ls -1 | grep '.js'",
+        generator: {
+            script: "ls -1 | grep '.js'",
             splitOn: "\n"
         }
     },

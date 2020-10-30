@@ -13,12 +13,21 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        shellSuggestions: {
-                            cmd: "heroku apps --json",
+                        generator: {
+                            script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
-                                return out.split("\n").slice(0, -2)
+                                try {
+                                    return JSON.parse(out).map(app => {
+                                        return app.name
+                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico"}
+                                    })
+
+                                } catch(e) {
+                                    return []
+                                }
                             }
+
                         }
                     },
                 }
@@ -36,11 +45,19 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        shellSuggestions: {
-                            cmd: "heroku apps --json",
+                        generator: {
+                            script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
-                                return out.split("\n").slice(0, -2)
+                                try {
+                                    return JSON.parse(out).map(app => {
+                                        return app.name
+                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico"}
+                                    })
+
+                                } catch(e) {
+                                    return []
+                                }
                             }
                         }
                     },
