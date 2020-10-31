@@ -4,6 +4,6 @@ var completionSpec = {
     description: "qqopposite of more",
     args: {
     	variadic: true,
-        templateSuggestions: ["files", "folders"] 
+        template: "filpaths"
     }
 }

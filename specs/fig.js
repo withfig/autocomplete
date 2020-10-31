@@ -35,19 +35,6 @@ var completionSpec = {
     },
     { name: "docs", description: "Build your own completion spec" },
     { name: "source", description: "(re)connect fig to the current shell session" },
-
-
-    // { name: "dir", description: "browse your file system" },
-    // { name: "curl", description: "build http requests" },
-    // {
-    //   name: "git", description: "a lightweight UI for git",
-    //   subcommands: [{ name: "diff", description: "GUI for git diff" }]
-    // },
-    // { name: "sftp", description: "browse files on remote servers" },
-    // { name: "psql", description: "view and query Postgres databases" },
-    // { name: "monitor", description: "visualize CPU usage by process" },
-    // { name: "readme", description: "preview markdown documents", args: { templateSuggestions: ["files"] } },
-
   ],
   options: [
     {

@@ -4,6 +4,6 @@ var completionSpec = {
     description: "concatenate and print files",
     args: {
     	variadic: true,
-        templateSuggestions: ["files", "folders"] 
+        template: "filepaths"
     }
 }

@@ -3,6 +3,6 @@ var completionSpec = {
     name: "nano",
     description: "Nano's ANOther editor, an enhanced free Pico clone",
     args: {
-        templateSuggestions: ["files", "folders"] 
+        template: "filepaths"
     }
 }

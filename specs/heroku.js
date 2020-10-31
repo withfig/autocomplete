@@ -13,19 +13,20 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        shellSuggestions: {
-                            cmd: "heroku apps --json",
+                        generator: {
+                            script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
                                     return JSON.parse(out).map(app => {
-                                        return app.name
+                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico" }
                                     })
 
-                                } catch(e) {
+                                } catch (e) {
                                     return []
                                 }
                             }
+
                         }
                     },
                 }
@@ -43,17 +44,24 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        shellSuggestions: {
-                            cmd: "heroku apps --json",
+                        generator: {
+                            script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
                                     return JSON.parse(out).map(app => {
+<<<<<<< HEAD
                                         let build = app.buildpack_provided_description ? `(${app.buildpack_provided_description})` : ""
-                                        return { name: app.name, description: `heroku app ${build}`, icon: "https://www.herokucdn.com/favicon.ico"}
+                                        return { name: app.name, description: `heroku app ${build}`, icon: "https://www.herokucdn.com/favicon.ico" }
                                     })
-                                    
-                                } catch(e) {
+
+=======
+                                        return app.name
+                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico"}
+                                    })
+
+>>>>>>> ac4358a2f13093e589a63045aaca113c805d1c0a
+                                } catch (e) {
                                     return []
                                 }
                             }

@@ -7,14 +7,14 @@ var completionSpec = {
             name: ["-X","--request"],
             description: "Specify request command to use",
             args: {
-                staticSuggestions: ["POST", "GET", "PATCH", "UPDATE"]
+                suggestions: ["POST", "GET", "PATCH", "UPDATE"]
             },
         },
         {
             name: ["-H","--header"],
             description: "Pass custom header(s) to serve",
             args: {
-                staticSuggestions: ["'Content-Type: application/json'","'Content-Type: application/x-www-form-urlencoded'"]
+                suggestions: ["'Content-Type: application/json'","'Content-Type: application/x-www-form-urlencoded'"]
             },
         },
         {

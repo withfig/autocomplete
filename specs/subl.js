@@ -4,6 +4,6 @@ var completionSpec = {
     description: "Sublime Text",
     args: {
     	variadic: true,
-        templateSuggestions: ["files", "folders"] 
+        template: "filepaths"
     }
 }

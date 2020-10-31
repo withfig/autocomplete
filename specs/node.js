@@ -2,15 +2,22 @@ var completionSpec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
-        templateSuggestions: ["files", "folders"] 
+        template: {
+            type: "filepaths",
+            postProcess: function (paths) {
+                return paths.filter(file => {
+                    return file.name.endsWith('.js') || file.name.endsWith('/')
+                })
+            }
+        }
     },
     options: [
         {
             name: ["-e", "--eval=..."],
             insertValue: "-e '{cursor}'",
             description: "evaluate script",
-            args: { },
-        }, 
+            args: {},
+        },
         {
             name: ["-p", "--print"],
             description: "evaluate script and print result",
