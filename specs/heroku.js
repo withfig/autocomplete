@@ -50,17 +50,9 @@ var completionSpec = {
                             postProcess: function (out) {
                                 try {
                                     return JSON.parse(out).map(app => {
-<<<<<<< HEAD
                                         let build = app.buildpack_provided_description ? `(${app.buildpack_provided_description})` : ""
                                         return { name: app.name, description: `heroku app ${build}`, icon: "https://www.herokucdn.com/favicon.ico" }
                                     })
-
-=======
-                                        return app.name
-                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico"}
-                                    })
-
->>>>>>> ac4358a2f13093e589a63045aaca113c805d1c0a
                                 } catch (e) {
                                     return []
                                 }
