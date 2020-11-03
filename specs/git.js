@@ -1,7 +1,31 @@
+let commits = {
+    script: "git log --oneline",
+    postProcess: function (out) {
+        if (out.startsWith("fatal:")) {
+            return []
+        }
+
+        return out.split('\n').map((line) => {
+            return {
+                name: line.substring(0, 7),
+                icon: "🔹",
+                description: line.substring(7)
+            }
+        })
+    }
+}
+
+let head_n_revisions = {
+    name: "HEAD~<N>",
+    icon: "🔻",
+    description: "Reset multiple commits",
+    insertValue: "HEAD~",
+}
+
 var completionSpec = {
 
     name: "git",
-    description: "Arguably the most useful tool in the history of software",
+    description: "the stupid content tracker",
     subcommands: [
         {
             name: "commit",
@@ -32,11 +56,9 @@ var completionSpec = {
         {
             name: "config",
             description: "set author",
-            insertValue: "config {cursor}",
             options: [
                 {
                     name: "--local",
-                    insertValue: "--local {cursor}",
                     description: "Default: write to the repository .git/config file",
                     args: {
                         variadic: true,
@@ -57,8 +79,7 @@ var completionSpec = {
                 {
                     name: "--global",
                     insertValue: "--global {cursor}",
-                    description: "For writing options: write to global ~/.gitconfig file rather than the" +
-                        " repository .git/config",
+                    description: "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
                     args: {
                         variadic: true,
                         suggestions: [
@@ -82,8 +103,8 @@ var completionSpec = {
             description: "Reapply commits on top of another base tip",
             insertValue: "rebase",
             options: [
-                {name: ["--continue"], description: "continue the rebasing after conflict resolution"},
-                {name: ["--abort"], description: "stop rebase"},
+                { name: ["--continue"], description: "continue the rebasing after conflict resolution" },
+                { name: ["--abort"], description: "stop rebase" },
                 {
                     name: ["-i"],
                     description: "interactive"
@@ -91,23 +112,7 @@ var completionSpec = {
             ],
             args: {
                 suggestions: [],
-                generator: {
-                    script: "git log --oneline",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-
-                        return out.split('\n').map((line) => {
-                            return {
-                                name: line,
-                                insertValue: line.substring(0, 7),
-                                icon: "🔹",
-                                description: "single line commit"
-                            }
-                        })
-                    }
-                },
+                generator: commits,
                 templateSuggestions: ["files"]
             },
         },
@@ -139,7 +144,7 @@ var completionSpec = {
 
             ],
             args: {
-                variadic: true, // default is false
+                variadic: true,
                 suggestions: [
                     {
                         name: ".",
@@ -147,8 +152,7 @@ var completionSpec = {
                         insertValue: ".",
                         icon: "fig://icon?type=folder"
                     }
-                ], // these can also be objects with type, name, and value
-                templateSuggestions: ["files", "folders"],
+                ],
                 generator: {
                     script: "git status --short",
                     postProcess: function (out) {
@@ -157,7 +161,7 @@ var completionSpec = {
                         }
 
                         var items = out.split('\n').map((file) => {
-                            return {working: file.substring(1, 2), file: file.substring(3)}
+                            return { working: file.substring(1, 2), file: file.substring(3) }
                         }).slice(0, -1)
 
                         return items.map(item => {
@@ -186,6 +190,72 @@ var completionSpec = {
         {
             name: "status",
             description: "Show the working tree status",
+            options: [
+                {
+                    name: ["-v", "--verbose"],
+                    description: "be verbose"
+                },
+                {
+                    name: ["-b", "--branch"],
+                    description: "show branch information",
+                },
+                {
+                    name: "--show-stash",
+                    description: "show stash information"
+                },
+                {
+                    name: "--ahead-behind",
+                    description: "compute full ahead/behind values"
+                },
+                {
+                    name: "--long",
+                    description: "show status in long format (default)"
+                },
+                {
+                    name: ["-z", "--null"],
+                    description: "terminate entries with NUL",
+                },
+                {
+                    name: ["-u", "--untracked-files"],
+                    description: "show untracked files",
+                    args: {
+                        suggestions: [
+                            {
+                                name: "all",
+                                description: "(Default)"
+                            },
+                            {
+                                name: "normal",
+                            },
+                            {
+                                name: "no",
+                            }
+                        ]
+                    }
+                },
+                {
+                    name: "--ignored",
+                    description: "show ignored files",
+                    args: {
+                        suggestions: [
+                            {
+                                name: "traditional",
+                                description: "(Default)"
+                            },
+                            {
+                                name: "matching",
+                            },
+                            {
+                                name: "no",
+                            }
+                        ]
+                    }
+                },
+                {
+                    name: "--no-renames",
+                    description: "do not detect renames"
+                },
+            ]
         },
         {
             name: "push",
@@ -194,7 +264,13 @@ var completionSpec = {
                 {
                     name: "-all",
                     description: "Push all branches to remote"
-                }
+                },
+                // { name: "--repo", description: "repository" },
+                // { name: "--all", description: "push all refs" },
+                // { name: "--mirror", description: "mirror all refs" },
+                { name: ["-d", "--delete"], description: "delete refs" },
+                { name: "--tags", description: "push tags (can't be used with --all or --mirror)" },
+                // { name: ["-n", "--dry-run"], description: "dry run" },
             ],
             args: [
                 {
@@ -202,7 +278,7 @@ var completionSpec = {
                         script: "git remote",
                         postProcess: function (out) {
                             return out.split('\n').map(remote => {
-                                return {name: remote, description: "remote"}
+                                return { name: remote, description: "remote" }
                             }).slice(0, -1)
                         }
                     }
@@ -215,7 +291,7 @@ var completionSpec = {
                                 return []
                             }
                             return out.split('\n').map((elm) => {
-                                return {name: elm.replace("*", "").trim(), description: "branch"}
+                                return { name: elm.replace("*", "").trim(), description: "branch" }
                             }).slice(0, -1)
                         }
                     }
@@ -225,7 +301,6 @@ var completionSpec = {
         {
             name: "pull",
             description: "Integrate with another repository",
-            // children: [ ],
             args: [
                 {
                     generator: {
@@ -262,108 +337,44 @@ var completionSpec = {
         {
             name: "reset",
             description: "Reset current HEAD to the specified state",
-            insertValue: "reset {cursor}",
             options: [
                 {
                     name: "--keep",
                     insertValue: "--keep {cursor}",
-                    description: "Safe: files which are different between the current HEAD and the given" +
-                        " commit. Will abort if there are uncommitted changes",
+                    description: "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
                     args: {
                         variadic: true,
                         suggestions: [
-                            {
-                                name: "HEAD~[insert # of commits]",
-                                description: "Reset back any number of commits",
-                                insertValue: "HEAD~",
-                            }
+                            head_n_revisions
                         ],
-                        generator: {
-                            script: "git log --oneline",
-                            postProcess: function (out) {
-                                if (out.startsWith("fatal:")) {
-                                    return []
-                                }
-
-                                return out.split('\n').map((line) => {
-                                    return {
-                                        name: line,
-                                        insertValue: line.substring(0, 7),
-                                        icon: "🔹",
-                                        description: "single line commit"
-                                    }
-                                })
-                            }
-                        },
-                        templateSuggestions: ["files"]
+                        generator: commits
                     }
                 },
                 {
                     name: "--soft",
                     insertValue: "--soft {cursor}",
-                    description: "remove the last commit from the current branch, but the file changes will stay in" +
-                        " your working tree",
+                    description: "remove the last commit from the current branch, but the file changes will stay in your working tree",
                     args: {
                         suggestions: [
-                            {
-                                name: "HEAD~[insert # of commits]",
-                                icon: "🔻",
-                                description: "Reset multiple commits",
-                                insertValue: "HEAD~",
-                            }
+                            head_n_revisions
                         ],
-                        generator: {
-                            script: "git log --oneline",
-                            postProcess: function (out) {
-                                if (out.startsWith("fatal:")) {
-                                    return []
-                                }
-
-                                return out.split('\n').map((line) => {
-                                    return {
-                                        name: line,
-                                        insertValue: line.substring(0, 7),
-                                        icon: "🔹",
-                                        description: "single line commit"
-                                    }
-                                })
-                            }
-                        },
-                        templateSuggestions: ["files"]
+                        generator: commits
                     }
                 },
                 {
                     name: "--hard",
                     insertValue: "--hard {cursor}",
-                    description: "WARNING: you will lose all uncommitted changes in addition to the changes" +
-                        " introduced in the last commit",
+                    description: "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
                     args: {
                         variadic: true,
                         suggestions: [
                             {
-                                name: "HEAD~[insert # of commits]",
+                                name: "HEAD~<N>",
                                 description: "Reset back to any number of commits",
                                 insertValue: "HEAD~",
                             }
                         ],
-                        generator: {
-                            script: "git log --oneline",
-                            postProcess: function (out) {
-                                if (out.startsWith("fatal:")) {
-                                    return []
-                                }
-
-                                return out.split('\n').map((line) => {
-                                    return {
-                                        name: line,
-                                        insertValue: line.substring(0, 7),
-                                        icon: "🔹",
-                                        description: "single line commit"
-                                    }
-                                })
-                            }
-                        },
-                        templateSuggestions: ["files"]
+                        generator: commits,
                     }
                 },
                 {
@@ -379,24 +390,7 @@ var completionSpec = {
                                 insertValue: "HEAD~",
                             }
                         ],
-                        generator: {
-                            script: "git log --oneline",
-                            postProcess: function (out) {
-                                if (out.startsWith("fatal:")) {
-                                    return []
-                                }
-
-                                return out.split('\n').map((line) => {
-                                    return {
-                                        name: line,
-                                        insertValue: line.substring(0, 7),
-                                        icon: "🔹",
-                                        description: "single line commit"
-                                    }
-                                })
-                            }
-                        },
-                        templateSuggestions: ["files"]
+                        generator: commits,
                     }
                 },
                 {
@@ -407,30 +401,9 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            {
-                                name: "HEAD~[insert # of commits]",
-                                description: "Reset back any number of commits",
-                                insertValue: "HEAD~",
-                            }
+                            head_n_revisions
                         ],
-                        generator: {
-                            script: "git log --oneline",
-                            postProcess: function (out) {
-                                if (out.startsWith("fatal:")) {
-                                    return []
-                                }
-
-                                return out.split('\n').map((line) => {
-                                    return {
-                                        name: line,
-                                        insertValue: line.substring(0, 7),
-                                        icon: "🔹",
-                                        description: "single line commit"
-                                    }
-                                })
-                            }
-                        },
-                        templateSuggestions: ["files"]
+                        generator: commits,
                     }
                 }
             ],
@@ -464,9 +437,24 @@ var completionSpec = {
             insertValue: "log",
             options: [
                 {
-                    name: "--follow [file]",
-                    insertValue: "--follow {cursor}",
+                    name: "--follow",
                     description: "Show history of given file",
+                    args: {
+                        name: "file",
+                        template: "filepaths"
+                    }
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "suppress diff output"
+                },
+                {
+                    name: "--source",
+                    description: "show source"
+                },
+                {
+                    name: "--oneline",
+                    description: "show each commit as a single line "
                 }
             ]
         },
@@ -474,7 +462,7 @@ var completionSpec = {
             name: "remote",
             description: "Manage remote repository",
             insertValue: "remote {cursor}",
-            options: [
+            subcommands: [
                 {
                     name: "add",
                     insertValue: "add {cursor}",
@@ -504,52 +492,21 @@ var completionSpec = {
                     name: "show", description: "Gives some information about the remote [name]"
                 },
                 {
-                    name: "prune", description: "Equivalent to git fetch --prune [name], except that no new" +
-                        " references will be fetched"
+                    name: "prune", description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
                 }
             ],
-            args:
+            options: [
                 {
-                    suggestions: [
-                        {
-                            name: "-f",
-                            insertValue: "-f",
-                            description: "Fetch after remote info is added",
-                        },
-                        {
-                            name: "--tags",
-                            insertValue: "--tags",
-                            description: "Import tags from remote",
-                        }
-                    ]
+                    name: "-f",
+                    insertValue: "-f",
+                    description: "Fetch after remote info is added",
+                },
+                {
+                    name: "--tags",
+                    insertValue: "--tags",
+                    description: "Import tags from remote",
                 }
-        },
-        {
-            name: "rm",
-            description: "Remove files from the working tree and from the index",
-            options:
-                [
-                    {
-                        name: "-- [file]",
-                        insertValue: "-- {cursor}",
-                        description: "used to separate command-line options from the list of files",
-                    },
-                    {
-                        name: "--cached -- [file]",
-                        insertValue: "--cached -- {cursor}",
-                        description: "Unstage and remove paths only from the index",
-                    },
-                    {
-                        name: "-f",
-                        insertValue: "-f",
-                        description: "Uses the force to override the up-to-date check",
-                    },
-                    {
-                        name: "-r",
-                        insertValue: "-r",
-                        description: "Recursive removal",
-                    },
-                ]
+            ]
         },
         {
             name: "fetch",
@@ -563,46 +520,148 @@ var completionSpec = {
         },
         {
             name: "stash",
-            icon: "🔹",
             description: "temporarily stores all the modified tracked files",
-            options: [
+            subcommands: [
                 {
                     name: "save",
-                    icon: "🔹",
                     description: "Temporarily stores all the modified tracked files"
                 },
                 {
                     name: "pop",
-                    icon: "🔹",
                     description: "Restores the most recently stashed files"
                 },
                 {
                     name: "list",
-                    icon: "🔹",
                     description: "Lists all stashed changesets"
                 },
                 {
                     name: "drop",
-                    icon: "🔹",
-                    description: "discards the most recently stashed changeset"
+                    description: "Discards the most recently stashed changeset"
+                },
+                {
+                    name: "clear",
+                    description: " Remove all the stash entries."
                 }
             ]
         },
+        { name: "reflog", description: "Show history of events with hashes" },
+        { name: "clone", description: "Clone a repository into a new directory" },
+        { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
+        { name: "mv", description: "Move or rename a file, a directory, or a symlink" },
         {
-            name: "reflog",
-            icon: "🕘",
-            description: "Show history of events with hashes"
+            name: "rm",
+            description: "Remove files from the working tree and from the index",
+            args: {
+                variadic: true,
+                suggestions: [
+                    {
+                        name: ".",
+                        description: "current directory",
+                        insertValue: ".",
+                        icon: "fig://icon?type=folder"
+                    }
+                ],
+                generator: {
+                    script: "git status --short",
+                    postProcess: function (out) {
+                        if (out.startsWith("fatal:")) {
+                            return []
+                        }
+
+                        var items = out.split('\n').map((file) => { return { working: file.substring(1, 2), file: file.substring(3) } }).slice(0, -1)
+
+                        return items.map(item => {
+                            let file = item.file
+                            var ext = ""
+                            try {
+                                ext = file.split('.').slice(-1)[0]
+                            } catch (e) { }
+
+                            if (file.endsWith('/')) {
+                                ext = "folder"
+                            }
+
+                            return { name: file, icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`, description: "Changed file" }
+                        })
+                    }
+                },
+            },
+            options: [
+                { name: "--", description: "used to separate command-line options from the list of files" },
+                { name: "--cached", description: "only remove from the index" },
+                { name: ["-f", "--force"], description: "override the up-to-date check" },
+                { name: "-r", description: "allow recursive removal" },
+            ]
         },
-        {name: "init", description: "Create a repository"},
-        {name: "clone", description: "Clone a repository into a new directory"},
-        {name: "init", description: "Create an empty Git repository or reinitialize an existing one"},
-        {name: "mv", description: "Move or rename a file, a directory, or a symlink"},
-        {name: "bisect", description: "Use binary search to find the commit that introduced a bug"},
-        {name: "grep", description: "Print lines matching a pattern"},
-        {name: "show", description: "Show various types of objects"},
-        {name: "branch", description: "List, create, or delete branches"},
-        {name: "checkout", description: "Switch branches or restore working tree files"},
-        {name: "merge", description: "Joins the difference of two or more development histories together"},
-        {name: "tag", description: "Create, list, delete or verify a tag object signed with GPG"},
+        { name: "bisect", description: "Use binary search to find the commit that introduced a bug" },
+        { name: "grep", description: "Print lines matching a pattern" },
+        { name: "show", description: "Show various types of objects" },
+        {
+            name: "branch",
+            description: "List, create, or delete branches",
+            options: [
+                { name: ["-a", "--all"], description: "list both remote-tracking and local branches" },
+                { name: ["-d", "--delete"], description: "delete fully merged branch" },
+                { name: "-D", description: "delete branch (even if not merged)" },
+                { name: ["-m", "--move"], description: "move/rename a branch and its reflog" },
+                { name: "-M", description: "move/rename a branch, even if target exists" },
+                { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
+                { name: "-C", description: "copy a branch, even if target exists" },
+                { name: ["-l", "--list"], description: "list branch names" },
+                { name: ["--create-reflog"], description: "create the branch's reflog" },
+                { name: ["--edit-description"], description: "edit the description for the branch" },
+                { name: ["-f", "--force"], description: "force creation, move/rename, deletion" },
+                { name: "--merged", description: "print only branches that are merged", args: { name: "commit" } },
+                { name: "--no-merged", description: "print only branches that are not merged", args: { name: "commit" } },
+                { name: "--column", description: "list branches in columns [=<style>]" },
+                { name: "--sort", description: "field name to sort on", args: { name: "key" } },
+                { name: "--points-at", description: "print only branches of the object", args: { name: "object" } },
+                { name: ["-i", "--ignore-case"], description: "sorting and filtering are case insensitive" },
+                { name: "--format", description: "format to use for the output", args: { name: "format" } }
+            ]
+        },
+        {
+            name: "checkout",
+            description: "Switch branches or restore working tree files",
+            options: [
+                { name: "-b", description: "create and checkout a new branch", args: { name: "branch" } },
+                { name: "-B", description: "create/reset and checkout a branch", args: { name: "branch" } },
+                { name: "-l", description: "create reflog for new branch" },
+                { name: "--detach", description: "detach HEAD at named commit" },
+                { name: ["-t", "--track"], description: "set upstream info for new branch" },
+                { name: "--orphan", description: "new unparented branch", args: { name: "new-branch" } },
+                { name: ["-2", "--ours"], description: "checkout our version for unmerged files" },
+                { name: ["-3", "--theirs"], description: "checkout their version for unmerged files" },
+                { name: ["-f", "--force"], description: "force checkout (throw away local modifications)" },
+                { name: ["-m", "--merge"], description: "perform a 3-way merge with the new branch" },
+                { name: "--overwrite-ignore", description: "update ignored files (default)" },
+                { name: "--conflict", description: "conflict style (merge or diff3)", args: { name: "style", suggestions: [{ name: "merge" }, { name: "diff3" }] } },
+                { name: ["-p", "--patch"], description: "select hunks interactively" },
+            ],
+            args: {
+
+            }
+        },
+        { name: "merge", description: "Join two or more development histories together" },
+        {
+            name: "tag",
+            description: "Create, list, delete or verify a tag object signed with GPG",
+            options: [
+                { name: ["-l", " --list"], description: "list tag names" },
+                { name: "-n", description: "print <n> lines of each tag message", arg: { name: "n", suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }] } },
+                { name: ["-d", "--delete"], description: "delete tags" },
+                { name: ["-v", "--verify"], description: "verify tags" },
+                { name: ["-a", "--annotate"], description: "annotated tag, needs a message" },
+                { name: ["-m", "--message"], insertValue: "-m '{cursor}'", description: "tag message", args: { name: "message" } },
+            ],
+            args: {
+                name: "tagname",
+                description: "Select a tag",
+                generator: {
+                    script: "git tag --list",
+                    splitOn: "\n"
+                }
+            }
+        },
     ]
 }
