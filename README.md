@@ -11,7 +11,7 @@
 2. Install the completion specs to your local device
 
 ```bash
-fig update
+$ fig update
 ```
 
 3. In the Mac status bar (top right corner of the screen), click the Fig icon, and make sure *Autocomplete* is selected. If Autocomplete ever stops working, just toggle this button.
