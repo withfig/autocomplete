@@ -15,6 +15,57 @@ let commits = {
     }
 }
 
+let recent_branch_list = {
+    script: " git reflog | egrep -io \"moving from ([^[:space:]]+)\" | awk '{ print $3 }' | awk" +
+        " ' !x[$0]++' | egrep -v '^[a-f0-9]{40}$' | head -n5",
+    postProcess: function (out) {
+        if (out.startsWith("fatal:")) {
+            return []
+        }
+
+        return out.split('\n').map((branch) => {
+
+            return {
+                name: branch,
+                icon: "🌿",
+                description: "branch recently checked-out"
+            }
+        })
+    }
+}
+
+let diff_fileNames = {
+    script: "git status --short",
+    postProcess: function (out) {
+        if (out.startsWith("fatal:")) {
+            return []
+        }
+
+        var items = out.split('\n').map((file) => {
+            return {working: file.substring(1, 2), file: file.substring(3)}
+        }).slice(0, -1)
+
+        return items.map(item => {
+            let file = item.file
+            var ext = ""
+            try {
+                ext = file.split('.').slice(-1)[0]
+            } catch (e) {
+            }
+
+            if (file.endsWith('/')) {
+                ext = "folder"
+            }
+
+            return {
+                name: file,
+                icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+                description: "Changed file"
+            }
+        })
+    }
+}
+
 let head_n_revisions = {
     name: "HEAD~<N>",
     icon: "🔻",
@@ -103,8 +154,8 @@ var completionSpec = {
             description: "Reapply commits on top of another base tip",
             insertValue: "rebase",
             options: [
-                { name: ["--continue"], description: "continue the rebasing after conflict resolution" },
-                { name: ["--abort"], description: "stop rebase" },
+                {name: ["--continue"], description: "continue the rebasing after conflict resolution"},
+                {name: ["--abort"], description: "stop rebase"},
                 {
                     name: ["-i"],
                     description: "interactive"
@@ -153,38 +204,7 @@ var completionSpec = {
                         icon: "fig://icon?type=folder"
                     }
                 ],
-                generator: {
-                    script: "git status --short",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-
-                        var items = out.split('\n').map((file) => {
-                            return { working: file.substring(1, 2), file: file.substring(3) }
-                        }).slice(0, -1)
-
-                        return items.map(item => {
-                            let file = item.file
-                            var ext = ""
-
-                            try {
-                                ext = file.split('.').slice(-1)[0]
-                            } catch (e) {
-                            }
-
-                            if (file.endsWith('/')) {
-                                ext = "folder"
-                            }
-
-                            return {
-                                name: file,
-                                icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-                                description: "Changed file"
-                            }
-                        })
-                    }
-                },
+                generator: diff_fileNames,
             },
         },
         {
@@ -268,8 +288,8 @@ var completionSpec = {
                 // { name: "--repo", description: "repository" },
                 // { name: "--all", description: "push all refs" },
                 // { name: "--mirror", description: "mirror all refs" },
-                { name: ["-d", "--delete"], description: "delete refs" },
-                { name: "--tags", description: "push tags (can't be used with --all or --mirror)" },
+                {name: ["-d", "--delete"], description: "delete refs"},
+                {name: "--tags", description: "push tags (can't be used with --all or --mirror)"},
                 // { name: ["-n", "--dry-run"], description: "dry run" },
             ],
             args: [
@@ -278,7 +298,7 @@ var completionSpec = {
                         script: "git remote",
                         postProcess: function (out) {
                             return out.split('\n').map(remote => {
-                                return { name: remote, description: "remote" }
+                                return {name: remote, description: "remote"}
                             }).slice(0, -1)
                         }
                     }
@@ -291,7 +311,7 @@ var completionSpec = {
                                 return []
                             }
                             return out.split('\n').map((elm) => {
-                                return { name: elm.replace("*", "").trim(), description: "branch" }
+                                return {name: elm.replace("*", "").trim(), description: "branch"}
                             }).slice(0, -1)
                         }
                     }
@@ -413,7 +433,7 @@ var completionSpec = {
                 generator: {
                     script: "git diff --cached --name-only",
                     postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
+                        if (out.startsWith("error:")) {
                             return []
                         }
 
@@ -492,7 +512,8 @@ var completionSpec = {
                     name: "show", description: "Gives some information about the remote [name]"
                 },
                 {
-                    name: "prune", description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
+                    name: "prune",
+                    description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
                 }
             ],
             options: [
@@ -544,10 +565,10 @@ var completionSpec = {
                 }
             ]
         },
-        { name: "reflog", description: "Show history of events with hashes" },
-        { name: "clone", description: "Clone a repository into a new directory" },
-        { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
-        { name: "mv", description: "Move or rename a file, a directory, or a symlink" },
+        {name: "reflog", description: "Show history of events with hashes"},
+        {name: "clone", description: "Clone a repository into a new directory"},
+        {name: "init", description: "Create an empty Git repository or reinitialize an existing one"},
+        {name: "mv", description: "Move or rename a file, a directory, or a symlink"},
         {
             name: "rm",
             description: "Remove files from the working tree and from the index",
@@ -561,98 +582,106 @@ var completionSpec = {
                         icon: "fig://icon?type=folder"
                     }
                 ],
-                generator: {
-                    script: "git status --short",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-
-                        var items = out.split('\n').map((file) => { return { working: file.substring(1, 2), file: file.substring(3) } }).slice(0, -1)
-
-                        return items.map(item => {
-                            let file = item.file
-                            var ext = ""
-                            try {
-                                ext = file.split('.').slice(-1)[0]
-                            } catch (e) { }
-
-                            if (file.endsWith('/')) {
-                                ext = "folder"
-                            }
-
-                            return { name: file, icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`, description: "Changed file" }
-                        })
-                    }
-                },
+                generator: diff_fileNames,
             },
             options: [
-                { name: "--", description: "used to separate command-line options from the list of files" },
-                { name: "--cached", description: "only remove from the index" },
-                { name: ["-f", "--force"], description: "override the up-to-date check" },
-                { name: "-r", description: "allow recursive removal" },
+                {name: "--", description: "used to separate command-line options from the list of files"},
+                {name: "--cached", description: "only remove from the index"},
+                {name: ["-f", "--force"], description: "override the up-to-date check"},
+                {name: "-r", description: "allow recursive removal"},
             ]
         },
-        { name: "bisect", description: "Use binary search to find the commit that introduced a bug" },
-        { name: "grep", description: "Print lines matching a pattern" },
-        { name: "show", description: "Show various types of objects" },
+        {name: "bisect", description: "Use binary search to find the commit that introduced a bug"},
+        {name: "grep", description: "Print lines matching a pattern"},
+        {name: "show", description: "Show various types of objects"},
         {
             name: "branch",
             description: "List, create, or delete branches",
             options: [
-                { name: ["-a", "--all"], description: "list both remote-tracking and local branches" },
-                { name: ["-d", "--delete"], description: "delete fully merged branch" },
-                { name: "-D", description: "delete branch (even if not merged)" },
-                { name: ["-m", "--move"], description: "move/rename a branch and its reflog" },
-                { name: "-M", description: "move/rename a branch, even if target exists" },
-                { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
-                { name: "-C", description: "copy a branch, even if target exists" },
-                { name: ["-l", "--list"], description: "list branch names" },
-                { name: ["--create-reflog"], description: "create the branch's reflog" },
-                { name: ["--edit-description"], description: "edit the description for the branch" },
-                { name: ["-f", "--force"], description: "force creation, move/rename, deletion" },
-                { name: "--merged", description: "print only branches that are merged", args: { name: "commit" } },
-                { name: "--no-merged", description: "print only branches that are not merged", args: { name: "commit" } },
-                { name: "--column", description: "list branches in columns [=<style>]" },
-                { name: "--sort", description: "field name to sort on", args: { name: "key" } },
-                { name: "--points-at", description: "print only branches of the object", args: { name: "object" } },
-                { name: ["-i", "--ignore-case"], description: "sorting and filtering are case insensitive" },
-                { name: "--format", description: "format to use for the output", args: { name: "format" } }
+                {name: ["-a", "--all"], description: "list both remote-tracking and local branches"},
+                {name: ["-d", "--delete"], description: "delete fully merged branch"},
+                {name: "-D", description: "delete branch (even if not merged)"},
+                {name: ["-m", "--move"], description: "move/rename a branch and its reflog"},
+                {name: "-M", description: "move/rename a branch, even if target exists"},
+                {name: ["-c", "--copy"], description: "copy a branch and its reflog"},
+                {name: "-C", description: "copy a branch, even if target exists"},
+                {name: ["-l", "--list"], description: "list branch names"},
+                {name: ["--create-reflog"], description: "create the branch's reflog"},
+                {name: ["--edit-description"], description: "edit the description for the branch"},
+                {name: ["-f", "--force"], description: "force creation, move/rename, deletion"},
+                {name: "--merged", description: "print only branches that are merged", args: {name: "commit"}},
+                {name: "--no-merged", description: "print only branches that are not merged", args: {name: "commit"}},
+                {name: "--column", description: "list branches in columns [=<style>]"},
+                {name: "--sort", description: "field name to sort on", args: {name: "key"}},
+                {name: "--points-at", description: "print only branches of the object", args: {name: "object"}},
+                {name: ["-i", "--ignore-case"], description: "sorting and filtering are case insensitive"},
+                {name: "--format", description: "format to use for the output", args: {name: "format"}}
             ]
         },
         {
             name: "checkout",
             description: "Switch branches or restore working tree files",
             options: [
-                { name: "-b", description: "create and checkout a new branch", args: { name: "branch" } },
-                { name: "-B", description: "create/reset and checkout a branch", args: { name: "branch" } },
-                { name: "-l", description: "create reflog for new branch" },
-                { name: "--detach", description: "detach HEAD at named commit" },
-                { name: ["-t", "--track"], description: "set upstream info for new branch" },
-                { name: "--orphan", description: "new unparented branch", args: { name: "new-branch" } },
-                { name: ["-2", "--ours"], description: "checkout our version for unmerged files" },
-                { name: ["-3", "--theirs"], description: "checkout their version for unmerged files" },
-                { name: ["-f", "--force"], description: "force checkout (throw away local modifications)" },
-                { name: ["-m", "--merge"], description: "perform a 3-way merge with the new branch" },
-                { name: "--overwrite-ignore", description: "update ignored files (default)" },
-                { name: "--conflict", description: "conflict style (merge or diff3)", args: { name: "style", suggestions: [{ name: "merge" }, { name: "diff3" }] } },
-                { name: ["-p", "--patch"], description: "select hunks interactively" },
+                {name: "-b", description: "create and checkout a new branch", args: {name: "branch"}},
+                {name: "-B", description: "create/reset and checkout a branch", args: {name: "branch"}},
+                {name: "-l", description: "create reflog for new branch"},
+                {name: "--detach", description: "detach HEAD at named commit"},
+                {name: ["-t", "--track"], description: "set upstream info for new branch"},
+                {name: "--orphan", description: "new unparented branch", args: {name: "new-branch"}},
+                {name: ["-2", "--ours"], description: "checkout our version for unmerged files"},
+                {name: ["-3", "--theirs"], description: "checkout their version for unmerged files"},
+                {name: ["-f", "--force"], description: "force checkout (throw away local modifications)"},
+                {name: ["-m", "--merge"], description: "perform a 3-way merge with the new branch"},
+                {name: "--overwrite-ignore", description: "update ignored files (default)"},
+                {
+                    name: "--conflict",
+                    description: "conflict style (merge or diff3)",
+                    args: {name: "style", suggestions: [{name: "merge"}, {name: "diff3"}]}
+                },
+                {name: ["-p", "--patch"], description: "select hunks interactively"},
             ],
             args: {
-
+                variadic: true,
+                suggestions: [],
+                generator: recent_branch_list,
+                templateSuggestions: ["files"]
             }
         },
-        { name: "merge", description: "Join two or more development histories together" },
+        {
+            name: "merge",
+            description: "Join two or more development histories together",
+            options: [
+                {
+                    name: "-",
+                    description: "previously checked-out branch"
+                }
+            ],
+            args: {
+                variadic: true,
+                suggestions: [],
+                generator: recent_branch_list,
+                templateSuggestions: ["files"]
+            }
+        },
         {
             name: "tag",
             description: "Create, list, delete or verify a tag object signed with GPG",
             options: [
-                { name: ["-l", " --list"], description: "list tag names" },
-                { name: "-n", description: "print <n> lines of each tag message", arg: { name: "n", suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }] } },
-                { name: ["-d", "--delete"], description: "delete tags" },
-                { name: ["-v", "--verify"], description: "verify tags" },
-                { name: ["-a", "--annotate"], description: "annotated tag, needs a message" },
-                { name: ["-m", "--message"], insertValue: "-m '{cursor}'", description: "tag message", args: { name: "message" } },
+                {name: ["-l", " --list"], description: "list tag names"},
+                {
+                    name: "-n",
+                    description: "print <n> lines of each tag message",
+                    arg: {name: "n", suggestions: [{name: "1"}, {name: "2"}, {name: "3"}]}
+                },
+                {name: ["-d", "--delete"], description: "delete tags"},
+                {name: ["-v", "--verify"], description: "verify tags"},
+                {name: ["-a", "--annotate"], description: "annotated tag, needs a message"},
+                {
+                    name: ["-m", "--message"],
+                    insertValue: "-m '{cursor}'",
+                    description: "tag message",
+                    args: {name: "message"}
+                },
             ],
             args: {
                 name: "tagname",
