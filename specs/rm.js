@@ -7,6 +7,7 @@ var completionSpec = {
             template: ["filepaths", "folders"]
         },
     ],
+    subcommands: [],
     options: [
         {
             name: ["-r", "-R"],
