@@ -639,8 +639,18 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
-
-            }
+                    generator: {
+                        script: "git branch --no-color",
+                        postProcess: function (out) {
+                            if (out.startsWith("fatal:")) {
+                                return []
+                            }
+                            return out.split('\n').map((elm) => {
+                                return { name: elm.replace("*", "").trim(), description: "branch" }
+                            }).slice(0, -1)
+                        }
+                    }
+                }
         },
         { name: "merge", description: "Join two or more development histories together" },
         {
