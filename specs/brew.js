@@ -14,9 +14,27 @@ var completionSpec = {
             description: "Install <formula>",
             insertValue: "install ",
             args: {
+                variadic: true,
                 name: "<formula>",
-                insertValue: "",
-                description: "Formula to install"
+                // insertValue: "",
+                // description: "Formula to install"
+                generator: {
+                    script: "find /usr/local/Homebrew/ -type d -name \"Formula\" -exec ls -1 {} \\;",
+                    postProcess: function (out) {
+                        let unique = out.split('\n').reduce((acc, line) => {
+                            acc[line.split("@")[0].replace('.rb', '')] = true
+                            return acc
+                        }, {})
+
+                        return Object.keys(unique).map(formula => {
+                            return {
+                                name: formula,
+                                description: "formula",
+                                icon: "🍺"
+                            }
+                        })
+                    }
+                }
             }
         },
 
