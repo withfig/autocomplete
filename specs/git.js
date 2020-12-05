@@ -162,7 +162,7 @@ var completionSpec = {
 
                         var items = out.split('\n').map((file) => {
                             return { working: file.substring(1, 2), file: file.substring(3) }
-                        }).slice(0, -1)
+                        })
 
                         return items.map(item => {
                             let file = item.file
@@ -279,7 +279,7 @@ var completionSpec = {
                         postProcess: function (out) {
                             return out.split('\n').map(remote => {
                                 return { name: remote, description: "remote" }
-                            }).slice(0, -1)
+                            })
                         }
                     }
                 },
@@ -292,7 +292,7 @@ var completionSpec = {
                             }
                             return out.split('\n').map((elm) => {
                                 return { name: elm.replace("*", "").trim(), description: "branch" }
-                            }).slice(0, -1)
+                            })
                         }
                     }
                 }
@@ -568,7 +568,7 @@ var completionSpec = {
                             return []
                         }
 
-                        var items = out.split('\n').map((file) => { return { working: file.substring(1, 2), file: file.substring(3) } }).slice(0, -1)
+                        var items = out.split('\n').map((file) => { return { working: file.substring(1, 2), file: file.substring(3) } })
 
                         return items.map(item => {
                             let file = item.file
@@ -647,7 +647,7 @@ var completionSpec = {
                             }
                             return out.split('\n').map((elm) => {
                                 return { name: elm.replace("*", "").trim(), description: "branch" }
-                            }).slice(0, -1)
+                            })
                         }
                     }
                 }
