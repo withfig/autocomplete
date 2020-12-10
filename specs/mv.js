@@ -4,7 +4,7 @@ var completionSpec = {
     description: "move & rename files and folders",
     args: [
         {   
-            template: "folders"
+            template: "filepaths"
         },
         {
             template: "folders"

@@ -1,3 +1,19 @@
+let servicesGenerator = {
+    variadic: true,
+    suggestions: [],
+    generator: {
+        script: "brew services list | sed -e 's/ .*//' | tail -n +2",
+        postProcess: function(out) {
+            return out.split('\n').filter((line) => {
+                return !line.includes('unbound') && {
+                    name: line,
+                    type: "option"
+                }
+            })
+        }
+    }
+};
+
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
@@ -14,9 +30,27 @@ var completionSpec = {
             description: "Install <formula>",
             insertValue: "install ",
             args: {
+                variadic: true,
                 name: "<formula>",
-                insertValue: "",
-                description: "Formula to install"
+                // insertValue: "",
+                // description: "Formula to install"
+                generator: {
+                    script: "find /usr/local/Homebrew/ -type d -name \"Formula\" -exec ls -1 {} \\;",
+                    postProcess: function (out) {
+                        let unique = out.split('\n').reduce((acc, line) => {
+                            acc[line.split("@")[0].replace('.rb', '')] = true
+                            return acc
+                        }, {})
+
+                        return Object.keys(unique).map(formula => {
+                            return {
+                                name: formula,
+                                description: "formula",
+                                icon: "🍺"
+                            }
+                        })
+                    }
+                }
             }
         },
 
@@ -65,6 +99,80 @@ var completionSpec = {
                             }
                         },
                     },
+                }
+            ]
+        },
+        {
+            name: "services",
+            description: "Manage background services with macOS\' launchctl(1) daemon manager.",
+            options: [
+                { name: ["-d", "--debug"], description: "Display any debugging information." },
+                { name: ["-q", "--quiet"], description: "Suppress any warnings." },
+                { name: ["-v", "--verbose"], description: "Make some output more verbose." },
+                { name: ["-h", "--help"], description: "Get help with services command" },
+            ],
+            subcommands: [
+                {
+                    name: "cleanup",
+                    insertValue: "cleanup",
+                    description: "Remove all unused services."
+                },
+                {
+                    name: "list",
+                    insertValue: "list",
+                    description: "List all services."
+                },
+                {
+                    name: "run",
+                    insertValue: "run ",
+                    description: "Run the service formula without registering to launch at login (or boot).",
+                    options: [
+                        {
+                            name: "--all",
+                            insertValue: "--all",
+                            description: "Start all services"
+                        }
+                    ],
+                    args: servicesGenerator
+                },
+                {
+                    name: "start",
+                    insertValue: "start ",
+                    description: "Start the service formula immediately and register it to launch at login",
+                    options: [
+                        {
+                            name: "--all",
+                            insertValue: "--all",
+                            description: "Start all services"
+                        }
+                    ],
+                    args: servicesGenerator
+                },
+                {
+                    name: "stop",
+                    insertValue: "stop ",
+                    description: "Stop the service formula immediately and unregister it from launching at",
+                    options: [
+                        {
+                            name: "--all",
+                            insertValue: "--all",
+                            description: "Start all services"
+                        }
+                    ],
+                    args: servicesGenerator
+                },
+                {
+                    name: "restart",
+                    insertValue: "restart ",
+                    description: "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
+                    options: [
+                        {
+                            name: "--all",
+                            insertValue: "--all",
+                            description: "Start all services"
+                        }
+                    ],
+                    args: servicesGenerator
                 }
             ]
         }
