@@ -123,7 +123,7 @@ var completionSpec = {
                         ":"
                     ],
                 },
-            ] // TODO research this
+            ]
         },
         {
             name: "--network-concurrency",
@@ -275,54 +275,157 @@ var completionSpec = {
             name: "add",
             description: "Installs a package and any packages that it depends on.",
             options: [
+                {
+                    name: ["-W", "--ignore-workspace-root-check"],
+                    description: "required to run yarn add inside a workspace root",
+                },
+                {
+                    name: ["-D", "--dev"],
+                    description: "save package to your `devDependencies`",
+                },
+                {
+                    name: ["-P", "--peer"],
+                    description: "save package to your `peerDependencies`",
+                },
+                {
+                    name: ["-O", "--optional"],
+                    description: "save package to your `optionalDependencies`",
+                },
+                {
+                    name: ["-E", "--exact"],
+                    description: "install exact version",
+                },
+                {
+                    name: ["-T", "--tilde"],
+                    description: "install most recent release with the same minor version",
+                },
+                {
+                    name: ["-A", "--audit"],
+                    description: "Run vulnerability audit on installed packages",
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "audit",
             description: "",
             options: [
+                {
+                    name: "--summary",
+                    description: "Only print the summary.",
+                },
+                {
+                    name: "--groups <group_name> [<group_name> ...]",
+                    insertValue: "--groups ",
+                    description: "Only audit dependencies from listed groups. Default: devDependencies, dependencies, optionalDependencies",
+                    args: {
+                        name: "group_name",
+                        variadic: true,
+                    }
+                },
+                {
+                    name: "--level <severity>",
+                    insertValue: "--level ",
+                    description: "Only print advisories with severity greater than or equal to one of the following: info|low|moderate|high|critical. Default: info",
+                    args: {
+                        name: "severity",
+                        suggestions: ["info", "low", "moderate", "high", "critical"],
+                    }
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "autoclean",
             description: "",
             options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "bin",
             description: "",
             options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "cache",
             description: "",
             options: [
+                {
+                    name: "--pattern [pattern]",
+                    insertValue: "--pattern ",
+                    description: "filter cached packages by pattern",
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "config",
             description: "",
             options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "create",
             description: "",
             options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "exec",
             description: "",
             options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
             ]
         },
         {
             name: "generate-lock-entry",
             description: "",
             options: [
+                {
+                    name: "--use-manifest <file>",
+                    insertValue: "--use-manifest ",
+                    description: "Specify which manifest file to use for generating lock entry",
+                    args: {
+                        template: "filepaths"
+                    }
+                },
+                {
+                    name: "--resolved <file>#hash",
+                    insertValue: "--resolved ",
+                    description: "Use resolved archive (*.tgz) and hash",
+                    args: {
+                        template: "filepaths"
+                    }
+                },
             ]
         },
     ]
