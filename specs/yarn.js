@@ -1,11 +1,32 @@
 var completionSpec = {
     name: "yarn",
     description: "Manage packages and run scripts",
-    args: {},
+    args: [
+        {
+            generator: {
+               script: "cat package.json",
+               postProcess: function (out) {
+                   if (out.trim() == "") {
+                       return []
+                   }
+
+                   try {
+                       let package = JSON.parse(out)
+                       let scripts = package["scripts"]
+                       if (scripts) {
+                           return Object.keys(scripts)
+                       }
+                   } catch(e) { }
+
+                   return []
+               }
+              }
+        },
+    ],
     options: [
         {
             name: "--cache-folder",
-            description: "program passed in as string (terminates option list)",
+            description: "specify a custom folder that must be used to store the yarn cache",
             args: {
                 template: "folders"
             }
@@ -13,6 +34,13 @@ var completionSpec = {
         {
             name: "--check-files",
             description: "install will verify file tree of packages for consistency",
+        },
+        {
+            name: "--cwd",
+            description: "working directory to use (default: .)",
+            args: {
+                template: "folders"
+            }
         },
         {
             name: "--disable-pnp",
@@ -29,7 +57,6 @@ var completionSpec = {
         },
         {
             name: ["--enable-pnp", "--pnp"],
-            insertValue: "--enable-pnp ",
             description: "enable the Plug'n'Play installation",
         },
         {
@@ -196,9 +223,8 @@ var completionSpec = {
         },
         {
             name: ["--prod", "--production"],
-            insertValue: "--prod",
             description: "",
-            args : {}
+            args: {}
         },
         {
             name: "--proxy",
@@ -226,11 +252,10 @@ var completionSpec = {
         },
         {
             name: ["-s", "--silent"],
-            insertValue: "-s",
             description: "skip Yarn console logs, other types of logs (script output) will be printed",
         },
         {
-            name: "--scripts-prepend-node-path [bool]",
+            name: "--scripts-prepend-node-path",
             description: "prepend the node executable dir to the PATH in scripts",
             args: {
                 optional: true,
@@ -250,8 +275,7 @@ var completionSpec = {
             description: "update package checksums from current repository",
         },
         {
-            name: "--use-yarnrc <path>",
-            insertValue: "--use-yarnrc ",
+            name: "--use-yarnrc",
             description: "specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)",
             args: {
                 template: "filepaths"
@@ -318,8 +342,7 @@ var completionSpec = {
                     description: "Only print the summary.",
                 },
                 {
-                    name: "--groups <group_name> [<group_name> ...]",
-                    insertValue: "--groups ",
+                    name: "--groups",
                     description: "Only audit dependencies from listed groups. Default: devDependencies, dependencies, optionalDependencies",
                     args: {
                         name: "group_name",
@@ -327,8 +350,7 @@ var completionSpec = {
                     }
                 },
                 {
-                    name: "--level <severity>",
-                    insertValue: "--level ",
+                    name: "--level",
                     description: "Only print advisories with severity greater than or equal to one of the following: info|low|moderate|high|critical. Default: info",
                     args: {
                         name: "severity",
@@ -366,9 +388,13 @@ var completionSpec = {
             description: "",
             options: [
                 {
-                    name: "--pattern [pattern]",
-                    insertValue: "--pattern ",
+                    name: "--pattern",
                     description: "filter cached packages by pattern",
+                    args: [
+                        {
+                            name: "pattern"
+                        }
+                    ]
                 },
                 {
                     name: ["-h", "--help"],
@@ -411,20 +437,308 @@ var completionSpec = {
             description: "",
             options: [
                 {
-                    name: "--use-manifest <file>",
-                    insertValue: "--use-manifest ",
+                    name: "--use-manifest",
                     description: "Specify which manifest file to use for generating lock entry",
                     args: {
                         template: "filepaths"
                     }
                 },
                 {
-                    name: "--resolved <file>#hash",
-                    insertValue: "--resolved ",
-                    description: "Use resolved archive (*.tgz) and hash",
+                    name: "--resolved",
+                    description: "Generate from <*.tgz>#<hash>",
                     args: {
                         template: "filepaths"
                     }
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
+            ]
+        },
+        {
+            name: "global",
+            description: "",
+            options: [
+                {
+                    name: "--prefix",
+                    description: "bin prefix to use to install binaries",
+                    args: {
+                        name: "prefix",
+                    }
+                },
+                {
+                    name: "--latest",
+                    description: "bin prefix to use to install binaries",
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
+            ]
+        },
+        {
+            name: "help",
+            description: "output usage information",
+            options: [
+            ]
+        },
+        {
+            name: "import",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "info",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "init",
+            description: "",
+            options: [
+                {
+                    name: ["-y", "--yes"],
+                    description: "use default options",
+                },
+                {
+                    name: ["-p", "--private"],
+                    description: "use default options and private true",
+                },
+                {
+                    name: ["-i", "--install"],
+                    description: "install a specific Yarn release",
+                    args: [
+                        {
+                            name: "version",
+                        }
+                    ]
+                },
+                {
+                    name: ["-2"],
+                    description: "generates the project using Yarn 2",
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "output usage information",
+                },
+            ]
+        },
+        {
+            name: "install",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "licenses",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "link",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "list",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "login",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "logout",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "node",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "outdated",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "owner",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "pack",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "policies",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "publish",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "remove",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "run",
+            description: "",
+            options: [
+            ],
+            args: [
+                // TODO get this generator to work and combine the logic of both of these
+                //     {
+                //         generator: {
+                //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
+                //            splitOn: "\n",
+                //            postProcess: function (out) {
+                //                try {
+                //                    if (out) {
+                //                        return out
+                //                    }
+                //                } catch(e) { }
+                //                return []
+                //            }
+                //           }
+                //     },
+                {
+                    generator: {
+                        script: "cat package.json",
+                        postProcess: function (out) {
+                            if (out.trim() == "") {
+                                return []
+                            }
+                            try {
+                                let package = JSON.parse(out)
+                                let scripts = package["scripts"]
+                                if (scripts) {
+                                    return Object.keys(scripts)
+                                }
+                            } catch(e) { }
+                            return []
+                        }
+                    }
+                },
+            ]
+        },
+        {
+            name: "tag",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "team",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "unlink",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "unplug",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "upgrade",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: ["upgrade-interactive", "upgradeInteractive"],
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "version",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "versions",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "why",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "workspace",
+            description: "",
+            options: [
+            ],
+            args: [
+                {
+                    name: "name",
+                    generator: {
+                        script: "cat package.json",
+                        postProcess: function (out) {
+                            if (out.trim() == "") {
+                                return []
+                            }
+                            try {
+                                let package = JSON.parse(out)
+                                let workspaces = package["workspaces"]
+                                if (workspaces) {
+                                    return workspaces
+                                }
+                            } catch(e) { }
+                            return []
+                        }
+                    }
+                },
+                // TODO arg 1 is script suggestion from the workspace specified in arg 0.
+            ]
+        },
+        {
+            name: "workspaces",
+            description: "",
+            options: [
+                {
+                    name: "subcommand",
+                    description: "",
+                    suggestions: ["info", "run"]
+                },
+                {
+                    name: "flags",
+                    description: "",
                 },
             ]
         },
