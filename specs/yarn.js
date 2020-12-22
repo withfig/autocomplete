@@ -3,24 +3,24 @@ var completionSpec = {
     description: "Manage packages and run scripts",
     args: [
         {
-            generator: {
-               script: "cat package.json",
-               postProcess: function (out) {
-                   if (out.trim() == "") {
-                       return []
-                   }
+            generators: {
+                script: "cat package.json",
+                postProcess: function (out) {
+                    if (out.trim() == "") {
+                        return []
+                    }
 
-                   try {
-                       let package = JSON.parse(out)
-                       let scripts = package["scripts"]
-                       if (scripts) {
-                           return Object.keys(scripts)
-                       }
-                   } catch(e) { }
+                    try {
+                        let package = JSON.parse(out)
+                        let scripts = package["scripts"]
+                        if (scripts) {
+                            return Object.keys(scripts)
+                        }
+                    } catch (e) { }
 
-                   return []
-               }
-              }
+                    return []
+                }
+            }
         },
     ],
     options: [
@@ -612,7 +612,7 @@ var completionSpec = {
             args: [
                 // TODO get this generator to work and combine the logic of both of these
                 //     {
-                //         generator: {
+                //         generators: {
                 //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
                 //            splitOn: "\n",
                 //            postProcess: function (out) {
@@ -626,7 +626,7 @@ var completionSpec = {
                 //           }
                 //     },
                 {
-                    generator: {
+                    generators: {
                         script: "cat package.json",
                         postProcess: function (out) {
                             if (out.trim() == "") {
@@ -638,7 +638,7 @@ var completionSpec = {
                                 if (scripts) {
                                     return Object.keys(scripts)
                                 }
-                            } catch(e) { }
+                            } catch (e) { }
                             return []
                         }
                     }
@@ -707,7 +707,7 @@ var completionSpec = {
             args: [
                 {
                     name: "name",
-                    generator: {
+                    generators: {
                         script: "cat package.json",
                         postProcess: function (out) {
                             if (out.trim() == "") {
@@ -719,7 +719,7 @@ var completionSpec = {
                                 if (workspaces) {
                                     return workspaces
                                 }
-                            } catch(e) { }
+                            } catch (e) { }
                             return []
                         }
                     }

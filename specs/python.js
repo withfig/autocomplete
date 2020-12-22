@@ -2,7 +2,7 @@ var completionSpec = {
     name: "python",
     description: "Run the python interpretor",
     args: {
-        generator: {
+        generators: {
             script: "ls -1 | grep .py",
             splitOn: "\n"
         }
