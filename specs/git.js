@@ -107,8 +107,6 @@ var generators = {
             })
         }
     },
-
-
 }
 
 
