@@ -1,9 +1,33 @@
+var pastConnections = {
+    script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
+    postProcess: function(out) {
+        return out.split('\n').map((line) => {
+            var parts = line.split("/[ ,]+/");
+            var address;
+            for(var i = 0; i < parts.length; i++) {
+                if(parts[i].includes('@')) {
+                    //found address
+                    address = parts[i];
+                }
+            }
+            if(address) {
+                return {
+                    name: "root",
+                    icon: "🔗",
+                    description: `connect to ${address}`
+                }
+            }
+        })
+    }
+}
+
 var completionSpec = {
     name: "ssh",
     description: "Log into a remote machine",
     args: [{
         name: "user@hostname",
-        description: "address of remote machine to log into"
+        description: "address of remote machine to log into",
+        generator: pastConnections
     }],
     options: [
         {
@@ -251,10 +275,11 @@ var completionSpec = {
         },
         {
             name: ["-S"],
-            description: "Specifies the location of a control socket for connection sharing, or the string ``none'' to disable connection sharing.",
+            description: "Specifies the location of a control socket for connection sharing, or the string 'none' to disable connection sharing.",
             args: {
                 name: "ctl_path",
-                description: "location of the control socket"
+                description: "location of the control socket",
+                template: "filepaths"
             }
         },
         {
