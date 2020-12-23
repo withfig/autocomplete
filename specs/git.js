@@ -208,7 +208,6 @@ var completionSpec = {
             args: {
                 suggestions: [],
                 generators: generators.commits,
-                templateSuggestions: ["files"]
             },
         },
         {
@@ -448,7 +447,6 @@ var completionSpec = {
                 variadic: true,
                 suggestions: [],
                 generators: generators.treeish,
-                templateSuggestions: ["files"]
             },
 
         },
@@ -566,7 +564,10 @@ var completionSpec = {
             ]
         },
         { name: "reflog", description: "Show history of events with hashes" },
-        { name: "clone", description: "Clone a repository into a new directory" },
+        {
+            name: "clone", description: "Clone a repository into a new directory",
+            args: [{ name: "repository" }, { name: "directory", template: "filepaths" }]
+        },
         { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
         { name: "mv", description: "Move or rename a file, a directory, or a symlink" },
         {
