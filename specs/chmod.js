@@ -7,37 +7,31 @@ var completionSpec = {
             optional: false,
             suggestions: [ 
                 // Some of the most common chmod's (non-exhaustive)
-                {   
-                    name: ["u+x",],
+                {
+                    name: ["u+x"],
                     type: "argument",
                     description: "give execute permission for the user",
                     icon: "🔐",
                 },
-                {   
-                    name: ["a+rx",],
+                {
+                    name: ["a+rx"],
                     type: "argument",
                     description: "adds read and execute permissions for all classes",
                     icon: "🔐",
                 },
-                {   
-                    name: ["744",],
+                {
+                    name: ["744"],
                     type: "argument",
                     description: "sets read, write, and execute permissions for user, and sets read permission for Group and Others",
                     icon: "🔐",
                 },
-                {   
-                    name: ["664",],
+                {
+                    name: ["664"],
                     type: "argument",
                     description: "sets read and write permissions for user and Group, and provides read to Others.",
                     icon: "🔐",
                 },
-                {   
-                    name: ["ug=rw"],
-                    type: "argument",
-                    description: "sets read and write permissions for user and Group.",
-                    icon: "🔐",
-                },
-                {   
+                {
                     name: ["777"],
                     type: "argument",
                     description: "⚠️ allows all actions for all users",
@@ -47,6 +41,7 @@ var completionSpec = {
         },
         {
             // Modifying
+            optional: false,
             template: ["filepaths", "folders"]
         }
     ],
