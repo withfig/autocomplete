@@ -65,7 +65,10 @@ var teamList = {
 var completionSpec = {
     name: "vercel",
     description: "CLI Interface for Vercel.com",
-    args: {},
+    args: {
+        name: "path to project",
+        template: "folders"
+    },
     options: [
         {
             name: ["-h", "--help"],
