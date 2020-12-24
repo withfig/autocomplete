@@ -202,7 +202,7 @@ var completionSpec = {
         },        
         {
             name: ["--line-numbers"],
-            description: "	Write line numbers for errors",
+            description: "Write line numbers for errors",
         },        
         {
             name: ["--load-data-local-dir"],
