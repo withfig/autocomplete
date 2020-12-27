@@ -49,6 +49,7 @@ var completionSpec = {
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
+                                    console.log("this is working")
                                     return JSON.parse(out).map(app => {
                                         let build = app.buildpack_provided_description ? `(${app.buildpack_provided_description})` : ""
                                         return { name: app.name, description: `heroku app ${build}`, icon: "https://www.herokucdn.com/favicon.ico" }
