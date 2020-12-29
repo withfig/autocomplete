@@ -42,7 +42,7 @@ var completionSpec = {
         {
             // Modifying
             optional: false,
-            template: ["filepaths", "folders"]
+            template: "filepaths"
         }
     ],
     subcommands: [],
