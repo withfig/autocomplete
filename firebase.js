@@ -1,7 +1,7 @@
 var completionSpec = {
   name: "firebase",
   description: "CLI Interface for Google Firebase",
-  args: {},
+//   args: {},
   subcommands: [
     {
       name: "login",
@@ -42,26 +42,22 @@ var completionSpec = {
         },
         {
           name: ["-p", "--port"],
-          insertValue: "-p {cursor}",
           description: "use the given port",
           args: {},
         },
         {
           name: ["-o", "--host"],
-          insertValue: "-o {cursor}",
           description: "use the given host",
           args: {},
         },
         {
           name: ["--only"],
-          insertValue: "--only {cursor}",
           description:
             "only serve specified targets (valid targets are: hosting, functions)",
           args: {},
         },
         {
           name: ["--except"],
-          insertValue: "--except {cursor}",
           description:
             "serve all except specified targets (valid targets are: hosting, functions)",
           args: {},
@@ -78,14 +74,12 @@ var completionSpec = {
         },
         {
           name: ["-p", "--public"],
-          insertValue: "-p {cursor}",
           description:
             "override the Hosting public directory specified in firebase.json",
           args: {},
         },
         {
           name: ["-m", "--message"],
-          insertValue: "-m {cursor}",
           description: "use the message",
           args: {},
         },
@@ -97,14 +91,12 @@ var completionSpec = {
         },
         {
           name: ["--only"],
-          insertValue: "--only {cursor}",
           description:
             "only serve specified targets (valid targets are: hosting, functions)",
           args: {},
         },
         {
           name: ["--except"],
-          insertValue: "--except {cursor}",
           description:
             "serve all except specified targets (valid targets are: hosting, functions)",
           args: {},
@@ -170,17 +162,14 @@ var completionSpec = {
         {
           name: ["-a", "--package-name"],
           description: "required package name for the Android app",
-          insertValue: "-a {cursor}",
         },
         {
           name: ["-b", "--bundle-id"],
           description: "required package name for the iOS app",
-          insertValue: "-b {cursor}",
         },
         {
           name: ["-s", "--app-store-id"],
           description: "optional package name for the iOS app",
-          insertValue: "-s {cursor}",
         },
       ],
       args: {
@@ -335,7 +324,6 @@ var completionSpec = {
         {
           name: ["--params"],
           description: "path of params file with .env format",
-          insertValue: "--params {cursor}",
         },
       ],
     },
@@ -383,8 +371,6 @@ var completionSpec = {
         generator: {
           script: "zsh gcloud projects list",
           postProcess: function (out) {
-            console.log("Hello");
-            console.log("project add firebase", out);
             if (out.trim() === "") {
               return [];
             }
@@ -429,12 +415,10 @@ var completionSpec = {
     {
       name: ["--token"],
       description: "supply an auth token for this command",
-      insertValue: "--token {cursor}",
     },
     {
       name: ["-P, --project"],
       description: "the Firebase project to use for this command",
-      insertValue: "-P {cursor}",
     },
   ],
 };
