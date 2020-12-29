@@ -27,7 +27,7 @@ var completionSpec = {
     args: [{
         name: "user@hostname",
         description: "address of remote machine to log into",
-        generator: pastConnections
+        // generator: pastConnections
     }],
     options: [
         {
