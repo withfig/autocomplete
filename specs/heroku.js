@@ -13,7 +13,7 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        generator: {
+                        generators: {
                             script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
@@ -44,7 +44,7 @@ var completionSpec = {
                     name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
-                        generator: {
+                        generators: {
                             script: "heroku apps --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
@@ -82,7 +82,6 @@ var completionSpec = {
         { name: "keys", description: "add/remove account ssh keys" },
         { name: "labs", description: "add/remove experimental features" },
         { name: "local", description: "run Heroku app locally" },
-        { name: "logs", description: "display recent log output" },
         { name: "maintenance", description: "enable/disable access to app" },
         { name: "members", description: "manage organization members" },
         { name: "notifications", description: "display notifications" },

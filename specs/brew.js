@@ -1,9 +1,8 @@
-let servicesGenerator = {
-    variadic: true,
-    suggestions: [],
-    generator: {
+var generators = {
+
+    servicesgenerators: {
         script: "brew services list | sed -e 's/ .*//' | tail -n +2",
-        postProcess: function(out) {
+        postProcess: function (out) {
             return out.split('\n').filter((line) => {
                 return !line.includes('unbound') && {
                     name: line,
@@ -12,7 +11,9 @@ let servicesGenerator = {
             })
         }
     }
-};
+}
+
+
 
 var completionSpec = {
     name: "brew",
@@ -33,8 +34,8 @@ var completionSpec = {
                 variadic: true,
                 name: "<formula>",
                 // insertValue: "",
-                // description: "Formula to install"
-                generator: {
+                description: "Formula to install",
+                generators: {
                     script: "find /usr/local/Homebrew/ -type d -name \"Formula\" -exec ls -1 {} \\;",
                     postProcess: function (out) {
                         let unique = out.split('\n').reduce((acc, line) => {
@@ -59,7 +60,7 @@ var completionSpec = {
             description: "Uninstall <formula>",
             args: {
                 variadic: true,
-                generator: {
+                generators: {
                     script: "brew list -1 --formulae",
                     postProcess: function (out) {
                         return out.split('\n').map(formula => {
@@ -90,7 +91,7 @@ var completionSpec = {
                     description: "Uninstalls the given cask",
                     args: {
                         variadic: true,
-                        generator: {
+                        generators: {
                             script: "brew list -1 --cask",
                             postProcess: function (out) {
                                 return out.split('\n').map(formula => {
@@ -133,7 +134,10 @@ var completionSpec = {
                             description: "Start all services"
                         }
                     ],
-                    args: servicesGenerator
+                    args: {
+                        variadic: true,
+                        generators: generators.servicesGenerator
+                    }
                 },
                 {
                     name: "start",
@@ -146,7 +150,10 @@ var completionSpec = {
                             description: "Start all services"
                         }
                     ],
-                    args: servicesGenerator
+                    args: {
+                        variadic: true,
+                        generators: generators.servicesGenerator
+                    }
                 },
                 {
                     name: "stop",
@@ -159,7 +166,10 @@ var completionSpec = {
                             description: "Start all services"
                         }
                     ],
-                    args: servicesGenerator
+                    args: {
+                        variadic: true,
+                        generators: generators.servicesGenerator
+                    }
                 },
                 {
                     name: "restart",
@@ -172,7 +182,10 @@ var completionSpec = {
                             description: "Start all services"
                         }
                     ],
-                    args: servicesGenerator
+                    args: {
+                        variadic: true,
+                        generators: generators.servicesGenerator
+                    }
                 }
             ]
         }

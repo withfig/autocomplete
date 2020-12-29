@@ -1,19 +1,114 @@
-let commits = {
-    script: "git log --oneline",
-    postProcess: function (out) {
-        if (out.startsWith("fatal:")) {
-            return []
-        }
+var generators = {
 
-        return out.split('\n').map((line) => {
-            return {
-                name: line.substring(0, 7),
-                icon: "🔹",
-                description: line.substring(7)
+    // Commit history
+    commits: {
+        script: "git log --oneline",
+        postProcess: function (out) {
+            if (out.startsWith("fatal:")) {
+                return []
             }
-        })
-    }
+
+            return out.split('\n').map((line) => {
+                return {
+                    name: line.substring(0, 7),
+                    icon: "🔹",
+                    description: line.substring(7)
+                }
+            })
+        }
+    },
+
+
+    // Tree-ish
+    // This needs to be fleshed out properly....
+    // e.g. what is difference to commit-ish?
+    // Refer to this:https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git/40910185
+    // https://mirrors.edge.kernel.org/pub/software/scm/git/docs/#_identifier_terminology
+
+    treeish: {
+        script: "git diff --cached --name-only",
+        postProcess: function (out) {
+            if (out.startsWith("fatal:")) {
+                return []
+            }
+
+            return out.split('\n').map((file) => {
+                return {
+                    name: file,
+                    insertValue: "-- " + file,
+                    icon: `fig://icon?type=file`,
+                    description: "staged file"
+                }
+            })
+        }
+    },
+
+
+    // All branches
+    branches: {
+        script: "git branch --no-color",
+        postProcess: function (out) {
+            if (out.startsWith("fatal:")) {
+                return []
+            }
+            return out.split('\n').map((elm) => {
+                return { name: elm.replace("*", "").trim(), description: "branch" }
+            })
+        }
+    },
+
+    remotes: {
+        script: "git remote",
+        postProcess: function (out) {
+            return out.split('\n').map(remote => {
+                return { name: remote, description: "remote" }
+            })
+        }
+    },
+
+    tags: {
+        script: "git tag --list",
+        splitOn: "\n"
+    },
+
+    // Files for staging
+    files_for_staging: {
+        script: "git status --short",
+        postProcess: function (out) {
+            if (out.startsWith("fatal:")) {
+                return []
+            }
+
+            // out = out + " "
+            var items = out.split('\n').map((file) => {
+                file = file.trim()
+                var arr = file.split(" ")
+                return { working: arr[0], file: arr[1] }
+            })
+
+            return items.map(item => {
+                let file = item.file
+                var ext = ""
+
+                try {
+                    ext = file.split('.').slice(-1)[0]
+                } catch (e) {
+                }
+
+                if (file.endsWith('/')) {
+                    ext = "folder"
+                }
+
+                return {
+                    name: file,
+                    icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+                    description: "Changed file"
+                }
+            })
+        }
+    },
 }
+
 
 let head_n_revisions = {
     name: "HEAD~<N>",
@@ -112,8 +207,7 @@ var completionSpec = {
             ],
             args: {
                 suggestions: [],
-                generator: commits,
-                templateSuggestions: ["files"]
+                generators: generators.commits,
             },
         },
         {
@@ -145,46 +239,18 @@ var completionSpec = {
             ],
             args: {
                 variadic: true,
-                suggestions: [
-                    {
-                        name: ".",
-                        description: "current directory",
-                        insertValue: ".",
-                        icon: "fig://icon?type=folder"
-                    }
-                ],
-                generator: {
-                    script: "git status --short",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
 
-                        var items = out.split('\n').map((file) => {
-                            return { working: file.substring(1, 2), file: file.substring(3) }
-                        })
+                // We have a special setting for dot in the vuejs app
 
-                        return items.map(item => {
-                            let file = item.file
-                            var ext = ""
-
-                            try {
-                                ext = file.split('.').slice(-1)[0]
-                            } catch (e) {
-                            }
-
-                            if (file.endsWith('/')) {
-                                ext = "folder"
-                            }
-
-                            return {
-                                name: file,
-                                icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-                                description: "Changed file"
-                            }
-                        })
-                    }
-                },
+                // suggestions: [
+                //     {
+                //         name: ".",
+                //         description: "current directory",
+                //         insertValue: ".",
+                //         icon: "fig://icon?type=folder"
+                //     }
+                // ],
+                generators: generators.files_for_staging
             },
         },
         {
@@ -274,27 +340,10 @@ var completionSpec = {
             ],
             args: [
                 {
-                    generator: {
-                        script: "git remote",
-                        postProcess: function (out) {
-                            return out.split('\n').map(remote => {
-                                return { name: remote, description: "remote" }
-                            })
-                        }
-                    }
+                    generators: generators.remotes
                 },
                 {
-                    generator: {
-                        script: "git branch --no-color",
-                        postProcess: function (out) {
-                            if (out.startsWith("fatal:")) {
-                                return []
-                            }
-                            return out.split('\n').map((elm) => {
-                                return { name: elm.replace("*", "").trim(), description: "branch" }
-                            })
-                        }
-                    }
+                    generators: generators.branches
                 }
             ]
         },
@@ -303,23 +352,10 @@ var completionSpec = {
             description: "Integrate with another repository",
             args: [
                 {
-                    generator: {
-                        script: "git remote",
-                        splitOn: "\n"
-                    }
+                    generators: generators.remotes
                 },
                 {
-                    generator: {
-                        script: "git branch --no-color",
-                        postProcess: function (out) {
-                            if (out.startsWith("fatal:")) {
-                                return []
-                            }
-                            return out.split('\n').map((elm) => {
-                                return elm.replace("*", "").trim()
-                            })
-                        }
-                    }
+                    generators: generators.branches
                 }
             ]
         },
@@ -347,7 +383,7 @@ var completionSpec = {
                         suggestions: [
                             head_n_revisions
                         ],
-                        generator: commits
+                        generators: generators.commits
                     }
                 },
                 {
@@ -358,7 +394,7 @@ var completionSpec = {
                         suggestions: [
                             head_n_revisions
                         ],
-                        generator: commits
+                        generators: generators.commits
                     }
                 },
                 {
@@ -374,7 +410,7 @@ var completionSpec = {
                                 insertValue: "HEAD~",
                             }
                         ],
-                        generator: commits,
+                        generators: generators.commits,
                     }
                 },
                 {
@@ -390,7 +426,7 @@ var completionSpec = {
                                 insertValue: "HEAD~",
                             }
                         ],
-                        generator: commits,
+                        generators: generators.commits,
                     }
                 },
                 {
@@ -403,31 +439,14 @@ var completionSpec = {
                         suggestions: [
                             head_n_revisions
                         ],
-                        generator: commits,
+                        generators: generators.commits,
                     }
                 }
             ],
             args: {
                 variadic: true,
                 suggestions: [],
-                generator: {
-                    script: "git diff --cached --name-only",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-
-                        return out.split('\n').map((file) => {
-                            return {
-                                name: file,
-                                insertValue: "-- " + file,
-                                icon: `fig://icon?type=file`,
-                                description: "staged file"
-                            }
-                        })
-                    }
-                },
-                templateSuggestions: ["files"]
+                generators: generators.treeish,
             },
 
         },
@@ -545,7 +564,10 @@ var completionSpec = {
             ]
         },
         { name: "reflog", description: "Show history of events with hashes" },
-        { name: "clone", description: "Clone a repository into a new directory" },
+        {
+            name: "clone", description: "Clone a repository into a new directory",
+            args: [{ name: "repository" }, { name: "directory", template: "filepaths" }]
+        },
         { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
         { name: "mv", description: "Move or rename a file, a directory, or a symlink" },
         {
@@ -561,30 +583,7 @@ var completionSpec = {
                         icon: "fig://icon?type=folder"
                     }
                 ],
-                generator: {
-                    script: "git status --short",
-                    postProcess: function (out) {
-                        if (out.startsWith("fatal:")) {
-                            return []
-                        }
-
-                        var items = out.split('\n').map((file) => { return { working: file.substring(1, 2), file: file.substring(3) } })
-
-                        return items.map(item => {
-                            let file = item.file
-                            var ext = ""
-                            try {
-                                ext = file.split('.').slice(-1)[0]
-                            } catch (e) { }
-
-                            if (file.endsWith('/')) {
-                                ext = "folder"
-                            }
-
-                            return { name: file, icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`, description: "Changed file" }
-                        })
-                    }
-                },
+                generators: generators.files_for_staging
             },
             options: [
                 { name: "--", description: "used to separate command-line options from the list of files" },
@@ -601,15 +600,48 @@ var completionSpec = {
             description: "List, create, or delete branches",
             options: [
                 { name: ["-a", "--all"], description: "list both remote-tracking and local branches" },
-                { name: ["-d", "--delete"], description: "delete fully merged branch" },
-                { name: "-D", description: "delete branch (even if not merged)" },
-                { name: ["-m", "--move"], description: "move/rename a branch and its reflog" },
-                { name: "-M", description: "move/rename a branch, even if target exists" },
+                {
+                    name: ["-d", "--delete"], description: "delete fully merged branch",
+                    args: {
+                        generators: generators.branches,
+                    },
+                },
+                {
+                    name: "-D", description: "delete branch (even if not merged)",
+                    args: {
+                        generators: generators.branches,
+                    },
+                },
+                {
+                    name: ["-m", "--move"], description: "move/rename a branch and its reflog",
+                    args: [{
+                        generators: generators.branches,
+                    },
+                    {
+                        generators: generators.branches,
+                    },
+                    ]
+                },
+                {
+                    name: "-M", description: "move/rename a branch, even if target exists",
+                    args: [{
+                        generators: generators.branches,
+                    },
+                    {
+                        generators: generators.branches,
+                    },
+                    ]
+                },
                 { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
                 { name: "-C", description: "copy a branch, even if target exists" },
                 { name: ["-l", "--list"], description: "list branch names" },
                 { name: ["--create-reflog"], description: "create the branch's reflog" },
-                { name: ["--edit-description"], description: "edit the description for the branch" },
+                {
+                    name: ["--edit-description"], description: "edit the description for the branch",
+                    args: {
+                        generators: generators.branches,
+                    },
+                },
                 { name: ["-f", "--force"], description: "force creation, move/rename, deletion" },
                 { name: "--merged", description: "print only branches that are merged", args: { name: "commit" } },
                 { name: "--no-merged", description: "print only branches that are not merged", args: { name: "commit" } },
@@ -639,18 +671,8 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
-                    generator: {
-                        script: "git branch --no-color",
-                        postProcess: function (out) {
-                            if (out.startsWith("fatal:")) {
-                                return []
-                            }
-                            return out.split('\n').map((elm) => {
-                                return { name: elm.replace("*", "").trim(), description: "branch" }
-                            })
-                        }
-                    }
-                }
+                generators: generators.branches
+            }
         },
         { name: "merge", description: "Join two or more development histories together" },
         {
@@ -658,7 +680,7 @@ var completionSpec = {
             description: "Create, list, delete or verify a tag object signed with GPG",
             options: [
                 { name: ["-l", " --list"], description: "list tag names" },
-                { name: "-n", description: "print <n> lines of each tag message", arg: { name: "n", suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }] } },
+                { name: "-n", description: "print <n> lines of each tag message", args: { name: "n", suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }] } },
                 { name: ["-d", "--delete"], description: "delete tags" },
                 { name: ["-v", "--verify"], description: "verify tags" },
                 { name: ["-a", "--annotate"], description: "annotated tag, needs a message" },
@@ -667,10 +689,7 @@ var completionSpec = {
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generator: {
-                    script: "git tag --list",
-                    splitOn: "\n"
-                }
+                generators: generators.tags
             }
         },
     ]

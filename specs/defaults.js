@@ -1,6 +1,6 @@
 var domain = {
     name: "domain",
-    generator: {
+    generators: {
         script: "defaults domains",
         postProcess: function (out) {
             return out.split(',').map(domain => { return domain.trim() })
@@ -30,31 +30,31 @@ let value = {
 let valueArgs = [
     {
         name: "-string",
-        arg: {
+        args: {
             name: "string_value"
         }
     },
     {
         name: "-data",
-        arg: {
+        args: {
             name: "hex_digits"
         }
     },
     {
         name: ["-int", "-integer"],
-        arg: {
+        args: {
             name: "integer_value"
         }
     },
     {
         name: "-float",
-        arg: {
+        args: {
             name: "floating-point_value"
         }
     },
     {
         name: ["-bool", "-boolean"],
-        arg: {
+        args: {
             suggestions: [
                 {
                     name: "true"
@@ -73,20 +73,20 @@ let valueArgs = [
     },
     {
         name: "-date",
-        arg: {
+        args: {
             name: "date_rep"
         }
     },
     {
         name: "-array",
-        arg: {
+        args: {
             variadic: true,
             name: "array_item"
         }
     },
     {
         name: "-array-add",
-        arg: {
+        args: {
             variadic: true,
             name: "array_item"
         }
