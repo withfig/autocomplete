@@ -146,7 +146,7 @@ var completionSpec = {
             args: {
                 name: "team name",
                 description: "team to execute commands from",
-                generator: teamList
+                // generator: teamList
             }
         },
         {
@@ -223,7 +223,7 @@ var completionSpec = {
                         {
                             name: "name",
                             description: "name of the variable to remove",
-                            generator: envVarList
+//                             generator: envVarList
                         },
                         {
                             name: "environment",
@@ -324,7 +324,7 @@ var completionSpec = {
                 {
                     name: "team name",
                     description: "team to switch to",
-                    generator: teamList
+                    //generator: teamList
                 }
             ]
         },
@@ -344,8 +344,8 @@ var completionSpec = {
             args: {
                 name: "deployment url",
                 description: "URL of the deployment to remove",
-                variadic: true,
-                generator: deploymentList
+                // variadic: true,
+                //generator: deploymentList
             },
             options: [
                 {
@@ -365,7 +365,7 @@ var completionSpec = {
                 {
                     name: "deployment url",
                     description: "URL of the deployment to remove",
-                    generator: deploymentList
+                    // generator: deploymentList
                 }
             ]
         },
@@ -384,7 +384,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to inspect",
-                            generator: domainList
+                            // generator: domainList
                         }
                     ]
                 },
@@ -405,7 +405,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to remove",
-                            generator: domainList
+                            // generator: domainList
                         }
                     ]
                 },
@@ -426,12 +426,12 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to move",
-                            generator: domainList
+                            // generator: domainList
                         },
                         {
                             name: "account name",
                             description: "account to move the domain to",
-                            generator: teamList // double check if teams = accounts
+                            // generator: teamList // double check if teams = accounts
                         }
                     ]
                 },
@@ -452,7 +452,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to verify",
-                            generator: domainList
+                            // generator: domainList
                         }
                     ]
                 }
@@ -469,7 +469,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to add record to",
-                            generator: domainList
+                            // generator: domainList
                         },
                         {
                             name: "subdomain",
@@ -523,7 +523,7 @@ var completionSpec = {
                     args: {
                         name: "Domains",
                         description: "list of domains separated by commas to issue certificates for",
-                        generator: domainList,
+                        // generator: domainList,
                         variadic: true
                     }
                 },
@@ -615,7 +615,7 @@ var completionSpec = {
                 {
                     name: "deployment url",
                     description: "get logs for specified deployment",
-                    generator: deploymentList
+                    // generator: deploymentList
                 }
             ],
             options: [
