@@ -141,7 +141,7 @@ var completionSpec = {
         }, 
         {
             name: ["--disable-named-commands"],
-            description: "Disable named commands. Use the \\* form only, or use named commands only at the beginning of a line ending with a semicolon (;). mysql starts with this option enabled by default. However, even with this option, long-format commands still work from the first line. See Section 4.5.1.2, “mysql Client Commands”.",
+            description: "Disable named commands. Use the \\* form only, or use named commands only at the beginning of a line ending with a semicolon (;). mysql starts with this option enabled by default. However, even with this option, long-format commands still work from the first line.",
         },
         {
             name: ["--dns-srv-name"],
