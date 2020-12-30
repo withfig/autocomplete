@@ -11,7 +11,7 @@ We want to make contributing to Fig as easy and transparent as possible, whether
 - Contributing content or feature changes
   
 
-## Our Repos
+## Our repos
 
 We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
@@ -23,10 +23,14 @@ Here are some of our primary repos.
 
 [withfig/config](https://github.com/withfig/config): Fig's default configuration at install. Contains apps, installation, and update scripts.
 
+## Contributing your own spec
 
-## Proposing changes
+The [autocomplete docs](https://docs.withfig.com/autocomplete) should get you up to speed on how to write a spec and serve as a good reference.
 
-Fig welcomes code contributions via pull request. Here are a few styling guides to keep in mind:
+A few things to keep in mind when writing your spec:
+- Ensure that the argument field is filled for subcommands and options when an argument is required.
+- Make sure all generators are written with valid JavaScript.
+- [Test your spec](https://docs.withfig.com/autocomplete#testing-your-completion-spec) before submitting a pull request.
 
 **Git Commit Messages**
 
