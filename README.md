@@ -1,3 +1,9 @@
+<p align="center">
+    <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
+</p>
+
+---
+
 # Visual Autocomplete For your Terminal
 [Fig](https://withfig.com?ref=github_autocomplete) adds apps, shortcuts, and autocomplete to your Terminal. <br />
 
@@ -17,11 +23,10 @@ $ fig update
 3. In the Mac status bar (top right corner of the screen), click the Fig icon, and make sure *Autocomplete* is selected. If Autocomplete ever stops working, just toggle this button.
 
 ### Make Your Own Spec
-Check out our docs: [https://docs.withfig.com/autocomplete](https://docs.withfig.com/autocomplete)  
+Looking to improve autocomplete functionality, or to add support for your favorite CLI tool? We're welcoming contributions for new specs!
+See [CONTRIBUTING.md](CONTRIBUTING.md) to learn more. 
 
-
-### Contribute
-Make a pull request or issue :)  
+Want to suggest a new spec? Open an issue at [withfig/fig](https://github.com/withfig/fig) and add the 'autocomplete' label.
 
 <br />
 <p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
