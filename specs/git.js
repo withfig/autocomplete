@@ -83,7 +83,7 @@ var generators = {
             var items = out.split('\n').map((file) => {
                 file = file.trim()
                 var arr = file.split(" ")
-                return { working: arr[0], file: arr[1] }
+                return { working: arr[0], file: arr.slice(1,-1).join(" ") }
             })
 
             return items.map(item => {
