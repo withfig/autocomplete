@@ -1,0 +1,13 @@
+{
+    "$id": "/generator",
+    "title": "Generator Schema",
+    "description": "Schema for generators",
+    "type": "object",
+    "properties": {
+        "template": { "type": "string" },
+        "script": { "type": "string" },
+        "splitOn": { "type": "string" },
+        "trigger": { "type": "string" },
+        "filterTerm": { "type": "string" }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "$id": "/spec",
+    "title": "Completion Spec",
+    "description": "Schema for the overall completion spec",
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "$recursiveAnchor": true,
+        "subcommands": {
+            "type": "array",
+            "items": {
+                "$ref": "#/command"
+            }
+        },
+        "options": {
+            "type": "array",
+            "items": {
+                "$ref": "option.json#"
+            }
+        },
+        "args": {
+            "type": "array",
+            "items": {
+                "$ref": "arg.json#"
+            }
+        },
+        "additionalSuggestions": {
+            "type": "array",
+            "items": {
+                "$ref": "suggestion.json#"
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "$id": "/option",
+    "title": "Option Schema",
+    "description": "Schema for options",
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "displayName": { "type": "string" },
+        "insertValue": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "additionalSuggestions": { "type": "string" },
+        "args": { 
+            "type": "array",
+            "items": {
+                "$ref": "/arg"
+            }
+        }
+    }
+}

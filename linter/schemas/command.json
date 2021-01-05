@@ -1,0 +1,22 @@
+{
+    "$id": "/command",
+    "title": "Command Schema",
+    "description": "Schema for commands",
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "displayName": { "type": "string" },
+        "insertValue": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "subcommands": { 
+            "type": "array",
+            "items": {
+                "$ref": "command.json#"
+            }
+        },
+        "suggestions": { "type": "string" },
+        "template": { "type": "string" },
+        "generators": { "type": "string" }
+    }
+}
