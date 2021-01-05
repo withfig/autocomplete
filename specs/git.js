@@ -83,7 +83,8 @@ var generators = {
             var items = out.split('\n').map((file) => {
                 file = file.trim()
                 var arr = file.split(" ")
-                return { working: arr[0], file: arr[1] }
+
+                return { working: arr[0],  file: arr.slice(1).join(" ")}
             })
 
             return items.map(item => {
@@ -99,8 +100,14 @@ var generators = {
                     ext = "folder"
                 }
 
+                var insert = file
+                if (file.includes(' ')){
+                    insert = `'${file}'`
+                }
+
                 return {
                     name: file,
+                    insertValue: insert,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
                     description: "Changed file"
                 }
