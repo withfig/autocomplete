@@ -1,5 +1,5 @@
 {
-    "$id": "/command",
+    "$id": "command.json#",
     "title": "Command Schema",
     "description": "Schema for commands",
     "type": "object",

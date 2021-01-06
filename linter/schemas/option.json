@@ -1,19 +1,24 @@
 {
-    "$id": "/option",
+    "$id": "option.json#",
     "title": "Option Schema",
     "description": "Schema for options",
     "type": "object",
     "properties": {
-        "name": { "type": "string" },
+        "name": { 
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
         "displayName": { "type": "string" },
         "insertValue": { "type": "string" },
         "description": { "type": "string" },
         "icon": { "type": "string" },
         "additionalSuggestions": { "type": "string" },
         "args": { 
-            "type": "array",
+            "type": ["array", "object"],
             "items": {
-                "$ref": "/arg"
+                "$ref": "arg.json#"
             }
         }
     }

@@ -1,5 +1,5 @@
 {
-    "$id": "/spec",
+    "$id": "spec.json#",
     "title": "Completion Spec",
     "description": "Schema for the overall completion spec",
     "type": "object",
@@ -10,7 +10,7 @@
         "subcommands": {
             "type": "array",
             "items": {
-                "$ref": "#/command"
+                "$ref": "command.json#"
             }
         },
         "options": {

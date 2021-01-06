@@ -1,15 +1,16 @@
 {
-    "$id": "/command",
+    "$id": "suggestion.json#",
     "type": "array",
+    "title": "Suggestion Schema",
+    "description": "Schema for suggestion objects",
     "items": {
+        "type": "object",
         "properties": {
             "name": { "type": "string" },
             "displayName": { "type": "string" },
             "insertValue": { "type": "string" },
             "description": { "type": "string" },
-            "icon": { "type": "string" },
-            "type": { "type": "string" }
+            "icon": { "type": "string" }
         }
-    },
-    "required": ["name"]
+    }
 }

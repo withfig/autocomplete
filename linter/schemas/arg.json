@@ -1,5 +1,5 @@
 {
-    "$id": "/arg",
+    "$id": "arg.json#",
     "title": "Arg Schema",
     "description": "Schema for args",
     "type": "object",
@@ -11,6 +11,6 @@
         "icon": { "type": "string" },
         "suggestions": { "type": "string" },
         "template": { "type": "string" },
-        "generators": { "type": "string" }
+        "generators": { "$ref": "generator.json#" }
     }
 }

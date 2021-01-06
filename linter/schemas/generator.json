@@ -1,5 +1,5 @@
 {
-    "$id": "/generator",
+    "$id": "generator.json#",
     "title": "Generator Schema",
     "description": "Schema for generators",
     "type": "object",
