@@ -39,7 +39,3 @@ var completionSpec = {
  		{ name: ["--version"],          description: "Version" },
     ]
 }
-
-module.exports = {
-    completionSpec
-}

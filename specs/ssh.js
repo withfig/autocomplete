@@ -334,13 +334,6 @@ var completionSpec = {
         {
             name: ["-y"],
             description: "Send log information using the syslog(3) system module."
-        },
-        {
-            name: 1
         }
     ]
-}
-
-module.exports = {
-    completionSpec
 }

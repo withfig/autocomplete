@@ -681,7 +681,3 @@ var completionSpec = {
         { name: "whoami", description: "Shows the username of the currently logged in user" }
     ]
 }
-
-module.exports = {
-    completionSpec
-}
