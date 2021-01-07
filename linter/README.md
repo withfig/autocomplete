@@ -4,12 +4,8 @@
 
 ---
 
-# Visual Autocomplete For your Terminal
-[Fig](https://withfig.com?ref=github_autocomplete) adds apps, shortcuts, and autocomplete to your Terminal. <br />
-
-![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/autocomplete_demo_for_email.gif)
-
-**Note**: We currently only work on iTerm2 and the native Terminal on macOS.
+# Autocomplete Linter
+This linter can be run to validate the format of completion specs. Run it to get syntax and type errors from your autocomplete spec.
 
 ### Usage
 To use the linter, run the following command from the linter's root folder.
