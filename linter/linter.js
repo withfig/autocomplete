@@ -18,6 +18,23 @@ const { completionSpec } = require(file);
 var fileParts = file.split('/');
 var specName = fileParts[fileParts.length - 1].split('.')[0];
 
+var data = fs.readFileSync(file, 'utf8');
+var lines = data.split('\n');
+
+var startIndex = lines.indexOf("var completionSpec = {");
+
+var specJson = "";
+for(var i = startIndex; i < lines.length; i++) {
+    var line = lines[i];
+    //Ignore comments
+    if(line.includes("//")) {
+        console.log(line);
+        continue;
+    }
+    specJson += line + '\n';
+}
+
+console.log(specJson);
 const { error } = Spec.validate(completionSpec);
 
 
