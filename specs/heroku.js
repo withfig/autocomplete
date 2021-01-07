@@ -14,7 +14,7 @@ var completionSpec = {
                     description: "app to run command against",
                     args: {
                         generators: {
-                            script: "heroku apps --json",
+                            script: "heroku apps --all --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
@@ -45,7 +45,7 @@ var completionSpec = {
                     description: "app to run command against",
                     args: {
                         generators: {
-                            script: "heroku apps --json",
+                            script: "heroku apps --all --json",
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
