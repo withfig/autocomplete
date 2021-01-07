@@ -177,7 +177,7 @@ var completionSpec = {
                 {
                     name: ["--listen"],
                     description: "Specifies which port to run on"
-                }
+                },
             ]
         },
         {
@@ -189,7 +189,7 @@ var completionSpec = {
                     description: "add an environment variable",
                     args: [
                         {
-                            name: "type",
+                            name: 1,
                             description: "type of env variable to add"
                         },
                         {
@@ -372,91 +372,91 @@ var completionSpec = {
         {
             name: "domains",
             description: "Manages your domain names",
-            subcommmands: [
-                {
-                    name: "ls",
-                    description: "List all domains under an account"
-                },
-                {
-                    name: "inspect",
-                    description: "Retrieves information about a domain",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to inspect",
-                            // generator: domainList
-                        }
-                    ]
-                },
-                {
-                    name: "add",
-                    description: "Add a domain to an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to add"
-                        }
-                    ]
-                },
-                {
-                    name: "rm",
-                    description: "Removes a domain from an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to remove",
-                            // generator: domainList
-                        }
-                    ]
-                },
-                {
-                    name: "buy",
-                    description: "Buy a domain for an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to buy"
-                        }
-                    ]
-                },
-                {
-                    name: "move",
-                    description: "Removes a domain from an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to move",
-                            // generator: domainList
-                        },
-                        {
-                            name: "account name",
-                            description: "account to move the domain to",
-                            // generator: teamList // double check if teams = accounts
-                        }
-                    ]
-                },
-                {
-                    name: "transfer-in",
-                    description: "Transfers in a domain to an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to transfer in"
-                        }
-                    ]
-                },
-                {
-                    name: "verify",
-                    description: "Verifies a domain for an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to verify",
-                            // generator: domainList
-                        }
-                    ]
-                }
-            ]
+            // subcommmands: [
+            //     {
+            //         name: "ls",
+            //         description: "List all domains under an account"
+            //     },
+            //     {
+            //         name: "inspect",
+            //         description: "Retrieves information about a domain",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to inspect",
+            //                 // generator: domainList
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "add",
+            //         description: "Add a domain to an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to add"
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "rm",
+            //         description: "Removes a domain from an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to remove",
+            //                 // generator: domainList
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "buy",
+            //         description: "Buy a domain for an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to buy"
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "move",
+            //         description: "Removes a domain from an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to move",
+            //                 generator: domainList
+            //             },
+            //             {
+            //                 name: "account name",
+            //                 description: "account to move the domain to",
+            //                 // generator: teamList // double check if teams = accounts
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "transfer-in",
+            //         description: "Transfers in a domain to an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to transfer in"
+            //             }
+            //         ]
+            //     },
+            //     {
+            //         name: "verify",
+            //         description: "Verifies a domain for an account",
+            //         args: [
+            //             {
+            //                 name: "domain",
+            //                 description: "domain to verify",
+            //                 // generator: domainList
+            //             }
+            //         ]
+            //     }
+            // ]
         },
         {
             name: "dns",
@@ -680,4 +680,8 @@ var completionSpec = {
         },
         { name: "whoami", description: "Shows the username of the currently logged in user" }
     ]
+}
+
+module.exports = {
+    completionSpec
 }

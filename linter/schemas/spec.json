@@ -20,7 +20,8 @@
             }
         },
         "args": {
-            "type": "array",
+            "type": ["object", "array"],
+            "$ref": "arg.json#",
             "items": {
                 "$ref": "arg.json#"
             }

@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "name": { 
-            "type": "array",
+            "type": ["array", "string"],
             "items": {
                 "type": "string"
             }

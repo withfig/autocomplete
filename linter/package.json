@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ajv": "^7.0.3",
-    "json-source-map": "^0.6.1",
-    "json5": "^2.1.3"
+    "joi": "^17.3.0"
   }
 }

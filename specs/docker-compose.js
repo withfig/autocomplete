@@ -827,3 +827,8 @@ var completionSpec = {
         }
     ]
 }
+
+
+module.exports = {
+    completionSpec
+}
