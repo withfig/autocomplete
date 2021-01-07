@@ -189,7 +189,7 @@ var completionSpec = {
                     description: "add an environment variable",
                     args: [
                         {
-                            name: 1,
+                            name: "type",
                             description: "type of env variable to add"
                         },
                         {
