@@ -9,15 +9,7 @@ var completionSpec = {
       description: "share Fig with a teammate ⭐",
       args: {
         name: "Email",
-        description: "Email address of the user you want to invite",
-        variadic: true,
-        staticSuggestions: [
-          {
-            name: "<email>",
-            insertValue: " ",
-            description: "Email to invite"
-          }
-        ]
+        description: "Email address of the user you want to invite"
       }
     },
 

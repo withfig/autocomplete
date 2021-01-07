@@ -84,7 +84,7 @@ var generators = {
                 file = file.trim()
                 var arr = file.split(" ")
 
-                return { working: arr[0],  file: arr.slice(1).join(" ")}
+                return { working: arr[0], file: arr.slice(1).join(" ") }
             })
 
             return items.map(item => {
@@ -101,7 +101,7 @@ var generators = {
                 }
 
                 var insert = file
-                if (file.includes(' ')){
+                if (file.includes(' ')) {
                     insert = `'${file}'`
                 }
 
@@ -347,6 +347,7 @@ var completionSpec = {
             ],
             args: [
                 {
+                    isOptional: true,
                     generators: generators.remotes
                 },
                 {
@@ -359,6 +360,7 @@ var completionSpec = {
             description: "Integrate with another repository",
             args: [
                 {
+                    isOptional: true,
                     generators: generators.remotes
                 },
                 {
