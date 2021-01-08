@@ -46,6 +46,8 @@ if(error) {
                 errorMessage += " " + JSON.stringify(curr.name);
             }
         }
+        console.log(detail);
+        errorMessage += '/' + detail.context.key;
         console.log(`${bColors.FAIL}Error: ${detail.message} ${bColors.ENDC}`);
         console.log("Path to error: " + `${bColors.WARNING}${errorMessage}${bColors.ENDC}`);
         console.log("Current value:");
