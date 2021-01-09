@@ -347,10 +347,13 @@ var completionSpec = {
             ],
             args: [
                 {
+                    name: "remote",
                     isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
@@ -360,10 +363,13 @@ var completionSpec = {
             description: "Integrate with another repository",
             args: [
                 {
+                    name: "remote",
                     isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
