@@ -241,8 +241,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-p", "--patch"],
-                    description: "Interactively choose hunks of patch between the index and the work tree and add" +
-                        " them to the index"
+                    description: "Interactively choose hunks of patch between the index and the work tree and add them to the index"
                 },
 
             ],

@@ -24,11 +24,12 @@ var pastConnections = {
 var completionSpec = {
     name: "ssh",
     description: "Log into a remote machine",
-    args: [{
-        name: "user@hostname",
-        description: "address of remote machine to log into",
-        // generator: pastConnections
-    }],
+    args: [
+        {
+            name: "user@hostname",
+            description: "address of remote machine to log into"
+        }
+    ],
     options: [
         {
             name: ["-1"],
