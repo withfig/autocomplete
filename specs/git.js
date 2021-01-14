@@ -138,7 +138,9 @@ var completionSpec = {
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
                     description: "use the given message as the commit message",
-                    args: {},
+                    args: {
+                        name: "message"
+                    },
                 },
                 {
                     name: ["-a", "--all"],
@@ -459,6 +461,7 @@ var completionSpec = {
                 }
             ],
             args: {
+                isOptional: true,
                 variadic: true,
                 suggestions: [],
                 generators: generators.treeish,
