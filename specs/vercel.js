@@ -177,7 +177,7 @@ var completionSpec = {
                 {
                     name: ["--listen"],
                     description: "Specifies which port to run on"
-                }
+                },
             ]
         },
         {
@@ -426,7 +426,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to move",
-                            // generator: domainList
+                            generator: domainList
                         },
                         {
                             name: "account name",

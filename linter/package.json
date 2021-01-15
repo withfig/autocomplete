@@ -1,0 +1,14 @@
+{
+  "name": "linter",
+  "version": "1.0.0",
+  "description": "Fig Autocomplete Spec Linter",
+  "main": "linter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.3.0"
+  }
+}

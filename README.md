@@ -28,6 +28,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) to learn more.
 
 Want to suggest a new spec? Open an issue at [withfig/fig](https://github.com/withfig/fig) and add the 'autocomplete' label.
 
+
+### Questions and support
 <br />
 <p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
 

@@ -2,32 +2,37 @@ var completionSpec = {
   name: "fig",
   description: "Autocomplete for your terminal",
   subcommands: [
-    { name: "update", description: "Update Fig's autocompletion specs" },
 
+
+    { name: "source", description: "(re)connect fig to the current shell session" },
+    { name: "update", description: "Update Fig's autocompletion specs" },
     {
-      name: "invite",
-      description: "share Fig with a teammate ⭐",
+      name: "uninstall", description: "Uninstall a completion spec",
       args: {
-        name: "Email",
-        description: "Email address of the user you want to invite"
+        generators: {
+          script: "\ls -1ap ~/.fig/autocomplete",
+          splitOn: "\n"
+        }
+      }
+    },
+    { name: "invite", description: "share Fig with a teammate ⭐" },
+    {
+      name: "report",
+      displayName: "Report an Issue",
+      insertValue: "report '{cursor}'",
+      description: "Report an issue",
+      args: {
+        name: "msg",
+        description: "What is the bug? How do we reproduce?"
       }
     },
 
-    {
-      name: "feedback", description: "Send feedback Fig's founders",
-
-      options: [
-        {
-          name: ["-m", "--message"],
-          insertValue: "-m '{cursor}'",
-          description: "Your message to send to Fig",
-          args: {},
-        },
-      ]
-    },
-    { name: "docs", description: "Build your own completion spec" },
-    { name: "source", description: "(re)connect fig to the current shell session" },
+    { name: "tweet", description: "Tweet about Fig", icon: "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.b1fc7275.png" },
+    { name: "docs", description: "Open Fig's docs" },
+    { name: "list", description: "List all available completion specs" },
+    { name: "onboarding", description: "Re-run Fig's onboarding" }
   ],
+
   options: [
     {
       name: ["-h", "--help"],

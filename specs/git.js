@@ -138,7 +138,9 @@ var completionSpec = {
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
                     description: "use the given message as the commit message",
-                    args: {},
+                    args: {
+                        name: "message"
+                    },
                 },
                 {
                     name: ["-a", "--all"],
@@ -239,8 +241,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-p", "--patch"],
-                    description: "Interactively choose hunks of patch between the index and the work tree and add" +
-                        " them to the index"
+                    description: "Interactively choose hunks of patch between the index and the work tree and add them to the index"
                 },
 
             ],
@@ -347,10 +348,13 @@ var completionSpec = {
             ],
             args: [
                 {
+                    name: "remote",
                     isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
@@ -360,10 +364,13 @@ var completionSpec = {
             description: "Integrate with another repository",
             args: [
                 {
+                    name: "remote",
                     isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
@@ -453,6 +460,7 @@ var completionSpec = {
                 }
             ],
             args: {
+                isOptional: true,
                 variadic: true,
                 suggestions: [],
                 generators: generators.treeish,
