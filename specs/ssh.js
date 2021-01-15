@@ -27,7 +27,20 @@ var completionSpec = {
     args: [{
         name: "user@hostname",
         description: "address of remote machine to log into",
-        // generator: pastConnections
+        generator: {
+            script: "cat ~/.ssh/config",
+            postProcess: function(out) {
+                return out.split('\n')
+                          .filter( line => { return line.trim().startsWith('Host ') && !line.includes("*") })
+                          .map( host => {
+                            return {
+                                name: host.split(' ').slice(-1)[0],
+                                description: "ssh host",
+                                priority: 90
+                            }
+                          })
+            }
+        }
     }],
     options: [
         {
