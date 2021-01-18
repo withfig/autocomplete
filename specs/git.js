@@ -100,14 +100,8 @@ var generators = {
                     ext = "folder"
                 }
 
-                var insert = file
-                if (file.includes(' ')) {
-                    insert = `'${file}'`
-                }
-
                 return {
                     name: file,
-                    insertValue: insert,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
                     description: "Changed file"
                 }
