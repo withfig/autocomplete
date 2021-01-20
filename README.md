@@ -29,6 +29,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) to learn more.
 Want to suggest a new spec? Open an issue at [withfig/fig](https://github.com/withfig/fig) and add the 'autocomplete' label.
 
 
+### Linting Your Spec
+The autocomplete spec linter can be run to validate the format of completion specs. Run it to get syntax and type errors from your autocomplete spec.
+
+To use the linter, run the following command from the root folder.
+`node linter.js specs/[specName].js`
+
 ### Questions and support
 <br />
 <p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
