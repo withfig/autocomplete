@@ -11,7 +11,7 @@ var completionSpec = {
         name: "Email",
         description: "Email address of the user you want to invite",
         variadic: true,
-        staticSuggestions: [
+        suggestions: [
           {
             name: "<email>",
             insertValue: " ",

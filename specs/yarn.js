@@ -51,8 +51,7 @@ var completionSpec = {
             description: "enable emoji in output (default: true)",
             args: {
                 name: "bool",
-                optional: true,
-                suggestions: ["true", "false"]
+                suggestions: [{ name: "true" }, { name: "false" }]
             }
         },
         {
@@ -92,7 +91,7 @@ var completionSpec = {
             args: {
                 name: "path",
                 suggestions: [
-                    "https://"
+                    { name: "https://" }
                 ]
             }
         },
@@ -140,14 +139,14 @@ var completionSpec = {
             args: [
                 {
                     name: "type",
-                    optional: false,
-                    suggestions: [],
+                    suggestions: [
+                        { name: ":" }
+                    ],
                 },
                 {
                     name: "specifier",
-                    optional: true,
                     suggestions: [
-                        ":"
+                        { name: ":" }
                     ],
                 },
             ]
@@ -157,8 +156,7 @@ var completionSpec = {
             description: "maximum number of concurrent network requests",
             args: [
                 {
-                    name: "number",
-                    optional: false
+                    name: "number"
                 }
             ]
         },
@@ -167,8 +165,7 @@ var completionSpec = {
             description: "TCP timeout for network requests",
             args: [
                 {
-                    name: "milliseconds",
-                    optional: false
+                    name: "milliseconds"
                 }
             ]
         },
@@ -205,8 +202,7 @@ var completionSpec = {
             description: "one-time password for two factor authentication",
             args: [
                 {
-                    name: "otpcode",
-                    optional: false
+                    name: "otpcode"
                 }
             ]
         },
@@ -231,8 +227,7 @@ var completionSpec = {
             description: "",
             args: [
                 {
-                    name: "host",
-                    optional: false
+                    name: "host"
                 }
             ]
         },
@@ -245,8 +240,7 @@ var completionSpec = {
             description: "override configuration registry",
             args: [
                 {
-                    name: "url",
-                    optional: false
+                    name: "url"
                 }
             ]
         },
@@ -258,8 +252,7 @@ var completionSpec = {
             name: "--scripts-prepend-node-path",
             description: "prepend the node executable dir to the PATH in scripts",
             args: {
-                optional: true,
-                suggestions: ["true", "false"]
+                suggestions: [{name: "true"}, {name: "false"}]
             }
         },
         {
@@ -354,7 +347,7 @@ var completionSpec = {
                     description: "Only print advisories with severity greater than or equal to one of the following: info|low|moderate|high|critical. Default: info",
                     args: {
                         name: "severity",
-                        suggestions: ["info", "low", "moderate", "high", "critical"],
+                        suggestions: [{ name: "info" }, { name: "low" }, { name: "moderate" }, { name: "high" }, { name: "critical" }],
                     }
                 },
                 {
@@ -676,7 +669,13 @@ var completionSpec = {
             ]
         },
         {
-            name: ["upgrade-interactive", "upgradeInteractive"],
+            name: "upgrade-interactive",
+            description: "",
+            options: [
+            ]
+        },
+        {
+            name: "upgradeInteractive",
             description: "",
             options: [
             ]
@@ -734,7 +733,9 @@ var completionSpec = {
                 {
                     name: "subcommand",
                     description: "",
-                    suggestions: ["info", "run"]
+                    args: {
+                        suggestions: [{ name: "info" }, { name: "run" }]
+                    }
                 },
                 {
                     name: "flags",
