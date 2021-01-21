@@ -35,6 +35,9 @@ The autocomplete spec linter can be run to validate the format of completion spe
 To use the linter, run the following command from the root folder.
 `node linter.js specs/[specName].js`
 
+To run the linter on ALL specs in the /specs folder, run
+`node linter.js`
+
 ### Questions and support
 <br />
 <p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
