@@ -84,7 +84,7 @@ var generators = {
                 file = file.trim()
                 var arr = file.split(" ")
 
-                return { working: arr[0],  file: arr.slice(1).join(" ")}
+                return { working: arr[0], file: arr.slice(1).join(" ") }
             })
 
             return items.map(item => {
@@ -100,14 +100,8 @@ var generators = {
                     ext = "folder"
                 }
 
-                var insert = file
-                if (file.includes(' ')){
-                    insert = `'${file}'`
-                }
-
                 return {
                     name: file,
-                    insertValue: insert,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
                     description: "Changed file"
                 }
@@ -138,7 +132,9 @@ var completionSpec = {
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
                     description: "use the given message as the commit message",
-                    args: {},
+                    args: {
+                        name: "message"
+                    },
                 },
                 {
                     name: ["-a", "--all"],
@@ -346,9 +342,13 @@ var completionSpec = {
             ],
             args: [
                 {
+                    name: "remote",
+                    isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
@@ -358,9 +358,13 @@ var completionSpec = {
             description: "Integrate with another repository",
             args: [
                 {
+                    name: "remote",
+                    isOptional: true,
                     generators: generators.remotes
                 },
                 {
+                    name: "branch",
+                    isOptional: true,
                     generators: generators.branches
                 }
             ]
@@ -450,6 +454,7 @@ var completionSpec = {
                 }
             ],
             args: {
+                isOptional: true,
                 variadic: true,
                 suggestions: [],
                 generators: generators.treeish,
