@@ -5,9 +5,9 @@ var completionSpec = {
 
 
     { name: "source", description: "(re)connect fig to the current shell session" },
-    { name: "update", description: "Update Fig's autocompletion specs" },
+    { name: "update", description: "update completion specs" },
     {
-      name: "uninstall", description: "Uninstall a completion spec",
+      name: "uninstall", description: "uninstall a completion spec",
       args: {
         generators: {
           script: "\ls -1Ap ~/.fig/autocomplete",
@@ -31,21 +31,11 @@ var completionSpec = {
       }
     },
     { name: "invite", description: "share Fig with a teammate ⭐" },
-    {
-      name: "report",
-      displayName: "Report an Issue",
-      insertValue: "report '{cursor}'",
-      description: "Report an issue",
-      args: {
-        name: "msg",
-        description: "What is the bug? How do we reproduce?"
-      }
-    },
-
-    { name: "tweet", description: "Tweet about Fig", icon: "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.b1fc7275.png" },
-    { name: "docs", description: "Open Fig's docs" },
-    { name: "list", description: "List all available completion specs" },
-    { name: "onboarding", description: "Re-run Fig's onboarding" }
+    { name: "report", description: "report an issue" },
+    { name: "tweet", description: "tweet about Fig", icon: "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.b1fc7275.png" },
+    { name: "docs", description: "view docs in browser" },
+    { name: "list", description: "list all available completion specs" },
+    { name: "onboarding", description: "re-run Fig's onboarding" }
   ],
 
   options: [
