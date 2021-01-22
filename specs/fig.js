@@ -10,8 +10,23 @@ var completionSpec = {
       name: "uninstall", description: "Uninstall a completion spec",
       args: {
         generators: {
-          script: "\ls -1ap ~/.fig/autocomplete",
-          splitOn: "\n"
+          script: "\ls -1Ap ~/.fig/autocomplete",
+          postProcess: (data) => {
+            console.log(data)
+            out = data.split("\n").reduce((acc, curr) => {
+              if ([".gitignore", "README.md", "package.json", "package-lock.json"].includes(curr)) return acc
+              else {
+                acc.push({
+                  name: curr.trim().split(".")[0],
+                  icon: "https://withfig.com/img/icon-tmp-small.png"
+                })
+                return acc
+              }
+            }, [])
+
+            console.log(out)
+            return out
+          }
         }
       }
     },
