@@ -4,32 +4,44 @@
 
 ---
 
-# Visual Autocomplete For your Terminal
-[Fig](https://withfig.com?ref=github_autocomplete) adds apps, shortcuts, and autocomplete to your Terminal. <br />
+![os](https://img.shields.io/badge/os-%20macOS-light)
+[![Signup](https://img.shields.io/badge/signup-private%20beta-blueviolet)](https://withfig.com?ref=github_autocomplete)
+[![Documentation](https://img.shields.io/badge/documentation-black)](https://withfig.com/docs/autocomplete/getting-started)
+[![Slack](https://img.shields.io/badge/slack-purple)](https://withfig.com/community)
+[![Twitter](https://img.shields.io/twitter/follow/withfig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=withfig)
+
+**[Fig](https://withfig.com?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
+
 
 ![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/autocomplete_demo_for_email.gif)
 
-**Note**: We currently only work on iTerm2 and the native Terminal on macOS.
 
-### Installation
-1. Make sure you have Fig (version 1.0.20 or above) installed. We are currently in private beta. Sign up to our waitlist here: [https://withfig.com](https://withfig.com?ref=github_autocomplete)
+### Add a completions for a CLI tool 
+Looking to improve autocomplete functionality or add support for your favorite CLI tool? We welcome contributions for new specs!
 
-2. Install the completion specs to your local device
+Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from the information in the spec itself, but can also by determined dynamically by running shell commands or reading local files.
 
-```bash
-$ fig update
-```
+For more documentation and tutorials, visit [withfig.com/docs](https://withfig.com/docs/autocomplete/getting-started)
 
-3. In the Mac status bar (top right corner of the screen), click the Fig icon, and make sure *Autocomplete* is selected. If Autocomplete ever stops working, just toggle this button.
+To request completions for a CLI tool, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
-### Make Your Own Spec
-Looking to improve autocomplete functionality, or to add support for your favorite CLI tool? We're welcoming contributions for new specs!
-See [CONTRIBUTING.md](CONTRIBUTING.md) to learn more. 
+### FAQ
 
-Want to suggest a new spec? Open an issue at [withfig/fig](https://github.com/withfig/fig) and add the 'autocomplete' label.
+###### What terminals does Fig work with?**
+Fig works with iTerm and Terminal app.
 
+###### How does Fig work?
+Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.
 
-### Questions and support
-<br />
-<p>Email us any time: <a href="mailto:hello@withfig.com">hello@withfig.com</a></p>
+###### Does Fig work on Windows or Linux?
+Currently, Fig is only availible on MacOS.
+
+###### How can I get access?
+Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week. 
+
+###### Can I use this for internal scripts and CLI tools at my company?
+Yes! Reach out to [hello@withfig.com](mailto:hello@withfig.com) and we'll help you get set up.
+
+<br>
+Did we miss something? Get in touch at [hello@withfig.com](mailto:hello@withfig.com) or chat with us on [Slack](https://withfig.com/community)
 
