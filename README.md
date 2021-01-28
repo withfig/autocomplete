@@ -16,7 +16,7 @@
 ![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/autocomplete_demo_for_email.gif)
 
 
-### Add a completions for a CLI tool 
+## Add a completions for a CLI tool 
 Looking to improve autocomplete functionality or add support for your favorite CLI tool? We welcome contributions for new specs!
 
 Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from the information in the spec itself, but can also by determined dynamically by running shell commands or reading local files.
@@ -25,7 +25,7 @@ Completion specs are defined in a *declarative* JSON schema, that specifies `sub
 
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
-### FAQ
+## FAQ
 
 #### What terminals does Fig work with?
 Fig works with iTerm and Terminal app.
@@ -42,6 +42,6 @@ Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocom
 #### Can I use this for internal scripts and CLI tools at my company?
 Yes! Reach out to hello@withfig.com and we'll help you get set up.
 
-<br>
+
 Did we miss something? Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)
 
