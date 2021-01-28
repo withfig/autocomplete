@@ -13,10 +13,10 @@
 **[Fig](https://withfig.com?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
 
-![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/video/demos/autocomplete/autocomplete_demo_for_email.gif)
+![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/gifs/demo-with-header.gif)
 
 
-## Add a completions for a CLI tool 
+## Add a completion spec for a CLI tool 
 Looking to improve autocomplete functionality or add support for your favorite CLI tool? We welcome contributions for new specs!
 
 Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from the information in the spec itself, but can also by determined dynamically by running shell commands or reading local files.
@@ -40,7 +40,7 @@ Currently, Fig is only availible on MacOS.
 Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week. 
 
 #### Can I use this for internal scripts and CLI tools at my company?
-Yes! Reach out to hello@withfig.com and we'll help you get set up.
+Yes! Check out the [autocomplete for teams](https://withfig.com/docs/autocomplete/autocomplete-for-teams) in our docs. Reach out to hello@withfig.com if you need help.
 
 
 #### Did we miss something?
