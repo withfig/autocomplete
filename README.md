@@ -43,5 +43,6 @@ Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocom
 Yes! Reach out to hello@withfig.com and we'll help you get set up.
 
 
-Did we miss something? Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)
+#### Did we miss something?
+Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)
 
