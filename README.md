@@ -34,7 +34,7 @@ Fig works with iTerm and Terminal app.
 Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.
 
 #### Does Fig work on Windows or Linux?
-Currently, Fig is only availible on MacOS.
+Currently, Fig is only available on MacOS.
 
 #### How can I get access?
 Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week. 
