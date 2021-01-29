@@ -1,635 +1,737 @@
-var envVarList = {
-    script: "vercel env ls",
+var listPackages = {
+    script: "pip list",
     postProcess: function(out) {
         var lines = out.split('\n');
-        var envList = [];
-        for(var i = 4; i < lines.length; i++) {
-            var envVar = lines[i].match(/\S+/g)[0];
-            envList.push({
-                name: envVar
+        var packages = [];
+        for(var i = 2; i < lines.length; i++) {
+            packages.push({
+                name: lines[i],
+                icon: "🐍"
             })
         }
-        return envList;
+        return packages;
     }
 }
 
 
 var completionSpec = {
     name: "pip",
-    description: "CLI Interface for Vercel.com",
-    args: {
-        name: "path to project",
-        template: "folders"
-    },
+    description: "Python package manager",
+    args: {},
     options: [
         {
-            name: ["-h", "--help"],
-            description: "Output usage information"
+            name: ["-h, --help"], 
+            description: "Show help." 
         },
         {
-            name: ["-v", "--version"],
-            description: "Output the version number"
+            name: ["--isolated"], 
+            description: "Run pip in an isolated mode, ignoring environment variables and user configuration." 
         },
         {
-            name: ["-V", "--platform-version"],
-            description: "Set the platform version to deploy to"
+            name: ["-v, --verbose"], 
+            description: "Give more output. Option is additive, and can be used up to 3 times." 
         },
         {
-            name: ["-A", "--local-config"],
-            description: "Path to the local 'vercel.json' file",
-            args: [
-                {
-                    template: "filepaths"
-                }
-            ]
+            name: ["-V, --version"], 
+            description: "Show version and exit." 
         },
         {
-            name: ["-Q", "--global-config"],
-            description: "Path to the global '.vercel' directory",
-            args: [
-                {
-                    template: "folders"
-                }
-            ]
+            name: ["-q, --quiet"], 
+            description: "Give less output. Option is additive, and can be used up to 3 times (corresponding to WARNING, ERROR, and CRITICAL logging levels)." 
         },
         {
-            name: ["-d", "--debug"],
-            description: "Provides more verbose output"
-        },
-        {
-            name: ["-f", "--force"],
-            description: "Force a new deployment even if nothing has changed"
-        },
-        {
-            name: ["-with-cache"],
-            description: "Retain build cache when using --force"
-        },
-        {
-            name: ["-t", "--token"],
-            description: "Execute command with an auth token",
+            name: ["--log"],
+            description: "Path to a verbose appending log.",
             args: {
-                name: "auth token",
-                description: "auth token to add to your command"
+                name: "path",
+                template: "filepaths"
             }
         },
         {
-            name: ["-p", "--public"],
-            description: "Deployment is public ('/_src' is exposed)"
+            name: ["--no-input"], 
+            description: "Disable prompting for input." 
         },
         {
-            name: ["-e", "--env"],
-            description: "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times."
-        },
-        {
-            name: ["-b", "--build-env"],
-            description: "Similar to `--env` but for build time only."
-        },
-        {
-            name: ["-m", "--meta"],
-            description: "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times."
-        },
-        {
-            name: ["-C", "--no-clipboard"],
-            description: "Do not attempt to copy URL to clipboard"
-        },
-        {
-            name: ["-S", "--scope"],
-            description: "Set a custom scope",
+            name: ["--proxy"],
+            description: "Specify a proxy in the form [user:passwd@]proxy.server:port.",
             args: {
-                name: "team name",
-                description: "team to execute commands from",
-                // generator: teamList
+                name: "proxy",
+                description: "[user:passwd@]proxy.server:port"
             }
         },
         {
-            name: ["--regions"],
-            description: "Set default regions to enable the deployment on"
+            name: ["--retries"], 
+            description: "Maximum number of retries each connection should attempt (default 5 times).",
+            args: {
+                name: "retries"
+            }
         },
         {
-            name: ["--prod"],
-            description: "Create a production deployment"
+            name: ["--timeout"],
+            description: "Set the socket timeout (default 15 seconds).",
+            args: {
+                name: "sec"
+            }
         },
         {
-            name: ["-c", "--confirm"],
-            description: "Confirm default options and skip questions"
-        }
+            name: ["--exists-action"], 
+            description: "Default action when a path already exists: (s)witch, (i)gnore, (w)ipe, (b)ackup, (a)bort.",
+            args: {
+                name: "action"
+            }
+        },
+        {
+            name: ["--trusted-host"],
+            description: "Mark this host or host:port pair as trusted, even though it does not have valid or any HTTPS.",
+            args: {
+                name: "hostname"
+            }
+        },
+        {
+            name: ["--cert"],
+            description: "Path to alternate CA bundle.",
+            args: {
+                name: "path",
+                template: "filepaths"
+            }
+        },
+        {
+            name: ["--client-cert"],
+            description: "Path to SSL client certificate, a single file containing the private key and the certificate in PEM format.",
+            args: {
+                name: "path",
+                template: "filepaths"
+            }
+        },
+        {
+            name: ["--cache-dir"], 
+            description: "Store the cache data in a directory.",
+            args: {
+                name: "dir",
+                template: "folders"
+            } 
+        },
+        {
+            name: ["--no-cache-dir"], 
+            description: "Disable the cache." 
+        },
+        {
+            name: ["--disable-pip-version-check"], 
+            description: "Don't periodically check PyPI to determine whether a new version of pip is available for download. Implied with --no-index." 
+        },
+        {
+            name: ["--no-color"], 
+            description: "Suppress colored output."
+        },
+        {
+            name: ["--no-python-version-warning"], 
+            description: "Silence deprecation warnings for upcoming unsupported Pythons."
+        },
+        {
+            name: ["--use-feature"],
+            description: "Enable new functionality, that may be backward incompatible.",
+            args: {
+                name: "feature"
+            }
+        },
+        {
+            name: ["--use-deprecated"], 
+            description: "Enable deprecated functionality, that will be removed in the future.",
+            args: {
+                name: "feature"
+            }
+        },
     ],
     subcommands: [
         {
-            name: "deploy",
-            description: "Performs a deployment (default)",
+            name: "install", 
+            description: "Install packages",
             args: {
-                template: "folders"
-            }
-        },
-        {
-            name: "dev",
-            description: "Start a local development server",
-            options: [
-                {
-                    name: ["--listen"],
-                    description: "Specifies which port to run on"
-                },
-            ]
-        },
-        {
-            name: "env",
-            description: "Manages the Environment Variables for your current Project",
-            subcommands: [
-                {
-                    name: "add",
-                    description: "add an environment variable",
-                    args: [
-                        {
-                            name: "type",
-                            description: "type of env variable to add"
-                        },
-                        {
-                            name: "name",
-                            description: "name of the env variable to add"
-                        },
-                        {
-                            name: "environment",
-                            description: "environment to add the variable to",
-                            suggestions: [
-                                {
-                                    name: "Production",
-                                    icon: "🔵"
-                                },
-                                {
-                                    name: "Preview",
-                                    icon: "🟠"
-                                },
-                                {
-                                    name: "Development",
-                                    icon: "🟡"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    name: "rm",
-                    description: "remove an environment variable",
-                    args: [
-                        {
-                            name: "name",
-                            description: "name of the variable to remove",
-//                             generator: envVarList
-                        },
-                        {
-                            name: "environment",
-                            description: "environment to remove from",
-                            suggestions: [
-                                {
-                                    name: "Production",
-                                    icon: "🔵"
-                                },
-                                {
-                                    name: "Preview",
-                                    icon: "🟠"
-                                },
-                                {
-                                    name: "Development",
-                                    icon: "🟡"
-                                }
-                            ]
-                        }
-                    ],
-                },
-                {
-                    name: "pull",
-                    description: "download dev env variables from cloud and write to .env",
-                    args: [
-                        {
-                            name: "file",
-                            description: "the file to write downloaded variables to",
-                            template: "filepaths"
-                        }
-                    ]
-                },
-                {
-                    name: "ls",
-                    description: "List environment variables for a specific environment",
-                    args: [
-                        {
-                            name: "environment",
-                            description: "Environment to list variables for"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "init",
-            description: "Initialize an example project",
-            args: [
-                {
-                    name: "project name",
-                    description: "Project name to initialize locally"
-                },
-                {
-                    name: "new project name",
-                    description: "initialize specific project locally and rename directory"
-                }
-            ]
-        },
-        {
-            name: "list",
-            description: "Lists deployments",
-            args: {
-                name: "project name",
-                description: "View deployments for specified project"
+                name: "package",
+                description: "Package to install"
             },
             options: [
                 {
-                    name: ["-m", "--meta"],
-                    description: "Filters results based on project metadata",
+                    name: ["--compile"],
+                    description: "Do not compile Python source files to bytecode"
+                },
+                {
+                    name: ["-U", "--upgrade"],
+                    description: "Upgrade all specified packages to the newest available version."
+                },
+                {
+                    name: ["--upgrade-strategy"],
+                    description: "Determines how dependency upgrading should be handled [default: only-if-needed]."
+                },
+                {
+                    name: ["--no-deps"],
+                    description: "Don’t install package dependencies."
+                },
+                {
+                    name: ["--root"],
+                    description: "Install everything relative to this alternate root directory.",
                     args: {
-                        variadic: true
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--require-hashes"],
+                    description: "Require a hash to check each requirement against, for repeatable installs."
+                },
+                {
+                    name: ["--prefix"],
+                    description: "Installation prefix where lib, bin and other top-level folders are placed",
+                    args: {
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["-t", "--target"],
+                    description: "Install packages into <dir>.",
+                    args: {
+                        name: "dir",
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--no-compile"],
+                    description: "Do not compile Python source files to bytecode"
+                },
+                {
+                    name: ["--install-option"],
+                    description: "Extra arguments to be supplied to the setup.py install command"
+                },
+                {
+                    name: ["--no-build-isolation"],
+                    description: "Disable isolation when building a modern source distribution."
+                },
+                {
+                    name: ["-c", "--constraint"],
+                    description: "Constrain versions using the given constraints file. This option can be used multiple times."
+                },
+                {
+                    name: ["-r", "--requirement"],
+                    description: "Install from the given requirements file. This option can be used multiple times."
+                },
+                {
+                    name: ["--no-deps"],
+                    description: "Don’t install package dependencies."
+                },
+                {
+                    name: ["--global-option"],
+                    description: "Extra global options to be supplied to the setup.py call before the install command."
+                },
+                {
+                    name: ["--no-binary"],
+                    description: "Constrain versions using the given constraints file. This option can be used multiple times."
+                },
+                {
+                    name: ["--only-binary"],
+                    description: "Do not use source packages",
+                    args: {
+                        suggestions: [
+                            {
+                                name: ":all:",
+                                description: "Disable all source packages"
+                            },
+                            {
+                                name: ":none:",
+                                description: "Empty the set"
+                            }
+                        ]
+                    }
+                },
+                {
+                    name: ["--prefer-binary"],
+                    description: "Prefer older binary packages over newer source packages."
+                },
+                {
+                    name: ["--src"],
+                    description: "Directory to check out editable projects into.",
+                    args: {
+                        name: "source folder",
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--pre"],
+                    description: "Include pre-release and development versions. By default, pip only finds stable versions."
+                },
+                {
+                    name: ["--require-hashes"],
+                    description: "Require a hash to check each requirement against, for repeatable installs."
+                },
+                {
+                    name: ["--progress-bar"],
+                    description: "Specify type of progress to be displayed",
+                    args: {
+                        suggestions: [
+                            { name: "off" },
+                            { name: "on" },
+                            { name: "ascii" },
+                            { name: "pretty" },
+                            { name: "emoji" }
+                        ]
+                    }
+                },
+                {
+                    name: ["--no-build-isolation"],
+                    description: "Disable isolation when building a modern source distribution."
+                },
+                {
+                    name: ["--use-pep517"],
+                    description: "Use PEP 517 for building source distributions"
+                },
+                {
+                    name: ["--ignore-requires-python"],
+                    description: "Ignore the Requires-Python information."
+                },
+                {
+                    name: ["-d", "--dest"],
+                    description: "Require a hash to check each requirement against, for repeatable installs.",
+                    args: {
+                        name: "dir",
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--platform"],
+                    description: "Only use wheels compatible with platform.",
+                    args: { name: "platform" }
+                },
+                {
+                    name: ["--python-version"],
+                    description: "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks."
+                },
+                {
+                    name: ["--implementation"],
+                    description: "Only use wheels compatible with Python implementation",
+                    args: {
+                        name: "implementation"
+                    }
+                },
+                {
+                    name: ["--abi"],
+                    description: "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
+                    args: {
+                        name: "abi"
+                    }
+                },
+                {
+                    name: ["--no-clean"],
+                    description: "Don’t clean up build directories."
+                },
+                {
+                    name: ["-i", "--index-url"],
+                    description: "Base URL of the Python Package Index",
+                    args: {
+                        name: "url"
+                    }
+                },
+                {
+                    name: ["--no-index"],
+                    description: "Ignore package index (only looking at --find-links URLs instead)."
+                },
+                {
+                    name: ["--extra-index-url"],
+                    description: "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url."
+                },
+                {
+                    name: ["-f", "--find-links"],
+                    description: "Look for archives in the directory listing",
+                    args: {
+                        name: "url",
+                        template: "filepaths"
                     }
                 }
             ]
         },
         {
-            name: "ls",
-            description: "Lists deployments",
+            name: "download", 
+            description: "Download packages",
             args: {
-                name: "project name",
-                description: "View deployments for specified project"
-            }
-        },
-        {
-            name: "inspect",
-            description: "Displays information related to a deployment",
-            args: {
-                name: "url",
-                description: "The URL of the deployment to inspect"
-            }
-        },
-        { name: "login", description: "Logs into your account or creates a new one" },
-        { name: "logout", description: "Logs out of your account" },
-        {
-            name: "switch",
-            description: "Switches between teams and your personal account",
-            args: [
+                name: "path",
+                template: "filepaths"
+            },
+            options: [
                 {
-                    name: "team name",
-                    description: "team to switch to",
-                    //generator: teamList
+                    name: ["-c", "--constraint"],
+                    description: "Constrain versions using the given constraints file. This option can be used multiple times."
+                },
+                {
+                    name: ["-r", "--requirement"],
+                    description: "Install from the given requirements file. This option can be used multiple times."
+                },
+                {
+                    name: ["--no-deps"],
+                    description: "Don’t install package dependencies."
+                },
+                {
+                    name: ["--global-option"],
+                    description: "Extra global options to be supplied to the setup.py call before the install command."
+                },
+                {
+                    name: ["--no-binary"],
+                    description: "Constrain versions using the given constraints file. This option can be used multiple times."
+                },
+                {
+                    name: ["--only-binary"],
+                    description: "Do not use source packages",
+                    args: {
+                        suggestions: [
+                            {
+                                name: ":all:",
+                                description: "Disable all source packages"
+                            },
+                            {
+                                name: ":none:",
+                                description: "Empty the set"
+                            }
+                        ]
+                    }
+                },
+                {
+                    name: ["--prefer-binary"],
+                    description: "Prefer older binary packages over newer source packages."
+                },
+                {
+                    name: ["--src"],
+                    description: "Directory to check out editable projects into.",
+                    args: {
+                        name: "source folder",
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--pre"],
+                    description: "Include pre-release and development versions. By default, pip only finds stable versions."
+                },
+                {
+                    name: ["--require-hashes"],
+                    description: "Require a hash to check each requirement against, for repeatable installs."
+                },
+                {
+                    name: ["--progress-bar"],
+                    description: "Specify type of progress to be displayed",
+                    args: {
+                        suggestions: [
+                            { name: "off" },
+                            { name: "on" },
+                            { name: "ascii" },
+                            { name: "pretty" },
+                            { name: "emoji" }
+                        ]
+                    }
+                },
+                {
+                    name: ["--no-build-isolation"],
+                    description: "Disable isolation when building a modern source distribution."
+                },
+                {
+                    name: ["--use-pep517"],
+                    description: "Use PEP 517 for building source distributions"
+                },
+                {
+                    name: ["--ignore-requires-python"],
+                    description: "Ignore the Requires-Python information."
+                },
+                {
+                    name: ["-d", "--dest"],
+                    description: "Require a hash to check each requirement against, for repeatable installs.",
+                    args: {
+                        name: "dir",
+                        template: "folders"
+                    }
+                },
+                {
+                    name: ["--platform"],
+                    description: "Only use wheels compatible with platform.",
+                    args: { name: "platform" }
+                },
+                {
+                    name: ["--python-version"],
+                    description: "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks."
+                },
+                {
+                    name: ["--implementation"],
+                    description: "Only use wheels compatible with Python implementation",
+                    args: {
+                        name: "implementation"
+                    }
+                },
+                {
+                    name: ["--abi"],
+                    description: "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
+                    args: {
+                        name: "abi"
+                    }
+                },
+                {
+                    name: ["--no-clean"],
+                    description: "Don’t clean up build directories."
+                },
+                {
+                    name: ["-i", "--index-url"],
+                    description: "Base URL of the Python Package Index",
+                    args: {
+                        name: "url"
+                    }
+                },
+                {
+                    name: ["--no-index"],
+                    description: "Ignore package index (only looking at --find-links URLs instead)."
+                },
+                {
+                    name: ["--extra-index-url"],
+                    description: "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url."
+                },
+                {
+                    name: ["-f", "--find-links"],
+                    description: "Look for archives in the directory listing",
+                    args: {
+                        name: "url",
+                        template: "filepaths"
+                    }
+                }
+            ]
+        },
+        {
+            name: "uninstall", 
+            description: "Uninstall packages",
+            args: {
+
+            }
+        },
+        {
+            name: "freeze", 
+            description: "Output installed packages in requirements format.",
+            options: [
+                {
+                    name: ["-r", "--requirement"],
+                    description: "Use the order in the given requirements file and its comments when generating output."
+                },
+                {
+                    name: ["-l", "--local"],
+                    description: "If in a virtualenv that has global access, do not output globally-installed packages"
+                },
+                {
+                    name: ["--user"],
+                    description: "Only output packages installed in user-site."
+                },
+                {
+                    name: ["--path"],
+                    description: "Restrict to the specified installation path for listing packages (can be used multiple times)."
+                },
+                {
+                    name: ["--all"],
+                    description: "Do not skip these packages in the output: setuptools, distribute, pip, wheel"
+                },
+                {
+                    name: ["--exclude-editable"],
+                    description: "Exclude editable package from output"
+                },
+                {
+                    name: ["--exclude"],
+                    description: "Exclude specified package from the output",
+                    args: {
+                        name: "package",
+                        geerators: listPackages
+                    }
+                }
+            ]
+        },
+        {
+            name: "list", 
+            description: "List installed packages.",
+            options: [
+                {
+                    name: ["-o", "--outdated"],
+                    description: "List outdated packages"
+                },
+                {
+                    name: ["-u", "--uptodate"],
+                    description: "List uptodate packages"
+                },
+                {
+                    name: ["-e", "--editable"],
+                    description: "List editable projects."
+                },
+                {
+                    name: ["-l", "--local"],
+                    description: "If in a virtualenv that has global access, do not list globally-installed packages."
+                },
+                {
+                    name: ["--user"],
+                    description: "Only output packages installed in user-site"
+                },
+                {
+                    name: ["--path"],
+                    description: "Restrict to the specified installation path for listing packages (can be used multiple times).",
+                    args: {
+                        name: "path",
+                        template: "filepaths"
+                    }
+                },
+                {
+                    name: ["--pre"],
+                    description: "Include pre-release and development versions. By default, pip only finds stable versions."
+                },
+                {
+                    name: ["--format"],
+                    description: "Select the output format among: columns (default), freeze, or json"
+                },
+                {
+                    name: ["--not-required"],
+                    description: "List packages that are not dependencies of installed packages."
+                },
+                {
+                    name: ["--exclude-editable"],
+                    description: "Exclude editable package from output."
+                },
+                {
+                    name: ["--include-editable"],
+                    description: "Include editable package from output."
+                },
+                {
+                    name: ["--exclude"],
+                    description: "Exclude specified package from the output.",
+                    args: {
+                        name: "package",
+                        generators: listPackages
+                    }
+                },
+                {
+                    name: ["-i", "--index-url"],
+                    description: "Base URL of the Python Package Index (default https://pypi.org/simple).",
+                    args: {}
+                },
+                {
+                    name: ["--extra-index-url"],
+                    description: "Include pre-release and development versions. By default, pip only finds stable versions."
+                },
+                {
+                    name: ["--no-index"],
+                    description: "Ignore package index (only looking at --find-links URLs instead)."
+                },
+                {
+                    name: ["-f", "--find-links"],
+                    description: "If a URL or path to an html file, then parse for links to archives such as sdist (.tar.gz) or wheel (.whl) files.",
+                    args: {
+                        name: "url"
+                    }
+                }
+            ]
+        },
+        {
+            name: "show", 
+            description: "Show information about installed packages.",
+            options: [
+                {
+                    name: ["-f", "--files"]
+                }
+            ]
+        },
+        {
+            name: "check", 
+            description: "Verify installed packages have compatible dependencies."
+        },
+        {
+            name: "config", 
+            description: "Manage local and global configuration.",
+            options: [
+                {
+                    name: ["--editor"],
+                    description: "Editor to use to edit the file. Uses VISUAL or EDITOR environment variables if not provided."
+                },
+                {
+                    name: ["--global"],
+                    description: "Use the system-wide configuration file only"
+                },
+                {
+                    name: ["--user"],
+                    description: "Use the user configuration file only"
+                },
+                {
+                    name: ["--site"],
+                    description: "Use the current environment configuration file only"
+                }
+            ]
+        },
+        {
+            name: "search", 
+            description: "Search PyPI for packages.",
+            options: [
+                {
+                    name: ["-i", "--index"]
+                }
+            ]
+        },
+        {
+            name: "cache", 
+            description: "Inspect and manage pip's wheel cache."
+        },
+        {
+            name: "wheel", 
+            description: "Build wheels from your requirements."
+        },
+        {
+            name: "hash", 
+            description: "Compute hashes of package archives.",
+            options: [
+                {
+                    name: ["-a", "--algorithm"],
+                    description: "The hash algorithm to use",
+                    args: {
+                        suggestions: [
+                            { name: "sha256" },
+                            { name: "sha384" },
+                            { name: "sha512" }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            name: "completion", 
+            description: "A helper command used for command completion."
+        },
+        {
+            name: "debug", 
+            description: "Show information useful for debugging.",
+            options: [
+                {
+                    name: ["--platform"],
+                    description: "Only use wheels compatible with platform.",
+                    args: {
+                        name: "platform"
+                    }
+                },
+                {
+                    name: ["--python-version"],
+                    description: "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
+                    args: {
+                        name: "python version"
+                    }
+                },
+                {
+                    name: ["--implementation"],
+                    description: "Only use wheels compatible with Python implementation",
+                    args: {
+                        name: "implementation"
+                    }
+                },
+                {
+                    name: ["--platform"],
+                    description: "Only use wheels compatible with platform.",
+                    args: {
+                        name: "platform"
+                    }
                 }
             ]
         },
         {
             name: "help",
-            description: "Displays complete help for [cmd]",
-            args: [
-                {
-                    name: "command",
-                    description: "command to detailed information about"
-                }
-            ]
-        },
-        {
-            name: "rm",
-            description: "Removes a deployment",
-            args: {
-                name: "deployment url",
-                description: "URL of the deployment to remove",
-                // variadic: true,
-                //generator: deploymentList
-            },
-            options: [
-                {
-                    name: ["-s", "--safe"],
-                    description: "Skip removal of deployments with an active preview URL or production domain"
-                },
-                {
-                    name: ["-y", "--yes"],
-                    description: "Skip confirmation step for a deployment or project removal"
-                }
-            ]
-        },
-        {
-            name: "remove",
-            description: "Removes a deployment",
-            args: [
-                {
-                    name: "deployment url",
-                    description: "URL of the deployment to remove",
-                    // generator: deploymentList
-                }
-            ]
-        },
-        {
-            name: "domains",
-            description: "Manages your domain names",
-            subcommmands: [
-                {
-                    name: "ls",
-                    description: "List all domains under an account"
-                },
-                {
-                    name: "inspect",
-                    description: "Retrieves information about a domain",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to inspect",
-                            // generator: domainList
-                        }
-                    ]
-                },
-                {
-                    name: "add",
-                    description: "Add a domain to an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to add"
-                        }
-                    ]
-                },
-                {
-                    name: "rm",
-                    description: "Removes a domain from an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to remove",
-                            // generator: domainList
-                        }
-                    ]
-                },
-                {
-                    name: "buy",
-                    description: "Buy a domain for an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to buy"
-                        }
-                    ]
-                },
-                {
-                    name: "move",
-                    description: "Removes a domain from an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to move",
-                            generator: domainList
-                        },
-                        {
-                            name: "account name",
-                            description: "account to move the domain to",
-                            // generator: teamList // double check if teams = accounts
-                        }
-                    ]
-                },
-                {
-                    name: "transfer-in",
-                    description: "Transfers in a domain to an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to transfer in"
-                        }
-                    ]
-                },
-                {
-                    name: "verify",
-                    description: "Verifies a domain for an account",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to verify",
-                            // generator: domainList
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "dns",
-            description: "Manages your DNS records",
-            subcommands: [
-                {
-                    name: "add",
-                    description: "add DNS record for a domain",
-                    args: [
-                        {
-                            name: "domain",
-                            description: "domain to add record to",
-                            // generator: domainList
-                        },
-                        {
-                            name: "subdomain",
-                            description: "subdomain to add record to"
-                        },
-                        {
-                            name: "record type",
-                            description: "type of record to add",
-                            suggestions: [
-                                {
-                                    name: "A",
-                                    description: "A record"
-                                },
-                                {
-                                    name: "AAAA",
-                                    description: "AAAA record"
-                                },
-                                {
-                                    name: "ALIAS",
-                                    description: "ALIAS record"
-                                },
-                                {
-                                    name: "CNAME",
-                                    description: "CName record"
-                                },
-                                {
-                                    name: "TXT",
-                                    description: "TXT record"
-                                }
-                            ]
-                        },
-                        {
-                            name: "value",
-                            description: "Record value"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "certs",
-            description: "Manages your SSL certificates",
-            subcommands: [
-                {
-                    name: "ls",
-                    description: "list all certificates under an account"
-                },
-                {
-                    name: "issue",
-                    description: "issue certificates for multiple domains",
-                    args: {
-                        name: "Domains",
-                        description: "list of domains separated by commas to issue certificates for",
-                        // generator: domainList,
-                        variadic: true
-                    }
-                },
-                {
-                    name: "rm",
-                    description: "remove a certificate by id",
-                    args: [
-                        {
-                            name: "certificate id",
-                            description: "id of the certificate to remove"
-                        }
-                    ]
-                }
-            ],
-            options: [
-                {
-                    name: ["--challenge-only"],
-                    description: "Show challenges needed to issue a certificate"
-                },
-                {
-                    name: ["--crt"],
-                    description: "Include path to .crt",
-                    args: [{ template: "filepaths" }]
-                },
-                {
-                    name: ["--key"],
-                    description: "Include path to .key",
-                    args: [{ template: "filepaths" }]
-                },
-                {
-                    name: ["--ca"],
-                    description: "Include path to .ca",
-                    args: [{ template: "filepaths" }]
-                }
-            ]
-        },
-        {
-            name: "secrets",
-            description: "Manages your global Secrets, for use in Environment Variables",
-            subcommands: [
-                {
-                    name: "list",
-                    description: "list all secrets"
-                },
-                {
-                    name: "add",
-                    description: "add a new secret",
-                    args: [
-                        {
-                            name: "secret name",
-                            description: "name of the secret to add"
-                        },
-                        {
-                            name: "secret value",
-                            description: "value of the secret to add"
-                        }
-                    ]
-                },
-                {
-                    name: "rename",
-                    description: "rename a secret",
-                    args: [
-                        {
-                            name: "old name",
-                            description: "old name of the secret to rename"
-                        },
-                        {
-                            name: "new name",
-                            description: "new name of the secret"
-                        }
-                    ]
-                },
-                {
-                    name: "remove",
-                    description: "remove a secret",
-                    args: [
-                        {
-                            name: "secret name",
-                            description: "name of the seret to remove"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "logs",
-            description: "Displays the logs for a deployment",
-            args: [
-                {
-                    name: "deployment url",
-                    description: "get logs for specified deployment",
-                    // generator: deploymentList
-                }
-            ],
-            options: [
-                {
-                    name: ["-a", "--all"],
-                    description: "Receive access logs in addition to regular logs"
-                },
-                {
-                    name: ["-f", "--follow"],
-                    description: "Watch for additional logs output"
-                },
-                {
-                    name: ["-n", "--number"],
-                    description: "Specify number of log lines to output",
-                    args: [{}]
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Specifies format of logs output as 'short' or 'raw'",
-                    args: [{}]
-                },
-                {
-                    name: ["--since"],
-                    description: "Return logs after a specific ISO 8601 date",
-                    args: [{}]
-                },
-                {
-                    name: ["-q", "--query"],
-                    description: "Return logs against a search query",
-                    args: [{}]
-                },
-                {
-                    name: ["--until"],
-                    description: "Return logs up to a specific ISO 8601 date",
-                    args: [{}]
-                }
-            ]
-        },
-        {
-            name: "teams",
-            description: "Manages your teams",
-            subcommands: [
-                {
-                    name: "list",
-                    description: "List all teams under an account"
-                },
-                {
-                    name: "add",
-                    description: "Create a new team"
-                },
-                {
-                    name: "invite",
-                    description: "invite a new member to the team",
-                    args: [
-                        {
-                            name: "email",
-                            description: "email of member to invite to team"
-                        }
-                    ]
-                }
-            ]
-        },
-        { name: "whoami", description: "Shows the username of the currently logged in user" }
+            description: "Show help for commands."
+        }
     ]
 }

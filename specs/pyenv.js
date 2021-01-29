@@ -4,7 +4,6 @@ var versionList = {
         var lines = out.split('\n');
         var versionList = [];
         for(var i = 1; i < lines.length; i++) {
-            console.log(lines);
             versionList.push({
                 name: lines[i],
                 icon: "🐍"
