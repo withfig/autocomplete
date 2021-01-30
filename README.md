@@ -19,7 +19,7 @@
 ## Add a completion spec for a CLI tool 
 Looking to improve autocomplete functionality or add support for your favorite CLI tool? We welcome contributions for new specs!
 
-Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from the information in the spec itself, but can also by determined dynamically by running shell commands or reading local files.
+Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions can be generated dynamically by running shell commands or reading local files, in addition to the information in the spec itself.
 
 **For more documentation and tutorials**, visit [withfig.com/docs](https://withfig.com/docs/autocomplete/getting-started)
 
