@@ -112,11 +112,10 @@ var generators = {
 }
 
 
-let head_n_revisions = {
-    name: "HEAD~<N>",
+let head = {
+    name: "HEAD",
     icon: "🔻",
     description: "Reset multiple commits",
-    insertValue: "HEAD~",
 }
 
 var completionSpec = {
@@ -392,7 +391,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -403,7 +402,7 @@ var completionSpec = {
                     description: "remove the last commit from the current branch, but the file changes will stay in your working tree",
                     args: {
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -448,7 +447,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits,
                     }
