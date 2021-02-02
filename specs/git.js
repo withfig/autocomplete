@@ -103,7 +103,8 @@ var generators = {
                 return {
                     name: file,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-                    description: "Changed file"
+                    description: "Changed file",
+                    priority: 100
                 }
             })
         }
