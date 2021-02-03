@@ -34,7 +34,8 @@ var completionSpec = {
         {
             name: ["--file"],
             args: {
-                name: "file"
+                name: "file",
+                template: "filepaths"
             }
         },
         {

@@ -430,7 +430,7 @@ var completionSpec = {
                         },
                         {
                             name: "account name",
-                            description: "account to move the domain to",
+                            description: "account to move the domain to"
                             // generator: teamList // double check if teams = accounts
                         }
                     ]

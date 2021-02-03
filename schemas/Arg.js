@@ -10,8 +10,10 @@ const Arg = Joi.object({
     icon: Joi.string(),
     suggestions: Joi.array().items(Suggestion),
     template: Joi.string().valid("filepaths", "folders"),
+    generator: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
     generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
-    variadic: Joi.boolean()
+    variadic: Joi.boolean(),
+    isOptional: Joi.boolean(),
 })
 
 module.exports = { Arg };
