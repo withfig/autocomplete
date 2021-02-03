@@ -372,7 +372,7 @@ var completionSpec = {
         {
             name: "domains",
             description: "Manages your domain names",
-            subcommmands: [
+            subcommands: [
                 {
                     name: "ls",
                     description: "List all domains under an account"
@@ -383,8 +383,7 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to inspect",
-                            // generator: domainList
+                            description: "domain to inspect"
                         }
                     ]
                 },
@@ -404,8 +403,7 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to remove",
-                            // generator: domainList
+                            description: "domain to remove"
                         }
                     ]
                 },
@@ -425,13 +423,11 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to move",
-                            generator: domainList
+                            description: "domain to move"
                         },
                         {
                             name: "account name",
                             description: "account to move the domain to"
-                            // generator: teamList // double check if teams = accounts
                         }
                     ]
                 },
@@ -451,8 +447,7 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to verify",
-                            // generator: domainList
+                            description: "domain to verify"
                         }
                     ]
                 }
