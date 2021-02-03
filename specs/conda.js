@@ -26,7 +26,6 @@ var getAllCondaPackages = {
         }
         return allPackages;
     }
-
 }
 
 var completionSpec = {
