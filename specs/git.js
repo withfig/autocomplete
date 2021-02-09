@@ -706,7 +706,8 @@ var completionSpec = {
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generators: generators.tags
+                generators: generators.tags,
+                isOptional: true,
             }
         },
     ]
