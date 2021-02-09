@@ -138,7 +138,7 @@ var completionSpec = {
                 name: "path",
                 template: "folders"
             },
-            description: "Run as if git was started in \<path\>"
+            description: "Run as if git was started in &lt;path&gt;"
         },
         {
             name: "-c name=value",
