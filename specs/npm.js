@@ -34,7 +34,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },
@@ -82,16 +82,16 @@ var completionSpec = {
                 let package = JSON.parse(out);
                 let scripts = package["scripts"];
                 if (scripts) {
-                  let keys = Object.keys(scripts);
-                  // .map( key => {
-                  // 	return {
-                  // 		name : key,
-                  // 		icon : "🛠"
-                  // 	}
-                  // })
+                  let keys = Object.keys(scripts)
+                    .map(key => {
+                      return {
+                        name: key,
+                        icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png"
+                      }
+                    })
                   return keys;
                 }
-              } catch (e) {}
+              } catch (e) { }
 
               return [];
             },
@@ -225,7 +225,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },
@@ -282,7 +282,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },
