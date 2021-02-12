@@ -62,9 +62,9 @@ var completionSpec = {
             description: "Permitted compression algorithms for connections to server",
             args: {
                 name: "value",
-                suggestions: ["zlib", "zstd", "uncompressed"]
+                suggestions: [{name: "zlib"}, {name: "zstd"}, {name: "uncompressed"}]
             }
-        },        
+        },
         {
             name: ["--connect-expired-password"],
             description: "Indicate to server that client can handle expired-password sandbox mode",
@@ -114,7 +114,7 @@ var completionSpec = {
             description: "Read named option file in addition to usual option files",
             args: {
                 name: "file_name",
-                template: "filepath",
+                template: "filepaths",
             }
         },        
         {
@@ -122,7 +122,7 @@ var completionSpec = {
             description: "Read only named option file",
             args: {
                 name: "file_name",
-                template: "filepath",
+                template: "filepaths",
             }
         },        
         {
@@ -196,7 +196,7 @@ var completionSpec = {
             name: ["--init-command"], 
             description: "SQL statement to execute after connecting",
             args: {
-                name: ["command"],
+                name: "command",
                 insertValue: "{cursor}'"
             }
         },        
@@ -209,7 +209,7 @@ var completionSpec = {
             description: "Directory for files named in LOAD DATA LOCAL statements",
             args: {
                 name: "dir_name",
-                template: "folder",
+                template: "folders",
             }
         },
         {
@@ -307,7 +307,7 @@ var completionSpec = {
             description: "Directory where plugins are installed",
             args: {
                 name: "dir_name",
-                template: "folder"
+                template: "folders"
             }
         },        
         {
@@ -333,7 +333,7 @@ var completionSpec = {
             description: "Transport protocol to use",
             args: {
                 name: "format_str",
-                suggestions: ["TCP", "SOCKET", "PIPE", "MEMORY"]
+                suggestions: [{name: "TCP"}, {name: "SOCKET"}, {name: "PIPE"}, {name: "MEMORY"}]
             }
         },        
         {
@@ -364,7 +364,7 @@ var completionSpec = {
             description: "Path name to file containing RSA public key",
             args: {
                 name: "filename",
-                template: ["filepaths"]
+                template: "filepaths"
             }
         },        
         {
@@ -430,7 +430,7 @@ var completionSpec = {
             description: "Directory that contains trusted SSL Certificate Authority certificate files",
             args: {
                 name: "dirname",
-                template: "folder"
+                template: "folders"
             }
         },       
         {
@@ -458,7 +458,7 @@ var completionSpec = {
             description: "Directory that contains certificate revocation-list files",
             args: {
                 name: "dirname",
-                template: "folder"
+                template: "folders"
             }
         },        
         {
@@ -466,7 +466,7 @@ var completionSpec = {
             description: "Whether to enable FIPS mode on client side",
             args: {
                 name: "mode",
-                suggestions: ["OFF", "ON", "STRICT"]
+                suggestions: [{ name: "OFF" }, { name: "ON" }, { name: "STRICT" }]
             }
         },        
         {
@@ -494,7 +494,7 @@ var completionSpec = {
             description: "Append a copy of output to named file",
             args: {
                 name: "file_name",
-                template: "filepath",
+                template: "filepaths",
             }
         },        
         {
@@ -502,7 +502,7 @@ var completionSpec = {
             description: "Permissible TLSv1.3 ciphersuites for encrypted connections",
             args: {
                 name: "ciphersuite_list",
-                template: "filepath",
+                template: "filepaths",
             }
         },       
         {

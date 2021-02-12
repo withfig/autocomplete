@@ -4,7 +4,6 @@ var completionSpec = {
     args: [
         {
             name: "mode",
-            optional: false,
             suggestions: [ 
                 // Some of the most common chmod's (non-exhaustive)
                 {
@@ -41,7 +40,6 @@ var completionSpec = {
         },
         {
             // Modifying
-            optional: false,
             template: "filepaths"
         }
     ],

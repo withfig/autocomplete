@@ -13,8 +13,6 @@ var generators = {
     }
 }
 
-
-
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
@@ -73,11 +71,11 @@ var completionSpec = {
         {
             name: "cask",
             insertValue: "cask ",
-            description: "Homebrew  Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
+            description: "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
             subcommands: [
                 {
                     name: "install",
-                    insertValue: "install ",
+                    insertValue: "install",
                     description: "Installs the given cask",
                     args: {
                         name: "<cask>",

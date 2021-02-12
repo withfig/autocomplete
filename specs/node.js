@@ -3,12 +3,13 @@ var completionSpec = {
     description: "Run the node interpretor",
     args: {
         template: "filepaths",
-        postProcess: function (paths) {
-            return paths.filter(file => {
-                return file.name.endsWith('.js') || file.name.endsWith('/')
-            })
+        generators: {
+            postProcess: function (paths) {
+                return paths.filter(file => {
+                    return file.name.endsWith('.js') || file.name.endsWith('/')
+                })
+            }
         }
-
     },
     options: [
         {

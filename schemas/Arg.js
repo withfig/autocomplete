@@ -5,12 +5,12 @@ const { Generator } = require('./Generator');
 const Arg = Joi.object({
     name: Joi.string(),
     displayName: Joi.string(),
-    insertValue: Joi.string(),
+    insertValue: Joi.string().allow(''),
     description: Joi.string().optional().allow(''),
     icon: Joi.string(),
     suggestions: Joi.array().items(Suggestion),
     template: Joi.string().valid("filepaths", "folders"),
-    generators: Generator,
+    generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
     variadic: Joi.boolean()
 })
 

@@ -7,7 +7,7 @@ var completionSpec = {
       description: "",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {
@@ -70,7 +70,7 @@ var completionSpec = {
       description: "",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             // splitOn: "\n",
             postProcess: function (out) {
@@ -198,7 +198,7 @@ var completionSpec = {
       description: "uninstall a package",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {
@@ -255,7 +255,7 @@ var completionSpec = {
       description: "remove a package",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {

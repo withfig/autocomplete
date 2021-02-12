@@ -57,7 +57,7 @@ var completionSpec = {
         },
       ],
       args: {
-        template: "files",
+        template: "filepaths",
       },
     }
   ],
