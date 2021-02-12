@@ -103,7 +103,8 @@ var generators = {
                 return {
                     name: file,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-                    description: "Changed file"
+                    description: "Changed file",
+                    priority: 100
                 }
             })
         }
@@ -111,11 +112,10 @@ var generators = {
 }
 
 
-let head_n_revisions = {
-    name: "HEAD~<N>",
+let head = {
+    name: "HEAD",
     icon: "🔻",
     description: "Reset multiple commits",
-    insertValue: "HEAD~",
 }
 
 var completionSpec = {
@@ -144,6 +144,9 @@ var completionSpec = {
                     name: "-am",
                     insertValue: "-am '{cursor}'",
                     description: "stage all and use given text as commit message",
+                    args: {
+                        name: "message"
+                    }
                 },
                 {
                     name: ["-v", "--verbose"],
@@ -391,7 +394,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -402,7 +405,7 @@ var completionSpec = {
                     description: "remove the last commit from the current branch, but the file changes will stay in your working tree",
                     args: {
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -447,7 +450,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits,
                     }
@@ -682,6 +685,9 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
+                name: "branch",
+                description: "branch to switch to",
+                isOptional: true,
                 generators: generators.branches
             }
         },
@@ -700,7 +706,8 @@ var completionSpec = {
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generators: generators.tags
+                generators: generators.tags,
+                isOptional: true,
             }
         },
     ]
