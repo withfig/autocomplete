@@ -11,7 +11,9 @@ const Arg = Joi.object({
     suggestions: Joi.array().items(Suggestion),
     template: Joi.string().valid("filepaths", "folders"),
     generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
-    variadic: Joi.boolean()
+    generator: Joi.alternatives().try(Generator),
+    variadic: Joi.boolean(),
+    isOptional: Joi.boolean()
 })
 
 module.exports = { Arg };
