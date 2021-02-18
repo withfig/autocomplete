@@ -49,7 +49,7 @@ var completionSpec = {
             description: "Read commands from the file filename, rather than standard input. This option can be repeated and combined in any order with the -c option. When either -c or -f is specified, psql does not read commands from standard input; instead it terminates after processing all the -c and -f options in sequence. Except for that, this option is largely equivalent to the meta-command \i. If filename is - (hyphen), then standard input is read until an EOF indication or \q meta-command. This can be used to intersperse interactive input with input from files. Note however that Readline is not used in this case (much as if -n had been specified). Using this option is subtly different from writing psql < filename. In general, both will do what you expect, but using -f enables some nice features such as error messages with line numbers. There is also a slight chance that using this option will reduce the start-up overhead. On the other hand, the variant using the shell's input redirection is (in theory) guaranteed to yield exactly the same output you would have received had you entered everything by hand.",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },
         {
@@ -79,7 +79,7 @@ var completionSpec = {
             description: "Write all query output into file filename, in addition to the normal output destination.",
             args: {
                 name: "filename",
-                template: "folders"
+                template: ["folders"]
             }
         },
         {
@@ -91,7 +91,7 @@ var completionSpec = {
             description: "Put all query output into file filename. This is equivalent to the command \\o.",
             args: {
                 name: "filename",
-                template: "folders"
+                template: ["folders"]
             }
         },
         {

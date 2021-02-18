@@ -3,7 +3,7 @@ var completionSpec = {
 	name: "code",
 	description: "Visual Studio Code",
 	args: {
-		template: "filepaths"
+		template: ["filepaths"]
 	},
 	options: [
 		{
@@ -11,10 +11,10 @@ var completionSpec = {
 			description: "Compare two files with each other.",
 			args: [
 				{
-					template: "filepaths"
+					template: ["filepaths"]
 				},
 				{
-					template: "filepaths"
+					template: ["filepaths"]
 				}
 			],
 		},
@@ -22,7 +22,7 @@ var completionSpec = {
 			name: ["-a", "--add"],
 			description: "Add folder(s) to the last active window",
 			args: {
-				template: "folders"
+				template: ["folders"]
 			}
 		},
 		{
@@ -30,10 +30,10 @@ var completionSpec = {
 			description: "Force to open a new window.",
 			args: [
 				{
-					template: "filepaths"
+					template: ["filepaths"]
 				},
 				{
-					template: "filepaths"
+					template: ["filepaths"]
 				}
 			],
 		},

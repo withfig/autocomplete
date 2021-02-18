@@ -6,7 +6,7 @@ var completionSpec = {
         {   
             variadic: true,
             name: "File to source",
-            template: "filepaths"
+            template: ["filepaths"]
         },
     ]
 }

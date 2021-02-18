@@ -33,8 +33,6 @@ var completionSpec = {
                 return acc
               }
             }, [])
-
-            console.log(out)
             return out
           }
         }
@@ -50,7 +48,7 @@ var completionSpec = {
       name: "team:upload", description: "share an completion spec with your team",
       args: {
         name: "spec",
-        template: "filepaths"
+        template: ["filepaths"]
       }
     },
     { name: "team:download", description: "download your team's spec" }

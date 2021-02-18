@@ -37,7 +37,7 @@ var completionSpec = {
             description: "Directory where character sets are installed",
             args: {
                 name: "dir_name",
-                template: "folders",
+                template: ["folders"],
                 description: "Directory where character sets are installed"
             }
         },       
@@ -114,7 +114,7 @@ var completionSpec = {
             description: "Read named option file in addition to usual option files",
             args: {
                 name: "file_name",
-                template: "filepaths",
+                template: ["filepaths"],
             }
         },        
         {
@@ -122,7 +122,7 @@ var completionSpec = {
             description: "Read only named option file",
             args: {
                 name: "file_name",
-                template: "filepaths",
+                template: ["filepaths"],
             }
         },        
         {
@@ -209,7 +209,7 @@ var completionSpec = {
             description: "Directory for files named in LOAD DATA LOCAL statements",
             args: {
                 name: "dir_name",
-                template: "folders",
+                template: ["folders"],
             }
         },
         {
@@ -307,7 +307,7 @@ var completionSpec = {
             description: "Directory where plugins are installed",
             args: {
                 name: "dir_name",
-                template: "folders"
+                template: ["folders"]
             }
         },        
         {
@@ -364,7 +364,7 @@ var completionSpec = {
             description: "Path name to file containing RSA public key",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },        
         {
@@ -422,7 +422,7 @@ var completionSpec = {
             description: "File that contains list of trusted SSL Certificate Authorities",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },        
         {
@@ -430,7 +430,7 @@ var completionSpec = {
             description: "Directory that contains trusted SSL Certificate Authority certificate files",
             args: {
                 name: "dirname",
-                template: "folders"
+                template: ["folders"]
             }
         },       
         {
@@ -438,7 +438,7 @@ var completionSpec = {
             description: "File that contains X.509 certificate",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },        
         {
@@ -450,7 +450,7 @@ var completionSpec = {
             description: "File that contains certificate revocation lists",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },        
         {
@@ -458,7 +458,7 @@ var completionSpec = {
             description: "Directory that contains certificate revocation-list files",
             args: {
                 name: "dirname",
-                template: "folders"
+                template: ["folders"]
             }
         },        
         {
@@ -474,7 +474,7 @@ var completionSpec = {
             description: "File that contains X.509 key",
             args: {
                 name: "filename",
-                template: "filepaths"
+                template: ["filepaths"]
             }
         },        
         {
@@ -494,7 +494,7 @@ var completionSpec = {
             description: "Append a copy of output to named file",
             args: {
                 name: "file_name",
-                template: "filepaths",
+                template: ["filepaths"],
             }
         },        
         {
@@ -502,7 +502,7 @@ var completionSpec = {
             description: "Permissible TLSv1.3 ciphersuites for encrypted connections",
             args: {
                 name: "ciphersuite_list",
-                template: "filepaths",
+                template: ["filepaths"],
             }
         },       
         {
