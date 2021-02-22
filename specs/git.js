@@ -11,7 +11,7 @@ var generators = {
             return out.split('\n').map((line) => {
                 return {
                     name: line.substring(0, 7),
-                    icon: "🔹",
+                    icon: "fig://icon?type=node",
                     description: line.substring(7)
                 }
             })
@@ -52,7 +52,7 @@ var generators = {
                 return []
             }
             return out.split('\n').map((elm) => {
-                return { name: elm.replace("*", "").trim(), description: "branch" }
+                return { name: elm.replace("*", "").trim(), description: "branch", icon: "fig://icon?type=git" }
             })
         }
     },
@@ -102,6 +102,7 @@ var generators = {
 
                 return {
                     name: file,
+                    insertValue: file.includes(' ') ? `'${file}'` : file,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
                     description: "Changed file",
                     priority: 100
