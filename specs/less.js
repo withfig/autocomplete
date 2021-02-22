@@ -1,9 +1,9 @@
 var completionSpec = {
 
     name: "less",
-    description: "qqopposite of more",
+    description: "opposite of more",
     args: {
     	variadic: true,
-        template: "filpaths"
+        template: "filepaths"
     }
 }

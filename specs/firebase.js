@@ -263,8 +263,7 @@ var completionSpec = {
     },
     {
       name: "ext:configure",
-      description:
-        "display information on how to use ext commands and extensions",
+      description: "display information on how to use ext commands and extensions",
       options: [
         {
           name: ["-h", "--help"],
@@ -279,7 +278,7 @@ var completionSpec = {
         },
       ],
       args: {
-        generator: {
+        generators: {
           script: "firebase ext:list",
           postProcess: function (out) {
             if (out.trim() == "") {
@@ -345,7 +344,7 @@ var completionSpec = {
         },
       ],
       args: {
-        generator: {
+        generators: {
           script: "firebase ext:list",
           postProcess: function (out) {
             if (out.trim() == "") {
@@ -368,7 +367,7 @@ var completionSpec = {
       name: "projects:addfirebase",
       description: "add Firebase resources to a Google Cloud Platform project",
       args: {
-        generator: {
+        generators: {
           script: "zsh gcloud projects list",
           postProcess: function (out) {
             if (out.trim() === "") {

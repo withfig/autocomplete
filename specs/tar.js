@@ -4,7 +4,7 @@ var completionSpec = {
     description: "Manipulating archive files",
     args: {
     	variadic: true,
-        templateSuggestions: ["folders"] 
+        template: "folders" 
     },
     options: [
  		{
@@ -12,15 +12,15 @@ var completionSpec = {
             description: "Create a new archive",
             args: {
     	        variadic: true,
-                templateSuggestions: ["folders"] 
+                template: "folders" 
             }
         },
  		{
             name: ["-t", "--list"],
             description: "List archive contents",
             args: {
-                shellSuggestions: {
-                    cmd: "ls -1 | grep '.tar'",
+                generators: {
+                    script: "ls -1 | grep '.tar'",
                     splitOn: "\n"
                 }
             }
@@ -29,13 +29,13 @@ var completionSpec = {
             name: ["-x", "--extract"],
             description: "Extract to disk",
             args: {
-                shellSuggestions: {
-                    cmd: "ls -1 | grep '.tar'",
+                generators: {
+                    script: "ls -1 | grep '.tar'",
                     splitOn: "\n"
                 }
             }
         },
- 		{ name: ["-h", "--help"],       description: "Help" },
- 		{ name: ["--version"],          description: "Version" },
+ 		{ name: ["-h", "--help"], description: "Help" },
+ 		{ name: ["--version"], description: "Version" },
     ]
 }

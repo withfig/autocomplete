@@ -3,7 +3,7 @@ const { Arg } = require('./Arg');
 const { Suggestion } = require('./Suggestion');
 
 const Option = Joi.object({
-    name: Joi.alternatives().try(Joi.string(), Joi.array().items(Joi.string())).required(),
+    name: Joi.alternatives().try(Joi.string().allow(''), Joi.array().items(Joi.string().allow(''))).required(),
     displayName: Joi.string(),
     insertValue: Joi.string(),
     description: Joi.string().optional().allow(''),

@@ -4,7 +4,7 @@ var completionSpec = {
     description: "remove directory entries",
     args: [
         {
-            template: ["filepaths", "folders"]
+            template: "filepaths"
         },
     ],
     subcommands: [],

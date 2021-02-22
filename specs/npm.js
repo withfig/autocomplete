@@ -7,7 +7,7 @@ var completionSpec = {
       description: "",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {
@@ -34,7 +34,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },
@@ -70,7 +70,7 @@ var completionSpec = {
       description: "",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             // splitOn: "\n",
             postProcess: function (out) {
@@ -82,16 +82,16 @@ var completionSpec = {
                 let package = JSON.parse(out);
                 let scripts = package["scripts"];
                 if (scripts) {
-                  let keys = Object.keys(scripts);
-                  // .map( key => {
-                  // 	return {
-                  // 		name : key,
-                  // 		icon : "🛠"
-                  // 	}
-                  // })
+                  let keys = Object.keys(scripts)
+                    .map(key => {
+                      return {
+                        name: key,
+                        icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png"
+                      }
+                    })
                   return keys;
                 }
-              } catch (e) {}
+              } catch (e) { }
 
               return [];
             },
@@ -198,7 +198,7 @@ var completionSpec = {
       description: "uninstall a package",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {
@@ -225,7 +225,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },
@@ -255,7 +255,7 @@ var completionSpec = {
       description: "remove a package",
       args: [
         {
-          generator: {
+          generators: {
             script: "cat package.json",
             postProcess: function (out) {
               if (out.trim() === "") {
@@ -282,7 +282,7 @@ var completionSpec = {
                     };
                   });
                 }
-              } catch (e) {}
+              } catch (e) { }
               return [];
             },
           },

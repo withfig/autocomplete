@@ -372,7 +372,7 @@ var completionSpec = {
         {
             name: "domains",
             description: "Manages your domain names",
-            subcommmands: [
+            subcommands: [
                 {
                     name: "ls",
                     description: "List all domains under an account"

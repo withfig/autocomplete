@@ -145,6 +145,9 @@ var completionSpec = {
                     name: "-am",
                     insertValue: "-am '{cursor}'",
                     description: "stage all and use given text as commit message",
+                    args: {
+                        name: "message"
+                    }
                 },
                 {
                     name: ["-v", "--verbose"],
@@ -683,6 +686,9 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
+                name: "branch",
+                description: "branch to switch to",
+                isOptional: true,
                 generators: generators.branches
             }
         },
@@ -701,7 +707,8 @@ var completionSpec = {
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generators: generators.tags
+                generators: generators.tags,
+                isOptional: true,
             }
         },
     ]

@@ -9,6 +9,16 @@ var completionSpec = {
     {
       name: "uninstall", description: "uninstall a completion spec",
       args: {
+        name: "Email",
+        description: "Email address of the user you want to invite",
+        variadic: true,
+        suggestions: [
+          {
+            name: "<email>",
+            insertValue: " ",
+            description: "Email to invite"
+          }
+        ],
         generators: {
           script: "\ls -1Ap ~/.fig/autocomplete",
           postProcess: (data) => {
@@ -35,7 +45,15 @@ var completionSpec = {
     { name: "tweet", description: "tweet about Fig", icon: "https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.b1fc7275.png" },
     { name: "docs", description: "view docs in browser" },
     { name: "list", description: "list all available completion specs" },
-    { name: "onboarding", description: "re-run Fig's onboarding" }
+    { name: "onboarding", description: "re-run Fig's onboarding" },
+    {
+      name: "team:upload", description: "share an completion spec with your team",
+      args: {
+        name: "spec",
+        template: "filepaths"
+      }
+    },
+    { name: "team:download", description: "download your team's spec" }
   ],
 
   options: [

@@ -1,2 +1,6 @@
 .DS_Store
 building_scripts/
+node_modules
+build
+npm-debug.log
+.env

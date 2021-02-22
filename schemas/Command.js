@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 const { Option } = require('./Option');
 const { Arg } = require('./Arg');
 const { Suggestion } = require('./Suggestion');
