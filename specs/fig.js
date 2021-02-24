@@ -46,7 +46,7 @@ var completionSpec = {
       }
     },
     { name: "team:download", description: "download your team's spec" },
-    { name: "integration:iterm", description: "Install the iTerm tab integration" }
+    { name: "integrations:iterm", description: "Install the iTerm tab integration" }
 
   ],
 
