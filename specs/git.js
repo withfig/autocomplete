@@ -295,6 +295,7 @@ var completionSpec = {
             options: [
                 { name: ["--continue"], description: "continue the rebasing after conflict resolution" },
                 { name: ["--abort"], description: "stop rebase" },
+                { name: ["--skip"], description: "skips a commit" },
                 {
                     name: ["-i"],
                     description: "interactive"
