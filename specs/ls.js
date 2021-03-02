@@ -4,7 +4,7 @@ var completionSpec = {
   description: "list directory contents",
   args: {
     variadic: true,
-    template: ["folders"]
+    template: "folders"
   },
   options: [
     {

@@ -67,7 +67,7 @@ var completionSpec = {
     description: "CLI Interface for Vercel.com",
     args: {
         name: "path to project",
-        template: ["folders"]
+        template: "folders"
     },
     options: [
         {
@@ -87,7 +87,7 @@ var completionSpec = {
             description: "Path to the local 'vercel.json' file",
             args: [
                 {
-                    template: ["filepaths"]
+                    template: "filepaths"
                 }
             ]
         },
@@ -96,7 +96,7 @@ var completionSpec = {
             description: "Path to the global '.vercel' directory",
             args: [
                 {
-                    template: ["folders"]
+                    template: "folders"
                 }
             ]
         },
@@ -167,7 +167,7 @@ var completionSpec = {
             name: "deploy",
             description: "Performs a deployment (default)",
             args: {
-                template: ["folders"]
+                template: "folders"
             }
         },
         {
@@ -252,7 +252,7 @@ var completionSpec = {
                         {
                             name: "file",
                             description: "the file to write downloaded variables to",
-                            template: ["filepaths"]
+                            template: "filepaths"
                         }
                     ]
                 },
@@ -546,17 +546,17 @@ var completionSpec = {
                 {
                     name: ["--crt"],
                     description: "Include path to .crt",
-                    args: [{ template: ["filepaths"] }]
+                    args: [{ template: "filepaths" }]
                 },
                 {
                     name: ["--key"],
                     description: "Include path to .key",
-                    args: [{ template: ["filepaths"] }]
+                    args: [{ template: "filepaths" }]
                 },
                 {
                     name: ["--ca"],
                     description: "Include path to .ca",
-                    args: [{ template: ["filepaths"] }]
+                    args: [{ template: "filepaths" }]
                 }
             ]
         },

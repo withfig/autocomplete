@@ -4,7 +4,7 @@ var completionSpec = {
     description: "display the last part of a file",
     args: {
     	variadic: true,
-        template: ["filepaths"]
+        template: "filepaths"
     },
     options: [
  		{

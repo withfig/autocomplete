@@ -4,6 +4,6 @@ var completionSpec = {
     name: "dotslash",
     description: "Change the shell working directory",
     args: {
-        template: ["filepaths"]
+        template: "filepaths"
     }
 }

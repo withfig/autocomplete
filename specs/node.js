@@ -2,7 +2,7 @@ var completionSpec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
-        template: ["filepaths"],
+        template: "filepaths",
         generators: {
             postProcess: function (paths) {
                 return paths.filter(file => {

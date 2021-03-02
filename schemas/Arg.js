@@ -9,7 +9,7 @@ const Arg = Joi.object({
     description: Joi.string().optional().allow(''),
     icon: Joi.string(),
     suggestions: Joi.array().items(Suggestion),
-    template: Joi.array().items(Joi.string().valid("filepaths", "folders")),
+    template: Joi.alternatives().try(Joi.string().valid("filepaths", "folders"), Joi.array().items(Joi.string().valid("filepaths", "folders"))),
     generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
     generator: Joi.alternatives().try(Generator),
     variadic: Joi.boolean(),
