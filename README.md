@@ -37,7 +37,7 @@ To run the linter on ALL specs in the /specs folder, run
 ## FAQ
 
 #### What terminals does Fig work with?
-Fig works with iTerm and Terminal app.
+Fig works with iTerm, the native MacOS Terminal app, Hyperand the integrated terminal inVSCode.
 
 #### How does Fig work?
 Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.
