@@ -241,6 +241,24 @@ var completionSpec = {
                     name: ["-v", "--verbose"],
                     description: "show unified diff of all file changes",
                 },
+                { 
+                    name: "--amend",
+                    insertValue: "--amend `{cursor}`",
+                    description: "amend staged changes to last commit",
+                    options: [
+                        {
+                            name: ["--no-edit"],
+                            description: "keep the previous commit message",
+                        },
+                        {
+                            name: ["-m"],
+                            description: "update the commit message",
+                            args: {
+                                name: "branch"
+                            }
+                        },
+                    ]
+                },
             ]
         },
         {
