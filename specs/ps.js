@@ -2,10 +2,10 @@ var completionSpec = {
   name: 'ps',
   description: 'report a snapshot of the current processes',
   options: [
-    { name: [ '-A', '-e' ], description: '.' },
+    { name: [ '-A', '-e' ], description: 'Select all processes.' },
     {
       name: [ '-a' ],
-      description: '(2)) and processes not associated with a terminal.',
+      description: 'Select all processes except both session leaders',
       args: { name: 'getsid' }
     },
     {
@@ -13,7 +13,6 @@ var completionSpec = {
       description: 'Select all processes except session leaders.'
     },
     { name: [ '--deselect' ], description: 'Select all processes except those that fulfill the specified conditions' },
-    { name: [ '-e' ], description: 'Select all processes.' },
     { name: [ '-N' ], description: 'Select all processes except those that fulfill the specified conditions (negates the selection).' },
     {
       name: [ '--pid' ],

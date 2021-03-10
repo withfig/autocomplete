@@ -1,16 +1,20 @@
 var completionSpec = {
   name: 'head',
   description: 'output the first part of files',
+  args: {
+    name: 'file',
+    template: 'filepaths'
+  },
   options: [
     {
       name: [ '-c', '--bytes' ],
-      description: "print the first K bytes of each file; with the leading `-', print all but the last K bytes of each file",
-      args: { name: '[-]K' }
+      description: "print the first [numBytes] bytes of each file",
+      args: { name: 'numBytes' }
     },
     {
       name: [ '-n', '--lines' ],
-      description: "print the first K lines instead of the first 10; with the leading `-', print all but the last K lines of each file",
-      args: { name: '[-]K' }
+      description: "print the first [numLines] lines instead of the first 10",
+      args: { name: 'numLines' }
     },
     {
       name: [ '-q', '--quiet', '--silent' ],

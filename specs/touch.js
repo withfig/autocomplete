@@ -1,6 +1,9 @@
 var completionSpec = {
   name: 'touch',
   description: 'change file timestamps',
+  args: {
+    name: 'file'
+  },
   options: [
     { name: [ '-a' ], description: 'change only the access time' },
     {
@@ -8,9 +11,9 @@ var completionSpec = {
       description: 'do not create any files'
     },
     {
-      name: [ '-d', '--date', '-f' ],
-      description: 'parse STRING and use it instead of current time',
-      args: { name: 'STRING' }
+      name: [ '-d', '--date' ],
+      description: 'parse string and use it instead of current time',
+      args: { name: 'string' }
     },
     {
       name: [ '-h', '--no-dereference' ],
@@ -23,7 +26,7 @@ var completionSpec = {
     {
       name: [ '-r', '--reference' ],
       description: "use this file's times instead of current time",
-      args: { name: 'FILE' }
+      args: { name: 'file' }
     },
     {
       name: [ '-t' ],
@@ -33,8 +36,8 @@ var completionSpec = {
       }
     },
     {
-      name: [ '--time', '-a', '-m' ],
-      description: 'WORD is modify or mtime: equivalent to',
+      name: [ '--time' ],
+      description: 'change the specified time',
       args: { name: 'WORD' }
     },
     { name: [ '--help' ], description: 'display this help and exit' },
