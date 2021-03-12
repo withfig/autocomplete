@@ -1328,7 +1328,7 @@ var completionSpec = {
                 },
                 {
                     name: "--device-timeout=<10>",
-                    insertValue: "--device-timeojut={cursor}",
+                    insertValue: "--device-timeout={cursor}",
                     description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
                     args: {
                         name: "seconds",
