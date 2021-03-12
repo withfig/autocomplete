@@ -1,4 +1,4 @@
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const Suggestion = Joi.object({
     name: Joi.alternatives().try(Joi.string(), Joi.array().items(Joi.string())).required(),
