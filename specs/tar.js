@@ -37,30 +37,5 @@ var completionSpec = {
  		{ name: ["-h", "--help"], description: "Help" },
         { name: ["--version"], description: "Version" },
         { name: ["--wildcards"], args: { name: "pattern", description: "ex: *.html" } }
-    ],
-    subcommands: [
-        {
-           name: "c",
-           description: "Create a new archive from files",
-           args: {
-               variadic: true,
-               template: "filepaths" 
-           }
-        },
-        {
-            name: "z",
-            description: "List archive contents",
-            args: {}
-        },
-        {
-            name: "f",
-            description: "Extract to disk",
-            args: {}
-        },
-        {
-            name: "x",
-            description: "Extract a compressed archive",
-            args: {}
-        }
-   ]
+    ]
 }
