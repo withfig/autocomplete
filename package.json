@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "joi": "^17.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
   }
 }
