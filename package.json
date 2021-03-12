@@ -4,7 +4,8 @@
   "description": "Fig Autocomplete Spec Linter",
   "main": "linter.js",
   "scripts": {
-    "test": "node linter.js"
+    "test": "node linter.js",
+    "dist": "tsc"
   },
   "author": "",
   "license": "ISC",
