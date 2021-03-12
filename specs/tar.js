@@ -1,5 +1,4 @@
 var completionSpec = {
-
     name: "tar",
     description: "Manipulating archive files",
     args: {
@@ -36,6 +35,7 @@ var completionSpec = {
             }
         },
  		{ name: ["-h", "--help"], description: "Help" },
- 		{ name: ["--version"], description: "Version" },
+        { name: ["--version"], description: "Version" },
+        { name: ["--wildcards"], args: { name: "pattern", description: "ex: *.html" } }
     ]
 }

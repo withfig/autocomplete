@@ -16585,7 +16585,7 @@ var completionSpec = {
           description: "Exclude specified package from the output",
           args: {
             name: "package",
-            geerators: listPackages,
+            generators: listPackages,
           },
         },
       ],
@@ -16652,7 +16652,7 @@ var completionSpec = {
           description: "Exclude specified package from the output.",
           args: {
             name: "package",
-            suggestions: listPackages
+            generators: listPackages
           },
         },
         {
