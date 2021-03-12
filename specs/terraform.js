@@ -16,13 +16,15 @@ var workspaceList = {
 
 var generalSubCommandOptions = [
   {
-    name: "-lock=false",
+    name: "-lock=",
+    displayName: "-lock=false",
     description:
       "Lock the state file when locking is supported. Defaults to true",
     // suggestions: ["true", "false"],
   },
   {
-    name: "-force=true",
+    name: "-force=",
+    displayName: "-force=true",
     description:
       "Delete the workspace even if its state is not empty. Defaults to false.",
     // suggestions: ["true", "false"],
@@ -35,7 +37,8 @@ var generalSubCommandOptions = [
     },
   },
   {
-    name: "-input=true",
+    name: "-input=",
+    displayName: "-input=true",
     description: "Ask for input for variables if not directly set.",
   },
   {
@@ -114,7 +117,8 @@ var mainCommands = [
         },
       },
       {
-        name: "-refresh=true",
+        name: "-refresh=",
+        displayName: "-refresh=true",
         description: "Update the state prior to checking for differences.",
       },
       {
@@ -127,12 +131,14 @@ var mainCommands = [
         },
       },
       {
-        name: "-target=resource",
+        name: "-target=",
+        displayName: "-target=resource",
         description:
           "A Resource Address to target. This flag can be used multiple times.",
       },
       {
-        name: '-var "foo=bar"',
+        name: "-var",
+        displayName: '-var "foo=bar"',
         insertValue: "-var {cursor}",
         description:
           "Set a variable in the Terraform configuration. This flag can be set multiple times.",
@@ -142,7 +148,8 @@ var mainCommands = [
       },
 
       {
-        name: "-var-file=foo",
+        name: "-var-file=",
+        displayName: "-var-file=foo",
         insertValue: "-var-file={cursor}",
         description:
           "Set variables in the Terraform configuration from a variable file.",
