@@ -14,54 +14,22 @@ var completionSpec = {
     options: [
         {
             name: ["-r"],
-            description: "Package and compress a directory and its contents, recursively",
-            args: [
-                {
-                    name: "name",
-                    description: "name of archive"
-                },
-                {
-                    name: "dir",
-                    template: "folders"
-                }
-            ]
+            description: "Package and compress a directory and its contents, recursively"
         },
         {
-            name: ["-e"],
-            args: [
-                {
-                    name: "name",
-                    description: "name of archive"
-                },
-                {
-                    name: "dir",
-                    template: "folders"
-                }
-            ]
+            name: ["-e"]
         },
         {
             name: ["-s"],
             args: [
                 {
                     name: "split size"
-                },
-                {
-                    name: "name",
-                    description: "name of archive"
-                },
-                {
-                    name: "dir",
-                    template: "folders"
                 }
             ]
         },
         {
             name: ["-d"],
             args: [
-                {
-                    name: "name",
-                    description: "name of archive"
-                },
                 {
                     name: "file",
                     template: "filepaths"
@@ -71,16 +39,6 @@ var completionSpec = {
         {
             name: "-9",
             description: "Archive a directory and its contents with the highest level [9] of compression",
-            args: [
-                {
-                    name: "name",
-                    description: "name of archive"
-                },
-                {
-                    name: "dir",
-                    template: "folders"
-                }
-            ]
         }
     ]
 }
