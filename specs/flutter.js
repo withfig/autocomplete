@@ -870,7 +870,8 @@ var completionSpec = {
                                 icon: "📱"
                             },
                             {
-                                name: "swift",
+                                name: "swift (default)",
+                                insertValue: "swift",
                                 type: "argument",
                                 icon: "📱"
                             },
@@ -889,7 +890,8 @@ var completionSpec = {
                                 icon: "🤖"
                             },
                             {
-                                name: "kotlin",
+                                name: "kotlin (default)",
+                                insertValue: "kotlin",
                                 type: "argument",
                                 icon: "🤖"
                             },
@@ -941,6 +943,29 @@ var completionSpec = {
                     description: "Specify the type of project to create. [app]                (default) Generate a Flutter application. [module]             Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin]             Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
                     args: {
                         name: "type",
+                        suggestions: [
+                            {
+                                name: "app (default)",
+                                insertValue: "app",
+                                type: "argument",
+                                icon: "📱",
+                            },
+                            {
+                                name: "module",
+                                type: "argument",
+                                icon: "🧩",
+                            },
+                            {
+                                name: "package",
+                                type: "argument",
+                                icon: "📦",
+                            },
+                            {
+                                name: "plugin",
+                                type: "argument",
+                                icon: "🔧",
+                            },
+                        ]
                     }
                 },
                 {
