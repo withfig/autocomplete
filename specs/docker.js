@@ -31,7 +31,40 @@ var completionSpec = {
     	{ name: "restart",     description: "Restart one or more containers" },
     	{ name: "rm",          description: "Remove one or more containers" },
     	{ name: "rmi",         description: "Remove one or more images" },
-    	{ name: "run",         description: "Run a command in a new container" },
+    	{ 
+            name: "run",
+            description: "Run a command in a new container",
+            options: [
+                { name: ["-i", "--interactive"], description: "Keep STDIN open even if not attached" },
+                { name: ["-t", "--tty"], description: "Allocate a pseudo-TTY" },
+                { name: ["-it"], insertValue: "-it ", description: "Launch an interactive session", icon: "fig://icon?type=commandkey" },
+
+            ],
+            args: [
+                {
+                    name: "image",
+                    description: "the Docker image to use",
+                    generators: {
+                        script: "docker images --format '{{.Repository}} {{.Size}} {{.Tag}} {{.ID}}'",
+                        postProcess: function(out) {
+                            return out.split('\n').map(image => {
+                                let [repo, size, tag, id] = image.split(' ')
+                                return {
+                                    name: repo,
+                                    description: `${id}@${tag} - ${size}`,
+                                    icon: "fig://icon?type=docker"
+
+                                }
+                            })
+                        }
+                    }
+                }, 
+                {
+                    name: "command"
+                    // description: "The command to run in the container"
+                }
+            ]
+         },
     	{ name: "save",        description: "Save one or more images to a tar archive (streamed to STDOUT by default)" },
     	{ name: "search",      description: "Search the Docker Hub for images" },
     	{ name: "start",       description: "Start one or more stopped containers" },

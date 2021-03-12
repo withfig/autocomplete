@@ -11,7 +11,7 @@ var generators = {
             return out.split('\n').map((line) => {
                 return {
                     name: line.substring(0, 7),
-                    icon: "🔹",
+                    icon: "fig://icon?type=node",
                     description: line.substring(7)
                 }
             })
@@ -52,7 +52,7 @@ var generators = {
                 return []
             }
             return out.split('\n').map((elm) => {
-                return { name: elm.replace("*", "").trim(), description: "branch" }
+                return { name: elm.replace("*", "").trim(), description: "branch", icon: "fig://icon?type=git" }
             })
         }
     },
@@ -102,8 +102,10 @@ var generators = {
 
                 return {
                     name: file,
+                    insertValue: file.includes(' ') ? `'${file}'` : file,
                     icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-                    description: "Changed file"
+                    description: "Changed file",
+                    priority: 100
                 }
             })
         }
@@ -111,17 +113,104 @@ var generators = {
 }
 
 
-let head_n_revisions = {
-    name: "HEAD~<N>",
+let head = {
+    name: "HEAD",
     icon: "🔻",
     description: "Reset multiple commits",
-    insertValue: "HEAD~",
 }
 
 var completionSpec = {
 
     name: "git",
     description: "the stupid content tracker",
+    options: [
+        {
+            name: "--version",
+            description: "Output version"
+        },
+        {
+            name: "--help",
+            description: "Output help"
+        },
+        {
+            name: "-C",
+            insertValue: "-C ",
+            args: {
+                name: "path",
+                template: "folders"
+            },
+            description: "Run as if git was started in &lt;path&gt;"
+        },
+        {
+            name: "-c name=value",
+            insertValue: "-c ",
+            description: "Pass a config parameter to the command"
+        },
+        {
+            name: "--exec-path[=<path>]",
+            insertValue: "--exec-path",
+            args: {
+                name: "path",
+                isOptional: true,
+                template: "folders",
+            },
+            description: "Get or set GIT_EXEC_PATH for core Git programs"
+        },
+        {
+            name: "--html-path",
+            description: "Print Git’s HTML documentation path"
+        },
+        {
+            name: "--man-path",
+            description: "Print the manpath for this version of Git"
+        },
+        {
+            name: "--info-path",
+            description: "Print the info path documenting this version of Git"
+        },
+        {
+            name: ["-p", "--paginate"],
+            description: "Pipe output into `less` or custom $PAGER"
+        },
+        {
+            name: "--no-pager",
+            description: "Do not pipe Git output into a pager"
+        },
+        {
+            name: "--no-replace-objects",
+            description: "Do not use replacement refs"
+        },
+        {
+            name: "--bare",
+            description: "Treat the repository as a bare repository"
+        },
+        {
+            name: "--git-dir=<path>",
+            insertValue: "--git-dir=",
+            args: {
+                name: "path",
+                template: "folders"
+            },
+            description: "Set the path to the repository dir (`.git`)"
+        },
+        {
+            name: "--work-tree=<path>",
+            insertValue: "--work-tree=",
+            args: {
+                name: "path",
+                template: "folders"
+            },
+            description: "Set working tree path"
+        },
+        {
+            name: "--namespace=<name>",
+            insertValue: "--namespace=",
+            args: {
+                name: "name",
+            },
+            description: "Set the Git namespace"
+        },
+    ],
     subcommands: [
         {
             name: "commit",
@@ -144,6 +233,9 @@ var completionSpec = {
                     name: "-am",
                     insertValue: "-am '{cursor}'",
                     description: "stage all and use given text as commit message",
+                    args: {
+                        name: "message"
+                    }
                 },
                 {
                     name: ["-v", "--verbose"],
@@ -203,6 +295,7 @@ var completionSpec = {
             options: [
                 { name: ["--continue"], description: "continue the rebasing after conflict resolution" },
                 { name: ["--abort"], description: "stop rebase" },
+                { name: ["--skip"], description: "skips a commit" },
                 {
                     name: ["-i"],
                     description: "interactive"
@@ -391,7 +484,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -402,7 +495,7 @@ var completionSpec = {
                     description: "remove the last commit from the current branch, but the file changes will stay in your working tree",
                     args: {
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits
                     }
@@ -447,7 +540,7 @@ var completionSpec = {
                     args: {
                         variadic: true,
                         suggestions: [
-                            head_n_revisions
+                            head
                         ],
                         generators: generators.commits,
                     }
@@ -682,6 +775,9 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
+                name: "branch",
+                description: "branch to switch to",
+                isOptional: true,
                 generators: generators.branches
             }
         },
@@ -700,7 +796,8 @@ var completionSpec = {
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generators: generators.tags
+                generators: generators.tags,
+                isOptional: true,
             }
         },
     ]

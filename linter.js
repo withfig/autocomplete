@@ -48,7 +48,7 @@ function validate(file) {
             console.log("Current value:");
             console.log(detail.context.value);
             console.log('\n');
-            return false;
+            throw new Error(`Linting failed for ${completionSpec.name}`);
         }
     }
     else {

@@ -30,22 +30,18 @@ var completionSpec = {
             insertValue: "install ",
             args: {
                 variadic: true,
-                name: "<formula>",
-                // insertValue: "",
-                description: "Formula to install",
+                name: "formula",
+                description: "Formula or cask to install",
                 generators: {
-                    script: "find /usr/local/Homebrew/ -type d -name \"Formula\" -exec ls -1 {} \\;",
+                    script: "ls -1 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks",
                     postProcess: function (out) {
-                        let unique = out.split('\n').reduce((acc, line) => {
-                            acc[line.split("@")[0].replace('.rb', '')] = true
-                            return acc
-                        }, {})
 
-                        return Object.keys(unique).map(formula => {
+                        return out.split('\n').map(formula => {
                             return {
-                                name: formula,
+                                name: formula.replace('.rb', ''),
                                 description: "formula",
-                                icon: "🍺"
+                                icon: "🍺",
+                                priority: (formula[0] >= '0' && formula[0] <= '9') || formula[0] == '/' ? 0 : 100
                             }
                         })
                     }
@@ -58,6 +54,7 @@ var completionSpec = {
             description: "Uninstall <formula>",
             args: {
                 variadic: true,
+                name: "formula",
                 generators: {
                     script: "brew list -1 --formulae",
                     postProcess: function (out) {
@@ -78,8 +75,7 @@ var completionSpec = {
                     insertValue: "install ",
                     description: "Installs the given cask",
                     args: {
-                        name: "<cask>",
-                        insertValue: "",
+                        name: "cask",
                         description: "Cask to install"
                     }
                 },
