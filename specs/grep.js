@@ -32,7 +32,7 @@ var completionSpec = {
             }
         },
         {
-            name: ["Ei"],
+            name: ["-Ei"],
             args: [
                 { 
                     name: "search pattern" 
