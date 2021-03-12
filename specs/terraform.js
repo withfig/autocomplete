@@ -16,33 +16,33 @@ var workspaceList = {
 
 var generalSubCommandOptions = [
   {
-    name: "-lock=",
+    name: "-lock",
     displayName: "-lock=false",
     description:
       "Lock the state file when locking is supported. Defaults to true",
     // suggestions: ["true", "false"],
   },
   {
-    name: "-force=",
+    name: "-force",
     displayName: "-force=true",
     description:
       "Delete the workspace even if its state is not empty. Defaults to false.",
     // suggestions: ["true", "false"],
   },
   {
-    name: "-lock-timeout=",
+    name: "-lock-timeout",
     description: "Duration to retry a state lock. Default 0s.",
     args: {
       name: "seconds",
     },
   },
   {
-    name: "-input=",
+    name: "-input",
     displayName: "-input=true",
     description: "Ask for input for variables if not directly set.",
   },
   {
-    name: "-no-color ",
+    name: "-no-color",
     description: "Disables output with coloring.",
   },
 ];
@@ -54,7 +54,7 @@ var globalOptions = [
       "Show this help output, or the help for a specified subcommand.",
   },
   {
-    name: "-chdir=",
+    name: "-chdir",
     description:
       "Switch to a different working directory before executing the given subcommand.",
     insertValue: "-chdir={cursor}",
@@ -105,11 +105,12 @@ var mainCommands = [
         description: "Return a detailed exit code when the command exits.",
       },
       {
-        name: "-out=path",
+        name: "-out",
+        displayName: "-out=path",
         description: "The path to save the generated execution plan.",
       },
       {
-        name: "-parallelism=",
+        name: "-parallelism",
         description:
           "Limit the number of concurrent operation as Terraform walks the graph. Defaults to 10.",
         args: {
@@ -117,12 +118,12 @@ var mainCommands = [
         },
       },
       {
-        name: "-refresh=",
+        name: "-refresh",
         displayName: "-refresh=true",
         description: "Update the state prior to checking for differences.",
       },
       {
-        name: "-state=",
+        name: "-state",
         insertValue: "-state={cursor}",
         description:
           "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used.",
@@ -131,7 +132,7 @@ var mainCommands = [
         },
       },
       {
-        name: "-target=",
+        name: "-target",
         displayName: "-target=resource",
         description:
           "A Resource Address to target. This flag can be used multiple times.",
@@ -148,7 +149,7 @@ var mainCommands = [
       },
 
       {
-        name: "-var-file=",
+        name: "-var-file",
         displayName: "-var-file=foo",
         insertValue: "-var-file={cursor}",
         description:
@@ -276,7 +277,7 @@ var otherCommands = [
             description: "Duration to retry a stae lock. Default 0s.",
           },
           {
-            name: "-state=",
+            name: "-state",
             insertValue: "-state={cursor}",
             description:
               "Path to an existing state file to initialize the state of this environment.",
