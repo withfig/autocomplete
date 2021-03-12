@@ -9,16 +9,8 @@ var completionSpec = {
     {
       name: "uninstall", description: "uninstall a completion spec",
       args: {
-        name: "Email",
-        description: "Email address of the user you want to invite",
-        variadic: true,
-        suggestions: [
-          {
-            name: "<email>",
-            insertValue: " ",
-            description: "Email to invite"
-          }
-        ],
+        name: "completionSpec",
+        description: "Completion spec to uninstall",
         generators: {
           script: "\ls -1ap ~/.fig/autocomplete",
           splitOn: "\n"
