@@ -2,7 +2,7 @@ var completionSpec = {
   name: 'mkdir',
   description: 'make directories',
   args: {
-    name: "folder name"
+    name: 'directory name'
   },
   options: [
     {

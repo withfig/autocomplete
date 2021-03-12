@@ -25,6 +25,7 @@ Completion specs are defined in a *declarative* JSON schema, that specifies `sub
 
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
+
 ## Linting Your Spec
 The autocomplete spec linter can be run to validate the format of completion specs. Run it to get syntax and type errors from your autocomplete spec.
 
@@ -37,7 +38,7 @@ To run the linter on ALL specs in the /specs folder, run
 ## FAQ
 
 #### What terminals does Fig work with?
-Fig works with iTerm and Terminal app.
+Fig works with iTerm, the native MacOS Terminal app, Hyper and the integrated terminal in VSCode.
 
 #### How does Fig work?
 Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.

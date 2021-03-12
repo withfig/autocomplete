@@ -15,5 +15,4 @@ var completionSpec = {
             args: {},
         }
     ]
-
 }
