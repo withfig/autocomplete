@@ -25,5 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install joi --save-dev
+    - run: npm install
+    # TODO Remove npm test when types are validated
     - run: npm test
+    - run: npm run typecheck

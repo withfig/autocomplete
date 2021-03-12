@@ -1,3 +1,4 @@
+// TODO Delete file when types are validated
 const { Spec } = require('./schemas/Spec');
 const fs = require('fs');
 var path = require('path');

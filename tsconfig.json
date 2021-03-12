@@ -7,5 +7,7 @@
     "allowJs": true
   },
   "include": ["./specs/**/*"],
-  "files": ["./index.d.ts"]
+  "files": [
+    "./schemas/fig.d.ts"
+  ]
 }
