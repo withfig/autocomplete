@@ -3,7 +3,7 @@ var completionSpec = {
     description: "Manipulating archive files",
     args: {
     	variadic: true,
-        template: "folders" 
+        template: "folders"
     },
     options: [
  		{
@@ -11,7 +11,7 @@ var completionSpec = {
             description: "Create a new archive",
             args: {
     	        variadic: true,
-                template: "folders" 
+                template: "folders"
             }
         },
  		{
