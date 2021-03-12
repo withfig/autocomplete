@@ -433,8 +433,8 @@ var experimentalInvalidationStrategy = [
 // opts
 
 var deviceUser = {
-    name: "--device-user=<10>",
-    insertValue: "--device-user={cursor}",
+    name: "--device-user",
+    insertValue: "--device-user {cursor}",
     description: "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers.",
     args: {
         name: "seconds",
@@ -442,8 +442,8 @@ var deviceUser = {
 };
 
 var deviceTimeout = {
-    name: "--device-timeout=<10>",
-    insertValue: "--device-timeout={cursor}",
+    name: "--device-timeout",
+    insertValue: "--device-timeout {cursor}",
     description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
     args: {
         name: "seconds",
@@ -461,11 +461,12 @@ var profile = {
 }
 
 var target = {
-    name: ["-t", "--target=<path>"],
-    insertValue: "--target={cursor}",
+    name: ["-t", "--target"],
+    insertValue: "--target {cursor}",
     description: "The main entry-point file of the application, as run on the device. If the --target option is omitted, but a file name is provided on the command line, then that is used instead. (defaults to \"lib/main.dart\")",
     args: {
-        name: ".dart path file"
+        name: ".dart file path",
+        template: "filepaths",
     }
 }
 
@@ -485,8 +486,8 @@ var hostVmServicePort = {
 }
 
 var dartDefine = {
-    name: "--dart-define=<foo=bar>",
-    insertValue: "--dart-define={cursor}",
+    name: "--dart-define",
+    insertValue: "--dart-define {cursor}",
     description: "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
     args: {
         name: "foo=bar",
@@ -536,19 +537,21 @@ var run = [
         description: "Which route to load when running the app."
     },
     {
-        name: "--vmservice-out-file=<project/example/out.txt>",
-        insertValue: "--vmservice-out-file={cursor}",
-        description: "A file to write the attached vmservice uri to after an application is started.",
+        name: "--vmservice-out-file",
+        insertValue: "--vmservice-out-file {cursor}",
+        description: "A file to write the attached vmservice uri to after an application is started. e.g. project/example/out.txt",
         args: {
-            name: ".txt output file path"
+            name: ".txt output file path",
+            template: "filepaths"
         }
     },
     {
-        name: "--use-application-binary=<path/to/app.apk>",
-        insertValue: "--use-application-binary={cursor}",
-        description: "Specify a pre-built application binary to use when running. For android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries",
+        name: "--use-application-binary",
+        insertValue: "--use-application-binary {cursor}",
+        description: "Specify a pre-built application binary to use when running. For android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries. e.g. path/to/app.apk",
         args: {
-            name: "path to .apk"
+            name: "file path to .apk",
+            template: "filepaths"
         }
     },
     {
@@ -605,11 +608,12 @@ var completionSpec = {
                     description: "Run analysis continuously, watching the filesystem for changes.",
                 },
                 {
-                    name: "--write=<file>",
-                    insertValue: "--write={cursor}",
+                    name: "--write",
+                    insertValue: "--write {cursor}",
                     description: "Also output the results to a file. This is useful with --watch if you want a file to always contain the latest results.",
                     args: {
-                        name: "file",
+                        name: "file path",
+                        template: "filepaths",
                     }
                 },
                 ...pub,
@@ -707,10 +711,7 @@ var completionSpec = {
                     name: "--devtools-server-address",
                     description: "When this value is provided, the Flutter tool will not spin up a new DevTools server instance, but instead will use the one provided at this address."
                 },
-                {
-                    name: "--device-timeout=<10>",
-                    description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices."
-                }
+                deviceTimeout,
             ]
         },
         {
@@ -811,11 +812,12 @@ var completionSpec = {
                     description: "The Android Studio install directory."
                 },
                 {
-                    name: "--build-dir=<out/>",
-                    insertValue: "--build-dir={cursor}",
+                    name: "--build-dir",
+                    insertValue: "--build-dir {cursor}",
                     description: "The relative path to override a projects build directory",
                     args: {
-                        name: "path"
+                        name: "path",
+                        template: "folders",
                     }
                 },
                 ...enableWeb,
@@ -845,22 +847,22 @@ var completionSpec = {
                 ...overwrite,
                 {
                     name: "--description",
-                    insertValue: "--description ",
+                    insertValue: "--description {cursor}",
                     description: "The description to use for your new Flutter project. This string ends up in the pubspec.yaml file. (defaults to \"A new Flutter project.\")"
                 },
                 {
                     name: "--org",
-                    insertValue: "--org ",
+                    insertValue: "--org {cursor}",
                     description: "The organization responsible for your new Flutter project, in reverse domain name notation. This string is used in Java package names and as prefix in the iOS bundle identifier. (defaults to \"com.example\")"
                 },
                 {
                     name: "--project-name",
-                    insertValue: "--project-name ",
+                    insertValue: "--project-name {cursor}",
                     description: "The project name for this new Flutter project. This must be a valid dart package name."
                 },
                 {
                     name: ["-i", "--ios-language"],
-                    insertValue: "--ios-language ",
+                    insertValue: "--ios-language {cursor}",
                     description: "[objc, swift (default)]",
                     args: {
                         suggestions: [
@@ -880,7 +882,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-a", "--android-language"],
-                    insertValue: "--android-language ",
+                    insertValue: "--android-language {cursor}",
                     description: "[java, kotlin (default)]",
                     args: {
                         suggestions: [
@@ -900,7 +902,7 @@ var completionSpec = {
                 },
                 {
                     name: "--platforms",
-                    insertValue: "--platforms ",
+                    insertValue: "--platforms {cursor}",
                     description: "The platforms supported by this project. This argument only works when the --template is set to app or plugin. Platform folders (e.g. android/) will be generated in the target project. When adding platforms to a plugin project, the pubspec.yaml will be updated with the requested platform. Adding desktop platforms requires the corresponding desktop config setting to be enabled. [ios (default), android (default), windows (default), linux (default), macos (default), web (default)]",
                     args: {
                         suggestions: [
@@ -938,8 +940,8 @@ var completionSpec = {
                     }
                 },
                 {
-                    name: ["-t", "--template=<type>"],
-                    insertValue: "--template={cursor}",
+                    name: ["-t", "--template"],
+                    insertValue: "--template {cursor}",
                     description: "Specify the type of project to create. [app]                (default) Generate a Flutter application. [module]             Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin]             Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
                     args: {
                         name: "type",
@@ -969,17 +971,21 @@ var completionSpec = {
                     }
                 },
                 {
-                    name: ["-s", "--sample=<id>"],
-                    insertValue: "--sample={cursor}",
+                    name: ["-s", "--sample"],
+                    insertValue: "--sample {cursor}",
                     description: "Specifies the Flutter code sample to use as the main.dart for an application. Implies --template=app. The value should be the sample ID of the desired sample from the API documentation website (http://docs.flutter.dev). An example can be found at https://master-api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html",
                     args: {
-                        name: "id"
+                        name: "id",
                     }
                 },
                 {
-                    name: "--list-samples=<path>",
-                    insertValue: "--list-samples={cursor}",
-                    description: "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample."
+                    name: "--list-samples",
+                    insertValue: "--list-samples {cursor}",
+                    description: "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample.",
+                    args: {
+                        name: "file path",
+                        template: "filepaths",
+                    }
                 }
             ]
         },
@@ -1029,16 +1035,16 @@ var completionSpec = {
                 ...run,
                 ...keepAppRunning,
                 {
-                    name: "--use-existing-app=<url>",
-                    insertValue: "--use-existing-app={cursor}",
+                    name: "--use-existing-app",
+                    insertValue: "--use-existing-app {cursor}",
                     description: "Connect to an already running instance via the given observatory URL. If this option is given, the application will not be automatically started, and it will only be stopped if --no-keep-app-running is explicitly set.",
                     args: {
                         name: "URL"
                     }
                 },
                 {
-                    name: "--driver=<driver>",
-                    insertValue: "--driver={cursor}",
+                    name: "--driver",
+                    insertValue: "--driver {cursor}",
                     description: "The test file to run on the host (as opposed to the target file to run on the device). By default, this file has the same base name as the target file, but in the \"test_driver/\" directory instead, and with \"_test\" inserted just before the extension, so e.g. if the target is \"lib/main.dart\", the driver will be \"test_driver/main_test.dart\".",
                     args: {
                         name: "driver"
@@ -1046,8 +1052,8 @@ var completionSpec = {
                 },
                 ...build,
                 {
-                    name: "--driver-port=<4444>",
-                    insertValue: "--driver-port={4444}",
+                    name: "--driver-port",
+                    insertValue: "--driver-port {cursor}",
                     description: "The port where Webdriver server is launched at. Defaults to 4444.",
                     args: {
                         name: "port number"
@@ -1084,8 +1090,8 @@ var completionSpec = {
                 help,
                 verbose,
                 {
-                    name: "--launch <emulator id>",
-                    insertValue: "--launch ",
+                    name: "--launch",
+                    insertValue: "--launch {cursor}",
                     description: "The full or partial ID of the emulator to launch.",
                     args: {
                         name: "emulator id"
@@ -1093,12 +1099,12 @@ var completionSpec = {
                 },
                 {
                     name: "--create",
-                    insertValue: "--create ",
+                    insertValue: "--create {cursor}",
                     description: "Creates a new Android emulator based on a Pixel device."
                 },
                 {
                     name: "--name",
-                    insertValue: "--name ",
+                    insertValue: "--name {cursor}",
                     description: "Used with flag --create. Specifies a name for the emulator being created."
                 }
             ]
@@ -1158,8 +1164,8 @@ var completionSpec = {
                     description: "The Dart class name to use for the output localization and localizations delegate classes. (defaults to \"AppLocalizations\")",
                 },
                 {
-                    name: "--preferred-supported-locales=<locale>",
-                    insertValue: "--preferred-supported-locales={cursor}",
+                    name: "--preferred-supported-locales",
+                    insertValue: "--preferred-supported-locales {cursor}",
                     description: "The list of preferred supported locales for the application. By default, the tool will generate the supported locales list in alphabetical order. Use this flag if you would like to default to a different locale. For example, pass in `en_US` if you would like your app to default to American English if a device supports it.(Pass this option multiple times for defining multiple items",
                     args: {
                         name: "locale"
@@ -1175,20 +1181,22 @@ var completionSpec = {
                 },
                 ...useDefferedLoading,
                 {
-                    name: "--gen-inputs-and-outputs-list=<path-to-output-directory>",
-                    insertValue: "--gen-inputs-and-outputs-list={cursor}",
+                    name: "--gen-inputs-and-outputs-list",
+                    insertValue: "--gen-inputs-and-outputs-list {cursor}",
                     description: "When specified, the tool generates a JSON file containing the tool's inputs and outputs named gen_l10n_inputs_and_outputs.json. \n\nThis can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations. For example, the Flutter tool's build system uses this file to keep track of when to call gen_l10n during hot reload. \n\nThe value of this option is the directory where the JSON file will be generated. \n\nWhen null, the JSON file will not be generated.",
                     args: {
-                        name: "directory path"
+                        name: "path to output directory",
+                        template: "filepaths",
                     }
                 },
                 ...syntheticPackage,
                 {
-                    name: "--project-dir=<absolute/path/to/flutter/project>",
-                    insertValue: "--project-dir={cursor}",
+                    name: "--project-dir",
+                    insertValue: "--project-dir {cursor}",
                     description: "When specified, the tool uses the path passed into this option as the directory of the root Flutter project. \n\nWhen null, the relative path to the present working directory will be used.",
                     args: {
-                        name: "absolute directory path"
+                        name: "absolute path to flutter project",
+                        template: "filepaths",
                     }
                 },
                 ...requiredResourceAttributes
@@ -1328,32 +1336,51 @@ var completionSpec = {
                 help,
                 verbose,
                 {
-                    name: ["-o", "--out=<path/to/file>"],
-                    insertValue: "--out={cursor}",
+                    name: ["-o", "--out"],
+                    insertValue: "--out {cursor}",
                     description: "Location to write the screenshot.",
                     args: {
-                        name: "file path",
+                        name: "path to file",
+                        template: "filepaths",
                     }
                 },
                 {
-                    name: "--observatory-uri=<URI>",
-                    insertValue: "--observatory-uri={cursor}",
+                    name: "--observatory-uri",
+                    insertValue: "--observatory-uri {cursor}",
                     description: "The observatory URI to connect to. This is required when --type is \"skia\" or \"rasterizer\". To find the observatory URI, use \"flutter run\" and look for \"An Observatory ... is available at\" in the output.",
                     args: {
                         name: "URI",
                     }
                 },
                 {
-                    name: "--type=<type>",
-                    insertValue: "--type={cursor}",
+                    name: "--type",
+                    insertValue: "--type {cursor}",
                     description: "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri ",
                     args: {
                         name: "type",
+                        suggestions: [
+                            {
+                                name: "device (default)",
+                                insertValue: "device",
+                                type: "argument",
+                                icon: "🌠"
+                            },
+                            {
+                                name: "rasterizer",
+                                type: "argument",
+                                icon: "🌠"
+                            },
+                            {
+                                name: "skia",
+                                type: "argument",
+                                icon: "🌠"
+                            },
+                        ]
                     }
                 },
                 {
-                    name: "--device-timeout=<10>",
-                    insertValue: "--device-timeout={cursor}",
+                    name: "--device-timeout",
+                    insertValue: "--device-timeout {cursor}",
                     description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
                     args: {
                         name: "seconds",
@@ -1368,26 +1395,30 @@ var completionSpec = {
                 help,
                 verbose,
                 {
-                    name: ["-d", "--debug-info=</out/android/app.arm64.symbols>"],
-                    insertValue: "--debug-info={cursor}",
-                    description: "A path to the symbols file generated with \"--split-debug-info\".",
+                    name: ["-d", "--debug-info"],
+                    insertValue: "--debug-info {cursor}",
+                    description: "A path to the symbols file generated with \"--split-debug-info\". e.g. /out/android/app.arm64.symbols",
                     args: {
-                        name: "file path",
+                        name: "file path of .symbols",
+                        template: "filepaths",
                     }
                 },
                 {
-                    name: ["-i", "--input=</crashes/stack_trace.err>"],
-                    insertValue: "--input={cursor}",
-                    description: "A file path containing a Dart stack trace.",
+                    name: ["-i", "--input"],
+                    insertValue: "--input {cursor}",
+                    description: "A file path containing a Dart stack trace. e.g. /crashes/stack_trace.err",
                     args: {
                         name: "file path",
+                        template: "filepaths"
                     }
                 },
                 {
-                    name: ["-o", "--output=<A file path for a symbolized stack trace to be written to.>"],
-                    insertValue: "--output={cursor}",
+                    name: ["-o", "--output"],
+                    insertValue: "--output {cursor}",
                     args: {
                         name: "file path",
+                        description: "A file path for a symbolized stack trace to be written to.",
+                        template: "filepaths",
                     }
                 },
             ]
@@ -1407,16 +1438,16 @@ var completionSpec = {
                     description: "The renderer implementation to use when building for the web. Possible values are: html - always use the HTML renderer. This renderer uses a combination of HTML, CSS, SVG, 2D Canvas, and WebGL. This is the default. canvaskit - always use the CanvasKit renderer. This renderer uses WebGL and WebAssembly to render graphics. auto - use the HTML renderer on mobile devices, and CanvasKit on desktop devices. [auto (default), canvaskit, html]"
                 },
                 {
-                    name: "--name=<regexp>",
-                    insertValue: "--name={cursor}",
+                    name: "--name",
+                    insertValue: "--name {cursor}",
                     description: "A regular expression matching substrings of the names of tests to run.",
                     args: {
                         name: "regexp",
                     }
                 },
                 {
-                    name: "--plain-name=<substring>",
-                    insertValue: "--plain-name={cursor}",
+                    name: "--plain-name",
+                    insertValue: "--plain-name {cursor}",
                     description: "A plain-text substring of the names of tests to run.",
                     args: {
                         name: "substring",
@@ -1453,8 +1484,8 @@ var completionSpec = {
                     description: "Whether matchesGoldenFile() calls within your test methods should update the golden files rather than test for an existing match."
                 },
                 {
-                    name: ["--j", "--concurrency=<jobs>"],
-                    insertValue: "--concurrency={cursor}",
+                    name: ["--j", "--concurrency"],
+                    insertValue: "--concurrency {cursor}",
                     description: "The number of concurrent test processes to run. (defaults to \"6\")",
                     args: {
                         name: "jobs"
