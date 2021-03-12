@@ -2,9 +2,9 @@ var completionSpec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
-        template: "filepaths",
         generators: {
-            postProcess: function (paths) {
+            template: "filepaths",
+            filterTemplateSuggestions: function (paths) {
                 return paths.filter(file => {
                     return file.name.endsWith('.js') || file.name.endsWith('/')
                 })
