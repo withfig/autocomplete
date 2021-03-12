@@ -1,4 +1,4 @@
-var completionSpec = { 
+const linuxTtop: Fig.Spec = {
     name: 'top', 
     description: 'display Linux tasks', 
     options: [

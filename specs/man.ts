@@ -1,4 +1,4 @@
-var completionSpec = {
+const man: Fig.Spec = {
 
     name: "man",
     description: "format and display the on-line manual pages",

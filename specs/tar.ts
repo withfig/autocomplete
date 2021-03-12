@@ -1,4 +1,4 @@
-var completionSpec = {
+const tar: Fig.Spec = {
 
     name: "tar",
     description: "Manipulating archive files",
