@@ -1,4 +1,9 @@
-import { SourceFile, TransformerFactory, Node } from 'typescript';
+import {
+    SourceFile,
+    TransformerFactory,
+    Node,
+    VariableDeclarationList,
+} from 'typescript';
 import * as ts from 'typescript';
 
 // The name of the spec variable
@@ -17,10 +22,19 @@ export const variableNameTransformer: TransformerFactory<SourceFile> = context =
 
         const visitor = (node: Node) => {
 
-            if(ts.isVariableDeclaration(node) && !updated) {
+            if(!updated && ts.isVariableDeclaration(node)) {
 
-                updated = true;
-                return ts.updateVariableDeclaration(node, ts.factory.createIdentifier(SPEC_NAME), node.type, node.initializer);
+                const declarationList = node.parent as VariableDeclarationList;
+
+                // Change the variable name if the declaration list flag is equal to 2
+                // (2 is const), or if the name of the variable is SPEC_NAME.
+                // That means the spec variable must be the only const in the file, or
+                // be equal to SPEC_NAME (only in JS files)
+                if(declarationList.flags === 2 || ('escapedText' in node.name && node.name.escapedText === SPEC_NAME)) {
+
+                    updated = true;
+                    return ts.updateVariableDeclaration(node, ts.factory.createIdentifier(SPEC_NAME), node.type, node.initializer);
+                }
             }
 
             return ts.visitEachChild(node, visitor, context);
