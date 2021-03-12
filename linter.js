@@ -75,6 +75,9 @@ if(!file) {
                 // Skip DS_Store
                 continue;
             }
+            // Skip .ts files
+            if(spec.endsWith('.ts'))
+                continue;
             if(!validate(spec)) {
                 return;
             }
