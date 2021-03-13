@@ -6,13 +6,13 @@ declare namespace Fig {
     // A single T object or an array of this T object
     export type SingleOrArray<T> = T | T[];
 
-    // A string or a function which can have a T argument and a R result,
-    // both set to void by default
-    export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
-
     // A function which can have a T argument and a R result, both
     // set to void by default
     export type Function<T = void, R = void> = (param: T) => R;
+
+    // A string or a function which can have a T argument and a R result,
+    // both set to void by default
+    export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
     /**
      * A simple completion object, which does not have a required
@@ -25,6 +25,7 @@ declare namespace Fig {
         insertValue?: string;
         description?: string;
         icon?: string;
+        isDangerous?: boolean;
     }
 
     /**
@@ -41,7 +42,15 @@ declare namespace Fig {
      *
      * @see https://withfig.com/docs/autocomplete/api#root-object
      */
-    export interface Spec extends Command {}
+    export interface Spec extends NamedCompletion {
+
+        name: string;
+        description?: string;
+        subcommands?: Command[];
+        options?: Option[];
+        args?: SingleOrArray<Arg>;
+        additionalSuggestions?: Suggestion[];
+    }
 
     /**
      * @see https://withfig.com/docs/autocomplete/api#subcommand-object
@@ -52,6 +61,7 @@ declare namespace Fig {
         options?: Option[];
         args?: SingleOrArray<Arg>;
         additionalSuggestions?: Suggestion[];
+        loadSpec?: string;
     }
 
     /**
@@ -59,7 +69,7 @@ declare namespace Fig {
      */
     export interface Option extends NamedCompletion {
 
-        additionalSuggestion?: Suggestion[];
+        additionalSuggestions?: Suggestion[];
         args?: SingleOrArray<Arg>;
     }
 
@@ -76,7 +86,7 @@ declare namespace Fig {
      */
     export interface Arg extends Completion {
 
-        suggestions?: Suggestion[];
+        suggestions?: string[] | Suggestion[];
         template?: Template;
         generators?: SingleOrArray<Generator>;
         variadic?: boolean;
@@ -89,12 +99,12 @@ declare namespace Fig {
     export interface Generator {
 
         template?: string;
-        script?: StringOrFunction<Array<String>>;
+        script?: StringOrFunction<String[], Suggestion[]>;
         splitOn?: string,
-        postProcess?: StringOrFunction<string, Suggestion[]>;
-        trigger?: StringOrFunction;
-        filterTerm?: StringOrFunction;
-        custom?: Function<any>;
-        filterTemplateSuggestions?: Function<Suggestion[]>
+        postProcess?: Function<string, Suggestion[]>;
+        trigger?: StringOrFunction<string, boolean>;
+        filterTerm?: StringOrFunction<string, string>;
+        custom?: Function<string[], Promise<Suggestion[]>>;
+        filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>
     }
 }

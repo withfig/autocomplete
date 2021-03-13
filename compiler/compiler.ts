@@ -48,20 +48,20 @@ fs.readdir('specs', (err, files) => {
         return;
     }
 
-    files = files.filter(file => file !== '.DS_STORE');
-    log(`Processing ${files.length} specs...`);
+    const specs = files.filter(file => file !== '.DS_STORE');
+    log(`Processing ${specs.length} specs...`);
 
     const bar = new ProgressBar(':bar :percent', {
-        total: files.length,
+        total: specs.length,
         complete: '=',
         head: '>',
         incomplete: ' ',
     });
 
-    files.forEach(file => {
+    specs.forEach(spec => {
 
-        processSpec( path.join('specs', file));
-        bar.tick({ file });
+        processSpec( path.join('specs', spec));
+        bar.tick({ spec });
     });
 
     log('Specs compiled successfully to /dist folder!', Level.SUCCESS);

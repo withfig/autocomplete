@@ -14,7 +14,6 @@ const fig: Fig.Spec = {
         generators: {
           script: "\ls -1Ap ~/.fig/autocomplete",
           postProcess: (data) => {
-            console.log(data)
             const out = data.split("\n").reduce((acc, curr) => {
               if ([".gitignore", "README.md", "package.json", "package-lock.json"].includes(curr)) return acc
               else {
@@ -25,8 +24,6 @@ const fig: Fig.Spec = {
                 return acc
               }
             }, [])
-
-            console.log(out)
             return out
           }
         }

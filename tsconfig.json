@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "target": "es5",
     "module": "ESNext",
-    "lib": ["dom", "ESNext"],
+    "lib": ["ESNext"],
     "allowJs": true
   },
   "include": ["./specs/**/*"],

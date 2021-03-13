@@ -18,7 +18,6 @@ var deploymentList = {
     //Grabs all the deployments for
     script: "vercel list [project name]",
     postProcess: function(out) {
-        console.log(out);
         var lines = out.split('\n');
         var deploymentUrlList = [];
         for(var i = 4; i < lines.length; i++) {
