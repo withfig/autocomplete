@@ -14,7 +14,7 @@ const brewGenerators: Record<string, Fig.Generator> = {
     }
 }
 
-const brewCompletionSpec = {
+const brewCompletionSpec: Fig.Spec = {
     name: "brew",
     description: "Package manager for macOS",
     subcommands: [
