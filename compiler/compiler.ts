@@ -45,7 +45,7 @@ fs.readdir('specs', (err, files) => {
 
     if(err) {
 
-        SpecLogger.loc('Could not find specs folder', Level.ERROR);
+        SpecLogger.log('Could not find specs folder', Level.ERROR);
         return;
     }
 
