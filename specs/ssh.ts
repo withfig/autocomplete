@@ -1,4 +1,4 @@
-var pastConnections = {
+const pastConnections: Fig.Generator = {
     script: "history | cut -c 8- | grep -i '^ssh ' | sort --unique | less -SEXn",
     postProcess: function(out) {
         return out.split('\n').map((line) => {
@@ -21,15 +21,15 @@ var pastConnections = {
     }
 }
 
-var completionSpec = {
+const ssh: Fig.Spec = {
     name: "ssh",
     description: "Log into a remote machine",
     args: [{
         name: "user@hostname",
         description: "address of remote machine to log into",
-        generator: {
+        generators: {
             script: "cat ~/.ssh/config",
-            postProcess: function(out) {
+            postProcess: (out) => {
                 return out.split('\n')
                     .filter( line => { return line.trim().startsWith('Host ') && !line.includes("*") })
                         .map( host => {

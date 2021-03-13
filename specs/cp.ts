@@ -1,4 +1,4 @@
-var completionSpec = {
+const cp: Fig.Spec = {
 
     name: "cp",
     description: "copy files and directories",

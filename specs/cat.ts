@@ -1,4 +1,4 @@
-var completionSpec = {
+const cat: Fig.Spec = {
 
     name: "cat",
     description: "concatenate and print files",
