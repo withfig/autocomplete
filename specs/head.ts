@@ -1,4 +1,4 @@
-var completionSpec = {
+const headCompletionSpec:Fig.Spec = {
   name: 'head',
   description: 'output the first part of files',
   args: {

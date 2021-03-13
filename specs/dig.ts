@@ -1,4 +1,4 @@
-var completionSpec = {
+const digCompletionSpec:Fig.Spec = {
   name: "dig",
   description: "Domain Information Groper",
   subcommands: [

@@ -1,4 +1,4 @@
-var completionSpec = {
+const mySqlCompletionSpec:Fig.Spec = {
     name: "mysql",
     description: "mysql is a terminal-based front-end to MySQL.",
     args: [

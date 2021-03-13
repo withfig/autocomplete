@@ -1,4 +1,4 @@
-var completionSpec = {
+const cargoCompletionSpec: Fig.Spec = {
   name: "cargo",
   description: "CLI Interface for Cargo",
   subcommands: [

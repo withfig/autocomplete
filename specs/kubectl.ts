@@ -1,4 +1,4 @@
-var completionSpec = {
+const kubectlCompletionSpec:Fig.Spec = {
     name: "kubectl",
     description: "",
     subcommands: [

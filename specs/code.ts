@@ -1,5 +1,4 @@
-var completionSpec = {
-
+const codeCompletionSpec:Fig.Spec = {
 	name: "code",
 	description: "Visual Studio Code",
 	args: {

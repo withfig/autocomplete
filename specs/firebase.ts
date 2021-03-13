@@ -1,4 +1,4 @@
-var completionSpec = {
+const firebaseCompletionSpec:Fig.Spec = {
   name: "firebase",
   description: "CLI Interface for Google Firebase",
 //   args: {},

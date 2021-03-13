@@ -1,4 +1,4 @@
-var completionSpec = {
+const npmCompletionSpec:Fig.Spec = {
   name: "npm",
   description: "Node package manager",
   subcommands: [

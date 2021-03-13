@@ -1,13 +1,15 @@
-var completionSpec = {
+const nodeCompletionSpec:Fig.Spec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
         template: "filepaths",
         generators: {
-            postProcess: function (paths) {
+            filterTemplateSuggestions: (paths) => {
                 return paths.filter(file => {
-                    return file.name.endsWith('.js') || file.name.endsWith('/')
-                })
+                    if(typeof file.name === 'string'){
+                        return file.name.endsWith('.js') || file.name.endsWith('/')
+                    }
+                })  
             }
         }
     },

@@ -1,5 +1,4 @@
-var completionSpec = {
-
+const sublCompletionSpec:Fig.Spec = {
     name: "subl",
     description: "Sublime Text",
     args: {

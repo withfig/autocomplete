@@ -1,4 +1,4 @@
-var completionSpec = {
+const yarnCompletionSpec:Fig.Spec = {
     name: "yarn",
     description: "Manage packages and run scripts",
     args: [
@@ -14,7 +14,9 @@ var completionSpec = {
                         let package = JSON.parse(out)
                         let scripts = package["scripts"]
                         if (scripts) {
-                            return Object.keys(scripts)
+                            return Object.keys(scripts).map(scriptName => ({
+                                name: scriptName
+                            }))
                         }
                     } catch (e) { }
 
@@ -629,7 +631,9 @@ var completionSpec = {
                                 let package = JSON.parse(out)
                                 let scripts = package["scripts"]
                                 if (scripts) {
-                                    return Object.keys(scripts)
+                                    return Object.keys(scripts).map(scriptName => ({
+                                        name: scriptName
+                                    }))
                                 }
                             } catch (e) { }
                             return []

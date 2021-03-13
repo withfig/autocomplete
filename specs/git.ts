@@ -1,5 +1,4 @@
-var generators = {
-
+const generators:Record<string, Fig.Generator> = {
     // Commit history
     commits: {
         script: "git log --oneline",
@@ -119,8 +118,7 @@ let head = {
     description: "Reset multiple commits",
 }
 
-var completionSpec = {
-
+const gitCompletionSpec:Fig.Spec = {
     name: "git",
     description: "the stupid content tracker",
     options: [

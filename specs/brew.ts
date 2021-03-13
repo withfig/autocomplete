@@ -1,19 +1,20 @@
-var generators = {
-
+const brewGenerators: Record<string, Fig.Generator> = {
     servicesgenerators: {
         script: "brew services list | sed -e 's/ .*//' | tail -n +2",
-        postProcess: function (out) {
-            return out.split('\n').filter((line) => {
-                return !line.includes('unbound') && {
-                    name: line,
-                    type: "option"
-                }
-            })
+        postProcess: function (output) {
+            const lines = output.split("\n");
+            return lines.reduce<Fig.Suggestion[]>((acc, currentLine) => {
+                if(lines.includes('unbound')) return acc;
+                return acc.concat({
+                    name: currentLine,
+                    type: 'option'
+                });
+            }, [])
         }
     }
 }
 
-var completionSpec = {
+const brewCompletionSpec = {
     name: "brew",
     description: "Package manager for macOS",
     subcommands: [

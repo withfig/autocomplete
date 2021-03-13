@@ -1,4 +1,4 @@
-var completionSpec = {
+const ghCompletionSpec:Fig.Spec = {
     name: "gh",
     description: "Github's CLI tool",
     subcommands: [

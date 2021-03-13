@@ -1,4 +1,4 @@
-var completionSpec = {
+const pythonCompletionSpec:Fig.Spec = {
     name: "python",
     description: "Run the python interpretor",
     args: {

@@ -1,5 +1,4 @@
-
-var completionSpec = {
+const herokuCompletionSpec:Fig.Spec = {
     name: "heroku",
     description: "CLI Interface for Heroku.com",
     args: {

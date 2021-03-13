@@ -1,4 +1,4 @@
-var completionSpec = {
+const expoCliCompletionSpec:Fig.Spec = {
     name: "expo-cli",
     description: "",
     subcommands: [

@@ -1,9 +1,12 @@
-var domain = {
+const domain: Fig.Arg = {
     name: "domain",
     generators: {
         script: "defaults domains",
         postProcess: function (out) {
-            return out.split(',').map(domain => { return domain.trim() })
+            // TODO: what should be returned here?
+            return out
+            .split(',')
+            .map(domain => { return domain.trim() }) as Array<any>
         }
     },
     suggestions: [
@@ -19,15 +22,15 @@ var domain = {
     ]
 }
 
-let key = {
+const key: Fig.Arg = {
     name: "key"
 }
 
-let value = {
+const value: Fig.Arg = {
     name: "value"
 }
 
-let valueArgs = [
+const valueArgs = [
     {
         name: "-string",
         args: {
@@ -93,8 +96,7 @@ let valueArgs = [
     }
 ]
 
-var completionSpec = {
-
+const defaultsCompletionSpec:Fig.Spec = {
     name: "defaults",
     description: "Command line interface to a user's defaults.",
     options: [],

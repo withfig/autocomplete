@@ -1,4 +1,4 @@
-var envVarList = {
+const envVarList:Fig.Generator = {
     script: "vercel env ls",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -14,7 +14,7 @@ var envVarList = {
 }
 
 //Unfinished
-var deploymentList = {
+const deploymentList:Fig.Generator = {
     //Grabs all the deployments for
     script: "vercel list [project name]",
     postProcess: function(out) {
@@ -31,7 +31,7 @@ var deploymentList = {
     }
 }
 
-var domainList = {
+const domainList:Fig.Generator = {
     script: "vercel domains",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -46,7 +46,7 @@ var domainList = {
     }
 }
 
-var teamList = {
+const teamList:Fig.Generator = {
     script: "vercel teams list",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -61,7 +61,7 @@ var teamList = {
     }
 }
 
-var completionSpec = {
+const vercelCompletionSpec:Fig.Spec = {
     name: "vercel",
     description: "CLI Interface for Vercel.com",
     args: {
@@ -425,7 +425,7 @@ var completionSpec = {
                         {
                             name: "domain",
                             description: "domain to move",
-                            generator: domainList
+                            generators: domainList
                         },
                         {
                             name: "account name",

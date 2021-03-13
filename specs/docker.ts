@@ -1,8 +1,7 @@
-var completionSpec = {
+const dockerCompletionSpec:Fig.Spec = {
     name: "docker",
     description: "A self-sufficient runtime for containers",
     subcommands: [
-
     	{ name: "attach",      description: "Attach local standard input, output, and error streams to a running container" },
     	{ name: "build",       description: "Build an image from a Dockerfile" },
     	{ name: "commit",      description: "Create a new image from a container's changes" },

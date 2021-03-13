@@ -1,9 +1,9 @@
-var getServices = {
+const getServicesGenerator:Fig.Generator = {
     script: "docker-compose config --services",
     splitOn: "\n"
 }
 
-var completionSpec = {
+const dockerComposeCompletionSpec:Fig.Spec = {
     name: "docker-compose",
     description: "",
     subcommands: [
@@ -11,7 +11,7 @@ var completionSpec = {
             name: "build",
             description: "Build or rebuild services.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -143,7 +143,7 @@ var completionSpec = {
             name: "create",
             description: "Creates containers for a service.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -218,7 +218,7 @@ var completionSpec = {
             name: "events",
             description: "Receive real time events from containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -235,7 +235,7 @@ var completionSpec = {
             name: "exec",
             description: "Execute a command in a running container",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -304,7 +304,7 @@ var completionSpec = {
             name: "images",
             description: "List images used by the created containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -322,7 +322,7 @@ var completionSpec = {
             name: "kill",
             description: "Force stop service containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -339,7 +339,7 @@ var completionSpec = {
             name: "logs",
             description: "View output from containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -379,7 +379,7 @@ var completionSpec = {
             name: "pause",
             description: "Pause services.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [],
             subcommands: []
@@ -409,7 +409,7 @@ var completionSpec = {
             name: "ps",
             description: "List containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -506,7 +506,7 @@ var completionSpec = {
             name: "restart",
             description: "Restart running containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -524,7 +524,7 @@ var completionSpec = {
             name: "rm",
             description: "Removes stopped service containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -565,7 +565,7 @@ var completionSpec = {
             name: "run",
             description: "Run a one-off command on a service.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -695,7 +695,7 @@ var completionSpec = {
             name: "start",
             description: "Start existing containers.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [],
             subcommands: []
@@ -704,7 +704,7 @@ var completionSpec = {
             name: "stop",
             description: "Stop running containers without removing them.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {
@@ -734,7 +734,7 @@ var completionSpec = {
             name: "up",
             description: "Builds, (re)creates, starts, and attaches to containers for a service.",
             args: {
-                generator: getServices
+                generators: getServicesGenerator
             },
             options: [
                 {

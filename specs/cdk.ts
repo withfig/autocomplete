@@ -1,4 +1,4 @@
-var completionSpec = {
+const cdkCompletionSpec: Fig.Spec = {
     name: "cdk",
     description: "AWS CDK CLI",
     subcommands: [

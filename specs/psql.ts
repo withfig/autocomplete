@@ -1,4 +1,4 @@
-var completionSpec = {
+const pssqlCompletionSpec:Fig.Spec = {
     name: "psql",
     description: "psql is a terminal-based front-end to PostgreSQL",
     args: [
