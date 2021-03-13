@@ -1,4 +1,4 @@
-var completionSpec = {
+const tail: Fig.Spec = {
 
     name: "tail",
     description: "display the last part of a file",

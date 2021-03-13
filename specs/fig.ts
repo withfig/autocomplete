@@ -1,4 +1,4 @@
-var completionSpec = {
+const fig: Fig.Spec = {
   name: "fig",
   description: "Autocomplete for your terminal",
   subcommands: [
@@ -14,8 +14,7 @@ var completionSpec = {
         generators: {
           script: "\ls -1Ap ~/.fig/autocomplete",
           postProcess: (data) => {
-            console.log(data)
-            out = data.split("\n").reduce((acc, curr) => {
+            const out = data.split("\n").reduce((acc, curr) => {
               if ([".gitignore", "README.md", "package.json", "package-lock.json"].includes(curr)) return acc
               else {
                 acc.push({

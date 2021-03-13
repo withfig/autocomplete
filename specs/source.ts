@@ -1,4 +1,4 @@
-var completionSpec = {
+const source: Fig.Spec = {
 
     name: "source",
     description: "Source files in shell",

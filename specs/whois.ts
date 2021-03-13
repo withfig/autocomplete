@@ -1,4 +1,4 @@
-var completionSpec = {
+const whois: Fig.Spec = {
   name: 'whois',
   args: {
     name: 'name'

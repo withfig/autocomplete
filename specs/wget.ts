@@ -1,4 +1,4 @@
-var completionSpec = {
+const wget: Fig.Spec = {
 
     name: "wget",
     description: "a non-interactive network retriever",
