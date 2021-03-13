@@ -21,7 +21,7 @@ const pastConnections: Fig.Generator = {
     }
 }
 
-const ssh: Fig.Spec = {
+const sshCompletionSpec: Fig.Spec = {
     name: "ssh",
     description: "Log into a remote machine",
     args: [{

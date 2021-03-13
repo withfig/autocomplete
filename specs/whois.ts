@@ -1,4 +1,4 @@
-const whois: Fig.Spec = {
+const whoisCompletionSpec: Fig.Spec = {
   name: 'whois',
   args: {
     name: 'name'

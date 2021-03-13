@@ -1,4 +1,4 @@
-const ls: Fig.Spec = {
+const lsCompletionSpec: Fig.Spec = {
 
   name: "ls",
   description: "list directory contents",

@@ -1,4 +1,4 @@
-const clear: Fig.Spec = {
+const clearCompletionSpec: Fig.Spec = {
   name: 'clear',
   description: 'clear the terminal screen',
   options: [

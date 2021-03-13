@@ -1,4 +1,4 @@
-const cd: Fig.Spec = {
+const cdCompletionSpec: Fig.Spec = {
     name: "cd",
     description: "Change the shell working directory",
     args: {

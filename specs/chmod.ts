@@ -1,4 +1,4 @@
-const chmod: Fig.Spec = {
+const chmodCompletionSpec: Fig.Spec = {
     name: "chmod",
     description: "Change file modes or Access Control Lists.",
     args: [

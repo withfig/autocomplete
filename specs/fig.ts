@@ -1,4 +1,4 @@
-const fig: Fig.Spec = {
+const figCompletionSpec: Fig.Spec = {
   name: "fig",
   description: "Autocomplete for your terminal",
   subcommands: [

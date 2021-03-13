@@ -1,4 +1,4 @@
-const tail: Fig.Spec = {
+const tailCompletionSpec: Fig.Spec = {
 
     name: "tail",
     description: "display the last part of a file",

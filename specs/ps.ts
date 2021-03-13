@@ -1,4 +1,4 @@
-const ps: Fig.Spec = {
+const psCompletionSpec: Fig.Spec = {
   name: 'ps',
   description: 'report a snapshot of the current processes',
   options: [

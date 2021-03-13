@@ -1,4 +1,4 @@
-const touch: Fig.Spec = {
+const touchCompletionSpec: Fig.Spec = {
   name: 'touch',
   description: 'change file timestamps',
   args: {

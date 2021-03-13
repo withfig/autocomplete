@@ -1,4 +1,4 @@
-const rm: Fig.Spec = {
+const rmCompletionSpec: Fig.Spec = {
 
     name: "rm",
     description: "remove directory entries",

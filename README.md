@@ -26,14 +26,29 @@ Completion specs are defined in a *declarative* JSON schema, that specifies `sub
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
 
-## Linting Your Spec
-The autocomplete spec linter can be run to validate the format of completion specs. Run it to get syntax and type errors from your autocomplete spec.
+## Typechecking Your Spec
+This Repository uses TypeScript to verify the types. 
 
-To use the linter, run the following command from the root folder.
-`node linter.js specs/[specName].js`
+You can typecheck the specs using 
 
-To run the linter on ALL specs in the /specs folder, run
-`node linter.js`
+```bash
+npm test
+```
+
+## Using the specs locally
+In order to use the the specs locally you first need to compile them.
+You can do that by running
+
+```bash
+npm run build
+```
+
+after that you need to copy them into your local `.fig` folder.
+You can do that by running
+```bash
+./copy.sh
+```
+
 
 ## FAQ
 

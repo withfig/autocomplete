@@ -1,4 +1,4 @@
-const curl: Fig.Spec = {
+const curlCompletionSpec: Fig.Spec = {
 
     name: "curl",
     description: "transfer a URL",

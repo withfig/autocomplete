@@ -1,4 +1,4 @@
-const mkdir: Fig.Spec = {
+const mkdirCompletionSpec: Fig.Spec = {
   name: 'mkdir',
   description: 'make directories',
   args: {

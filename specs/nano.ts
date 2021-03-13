@@ -1,4 +1,4 @@
-const nano: Fig.Spec = {
+const nanoCompletionSpec: Fig.Spec = {
 
     name: "nano",
     description: "Nano's ANOther editor, an enhanced free Pico clone",

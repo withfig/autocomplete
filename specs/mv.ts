@@ -1,4 +1,4 @@
-const mv: Fig.Spec = {
+const mvCompletionSpec: Fig.Spec = {
 
     name: "mv",
     description: "move & rename files and folders",

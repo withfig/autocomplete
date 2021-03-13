@@ -1,4 +1,4 @@
-const pwd: Fig.Spec = {
+const pwdCompletionSpec: Fig.Spec = {
   name: 'pwd',
   description: 'print name of current/working directory',
   options: [
