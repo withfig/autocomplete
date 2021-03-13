@@ -1,9 +1,9 @@
-const tar: Fig.Spec = {
+const tarCompletionSpec:Fig.Spec = {
     name: "tar",
     description: "Manipulating archive files",
     args: {
     	variadic: true,
-        template: "folders"
+        template: "folders" 
     },
     options: [
  		{
@@ -11,7 +11,7 @@ const tar: Fig.Spec = {
             description: "Create a new archive",
             args: {
     	        variadic: true,
-                template: "folders"
+                template: "folders" 
             }
         },
  		{
@@ -35,7 +35,6 @@ const tar: Fig.Spec = {
             }
         },
  		{ name: ["-h", "--help"], description: "Help" },
-        { name: ["--version"], description: "Version" },
-        { name: ["--wildcards"], args: { name: "pattern", description: "ex: *.html" } }
+ 		{ name: ["--version"], description: "Version" },
     ]
 }
