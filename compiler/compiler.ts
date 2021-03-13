@@ -31,7 +31,7 @@ const processSpec = (file: string) => {
     if(!newName.endsWith('.js'))
         newName += '.js';
 
-    const out = path.resolve('dist', newName);
+    const outFilePath = path.resolve('dist', newName);
 
     if(!fs.existsSync(path.dirname(out)))
         fs.mkdirSync(path.dirname(out));
