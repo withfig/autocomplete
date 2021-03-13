@@ -72,7 +72,7 @@ var completionSpec = {
             subcommands: [
                 {
                     name: "install",
-                    insertValue: "install",
+                    insertValue: "install ",
                     description: "Installs the given cask",
                     args: {
                         name: "cask",
