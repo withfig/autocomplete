@@ -32,11 +32,12 @@ const processSpec = (file: string) => {
         newName += '.js';
 
     const outFilePath = path.resolve('dist', newName);
+    const outDirname = path.dirname(outFilePath);
 
-    if(!fs.existsSync(path.dirname(out)))
-        fs.mkdirSync(path.dirname(out));
+    if(!fs.existsSync(outDirname))
+        fs.mkdirSync(outDirname);
 
-    fs.writeFileSync(out, result.outputText);
+    fs.writeFileSync(outFilePath, result.outputText);
 };
 
 // Process all the files in the specs directory

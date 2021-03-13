@@ -26,6 +26,4 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    # TODO Remove npm test when types are validated
     - run: npm test
-    - run: npm run typecheck
