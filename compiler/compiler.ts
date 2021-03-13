@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as ts from 'typescript';
 import * as path from 'path';
 import { variableNameTransformer } from './transformer';
-import { Level, log } from './log';
+import SpecLogger, { Level } from './log';
 import * as ProgressBar from 'progress';
 
 // The options for the TypeScript compiler
@@ -45,12 +45,12 @@ fs.readdir('specs', (err, files) => {
 
     if(err) {
 
-        log('Could not find specs folder', Level.ERROR);
+        SpecLogger.loc('Could not find specs folder', Level.ERROR);
         return;
     }
 
     const specs = files.filter(file => file !== '.DS_STORE');
-    log(`Processing ${specs.length} specs...`);
+    SpecLogger.log(`Processing ${specs.length} specs...`);
 
     const bar = new ProgressBar(':bar :percent', {
         total: specs.length,
@@ -65,5 +65,5 @@ fs.readdir('specs', (err, files) => {
         bar.tick({ spec });
     });
 
-    log('Specs compiled successfully to /dist folder!', Level.SUCCESS);
+    SpecLogger.log('Specs compiled successfully to /dist folder!', Level.SUCCESS);
 });

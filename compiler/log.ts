@@ -16,7 +16,20 @@ export enum Level {
  * @param message The message to log
  * @param level The level to log
  */
-export const log = (message: string, level: Level = Level.INFO) => {
+/**
+ * Log a message in the console. Can specify a Level, which
+ * will be INFO by default.
+ *
+ * @param message The message to log
+ * @param level The level to log
+ */
+export default abstract class SpecLogger {
+
+    static log(message: string, level: Level = Level.INFO) {
+        
+        console.log(chalk[level](message));
+    }
+}
 
     console.log(chalk[level](message));
 }
