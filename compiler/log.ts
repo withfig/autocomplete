@@ -30,6 +30,3 @@ export default abstract class SpecLogger {
         console.log(chalk[level](message));
     }
 }
-
-    console.log(chalk[level](message));
-}
