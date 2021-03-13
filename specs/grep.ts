@@ -1,4 +1,4 @@
-var completionSpec = {
+const grpCompletionSpec:Fig.Spec = {
     name: "grep",
     description: "Matches patterns in input text. Supports simple patterns and regular expressions.",
     args: [

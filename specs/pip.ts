@@ -1,4 +1,4 @@
-var listPackages = {
+const listPackages:Fig.Generator = {
     script: "pip list",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -13,7 +13,7 @@ var listPackages = {
     }
 }
 
-const packageList = [
+const packageList:Array<Fig.Suggestion> = [
     {
       name: "urllib3",
       icon: "📦"
@@ -16016,7 +16016,7 @@ const packageList = [
     }
 ]
 
-var completionSpec = {
+const pipCompletionSpec:Fig.Spec = {
   name: "pip",
   description: "Python package manager",
   args: {},

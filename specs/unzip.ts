@@ -1,4 +1,4 @@
-var completionSpec = {
+const unzipCompletionSpec:Fig.Spec = {
     name: "unzip",
     description: "Extract compressed files in a ZIP archive.",
     args: {

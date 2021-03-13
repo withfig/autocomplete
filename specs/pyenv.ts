@@ -1,4 +1,4 @@
-var versionList = {
+const versionList:Fig.Generator = {
     script: "pyenv install -l",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -14,7 +14,7 @@ var versionList = {
 }
 
 
-var completionSpec = {
+const pyenvCompletionSpec:Fig.Spec = {
     name: "pyenv",
     description: "pyenv",
     args: {},

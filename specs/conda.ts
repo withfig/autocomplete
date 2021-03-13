@@ -1,4 +1,4 @@
-var getInstalledPackages = {
+const getInstalledPackages:Fig.Generator = {
     script: "conda list",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -13,7 +13,7 @@ var getInstalledPackages = {
     }
 }
 
-var getAllCondaPackages = {
+const getAllCondaPackages:Fig.Generator = {
     script: "conda search -q",
     postProcess: function(out) {
         var lines = out.split('\n');
@@ -28,7 +28,7 @@ var getAllCondaPackages = {
     }
 }
 
-var completionSpec = {
+const condaCompletionSpec:Fig.Spec = {
     name: "conda",
     description: "Conda package manager",
     subcommands: [
