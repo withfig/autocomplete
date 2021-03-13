@@ -1,5 +1,17 @@
 // Flutter version 2.0.1
 
+var generators = {
+    emulators: {
+        script: "flutter emulators",
+        postProcess: function (out) {
+            return out.match(/.*•.*/gi)
+                .map(info => info.split('•'))
+                .map(deviceInfo => deviceInfo.map(info => info.trim()))
+                .map(device => ({ name: `${device[1]} • ${device[2]} • ${device[3]}`, icon: "📱", description: "Available emulators", insertValue: device[0] }))
+        }
+    }
+}
+
 var help = {
     name: ["-h", "--help"],
     description: "Print this usage information."
@@ -17,15 +29,7 @@ var deviceId = {
     args: {
         name: "device id",
         description: "Target device id or name (prefixes allowed)",
-        generators: {
-            script: "flutter emulators", // TODO(lucky): could be also from 'flutter devices'
-            postProcess: function (out) {
-                return out.match(/.*•.*/gi)
-                    .map(info => info.split('•'))
-                    .map(deviceInfo => deviceInfo.map(info => info.trim()))
-                    .map(device => ({ name: `${device[1]} • ${device[2]} • ${device[3]}`, icon: "📱", description: "Available emulators", insertValue: device[0] }))
-            }
-        },
+        generators: generators.emulators,
     }
 }
 
@@ -1091,10 +1095,11 @@ var completionSpec = {
                 verbose,
                 {
                     name: "--launch",
-                    insertValue: "--launch {cursor}",
+                    insertValue: "--launch '{cursor}'",
                     description: "The full or partial ID of the emulator to launch.",
                     args: {
-                        name: "emulator id"
+                        name: "emulator id",
+                        generators: generators.emulators,
                     }
                 },
                 {
