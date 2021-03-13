@@ -3,8 +3,12 @@ import {
     TransformerFactory,
     Node,
     VariableDeclarationList,
+    isVariableDeclaration,
+    updateVariableDeclaration,
+    visitEachChild,
+    visitNode,
+    factory,
 } from 'typescript';
-import * as ts from 'typescript';
 
 // The name of the spec variable
 const SPEC_NAME = 'completionSpec';
@@ -22,7 +26,7 @@ export const variableNameTransformer: TransformerFactory<SourceFile> = context =
 
         const visitor = (node: Node) => {
 
-            if(!updated && ts.isVariableDeclaration(node)) {
+            if(!updated && isVariableDeclaration(node)) {
 
                 const declarationList = node.parent as VariableDeclarationList;
 
@@ -33,13 +37,13 @@ export const variableNameTransformer: TransformerFactory<SourceFile> = context =
                 if(declarationList.flags === 2 || ('escapedText' in node.name && node.name.escapedText === SPEC_NAME)) {
 
                     updated = true;
-                    return ts.updateVariableDeclaration(node, ts.factory.createIdentifier(SPEC_NAME), node.type, node.initializer);
+                    return updateVariableDeclaration(node, factory.createIdentifier(SPEC_NAME), node.type, node.initializer);
                 }
             }
 
-            return ts.visitEachChild(node, visitor, context);
+            return visitEachChild(node, visitor, context);
         };
 
-        return ts.visitNode(sourceFile, visitor);
+        return visitNode(sourceFile, visitor);
     }
 }
