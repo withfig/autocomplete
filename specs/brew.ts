@@ -1,7 +1,7 @@
 const brewGenerators: Record<string, Fig.Generator> = {
     servicesgenerators: {
         script: "brew services list | sed -e 's/ .*//' | tail -n +2",
-        postProcess: function (output) {
+        postProcess: output => {
             const lines = output.split("\n");
             return lines.reduce<Fig.Suggestion[]>((acc, currentLine) => {
                 if(lines.includes('unbound')) return acc;
