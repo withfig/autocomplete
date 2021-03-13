@@ -2,9 +2,9 @@ const nodeCompletionSpec:Fig.Spec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
-        template: "filepaths",
         generators: {
-            filterTemplateSuggestions: (paths) => {
+            template: "filepaths",
+            filterTemplateSuggestions: function (paths) {
                 return paths.filter(file => {
                     if(typeof file.name === 'string'){
                         return file.name.endsWith('.js') || file.name.endsWith('/')

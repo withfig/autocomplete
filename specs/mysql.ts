@@ -494,7 +494,7 @@ const mySqlCompletionSpec:Fig.Spec = {
             description: "Append a copy of output to named file",
             args: {
                 name: "file_name",
-                template: "filepaths",
+                template: "filepaths"
             }
         },        
         {

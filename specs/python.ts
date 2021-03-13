@@ -15,5 +15,4 @@ const pythonCompletionSpec:Fig.Spec = {
             args: {},
         }
     ]
-
 }

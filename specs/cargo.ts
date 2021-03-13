@@ -57,7 +57,7 @@ const cargoCompletionSpec: Fig.Spec = {
         },
       ],
       args: {
-        template: "filepaths",
+        template: "filepaths"
       },
     }
   ],

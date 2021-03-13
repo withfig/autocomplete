@@ -382,8 +382,7 @@ const vercelCompletionSpec:Fig.Spec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to inspect",
-                            // generator: domainList
+                            description: "domain to inspect"
                         }
                     ]
                 },
@@ -403,8 +402,7 @@ const vercelCompletionSpec:Fig.Spec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to remove",
-                            // generator: domainList
+                            description: "domain to remove"
                         }
                     ]
                 },
@@ -429,8 +427,7 @@ const vercelCompletionSpec:Fig.Spec = {
                         },
                         {
                             name: "account name",
-                            description: "account to move the domain to",
-                            // generator: teamList // double check if teams = accounts
+                            description: "account to move the domain to"
                         }
                     ]
                 },
@@ -450,8 +447,7 @@ const vercelCompletionSpec:Fig.Spec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to verify",
-                            // generator: domainList
+                            description: "domain to verify"
                         }
                     ]
                 }
