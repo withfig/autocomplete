@@ -19,9 +19,7 @@ const SPEC_ENDING = 'CompletionSpec'
  *
  * @param context The current context
  */
-export const variableNameTransformer: TransformerFactory<SourceFile> = (
-  context
-) => {
+export const variableNameTransformer: TransformerFactory<SourceFile> = context => {
   return (sourceFile) => {
     let updated = false
     const visitor = (node: Node) => {
