@@ -479,7 +479,7 @@ var completionSpec = {
           name: ["-e", "--edit"],
           description:
             "Open the resulting gemspec in EDITOR",
-          args: {}.
+          args: {},
         },
       ],
     },
@@ -517,7 +517,7 @@ var completionSpec = {
           name: ["--gemfile"],
           description:
             "The location of the Gemfile which Bundler should use",
-          args: {}.
+          args: {},
         },
       ],
     },
