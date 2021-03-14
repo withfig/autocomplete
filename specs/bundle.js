@@ -158,6 +158,7 @@ var completionSpec = {
           description: "Pass all file descriptors to the new process",
         },
       ],
+      args: { isCommand: true },
     },
     { name: "config", args: {} },
     { name: "help" },
