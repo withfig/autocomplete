@@ -1708,8 +1708,7 @@ var completionSpec = {
 		{ 
 			name: "pause",       
 			description: "Pause all processes within one or more containers", 
-			// TOOD: Running containrs
-			args: {},
+			args: containersArg,
 			options: [],
 			subcommands: []
 		},
