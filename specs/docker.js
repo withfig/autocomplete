@@ -1169,11 +1169,16 @@ var completionSpec = {
 			],
 			subcommands: []
 		},
-		{ 
+		{
 			name: "diff",        
 			description: "Inspect changes to files or directories on a container's filesystem", 
 			// TODO: Running containers
-			args: {},
+			args: {
+				name: 'container',
+				generators: [
+					generators.runningDockerContainers,
+				]
+			},
 			options: [],
 			subcommands: []
 		},
