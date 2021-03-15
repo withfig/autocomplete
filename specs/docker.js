@@ -59,13 +59,16 @@ var generators = {
 // 	}
 // ],
 
+var containerArg = {
+	name: 'container',
+	generators: [
+		generators.runningDockerContainers,
+	]
+}
+
+
 const containerAndCommandArgs = [
-	{
-		name: 'container',
-		generators: [
-			generators.runningDockerContainers,
-		]
-	},
+	containerArg,
 	{
 		name: 'command',
 		isCommand: true
@@ -1345,8 +1348,7 @@ var completionSpec = {
 		{ 
 			name: "export",      
 			description: "Export a container's filesystem as a tar archive", 
-			// TODO: Running container
-			args: {},
+			args: containerArg,
 			options: [
 				{
 					"description": "Write to a file, instead of STDOUT",
