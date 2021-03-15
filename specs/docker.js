@@ -1836,7 +1836,8 @@ var completionSpec = {
 		},
 		{ 
 			name: "push",        
-			description: "Push an image or a repository to a registry", 
+			description: "Push an image or a repository to a registry",
+			// TODO: Autocomplete images 
 			args: {
 				name: "NAME[:TAG]"
 			},
@@ -1867,8 +1868,12 @@ var completionSpec = {
 		{ 
 			name: "rename",      
 			description: "Rename a container",
-			// TODO: List containers
-			args: {},
+			args: [
+				containersArg,
+				{
+					name: 'NEW_NAME'
+				}
+			],
 			options: [],
 			subcommands: []
 		},
