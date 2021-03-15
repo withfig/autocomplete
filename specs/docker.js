@@ -2404,8 +2404,7 @@ var completionSpec = {
 		{ 
 			name: "wait",        
 			description: "Block until one or more containers stop, then print their exit codes",
-			// TODO: Pull in containers
-			args: {},
+			args: containersArg,
 			options: [],
 			subcommands: [] 
 		},
