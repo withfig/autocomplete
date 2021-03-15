@@ -18,7 +18,16 @@ var generators = {
                 displayName: `${i.ID} (${i.Image})`,
             }));
         }
-    }
+    },
+	allLocalImages: {
+		script: `docker image ls --format '{{ json . }}'`,
+		postProcess: function (out) {
+            let allLines = out.split('\n').map(JSON.parse);
+            return allLines.map(i => ({
+                name: `${i.Repository}`,
+            }));
+        }
+	}
 };
 
 // TODO: args and options
@@ -327,8 +336,18 @@ var completionSpec = {
 		{ 
 			name: "create",      
 			description: "Create a new container", 
-			// Autogen images?
-			args: {},
+			args: [
+				{
+					name: 'container',
+					generators: [
+						generators.allLocalImages,
+					]
+				},
+				{
+					name: 'command',
+					isCommand: true
+				}
+			],
 			options: [
 				{
 					"args": {
