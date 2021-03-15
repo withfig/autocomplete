@@ -67,12 +67,7 @@ var completionSpec = {
 		{ 
 			name: "attach",      
 			description: "Attach local standard input, output, and error streams to a running container,",
-			args: {
-                name: 'container',
-                generators: [
-                    generators.runningDockerContainers,
-                ]
-            },
+			args: containersArg,
 			options: [
 				{
 					name: ["--detach-keys"],
@@ -272,12 +267,7 @@ var completionSpec = {
 			name: "commit",      
 			description: "Create a new image from a container's changes", 
 			args: [
-				{
-					name: 'container',
-					generators: [
-						generators.runningDockerContainers,
-					]
-				},
+				containersArg,
 				{
 					name: '[REPOSITORY[:TAG]]'
 				}
@@ -1186,13 +1176,7 @@ var completionSpec = {
 		{
 			name: "diff",        
 			description: "Inspect changes to files or directories on a container's filesystem", 
-			// TODO: Running containers
-			args: {
-				name: 'container',
-				generators: [
-					generators.runningDockerContainers,
-				]
-			},
+			args: containersArg,
 			options: [],
 			subcommands: []
 		},
