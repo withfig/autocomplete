@@ -30,6 +30,13 @@ var generators = {
 // 	args: {}
 // },
 
+// {
+// 	name: 'container',
+// 	generators: [
+// 		generators.runningDockerContainers,
+// 	]
+// }
+
 var completionSpec = {
     name: "docker",
     description: "A self-sufficient runtime for containers",
@@ -241,9 +248,17 @@ var completionSpec = {
 		{ 
 			name: "commit",      
 			description: "Create a new image from a container's changes", 
-			args: {
-                name: '[REPOSITORY[:TAG]]'
-            },
+			args: [
+				{
+					name: 'container',
+					generators: [
+						generators.runningDockerContainers,
+					]
+				},
+				{
+					name: '[REPOSITORY[:TAG]]'
+				}
+			],
 			options: [
 				{
 					"args": {
