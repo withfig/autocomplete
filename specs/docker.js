@@ -59,11 +59,13 @@ var generators = {
 // 	}
 // ],
 
+// TODO: Does isVariadic work?
 var containersArg = {
 	name: 'container',
 	generators: [
 		generators.runningDockerContainers,
-	]
+	],
+	isVariadic: true
 };
 
 var imagesArg = {
@@ -1579,8 +1581,8 @@ var completionSpec = {
 		{ 
 			name: "kill",        
 			description: "Kill one or more running containers", 
-			// TODO: Running containres
-			args: {},
+			// TODO: Does isVariadic work?
+			args: {...containersArg, isVariadic: true},
 			options: [],
 			subcommands: []
 		},
@@ -1605,7 +1607,9 @@ var completionSpec = {
 		{ 
 			name: "login",       
 			description: "Log in to a Docker registry",
-			args: {},
+			args: {
+				name: 'server'
+			},
 			options: [
 				{
 					"description": "password",
@@ -1639,15 +1643,16 @@ var completionSpec = {
 		{ 
 			name: "logout",      
 			description: "Log out from a Docker registry", 
-			args: {},
+			args: {
+				name: 'server'
+			},
 			options: [],
 			subcommands: []
 		},
 		{ 
 			name: "logs",        
 			description: "Fetch the logs of a container",
-			// TODO running containers
-			args: {},
+			args: containersArg,
 			options: [
 				{
 					"description": "Show extra details provided to logs",
