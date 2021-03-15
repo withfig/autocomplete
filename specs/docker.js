@@ -2169,13 +2169,7 @@ var completionSpec = {
         {
             name: "stop",
             description: "Stop one or more running containers",
-            args: {
-                variadic: true,
-                name: 'container',
-                generators: [
-                    generators.runningDockerContainers,
-                ]
-            },
+            args: containersArg,
             options: [
                 {
                     name: ['-t', '--t'],
