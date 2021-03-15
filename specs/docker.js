@@ -2097,7 +2097,6 @@ var completionSpec = {
 		{ 
 			name: "start",       
 			description: "Start one or more stopped containers",
-			// TODO: Pull in containrs
 			args: {
 				name: 'container',
 				generators: [
@@ -2133,9 +2132,8 @@ var completionSpec = {
 		},
 		{ 
 			name: "stats",       
-			// TODO: pull in containrs
 			description: "Display a live stream of container(s) resource usage statistics",
-			args: {},
+			args: containersArg,
 			options: [
 				{
 					"description": "Show all containers (default shows just running)",
