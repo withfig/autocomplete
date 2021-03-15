@@ -1,49 +1,30 @@
+var postProcessDockerPs = (out) => {
+	let allLines = out.split('\n');
+	return allLines.map(i => {
+		try {
+			i = JSON.parse(i)
+			return {
+				name: i.ID,
+				displayName: `${i.ID} (${i.Image})`,
+			}
+		} catch (error) {
+			console.error(error);	
+		}
+	});
+}
+
 var generators = {
     runningDockerContainers: {
         script: `docker ps --format '{{ json . }}'`,
-        postProcess: function (out) {
-            let allLines = out.split('\n').map(JSON.parse);
-            return allLines.map(i => ({
-                name: i.ID,
-                displayName: `${i.ID} (${i.Image})`,
-            }));
-        }
+        postProcess: postProcessDockerPs
     },
     allDockerContainers: {
         script: `docker ps -a --format '{{ json . }}'`,
-        postProcess: function (out) {
-			console.log('postProcess started');
-            let allLines = out.split('\n');
-			return allLines.map(i => {
-				try {
-					i = JSON.parse(i)
-					return {
-						name: i.ID,
-						displayName: `${i.ID} (${i.Image})`,
-					}
-				} catch (error) {
-					console.error(error);	
-				}
-			});
-        }
+        postProcess: postProcessDockerPs
     },
 	pausedDockerContainers: {
 		script: `docker ps --filter status=paused --format '{{ json . }}'`,
-		postProcess: function (out) {
-			console.log('postProcess started');
-            let allLines = out.split('\n');
-			return allLines.map(i => {
-				try {
-					i = JSON.parse(i)
-					return {
-						name: i.ID,
-						displayName: `${i.ID} (${i.Image})`,
-					}
-				} catch (error) {
-					console.error(error);	
-				}
-			});
-        }
+		postProcess: postProcessDockerPs
 	},
 	allLocalImages: {
 		script: `docker image ls --format '{{ json . }}'`,
@@ -56,13 +37,11 @@ var generators = {
 	}
 };
 
-// TODO: Does isVariadic work?
 var containersArg = {
 	name: 'container',
 	generators: [
 		generators.runningDockerContainers,
-	],
-	isVariadic: true
+	]
 };
 
 var imagesArg = {
@@ -1265,16 +1244,19 @@ var completionSpec = {
 		{ 
 			name: "exec",        
 			description: "Run a command in a running container",
-			// TODO: If I use an option, I can't get the args to prefill?
-			// TODO: If I use multiple options it seems to ignore the args, even for the second option?
 			options: [
+				{
+                    name: ["-it"],
+                    insertValue: "-it ",
+                    description: "Launch an interactive session",
+                    icon: "fig://icon?type=commandkey"
+                },
 				{
 					"description": "Detached mode: run command in the background",
 					"name": [
 						"-d",
 						"--detach"
-					],
-					args: containerAndCommandArgs
+					]
 				},
 				{
 					"args": {
@@ -1310,14 +1292,12 @@ var completionSpec = {
 						"-i",
 						"--interactive"
 					],
-					args: containerAndCommandArgs
 				},
 				{
 					"description": "Give extended privileges to the command",
 					"name": [
 						"--privileged"
 					],
-					args: containerAndCommandArgs
 				},
 				{
 					"description": "Allocate a pseudo-TTY",
@@ -1325,7 +1305,6 @@ var completionSpec = {
 						"-t",
 						"--tty"
 					],
-					args: containerAndCommandArgs
 				},
 				{
 					"args": {
@@ -1578,8 +1557,7 @@ var completionSpec = {
 		{ 
 			name: "kill",        
 			description: "Kill one or more running containers", 
-			// TODO: Does isVariadic work?
-			args: {...containersArg, isVariadic: true},
+			args: {...containersArg, variadic: true},
 			options: [],
 			subcommands: []
 		},
