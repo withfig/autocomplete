@@ -46,6 +46,32 @@ var generators = {
 // 	]
 // }
 
+// [
+// 	{
+// 		name: 'container',
+// 		generators: [
+// 			generators.runningDockerContainers,
+// 		]
+// 	},
+// 	{
+// 		name: 'command',
+// 		isCommand: true
+// 	}
+// ],
+
+const containerAndCommandArgs = [
+	{
+		name: 'container',
+		generators: [
+			generators.runningDockerContainers,
+		]
+	},
+	{
+		name: 'command',
+		isCommand: true
+	}
+];
+
 var completionSpec = {
     name: "docker",
     description: "A self-sufficient runtime for containers",
@@ -1230,15 +1256,16 @@ var completionSpec = {
 		{ 
 			name: "exec",        
 			description: "Run a command in a running container",
-			// TODO: Running container and command 
-			args: {},
+			// TODO: If I use an option, I can't get the args to prefill?
+			// TODO: If I use multiple options it seems to ignore the args, even for the second option?
 			options: [
 				{
 					"description": "Detached mode: run command in the background",
 					"name": [
 						"-d",
 						"--detach"
-					]
+					],
+					args: containerAndCommandArgs
 				},
 				{
 					"args": {
@@ -1273,20 +1300,23 @@ var completionSpec = {
 					"name": [
 						"-i",
 						"--interactive"
-					]
+					],
+					args: containerAndCommandArgs
 				},
 				{
 					"description": "Give extended privileges to the command",
 					"name": [
 						"--privileged"
-					]
+					],
+					args: containerAndCommandArgs
 				},
 				{
 					"description": "Allocate a pseudo-TTY",
 					"name": [
 						"-t",
 						"--tty"
-					]
+					],
+					args: containerAndCommandArgs
 				},
 				{
 					"args": {
@@ -1309,6 +1339,7 @@ var completionSpec = {
 					]
 				}
 			],
+			args: containerAndCommandArgs,
 			subcommands: []
 		},
 		{ 
