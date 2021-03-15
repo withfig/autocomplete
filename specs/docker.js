@@ -56,35 +56,6 @@ var generators = {
 	}
 };
 
-// TODO: args and options
-
-// option
-// {
-// 	name: [""],
-// 	description: "",
-// 	args: {}
-// },
-
-// {
-// 	name: 'container',
-// 	generators: [
-// 		generators.runningDockerContainers,
-// 	]
-// }
-
-// [
-// 	{
-// 		name: 'container',
-// 		generators: [
-// 			generators.runningDockerContainers,
-// 		]
-// 	},
-// 	{
-// 		name: 'command',
-// 		isCommand: true
-// 	}
-// ],
-
 // TODO: Does isVariadic work?
 var containersArg = {
 	name: 'container',
