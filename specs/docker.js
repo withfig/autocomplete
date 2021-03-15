@@ -12,11 +12,19 @@ var generators = {
     allDockerContainers: {
         script: `docker ps -a --format '{{ json . }}'`,
         postProcess: function (out) {
-            let allLines = out.split('\n').map(JSON.parse);
-            return allLines.map(i => ({
-                name: i.ID,
-                displayName: `${i.ID} (${i.Image})`,
-            }));
+			console.log('postProcess started');
+            let allLines = out.split('\n');
+			return allLines.map(i => {
+				try {
+					i = JSON.parse(i)
+					return {
+						name: i.ID,
+						displayName: `${i.ID} (${i.Image})`,
+					}
+				} catch (error) {
+					console.error(error);	
+				}
+			});
         }
     },
 	allLocalImages: {
@@ -2090,7 +2098,12 @@ var completionSpec = {
 			name: "start",       
 			description: "Start one or more stopped containers",
 			// TODO: Pull in containrs
-			args: {},
+			args: {
+				name: 'container',
+				generators: [
+					generators.allDockerContainers
+				]
+			},
 			options: [
 				{
 					"description": "Attach STDOUT/STDERR and forward signals",
