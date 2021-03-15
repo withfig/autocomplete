@@ -2026,8 +2026,7 @@ var completionSpec = {
 		{ 
 			name: "save",        
 			description: "Save one or more images to a tar archive (streamed to STDOUT by default)",
-			// TODO pull in images?
-			args: {},
+			args: imagesArg,
 			options: [
 				{
 					"description": "Write to a file, instead of STDOUT",
