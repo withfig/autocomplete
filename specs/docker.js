@@ -27,6 +27,24 @@ var generators = {
 			});
         }
     },
+	pausedDockerContainers: {
+		script: `docker ps --filter status=paused --format '{{ json . }}'`,
+		postProcess: function (out) {
+			console.log('postProcess started');
+            let allLines = out.split('\n');
+			return allLines.map(i => {
+				try {
+					i = JSON.parse(i)
+					return {
+						name: i.ID,
+						displayName: `${i.ID} (${i.Image})`,
+					}
+				} catch (error) {
+					console.error(error);	
+				}
+			});
+        }
+	},
 	allLocalImages: {
 		script: `docker image ls --format '{{ json . }}'`,
 		postProcess: function (out) {
@@ -2200,8 +2218,12 @@ var completionSpec = {
 		{ 
 			name: "unpause",     
 			description: "Unpause all processes within one or more containers",
-			// TODO: Pull in paused containers?
-			args: {},
+			args: {
+				name: 'container',
+				generators: [
+					generators.pausedDockerContainers
+				]
+			},
 			options: [],
 			subcommands: [] 
 		},
