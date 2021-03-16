@@ -7,7 +7,12 @@ var generators = {
             return out.match(/.*•.*/gi)
                 .map(info => info.split('•'))
                 .map(deviceInfo => deviceInfo.map(info => info.trim()))
-                .map(device => ({ name: `${device[1]} • ${device[2]} • ${device[3]}`, icon: "📱", description: "Available emulators", insertValue: device[0] }))
+                .map(device => ({
+                    name: `${device[1]} • ${device[2]} • ${device[3]}`,
+                    icon: "📱",
+                    description: "Available emulators",
+                    insertValue: device[0]
+                }))
         }
     }
 }
@@ -739,7 +744,7 @@ var completionSpec = {
                 },
                 {
                     name: "apk",
-                    description: "Build an Android APK file from your app."
+                    description: "Build an Android APK file from your app.",
                 },
                 {
                     name: "appbundle",
@@ -782,8 +787,16 @@ var completionSpec = {
                     postProcess: function (out) {
                         return out.split('\n')
                             .filter(channel => channel.match(/\w+$/))
-                            .map(channel => ({ name: channel.trim().match(/\w+/)[0], active: channel.match(/\*/) != null }))
-                            .map(channel => ({ name: `${channel.name}${channel.active ? ' ✅' : ''}`, icon: "🐦", description: "Available channels", insertValue: channel.name }))
+                            .map(channel => ({
+                                name: channel.trim().match(/\w+/)[0],
+                                active: channel.match(/\*/) != null
+                            }))
+                            .map(channel => ({
+                                name: `${channel.name}${channel.active ? ' ✅' : ''}`,
+                                icon: "🐦",
+                                description: "Available channels",
+                                insertValue: channel.name
+                            }))
                     }
                 },
             }
@@ -1104,12 +1117,12 @@ var completionSpec = {
                 },
                 {
                     name: "--create",
-                    insertValue: "--create {cursor}",
+                    insertValue: "--create ",
                     description: "Creates a new Android emulator based on a Pixel device."
                 },
                 {
                     name: "--name",
-                    insertValue: "--name {cursor}",
+                    insertValue: "--name ",
                     description: "Used with flag --create. Specifies a name for the emulator being created."
                 }
             ]
@@ -1170,7 +1183,7 @@ var completionSpec = {
                 },
                 {
                     name: "--preferred-supported-locales",
-                    insertValue: "--preferred-supported-locales {cursor}",
+                    insertValue: "--preferred-supported-locales ",
                     description: "The list of preferred supported locales for the application. By default, the tool will generate the supported locales list in alphabetical order. Use this flag if you would like to default to a different locale. For example, pass in `en_US` if you would like your app to default to American English if a device supports it.(Pass this option multiple times for defining multiple items",
                     args: {
                         name: "locale"
@@ -1187,7 +1200,7 @@ var completionSpec = {
                 ...useDefferedLoading,
                 {
                     name: "--gen-inputs-and-outputs-list",
-                    insertValue: "--gen-inputs-and-outputs-list {cursor}",
+                    insertValue: "--gen-inputs-and-outputs-list ",
                     description: "When specified, the tool generates a JSON file containing the tool's inputs and outputs named gen_l10n_inputs_and_outputs.json. \n\nThis can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations. For example, the Flutter tool's build system uses this file to keep track of when to call gen_l10n during hot reload. \n\nThe value of this option is the directory where the JSON file will be generated. \n\nWhen null, the JSON file will not be generated.",
                     args: {
                         name: "path to output directory",
@@ -1197,7 +1210,7 @@ var completionSpec = {
                 ...syntheticPackage,
                 {
                     name: "--project-dir",
-                    insertValue: "--project-dir {cursor}",
+                    insertValue: "--project-dir ",
                     description: "When specified, the tool uses the path passed into this option as the directory of the root Flutter project. \n\nWhen null, the relative path to the present working directory will be used.",
                     args: {
                         name: "absolute path to flutter project",
@@ -1342,7 +1355,7 @@ var completionSpec = {
                 verbose,
                 {
                     name: ["-o", "--out"],
-                    insertValue: "--out {cursor}",
+                    insertValue: "--out ",
                     description: "Location to write the screenshot.",
                     args: {
                         name: "path to file",
@@ -1351,7 +1364,7 @@ var completionSpec = {
                 },
                 {
                     name: "--observatory-uri",
-                    insertValue: "--observatory-uri {cursor}",
+                    insertValue: "--observatory-uri ",
                     description: "The observatory URI to connect to. This is required when --type is \"skia\" or \"rasterizer\". To find the observatory URI, use \"flutter run\" and look for \"An Observatory ... is available at\" in the output.",
                     args: {
                         name: "URI",
@@ -1359,7 +1372,7 @@ var completionSpec = {
                 },
                 {
                     name: "--type",
-                    insertValue: "--type {cursor}",
+                    insertValue: "--type ",
                     description: "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri ",
                     args: {
                         name: "type",
@@ -1385,7 +1398,7 @@ var completionSpec = {
                 },
                 {
                     name: "--device-timeout",
-                    insertValue: "--device-timeout {cursor}",
+                    insertValue: "--device-timeout ",
                     description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
                     args: {
                         name: "seconds",
@@ -1401,7 +1414,7 @@ var completionSpec = {
                 verbose,
                 {
                     name: ["-d", "--debug-info"],
-                    insertValue: "--debug-info {cursor}",
+                    insertValue: "--debug-info ",
                     description: "A path to the symbols file generated with \"--split-debug-info\". e.g. /out/android/app.arm64.symbols",
                     args: {
                         name: "file path of .symbols",
@@ -1410,7 +1423,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-i", "--input"],
-                    insertValue: "--input {cursor}",
+                    insertValue: "--input ",
                     description: "A file path containing a Dart stack trace. e.g. /crashes/stack_trace.err",
                     args: {
                         name: "file path",
@@ -1419,7 +1432,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-o", "--output"],
-                    insertValue: "--output {cursor}",
+                    insertValue: "--output ",
                     args: {
                         name: "file path",
                         description: "A file path for a symbolized stack trace to be written to.",
@@ -1444,7 +1457,7 @@ var completionSpec = {
                 },
                 {
                     name: "--name",
-                    insertValue: "--name {cursor}",
+                    insertValue: "--name ",
                     description: "A regular expression matching substrings of the names of tests to run.",
                     args: {
                         name: "regexp",
@@ -1452,7 +1465,7 @@ var completionSpec = {
                 },
                 {
                     name: "--plain-name",
-                    insertValue: "--plain-name {cursor}",
+                    insertValue: "--plain-name ",
                     description: "A plain-text substring of the names of tests to run.",
                     args: {
                         name: "substring",
@@ -1490,7 +1503,7 @@ var completionSpec = {
                 },
                 {
                     name: ["--j", "--concurrency"],
-                    insertValue: "--concurrency {cursor}",
+                    insertValue: "--concurrency ",
                     description: "The number of concurrent test processes to run. (defaults to \"6\")",
                     args: {
                         name: "jobs"
