@@ -5,7 +5,7 @@ var completionSpec = {
         template: "folders"
     }
 };
-export {};
+
 // var completionSpec = {
 //     name: "cd",
 //     description: "Change the shell working directory",

@@ -5,6 +5,6 @@
  * and customize it!
  */
 
-export const exampleCompletionSpec: Fig.Spec =  {
+export const completion: Fig.Spec =  {
     name: "example"
 }

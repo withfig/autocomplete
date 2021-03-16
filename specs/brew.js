@@ -129,7 +129,7 @@ var completionSpec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -145,7 +145,7 @@ var completionSpec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -161,7 +161,7 @@ var completionSpec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -177,7 +177,7 @@ var completionSpec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 }
             ]
@@ -190,4 +190,4 @@ var completionSpec = {
         }
     ]
 };
-export {};
+

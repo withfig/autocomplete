@@ -6,7 +6,7 @@
     "lib": ["ESNext"],
     "noImplicitAny": false
   },
-  "include": ["./development/**/*"],
+  "include": ["./dev/**/*"],
   "files": [
     "./schemas/fig.d.ts",
     "./example.ts"

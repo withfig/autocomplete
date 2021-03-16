@@ -16,7 +16,7 @@ const options: ts.TranspileOptions = {
 }
 
 // Folder names
-const SOURCE_FOLDER_NAME = 'development'
+const SOURCE_FOLDER_NAME = 'dev'
 const DESTINATION_FOLDER_NAME = 'specs'
 
 /**
@@ -48,10 +48,10 @@ const processSpec = (file: string) => {
 }
 
 // Process all the files in the specs directory
-fs.readdir('development', (err, files) => {
+fs.readdir(SOURCE_FOLDER_NAME, (err, files) => {
   if (err) {
     SpecLogger.log(
-      `$Could not find /${DESTINATION_FOLDER_NAME} folder`,
+      `Could not find /${DESTINATION_FOLDER_NAME} folder`,
       Level.ERROR
     )
     return

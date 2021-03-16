@@ -6,4 +6,4 @@ var completionSpec = {
         template: "filepaths"
     }
 };
-export {};
+

@@ -36,4 +36,4 @@ var completionSpec = {
         },
     ]
 };
-export {};
+

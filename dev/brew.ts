@@ -131,7 +131,7 @@ export const brewCompletionSpec: Fig.Spec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -147,7 +147,7 @@ export const brewCompletionSpec: Fig.Spec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -163,7 +163,7 @@ export const brewCompletionSpec: Fig.Spec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 },
                 {
@@ -179,7 +179,7 @@ export const brewCompletionSpec: Fig.Spec = {
                     ],
                     args: {
                         variadic: true,
-                        generators: generators.servicesGenerator
+                        generators: brewGenerators.servicesGenerator
                     }
                 }
             ]

@@ -163,7 +163,7 @@ var defaultsCompletionSpec = {
         },
     ]
 };
-export {};
+
 // Command line interface to a user's defaults.
 // Syntax:
 // 'defaults' [-currentHost | -host <hostname>] followed by one of the following:
