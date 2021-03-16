@@ -14,6 +14,13 @@ var generators = {
                     insertValue: device[0]
                 }))
         }
+    },
+    dartFiles: {
+        template: "filepaths",
+        filterTemplateSuggestions: function (suggestions) {
+            return suggestions
+                .filter(suggestion => suggestion.type === "folder" || suggestion.name.endsWith('.dart'));
+        }
     }
 }
 
@@ -770,6 +777,15 @@ var completionSpec = {
                     name: "web",
                     description: "Build a web application bundle."
                 },
+                {
+                    name: ["-t", "--target"],
+                    insertValue: "--target ",
+                    description: "The main entry-point file of the application, as run on the device.\n If the --target option is omitted, but a file name is provided on the command line, then that is used instead.\n(defaults to \"lib/main.dart\")",
+                    args: {
+                        name: "path",
+                        generators: generators.dartFiles,
+                    }
+                }
             ],
             args: {
                 name: "executable-type",
