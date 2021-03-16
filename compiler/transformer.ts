@@ -1,45 +1,59 @@
 import {
-  SourceFile,
-  TransformerFactory,
+  factory,
+  isVariableStatement,
   Node,
-  VariableDeclarationList,
-  isVariableDeclaration,
+  SourceFile,
+  SyntaxKind,
+  TransformerFactory,
   updateVariableDeclaration,
+  updateVariableDeclarationList,
+  updateVariableStatement,
+  VariableStatement,
   visitEachChild,
   visitNode,
-  factory,
 } from 'typescript'
 
 // The name of the spec variable
 const SPEC_NAME = 'completionSpec'
-const SPEC_ENDING = 'CompletionSpec'
+const EXPORT_KEYWORD = SyntaxKind.ExportKeyword
 
 /**
- * The TypeScript transformer to rename the spec variable name to SPEC_NAME.
+ * The TypeScript transformer to rename the export spec variable name to SPEC_NAME,
+ * and remove the export keyword.
  *
  * @param context The current context
  */
-export const variableNameTransformer: TransformerFactory<SourceFile> = context => {
-  return sourceFile => {
+export const specTransformer: TransformerFactory<SourceFile> = (context) => {
+  return (sourceFile) => {
     let updated = false
     const visitor = (node: Node) => {
-      if (!updated && isVariableDeclaration(node)) {
-        const declarationList = node.parent as VariableDeclarationList
-
-        // Change the variable name if the declaration list flag is equal to 2
-        // (2 is const) and also if the name ends with CompletionSpec
+      if (!updated && isVariableStatement(node)) {
+        const { declarationList, modifiers } = node as VariableStatement
+        // Only process if there is a modifier, and if this modifier
+        // is an export.
         if (
-          declarationList.flags === 2 &&
-          'escapedText' in node.name &&
-          node.name.escapedText.toString().endsWith(SPEC_ENDING)
+          modifiers &&
+          modifiers.length === 1 &&
+          modifiers[0].kind === EXPORT_KEYWORD
         ) {
+          const variableNode = declarationList.declarations[0]
+
           updated = true
-          return updateVariableDeclaration(
-            node,
+
+          // Update the variable name to SPEC_NAME
+          const newVariableNode = updateVariableDeclaration(
+            variableNode,
             factory.createIdentifier(SPEC_NAME),
-            node.type,
-            node.initializer
+            variableNode.type,
+            variableNode.initializer
           )
+          const newDeclarationlist = updateVariableDeclarationList(
+            declarationList,
+            [newVariableNode]
+          )
+
+          // Remove the export keyword
+          return updateVariableStatement(node, [], newDeclarationlist)
         }
       }
       return visitEachChild(node, visitor, context)

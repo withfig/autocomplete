@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
 // An enum representing the log level and the color to use
 // in chalk to render this level.

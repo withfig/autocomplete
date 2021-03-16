@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./specs",
     "target": "es5",
     "module": "ESNext",
     "lib": ["ESNext"],
-    "allowJs": true
+    "noImplicitAny": false
   },
-  "include": ["./specs/**/*"],
+  "include": ["./development/**/*"],
   "files": [
-    "./schemas/fig.d.ts"
+    "./schemas/fig.d.ts",
+    "./example.ts"
   ]
 }

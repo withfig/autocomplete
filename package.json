@@ -4,7 +4,8 @@
   "description": "Fig Autocomplete Spec Linter",
   "scripts": {
     "test": "tsc --noEmit",
-    "build": "ts-node-script compiler/compiler.ts"
+    "build": "ts-node-script compiler/compiler.ts",
+    "copy": "cp ./specs/*.js ~/.fig/autocomplete/"
   },
   "author": "",
   "license": "ISC",

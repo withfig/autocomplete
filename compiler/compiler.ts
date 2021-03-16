@@ -1,69 +1,79 @@
-import * as fs from 'fs';
-import * as ts from 'typescript';
-import * as path from 'path';
-import { variableNameTransformer } from './transformer';
-import SpecLogger, { Level } from './log';
-import * as ProgressBar from 'progress';
+import fs from 'fs'
+import ts from 'typescript'
+import path from 'path'
+import { specTransformer } from './transformer'
+import SpecLogger, { Level } from './log'
+import ProgressBar from 'progress'
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
-    compilerOptions: {
-        module: ts.ModuleKind.ESNext,
-    },
-    transformers: {
-        before: [variableNameTransformer],
-    },
-};
+  compilerOptions: {
+    module: ts.ModuleKind.ESNext,
+  },
+  transformers: {
+    before: [specTransformer],
+  },
+}
+
+// Folder names
+const SOURCE_FOLDER_NAME = 'development'
+const DESTINATION_FOLDER_NAME = 'specs'
 
 /**
  * Process a spec by transpiling it with the TypeScript
  * compiler.
- *
  * @param file The file to process
  */
 const processSpec = (file: string) => {
+  const source = fs.readFileSync(file).toString()
+  const result = ts.transpileModule(source, options)
 
-    const source = fs.readFileSync(file).toString();
-    const result = ts.transpileModule(source, options);
+  let newName = path.basename(file, '.ts')
 
-    let newName = path.basename(file, '.ts');
+  if (!newName.endsWith('.js')) {
+    newName += '.js'
+  }
 
-    if(!newName.endsWith('.js'))
-        newName += '.js';
+  const outFilePath = path.resolve(DESTINATION_FOLDER_NAME, newName)
+  const outDirname = path.dirname(outFilePath)
 
-    const outFilePath = path.resolve('dist', newName);
-    const outDirname = path.dirname(outFilePath);
+  if (!fs.existsSync(outDirname)) {
+    fs.mkdirSync(outDirname)
+  }
 
-    if(!fs.existsSync(outDirname))
-        fs.mkdirSync(outDirname);
+  // Remove unessesary export at the end of js files
+  const jsOutput = result.outputText.replace("export {};", "")
 
-    fs.writeFileSync(outFilePath, result.outputText);
-};
+  fs.writeFileSync(outFilePath, jsOutput)
+}
 
 // Process all the files in the specs directory
-fs.readdir('specs', (err, files) => {
+fs.readdir('development', (err, files) => {
+  if (err) {
+    SpecLogger.log(
+      `$Could not find /${DESTINATION_FOLDER_NAME} folder`,
+      Level.ERROR
+    )
+    return
+  }
 
-    if(err) {
+  const specs = files.filter((file) => file !== '.DS_STORE')
+  SpecLogger.log(`Processing ${specs.length} specs...`)
 
-        SpecLogger.log('Could not find specs folder', Level.ERROR);
-        return;
-    }
+  const bar = new ProgressBar(':bar :percent', {
+    total: specs.length,
+    complete: '=',
+    head: '>',
+    incomplete: ' ',
+  })
 
-    const specs = files.filter(file => file !== '.DS_STORE');
-    SpecLogger.log(`Processing ${specs.length} specs...`);
+  specs.forEach((spec) => {
+    processSpec(path.join(SOURCE_FOLDER_NAME, spec))
+    bar.tick({ spec })
+  })
 
-    const bar = new ProgressBar(':bar :percent', {
-        total: specs.length,
-        complete: '=',
-        head: '>',
-        incomplete: ' ',
-    });
-
-    specs.forEach(spec => {
-
-        processSpec( path.join('specs', spec));
-        bar.tick({ spec });
-    });
-
-    SpecLogger.log('Specs compiled successfully to /dist folder!', Level.SUCCESS);
-});
+  SpecLogger.log(
+    `Specs compiled successfully to /${DESTINATION_FOLDER_NAME} folder!`,
+    Level.SUCCESS
+  )
+})
