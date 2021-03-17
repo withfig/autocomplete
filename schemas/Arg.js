@@ -9,12 +9,15 @@ const Arg = Joi.object({
     description: Joi.string().optional().allow(''),
     icon: Joi.string(),
     suggestions: Joi.array().items(Suggestion),
-    template: Joi.string().valid("filepaths", "folders"),
+    template: Joi.alternatives().try(Joi.string().valid("filepaths", "folders"), Joi.array().items(Joi.string().valid("filepaths", "folders"))),
     generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
     generator: Joi.alternatives().try(Generator),
     variadic: Joi.boolean(),
+    isVariadic: Joi.boolean(),
+    isCommand: Joi.boolean(),
+    isScript: Joi.boolean(),
     isOptional: Joi.boolean(),
-    isCommand: Joi.boolean()
+    isDangerous: Joi.boolean()
 })
 
 module.exports = { Arg };
