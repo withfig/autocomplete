@@ -1,10 +1,9 @@
 var completionSpec = {
-
     name: "tar",
     description: "Manipulating archive files",
     args: {
     	variadic: true,
-        template: "folders" 
+        template: "folders"
     },
     options: [
  		{
@@ -12,7 +11,7 @@ var completionSpec = {
             description: "Create a new archive",
             args: {
     	        variadic: true,
-                template: "folders" 
+                template: "folders"
             }
         },
  		{
@@ -36,6 +35,7 @@ var completionSpec = {
             }
         },
  		{ name: ["-h", "--help"], description: "Help" },
- 		{ name: ["--version"], description: "Version" },
+        { name: ["--version"], description: "Version" },
+        { name: ["--wildcards"], args: { name: "pattern", description: "ex: *.html" } }
     ]
 }

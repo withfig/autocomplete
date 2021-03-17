@@ -25,8 +25,6 @@ var completionSpec = {
                 return acc
               }
             }, [])
-
-            console.log(out)
             return out
           }
         }

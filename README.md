@@ -25,6 +25,7 @@ Completion specs are defined in a *declarative* JSON schema, that specifies `sub
 
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
+
 ## Linting Your Spec
 The autocomplete spec linter can be run to validate the format of completion specs. Run it to get syntax and type errors from your autocomplete spec.
 
