@@ -876,5 +876,162 @@ var completionSpec = {
             ],
             subcommands: []
         }
+    ],
+    options: [
+        {
+            "args": {
+                "name": "Docker Compose File"
+            },
+            "description": "Specify an alternate compose file",
+            "name": [
+                "-f",
+                "--file"
+            ],
+        },
+        {
+            "args": {
+                "name": "string"
+            },
+            "description": "Specify an alternate project name",
+            "name": [
+                "-p",
+                "--project-name"
+            ]
+        },
+        {
+            "args": {
+                "name": "string"
+            },
+            "description": "Specify a profile to enable",
+            "name": [
+                "--profile"
+            ]
+        },
+        {
+            "args": {
+                "name": "string"
+            },
+            "description": "Specify a context name",
+            "name": [
+                "-c",
+                "--context"
+            ]
+        },
+        {
+            "description": "Show more output",
+            "name": [
+                "--verbose"
+            ]
+        },
+        {
+            "args": {
+                "name": "LEVEL"
+            },
+            "description": "Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+            "name": [
+                "--log-level"
+            ]
+        },
+        {
+            "args": {
+                "name": "(never|always|auto)"
+            },
+            "description": "Control when to print ANSI control characters",
+            "name": [
+                "--ansi"
+            ]
+        },
+        {
+            "description": "Do not print ANSI control characters (DEPRECATED)",
+            "name": [
+                "--no-ansi"
+            ]
+        },
+        {
+            "description": "Print version and exit",
+            "name": [
+                "-v",
+                "--version"
+            ]
+        },
+        {
+            "args": {
+                "name": "HOST"
+            },
+            "description": "Daemon socket to connect to",
+            "name": [
+                "-H",
+                "--host"
+            ]
+        },
+        {
+            "description": "Use TLS; implied by --tlsverify",
+            "name": [
+                "--tls"
+            ]
+        },
+        {
+            "args": {
+                "name": "CA_PATH"
+            },
+            "description": "Trust certs signed only by this CA",
+            "name": [
+                "--tlscacert"
+            ]
+        },
+        {
+            "args": {
+                "name": "CLIENT_CERT_PATH"
+            },
+            "description": "Path to TLS certificate file",
+            "name": [
+                "--tlscert"
+            ]
+        },
+        {
+            "args": {
+                "name": "TLS_KEY_PATH"
+            },
+            "description": "Path to TLS key file",
+            "name": [
+                "--tlskey"
+            ]
+        },
+        {
+            "description": "Use TLS and verify the remote",
+            "name": [
+                "--tlsverify"
+            ]
+        },
+        {
+            "description": "Don't check the daemon's hostname against the",
+            "name": [
+                "--skip-hostname-check"
+            ]
+        },
+        {
+            "args": {
+                "name": "PATH"
+            },
+            "description": "Specify an alternate working directory",
+            "name": [
+                "--project-directory"
+            ]
+        },
+        {
+            "description": "If set, Compose will attempt to convert keys",
+            "name": [
+                "--compatibility"
+            ]
+        },
+        {
+            "args": {
+                "name": "PATH"
+            },
+            "description": "Specify an alternate environment file",
+            "name": [
+                "--env-file"
+            ]
+        }
     ]
 }
