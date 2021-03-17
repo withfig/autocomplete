@@ -1,5 +1,11 @@
 var getServices = {
-    script: "docker-compose config --services",
+    script: (context) => {
+        if (context.includes('-f')) {
+            let index = context.indexOf('-f');
+            return `docker-compose -f ${context[index + 1]} config --services`
+        }
+        return "docker-compose config --services"
+    },
     splitOn: "\n"
 }
 
@@ -880,7 +886,15 @@ var completionSpec = {
     options: [
         {
             "args": {
-                "name": "Docker Compose File"
+                "name": "Docker Compose File",
+                generator: {
+                    template: "filepaths",
+                    filterTemplateSuggestions: function (paths) {
+                        return paths.filter(file => {
+                            return file.name.endsWith('.yml')
+                        })
+                    }
+                }
             },
             "description": "Specify an alternate compose file",
             "name": [
