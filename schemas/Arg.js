@@ -13,7 +13,11 @@ const Arg = Joi.object({
     generators: Joi.alternatives().try(Generator, Joi.array().items(Generator)),
     generator: Joi.alternatives().try(Generator),
     variadic: Joi.boolean(),
-    isOptional: Joi.boolean()
+    isVariadic: Joi.boolean(),
+    isCommand: Joi.boolean(),
+    isScript: Joi.boolean(),
+    isOptional: Joi.boolean(),
+    isDangerous: Joi.boolean()
 })
 
 module.exports = { Arg };
