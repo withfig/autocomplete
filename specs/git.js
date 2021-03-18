@@ -738,6 +738,14 @@ var completionSpec = {
                     description: "Don't write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
                 },
                 {
+                    name: ["-p", "--prune"],
+                    description: "Before fetching, remove any remote-tracking references that no longer exist on the remote",
+                },
+                {
+                    name: ["-P", "--prune-tags"],
+                    description: "Before fetching, remove any local tags that no longer exist on the remote if --prune is enabled",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
