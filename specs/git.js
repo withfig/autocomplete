@@ -777,17 +777,18 @@ var completionSpec = {
                     name: ["-t", "--tags"],
                     description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
                 },
-                {
-                    name: ["--recurse-submodules"],
-                    insertValue: "--recurse-submodules={cursor}",
-                    args: {
-                        name: 'mode',
-                        suggestions: [
-                            'yes', 'on-demand', 'no',
-                        ],
-                    },
-                    description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
-                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules"],
+                //     insertValue: "--recurse-submodules={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand', 'no',
+                //         ],
+                //     },
+                //     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                // },
                 {
                     name: ["-j", "jobs"],
                     args: {
@@ -811,17 +812,18 @@ var completionSpec = {
                     },
                     description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
                 },
-                {
-                    name: ["--recurse-submodules-default"],
-                    insertValue: "--recurse-submodules-default={cursor}",
-                    args: {
-                        name: 'mode',
-                        suggestions: [
-                            'yes', 'on-demand',
-                        ],
-                    },
-                    description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
-                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules-default"],
+                //     insertValue: "--recurse-submodules-default={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand',
+                //         ],
+                //     },
+                //     description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
+                // },
                 {
                     name: ["-u", "--update-head-ok"],
                     description: "By default git fetch refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for git pull to communicate with git fetch, and unless you are implementing your own Porcelain you are not supposed to use it.",
