@@ -811,6 +811,14 @@ var completionSpec = {
                     description: "By default git fetch refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for git pull to communicate with git fetch, and unless you are implementing your own Porcelain you are not supposed to use it.",
                 },
                 {
+                    name: ["--upload-pack"],
+                    insertValue: "--upload-pack {cursor}",
+                    args: {
+                        name: 'upload-pack',
+                    },
+                    description: "When given, and the repository to fetch from is handled by git fetch-pack, --exec=<upload-pack> is passed to the command to specify non-default path for the command run on the other end.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
