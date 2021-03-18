@@ -645,26 +645,120 @@ var completionSpec = {
             name: "stash",
             description: "temporarily stores all the modified tracked files",
             subcommands: [
+		{
+		    name: "push",
+		    description: "",
+		    insertValue: "push {cursor}",
+		    options:
+		    [
+			{name: ["-p", "--patch"], description: ""},
+			{name: ["-k", "--keep-index"], description: ""},
+			{name: ["-p", "--includepatch-untracked"], description: ""},
+			{name: ["-a", "--all"], description: ""},
+			{name: ["-q", "--quiet"], description: ""},
+			{name: ["-m", "--message"], description: ""},
+			{name: "--pathspec-from-file=", description: ""},
+			// TODO
+			{name: "--"}
+		    ]
+		},
+		{
+		    name: "show",
+		    description: "",
+		    insertValue: "show {cursor}",
+		    options:
+		    [
+			// TODO: log options
+			{}
+		    ]
+		},
                 {
                     name: "save",
                     description: "Temporarily stores all the modified tracked files"
+		    insertValue: "save {cursor}"
+		    options:
+		    [
+			{name: ["-p", "--patch"], description: ""},
+			{name: ["-k", "--keep-index"], description: ""},
+			{name: ["-u", "--include-untracked"], description: ""},
+			{name: ["-a", "--all"], description: ""},
+			{name: ["-q", "--quiet"], description: ""},
+	
+		    ]
                 },
                 {
                     name: "pop",
                     description: "Restores the most recently stashed files"
+		    insertValue: "pop {cursor}"
+		    options:
+		    [
+			{name: "--index", description: ""},
+			{name: ["-q", "--quiet"], description: ""}
+		    ]
+		    // TODO: need generator for stashed
                 },
                 {
                     name: "list",
-                    description: "Lists all stashed changesets"
+                    description: "Lists all stashed changesets",
+                    insertValue: "list {cursor}",
                 },
                 {
                     name: "drop",
                     description: "Discards the most recently stashed changeset"
+		    insertValue: "drop {cursor}",
+		    options:
+		    [
+			{name: ["-q", "--quiet"]}
+		    ]
+		    // TODO: need generator for stash
                 },
                 {
                     name: "clear",
                     description: " Remove all the stash entries."
-                }
+		    insertValue: "clear"
+                },
+		{
+		    name: "apply",
+		    description: ""
+		    insertValue: "apply {cursor}",
+		    options:
+		    [
+			{name: "--index", description: ""},
+			{name: ["-q", "--quiet"], description: ""}
+		    ]
+		    // TODO: need generator for stashed
+		},
+		{
+		    name: "branch",
+		    description: ""
+		    insertValue: "branch {cursor}",
+                    generators: generators.branches,
+		    options:
+		    [
+			//TODO: stash generator
+		    ]
+		},
+		{
+		    name: "create",
+		    description: ""
+		    insertValue: "create {cursor}"
+		},
+		{
+		    name: "store",
+		    description: ""
+		    insertValue: "store",
+		    options:
+		    [
+			{
+			    name: ["-m", "--message"],
+			    description: ""
+			},
+			{
+			    name: ["-q", "--quiet"],
+			    description: ""
+			}
+		    ]
+		},
             ]
         },
         { name: "reflog", description: "Show history of events with hashes" },
