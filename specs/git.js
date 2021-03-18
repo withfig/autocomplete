@@ -693,6 +693,7 @@ var completionSpec = {
                     insertValue: "--negotiation-tip {cursor}",
                     args: {
                         name: 'commit|glob',
+                        generators: generators.commits,
                     },
                     description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
                 },
