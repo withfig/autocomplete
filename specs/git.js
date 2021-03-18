@@ -685,6 +685,18 @@ var completionSpec = {
                     description: "If the source repository is shallow, fetch as much as possible so that the current repository has the same history as the source repository",
                 },
                 {
+                    name: ["--update-shallow"],
+                    description: "By default when fetching from a shallow repository, git fetch refuses refs that require updating .git/shallow",
+                },
+                {
+                    name: ["--negotiation-tip"],
+                    insertValue: "--negotiation-tip {cursor}",
+                    args: {
+                        name: 'commit|glob',
+                    },
+                    description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
