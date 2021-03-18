@@ -556,14 +556,6 @@ var completionSpec = {
                     description: "Remove any anonymous volumes attached to containers",
                     args: {}
                 },
-                {
-                    name: [
-                        "-a",
-                        "--all"
-                    ],
-                    description: "Deprecated - no effect.",
-                    args: {}
-                }
             ],
             subcommands: []
         },
@@ -1040,7 +1032,8 @@ var completionSpec = {
         },
         {
             "args": {
-                "name": "PATH"
+                "name": "PATH",
+                template: "filepaths",
             },
             "description": "Specify an alternate environment file",
             "name": [
