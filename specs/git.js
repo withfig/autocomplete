@@ -681,6 +681,10 @@ var completionSpec = {
                     description: "Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag. This option can be specified multiple times",
                 },
                 {
+                    name: ["--unshallow"],
+                    description: "If the source repository is shallow, fetch as much as possible so that the current repository has the same history as the source repository",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
