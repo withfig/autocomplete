@@ -308,16 +308,20 @@ var completionSpec = {
     },
     {
       name: "cache",
-      subcommands: [
-        {
-          name: "dir",
-          description: "Display path to the cache directory for nvm"
-        },
-        {
-          name: "clear",
-          description: "Empty cache directory for nvm"
-        }
-      ],
+      args: {
+        suggestions: [
+          {
+            name: "dir",
+            description: "Display path to the cache directory for nvm",
+            type: "subcommand"
+          },
+          {
+            name: "clear",
+            description: "Empty cache directory for nvm",
+            type: "subcommand"
+          }
+        ],
+      },
     },
     {
       name: "set-colors",
