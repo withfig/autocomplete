@@ -831,6 +831,13 @@ var completionSpec = {
                     description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified.",
                 },
                 {
+                    name: ["-o", "--server-option"],
+                    args: {
+                        name: 'option',
+                    },
+                    description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
