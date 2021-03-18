@@ -640,7 +640,7 @@ var completionSpec = {
             name: "stash",
             description: "temporarily stores all the modified tracked files",
             subcommands: [{
-                    name: "push",
+                    name: ["push", ""],
                     description: "Save your local modifications to a new stash entry and roll them back to HEAD.",
                     insertValue: "push {cursor}",
                     options: [
