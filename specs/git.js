@@ -796,6 +796,17 @@ var completionSpec = {
                     description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
                 },
                 {
+                    name: ["--recurse-submodules-default"],
+                    insertValue: "--recurse-submodules-default={cursor}",
+                    args: {
+                        name: 'mode',
+                        suggestions: [
+                            'yes', 'on-demand',
+                        ],
+                    },
+                    description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
