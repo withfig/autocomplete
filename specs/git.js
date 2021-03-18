@@ -636,6 +636,11 @@ var completionSpec = {
             description: "Download objects and refs from another repository",
             options: [
                 {
+                    name: "--all",
+                    insertValue: "--all",
+                    description: "Fetch all remotes",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
