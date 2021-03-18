@@ -842,6 +842,10 @@ var completionSpec = {
                     description: "By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs",
                 },
                 {
+                    name: ["--no-show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
