@@ -651,14 +651,14 @@ var completionSpec = {
                         { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
                         {
                             name: ["-m", "--message"],
-                            insertValue: "-m '{cursor}'",
+                            insertValue: "-m {cursor}",
                             description: "Use the given <msg> as the stash message.",
                             args: {
                                 name: "message"
                             },
                         },
                         { name: "--pathspec-from-file=", description: "" }, // TODO: pathspec file nul and add description
-                        { name: "--", description = "Separates pathsec from options for disambiguation purposes." },
+                        { name: "--", description: "Separates pathsec from options for disambiguation purposes." },
                         // TODO: pathspec
                     ]
                 },
@@ -777,7 +777,7 @@ var completionSpec = {
                     },
                     options: [{
                             name: ["-m", "--message"],
-                            insertValue: "-m '{cursor}'",
+                            insertValue: "-m {cursor}",
                             description: "Use the given <msg> as the stash message.",
                             args: {
                                 name: "message"
