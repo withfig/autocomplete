@@ -714,6 +714,14 @@ var completionSpec = {
                     description: "This option overrides that check",
                 },
                 {
+                    name: ["-k", "--keep"],
+                    description: "Keep downloaded pack.",
+                },
+                {
+                    name: ["--multiple"],
+                    description: "Allow several <repository> and <group> arguments to be specified. No <refspec>s may be specified.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
