@@ -780,6 +780,10 @@ var completionSpec = {
                     description: "Number of parallel children to be used for all forms of fetching.",
                 },
                 {
+                    name: ["--no-recurse-submodules"],
+                    description: "Disable recursive fetching of submodules (this has the same effect as using the --recurse-submodules=no option).",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
