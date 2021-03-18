@@ -722,6 +722,14 @@ var completionSpec = {
                     description: "Allow several <repository> and <group> arguments to be specified. No <refspec>s may be specified.",
                 },
                 {
+                    name: ["--auto-maintenance", "--auto-gc"],
+                    description: "Run git maintenance run --auto at the end to perform automatic repository maintenance if",
+                },
+                {
+                    name: ["--no-auto-maintenance", "--no-auto-gc"],
+                    description: "Don't run git maintenance run --auto at the end to perform automatic repository maintenance",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
