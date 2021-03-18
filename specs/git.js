@@ -649,6 +649,14 @@ var completionSpec = {
                     description: "Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.",
                 },
                 {
+                    name: ["--depth"],
+                    insertValue: "--depth {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Limit fetching to the specified number of commits from the tip of each remote branch history",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
