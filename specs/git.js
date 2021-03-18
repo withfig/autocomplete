@@ -29,8 +29,8 @@ var generators = {
 
             return out.split('\n').map((file) => {
                 return {
-                    name: file,
-                    insertValue: file,
+                    name: file.split(":")[1],
+                    insertValue: file.split(":")[0],
                     icon: `fig://icon?type=node`,
                 }
             })
