@@ -706,7 +706,7 @@ var completionSpec = {
                 },
                 {
                     name: ["--negotiation-tip"],
-                    insertValue: "--negotiation-tip {cursor}",
+                    insertValue: "--negotiation-tip ",
                     args: {
                         name: 'commit|glob',
                         generators: generators.commits,
@@ -790,7 +790,7 @@ var completionSpec = {
                 //     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
                 // },
                 {
-                    name: ["-j", "jobs"],
+                    name: ["-j", "--jobs"],
                     args: {
                         name: 'n',
                     },
