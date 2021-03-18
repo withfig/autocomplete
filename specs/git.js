@@ -823,6 +823,10 @@ var completionSpec = {
                     description: "Pass --quiet to git-fetch-pack and silence any other internally used git commands. Progress is not reported to the standard error stream.",
                 },
                 {
+                    name: ["-v", "--verbose"],
+                    description: "Be verbose.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
