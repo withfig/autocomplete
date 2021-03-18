@@ -641,26 +641,33 @@ var completionSpec = {
             description: "temporarily stores all the modified tracked files",
             subcommands: [{
                     name: "push",
-                    description: "",
+                    description: "Save your local modifications to a new stash entry and roll them back to HEAD.",
                     insertValue: "push {cursor}",
                     options: [
-                        { name: ["-p", "--patch"], description: "" },
+                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
                         { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
-                        { name: ["-p", "--includepatch-untracked"], description: "" },
+                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
                         { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
-                        { name: ["-q", "--quiet"], description: "" },
-                        { name: ["-m", "--message"], description: "" },
-                        { name: "--pathspec-from-file=", description: "" }, // TODO: pathspec file nul
-                        { name: "--" },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
+                        {
+                            name: ["-m", "--message"],
+                            insertValue: "-m '{cursor}'",
+                            description: "Use the given <msg> as the stash message.",
+                            args: {
+                                name: "message"
+                            },
+                        },
+                        { name: "--pathspec-from-file=", description: "" }, // TODO: pathspec file nul and add description
+                        { name: "--", description = "Separates pathsec from options for disambiguation purposes." },
                         // TODO: pathspec
                     ]
                 },
                 {
                     name: "show",
-                    description: "",
+                    description: "Show the changes recorded in the stash entry as a diff.",
                     insertValue: "show {cursor}",
                     options: [
-                        // TODO: log options
+                        // TODO: All log options can be options from list. Needs to be added.
                         {}
                     ],
                     args: [{
@@ -674,12 +681,11 @@ var completionSpec = {
                     description: "Temporarily stores all the modified tracked files",
                     insertValue: "save {cursor}",
                     options: [
-                        { name: ["-p", "--patch"], description: "" },
+                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
                         { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
-                        { name: ["-u", "--include-untracked"], description: "" },
+                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
                         { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
-                        { name: ["-q", "--quiet"], description: "" },
-
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
                     ]
                 },
                 {
@@ -687,8 +693,8 @@ var completionSpec = {
                     description: "Restores the most recently stashed files",
                     insertValue: "pop {cursor}",
                     options: [
-                        { name: "--index", description: "" },
-                        { name: ["-q", "--quiet"], description: "" }
+                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
                     ],
                     args: [{
                         name: "stash",
@@ -702,7 +708,7 @@ var completionSpec = {
                     description: "Lists all stashed changesets",
                     insertValue: "list {cursor}",
                     options: [
-                        // TODO: log options
+                        // TODO: All log options can be options from list. Needs to be added.
                     ]
                 },
                 {
@@ -710,7 +716,7 @@ var completionSpec = {
                     description: "Discards the most recently stashed changeset",
                     insertValue: "drop {cursor}",
                     options: [
-                        { name: ["-q", "--quiet"] }
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
                     ],
                     args: [{
                         name: "stash",
@@ -726,36 +732,37 @@ var completionSpec = {
                 },
                 {
                     name: "apply",
-                    description: "",
+                    description: "Like pop, but do not remove the state from the stash list.",
                     insertValue: "apply {cursor}",
                     options: [
-                        { name: "--index", description: "" },
-                        { name: ["-q", "--quiet"], description: "" }
+                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
                     ],
-                    args: [{
-                            name: "stash",
-                            isOptional: true,
-                            generators: generators.stashes
-                        }]
-                        // TODO: need generator for stashed
-                },
-                {
-                    name: "branch",
-                    description: "",
-                    insertValue: "branch {cursor}",
-                    args: {
-                        generators: generators.branches,
-                    },
-                    //TODO: stash generator
                     args: [{
                         name: "stash",
                         isOptional: true,
                         generators: generators.stashes
                     }]
+
+                },
+                {
+                    name: "branch",
+                    description: "Creates and checks out a new branch named ",
+                    insertValue: "branch {cursor}",
+                    args: [{
+                            name: "branch",
+                            generators: generators.branches
+                        },
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: generators.stashes
+                        }
+                    ],
                 },
                 {
                     name: "create",
-                    description: "",
+                    description: "Creates a stash with the message <msg>",
                     insertValue: "create {cursor}",
                     args: {
                         name: "message"
@@ -763,18 +770,22 @@ var completionSpec = {
                 },
                 {
                     name: "store",
-                    description: "",
+                    description: "Store a given stash in the stash ref., updating the staft reflog.",
                     insertValue: "store",
                     args: {
                         name: "message"
                     },
                     options: [{
                             name: ["-m", "--message"],
-                            description: ""
+                            insertValue: "-m '{cursor}'",
+                            description: "Use the given <msg> as the stash message.",
+                            args: {
+                                name: "message"
+                            },
                         },
                         {
                             name: ["-q", "--quiet"],
-                            description: ""
+                            description: "Quiet, suppress feedback messages."
                         }
                     ],
                     args: [{
