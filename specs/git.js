@@ -701,6 +701,14 @@ var completionSpec = {
                     description: "Show what would be done, without making any changes.",
                 },
                 {
+                    name: ["--write-fetch-head"],
+                    description: "Write the list of remote refs fetched in the FETCH_HEAD file directly under $GIT_DIR. This is the default",
+                },
+                {
+                    name: ["--no-write-fetch-head"],
+                    description: "tells Git not to write the file. ",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
