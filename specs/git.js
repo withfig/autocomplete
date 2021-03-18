@@ -730,6 +730,14 @@ var completionSpec = {
                     description: "Don't run git maintenance run --auto at the end to perform automatic repository maintenance",
                 },
                 {
+                    name: ["--write-commit-graph"],
+                    description: "Write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
+                    name: ["--no-write-commit-graph"],
+                    description: "Don't write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
