@@ -784,6 +784,10 @@ var completionSpec = {
                     description: "Disable recursive fetching of submodules (this has the same effect as using the --recurse-submodules=no option).",
                 },
                 {
+                    name: ["--set-upstream"],
+                    description: "If the remote is fetched successfully, add upstream (tracking) reference, used by argument-less git-pull[1] and other commands.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
