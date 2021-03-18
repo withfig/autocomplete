@@ -634,6 +634,22 @@ var completionSpec = {
         {
             name: "fetch",
             description: "Download objects and refs from another repository",
+            args: [
+                {
+                    name: "remote",
+                    isOptional: true,
+                    generators: generators.remotes
+                },
+                {
+                    name: "branch",
+                    isOptional: true,
+                    generators: generators.branches
+                },
+                {
+                    name: "refspec",
+                    isOptional: true,
+                },
+            ],
             options: [
                 {
                     name: "--all",
@@ -853,9 +869,6 @@ var completionSpec = {
                     name: ["-6", "--ipv6"],
                     description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
                 },
-                {
-                    name: "origin", description: "copies all branches from the remote"
-                }
             ]
         },
         {
