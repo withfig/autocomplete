@@ -750,6 +750,14 @@ var completionSpec = {
                     description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
                 },
                 {
+                    name: ["--refmap"],
+                    insertValue: "--refmap {cursor}",
+                    args: {
+                        name: 'refspec',
+                    },
+                    description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
