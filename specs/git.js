@@ -706,7 +706,11 @@ var completionSpec = {
                 },
                 {
                     name: ["--no-write-fetch-head"],
-                    description: "tells Git not to write the file. ",
+                    description: "tells Git not to write the file",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "This option overrides that check",
                 },
                 {
                     name: "origin", description: "copies all branches from the remote"
