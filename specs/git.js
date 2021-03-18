@@ -871,6 +871,10 @@ var completionSpec = {
                     name: ["-6", "--ipv6"],
                     description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
                 },
+                {
+                    name: "--stdin",
+                    description: "Read refspecs, one per line, from stdin in addition to those provided as arguments. The \"tag <name>\" format is not supported",
+                },
             ]
         },
         {
