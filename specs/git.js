@@ -645,6 +645,10 @@ var completionSpec = {
                     description: "Append ref names and object names of fetched refs to the existing contents of .git/FETCH_HEAD",
                 },
                 {
+                    name: ["--atomic"],
+                    description: "Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
