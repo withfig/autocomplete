@@ -685,8 +685,13 @@ var completionSpec = {
                         { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
                         { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
                         { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
-                    ]
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
+
+                    ],
+                    args: {
+                        name: "message",
+                        isOptional: true
+                    },
                 },
                 {
                     name: "pop",
