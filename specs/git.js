@@ -697,6 +697,10 @@ var completionSpec = {
                     description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
                 },
                 {
+                    name: ["--dry-run"],
+                    description: "Show what would be done, without making any changes.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
