@@ -668,7 +668,6 @@ var completionSpec = {
                     insertValue: "show {cursor}",
                     options: [
                         // TODO: All log options can be options from list. Needs to be added.
-                        {}
                     ],
                     args: [{
                         name: "stash",
