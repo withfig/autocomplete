@@ -665,6 +665,14 @@ var completionSpec = {
                     description: "Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history",
                 },
                 {
+                    name: ["--shallow-since"],
+                    insertValue: "--shallow-since {cursor}",
+                    args: {
+                        name: 'date',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to include all reachable commits after <date>",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
