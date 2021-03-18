@@ -773,6 +773,13 @@ var completionSpec = {
                     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
                 },
                 {
+                    name: ["-j", "jobs"],
+                    args: {
+                        name: 'n',
+                    },
+                    description: "Number of parallel children to be used for all forms of fetching.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
