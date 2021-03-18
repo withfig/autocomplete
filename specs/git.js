@@ -846,6 +846,14 @@ var completionSpec = {
                     description: "By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons.",
                 },
                 {
+                    name: ["-4", "--ipv4"],
+                    description: "Use IPv4 addresses only, ignoring IPv6 addresses.",
+                },
+                {
+                    name: ["-6", "--ipv6"],
+                    description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
