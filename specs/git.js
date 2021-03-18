@@ -666,7 +666,7 @@ var completionSpec = {
                     args: [{
                         name: "stash",
                         isOptional: true,
-                        generators: generators.stash
+                        generators: generators.stashes
                     }]
                 },
                 {
@@ -693,7 +693,7 @@ var completionSpec = {
                     args: [{
                         name: "stash",
                         isOptional: true,
-                        generators: generators.stash
+                        generators: generators.stashes
                     }]
 
                 },
@@ -715,7 +715,7 @@ var completionSpec = {
                     args: [{
                         name: "stash",
                         isOptional: true,
-                        generators: generators.stash
+                        generators: generators.stashes
                     }]
 
                 },
@@ -735,7 +735,7 @@ var completionSpec = {
                     args: [{
                             name: "stash",
                             isOptional: true,
-                            generators: generators.stash
+                            generators: generators.stashes
                         }]
                         // TODO: need generator for stashed
                 },
@@ -750,7 +750,7 @@ var completionSpec = {
                     args: [{
                         name: "stash",
                         isOptional: true,
-                        generators: generators.stash
+                        generators: generators.stashes
                     }]
                 },
                 {
