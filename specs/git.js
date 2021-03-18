@@ -674,22 +674,22 @@ var completionSpec = {
 		},
                 {
                     name: "save",
-                    description: "Temporarily stores all the modified tracked files"
-		    insertValue: "save {cursor}"
-		    options:
-		    [
-			{name: ["-p", "--patch"], description: ""},
-			{name: ["-k", "--keep-index"], description: ""},
-			{name: ["-u", "--include-untracked"], description: ""},
-			{name: ["-a", "--all"], description: ""},
-			{name: ["-q", "--quiet"], description: ""},
-	
-		    ]
+                    description: "Temporarily stores all the modified tracked files",
+                    insertValue: "save {cursor}",
+                    options:
+                    [
+                    {name: ["-p", "--patch"], description: ""},
+                    {name: ["-k", "--keep-index"], description: ""},
+                    {name: ["-u", "--include-untracked"], description: ""},
+                    {name: ["-a", "--all"], description: ""},
+                    {name: ["-q", "--quiet"], description: ""},
+            
+                    ]
                 },
                 {
                     name: "pop",
-                    description: "Restores the most recently stashed files"
-		    insertValue: "pop {cursor}"
+                    description: "Restores the most recently stashed files",
+		    insertValue: "pop {cursor}",
 		    options:
 		    [
 			{name: "--index", description: ""},
@@ -704,7 +704,7 @@ var completionSpec = {
                 },
                 {
                     name: "drop",
-                    description: "Discards the most recently stashed changeset"
+                    description: "Discards the most recently stashed changeset",
 		    insertValue: "drop {cursor}",
 		    options:
 		    [
@@ -714,12 +714,12 @@ var completionSpec = {
                 },
                 {
                     name: "clear",
-                    description: " Remove all the stash entries."
+                    description: " Remove all the stash entries.",
 		    insertValue: "clear"
                 },
 		{
 		    name: "apply",
-		    description: ""
+		    description: "",
 		    insertValue: "apply {cursor}",
 		    options:
 		    [
@@ -730,7 +730,7 @@ var completionSpec = {
 		},
 		{
 		    name: "branch",
-		    description: ""
+		    description: "",
 		    insertValue: "branch {cursor}",
                     generators: generators.branches,
 		    options:
@@ -740,12 +740,12 @@ var completionSpec = {
 		},
 		{
 		    name: "create",
-		    description: ""
+		    description: "",
 		    insertValue: "create {cursor}"
 		},
 		{
 		    name: "store",
-		    description: ""
+		    description: "",
 		    insertValue: "store",
 		    options:
 		    [
