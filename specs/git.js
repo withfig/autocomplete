@@ -807,6 +807,10 @@ var completionSpec = {
                     description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
                 },
                 {
+                    name: ["-u", "--update-head-ok"],
+                    description: "By default git fetch refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for git pull to communicate with git fetch, and unless you are implementing your own Porcelain you are not supposed to use it.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
