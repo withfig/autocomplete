@@ -657,6 +657,14 @@ var completionSpec = {
                     description: "Limit fetching to the specified number of commits from the tip of each remote branch history",
                 },
                 {
+                    name: ["--deepen"],
+                    insertValue: "--deepen {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
