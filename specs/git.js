@@ -819,6 +819,10 @@ var completionSpec = {
                     description: "When given, and the repository to fetch from is handled by git fetch-pack, --exec=<upload-pack> is passed to the command to specify non-default path for the command run on the other end.",
                 },
                 {
+                    name: ["-q", "--quiet"],
+                    description: "Pass --quiet to git-fetch-pack and silence any other internally used git commands. Progress is not reported to the standard error stream.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
