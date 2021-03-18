@@ -634,12 +634,11 @@ var completionSpec = {
         {
             name: "fetch",
             description: "Download objects and refs from another repository",
-            options:
-                [
-                    {
-                        name: "origin", description: "copies all branches from the remote"
-                    }
-                ]
+            options: [
+                {
+                    name: "origin", description: "copies all branches from the remote"
+                }
+            ]
         },
         {
             name: "stash",
