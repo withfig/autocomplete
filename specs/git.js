@@ -827,6 +827,10 @@ var completionSpec = {
                     description: "Be verbose.",
                 },
                 {
+                    name: ["--progress"],
+                    description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
