@@ -24,6 +24,7 @@ var completionSpec = {
         { name: "update", description: "Fetch the newest version of Homebrew and all formulae" },
         { name: "upgrade", description: "Upgrade outdated casks and outdated" },
         { name: "search", description: "Perform a substring search of cask tokens and formula names" },
+        { name: "config", description: "Show Homebrew and system configuration info" },
         {
             name: "install",
             description: "Install <formula>",
