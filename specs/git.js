@@ -838,6 +838,10 @@ var completionSpec = {
                     description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
                 },
                 {
+                    name: ["--show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
