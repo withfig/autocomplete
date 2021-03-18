@@ -788,6 +788,14 @@ var completionSpec = {
                     description: "If the remote is fetched successfully, add upstream (tracking) reference, used by argument-less git-pull[1] and other commands.",
                 },
                 {
+                    name: ["--submodule-prefix"],
+                    insertValue: "--submodule-prefix {cursor}",
+                    args: {
+                        name: 'path',
+                    },
+                    description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
