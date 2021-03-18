@@ -641,6 +641,10 @@ var completionSpec = {
                     description: "Fetch all remotes",
                 },
                 {
+                    name: ["-a", "--append"],
+                    description: "Append ref names and object names of fetched refs to the existing contents of .git/FETCH_HEAD",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
