@@ -47,27 +47,27 @@ var colorCodes = {
 
 // options
 var noColors = {
-  name: ["--no-colors"],
+  name: "--no-colors",
   description: "Suppress colored output"
 }
 
 var noAlias = {
-  name: ["--no-alias"],
+  name: "--no-alias",
   description: "Suppress `nvm alias` output"
 }
 
 var silent = {
-  name: ["--silent"],
+  name: "--silent",
   description: "Silences stdout/stderr output",
 }
 
 var lts = {
-  name: ["--lts"],
+  name: "--lts",
   description: "Uses automatic LTS (long-term support) alias `lts/*`, if available.",
 }
 
 var ltsWithName = {
-  name: ["--lts="],
+  name: "--lts=",
   description: "Uses automatic alias for provided LTS line, if available.",
   args: [
     ltsName
@@ -86,7 +86,7 @@ var completionSpec = {
       ],
       options: [
         {
-          name: ["-s"],
+          name: "-s",
           description: "Skip binary download, install from source only.",
         },
         {
@@ -105,26 +105,26 @@ var completionSpec = {
           description: "When installing, only select from versions for a specific LTS line"
         },
         {
-          name: ["--skip-default-packages"],
+          name: "--skip-default-packages",
           description: "When installing, skip the default-packages file if it exists",
         },
         {
-          name: ["--latest-npm"],
+          name: "--latest-npm",
           description: "After installing, attempt to upgrade to the latest working npm on the given node version",
         },
         {
-          name: ["--no-progress"],
+          name: "--no-progress",
           description: "Disable the progress bar on any downloads",
         },
         {
-          name: ["--alias="],
+          name: "--alias=",
           description: "After installing, set the alias specified to the version specified. (same as: nvm alias <name> <version>)",
           args: [
             name
           ]
         },
         {
-          name: ["--default"],
+          name: "--default",
           description: "After installing, set default alias to the version specified. (same as: nvm alias default <version>)",
         },
       ]
@@ -329,11 +329,11 @@ var completionSpec = {
   ],
   options: [
     {
-      name: ["--help"],
+      name: "--help",
       description: "Show help page"
     },
     {
-      name: ["--version"],
+      name: "--version",
       description: "Print out the installed version of nvm"
     },
     noColors
