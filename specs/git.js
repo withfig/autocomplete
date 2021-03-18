@@ -673,6 +673,14 @@ var completionSpec = {
                     description: "Deepen or shorten the history of a shallow repository to include all reachable commits after <date>",
                 },
                 {
+                    name: ["--shallow-exclude"],
+                    insertValue: "--shallow-exclude {cursor}",
+                    args: {
+                        name: 'revision',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag. This option can be specified multiple times",
+                },
+                {
                     name: "origin", description: "copies all branches from the remote"
                 }
             ]
