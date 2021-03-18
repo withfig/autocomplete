@@ -3587,6 +3587,13 @@ var completionSpec = {
         {
             name: "get",
             description: "Display one or many resources",
+            args: {
+                name: 'Resource',
+                generator: {
+                    script: "kubectl api-resources -o name",
+                    splitOn: "\n"
+                }
+            },
             options: [
                 {
                     name: [
