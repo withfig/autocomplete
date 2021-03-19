@@ -7,7 +7,7 @@ var workspaceList = {
       return {
         name: workspace.replace("* ", "").trim(),
         // UPDATE: Update this after the Icons API is available publicly!
-        // icon: `fig://icon?type=terraform`,
+        icon: "fig://icon?type=terraform",
         description: "workspace",
       };
     });
@@ -17,20 +17,27 @@ var workspaceList = {
 var generalSubCommandOptions = [
   {
     name: "-lock",
-    displayName: "-lock=false",
+    insertValue: "-lock=",
     description:
       "Lock the state file when locking is supported. Defaults to true",
-    // suggestions: ["true", "false"],
+    args: {
+      name: "true or false",
+      suggestions: ["true", "false"],
+    },
   },
   {
     name: "-force",
-    displayName: "-force=true",
+    insertValue: "-force=true",
     description:
       "Delete the workspace even if its state is not empty. Defaults to false.",
-    // suggestions: ["true", "false"],
+    args: {
+      name: "true or false",
+      suggestions: ["true", "false"],
+    },
   },
   {
     name: "-lock-timeout",
+    insertValue: "-lock-timeout=",
     description: "Duration to retry a state lock. Default 0s.",
     args: {
       name: "seconds",
@@ -38,8 +45,12 @@ var generalSubCommandOptions = [
   },
   {
     name: "-input",
-    displayName: "-input=true",
+    insertValue: "-input=",
     description: "Ask for input for variables if not directly set.",
+    args: {
+      name: "true or false",
+      suggestions: ["true", "false"],
+    },
   },
   {
     name: "-no-color",
@@ -57,7 +68,7 @@ var globalOptions = [
     name: "-chdir",
     description:
       "Switch to a different working directory before executing the given subcommand.",
-    insertValue: "-chdir={cursor}",
+    insertValue: "-chdir=",
     args: {
       template: "filepaths",
     },
@@ -84,7 +95,6 @@ var mainCommands = [
   {
     name: "validate",
     description: "Check whether the configuration is valid",
-    options: [],
   },
   {
     name: "plan",
@@ -106,7 +116,7 @@ var mainCommands = [
       },
       {
         name: "-out",
-        displayName: "-out=path",
+        insertValue: "-out=",
         description: "The path to save the generated execution plan.",
       },
       {
@@ -119,16 +129,20 @@ var mainCommands = [
       },
       {
         name: "-refresh",
-        displayName: "-refresh=true",
+        insertValue: "-refresh=",
         description: "Update the state prior to checking for differences.",
+        args: {
+          name: "true or false",
+          suggestions: ["true", "false"],
+        },
       },
       {
         name: "-state",
-        insertValue: "-state={cursor}",
+        insertValue: "-state=",
         description:
           "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used.",
         args: {
-          name: "file path",
+          template: "filepaths",
         },
       },
       {
@@ -139,7 +153,6 @@ var mainCommands = [
       },
       {
         name: "-var",
-        displayName: '-var "foo=bar"',
         insertValue: "-var {cursor}",
         description:
           "Set a variable in the Terraform configuration. This flag can be set multiple times.",
@@ -150,12 +163,11 @@ var mainCommands = [
 
       {
         name: "-var-file",
-        displayName: "-var-file=foo",
-        insertValue: "-var-file={cursor}",
+        insertValue: "-var-file=",
         description:
           "Set variables in the Terraform configuration from a variable file.",
         args: {
-          name: "file path",
+          template: "filepaths",
         },
       },
       ...generalSubCommandOptions,
@@ -271,14 +283,21 @@ var otherCommands = [
             name: "-lock",
             description:
               "Lock the state file when locking is supported. Defaults to true",
+            args: {
+              name: "true or false",
+              suggestions: ["true", "false"],
+            },
           },
           {
             name: "-lock-timeout",
             description: "Duration to retry a stae lock. Default 0s.",
+            args: {
+              name: "seconds",
+            }
           },
           {
             name: "-state",
-            insertValue: "-state={cursor}",
+            insertValue: "-state=",
             description:
               "Path to an existing state file to initialize the state of this environment.",
             args: {
