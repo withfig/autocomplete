@@ -631,10 +631,248 @@ var completionSpec = {
         {
             name: "fetch",
             description: "Download objects and refs from another repository",
-            options: [{
-                name: "origin",
-                description: "copies all branches from the remote"
-            }]
+            args: [
+                {
+                    name: "remote",
+                    isOptional: true,
+                    generators: generators.remotes
+                },
+                {
+                    name: "branch",
+                    isOptional: true,
+                    generators: generators.branches
+                },
+                {
+                    name: "refspec",
+                    isOptional: true,
+                },
+            ],
+            options: [
+                {
+                    name: "--all",
+                    insertValue: "--all",
+                    description: "Fetch all remotes",
+                },
+                {
+                    name: ["-a", "--append"],
+                    description: "Append ref names and object names of fetched refs to the existing contents of .git/FETCH_HEAD",
+                },
+                {
+                    name: ["--atomic"],
+                    description: "Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.",
+                },
+                {
+                    name: ["--depth"],
+                    insertValue: "--depth {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Limit fetching to the specified number of commits from the tip of each remote branch history",
+                },
+                {
+                    name: ["--deepen"],
+                    insertValue: "--deepen {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history",
+                },
+                {
+                    name: ["--shallow-since"],
+                    insertValue: "--shallow-since {cursor}",
+                    args: {
+                        name: 'date',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to include all reachable commits after <date>",
+                },
+                {
+                    name: ["--shallow-exclude"],
+                    insertValue: "--shallow-exclude {cursor}",
+                    args: {
+                        name: 'revision',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag. This option can be specified multiple times",
+                },
+                {
+                    name: ["--unshallow"],
+                    description: "If the source repository is shallow, fetch as much as possible so that the current repository has the same history as the source repository",
+                },
+                {
+                    name: ["--update-shallow"],
+                    description: "By default when fetching from a shallow repository, git fetch refuses refs that require updating .git/shallow",
+                },
+                {
+                    name: ["--negotiation-tip"],
+                    insertValue: "--negotiation-tip ",
+                    args: {
+                        name: 'commit|glob',
+                        generators: generators.commits,
+                    },
+                    description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
+                },
+                {
+                    name: ["--dry-run"],
+                    description: "Show what would be done, without making any changes.",
+                },
+                {
+                    name: ["--write-fetch-head"],
+                    description: "Write the list of remote refs fetched in the FETCH_HEAD file directly under $GIT_DIR. This is the default",
+                },
+                {
+                    name: ["--no-write-fetch-head"],
+                    description: "tells Git not to write the file",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "This option overrides that check",
+                },
+                {
+                    name: ["-k", "--keep"],
+                    description: "Keep downloaded pack.",
+                },
+                {
+                    name: ["--multiple"],
+                    description: "Allow several <repository> and <group> arguments to be specified. No <refspec>s may be specified.",
+                },
+                {
+                    name: ["--auto-maintenance", "--auto-gc"],
+                    description: "Run git maintenance run --auto at the end to perform automatic repository maintenance if",
+                },
+                {
+                    name: ["--no-auto-maintenance", "--no-auto-gc"],
+                    description: "Don't run git maintenance run --auto at the end to perform automatic repository maintenance",
+                },
+                {
+                    name: ["--write-commit-graph"],
+                    description: "Write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
+                    name: ["--no-write-commit-graph"],
+                    description: "Don't write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
+                    name: ["-p", "--prune"],
+                    description: "Before fetching, remove any remote-tracking references that no longer exist on the remote",
+                },
+                {
+                    name: ["-P", "--prune-tags"],
+                    description: "Before fetching, remove any local tags that no longer exist on the remote if --prune is enabled",
+                },
+                {
+                    name: ["-n", "--no-tags"],
+                    description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
+                },
+                {
+                    name: ["--refmap"],
+                    insertValue: "--refmap {cursor}",
+                    args: {
+                        name: 'refspec',
+                    },
+                    description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                },
+                {
+                    name: ["-t", "--tags"],
+                    description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
+                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules"],
+                //     insertValue: "--recurse-submodules={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand', 'no',
+                //         ],
+                //     },
+                //     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                // },
+                {
+                    name: ["-j", "--jobs"],
+                    args: {
+                        name: 'n',
+                    },
+                    description: "Number of parallel children to be used for all forms of fetching.",
+                },
+                {
+                    name: ["--no-recurse-submodules"],
+                    description: "Disable recursive fetching of submodules (this has the same effect as using the --recurse-submodules=no option).",
+                },
+                {
+                    name: ["--set-upstream"],
+                    description: "If the remote is fetched successfully, add upstream (tracking) reference, used by argument-less git-pull[1] and other commands.",
+                },
+                {
+                    name: ["--submodule-prefix"],
+                    insertValue: "--submodule-prefix {cursor}",
+                    args: {
+                        name: 'path',
+                    },
+                    description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
+                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules-default"],
+                //     insertValue: "--recurse-submodules-default={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand',
+                //         ],
+                //     },
+                //     description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
+                // },
+                {
+                    name: ["-u", "--update-head-ok"],
+                    description: "By default git fetch refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for git pull to communicate with git fetch, and unless you are implementing your own Porcelain you are not supposed to use it.",
+                },
+                {
+                    name: ["--upload-pack"],
+                    insertValue: "--upload-pack {cursor}",
+                    args: {
+                        name: 'upload-pack',
+                    },
+                    description: "When given, and the repository to fetch from is handled by git fetch-pack, --exec=<upload-pack> is passed to the command to specify non-default path for the command run on the other end.",
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Pass --quiet to git-fetch-pack and silence any other internally used git commands. Progress is not reported to the standard error stream.",
+                },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Be verbose.",
+                },
+                {
+                    name: ["--progress"],
+                    description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified.",
+                },
+                {
+                    name: ["-o", "--server-option"],
+                    args: {
+                        name: 'option',
+                    },
+                    description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
+                },
+                {
+                    name: ["--show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs",
+                },
+                {
+                    name: ["--no-show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons.",
+                },
+                {
+                    name: ["-4", "--ipv4"],
+                    description: "Use IPv4 addresses only, ignoring IPv6 addresses.",
+                },
+                {
+                    name: ["-6", "--ipv6"],
+                    description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
+                },
+                {
+                    name: "--stdin",
+                    description: "Read refspecs, one per line, from stdin in addition to those provided as arguments. The \"tag <name>\" format is not supported",
+                },
+            ]
         },
         {
             name: "stash",
