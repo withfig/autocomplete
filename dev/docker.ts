@@ -21,7 +21,7 @@ const generators: Record<string, Fig.Generator> = {
     }
 };
 
-const completion: Fig.Spec = {
+export const completion: Fig.Spec = {
     name: "docker",
     description: "A self-sufficient runtime for containers",
     subcommands: [

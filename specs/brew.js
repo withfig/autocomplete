@@ -1,31 +1,40 @@
-var brewGenerators = {
-    servicesgenerators: {
-        script: "brew services list | sed -e 's/ .*//' | tail -n +2",
-        postProcess: function (output) {
-            var lines = output.split("\n");
-            return lines.reduce(function (acc, currentLine) {
-                if (lines.includes('unbound'))
-                    return acc;
-                return acc.concat({
-                    name: currentLine,
-                    type: 'option'
-                });
-            }, []);
-        }
-    }
+var servicesGenerator = {
+    script: "brew services list | sed -e 's/ .*//' | tail -n +2",
+    postProcess: function (output) {
+        var lines = output.split("\n");
+        return lines.reduce(function (acc, currentLine) {
+            if (lines.includes("unbound"))
+                return acc;
+            return acc.concat({
+                name: currentLine,
+                type: "option",
+            });
+        }, []);
+    },
 };
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
     subcommands: [
         { name: "list", description: "List all installed formulae" },
-        { name: "leaves", description: "List installed formulae that are not dependencies of another installed formula" },
+        {
+            name: "leaves",
+            description: "List installed formulae that are not dependencies of another installed formula",
+        },
         { name: "doctor", description: "Check your system for potential problems" },
-        { name: "info", description: "Display brief statistics for your Homebrew installation" },
-        { name: "update", description: "Fetch the newest version of Homebrew and all formulae" },
+        {
+            name: "info",
+            description: "Display brief statistics for your Homebrew installation",
+        },
+        {
+            name: "update",
+            description: "Fetch the newest version of Homebrew and all formulae",
+        },
         { name: "upgrade", description: "Upgrade outdated casks and outdated" },
-        { name: "search", description: "Perform a substring search of cask tokens and formula names" },
-        { name: "config", description: "Show Homebrew and system configuration info" },
+        {
+            name: "search",
+            description: "Perform a substring search of cask tokens and formula names",
+        },
         {
             name: "install",
             description: "Install <formula>",
@@ -37,17 +46,19 @@ var completionSpec = {
                 generators: {
                     script: "ls -1 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks",
                     postProcess: function (out) {
-                        return out.split('\n').map(function (formula) {
+                        return out.split("\n").map(function (formula) {
                             return {
-                                name: formula.replace('.rb', ''),
+                                name: formula.replace(".rb", ""),
                                 description: "formula",
                                 icon: "🍺",
-                                priority: (formula[0] >= '0' && formula[0] <= '9') || formula[0] == '/' ? 0 : 100
+                                priority: (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+                                    ? 0
+                                    : 100,
                             };
                         });
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
         {
             name: "uninstall",
@@ -58,10 +69,14 @@ var completionSpec = {
                 generators: {
                     script: "brew list -1 --formulae",
                     postProcess: function (out) {
-                        return out.split('\n').map(function (formula) {
-                            return { name: formula, icon: "🍺", description: "Installed formula" };
+                        return out.split("\n").map(function (formula) {
+                            return {
+                                name: formula,
+                                icon: "🍺",
+                                description: "Installed formula",
+                            };
                         });
-                    }
+                    },
                 },
             },
         },
@@ -76,8 +91,8 @@ var completionSpec = {
                     description: "Installs the given cask",
                     args: {
                         name: "cask",
-                        description: "Cask to install"
-                    }
+                        description: "Cask to install",
+                    },
                 },
                 {
                     name: "uninstall",
@@ -88,34 +103,47 @@ var completionSpec = {
                         generators: {
                             script: "brew list -1 --cask",
                             postProcess: function (out) {
-                                return out.split('\n').map(function (formula) {
-                                    return { name: formula, icon: "🍺", description: "Installed formula" };
+                                return out.split("\n").map(function (formula) {
+                                    return {
+                                        name: formula,
+                                        icon: "🍺",
+                                        description: "Installed formula",
+                                    };
                                 });
-                            }
+                            },
                         },
                     },
-                }
-            ]
+                },
+            ],
         },
         {
             name: "services",
-            description: "Manage background services with macOS\' launchctl(1) daemon manager.",
+            description: "Manage background services with macOS' launchctl(1) daemon manager.",
             options: [
-                { name: ["-d", "--debug"], description: "Display any debugging information." },
+                {
+                    name: ["-d", "--debug"],
+                    description: "Display any debugging information.",
+                },
                 { name: ["-q", "--quiet"], description: "Suppress any warnings." },
-                { name: ["-v", "--verbose"], description: "Make some output more verbose." },
-                { name: ["-h", "--help"], description: "Get help with services command" },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Make some output more verbose.",
+                },
+                {
+                    name: ["-h", "--help"],
+                    description: "Get help with services command",
+                },
             ],
             subcommands: [
                 {
                     name: "cleanup",
                     insertValue: "cleanup",
-                    description: "Remove all unused services."
+                    description: "Remove all unused services.",
                 },
                 {
                     name: "list",
                     insertValue: "list",
-                    description: "List all services."
+                    description: "List all services.",
                 },
                 {
                     name: "run",
@@ -125,13 +153,13 @@ var completionSpec = {
                         {
                             name: "--all",
                             insertValue: "--all",
-                            description: "Start all services"
-                        }
+                            description: "Start all services",
+                        },
                     ],
                     args: {
                         variadic: true,
-                        generators: brewGenerators.servicesGenerator
-                    }
+                        generators: servicesGenerator,
+                    },
                 },
                 {
                     name: "start",
@@ -141,13 +169,13 @@ var completionSpec = {
                         {
                             name: "--all",
                             insertValue: "--all",
-                            description: "Start all services"
-                        }
+                            description: "Start all services",
+                        },
                     ],
                     args: {
                         variadic: true,
-                        generators: brewGenerators.servicesGenerator
-                    }
+                        generators: servicesGenerator,
+                    },
                 },
                 {
                     name: "stop",
@@ -157,13 +185,13 @@ var completionSpec = {
                         {
                             name: "--all",
                             insertValue: "--all",
-                            description: "Start all services"
-                        }
+                            description: "Start all services",
+                        },
                     ],
                     args: {
                         variadic: true,
-                        generators: brewGenerators.servicesGenerator
-                    }
+                        generators: servicesGenerator,
+                    },
                 },
                 {
                     name: "restart",
@@ -173,22 +201,22 @@ var completionSpec = {
                         {
                             name: "--all",
                             insertValue: "--all",
-                            description: "Start all services"
-                        }
+                            description: "Start all services",
+                        },
                     ],
                     args: {
                         variadic: true,
-                        generators: brewGenerators.servicesGenerator
-                    }
-                }
-            ]
-        }
+                        generators: servicesGenerator,
+                    },
+                },
+            ],
+        },
     ],
     options: [
         {
             name: ["--version"],
             description: "The current Homebrew version",
-        }
-    ]
+        },
+    ],
 };
 
