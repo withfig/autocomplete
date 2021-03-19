@@ -79,7 +79,14 @@ var completionSpec = {
         "The path to a Jest config file specifying how to find and execute tests",
       args: {
         name: "true|false",
-        suggestions: ["true", "false"],
+        suggestions: [
+          {
+            name: "true",
+          },
+          {
+            name: "false",
+          },
+        ],
       },
     },
     {
@@ -90,7 +97,7 @@ var completionSpec = {
         "Indicates which provider should be used to instrument code for coverage",
       args: {
         name: "babel|v8",
-        suggestions: ["babel", "v8"],
+        suggestions: [{ name: "babel" }, { name: "v8" }],
       },
     },
     {
@@ -109,7 +116,7 @@ var completionSpec = {
       description: "The test environment used for all tests",
       args: {
         name: "jsdom|node|path/to/env.js",
-        suggestions: ["jsdom", "node"],
+        suggestions: [{ name: "jsdom" }, { name: "node" }],
       },
     },
     {
