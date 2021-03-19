@@ -110,6 +110,17 @@ var completionSpec = {
             args: {
                 name: "search pattern"
             }
+        },
+        {
+            name: ["-V", "--version"],
+            description: "Print version number of grep to the standard output stream"
+        },
+        {
+            name: ["-P", "--perl-regexp"],
+            description: "Interpret pattern as a Perl regular expression"
+        },
+        {
+            name: ["-f"]
         }
     ]
 };
