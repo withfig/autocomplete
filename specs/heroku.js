@@ -1,9 +1,7 @@
-
 var completionSpec = {
     name: "heroku",
     description: "CLI Interface for Heroku.com",
-    args: {
-    },
+    args: {},
     subcommands: [
         {
             name: "addons:attach",
@@ -18,15 +16,14 @@ var completionSpec = {
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
-                                    return JSON.parse(out).map(app => {
-                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico" }
-                                    })
-
-                                } catch (e) {
-                                    return []
+                                    return JSON.parse(out).map(function (app) {
+                                        return { name: app.name, description: app.name, icon: "https://www.herokucdn.com/favicon.ico" };
+                                    });
+                                }
+                                catch (e) {
+                                    return [];
                                 }
                             }
-
                         }
                     },
                 }
@@ -49,12 +46,13 @@ var completionSpec = {
                             // splitOn: "\n",
                             postProcess: function (out) {
                                 try {
-                                    return JSON.parse(out).map(app => {
-                                        let build = app.buildpack_provided_description ? `(${app.buildpack_provided_description})` : ""
-                                        return { name: app.name, description: `heroku app ${build}`, icon: "https://www.herokucdn.com/favicon.ico" }
-                                    })
-                                } catch (e) {
-                                    return []
+                                    return JSON.parse(out).map(function (app) {
+                                        var build = app.buildpack_provided_description ? "(" + app.buildpack_provided_description + ")" : "";
+                                        return { name: app.name, description: "heroku app " + build, icon: "https://www.herokucdn.com/favicon.ico" };
+                                    });
+                                }
+                                catch (e) {
+                                    return [];
                                 }
                             }
                         }
@@ -103,5 +101,5 @@ var completionSpec = {
         { name: "update", description: "update the Heroku CLI" },
         { name: "webhooks", description: "list webhooks on an app" }
     ]
-}
+};
 

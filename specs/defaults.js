@@ -1,9 +1,12 @@
-var domain = {
+var completionSpec = {
     name: "domain",
     generators: {
         script: "defaults domains",
         postProcess: function (out) {
-            return out.split(',').map(domain => { return domain.trim() })
+            // TODO: what should be returned here?
+            return out
+                .split(',')
+                .map(function (domain) { return domain.trim(); });
         }
     },
     suggestions: [
@@ -17,17 +20,14 @@ var domain = {
             description: "Application name"
         }
     ]
-}
-
-let key = {
+};
+var key = {
     name: "key"
-}
-
-let value = {
+};
+var value = {
     name: "value"
-}
-
-let valueArgs = [
+};
+var valueArgs = [
     {
         name: "-string",
         args: {
@@ -91,10 +91,8 @@ let valueArgs = [
             name: "array_item"
         }
     }
-]
-
-var completionSpec = {
-
+];
+var defaultsCompletionSpec = {
     name: "defaults",
     description: "Command line interface to a user's defaults.",
     options: [],
@@ -164,28 +162,20 @@ var completionSpec = {
             ]
         },
     ]
-}
-
+};
 
 // Command line interface to a user's defaults.
 // Syntax:
-
 // 'defaults' [-currentHost | -host <hostname>] followed by one of the following:
-
 //   read                                 shows all defaults
 //   read <domain>                        shows defaults for given domain
 //   read <domain> <key>                  shows defaults for given domain, key
-
 //   read-type <domain> <key>             shows the type for the given domain, key
-
 //   write <domain> <domain_rep>          writes domain (overwrites existing)
 //   write <domain> <key> <value>         writes key for domain
-
 //   rename <domain> <old_key> <new_key>  renames old_key to new_key
-
 //   delete <domain>                      deletes domain
 //   delete <domain> <key>                deletes key in domain
-
 //   import <domain> <path to plist>      writes the plist at path to domain
 //   import <domain> -                    writes a plist from stdin to domain
 //   export <domain> <path to plist>      saves domain as a binary plist to path
@@ -193,10 +183,8 @@ var completionSpec = {
 //   domains                              lists all domains
 //   find <word>                          lists all entries containing word
 //   help                                 print this help
-
 // <domain> is ( <domain_name> | -app <application_name> | -globalDomain )
 //          or a path to a file omitting the '.plist' extension
-
 // <value> is one of:
 //   <value_rep>
 //   -string <string_value>

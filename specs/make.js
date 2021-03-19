@@ -1,23 +1,22 @@
-var listTargets = {
-    script: `make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u`,
-    postProcess: function(out) {
+var completionSpec = {
+    script: "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u",
+    postProcess: function (out) {
         console.log(out);
         var lines = out.split('\n');
         console.log(lines);
         var targets = [];
-        for(var i = 1; i < lines.length; i++) {
+        for (var i = 1; i < lines.length; i++) {
             targets.push({
                 name: lines[i],
                 description: "make target",
                 icon: "🎯",
                 priority: 99
-            })
+            });
         }
         return targets;
     }
-}
-
-var completionSpec = {
+};
+var makeCompletionSpec = {
     name: "make",
     args: {
         name: "target",
@@ -60,4 +59,5 @@ var completionSpec = {
             }
         }
     ]
-}
+};
+

@@ -5837,4 +5837,5 @@ var completionSpec = {
             subcommands: []
         }
     ]
-}
+};
+

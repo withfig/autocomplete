@@ -1,34 +1,32 @@
-var getInstalledPackages = {
+var completionSpec = {
     script: "conda list",
-    postProcess: function(out) {
+    postProcess: function (out) {
         var lines = out.split('\n');
         var installedPackages = [];
-        for(var i = 3; i < lines.length; i++) {
+        for (var i = 3; i < lines.length; i++) {
             installedPackages.push({
                 name: lines[i],
                 icon: "🐍"
-            })
+            });
         }
         return installedPackages;
     }
-}
-
+};
 var getAllCondaPackages = {
     script: "conda search -q",
-    postProcess: function(out) {
+    postProcess: function (out) {
         var lines = out.split('\n');
         var allPackages = [];
-        for(var i = 1; i < lines.length; i++) {
+        for (var i = 1; i < lines.length; i++) {
             allPackages.push({
                 name: lines[i],
                 icon: "🐍"
-            })
+            });
         }
         return allPackages;
     }
-}
-
-var completionSpec = {
+};
+var condaCompletionSpec = {
     name: "conda",
     description: "Conda package manager",
     subcommands: [
@@ -222,7 +220,7 @@ var completionSpec = {
         {
             name: "create",
             description: "Create a new conda environment from a list of specified packages.",
-            args: { name: "package_spec", description: "Packages to install or update in the conda environment."},
+            args: { name: "package_spec", description: "Packages to install or update in the conda environment." },
             options: [
                 { name: ["--clone"], description: "Path to (or name of) existing local environment." },
                 { name: ["--file"], description: "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2)." },
@@ -524,4 +522,5 @@ var completionSpec = {
             ]
         }
     ]
-}
+};
+

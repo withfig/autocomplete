@@ -4,7 +4,7 @@ var completionSpec = {
     args: [
         {
             name: "mode",
-            suggestions: [ 
+            suggestions: [
                 // Some of the most common chmod's (non-exhaustive)
                 {
                     name: ["u+x"],
@@ -74,4 +74,5 @@ var completionSpec = {
             description: "Cause chmod to be verbose, showing filenames as the mode is modified. If the -v flag is specified more than once, the old and new modes of the file will also be printed, in both octal and symbolic notation."
         }
     ]
-}
+};
+

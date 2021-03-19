@@ -11,7 +11,6 @@ var completionSpec = {
         {
             name: "issue", description: "Manage issues",
             subcommands: [
-
                 { name: "close", description: "Close issue" },
                 { name: "create", description: "Create a new issue" },
                 { name: "list", description: "List and filter issues in this repository" },
@@ -24,8 +23,7 @@ var completionSpec = {
                             name: ["-R", "--repo"],
                             insertValue: "-R '{cursor}'",
                             description: "Select another repository using the OWNER/REPO format",
-                            args: {
-                            },
+                            args: {},
                         },
                     ]
                 }
@@ -34,7 +32,7 @@ var completionSpec = {
         {
             name: "pr", description: "Manage pull requests",
             subcommands: [
-                { 
+                {
                     name: "checkout", description: "Check out a pull request in git",
                     args: {
                         name: "number> | <url> | <branch",
@@ -46,7 +44,7 @@ var completionSpec = {
                         },
                     ]
                 },
-                { 
+                {
                     name: "checks", description: "Show CI status for a single pull request",
                     args: {
                         name: "number> | <url> | <branch",
@@ -58,7 +56,7 @@ var completionSpec = {
                         },
                     ]
                 },
-                { 
+                {
                     name: "close", description: "Close a pull request",
                     args: {
                         name: "number> | <url> | <branch",
@@ -70,7 +68,7 @@ var completionSpec = {
                         },
                     ]
                 },
-                { 
+                {
                     name: "comment", description: "Create a new pr comment",
                     args: {
                         name: "number> | <url> | <branch",
@@ -88,7 +86,7 @@ var completionSpec = {
                         { name: ["-w", "--web"], description: "Add body in browser" },
                     ]
                 },
-                { 
+                {
                     name: "create", description: "Create a pull request",
                     args: {
                         name: "number> | <url> | <branch",
@@ -177,13 +175,13 @@ var completionSpec = {
                         },
                     ]
                 },
-                { 
+                {
                     name: "diff", description: "View changes in a pull request",
                     args: {
                         name: "number> | <url> | <branch",
                     },
                     options: [
-                        { 
+                        {
                             name: ["--color"],
                             description: "Use color in diff output: {always|never|auto}",
                             args: {
@@ -192,45 +190,45 @@ var completionSpec = {
                         }
                     ]
                 },
-                { 
+                {
                     name: "list", description: "List and filter pull requests in this repository",
                     options: [
-                        { 
+                        {
                             name: ["-a", "--assignee"],
                             description: "Filter by assignee",
                             args: {
                                 name: "string"
                             }
                         },
-                        { 
+                        {
                             name: ["-B", "--base"],
                             description: "Filter by base branch",
                             args: {
                                 name: "string"
                             }
                         },
-                        { 
+                        {
                             name: ["-l", "--label"],
                             description: "Filter by labels",
                             args: {
                                 name: "string"
                             }
                         },
-                        { 
+                        {
                             name: ["-L", "--limit"],
                             description: "Maximum number of items to fetch",
                             args: {
                                 name: "int"
                             }
                         },
-                        { 
+                        {
                             name: ["-s", "--state"],
                             description: "Filter by state: {open|closed|merged|all}",
                             args: {
                                 name: "string"
                             }
                         },
-                        { 
+                        {
                             name: ["-w", "--web"],
                             description: "Open the browser to list the pull requests",
                             args: {
@@ -239,7 +237,7 @@ var completionSpec = {
                         },
                     ]
                 },
-                { 
+                {
                     name: "merge", description: "Merge a pull request",
                     args: {
                         name: "number> | <url> | <branch",
@@ -251,26 +249,26 @@ var completionSpec = {
                         { name: ["-s", "--squash"], description: "Squash the commits into one commit and merge it into the base branch" },
                     ]
                 },
-                { 
+                {
                     name: "ready", description: "Mark a pull request as ready for review",
                     args: {
                         name: "number> | <url> | <branch",
                     },
                 },
-                { 
+                {
                     name: "reopen", description: "Reopen a pull request",
                     args: {
                         name: "number> | <url> | <branch",
-                    }, 
+                    },
                 },
-                { 
+                {
                     name: "review", description: "Add a review to a pull request",
                     args: {
                         name: "number> | <url> | <branch",
                     },
                     options: [
                         { name: ["-a", "--approve"], description: "Approve pull request" },
-                        { 
+                        {
                             name: ["-b", "--body"],
                             description: "Specify the body of a review",
                             args: {
@@ -282,7 +280,7 @@ var completionSpec = {
                     ]
                 },
                 { name: "status", description: "Show status of relevant pull requests" },
-                { 
+                {
                     name: "view", description: "View a pull request",
                     args: {
                         name: "number> | <url> | <branch",
@@ -297,4 +295,5 @@ var completionSpec = {
         { name: "release", description: "Manage GitHub releases" },
         { name: "repo", description: "Create, clone, fork, and view repositories" },
     ]
-}
+};
+

@@ -2109,4 +2109,5 @@ var completionSpec = {
             subcommands: []
         }
     ]
-}
+};
+

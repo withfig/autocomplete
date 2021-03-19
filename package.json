@@ -2,13 +2,19 @@
   "name": "linter",
   "version": "1.0.0",
   "description": "Fig Autocomplete Spec Linter",
-  "main": "linter.js",
   "scripts": {
-    "test": "node linter.js"
+    "test": "tsc --noEmit",
+    "build": "ts-node-script compiler/compiler.ts",
+    "autocomplete": "cp ./specs/*.js ~/.fig/autocomplete/"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "joi": "^17.3.0"
+  "devDependencies": {
+    "@types/node": "^14.14.33",
+    "@types/progress": "^2.0.3",
+    "chalk": "^4.1.0",
+    "progress": "^2.0.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
   }
 }

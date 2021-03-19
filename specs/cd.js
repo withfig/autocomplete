@@ -4,7 +4,7 @@ var completionSpec = {
     args: {
         template: "folders"
     }
-}
+};
 
 // var completionSpec = {
 //     name: "cd",

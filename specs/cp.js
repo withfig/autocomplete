@@ -1,5 +1,4 @@
 var completionSpec = {
-
     name: "cp",
     description: "copy files and directories",
     args: [
@@ -20,4 +19,5 @@ var completionSpec = {
             description: "Don't follow symbolic links",
         }
     ]
-}
+};
+

@@ -34,8 +34,8 @@ var completionSpec = {
         {
             name: ["-Ei"],
             args: [
-                { 
-                    name: "search pattern" 
+                {
+                    name: "search pattern"
                 },
                 {
                     name: "file",
@@ -95,8 +95,8 @@ var completionSpec = {
             name: ["-Hn"],
             description: "Print file name with the corresponding line number (n) for each match",
             args: [
-                { 
-                    name: "search pattern" 
+                {
+                    name: "search pattern"
                 },
                 {
                     name: "file",
@@ -110,17 +110,7 @@ var completionSpec = {
             args: {
                 name: "search pattern"
             }
-        },
-        {
-            name: ["-V", "--version"],
-            description: "Print version number of grep to the standard output stream"
-        },
-        {
-            name: ["-P", "--perl-regexp"],
-            description: "Interpret pattern as a Perl regular expression"
-        },
-        {
-            name: ["-f"]
         }
     ]
-}
+};
+
