@@ -7,7 +7,7 @@
         "build": "ts-node-script compiler/compiler.ts",
         "autocomplete": "cp ./specs/*.js ~/.fig/autocomplete/",
         "lint": "eslint './dev/*.ts'",
-        "lint:fix": "npm run lint --fix"
+        "lint:fix": "npm run lint -- --fix"
     },
     "husky": {
         "hooks": {
