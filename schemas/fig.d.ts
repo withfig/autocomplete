@@ -99,7 +99,7 @@ declare namespace Fig {
     export interface Generator {
 
         template?: string;
-        script?: StringOrFunction<String[], Suggestion[]>;
+        script?: StringOrFunction<string[], Suggestion[]>;
         splitOn?: string,
         postProcess?: Function<string, Suggestion[]>;
         trigger?: StringOrFunction<string, boolean>;
