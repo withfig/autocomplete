@@ -41,7 +41,7 @@ var completionSpec = {
       options: [],
     },
     {
-      name: 'migrate:currentVersion ',
+      name: 'migrate:currentVersion',
       description: 'View the current version for the  migration.',
       args: {},
       options: [],
@@ -53,13 +53,13 @@ var completionSpec = {
       options: [],
     },
     {
-      name: 'migrate:unlock ',
+      name: 'migrate:unlock',
       description: 'Forcibly unlocks the migrations lock table.',
       args: {},
       options: [],
     },
     {
-      name: 'seed:make ',
+      name: 'seed:make',
       description: 'Create a named seed file.',
       args: {
         name: 'seed name',
@@ -96,12 +96,12 @@ var completionSpec = {
       args: {},
     },
     {
-      name: ['--knexpath '],
+      name: ['--knexpath'],
       description: 'Specify the path to knex instance.',
       args: {},
     },
     {
-      name: ['--cwd '],
+      name: ['--cwd'],
       description: 'Specify the working directory.',
       args: {},
     },
@@ -111,7 +111,7 @@ var completionSpec = {
       args: {},
     },
     {
-      name: ['--connection '],
+      name: ['--connection'],
       description: 'Set DB connection without a knexfile.',
       args: {},
     },
@@ -133,7 +133,7 @@ var completionSpec = {
       },
     },
     {
-      name: ['--esm '],
+      name: ['--esm'],
       description: 'Enable ESM interop.',
       args: {},
     },
@@ -143,12 +143,12 @@ var completionSpec = {
       args: {},
     },
     {
-      name: ['--timestamp-filename-prefix '],
+      name: ['--timestamp-filename-prefix'],
       description: 'Enable a timestamp prefix on name of generated seed files.',
       args: {},
     },
     {
-      name: ['--help '],
+      name: ['--help'],
       description: 'display help for command',
       args: {},
     },
