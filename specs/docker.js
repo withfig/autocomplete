@@ -14,14 +14,14 @@ var postProcessDockerPs = (out) => {
 }
 
 var generators = {
-    runningDockerContainers: {
-        script: `docker ps --format '{{ json . }}'`,
-        postProcess: postProcessDockerPs
-    },
-    allDockerContainers: {
-        script: `docker ps -a --format '{{ json . }}'`,
-        postProcess: postProcessDockerPs
-    },
+  runningDockerContainers: {
+    script: `docker ps --format '{{ json . }}'`,
+    postProcess: postProcessDockerPs
+  },
+  allDockerContainers: {
+    script: `docker ps -a --format '{{ json . }}'`,
+    postProcess: postProcessDockerPs
+  },
 	pausedDockerContainers: {
 		script: `docker ps --filter status=paused --format '{{ json . }}'`,
 		postProcess: postProcessDockerPs
@@ -29,11 +29,11 @@ var generators = {
 	allLocalImages: {
 		script: `docker image ls --format '{{ json . }}'`,
 		postProcess: function (out) {
-            let allLines = out.split('\n').map(JSON.parse);
-            return allLines.map(i => ({
-                name: `${i.Repository}`,
-            }));
-        }
+      let allLines = out.split('\n').map(JSON.parse);
+      return allLines.map(i => ({
+          name: `${i.Repository}`,
+      }));
+    }
 	}
 };
 
@@ -2473,5 +2473,4 @@ var completionSpec = {
 			subcommands: []
 		}
     ]
-
 }

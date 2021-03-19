@@ -3,7 +3,7 @@ var generators = {
     // Commit history
     commits: {
         script: "git log --oneline",
-        postProcess: function (out) {
+        postProcess: function(out) {
             if (out.startsWith("fatal:")) {
                 return []
             }
@@ -18,6 +18,25 @@ var generators = {
         }
     },
 
+    // Saved stashes
+    // TODO: maybe only print names of stashes
+    stashes: {
+        script: "git stash list",
+        postProcess: function(out) {
+            if (out.startsWith("fatal:")) {
+                return []
+            }
+
+            return out.split('\n').map((file) => {
+                return {
+                    name: file.split(":")[2],
+                    insertValue: file.split(":")[0],
+                    icon: `fig://icon?type=node`,
+                }
+            })
+        }
+    },
+
 
     // Tree-ish
     // This needs to be fleshed out properly....
@@ -27,7 +46,7 @@ var generators = {
 
     treeish: {
         script: "git diff --cached --name-only",
-        postProcess: function (out) {
+        postProcess: function(out) {
             if (out.startsWith("fatal:")) {
                 return []
             }
@@ -47,7 +66,7 @@ var generators = {
     // All branches
     branches: {
         script: "git branch --no-color",
-        postProcess: function (out) {
+        postProcess: function(out) {
             if (out.startsWith("fatal:")) {
                 return []
             }
@@ -59,7 +78,7 @@ var generators = {
 
     remotes: {
         script: "git remote",
-        postProcess: function (out) {
+        postProcess: function(out) {
             return out.split('\n').map(remote => {
                 return { name: remote, description: "remote" }
             })
@@ -74,7 +93,7 @@ var generators = {
     // Files for staging
     files_for_staging: {
         script: "git status --short",
-        postProcess: function (out) {
+        postProcess: function(out) {
             if (out.startsWith("fatal:")) {
                 return []
             }
@@ -93,8 +112,7 @@ var generators = {
 
                 try {
                     ext = file.split('.').slice(-1)[0]
-                } catch (e) {
-                }
+                } catch (e) {}
 
                 if (file.endsWith('/')) {
                     ext = "folder"
@@ -123,8 +141,7 @@ var completionSpec = {
 
     name: "git",
     description: "the stupid content tracker",
-    options: [
-        {
+    options: [{
             name: "--version",
             description: "Output version"
         },
@@ -211,13 +228,11 @@ var completionSpec = {
             description: "Set the Git namespace"
         },
     ],
-    subcommands: [
-        {
+    subcommands: [{
             name: "commit",
             description: "Record changes to the repository",
             insertValue: "commit",
-            options: [
-                {
+            options: [{
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
                     description: "use the given message as the commit message",
@@ -246,14 +261,12 @@ var completionSpec = {
         {
             name: "config",
             description: "set author",
-            options: [
-                {
+            options: [{
                     name: "--local",
                     description: "Default: write to the repository .git/config file",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            {
+                        suggestions: [{
                                 name: "user.name",
                                 description: "set config for username",
                                 insertValue: "user.name '{cursor}'",
@@ -272,8 +285,7 @@ var completionSpec = {
                     description: "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            {
+                        suggestions: [{
                                 name: "user.name",
                                 description: "set config for username",
                                 insertValue: "user.name '{cursor}'",
@@ -309,8 +321,7 @@ var completionSpec = {
         {
             name: "add",
             description: "Add file contents to the index",
-            options: [
-                {
+            options: [{
                     name: ["-A", "--all", "--no-ignore-removal"],
                     description: "Add, modify, and remove index entries to match the working tree"
                 },
@@ -351,8 +362,7 @@ var completionSpec = {
         {
             name: "status",
             description: "Show the working tree status",
-            options: [
-                {
+            options: [{
                     name: ["-v", "--verbose"],
                     description: "be verbose"
                 },
@@ -380,8 +390,7 @@ var completionSpec = {
                     name: ["-u", "--untracked-files"],
                     description: "show untracked files",
                     args: {
-                        suggestions: [
-                            {
+                        suggestions: [{
                                 name: "all",
                                 description: "(Default)"
                             },
@@ -398,8 +407,7 @@ var completionSpec = {
                     name: "--ignored",
                     description: "show ignored files",
                     args: {
-                        suggestions: [
-                            {
+                        suggestions: [{
                                 name: "traditional",
                                 description: "(Default)"
                             },
@@ -421,8 +429,7 @@ var completionSpec = {
         {
             name: "push",
             description: "Update remote refs",
-            options: [
-                {
+            options: [{
                     name: "-all",
                     description: "Push all branches to remote"
                 },
@@ -433,8 +440,7 @@ var completionSpec = {
                 { name: "--tags", description: "push tags (can't be used with --all or --mirror)" },
                 // { name: ["-n", "--dry-run"], description: "dry run" },
             ],
-            args: [
-                {
+            args: [{
                     name: "remote",
                     isOptional: true,
                     generators: generators.remotes
@@ -449,8 +455,7 @@ var completionSpec = {
         {
             name: "pull",
             description: "Integrate with another repository",
-            args: [
-                {
+            args: [{
                     name: "remote",
                     isOptional: true,
                     generators: generators.remotes
@@ -465,19 +470,16 @@ var completionSpec = {
         {
             name: "diff",
             description: "Show changes between commits, commit and working tree, etc",
-            options: [
-                {
-                    name: "--staged",
-                    insertValue: "--staged",
-                    description: "Show difference between the files in the staging area and the latest version",
-                }
-            ]
+            options: [{
+                name: "--staged",
+                insertValue: "--staged",
+                description: "Show difference between the files in the staging area and the latest version",
+            }]
         },
         {
             name: "reset",
             description: "Reset current HEAD to the specified state",
-            options: [
-                {
+            options: [{
                     name: "--keep",
                     insertValue: "--keep {cursor}",
                     description: "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
@@ -506,13 +508,11 @@ var completionSpec = {
                     description: "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            {
-                                name: "HEAD~<N>",
-                                description: "Reset back to any number of commits",
-                                insertValue: "HEAD~",
-                            }
-                        ],
+                        suggestions: [{
+                            name: "HEAD~<N>",
+                            description: "Reset back to any number of commits",
+                            insertValue: "HEAD~",
+                        }],
                         generators: generators.commits,
                     }
                 },
@@ -522,13 +522,11 @@ var completionSpec = {
                     description: "keep the changes in your working tree but not on the index",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            {
-                                name: "HEAD~[insert # of commits]",
-                                description: "Reset back any number of commits",
-                                insertValue: "HEAD~",
-                            }
-                        ],
+                        suggestions: [{
+                            name: "HEAD~[insert # of commits]",
+                            description: "Reset back any number of commits",
+                            insertValue: "HEAD~",
+                        }],
                         generators: generators.commits,
                     }
                 },
@@ -558,8 +556,7 @@ var completionSpec = {
             name: "log",
             description: "Show commit logs",
             insertValue: "log",
-            options: [
-                {
+            options: [{
                     name: "--follow",
                     description: "Show history of given file",
                     args: {
@@ -585,8 +582,7 @@ var completionSpec = {
             name: "remote",
             description: "Manage remote repository",
             insertValue: "remote {cursor}",
-            subcommands: [
-                {
+            subcommands: [{
                     name: "add",
                     insertValue: "add {cursor}",
                     description: "add repo ",
@@ -612,14 +608,15 @@ var completionSpec = {
                     description: "Changes the URLs for the remote",
                 },
                 {
-                    name: "show", description: "Gives some information about the remote [name]"
+                    name: "show",
+                    description: "Gives some information about the remote [name]"
                 },
                 {
-                    name: "prune", description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
+                    name: "prune",
+                    description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
                 }
             ],
-            options: [
-                {
+            options: [{
                     name: "-f",
                     insertValue: "-f",
                     description: "Fetch after remote info is added",
@@ -634,42 +631,416 @@ var completionSpec = {
         {
             name: "fetch",
             description: "Download objects and refs from another repository",
-            options:
-                [
-                    {
-                        name: "origin", description: "copies all branches from the remote"
-                    }
-                ]
+            args: [
+                {
+                    name: "remote",
+                    isOptional: true,
+                    generators: generators.remotes
+                },
+                {
+                    name: "branch",
+                    isOptional: true,
+                    generators: generators.branches
+                },
+                {
+                    name: "refspec",
+                    isOptional: true,
+                },
+            ],
+            options: [
+                {
+                    name: "--all",
+                    insertValue: "--all",
+                    description: "Fetch all remotes",
+                },
+                {
+                    name: ["-a", "--append"],
+                    description: "Append ref names and object names of fetched refs to the existing contents of .git/FETCH_HEAD",
+                },
+                {
+                    name: ["--atomic"],
+                    description: "Use an atomic transaction to update local refs. Either all refs are updated, or on error, no refs are updated.",
+                },
+                {
+                    name: ["--depth"],
+                    insertValue: "--depth {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Limit fetching to the specified number of commits from the tip of each remote branch history",
+                },
+                {
+                    name: ["--deepen"],
+                    insertValue: "--deepen {cursor}",
+                    args: {
+                        name: 'depth',
+                    },
+                    description: "Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history",
+                },
+                {
+                    name: ["--shallow-since"],
+                    insertValue: "--shallow-since {cursor}",
+                    args: {
+                        name: 'date',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to include all reachable commits after <date>",
+                },
+                {
+                    name: ["--shallow-exclude"],
+                    insertValue: "--shallow-exclude {cursor}",
+                    args: {
+                        name: 'revision',
+                    },
+                    description: "Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag. This option can be specified multiple times",
+                },
+                {
+                    name: ["--unshallow"],
+                    description: "If the source repository is shallow, fetch as much as possible so that the current repository has the same history as the source repository",
+                },
+                {
+                    name: ["--update-shallow"],
+                    description: "By default when fetching from a shallow repository, git fetch refuses refs that require updating .git/shallow",
+                },
+                {
+                    name: ["--negotiation-tip"],
+                    insertValue: "--negotiation-tip ",
+                    args: {
+                        name: 'commit|glob',
+                        generators: generators.commits,
+                    },
+                    description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
+                },
+                {
+                    name: ["--dry-run"],
+                    description: "Show what would be done, without making any changes.",
+                },
+                {
+                    name: ["--write-fetch-head"],
+                    description: "Write the list of remote refs fetched in the FETCH_HEAD file directly under $GIT_DIR. This is the default",
+                },
+                {
+                    name: ["--no-write-fetch-head"],
+                    description: "tells Git not to write the file",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "This option overrides that check",
+                },
+                {
+                    name: ["-k", "--keep"],
+                    description: "Keep downloaded pack.",
+                },
+                {
+                    name: ["--multiple"],
+                    description: "Allow several <repository> and <group> arguments to be specified. No <refspec>s may be specified.",
+                },
+                {
+                    name: ["--auto-maintenance", "--auto-gc"],
+                    description: "Run git maintenance run --auto at the end to perform automatic repository maintenance if",
+                },
+                {
+                    name: ["--no-auto-maintenance", "--no-auto-gc"],
+                    description: "Don't run git maintenance run --auto at the end to perform automatic repository maintenance",
+                },
+                {
+                    name: ["--write-commit-graph"],
+                    description: "Write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
+                    name: ["--no-write-commit-graph"],
+                    description: "Don't write a commit-graph after fetching. This overrides the config setting fetch.writeCommitGraph",
+                },
+                {
+                    name: ["-p", "--prune"],
+                    description: "Before fetching, remove any remote-tracking references that no longer exist on the remote",
+                },
+                {
+                    name: ["-P", "--prune-tags"],
+                    description: "Before fetching, remove any local tags that no longer exist on the remote if --prune is enabled",
+                },
+                {
+                    name: ["-n", "--no-tags"],
+                    description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
+                },
+                {
+                    name: ["--refmap"],
+                    insertValue: "--refmap {cursor}",
+                    args: {
+                        name: 'refspec',
+                    },
+                    description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                },
+                {
+                    name: ["-t", "--tags"],
+                    description: "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
+                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules"],
+                //     insertValue: "--recurse-submodules={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand', 'no',
+                //         ],
+                //     },
+                //     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
+                // },
+                {
+                    name: ["-j", "--jobs"],
+                    args: {
+                        name: 'n',
+                    },
+                    description: "Number of parallel children to be used for all forms of fetching.",
+                },
+                {
+                    name: ["--no-recurse-submodules"],
+                    description: "Disable recursive fetching of submodules (this has the same effect as using the --recurse-submodules=no option).",
+                },
+                {
+                    name: ["--set-upstream"],
+                    description: "If the remote is fetched successfully, add upstream (tracking) reference, used by argument-less git-pull[1] and other commands.",
+                },
+                {
+                    name: ["--submodule-prefix"],
+                    insertValue: "--submodule-prefix {cursor}",
+                    args: {
+                        name: 'path',
+                    },
+                    description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
+                },
+                // TODO: fig needs to accept '=' as delimiter for args/options
+                // {
+                //     name: ["--recurse-submodules-default"],
+                //     insertValue: "--recurse-submodules-default={cursor}",
+                //     args: {
+                //         name: 'mode',
+                //         suggestions: [
+                //             'yes', 'on-demand',
+                //         ],
+                //     },
+                //     description: "This option is used internally to temporarily provide a non-negative default value for the --recurse-submodules option",
+                // },
+                {
+                    name: ["-u", "--update-head-ok"],
+                    description: "By default git fetch refuses to update the head which corresponds to the current branch. This flag disables the check. This is purely for the internal use for git pull to communicate with git fetch, and unless you are implementing your own Porcelain you are not supposed to use it.",
+                },
+                {
+                    name: ["--upload-pack"],
+                    insertValue: "--upload-pack {cursor}",
+                    args: {
+                        name: 'upload-pack',
+                    },
+                    description: "When given, and the repository to fetch from is handled by git fetch-pack, --exec=<upload-pack> is passed to the command to specify non-default path for the command run on the other end.",
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Pass --quiet to git-fetch-pack and silence any other internally used git commands. Progress is not reported to the standard error stream.",
+                },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Be verbose.",
+                },
+                {
+                    name: ["--progress"],
+                    description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified.",
+                },
+                {
+                    name: ["-o", "--server-option"],
+                    args: {
+                        name: 'option',
+                    },
+                    description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
+                },
+                {
+                    name: ["--show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. This can be disabled through fetch.showForcedUpdates, but the --show-forced-updates option guarantees this check occurs",
+                },
+                {
+                    name: ["--no-show-forced-updates"],
+                    description: "By default, git checks if a branch is force-updated during fetch. Pass --no-show-forced-updates or set fetch.showForcedUpdates to false to skip this check for performance reasons.",
+                },
+                {
+                    name: ["-4", "--ipv4"],
+                    description: "Use IPv4 addresses only, ignoring IPv6 addresses.",
+                },
+                {
+                    name: ["-6", "--ipv6"],
+                    description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
+                },
+                {
+                    name: "--stdin",
+                    description: "Read refspecs, one per line, from stdin in addition to those provided as arguments. The \"tag <name>\" format is not supported",
+                },
+            ]
         },
         {
             name: "stash",
             description: "temporarily stores all the modified tracked files",
-            subcommands: [
+            subcommands: [{
+                    name: "push", // TODO: support for no subcommand is missing
+                    description: "Save your local modifications to a new stash entry and roll them back to HEAD.",
+                    insertValue: "push {cursor}",
+                    options: [
+                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
+                        { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
+                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
+                        { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
+                        {
+                            name: ["-m", "--message"],
+                            insertValue: "-m {cursor}",
+                            description: "Use the given <msg> as the stash message.",
+                            args: {
+                                name: "message"
+                            },
+                        },
+                        { name: "--pathspec-from-file=", description: "" }, // TODO: pathspec file nul and add description
+                        { name: "--", description: "Separates pathsec from options for disambiguation purposes." },
+                        // TODO: pathspec
+                    ]
+                },
+                {
+                    name: "show",
+                    description: "Show the changes recorded in the stash entry as a diff.",
+                    insertValue: "show {cursor}",
+                    options: [
+                        // TODO: All log options can be options from list. Needs to be added.
+                    ],
+                    args: [{
+                        name: "stash",
+                        isOptional: true,
+                        generators: generators.stashes
+                    }]
+                },
                 {
                     name: "save",
-                    description: "Temporarily stores all the modified tracked files"
+                    description: "Temporarily stores all the modified tracked files",
+                    insertValue: "save {cursor}",
+                    options: [
+                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
+                        { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
+                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
+                        { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
+
+                    ],
+                    args: {
+                        name: "message",
+                        isOptional: true
+                    },
                 },
                 {
                     name: "pop",
-                    description: "Restores the most recently stashed files"
+                    description: "Restores the most recently stashed files",
+                    insertValue: "pop {cursor}",
+                    options: [
+                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                    ],
+                    args: [{
+                        name: "stash",
+                        isOptional: true,
+                        generators: generators.stashes
+                    }]
+
                 },
                 {
                     name: "list",
-                    description: "Lists all stashed changesets"
+                    description: "Lists all stashed changesets",
+                    insertValue: "list {cursor}",
+                    options: [
+                        // TODO: All log options can be options from list. Needs to be added.
+                    ]
                 },
                 {
                     name: "drop",
-                    description: "Discards the most recently stashed changeset"
+                    description: "Discards the most recently stashed changeset",
+                    insertValue: "drop {cursor}",
+                    options: [
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                    ],
+                    args: [{
+                        name: "stash",
+                        isOptional: true,
+                        generators: generators.stashes
+                    }]
+
                 },
                 {
                     name: "clear",
-                    description: " Remove all the stash entries."
-                }
+                    description: " Remove all the stash entries.",
+                    insertValue: "clear"
+                },
+                {
+                    name: "apply",
+                    description: "Like pop, but do not remove the state from the stash list.",
+                    insertValue: "apply {cursor}",
+                    options: [
+                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
+                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                    ],
+                    args: [{
+                        name: "stash",
+                        isOptional: true,
+                        generators: generators.stashes
+                    }]
+
+                },
+                {
+                    name: "branch",
+                    description: "Creates and checks out a new branch named ",
+                    insertValue: "branch {cursor}",
+                    args: [{
+                            name: "branch",
+                            generators: generators.branches
+                        },
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: generators.stashes
+                        }
+                    ],
+                },
+                {
+                    name: "create",
+                    description: "Creates a stash with the message <msg>",
+                    insertValue: "create {cursor}",
+                    args: {
+                        name: "message"
+                    },
+                },
+                {
+                    name: "store",
+                    description: "Store a given stash in the stash ref., updating the staft reflog.",
+                    insertValue: "store",
+                    args: {
+                        name: "message"
+                    },
+                    options: [{
+                            name: ["-m", "--message"],
+                            insertValue: "-m {cursor}",
+                            description: "Use the given <msg> as the stash message.",
+                            args: {
+                                name: "message"
+                            },
+                        },
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages."
+                        }
+                    ],
+                    args: [{
+                        name: "commit",
+                        generators: generators.commits
+                    }]
+                },
             ]
         },
         { name: "reflog", description: "Show history of events with hashes" },
         {
-            name: "clone", description: "Clone a repository into a new directory",
+            name: "clone",
+            description: "Clone a repository into a new directory",
             args: [{ name: "repository" }, { name: "directory", template: "filepaths" }]
         },
         { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
@@ -679,14 +1050,12 @@ var completionSpec = {
             description: "Remove files from the working tree and from the index",
             args: {
                 variadic: true,
-                suggestions: [
-                    {
-                        name: ".",
-                        description: "current directory",
-                        insertValue: ".",
-                        icon: "fig://icon?type=folder"
-                    }
-                ],
+                suggestions: [{
+                    name: ".",
+                    description: "current directory",
+                    insertValue: ".",
+                    icon: "fig://icon?type=folder"
+                }],
                 generators: generators.files_for_staging
             },
             options: [
@@ -705,35 +1074,39 @@ var completionSpec = {
             options: [
                 { name: ["-a", "--all"], description: "list both remote-tracking and local branches" },
                 {
-                    name: ["-d", "--delete"], description: "delete fully merged branch",
+                    name: ["-d", "--delete"],
+                    description: "delete fully merged branch",
                     args: {
                         generators: generators.branches,
                     },
                 },
                 {
-                    name: "-D", description: "delete branch (even if not merged)",
+                    name: "-D",
+                    description: "delete branch (even if not merged)",
                     args: {
                         generators: generators.branches,
                     },
                 },
                 {
-                    name: ["-m", "--move"], description: "move/rename a branch and its reflog",
+                    name: ["-m", "--move"],
+                    description: "move/rename a branch and its reflog",
                     args: [{
-                        generators: generators.branches,
-                    },
-                    {
-                        generators: generators.branches,
-                    },
+                            generators: generators.branches,
+                        },
+                        {
+                            generators: generators.branches,
+                        },
                     ]
                 },
                 {
-                    name: "-M", description: "move/rename a branch, even if target exists",
+                    name: "-M",
+                    description: "move/rename a branch, even if target exists",
                     args: [{
-                        generators: generators.branches,
-                    },
-                    {
-                        generators: generators.branches,
-                    },
+                            generators: generators.branches,
+                        },
+                        {
+                            generators: generators.branches,
+                        },
                     ]
                 },
                 { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
@@ -741,7 +1114,8 @@ var completionSpec = {
                 { name: ["-l", "--list"], description: "list branch names" },
                 { name: ["--create-reflog"], description: "create the branch's reflog" },
                 {
-                    name: ["--edit-description"], description: "edit the description for the branch",
+                    name: ["--edit-description"],
+                    description: "edit the description for the branch",
                     args: {
                         generators: generators.branches,
                     },
