@@ -92,7 +92,7 @@ declare namespace Fig {
          * The text that is rendered in each row of the dropdown.
          *
          * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name pro
+         * Fig uses the name prop for parsing purposes. It is important the name 
          * exactly matches the CLI tool. If you want to customise what it says in the
          * dropdown, please use `displayName`.
          */
