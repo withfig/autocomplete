@@ -236,7 +236,7 @@ declare namespace Fig {
     export interface Arg extends Completion {
 
         /**
-         * A list of string or Suggestion. Use this prop to specify custom suggestions
+         * A list of strings or Suggestions. Use this prop to specify custom suggestions
          * that aren't dependent upon the user's input or context. You most likely will
          * want to use a `generator` Object in the generator to create suggestions dynamically.
          */
