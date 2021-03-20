@@ -37,7 +37,7 @@ declare namespace Fig {
          *
          * @example
          * For the npm CLI we have a subcommand called `install`. If we wanted
-         * to display custom text like Install an NPM package 📦 we would set
+         * to display some custom text like `Install an NPM package 📦` we would set
          * `name: "install"` and `displayName: "Install an NPM package 📦"`
          */
         displayName?: string;
