@@ -8,31 +8,31 @@ export const chmodCompletionSpec: Fig.Spec = {
                 // Some of the most common chmod's (non-exhaustive)
                 {
                     name: ["u+x"],
-                    type: "subcommand",
+                    type: "arg",
                     description: "give execute permission for the user",
                     icon: "🔐",
                 },
                 {
                     name: ["a+rx"],
-                    type: "subcommand",
+                    type: "arg",
                     description: "adds read and execute permissions for all classes",
                     icon: "🔐",
                 },
                 {
                     name: ["744"],
-                    type: "subcommand",
+                    type: "arg",
                     description: "sets read, write, and execute permissions for user, and sets read permission for Group and Others",
                     icon: "🔐",
                 },
                 {
                     name: ["664"],
-                    type: "subcommand",
+                    type: "arg",
                     description: "sets read and write permissions for user and Group, and provides read to Others.",
                     icon: "🔐",
                 },
                 {
                     name: ["777"],
-                    type: "subcommand",
+                    type: "arg",
                     description: "⚠️ allows all actions for all users",
                     icon: "🔐",
                 },
