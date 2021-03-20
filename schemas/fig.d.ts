@@ -28,7 +28,7 @@ declare namespace Fig {
          *
          * @remarks
          * Fig uses the name prop for parsing purposes. It is important that the name
-         * prop exactly matches the CLI tool. If you want to customise it what is
+         * prop exactly matches the CLI tool. If you want to customise what is
          * says in the dropdown, please use `displayName`.
          */
         name?: SingleOrArray<string>;
