@@ -741,38 +741,6 @@ var completionSpec = {
             options: [
                 ...globalOpts,
                 {
-                    name: "aar",
-                    description: "Build a repository containing an AAR and a POM file."
-                },
-                {
-                    name: "apk",
-                    description: "Build an Android APK file from your app.",
-                },
-                {
-                    name: "appbundle",
-                    description: "Build an Android App Bundle file from your app."
-                },
-                {
-                    name: "bundle",
-                    description: "Build the Flutter assets directory from your app."
-                },
-                {
-                    name: "ios",
-                    description: "Build an iOS application bundle (Mac OS X host only)."
-                },
-                {
-                    name: "ios-framework",
-                    description: "Produces .xcframeworks for a Flutter project and its plugins for integration into existing, plain Xcode projects."
-                },
-                {
-                    name: "ipa",
-                    description: "Build an iOS archive bundle (Mac OS X host only)."
-                },
-                {
-                    name: "web",
-                    description: "Build a web application bundle."
-                },
-                {
                     name: ["-t", "--target"],
                     insertValue: "--target ",
                     description: "The main entry-point file of the application, as run on the device.\n If the --target option is omitted, but a file name is provided on the command line, then that is used instead.\n(defaults to \"lib/main.dart\")",
@@ -785,6 +753,56 @@ var completionSpec = {
             args: {
                 name: "executable-type",
                 description: "",
+                suggestions: [
+                    {
+                        name: "aar",
+                        description: "Build a repository containing an AAR and a POM file.",
+                        type: "argument",
+                        icon: "📦",
+                    },
+                    {
+                        name: "apk",
+                        description: "Build an Android APK file from your app.",
+                        type: "argument",
+                        icon: "🤖",
+                    },
+                    {
+                        name: "appbundle",
+                        description: "Build an Android App Bundle file from your app.",
+                        type: "argument",
+                        icon: "🤖",
+                    },
+                    {
+                        name: "bundle",
+                        description: "Build the Flutter assets directory from your app.",
+                        type: "argument",
+                        icon: "📦",
+                    },
+                    {
+                        name: "ios",
+                        description: "Build an iOS application bundle (Mac OS X host only).",
+                        type: "argument",
+                        icon: "📱",
+                    },
+                    {
+                        name: "ios-framework",
+                        description: "Produces .xcframeworks for a Flutter project and its plugins for integration into existing, plain Xcode projects.",
+                        type: "argument",
+                        icon: "📱",
+                    },
+                    {
+                        name: "ipa",
+                        description: "Build an iOS archive bundle (Mac OS X host only).",
+                        type: "argument",
+                        icon: "📱",
+                    },
+                    {
+                        name: "web",
+                        description: "Build a web application bundle.",
+                        type: "argument",
+                        icon: "🌎",
+                    },
+                ]
             }
         },
         {
