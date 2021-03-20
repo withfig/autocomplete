@@ -983,7 +983,7 @@ var completionSpec = {
                 {
                     name: ["-t", "--template"],
                     insertValue: "--template ",
-                    description: "Specify the type of project to create. [app]                (default) Generate a Flutter application. [module]             Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin]             Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
+                    description: "Specify the type of project to create. [app] (default) Generate a Flutter application. [module] Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin] Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
                     args: {
                         name: "type",
                         suggestions: [
@@ -1524,7 +1524,25 @@ var completionSpec = {
                 {
                     name: ["-r", "--reporter"],
                     insertValue: "--reporter",
-                    description: "Set how to print test results.\n[compact] (default)         A single line, updated continuously.\n[expanded]                  A separate line for each update.\n[json]                      A machine-readable format (see https://dart.dev/go/test-docs/json_reporter.md).\n(defaults to \"compact\")",
+                    description: "Set how to print test results.\n[compact] (default) A single line, updated continuously.\n[expanded] A separate line for each update.\n[json] A machine-readable format (see https://dart.dev/go/test-docs/json_reporter.md).\n(defaults to \"compact\")",
+                    args: {
+                        name: "reporter",
+                        suggestions: [
+                            {
+                                name: "compact (default)",
+                                insertValue: "compact",
+                                type: "argument",
+                            },
+                            {
+                                name: "expanded",
+                                type: "argument",
+                            },
+                            {
+                                name: "json",
+                                type: "argument",
+                            }
+                        ]
+                    }
                 },
                 {
                     name: "--timeout",
