@@ -232,6 +232,9 @@ var completionSpec = {
             name: "commit",
             description: "Record changes to the repository",
             insertValue: "commit",
+            args: {
+                name: "pathspec",
+            },
             options: [{
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
@@ -255,6 +258,204 @@ var completionSpec = {
                 {
                     name: ["-v", "--verbose"],
                     description: "show unified diff of all file changes",
+                },
+                {
+                    name: ["-p", "--patch"],
+                    description: "Use the interactive patch selection interface to chose which changes to commi...",
+                },
+                {
+                    name: ["-C", "--reuse-message"],
+                    description: "Take an existing commit object, and reuse the log message and the authorship ...",
+                    args: {
+                        name: "commit",
+                        generator: generators.commits,
+                    },
+                },
+                {
+                    name: ["-c", "--reedit-message"],
+                    description: "Like -C, but with -c the editor is invoked, so that the user can further edit...",
+                    args: {
+                        name: "commit",
+                        generator: generators.commits,
+                    },
+                },
+                {
+                    name: ["--fixup"],
+                    description: "Construct a commit message for use with rebase --autosquash. The commit messa...",
+                    args: {
+                        name: "commit",
+                        generator: generators.commits,
+                    },
+                },
+                {
+                    name: ["--squash"],
+                    description: "Construct a commit message for use with rebase --autosquash. The commit messa...",
+                    args: {
+                        name: "commit",
+                        generator: generators.commits,
+                    },
+                },
+                {
+                    name: ["--reset-author"],
+                    description: "When used with -C/-c/--amend options, or when committing after a conflicting ...",
+                },
+                {
+                    name: ["--short"],
+                    description: "When doing a dry-run, give the output in the short-format. See git-status[1] ...",
+                },
+                {
+                    name: ["--branch"],
+                    description: "Show the branch and tracking info even in short-format.",
+                },
+                {
+                    name: ["--porcelain"],
+                    description: "When doing a dry-run, give the output in a porcelain-ready format. See git-st...",
+                },
+                {
+                    name: ["--long"],
+                    description: "When doing a dry-run, give the output in the long-format. Implies --dry-run.",
+                },
+                {
+                    name: ["-z", "--null"],
+                    description: "When showing short or porcelain status output, print the filename verbatim an...",
+                },
+                {
+                    name: ["-F", "--file"],
+                    description: "Take the commit message from the given file. Use - to read the message from t...",
+                    args: {
+                        name: "file",
+                        template: "filepaths",
+                    },
+                },
+                {
+                    name: ["--author"],
+                    description: "Override the commit author. Specify an explicit author using the standard A U...",
+                    args: {
+                        name: "author",
+                    },
+                },
+                {
+                    name: ["--date"],
+                    description: "Override the author date used in the commit.",
+                    args: {
+                        name: "date",
+                    },
+                },
+                {
+                    name: ["-t", "--template"],
+                    description: "When editing the commit message, start the editor with the contents in the gi...",
+                    args: {
+                        name: "file",
+                        template: "filepaths",
+                    },
+                },
+                {
+                    name: ["-s", "--signoff"],
+                    description: "Add a Signed-off-by trailer by the committer at the end of the commit log mes...",
+                },
+                {
+                    name: ["--no-signoff"],
+                    description: "Don't add a Signed-off-by trailer by the committer at the end of the commit l...",
+                },
+                {
+                    name: ["-n", "--no-verify"],
+                    description: "This option bypasses the pre-commit and commit-msg hooks. See also githooks[5].",
+                },
+                {
+                    name: ["--allow-empty"],
+                    description: "Usually recording a commit that has the exact same tree as its sole parent co...",
+                },
+                {
+                    name: ["--allow-empty-message"],
+                    description: "Like --allow-empty this command is primarily for use by foreign SCM interface...",
+                },
+                {
+                    name: ["--cleanup"],
+                    description: "This option determines how the supplied commit message should be cleaned up b...",
+                    args: {
+                        name: "mode",
+                        suggestions: [
+                            'strip', 'whitespace', 'verbatim', 'scissors', 'default',
+                        ],
+                    },
+                },
+                {
+                    name: ["-e", "--edit"],
+                    description: "The message taken from file with -F, command line with -m, and from commit ob...",
+                },
+                {
+                    name: ["--no-edit"],
+                    description: "Use the selected commit message without launching an editor. For example, git...",
+                },
+                {
+                    name: ["--amend"],
+                    description: "Replace the tip of the current branch by creating a new commit. The recorded ...",
+                },
+                {
+                    name: ["--no-post-rewrite"],
+                    description: "Bypass the post-rewrite hook.",
+                },
+                {
+                    name: ["-i", "--include"],
+                    description: "Before making a commit out of staged contents so far, stage the contents of p...",
+                },
+                {
+                    name: ["-o", "--only"],
+                    description: "Make a commit by taking the updated working tree contents of the paths specif...",
+                },
+                {
+                    name: ["--pathspec-from-file"],
+                    description: "Pathspec is passed in instead of commandline args. If is exactly - then stand...",
+                    args: {
+                        name: "file",
+                        template: "filepaths",
+                    },
+                },
+                {
+                    name: ["--pathspec-file-nul"],
+                    description: "Only meaningful with --pathspec-from-file. Pathspec elements are separated wi...",
+                },
+                {
+                    name: ["-u", "--untracked-files"],
+                    description: "Show untracked files. The mode parameter is optional (defaults to all), and i...",
+                    args: {
+                        name: "mode",
+                        suggestions: [
+                            'no', 'normal', 'all',
+                        ],
+                    },
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Suppress commit summary message.",
+                },
+                {
+                    name: ["--dry-run"],
+                    description: "Do not create a commit, but show a list of paths that are to be committed, pa...",
+                },
+                {
+                    name: ["--status"],
+                    description: "Include the output of git-status[1] in the commit message template when using...",
+                },
+                {
+                    name: ["--no-status"],
+                    description: "Do not include the output of git-status[1] in the commit message template whe...",
+                },
+                {
+                    name: ["-S", "--gpg-sign"],
+                    description: "GPG-sign commits. The keyid argument is optional and defaults to the committe...",
+                    args: {
+                        name: "keyid",
+                        isOptional: true,
+                    },
+                },
+                {
+                    name: ["--no-gpg-sign"],
+                    description: "Dont GPG-sign commits.",
+                },
+                {
+                    name: ["--"],
+                    description: "Do not interpret any more arguments as options.",
                 },
             ]
         },
