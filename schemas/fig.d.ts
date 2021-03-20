@@ -89,7 +89,7 @@ declare namespace Fig {
     export interface NamedCompletion extends Omit<Completion, 'name'>{
 
         /**
-         * The text that’s rendered in each row of the dropdown.
+         * The text that is rendered in each row of the dropdown.
          *
          * @remarks
          * Fig uses the name prop for parsing purposes. It is important the name pro
