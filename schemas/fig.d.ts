@@ -63,7 +63,7 @@ declare namespace Fig {
         type?: SuggestionType;
         /**
          * The icon that is rendered is based on the type, unless overwritten. Icon
-         * can bea 1character string, a URL, or Fig's icon protocol (fig://) which
+         * can be a 1character string, a URL, or Fig's icon protocol (fig://) which
          * will get mac system icons.
          *
          * @example
