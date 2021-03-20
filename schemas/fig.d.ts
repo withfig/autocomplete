@@ -27,8 +27,8 @@ declare namespace Fig {
          * The text that’s rendered in each row of the dropdown.
          *
          * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name
-         * prop exactly matches the CLI tool. If you want to customise it what is
+         * Fig uses the name prop for parsing purposes. It is important that the name
+         * prop exactly matches the CLI tool. If you want to customise what is
          * says in the dropdown, please use `displayName`.
          */
         name?: SingleOrArray<string>;
@@ -37,7 +37,7 @@ declare namespace Fig {
          *
          * @example
          * For the npm CLI we have a subcommand called `install`. If we wanted
-         * to display custom text like Install an NPM package 📦 we would set
+         * to display some custom text like `Install an NPM package 📦` we would set
          * `name: "install"` and `displayName: "Install an NPM package 📦"`
          */
         displayName?: string;
@@ -63,7 +63,7 @@ declare namespace Fig {
         type?: SuggestionType;
         /**
          * The icon that is rendered is based on the type, unless overwritten. Icon
-         * can bea 1character string, a URL, or Fig's icon protocol (fig://) which
+         * can be a 1character string, a URL, or Fig's icon protocol (fig://) which
          * will get mac system icons.
          *
          * @example
@@ -89,11 +89,11 @@ declare namespace Fig {
     export interface NamedCompletion extends Omit<Completion, 'name'>{
 
         /**
-         * The text that’s rendered in each row of the dropdown.
+         * The text that is rendered in each row of the dropdown.
          *
          * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name pro
-         * exactly matches the CLI tool. If you want to customise it what is says in the
+         * Fig uses the name prop for parsing purposes. It is important the name 
+         * exactly matches the CLI tool. If you want to customise what it says in the
          * dropdown, please use `displayName`.
          */
         name: SingleOrArray<string>;
@@ -111,8 +111,8 @@ declare namespace Fig {
          * The text that’s rendered in each row of the dropdown.
          *
          * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name pro
-         * exactly matches the CLI tool. If you want to customise it what is says in the
+         * Fig uses the name prop for parsing purposes. It is important the name
+         * exactly matches the CLI tool. If you want to customise what it says in the
          * dropdown, please use `displayName`.
          */
         name: string;
@@ -236,7 +236,7 @@ declare namespace Fig {
     export interface Arg extends Completion {
 
         /**
-         * A list of string or Suggestion. Use this prop to specify custom suggestions
+         * A list of strings or Suggestions. Use this prop to specify custom suggestions
          * that aren't dependent upon the user's input or context. You most likely will
          * want to use a `generator` Object in the generator to create suggestions dynamically.
          */
@@ -307,7 +307,7 @@ declare namespace Fig {
         splitOn?: string,
         /**
          * Define a function that takes a single input: the output of executing script. This function
-         * then return an array of Suggestion objects that will be rendered by Fig.
+         * then returns an array of Suggestion objects that will be rendered by Fig.
          */
         postProcess?: Function<string, Suggestion[]>;
         /**
