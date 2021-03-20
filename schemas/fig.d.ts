@@ -307,7 +307,7 @@ declare namespace Fig {
         splitOn?: string,
         /**
          * Define a function that takes a single input: the output of executing script. This function
-         * then return an array of Suggestion objects that will be rendered by Fig.
+         * then returns an array of Suggestion objects that will be rendered by Fig.
          */
         postProcess?: Function<string, Suggestion[]>;
         /**
