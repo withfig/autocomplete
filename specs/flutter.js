@@ -616,8 +616,7 @@ var completionSpec = {
             name: "analyze",
             description: "Analyze the project's Dart code.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...currentPackage,
                 {
                     name: "--watch",
@@ -643,8 +642,7 @@ var completionSpec = {
             name: "assemble",
             description: "Assemble and build Flutter resources.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-d", "--define"],
                     description: "Allows passing configuration to a target with --define=target=key=value.",
@@ -695,8 +693,7 @@ var completionSpec = {
             name: "attach",
             description: "Attach to a running app.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 debug,
                 profile,
                 target,
@@ -734,8 +731,7 @@ var completionSpec = {
             name: "bash-completion",
             description: "Output command line shell completion setup scripts.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...overwrite
             ]
         },
@@ -743,8 +739,7 @@ var completionSpec = {
             name: "build",
             description: "Build an executable app or install bundle.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "aar",
                     description: "Build a repository containing an AAR and a POM file."
@@ -820,17 +815,13 @@ var completionSpec = {
         {
             name: "clean",
             description: "Delete the build/ and .dart_tool/ directories.",
-            options: [
-                help,
-                verbose
-            ]
+            options: globalOpts,
         },
         {
             name: "config",
             description: "Configure Flutter settings.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...analytics,
                 {
                     name: "--clear-ios-signing-cert",
@@ -872,8 +863,7 @@ var completionSpec = {
             name: "create",
             description: "Create a new Flutter project.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...pub,
                 ...offline,
                 ...withDriverTest,
@@ -1026,8 +1016,7 @@ var completionSpec = {
             name: "devices",
             description: "List all connected devices.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "--machine",
                     description: "Output device information in machine readable structured JSON format"
@@ -1043,8 +1032,7 @@ var completionSpec = {
             name: "doctor",
             description: "Show information about the installed tooling.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "--android-licenses",
                     description: "Run the Android SDK manager tool to accept the SDK's licenses."
@@ -1054,17 +1042,13 @@ var completionSpec = {
         {
             name: "downgrade",
             description: "Downgrade Flutter to the last active version for the current channel.",
-            options: [
-                help,
-                verbose,
-            ]
+            options: globalOpts,
         },
         {
             name: "drive",
             description: "Run integration tests for the project on an attached device or emulator.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...run,
                 ...keepAppRunning,
                 {
@@ -1120,8 +1104,7 @@ var completionSpec = {
             name: "emulators",
             description: "List, launch and create emulators.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "--launch",
                     insertValue: "--launch '{cursor}'",
@@ -1147,8 +1130,7 @@ var completionSpec = {
             name: "format",
             description: "Format one or more Dart files.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-n", "--dry-run"],
                     description: "Show which files would be modified but make no changes."
@@ -1171,8 +1153,7 @@ var completionSpec = {
             name: "gen-l10n",
             description: "Generate localizations for the current project.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "--arb-dir",
                     description: "The directory where the template and translated arb files are located. (defaults to \"lib/l10n\")"
@@ -1240,8 +1221,7 @@ var completionSpec = {
             name: "install",
             description: "Install a Flutter app on an attached device.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 deviceUser,
                 deviceTimeout,
             ]
@@ -1250,8 +1230,7 @@ var completionSpec = {
             name: "logs",
             description: "Show log output for running Flutter apps.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-c", "--clear"],
                     insertValue: "--clear",
@@ -1264,8 +1243,7 @@ var completionSpec = {
             name: "pub",
             description: "Commands for managing Flutter packages.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: "add",
                     description: "Add a dependency to pubspec.yaml..",
@@ -1341,9 +1319,7 @@ var completionSpec = {
             description: "Run your Flutter app on an attached device.",
 
             options: [
-                help,
-                verbose,
-                deviceId,
+                ...globalOpts,
                 ...run,
                 {
                     name: "--enable-software-rendering",
@@ -1367,8 +1343,7 @@ var completionSpec = {
             name: "screenshot",
             description: "Take a screenshot from a connected device.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-o", "--out"],
                     insertValue: "--out ",
@@ -1426,8 +1401,7 @@ var completionSpec = {
             name: "symbolize",
             description: "Symbolize a stack trace from an AOT-compiled Flutter app.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-d", "--debug-info"],
                     insertValue: "--debug-info ",
@@ -1461,8 +1435,7 @@ var completionSpec = {
             name: "test",
             description: "Run Flutter unit tests for the current project.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 ...pub,
                 ...nullAssertions,
                 ...trackWidgetCreation,
@@ -1549,8 +1522,7 @@ var completionSpec = {
             name: "upgrade",
             description: "Upgrade your copy of Flutter.",
             options: [
-                help,
-                verbose,
+                ...globalOpts,
                 {
                     name: ["-f", "--force"],
                     insertValue: "--force",
