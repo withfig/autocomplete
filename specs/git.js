@@ -498,7 +498,156 @@ var completionSpec = {
                             }
                         ],
                     },
-                }
+                },
+                {
+                    name: ["--replace-all"],
+                    description: "Default behavior is to replace at most one line. This replaces all lines matc...",
+                },
+                {
+                    name: ["--add"],
+                    description: "Adds a new line to the option without altering any existing values. This is t...",
+                },
+                {
+                    name: ["--get"],
+                    description: "Get the value for a given key (optionally filtered by a regex matching the va...",
+                },
+                {
+                    name: ["--get-all"],
+                    description: "Like get, but returns all values for a multi-valued key.",
+                },
+                {
+                    name: ["--get-regexp"],
+                    description: "Like --get-all, but interprets the name as a regular expression and writes ou...",
+                },
+                {
+                    name: ["--get-urlmatch"],
+                    description: "When given a two-part name section.key, the value for section..key whose part...",
+                    args: [
+                        {
+                            name: "name",
+                        },
+                        {
+                            name: "url",
+                        }
+                    ],
+                },
+                {
+                    name: ["--system"],
+                    description: "For writing options: write to system-wide $(prefix)/etc/gitconfig rather than...",
+                },
+                {
+                    name: ["--worktree"],
+                    description: "Similar to --local except that.git/config.worktree is read from or written to...",
+                },
+                {
+                    name: ["-f", "--file"],
+                    description: "Use the given config file instead of the one specified by GIT_CONFIG.",
+                    args: {
+                        name: "config-file",
+                        template: "filepaths"
+                    },
+                },
+                {
+                    name: ["--blob"],
+                    description: "Similar to --file but use the given blob instead of a file. E.g. you can use ...",
+                    args: {
+                        name: "blob",
+                    },
+                },
+                {
+                    name: ["--remove-section"],
+                    description: "Remove the given section from the configuration file.",
+                },
+                {
+                    name: ["--rename-section"],
+                    description: "Rename the given section to a new name.",
+                },
+                {
+                    name: ["--unset"],
+                    description: "Remove the line matching the key from config file.",
+                },
+                {
+                    name: ["--unset-all"],
+                    description: "Remove all lines matching the key from config file.",
+                },
+                {
+                    name: ["-l", "--list"],
+                    description: "List all variables set in config file, along with their values.",
+                },
+                {
+                    name: ["--fixed-value"],
+                    description: "When used with the value-pattern argument, treat value-pattern as an exact st...",
+                },
+                {
+                    name: ["--type"],
+                    description: "git config will ensure that any input or output is valid under the given type...",
+                    args: {
+                        name: "type",
+                        suggestions: [
+                            "bool", "int", "bool-or-int", "path", "expiry-date", "color",
+                        ],
+                    },
+                },
+                {
+                    name: ["--no-type"],
+                    description: "Un-sets the previously set type specifier (if one was previously set). This o...",
+                },
+                {
+                    name: ["-z", "--null"],
+                    description: "For all options that output values and/or keys, always end values with the nu...",
+                },
+                {
+                    name: ["--name-only"],
+                    description: "Output only the names of config variables for --list or --get-regexp.",
+                },
+                {
+                    name: ["--show-origin"],
+                    description: "Augment the output of all queried config options with the origin type (file, ...",
+                },
+                {
+                    name: ["--show-scope"],
+                    description: "Similar to --show-origin in that it augments the output of all queried config...",
+                },
+                {
+                    name: ["--get-colorbool"],
+                    description: "Find the color setting for name (e.g. color.diff) and output \"true\" or \"false...",
+                    args: {
+                        name: "name",
+                    },
+                },
+                {
+                    name: ["--get-color"],
+                    description: "Find the color configured for name (e.g. color.diff.new) and output it as the...",
+                    args: [
+                        {
+                            name: "name",
+                        },
+                        {
+                            name: "default",
+                            isOptional: true,
+                        }
+                    ],
+                },
+                {
+                    name: ["-e", "--edit"],
+                    description: "Opens an editor to modify the specified config file; either --system, --globa...",
+                },
+                {
+                    name: ["--includes"],
+                    description: "Respect include.* directives in config files when looking up values. Defaults...",
+                },
+                {
+                    name: ["--no-includes"],
+                    description: "Respect include.* directives in config files when looking up values. Defaults...",
+                },
+                {
+                    name: ["--default"],
+                    description: "When using --get, and the requested variable is not found, behave as if were ...",
+                    args: {
+                        name: "value",
+                        isOptional: true,
+                    },
+                },                
             ],
         },
         {
