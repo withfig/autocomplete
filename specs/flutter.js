@@ -450,7 +450,7 @@ var experimentalInvalidationStrategy = [
 
 var deviceUser = {
     name: "--device-user",
-    insertValue: "--device-user {cursor}",
+    insertValue: "--device-user ",
     description: "Identifier number for a user or work profile on Android only. Run \"adb shell pm list users\" for available identifiers.",
     args: {
         name: "seconds",
@@ -459,7 +459,7 @@ var deviceUser = {
 
 var deviceTimeout = {
     name: "--device-timeout",
-    insertValue: "--device-timeout {cursor}",
+    insertValue: "--device-timeout ",
     description: "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
     args: {
         name: "seconds",
@@ -478,7 +478,7 @@ var profile = {
 
 var target = {
     name: ["-t", "--target"],
-    insertValue: "--target {cursor}",
+    insertValue: "--target ",
     description: "The main entry-point file of the application, as run on the device. If the --target option is omitted, but a file name is provided on the command line, then that is used instead. (defaults to \"lib/main.dart\")",
     args: {
         name: ".dart file path",
@@ -503,7 +503,7 @@ var hostVmServicePort = {
 
 var dartDefine = {
     name: "--dart-define",
-    insertValue: "--dart-define {cursor}",
+    insertValue: "--dart-define ",
     description: "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
     args: {
         name: "foo=bar",
@@ -554,7 +554,7 @@ var run = [
     },
     {
         name: "--vmservice-out-file",
-        insertValue: "--vmservice-out-file {cursor}",
+        insertValue: "--vmservice-out-file ",
         description: "A file to write the attached vmservice uri to after an application is started. e.g. project/example/out.txt",
         args: {
             name: ".txt output file path",
@@ -563,7 +563,7 @@ var run = [
     },
     {
         name: "--use-application-binary",
-        insertValue: "--use-application-binary {cursor}",
+        insertValue: "--use-application-binary ",
         description: "Specify a pre-built application binary to use when running. For android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries. e.g. path/to/app.apk",
         args: {
             name: "file path to .apk",
@@ -624,7 +624,7 @@ var completionSpec = {
                 },
                 {
                     name: "--write",
-                    insertValue: "--write {cursor}",
+                    insertValue: "--write ",
                     description: "Also output the results to a file. This is useful with --watch if you want a file to always contain the latest results.",
                     args: {
                         name: "file path",
@@ -837,7 +837,7 @@ var completionSpec = {
                 },
                 {
                     name: "--build-dir",
-                    insertValue: "--build-dir {cursor}",
+                    insertValue: "--build-dir ",
                     description: "The relative path to override a projects build directory",
                     args: {
                         name: "path",
@@ -870,22 +870,22 @@ var completionSpec = {
                 ...overwrite,
                 {
                     name: "--description",
-                    insertValue: "--description {cursor}",
+                    insertValue: "--description ",
                     description: "The description to use for your new Flutter project. This string ends up in the pubspec.yaml file. (defaults to \"A new Flutter project.\")"
                 },
                 {
                     name: "--org",
-                    insertValue: "--org {cursor}",
+                    insertValue: "--org ",
                     description: "The organization responsible for your new Flutter project, in reverse domain name notation. This string is used in Java package names and as prefix in the iOS bundle identifier. (defaults to \"com.example\")"
                 },
                 {
                     name: "--project-name",
-                    insertValue: "--project-name {cursor}",
+                    insertValue: "--project-name ",
                     description: "The project name for this new Flutter project. This must be a valid dart package name."
                 },
                 {
                     name: ["-i", "--ios-language"],
-                    insertValue: "--ios-language {cursor}",
+                    insertValue: "--ios-language ",
                     description: "[objc, swift (default)]",
                     args: {
                         suggestions: [
@@ -905,7 +905,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-a", "--android-language"],
-                    insertValue: "--android-language {cursor}",
+                    insertValue: "--android-language ",
                     description: "[java, kotlin (default)]",
                     args: {
                         suggestions: [
@@ -925,7 +925,7 @@ var completionSpec = {
                 },
                 {
                     name: "--platforms",
-                    insertValue: "--platforms {cursor}",
+                    insertValue: "--platforms ",
                     description: "The platforms supported by this project. This argument only works when the --template is set to app or plugin. Platform folders (e.g. android/) will be generated in the target project. When adding platforms to a plugin project, the pubspec.yaml will be updated with the requested platform. Adding desktop platforms requires the corresponding desktop config setting to be enabled. [ios (default), android (default), windows (default), linux (default), macos (default), web (default)]",
                     args: {
                         suggestions: [
@@ -964,7 +964,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-t", "--template"],
-                    insertValue: "--template {cursor}",
+                    insertValue: "--template ",
                     description: "Specify the type of project to create. [app]                (default) Generate a Flutter application. [module]             Generate a project to add a Flutter module to an existing Android or iOS application. [package]            Generate a shareable Flutter project containing modular Dart code. [plugin]             Generate a shareable Flutter project containing an API in Dart code with a platform-specific implementation for Android, for iOS code, or for both.",
                     args: {
                         name: "type",
@@ -995,7 +995,7 @@ var completionSpec = {
                 },
                 {
                     name: ["-s", "--sample"],
-                    insertValue: "--sample {cursor}",
+                    insertValue: "--sample ",
                     description: "Specifies the Flutter code sample to use as the main.dart for an application. Implies --template=app. The value should be the sample ID of the desired sample from the API documentation website (http://docs.flutter.dev). An example can be found at https://master-api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html",
                     args: {
                         name: "id",
@@ -1003,7 +1003,7 @@ var completionSpec = {
                 },
                 {
                     name: "--list-samples",
-                    insertValue: "--list-samples {cursor}",
+                    insertValue: "--list-samples ",
                     description: "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample.",
                     args: {
                         name: "file path",
@@ -1053,7 +1053,7 @@ var completionSpec = {
                 ...keepAppRunning,
                 {
                     name: "--use-existing-app",
-                    insertValue: "--use-existing-app {cursor}",
+                    insertValue: "--use-existing-app ",
                     description: "Connect to an already running instance via the given observatory URL. If this option is given, the application will not be automatically started, and it will only be stopped if --no-keep-app-running is explicitly set.",
                     args: {
                         name: "URL"
@@ -1061,7 +1061,7 @@ var completionSpec = {
                 },
                 {
                     name: "--driver",
-                    insertValue: "--driver {cursor}",
+                    insertValue: "--driver ",
                     description: "The test file to run on the host (as opposed to the target file to run on the device). By default, this file has the same base name as the target file, but in the \"test_driver/\" directory instead, and with \"_test\" inserted just before the extension, so e.g. if the target is \"lib/main.dart\", the driver will be \"test_driver/main_test.dart\".",
                     args: {
                         name: "driver"
@@ -1070,7 +1070,7 @@ var completionSpec = {
                 ...build,
                 {
                     name: "--driver-port",
-                    insertValue: "--driver-port {cursor}",
+                    insertValue: "--driver-port ",
                     description: "The port where Webdriver server is launched at. Defaults to 4444.",
                     args: {
                         name: "port number"
