@@ -51,7 +51,7 @@ var completionSpec = {
                 name: "formula",
                 description: "Formula or cask to install",
                 generators: {
-                    script: "homebrew_path=$(brew --prefix); ls -1 $homebrew_path/Library/Taps/homebrew/homebrew-core/Formula $homebrew_path/Library/Taps/homebrew/homebrew-cask/Casks",
+                    script: "homebrew_path=$(brew --repository); ls -1 $homebrew_path/Library/Taps/homebrew/homebrew-core/Formula $homebrew_path/Library/Taps/homebrew/homebrew-cask/Casks",
                     postProcess: function (out) {
                         return out.split("\n").map(function (formula) {
                             return {
