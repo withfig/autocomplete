@@ -340,7 +340,7 @@ var completionSpec = {
             name: "rm",
             description: "Remove one or more containers",
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'containers',
                 suggestions: [
                     {
@@ -377,7 +377,7 @@ var completionSpec = {
             name: "rmi",
             description: "Remove one or more images",
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'image',
                 suggestions: [
                     {
@@ -472,7 +472,7 @@ var completionSpec = {
             name: "stop",
             description: "Stop one or more running containers",
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'container',
                 generators: [
                     generators.runningDockerContainers,

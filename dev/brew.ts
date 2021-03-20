@@ -42,7 +42,7 @@ export const brewCompletionSpec: Fig.Spec = {
       description: "Install <formula>",
       insertValue: "install ",
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
         generators: {
@@ -69,7 +69,7 @@ export const brewCompletionSpec: Fig.Spec = {
       name: "uninstall",
       description: "Uninstall <formula>",
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "formula",
         generators: {
           script: "brew list -1 --formulae",
@@ -105,7 +105,7 @@ export const brewCompletionSpec: Fig.Spec = {
           insertValue: "uninstall ",
           description: "Uninstalls the given cask",
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: {
               script: "brew list -1 --cask",
               postProcess: function (out) {
@@ -165,7 +165,7 @@ export const brewCompletionSpec: Fig.Spec = {
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: servicesGenerator,
           },
         },
@@ -182,7 +182,7 @@ export const brewCompletionSpec: Fig.Spec = {
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: servicesGenerator,
           },
         },
@@ -199,7 +199,7 @@ export const brewCompletionSpec: Fig.Spec = {
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: servicesGenerator,
           },
         },
@@ -216,7 +216,7 @@ export const brewCompletionSpec: Fig.Spec = {
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: servicesGenerator,
           },
         },

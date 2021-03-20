@@ -112,7 +112,7 @@ export const firebaseCompletionSpec:Fig.Spec = {
       name: "auth:export",
       description: "print the Google Services config",
       args: {
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
       options: [
@@ -133,7 +133,7 @@ export const firebaseCompletionSpec:Fig.Spec = {
       name: "auth:import",
       description: "print the Google Services config",
       args: {
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
       options: [

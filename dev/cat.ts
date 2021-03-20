@@ -3,7 +3,7 @@ export const catCompletionSpec: Fig.Spec = {
     name: "cat",
     description: "concatenate and print files",
     args: {
-        variadic: true,
+        isVariadic: true,
         template: "filepaths"
     }
 }

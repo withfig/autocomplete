@@ -233,7 +233,7 @@ export const completion:Fig.Spec = {
                     name: "--local",
                     description: "Default: write to the repository .git/config file",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             {
                                 name: "user.name",
@@ -253,7 +253,7 @@ export const completion:Fig.Spec = {
                     insertValue: "--global {cursor}",
                     description: "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             {
                                 name: "user.name",
@@ -314,7 +314,7 @@ export const completion:Fig.Spec = {
                 },
             ],
             args: {
-                variadic: true,
+                isVariadic: true,
                 // We have a special setting for dot in the vuejs app
                 // suggestions: [
                 //     {
@@ -461,7 +461,7 @@ export const completion:Fig.Spec = {
                     insertValue: "--keep {cursor}",
                     description: "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             head
                         ],
@@ -484,7 +484,7 @@ export const completion:Fig.Spec = {
                     insertValue: "--hard {cursor}",
                     description: "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             {
                                 name: "HEAD~<N>",
@@ -500,7 +500,7 @@ export const completion:Fig.Spec = {
                     insertValue: "--mixed {cursor}",
                     description: "keep the changes in your working tree but not on the index",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             {
                                 name: "HEAD~[insert # of commits]",
@@ -517,7 +517,7 @@ export const completion:Fig.Spec = {
                     description: "Resets the index and updates the files in the working tree that are different" +
                         " between 'commit' and HEAD",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         suggestions: [
                             head
                         ],
@@ -527,7 +527,7 @@ export const completion:Fig.Spec = {
             ],
             args: {
                 isOptional: true,
-                variadic: true,
+                isVariadic: true,
                 suggestions: [],
                 generators: generators.treeish,
             },
@@ -892,7 +892,7 @@ export const completion:Fig.Spec = {
             name: "rm",
             description: "Remove files from the working tree and from the index",
             args: {
-                variadic: true,
+                isVariadic: true,
                 suggestions: [
                     {
                         name: ".",

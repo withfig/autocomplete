@@ -40,7 +40,7 @@ var completionSpec = {
             description: "Install <formula>",
             insertValue: "install ",
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: "formula",
                 description: "Formula or cask to install",
                 generators: {
@@ -64,7 +64,7 @@ var completionSpec = {
             name: "uninstall",
             description: "Uninstall <formula>",
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: "formula",
                 generators: {
                     script: "brew list -1 --formulae",
@@ -99,7 +99,7 @@ var completionSpec = {
                     insertValue: "uninstall ",
                     description: "Uninstalls the given cask",
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         generators: {
                             script: "brew list -1 --cask",
                             postProcess: function (out) {
@@ -157,7 +157,7 @@ var completionSpec = {
                         },
                     ],
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         generators: servicesGenerator,
                     },
                 },
@@ -173,7 +173,7 @@ var completionSpec = {
                         },
                     ],
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         generators: servicesGenerator,
                     },
                 },
@@ -189,7 +189,7 @@ var completionSpec = {
                         },
                     ],
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         generators: servicesGenerator,
                     },
                 },
@@ -205,7 +205,7 @@ var completionSpec = {
                         },
                     ],
                     args: {
-                        variadic: true,
+                        isVariadic: true,
                         generators: servicesGenerator,
                     },
                 },

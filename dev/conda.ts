@@ -62,7 +62,7 @@ const condaCompletionSpec:Fig.Spec = {
                     description: "Remove temporary files that could not be deleted earlier due to being in-use. Argument is path(s) to prefix(es) where files should be found and removed.",
                     args: {
                         template: "filepaths",
-                        variadic: true
+                        isVariadic: true
                     }
                 },
                 {
@@ -280,7 +280,7 @@ const condaCompletionSpec:Fig.Spec = {
             args: {
                 name: "package spec",
                 description: "Packages to install or update in the conda environment.",
-                variadic: true,
+                isVariadic: true,
                 generators: getAllCondaPackages
             },
             options: [
@@ -360,7 +360,7 @@ const condaCompletionSpec:Fig.Spec = {
             description: "Remove a list of packages from a specified conda environment.",
             args: {
                 name: "package name",
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages
             },
             options: [
@@ -390,7 +390,7 @@ const condaCompletionSpec:Fig.Spec = {
             description: "Alias for conda remove.",
             args: {
                 name: "package name",
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages
             },
             options: [
@@ -447,7 +447,7 @@ const condaCompletionSpec:Fig.Spec = {
             description: "Updates conda packages to the latest compatible version.",
             args: {
                 name: "package",
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages
             },
             options: [
@@ -488,7 +488,7 @@ const condaCompletionSpec:Fig.Spec = {
             description: "Alias for conda update.",
             args: {
                 name: "package",
-                variadic: true
+                isVariadic: true
             },
             options: [
                 { name: ["--file"], description: "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2)." },

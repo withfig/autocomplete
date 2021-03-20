@@ -8,31 +8,31 @@ var completionSpec = {
                 // Some of the most common chmod's (non-exhaustive)
                 {
                     name: ["u+x"],
-                    type: "argument",
+                    type: "subcommand",
                     description: "give execute permission for the user",
                     icon: "🔐",
                 },
                 {
                     name: ["a+rx"],
-                    type: "argument",
+                    type: "subcommand",
                     description: "adds read and execute permissions for all classes",
                     icon: "🔐",
                 },
                 {
                     name: ["744"],
-                    type: "argument",
+                    type: "subcommand",
                     description: "sets read, write, and execute permissions for user, and sets read permission for Group and Others",
                     icon: "🔐",
                 },
                 {
                     name: ["664"],
-                    type: "argument",
+                    type: "subcommand",
                     description: "sets read and write permissions for user and Group, and provides read to Others.",
                     icon: "🔐",
                 },
                 {
                     name: ["777"],
-                    type: "argument",
+                    type: "subcommand",
                     description: "⚠️ allows all actions for all users",
                     icon: "🔐",
                 },
