@@ -40,6 +40,26 @@ You can typecheck the specs using
 npm test
 ```
 
+## Developing a Spec
+In order to get the best developer experience while creating a new spec we added a dev mode.
+You will first need to point the `specs` folder of this repo to fig. 
+You can do that by running
+```sh
+fig settings devAutocompleteFolder $(pwd)/specs
+```
+
+Now you will need to toggle fig`s dev mode by invoking
+
+```sh
+fig settings developerMode true
+```
+This command disabled spec caching and will load the specs from the `devAutocompleteFolder` instead of `.fig/autocomplete`.
+
+Now you only need to run
+```sh
+npm run watch
+```
+which will compile the scripts from the `dev` folder as you change them. 
 ## Using the specs locally
 In order to use the the specs locally you first need to compile them.
 You can do that by running
