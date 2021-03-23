@@ -28,8 +28,10 @@ Completion specs are defined in a *declarative* JSON schema, that specifies `sub
 
 
 ## Adding a Spec
-To add a new Spec you can start by copying the `example.ts` file from the root directory to the `dev` folder. You can now rename it to `[commandName].ts` and start creating the spec.
-
+To add a new Spec simply run
+```bash
+npm run create-boilerplate
+```
 
 ## Typechecking Your Spec
 This Repository uses TypeScript to verify the types. 
@@ -71,8 +73,14 @@ npm run build
 after that you need to copy them into your local `.fig` folder.
 You can do that by running
 ```bash
-npm run autocomplete
+npm run copy:all
 ```
+if you wanto to copy all specs or
+
+```bash
+npm run copy ./specs/<name>.js
+```
+to only copy one spec.
 
 
 ## FAQ
