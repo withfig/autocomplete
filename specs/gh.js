@@ -1,3 +1,20 @@
+var generators = {
+    listPR: {
+        script: "gh pr list",
+        postProcess: out => out
+            .split('\n')
+            .map(line => {
+                const { id, name, branch, status } = line.match(/^(?<id>[\d]+)\t(?<name>.+)\t(?<branch>.*)\t(?<status>OPEN|DRAFT)$/).groups
+                return {
+                    name: id,
+                    displayName: name,
+                    description: `#${id} | ${branch}`,
+                    icon: status === 'OPEN' ? '✅' : '☑️'
+                }
+            })
+    }
+}
+
 var completionSpec = {
     name: "gh",
     description: "Github's CLI tool",
@@ -38,6 +55,7 @@ var completionSpec = {
                     name: "checkout", description: "Check out a pull request in git",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         {
@@ -50,6 +68,7 @@ var completionSpec = {
                     name: "checks", description: "Show CI status for a single pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         {
@@ -62,6 +81,7 @@ var completionSpec = {
                     name: "close", description: "Close a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         {
@@ -74,6 +94,7 @@ var completionSpec = {
                     name: "comment", description: "Create a new pr comment",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         {
@@ -181,6 +202,7 @@ var completionSpec = {
                     name: "diff", description: "View changes in a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         { 
@@ -243,6 +265,7 @@ var completionSpec = {
                     name: "merge", description: "Merge a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         { name: ["-d", "--delete-branch"], description: "Delete the local and remote branch after merge" },
@@ -255,18 +278,21 @@ var completionSpec = {
                     name: "ready", description: "Mark a pull request as ready for review",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                 },
                 { 
                     name: "reopen", description: "Reopen a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     }, 
                 },
                 { 
                     name: "review", description: "Add a review to a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         { name: ["-a", "--approve"], description: "Approve pull request" },
@@ -286,6 +312,7 @@ var completionSpec = {
                     name: "view", description: "View a pull request",
                     args: {
                         name: "number> | <url> | <branch",
+                        generators: generators.listPR
                     },
                     options: [
                         { name: ["-c", "--comments"], description: "View pull request comments" },
