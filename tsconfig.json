@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "outDir": "./specs",
     "target": "es5",
     "module": "ESNext",
@@ -9,6 +10,5 @@
   "include": ["./dev/**/*"],
   "files": [
     "./schemas/fig.d.ts",
-    "./example.ts"
   ]
 }
