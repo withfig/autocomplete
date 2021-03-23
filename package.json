@@ -5,15 +5,19 @@
   "scripts": {
     "test": "tsc --noEmit",
     "build": "ts-node-script compiler/compiler.ts",
-    "autocomplete": "cp ./specs/*.js ~/.fig/autocomplete/",
-    "watch": "ts-node-dev --respawn -s --watch ./dev/ compiler/compiler.ts"
+    "copy": "func() { cp ${1} ~/.fig/autocomplete/; }; func",
+    "copy:all": "cp ./specs/*.js ~/.fig/autocomplete/",
+    "watch": "ts-node-dev --respawn -s --watch ./dev/ compiler/compiler.ts",
+    "create-boilerplate": "ts-node-script compiler/cli.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/inquirer": "^7.3.1",
     "@types/node": "^14.14.33",
     "@types/progress": "^2.0.3",
     "chalk": "^4.1.0",
+    "inquirer": "^8.0.0",
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
