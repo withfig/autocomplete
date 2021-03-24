@@ -250,20 +250,16 @@ var completionSpec = {
     },
     {
       name: "alias",
-      description: "Show all aliases beginning with <pattern>",
+      description: "Show all aliases beginning with <pattern> or Set an alias named <name> pointing to <version>",
       args: [
-        pattern
-      ],
-      options: [
-        noColors
-      ]
-    },
-    {
-      name: "alias",
-      description: "Set an alias named <name> pointing to <version>",
-      args: [
-        name,
-        version
+        {
+            name: "pattern or name",
+            description: "pattern or name"
+        },
+        {
+            name: "version",
+            isOptional: true
+        }
       ]
     },
     {
