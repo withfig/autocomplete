@@ -1,30 +1,28 @@
 export const curlCompletionSpec: Fig.Spec = {
-
-    name: "curl",
-    description: "transfer a URL",
+    name: 'curl',
+    description: 'transfer a URL',
     options: [
         {
-            name: ["-X","--request"],
-            description: "Specify request command to use",
+            name: ['-X', '--request'],
+            description: 'Specify request command to use',
             args: {
-                suggestions: [
-                    { name: "POST" }, { name: "GET" }, { name: "PATCH" }, { name: "UPDATE" }
-                ]
+                suggestions: [{ name: 'POST' }, { name: 'GET' }, { name: 'PATCH' }, { name: 'UPDATE' }],
             },
         },
         {
-            name: ["-H","--header"],
-            description: "Pass custom header(s) to serve",
+            name: ['-H', '--header'],
+            description: 'Pass custom header(s) to serve',
             args: {
                 suggestions: [
-                    {name: "'Content-Type: application/json'"}, {name: "'Content-Type: application/x-www-form-urlencoded'"}
-                ]
+                    { name: "'Content-Type: application/json'" },
+                    { name: "'Content-Type: application/x-www-form-urlencoded'" },
+                ],
             },
         },
         {
-            name: ["-d","--data"],
+            name: ['-d', '--data'],
             insertValue: "-d '{cursor}'",
-            description: "HTTP POST data",
-        }
-    ]
-}
+            description: 'HTTP POST data',
+        },
+    ],
+};
