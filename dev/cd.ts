@@ -3,9 +3,8 @@ export const cdCompletionSpec: Fig.Spec = {
     description: 'Change the shell working directory',
     args: {
         template: 'folders',
-    }
+    },
 };
-
 
 // var completionSpec = {
 //     name: "cd",
