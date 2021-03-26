@@ -40,7 +40,7 @@ var completionSpec = {
     },
     {
       name: "open",
-      insertValue: "open '{cursor}'",
+      insertValue: "open ",
       description: "Open a git repository in GitHub Desktop",
       args: {
         name: "path",
