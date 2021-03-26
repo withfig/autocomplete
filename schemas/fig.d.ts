@@ -92,7 +92,7 @@ declare namespace Fig {
          * The text that is rendered in each row of the dropdown.
          *
          * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name 
+         * Fig uses the name prop for parsing purposes. It is important the name
          * exactly matches the CLI tool. If you want to customise what it says in the
          * dropdown, please use `displayName`.
          */
@@ -296,7 +296,7 @@ declare namespace Fig {
          * is a string. It is then converted into an array of Suggestion objects using
          * `splitOn` or `postProcess`.
          */
-        script?: StringOrFunction<string[], Suggestion[]>;
+        script?: StringOrFunction<string[], string>;
         /**
          * As splitting the output of script is such a common use case for `postProcess`, we
          * build the `splitOn` property. Simply define a string to split the output of script on.

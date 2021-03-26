@@ -1,4 +1,4 @@
-export const getInstalledPackages: Fig.Generator = {
+const getInstalledPackages: Fig.Generator = {
     script: 'conda list',
     postProcess: function (out) {
         const lines = out.split('\n');
@@ -28,7 +28,7 @@ const getAllCondaPackages: Fig.Generator = {
     },
 };
 
-const condaCompletionSpec: Fig.Spec = {
+export const condaCompletionSpec: Fig.Spec = {
     name: 'conda',
     description: 'Conda package manager',
     subcommands: [

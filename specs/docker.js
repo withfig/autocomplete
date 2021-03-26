@@ -185,7 +185,6 @@ var completionSpec = {
                                     else {
                                         dockerfilePath = '$PWD/Dockerfile';
                                     }
-                                    // TODO: Get the correct return type
                                     return "grep -iE 'FROM.*AS' \"" + dockerfilePath + "\"";
                                 },
                                 postProcess: function (out) {

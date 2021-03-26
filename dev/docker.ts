@@ -184,8 +184,7 @@ export const completion: Fig.Spec = {
                                     } else {
                                         dockerfilePath = '$PWD/Dockerfile';
                                     }
-                                    // TODO: Get the correct return type
-                                    return `grep -iE 'FROM.*AS' "${dockerfilePath}"` as any;
+                                    return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
                                 },
                                 postProcess: function (out) {
                                     // This just searches the Dockerfile for the alias name after AS,
