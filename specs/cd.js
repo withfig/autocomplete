@@ -4,6 +4,10 @@ var completionSpec = {
     args: {
         template: 'folders',
     },
+    subcommands: [
+        { name: "dog" },
+        { name: "git" }
+    ]
 };
 
 // var completionSpec = {
