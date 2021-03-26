@@ -1,9 +1,9 @@
 var completionSpec = {
-    name: "cat",
-    description: "concatenate and print files",
+    name: 'cat',
+    description: 'concatenate and print files',
     args: {
         isVariadic: true,
-        template: "filepaths"
-    }
+        template: 'filepaths',
+    },
 };
 

@@ -1,23 +1,22 @@
 export const mvCompletionSpec: Fig.Spec = {
-
-    name: "mv",
-    description: "move & rename files and folders",
+    name: 'mv',
+    description: 'move & rename files and folders',
     args: [
-        {   
-            template: "filepaths"
+        {
+            template: 'filepaths',
         },
         {
-            template: "folders"
-        }
+            template: 'folders',
+        },
     ],
     options: [
         {
-            name: ["-R"],
-            description: "recursive",
+            name: ['-R'],
+            description: 'recursive',
         },
         {
-            name: "-P",
+            name: '-P',
             description: "Don't follow symbolic links",
-        }
-    ]
-}
+        },
+    ],
+};

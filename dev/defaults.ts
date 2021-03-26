@@ -1,173 +1,159 @@
 export const domain: Fig.Arg = {
-    name: "domain",
+    name: 'domain',
     generators: {
-        script: "defaults domains",
+        script: 'defaults domains',
         postProcess: function (out) {
             // TODO: what should be returned here?
-            return out
-            .split(',')
-            .map(domain => { return domain.trim() }) as Array<any>
-        }
+            return out.split(',').map((domain) => {
+                return domain.trim();
+            }) as Array<any>;
+        },
     },
     suggestions: [
         {
-            name: "-globalDomain",
-            description: "Global domain"
+            name: '-globalDomain',
+            description: 'Global domain',
         },
         {
-            name: "-app",
+            name: '-app',
             insertValue: "-app '{cursor}'",
-            description: "Application name"
-        }
-    ]
-}
+            description: 'Application name',
+        },
+    ],
+};
 
 const key: Fig.Arg = {
-    name: "key"
-}
+    name: 'key',
+};
 
 const value: Fig.Arg = {
-    name: "value"
-}
+    name: 'value',
+};
 
 const valueArgs = [
     {
-        name: "-string",
+        name: '-string',
         args: {
-            name: "string_value"
-        }
+            name: 'string_value',
+        },
     },
     {
-        name: "-data",
+        name: '-data',
         args: {
-            name: "hex_digits"
-        }
+            name: 'hex_digits',
+        },
     },
     {
-        name: ["-int", "-integer"],
+        name: ['-int', '-integer'],
         args: {
-            name: "integer_value"
-        }
+            name: 'integer_value',
+        },
     },
     {
-        name: "-float",
+        name: '-float',
         args: {
-            name: "floating-point_value"
-        }
+            name: 'floating-point_value',
+        },
     },
     {
-        name: ["-bool", "-boolean"],
+        name: ['-bool', '-boolean'],
         args: {
             suggestions: [
                 {
-                    name: "true"
+                    name: 'true',
                 },
                 {
-                    name: "false"
+                    name: 'false',
                 },
                 {
-                    name: "yes"
+                    name: 'yes',
                 },
                 {
-                    name: "no"
-                }
-            ]
-        }
+                    name: 'no',
+                },
+            ],
+        },
     },
     {
-        name: "-date",
+        name: '-date',
         args: {
-            name: "date_rep"
-        }
+            name: 'date_rep',
+        },
     },
     {
-        name: "-array",
-        args: {
-            isVariadic: true,
-            name: "array_item"
-        }
-    },
-    {
-        name: "-array-add",
+        name: '-array',
         args: {
             isVariadic: true,
-            name: "array_item"
-        }
-    }
-]
+            name: 'array_item',
+        },
+    },
+    {
+        name: '-array-add',
+        args: {
+            isVariadic: true,
+            name: 'array_item',
+        },
+    },
+];
 
-const defaultsCompletionSpec:Fig.Spec = {
-    name: "defaults",
+const defaultsCompletionSpec: Fig.Spec = {
+    name: 'defaults',
     description: "Command line interface to a user's defaults.",
     options: [],
     subcommands: [
         {
-            name: "read",
-            description: "shows defaults",
-            args: [
-                domain,
-                key
-            ],
+            name: 'read',
+            description: 'shows defaults',
+            args: [domain, key],
         },
         {
-            name: "write",
-            insertValue: "write ",
-            description: "writes key for domain",
-            args: [
-                domain,
-                key,
-                value
-            ]
+            name: 'write',
+            insertValue: 'write ',
+            description: 'writes key for domain',
+            args: [domain, key, value],
         },
         {
-            name: "delete",
-            description: "deletes domain or key in domain",
-            args: [
-                domain,
-                key
-            ],
+            name: 'delete',
+            description: 'deletes domain or key in domain',
+            args: [domain, key],
         },
         {
-            name: "rename",
-            description: "renames old_key to new_key",
+            name: 'rename',
+            description: 'renames old_key to new_key',
             args: [
                 domain,
                 {
-                    name: "old_key"
+                    name: 'old_key',
                 },
                 {
-                    name: "new_key"
-                }
+                    name: 'new_key',
+                },
             ],
         },
         {
-            name: "domains",
-            description: "lists all domains",
-            args: []
+            name: 'domains',
+            description: 'lists all domains',
+            args: [],
         },
         {
-            name: "find",
-            description: "lists all entries containing word",
+            name: 'find',
+            description: 'lists all entries containing word',
             args: {
-                name: "word",
-                description: "The word to search for..."
-            }
+                name: 'word',
+                description: 'The word to search for...',
+            },
         },
         {
-            name: "help",
-            description: "show help text"
+            name: 'help',
+            description: 'show help text',
         },
         {
-            name: "read-type",
-            description: "shows the type for the given domain, key",
-            args: [
-                domain,
-                key
-            ]
+            name: 'read-type',
+            description: 'shows the type for the given domain, key',
+            args: [domain, key],
         },
-    ]
-}
-
+    ],
+};
 
 // Command line interface to a user's defaults.
 // Syntax:

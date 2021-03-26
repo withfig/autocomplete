@@ -4,6 +4,7 @@ import path from 'path'
 import { specTransformer } from './transformer'
 import SpecLogger, { Level } from './log'
 import ProgressBar from 'progress'
+import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from './constants'
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
@@ -14,10 +15,6 @@ const options: ts.TranspileOptions = {
     before: [specTransformer],
   },
 }
-
-// Folder names
-const SOURCE_FOLDER_NAME = 'dev'
-const DESTINATION_FOLDER_NAME = 'specs'
 
 /**
  * Process a spec by transpiling it with the TypeScript
