@@ -1,4 +1,4 @@
-var completionSpec = {
+export const vueCompletionSpec: Fig.Spec = {
     name: 'vue',
     description: 'vue cli tools',
     subcommands: [
@@ -432,4 +432,3 @@ var completionSpec = {
         },
     ],
 };
-

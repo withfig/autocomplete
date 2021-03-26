@@ -1,11 +1,12 @@
-var completionSpec = {
+var domain = {
     name: 'domain',
     generators: {
         script: 'defaults domains',
         postProcess: function (out) {
-            // TODO: what should be returned here?
             return out.split(',').map(function (domain) {
-                return domain.trim();
+                return {
+                    insertValue: domain.trim(),
+                };
             });
         },
     },
@@ -27,6 +28,7 @@ var key = {
 var value = {
     name: 'value',
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 var valueArgs = [
     {
         name: '-string',
@@ -80,19 +82,19 @@ var valueArgs = [
     {
         name: '-array',
         args: {
-            variadic: true,
+            isVariadic: true,
             name: 'array_item',
         },
     },
     {
         name: '-array-add',
         args: {
-            variadic: true,
+            isVariadic: true,
             name: 'array_item',
         },
     },
 ];
-var defaultsCompletionSpec = {
+var completionSpec = {
     name: 'defaults',
     description: "Command line interface to a user's defaults.",
     options: [],

@@ -1,4 +1,4 @@
-export const listTargets: Fig.Generator = {
+const listTargets: Fig.Generator = {
     script: `make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u`,
     postProcess: function (out) {
         console.log(out);
@@ -17,7 +17,7 @@ export const listTargets: Fig.Generator = {
     },
 };
 
-const makeCompletionSpec: Fig.Spec = {
+export const makeCompletionSpec: Fig.Spec = {
     name: 'make',
     args: {
         name: 'target',
