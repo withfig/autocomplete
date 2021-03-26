@@ -9,7 +9,7 @@
         "copy:all": "cp ./specs/*.js ~/.fig/autocomplete/",
         "watch": "ts-node-dev --respawn -s --watch ./dev/ compiler/compiler.ts",
         "create-boilerplate": "ts-node-script compiler/cli.ts",
-        "lint": "eslint './dev/*.ts'",
+        "lint": "eslint '**/*.ts'",
         "lint:fix": "npm run lint -- --fix"
     },
     "husky": {

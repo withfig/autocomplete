@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-types */
 declare namespace Fig {
-
     // All the available templates
     export type Template = 'filepaths' | 'folders';
 
@@ -22,7 +22,6 @@ declare namespace Fig {
      * name by default. Use NamedCompletion to get a required name.
      */
     export interface Completion {
-
         /**
          * The text that’s rendered in each row of the dropdown.
          *
@@ -86,8 +85,7 @@ declare namespace Fig {
     /**
      * Same as a Completion, but with a required name.
      */
-    export interface NamedCompletion extends Omit<Completion, 'name'>{
-
+    export interface NamedCompletion extends Omit<Completion, 'name'> {
         /**
          * The text that is rendered in each row of the dropdown.
          *
@@ -106,7 +104,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#root-object
      */
     export interface Spec extends NamedCompletion {
-
         /**
          * The text that’s rendered in each row of the dropdown.
          *
@@ -152,7 +149,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#subcommand-object
      */
     export interface Command extends NamedCompletion {
-
         /**
          * A list of sub-commands for this command.
          */
@@ -199,7 +195,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#option-object
      */
     export interface Option extends NamedCompletion {
-
         /**
          * A list of Suggestion to make custom suggestions.
          *
@@ -222,7 +217,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#suggestion-object
      */
     export interface Suggestion extends NamedCompletion {
-
         /**
          * The type of suggestion, one of `folder`, `file`, `arg`, `subcommand`, `option`,
          * `special`.
@@ -234,7 +228,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#arg-object
      */
     export interface Arg extends Completion {
-
         /**
          * A list of strings or Suggestions. Use this prop to specify custom suggestions
          * that aren't dependent upon the user's input or context. You most likely will
@@ -286,7 +279,6 @@ declare namespace Fig {
      * @see https://withfig.com/docs/autocomplete/api#generator-object
      */
     export interface Generator {
-
         /**
          * Must be either "filepaths" or "folders".
          */
@@ -304,7 +296,7 @@ declare namespace Fig {
          * @example
          * "," or "\n" and Fig will do the work of the `postProcess` prop for you
          */
-        splitOn?: string,
+        splitOn?: string;
         /**
          * Define a function that takes a single input: the output of executing script. This function
          * then returns an array of Suggestion objects that will be rendered by Fig.
@@ -328,6 +320,6 @@ declare namespace Fig {
         /**
          * Function that lets you filter the Suggestion objects output by the template.
          */
-        filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>
+        filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
     }
 }
