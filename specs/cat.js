@@ -2,7 +2,7 @@ var completionSpec = {
     name: 'cat',
     description: 'concatenate and print files',
     args: {
-        variadic: true,
+        isVariadic: true,
         template: 'filepaths',
     },
 };

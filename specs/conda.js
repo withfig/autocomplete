@@ -1,4 +1,4 @@
-var completionSpec = {
+var getInstalledPackages = {
     script: 'conda list',
     postProcess: function (out) {
         var lines = out.split('\n');
@@ -26,7 +26,7 @@ var getAllCondaPackages = {
         return allPackages;
     },
 };
-var condaCompletionSpec = {
+var completionSpec = {
     name: 'conda',
     description: 'Conda package manager',
     subcommands: [
@@ -60,7 +60,7 @@ var condaCompletionSpec = {
                     description: 'Remove temporary files that could not be deleted earlier due to being in-use. Argument is path(s) to prefix(es) where files should be found and removed.',
                     args: {
                         template: 'filepaths',
-                        variadic: true,
+                        isVariadic: true,
                     },
                 },
                 {
@@ -350,7 +350,7 @@ var condaCompletionSpec = {
             args: {
                 name: 'package spec',
                 description: 'Packages to install or update in the conda environment.',
-                variadic: true,
+                isVariadic: true,
                 generators: getAllCondaPackages,
             },
             options: [
@@ -508,7 +508,7 @@ var condaCompletionSpec = {
             description: 'Remove a list of packages from a specified conda environment.',
             args: {
                 name: 'package name',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -565,7 +565,7 @@ var condaCompletionSpec = {
             description: 'Alias for conda remove.',
             args: {
                 name: 'package name',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -676,7 +676,7 @@ var condaCompletionSpec = {
             description: 'Updates conda packages to the latest compatible version.',
             args: {
                 name: 'package',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -771,7 +771,7 @@ var condaCompletionSpec = {
             description: 'Alias for conda update.',
             args: {
                 name: 'package',
-                variadic: true,
+                isVariadic: true,
             },
             options: [
                 {

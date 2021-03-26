@@ -349,7 +349,7 @@ export const completion: Fig.Spec = {
             name: 'rm',
             description: 'Remove one or more containers',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'containers',
                 suggestions: [
                     {
@@ -384,7 +384,7 @@ export const completion: Fig.Spec = {
             name: 'rmi',
             description: 'Remove one or more images',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'image',
                 suggestions: [
                     {
@@ -479,7 +479,7 @@ export const completion: Fig.Spec = {
             name: 'stop',
             description: 'Stop one or more running containers',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'container',
                 generators: [generators.runningDockerContainers],
             },
