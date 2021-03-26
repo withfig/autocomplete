@@ -1,4 +1,4 @@
-var completionSpec = {
+export const xcodeSelectCompletionSpec = {
     name: 'xcode-select',
     description: 'Active developer directory for Xcode tools',
     options: [
@@ -33,4 +33,3 @@ var completionSpec = {
         },
     ],
 };
-

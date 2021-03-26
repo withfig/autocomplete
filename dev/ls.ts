@@ -2,7 +2,7 @@ export const lsCompletionSpec: Fig.Spec = {
     name: 'ls',
     description: 'list directory contents',
     args: {
-        variadic: true,
+        isVariadic: true,
         template: 'folders',
     },
     options: [

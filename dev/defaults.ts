@@ -1,12 +1,13 @@
-export const domain: Fig.Arg = {
+const domain: Fig.Arg = {
     name: 'domain',
     generators: {
         script: 'defaults domains',
         postProcess: function (out) {
-            // TODO: what should be returned here?
             return out.split(',').map((domain) => {
-                return domain.trim();
-            }) as Array<any>;
+                return {
+                    insertValue: domain.trim(),
+                } as Fig.Suggestion;
+            });
         },
     },
     suggestions: [
@@ -30,6 +31,7 @@ const value: Fig.Arg = {
     name: 'value',
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const valueArgs = [
     {
         name: '-string',
@@ -83,20 +85,20 @@ const valueArgs = [
     {
         name: '-array',
         args: {
-            variadic: true,
+            isVariadic: true,
             name: 'array_item',
         },
     },
     {
         name: '-array-add',
         args: {
-            variadic: true,
+            isVariadic: true,
             name: 'array_item',
         },
     },
 ];
 
-const defaultsCompletionSpec: Fig.Spec = {
+export const defaultsCompletionSpec: Fig.Spec = {
     name: 'defaults',
     description: "Command line interface to a user's defaults.",
     options: [],

@@ -184,8 +184,7 @@ export const completion: Fig.Spec = {
                                     } else {
                                         dockerfilePath = '$PWD/Dockerfile';
                                     }
-                                    // TODO: Get the correct return type
-                                    return `grep -iE 'FROM.*AS' "${dockerfilePath}"` as any;
+                                    return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
                                 },
                                 postProcess: function (out) {
                                     // This just searches the Dockerfile for the alias name after AS,
@@ -349,7 +348,7 @@ export const completion: Fig.Spec = {
             name: 'rm',
             description: 'Remove one or more containers',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'containers',
                 suggestions: [
                     {
@@ -384,7 +383,7 @@ export const completion: Fig.Spec = {
             name: 'rmi',
             description: 'Remove one or more images',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'image',
                 suggestions: [
                     {
@@ -479,7 +478,7 @@ export const completion: Fig.Spec = {
             name: 'stop',
             description: 'Stop one or more running containers',
             args: {
-                variadic: true,
+                isVariadic: true,
                 name: 'container',
                 generators: [generators.runningDockerContainers],
             },

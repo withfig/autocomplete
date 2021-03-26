@@ -1,4 +1,4 @@
-export const getInstalledPackages: Fig.Generator = {
+const getInstalledPackages: Fig.Generator = {
     script: 'conda list',
     postProcess: function (out) {
         const lines = out.split('\n');
@@ -28,7 +28,7 @@ const getAllCondaPackages: Fig.Generator = {
     },
 };
 
-const condaCompletionSpec: Fig.Spec = {
+export const condaCompletionSpec: Fig.Spec = {
     name: 'conda',
     description: 'Conda package manager',
     subcommands: [
@@ -63,7 +63,7 @@ const condaCompletionSpec: Fig.Spec = {
                         'Remove temporary files that could not be deleted earlier due to being in-use. Argument is path(s) to prefix(es) where files should be found and removed.',
                     args: {
                         template: 'filepaths',
-                        variadic: true,
+                        isVariadic: true,
                     },
                 },
                 {
@@ -370,7 +370,7 @@ const condaCompletionSpec: Fig.Spec = {
             args: {
                 name: 'package spec',
                 description: 'Packages to install or update in the conda environment.',
-                variadic: true,
+                isVariadic: true,
                 generators: getAllCondaPackages,
             },
             options: [
@@ -543,7 +543,7 @@ const condaCompletionSpec: Fig.Spec = {
             description: 'Remove a list of packages from a specified conda environment.',
             args: {
                 name: 'package name',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -605,7 +605,7 @@ const condaCompletionSpec: Fig.Spec = {
             description: 'Alias for conda remove.',
             args: {
                 name: 'package name',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -727,7 +727,7 @@ const condaCompletionSpec: Fig.Spec = {
             description: 'Updates conda packages to the latest compatible version.',
             args: {
                 name: 'package',
-                variadic: true,
+                isVariadic: true,
                 generators: getInstalledPackages,
             },
             options: [
@@ -834,7 +834,7 @@ const condaCompletionSpec: Fig.Spec = {
             description: 'Alias for conda update.',
             args: {
                 name: 'package',
-                variadic: true,
+                isVariadic: true,
             },
             options: [
                 {
