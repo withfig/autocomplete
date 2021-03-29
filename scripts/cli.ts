@@ -28,7 +28,10 @@ async function createNewSpecCLI() {
             encoding: 'utf-8',
         });
 
-        Logger.log(`Successfully created the new Spec "${specFileName}"!`, Level.SUCCESS);
+        Logger.log(
+            `Successfully created the new Spec "${specFileName}"! Start editing it in the dev/ folder...`,
+            Level.SUCCESS,
+        );
     } catch (e) {
         Logger.log("Couldn't create Spec! Please try again.", Level.ERROR);
     }

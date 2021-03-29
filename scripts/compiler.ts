@@ -5,6 +5,7 @@ import { specTransformer } from './transformer';
 import SpecLogger, { Level } from './log';
 import ProgressBar from 'progress';
 import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from './constants';
+import { exec } from 'child_process';
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
@@ -15,6 +16,21 @@ const options: ts.TranspileOptions = {
         before: [specTransformer],
     },
 };
+
+if (process.argv[2] == 'INVALIDATE_CACHE') {
+    exec('fig settings autocomplete.developerModeNPMInvalidateCache true', (error, stdout, stderr) => {
+        if (error) {
+            console.log(`node error setting Fig to NPM dev mode: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`shell error setting Fig to NPM dev mode: ${stderr}`);
+            return;
+        }
+        // console.log("we are here")
+        // console.log(`stdout: ${stdout}`);
+    });
+}
 
 /**
  * Process a spec by transpiling it with the TypeScript
