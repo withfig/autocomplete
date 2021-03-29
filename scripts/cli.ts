@@ -29,7 +29,7 @@ async function createNewSpecCLI() {
     })
 
     Logger.log(
-      `Successfully created the new Spec "${specFileName}"!`,
+      `Successfully created the new Spec "${specFileName}"! Start editing it in the dev/ folder...`,
       Level.SUCCESS
     )
   } catch (e) {

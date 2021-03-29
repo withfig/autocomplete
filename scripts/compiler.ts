@@ -5,7 +5,7 @@ import { specTransformer } from './transformer';
 import SpecLogger, { Level } from './log';
 import ProgressBar from 'progress';
 import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from './constants';
-import { exec, execSync } from 'child_process';
+import { exec } from 'child_process';
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
@@ -17,32 +17,20 @@ const options: ts.TranspileOptions = {
     },
 };
 
-// Set fig.settings autocomplete.developerMode to true
+
 if (process.argv[2] == 'INVALIDATE_CACHE') {
-    exec('fig settings autocomplete.developerModeInvalidateCache true', (error, stdout, stderr) => {
+    exec('fig settings autocomplete.developerModeNPMInvalidateCache true', (error, stdout, stderr) => {
         if (error) {
-            console.log(`node error setting Fig dev mode: ${error.message}`);
+            console.log(`node error setting Fig to NPM dev mode: ${error.message}`);
             return;
         }
         if (stderr) {
-            console.log(`shell error setting Fig dev mode stderr: ${stderr}`);
+            console.log(`shell error setting Fig to NPM dev mode: ${stderr}`);
             return;
         }
         // console.log("we are here")
         // console.log(`stdout: ${stdout}`);
     });
-
-    const cleanup = () => {
-        execSync('fig settings autocomplete.developerModeInvalidateCache false');
-        execSync('fig settings autocomplete.developerMode false');
-        process.exit();
-    };
-    /**
-     * If the process ends by user input (ctrl + c)
-     * the devmode should be cleaned up
-     */
-    process.on('SIGINT', cleanup);
-    process.on('SIGTERM', cleanup);
 }
 
 /**

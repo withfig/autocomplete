@@ -3,12 +3,12 @@
     "version": "1.0.0",
     "description": "Fig Autocomplete Spec Linter",
     "scripts": {
-        "test": "tsc --noEmit",
-        "build": "ts-node-script compiler/compiler.ts",
-        "copy": "func() { cp ./specs/${1}.js ~/.fig/autocomplete/; }; func",
-        "copy:all": "cp ./specs/*.js ~/.fig/autocomplete/",
-        "watch": "fig settings autocomplete.developerMode true && fig settings autocomplete.devCompletionsFolder $(pwd)/specs && ts-node-dev --respawn -s --exit-child --watch ./dev/ compiler/compiler.ts 'INVALIDATE_CACHE' && echo 'Dev mode disabled'; fig settings autocomplete.developerMode false",
-        "create-boilerplate": "ts-node-script compiler/cli.ts",
+        "dev": "source scripts/dev.sh",
+        "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
+        "copy": "func() { cp $INIT_CWD/specs/${1}.js ~/.fig/autocomplete/; }; func",
+        "copy:all": "cp $INIT_CWD/specs/*.js ~/.fig/autocomplete/",
+        "create-boilerplate": "ts-node-script scripts/cli.ts",
+        "build": "ts-node-script scripts/compiler.ts",
         "lint": "eslint './dev/*.ts'",
         "lint:fix": "npm run lint -- --fix"
     },

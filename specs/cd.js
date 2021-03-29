@@ -3,7 +3,10 @@ var completionSpec = {
     description: 'Change the shell working directory',
     args: {
         template: 'folders',
-    }
+    },
+    subcommands: [
+        { name: "cat" }
+    ]
 };
 
 // var completionSpec = {
