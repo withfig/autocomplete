@@ -254,8 +254,7 @@ var completionSpec = {
                                     else {
                                         dockerfilePath = '$PWD/Dockerfile';
                                     }
-                                    // TODO: Get the correct return type
-                                    return "grep -iE 'FROM.*AS' \"" + dockerfilePath + '"';
+                                    return "grep -iE 'FROM.*AS' \"" + dockerfilePath + "\"";
                                 },
                                 postProcess: function (out) {
                                     // This just searches the Dockerfile for the alias name after AS,
@@ -340,9 +339,26 @@ var completionSpec = {
             subcommands: [],
         },
         {
-            name: 'create',
-            description: 'Create a new container',
-            args: [
+            name: 'rm',
+            description: 'Remove one or more containers',
+            args: {
+                isVariadic: true,
+                name: 'containers',
+                suggestions: [
+                    {
+                        name: '$(docker ps -aq)',
+                        insertValue: '$(docker ps -aq)',
+                        description: 'All containers, running and exited',
+                    },
+                    {
+                        name: '$(docker ps -q)',
+                        insertValue: '$(docker ps -q)',
+                        description: 'All running containers',
+                    },
+                ],
+                generators: [generators.allDockerContainers],
+            },
+            options: [
                 {
                     name: 'container',
                     generators: [generators.allLocalImages],
@@ -360,9 +376,19 @@ var completionSpec = {
                     description: 'Add a custom host-to-IP mapping (host:ip)',
                     name: ['--add-host'],
                 },
-                {
-                    args: {
-                        name: 'list',
+            ],
+        },
+        {
+            name: 'rmi',
+            description: 'Remove one or more images',
+            args: {
+                isVariadic: true,
+                name: 'image',
+                suggestions: [
+                    {
+                        name: '$(docker images -aq)',
+                        insertValue: '$(docker images -aq)',
+                        description: 'All images (including intermediate images)',
                     },
                     description: 'Attach to STDIN, STDOUT or STDERR',
                     name: ['-a', '--attach'],
@@ -416,6 +442,21 @@ var completionSpec = {
                     description: 'Write the container ID to the file',
                     name: ['--cidfile'],
                 },
+            ],
+        },
+        { name: 'save', description: 'Save one or more images to a tar archive (streamed to STDOUT by default)' },
+        { name: 'search', description: 'Search the Docker Hub for images' },
+        { name: 'start', description: 'Start one or more stopped containers' },
+        { name: 'stats', description: 'Display a live stream of container(s) resource usage statistics' },
+        {
+            name: 'stop',
+            description: 'Stop one or more running containers',
+            args: {
+                isVariadic: true,
+                name: 'container',
+                generators: [generators.runningDockerContainers],
+            },
+            options: [
                 {
                     args: {
                         name: 'int',
