@@ -1,4 +1,4 @@
-var completionSpec = {
+export const completionSpec: Fig.Spec = {
     name: 'jest',
     description: 'A delightful JavaScript Testing Framework with a focus on simplicity',
     args: {},
@@ -31,7 +31,8 @@ var completionSpec = {
         },
         {
             name: ['--ci'],
-            description: 'Instead of the regular behavior of storing a new snapshot automatically, will fail the test and require Jest to be run with --updateSnapshot',
+            description:
+                'Instead of the regular behavior of storing a new snapshot automatically, will fail the test and require Jest to be run with --updateSnapshot',
         },
         {
             name: ['--clearCache'],
@@ -44,7 +45,8 @@ var completionSpec = {
             name: ['--collectCoverageFrom'],
             displayName: '--collectCoverageFrom=<glob>',
             insertValue: '--collectCoverageFrom=',
-            description: 'A glob pattern relative to rootDir matching the files that coverage info needs to be collected from',
+            description:
+                'A glob pattern relative to rootDir matching the files that coverage info needs to be collected from',
             args: {
                 name: 'glob',
             },
@@ -118,7 +120,8 @@ var completionSpec = {
         {
             name: ['--findRelatedTests'],
             displayName: '--findRelatedTests <path1> ... <pathN>',
-            description: 'Find and run the tests that cover a space separated list of source files that were passed in as arguments',
+            description:
+                'Find and run the tests that cover a space separated list of source files that were passed in as arguments',
             args: {
                 name: '<path1> ... <pathN>',
             },
@@ -192,7 +195,8 @@ var completionSpec = {
         },
         {
             name: ['--onlyChanged', '-o'],
-            description: 'Attempts to identify which tests to run based on which files have changed in the current repository',
+            description:
+                'Attempts to identify which tests to run based on which files have changed in the current repository',
         },
         {
             name: ['--passWithNoTests'],
@@ -225,7 +229,8 @@ var completionSpec = {
         },
         {
             name: ['--runInBand', '-i'],
-            description: 'Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests',
+            description:
+                'Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests',
         },
         {
             name: ['--selectProjects'],
@@ -243,7 +248,8 @@ var completionSpec = {
             name: ['--setupTestFrameworkScriptFile'],
             displayName: '--setupTestFrameworkScriptFile=<file>',
             insertValue: '--setupTestFrameworkScriptFile=',
-            description: 'The path to a module that runs some code to configure or set up the testing framework before each test',
+            description:
+                'The path to a module that runs some code to configure or set up the testing framework before each test',
             args: {
                 name: 'file',
             },
@@ -282,7 +288,8 @@ var completionSpec = {
             name: ['--testPathIgnorePatterns'],
             displayName: '--testPathIgnorePatterns=[array]',
             insertValue: '--testPathIgnorePatterns=',
-            description: 'An array of regexp pattern strings that are tested against all tests paths before executing the test',
+            description:
+                'An array of regexp pattern strings that are tested against all tests paths before executing the test',
             args: {
                 name: '[array]',
             },
@@ -348,4 +355,3 @@ var completionSpec = {
         },
     ],
 };
-
