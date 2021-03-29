@@ -1,4 +1,4 @@
-var completionSpec = {
+var domain = {
     name: 'domain',
     generators: {
         script: 'defaults domains',
@@ -92,7 +92,7 @@ var valueArgs = [
         },
     },
 ];
-var defaultsCompletionSpec = {
+var completionSpec = {
     name: 'defaults',
     description: "Command line interface to a user's defaults.",
     options: [],

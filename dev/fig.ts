@@ -1,9 +1,107 @@
-export const figCompletionSpec: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
     name: 'fig',
     description: 'Autocomplete for your terminal',
     subcommands: [
         { name: 'source', description: '(re)connect fig to the current shell session' },
         { name: 'update', description: 'update completion specs' },
+        {
+            name: 'settings',
+            description: 'update preferences',
+            subcommands: [
+                {
+                    displayName: 'developerMode',
+                    name: 'autocomplete.developerMode',
+                    icon: 'fig://icon?type=commandkey',
+                    insertValue: 'autocomplete.developerMode ',
+                    description: 'Turns off caching and loads completions from <code>devCompletionsFolder</code>',
+                    args: {
+                        name: 'bool',
+                        suggestions: [
+                            { name: 'true', icon: 'fig://icon?type=string' },
+                            { name: 'false', icon: 'fig://icon?type=string' },
+                        ],
+                    },
+                },
+                {
+                    displayName: 'devCompletionsFolder',
+                    name: 'autocomplete.devCompletionsFolder',
+                    icon: 'fig://icon?type=commandkey',
+                    insertValue: 'autocomplete.devCompletionsFolder ',
+                    description: 'Directory to load completion specs when in <code>developerMode</code>',
+                    args: {
+                        name: 'folder',
+                        description: 'absolute path to directory containing specs',
+                        generators: {
+                            script: 'ls -d -1 "$PWD/"**/',
+                            postProcess: (out) => {
+                                const folders = out.split('\n');
+                                return folders.map((folder) => {
+                                    const paths = folder.split('/');
+                                    paths.pop();
+                                    return {
+                                        name: paths.pop(),
+                                        insertValue: folder,
+                                        icon: `fig://${folder}`,
+                                    };
+                                });
+                            },
+                        },
+                    },
+                },
+                {
+                    name: 'autocomplete.disableForCommands',
+                    icon: 'fig://icon?type=commandkey',
+                    insertValue: "autocomplete.disableForCommands '{cursor}'",
+                    description: 'JSON array of commands Fig should not autocomplete on.',
+                    args: {
+                        name: 'array',
+                        generators: {
+                            script: 'fig settings autocomplete.disableForCommands',
+                            postProcess: (out) => {
+                                const existing = out.split('\n').filter((item) => {
+                                    return item.length > 0;
+                                });
+
+                                const append = {
+                                    name: 'Disable...',
+                                    icon: 'fig://icon?type=box',
+                                    insertValue: JSON.stringify(existing.concat(['{cursor}'])),
+                                };
+
+                                const enabledAll = {
+                                    name: 'Enable all commands',
+                                    icon: 'fig://icon?type=box',
+                                    insertValue: '[]',
+                                };
+                                return [append, enabledAll].concat(
+                                    existing.map((disabledCommand) => {
+                                        return {
+                                            name: `Enable ${disabledCommand}`,
+                                            icon: 'fig://icon?type=box',
+                                            insertValue: JSON.stringify(
+                                                existing.filter((cmd) => {
+                                                    return cmd != disabledCommand;
+                                                }),
+                                            ),
+                                        };
+                                    }),
+                                );
+                            },
+                        },
+                    },
+                },
+                {
+                    name: 'pty.path',
+                    icon: 'fig://icon?type=commandkey',
+                    description: "Specify the $PATH variable in Fig's pseudoterminal",
+                    args: {
+                        name: 'path',
+                        description: "The <code>$PATH</code> variable in Fig's pseudoterminal",
+                        suggestions: [{ name: '$PATH', icon: 'fig://icon?type=string' }],
+                    },
+                },
+            ],
+        },
         {
             name: 'uninstall',
             description: 'uninstall a completion spec',
@@ -29,7 +127,7 @@ export const figCompletionSpec: Fig.Spec = {
                 },
             },
         },
-        { name: 'invite', description: 'share Fig with a teammate ⭐' },
+        { name: 'invite', description: 'share Fig with a teammate ⭐', icon: 'fig://icon?type=invite' },
         { name: 'report', description: 'report an issue' },
         { name: 'tweet', description: 'tweet about Fig', icon: 'fig://icon?type=twitter' },
         { name: 'docs', description: 'view docs in browser' },

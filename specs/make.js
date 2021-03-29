@@ -1,4 +1,4 @@
-var completionSpec = {
+var listTargets = {
     script: "make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\\/\\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}' | sort -u",
     postProcess: function (out) {
         console.log(out);
@@ -16,7 +16,7 @@ var completionSpec = {
         return targets;
     },
 };
-var makeCompletionSpec = {
+var completionSpec = {
     name: 'make',
     args: {
         name: 'target',

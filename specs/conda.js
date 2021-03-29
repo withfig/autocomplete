@@ -1,4 +1,4 @@
-var completionSpec = {
+var getInstalledPackages = {
     script: 'conda list',
     postProcess: function (out) {
         var lines = out.split('\n');
@@ -26,7 +26,7 @@ var getAllCondaPackages = {
         return allPackages;
     },
 };
-var condaCompletionSpec = {
+var completionSpec = {
     name: 'conda',
     description: 'Conda package manager',
     subcommands: [

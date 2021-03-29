@@ -1,3 +1,19 @@
+var generators = {
+    listPR: {
+        script: 'gh pr list',
+        postProcess: function (out) {
+            return out.split('\n').map(function (line) {
+                var _a = line.match(/^(?<id>[\d]+)\t(?<name>.+)\t(?<branch>.*)\t(?<status>OPEN|DRAFT)$/).groups, id = _a.id, name = _a.name, branch = _a.branch, status = _a.status;
+                return {
+                    name: id,
+                    displayName: name,
+                    description: "#" + id + " | " + branch,
+                    icon: status === 'OPEN' ? '✅' : '☑️',
+                };
+            });
+        },
+    },
+};
 var completionSpec = {
     name: 'gh',
     description: "Github's CLI tool",
@@ -40,6 +56,7 @@ var completionSpec = {
                     description: 'Check out a pull request in git',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -53,6 +70,7 @@ var completionSpec = {
                     description: 'Show CI status for a single pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -66,6 +84,7 @@ var completionSpec = {
                     description: 'Close a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -79,6 +98,7 @@ var completionSpec = {
                     description: 'Create a new pr comment',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -191,6 +211,7 @@ var completionSpec = {
                     description: 'View changes in a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -255,6 +276,7 @@ var completionSpec = {
                     description: 'Merge a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         {
@@ -274,6 +296,7 @@ var completionSpec = {
                     description: 'Mark a pull request as ready for review',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                 },
                 {
@@ -281,6 +304,7 @@ var completionSpec = {
                     description: 'Reopen a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                 },
                 {
@@ -288,6 +312,7 @@ var completionSpec = {
                     description: 'Add a review to a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         { name: ['-a', '--approve'], description: 'Approve pull request' },
@@ -308,6 +333,7 @@ var completionSpec = {
                     description: 'View a pull request',
                     args: {
                         name: 'number> | <url> | <branch',
+                        generators: generators.listPR,
                     },
                     options: [
                         { name: ['-c', '--comments'], description: 'View pull request comments' },
@@ -317,7 +343,126 @@ var completionSpec = {
             ],
         },
         { name: 'release', description: 'Manage GitHub releases' },
-        { name: 'repo', description: 'Create, clone, fork, and view repositories' },
+        {
+            name: 'repo',
+            description: 'Create, clone, fork, list, and view repositories',
+            subcommands: [
+                {
+                    name: 'clone',
+                    description: 'Clone a repository locally',
+                    args: {
+                        name: 'string',
+                    },
+                    options: [{ name: ['-h', '--help'], description: 'Show help for command' }],
+                },
+                {
+                    name: 'create',
+                    description: 'Create a new GitHub repository',
+                    args: {
+                        name: 'string',
+                    },
+                    options: [
+                        { name: ['-h', '--help'], description: 'Show help for command' },
+                        {
+                            name: ['-y', '--confirm'],
+                            description: 'Skip the confirmation prompt',
+                        },
+                        {
+                            name: ['-d', '--description'],
+                            description: 'Description of the repository',
+                            args: {
+                                name: 'string',
+                            },
+                        },
+                        {
+                            name: ['-h', '--homepage'],
+                            description: 'repository home page URL',
+                            args: {
+                                name: 'string',
+                            },
+                        },
+                        { name: ['--public'], description: 'make the repository public' },
+                        { name: ['--private'], description: 'make the repository private' },
+                        {
+                            name: ['--internal'],
+                            description: 'make the repository internal',
+                        },
+                        {
+                            name: ['--enable-issues'],
+                            description: 'Enable issues in the new repository {true|false}',
+                        },
+                        {
+                            name: ['--enable-wiki'],
+                            description: 'Enable wiki in the new repository {true|false}',
+                        },
+                    ],
+                },
+                {
+                    name: 'fork',
+                    description: 'Create a fork of a repository',
+                    args: {
+                        name: 'string',
+                    },
+                    options: [
+                        { name: ['-h', '--help'], description: 'Show help for command' },
+                        { name: ['--clone'], description: 'Clone the fork {true|false}' },
+                        {
+                            name: ['--remote'],
+                            description: 'Add remote for fork {true|false}',
+                        },
+                        {
+                            name: ['--remote-name'],
+                            description: 'Specify a name for a fork\'s new remote. (default "origin")',
+                            args: {
+                                name: 'string',
+                            },
+                        },
+                    ],
+                },
+                {
+                    name: 'list',
+                    description: 'List repositories owned by user or organization',
+                    args: {
+                        name: 'string',
+                    },
+                    options: [
+                        { name: ['-h', '--help'], description: 'Show help for command' },
+                        { name: ['--archived'], description: 'Show only archived repositories' },
+                        { name: ['--fork'], description: 'Show only forked repositories' },
+                        { name: ['-l', '--fork'], description: 'Filter by primary coding language' },
+                        {
+                            name: ['-L', '--limit'],
+                            description: 'Maximum number of repositories to list (default 30)',
+                            args: {
+                                name: 'string',
+                            },
+                        },
+                        { name: ['--no-archived'], description: 'Omit archived repositories' },
+                        { name: ['--private'], description: 'Show only private repositories' },
+                        { name: ['--public'], description: 'Show only public repositories' },
+                        { name: ['--source'], description: 'Show only non-forks' },
+                    ],
+                },
+                {
+                    name: 'view',
+                    description: 'View a repository',
+                    args: {
+                        name: 'string',
+                    },
+                    options: [
+                        { name: ['-h', '--help'], description: 'Show help for command' },
+                        {
+                            name: ['-b', '--branch'],
+                            description: 'View a specific branch of the repository',
+                            args: {
+                                name: 'string',
+                            },
+                        },
+                        { name: ['-w', '--web'], description: 'Open a repository in the browser' },
+                    ],
+                },
+            ],
+        },
     ],
 };
 

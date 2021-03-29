@@ -1,4 +1,4 @@
-export const domain: Fig.Arg = {
+const domain: Fig.Arg = {
     name: 'domain',
     generators: {
         script: 'defaults domains',
@@ -96,7 +96,7 @@ const valueArgs = [
     },
 ];
 
-const defaultsCompletionSpec: Fig.Spec = {
+export const defaultsCompletionSpec: Fig.Spec = {
     name: 'defaults',
     description: "Command line interface to a user's defaults.",
     options: [],
