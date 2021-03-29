@@ -17,7 +17,6 @@ const options: ts.TranspileOptions = {
     },
 };
 
-
 if (process.argv[2] == 'INVALIDATE_CACHE') {
     exec('fig settings autocomplete.developerModeNPMInvalidateCache true', (error, stdout, stderr) => {
         if (error) {

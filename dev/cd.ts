@@ -4,9 +4,7 @@ export const cdCompletionSpec: Fig.Spec = {
     args: {
         template: 'folders',
     },
-    subcommands: [
-        { name: "cat" }
-    ]
+    subcommands: [{ name: 'cat' }],
 };
 
 // var completionSpec = {
