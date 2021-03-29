@@ -50,18 +50,18 @@ You can do that by running
 fig settings devAutocompleteFolder $(pwd)/specs
 ```
 
-Now you will need to toggle fig`s dev mode by invoking
+Now you can invoke
 
 ```sh
-fig settings developerMode true
+npm run dev
 ```
-This command disabled spec caching and will load the specs from the `devAutocompleteFolder` instead of `.fig/autocomplete`.
 
-Now you only need to run
-```sh
-npm run watch
-```
-which will compile the scripts from the `dev` folder as you change them. 
+This command disables spec caching and will load the specs from the `devAutocompleteFolder` instead of `.fig/autocomplete`.
+
+it will also compile the scripts from the `dev` folder as you change them. 
+
+This means you can change a spec in the dev folder and instantly try out the new spec in your terminal.
+
 ## Using the specs locally
 In order to use the the specs locally you first need to compile them.
 You can do that by running
