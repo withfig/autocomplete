@@ -9,7 +9,7 @@
         "copy:all": "cp $INIT_CWD/specs/*.js ~/.fig/autocomplete/",
         "create-boilerplate": "ts-node-script scripts/cli.ts",
         "build": "ts-node-script scripts/compiler.ts",
-        "lint": "eslint './dev/*.ts'",
+        "lint": "eslint '**/*.ts'",
         "lint:fix": "npm run lint -- --fix"
     },
     "husky": {
