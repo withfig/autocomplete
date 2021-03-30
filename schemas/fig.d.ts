@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
 declare namespace Fig {
     // All the available templates
-    export type Template = 'filepaths' | 'folders';
+    export type Template = 'filepaths' | 'folders'; // or array of templates
 
     // The type of suggestion to use
-    export type SuggestionType = 'folder' | 'file' | 'arg' | 'subcommand' | 'option' | 'special';
+    export type SuggestionType = 'folder' | 'file' | 'arg' | 'subcommand' | 'option' | 'special' | 'shortcut';
 
     // A single T object or an array of this T object
     export type SingleOrArray<T> = T | T[];
@@ -17,22 +17,11 @@ declare namespace Fig {
     // both set to void by default
     export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-    /**
-     * A simple completion object, which does not have a required
-     * name by default. Use NamedCompletion to get a required name.
-     */
-    export interface Completion {
+    export type CompletionSpec = Subcommand;
+
+    export interface BaseSuggestion {
         /**
-         * The text that’s rendered in each row of the dropdown.
-         *
-         * @remarks
-         * Fig uses the name prop for parsing purposes. It is important that the name
-         * prop exactly matches the CLI tool. If you want to customise what is
-         * says in the dropdown, please use `displayName`.
-         */
-        name?: SingleOrArray<string>;
-        /**
-         * Overrides the name property.
+         * The text that is displayed for a given suggestion. It will override what is in the name prop
          *
          * @example
          * For the npm CLI we have a subcommand called `install`. If we wanted
@@ -42,7 +31,7 @@ declare namespace Fig {
         displayName?: string;
         /**
          * The value that's inserted into the terminal when a user presses enter/tab
-         * or clicks on a menu item.
+         * or clicks on a suggestion.
          * You can optionally specify `{cursor}` in the string and Fig will automatically
          * place the cursor there after insert.
          *
@@ -55,11 +44,6 @@ declare namespace Fig {
          * Keep it short and direct!
          */
         description?: string;
-        /**
-         * The type of suggestion, one of `folder`, `file`, `arg`, `subcommand`, `option`,
-         * `special`.
-         */
-        type?: SuggestionType;
         /**
          * The icon that is rendered is based on the type, unless overwritten. Icon
          * can be a 1character string, a URL, or Fig's icon protocol (fig://) which
@@ -82,90 +66,54 @@ declare namespace Fig {
         isDangerous?: boolean;
     }
 
-    /**
-     * Same as a Completion, but with a required name.
-     */
-    export interface NamedCompletion extends Omit<Completion, 'name'> {
+    export interface Suggestion extends BaseSuggestion {
         /**
-         * The text that is rendered in each row of the dropdown.
+         * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
+         * its insert and run functionality whereby selecting a suggestion runs a command.
+         * This will make it harder for a user to accidentally run a dangerous command.
          *
-         * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name
-         * exactly matches the CLI tool. If you want to customise what it says in the
-         * dropdown, please use `displayName`.
+         * @example
+         * For git, some subcommands are push, commit, checkout, add etc
          */
-        name: SingleOrArray<string>;
+        name?: SingleOrArray<string>;
+        /**
+         * The type of suggestion, one of `folder`, `file`, `arg`, `subcommand`, `option`,
+         * `special`.
+         */
+        type?: SuggestionType;
     }
 
-    /**
-     * The base object which should be used at the root level of the
-     * specs declaration.
-     *
-     * @see https://withfig.com/docs/autocomplete/api#root-object
-     */
-    export interface Spec extends NamedCompletion {
+    export interface Subcommand extends BaseSuggestion {
         /**
-         * The text that’s rendered in each row of the dropdown.
+         * The name of a subcommand. Fig uses this value for its parsing so it must be exactly right. Think of it like a token.
+         * If you want to display something custom to the user, use the displayName prop
          *
-         * @remarks
-         * Fig uses the name prop for parsing purposes. It is important the name
-         * exactly matches the CLI tool. If you want to customise what it says in the
-         * dropdown, please use `displayName`.
+         * @example
+         * For git, some subcommands are push, commit, checkout, add etc
          */
         name: string;
+
         /**
-         * The text that gets rendered at the bottom of the autocomplete box.
-         * Keep it short and direct!
+         * A list of subcommands for this spec.
          */
-        description?: string;
-        /**
-         * A list of sub-commands for this spec.
-         */
-        subcommands?: Command[];
+        subcommands?: Subcommand[];
+
         /**
          * A list of options for this spec.
          */
         options?: Option[];
-        /**
-         * A list of args or a single arg.
-         *
-         * @remark
-         * If a subcommand takes an argument, please at least include an empty Arg Object
-         * (e.g. {}). If you don't, Fig will assume the subcommand does not take an argument.
-         * This means Fig will present the wrong suggestions.
-         */
-        args?: SingleOrArray<Arg>;
-        /**
-         * A list of Suggestion to make custom suggestions.
-         *
-         * @remark
-         * You should only use this for special cases. Most likely, what you are trying to
-         * accomplish should be done with the `args` prop.
-         */
-        additionalSuggestions?: Suggestion[];
-    }
 
-    /**
-     * @see https://withfig.com/docs/autocomplete/api#subcommand-object
-     */
-    export interface Command extends NamedCompletion {
         /**
-         * A list of sub-commands for this command.
-         */
-        subcommands?: Command[];
-        /**
-         * A list of options for this command.
-         */
-        options?: Option[];
-        /**
-         * A list of args or a single arg.
+         * An arrya of args or a single arg.
          *
          * @remark
          * If a subcommand takes an argument, please at least include an empty Arg Object
          * (e.g. {}). If you don't, Fig will assume the subcommand does not take an argument.
          * This means Fig will present the wrong suggestions.
          */
+
         args?: SingleOrArray<Arg>;
+
         /**
          * A list of Suggestion to make custom suggestions.
          *
@@ -173,7 +121,7 @@ declare namespace Fig {
          * You should only use this for special cases. Most likely, what you are trying to
          * accomplish should be done with the `args` prop.
          */
-        additionalSuggestions?: Suggestion[];
+        additionalSuggestions?: Suggestion[] | String[];
         /**
          * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
          * Specify the spec name without `js`.
@@ -191,19 +139,19 @@ declare namespace Fig {
         loadSpec?: string;
     }
 
-    /**
-     * @see https://withfig.com/docs/autocomplete/api#option-object
-     */
-    export interface Option extends NamedCompletion {
+    export interface Option extends BaseSuggestion {
         /**
-         * A list of Suggestion to make custom suggestions.
+         * The short and/or long name of the option. It can be a string or an array of strings.
+         * The strings must NOT include the = sign and must NOT chain options together.
+         * Fig handles all of this logic.
          *
-         * @remark
-         * In most cases, what you are trying to accomplish should be done with the `args` prop.
+         * @example
+         * For git commit, we have the option ["-m", "--message"]. For ps we have the options "-a", "-u", "-x"
          */
-        additionalSuggestions?: Suggestion[];
+        name: SingleOrArray<String>;
+
         /**
-         * A list of args or a single arg.
+         * An array of args or a single arg.
          *
          * @remark
          * If a subcommand takes an argument, please at least include an empty Arg Object
@@ -213,25 +161,36 @@ declare namespace Fig {
         args?: SingleOrArray<Arg>;
     }
 
-    /**
-     * @see https://withfig.com/docs/autocomplete/api#suggestion-object
-     */
-    export interface Suggestion extends NamedCompletion {
+    export interface Arg {
         /**
-         * The type of suggestion, one of `folder`, `file`, `arg`, `subcommand`, `option`,
-         * `special`.
+         * The name of an argument. This is a normal string that signals to the user the type of argument they are inserting if there are no available suggestions.
+         * Unlike the subcommand and option objects, Fig does not use this value for parsing. Therefore, it can be whatever you want.
+         *
+         * @example
+         * For git commit -m, it takes an option with the name "message"
          */
-        type?: SuggestionType;
-    }
+        name?: string;
 
-    /**
-     * @see https://withfig.com/docs/autocomplete/api#arg-object
-     */
-    export interface Arg extends Completion {
         /**
-         * A list of strings or Suggestions. Use this prop to specify custom suggestions
-         * that aren't dependent upon the user's input or context. You most likely will
-         * want to use a `generator` Object in the generator to create suggestions dynamically.
+         * The text that gets rendered at the bottom of the autocomplete box.
+         * Keep it short and direct!
+         */
+        description?: string;
+
+        /**
+         * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
+         * its insert and run functionality whereby selecting a suggestion runs a command.
+         * This will make it harder for a user to accidentally run a dangerous command.
+         *
+         * @remark
+         * This is used in specs like rm and trash.
+         */
+        isDangerous?: boolean;
+
+        /**
+         * A list of strings or Suggestion obejcts. Use this prop to specify custom suggestions
+         * that are static. If suggestions are dependent upon the user's input or context, you most likely will
+         * want to use a Generator object in this arg's generator prop.
          */
         suggestions?: string[] | Suggestion[];
         /**
@@ -244,35 +203,47 @@ declare namespace Fig {
         template?: Template;
         /**
          * A list or a single generator. Generators let you run shell commands on the user's
-         * device to generate suggestions for arguments
+         * device to generate suggestions for the argument
          */
         generators?: SingleOrArray<Generator>;
         /**
-         * Specifies that the argument is variadic and therefore repeats infinitely.
+         * Specifies that the argument is variadic and therefore the subcommand / option takes infinite arguments
          *
          * @example
-         * `echo` takes a variadic argument (`echo hello world ...`)
+         * `echo` takes a variadic argument (`echo hello world ...`) so does git add
          */
-        isVariadic?: boolean;
+        variadic?: boolean;
+
         /**
-         * True if a CLI command is optional.
+         * True if an argument is optional.
+         *
+         * @example
+         * Git push [remote] [branch] takes two optional args
          */
         isOptional?: boolean;
         /**
-         * Specifies that the argument is an entirely new command which Fig should complete on.
+         * Specifies that the argument is an entirely new command which Fig should start completing on frome scratch
          *
          * @example
          * `time` and `builtin` have only one argument and this argument has the `isCommand` property
          */
         isCommand?: boolean;
         /**
-         * Specifies that the argument is a script which Fig may complete on.
+         * Specifies that the argument is a script which Fig should start completing on from scratch
          *
          * @example
          * `python` take one argument which is a `.py` file. It is possible for Fig to offer for
          * completions on this .py file. See {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
          */
         isScript?: boolean;
+
+        /**
+         * Will run the generators after 100ms of no new typing.
+         *
+         * @example
+         * NPM install and pip install send debounced network requests after inactive typing from users
+         */
+        debounce?: boolean;
     }
 
     /**
@@ -283,6 +254,10 @@ declare namespace Fig {
          * Must be either "filepaths" or "folders".
          */
         template?: Template;
+        /**
+         * Function that lets you filter the Suggestion objects output by the template.
+         */
+        filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
         /**
          * The shell command to execute in the user's current working directory. The output
          * is a string. It is then converted into an array of Suggestion objects using
@@ -306,7 +281,7 @@ declare namespace Fig {
          * Defines a trigger that determines when to regenerate suggestions for this argument by
          * re-running the generators.
          */
-        trigger?: StringOrFunction<string, boolean>;
+        trigger?: string | ((paramOne: string, paramTwo: string) => boolean);
         /**
          * A function to determine what part of the string the user is currently typing we should
          * use to filter our suggestions.
@@ -318,8 +293,25 @@ declare namespace Fig {
          */
         custom?: Function<string[], Promise<Suggestion[]>>;
         /**
-         * Function that lets you filter the Suggestion objects output by the template.
+         * Should we cache the object and if so for how long.
+         *
+         * @example
+         * "," or "\n" and Fig will do the work of the `postProcess` prop for you
          */
-        filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
+        cache: Cache;
+    }
+
+    export interface Cache {
+        /**
+         * Time to live for the cache in seconds
+         *
+         * @example
+         * 3600
+         */
+        ttl: number;
+        /**
+         * Whether the cache should be based on the directory the user was currently in or now.
+         */
+        cacheByDirectory: boolean;
     }
 }
