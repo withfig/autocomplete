@@ -19,7 +19,7 @@ declare namespace Fig {
     // both set to void by default
     export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-    export type CompletionSpec = Subcommand;
+    export type Spec = Subcommand;
 
     export interface BaseSuggestion {
         /**
@@ -106,7 +106,7 @@ declare namespace Fig {
         options?: Option[];
 
         /**
-         * An arrya of args or a single arg.
+         * An array of args or a single arg.
          *
          * @remark
          * If a subcommand takes an argument, please at least include an empty Arg Object
@@ -300,7 +300,7 @@ declare namespace Fig {
          * @example
          * "," or "\n" and Fig will do the work of the `postProcess` prop for you
          */
-        cache: Cache;
+        cache?: Cache;
     }
 
     export interface Cache {
@@ -314,6 +314,6 @@ declare namespace Fig {
         /**
          * Whether the cache should be based on the directory the user was currently in or now.
          */
-        cacheByDirectory: boolean;
+        cacheByDirectory?: boolean;
     }
 }
