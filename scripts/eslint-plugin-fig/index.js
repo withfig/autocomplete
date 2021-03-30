@@ -31,13 +31,13 @@ module.exports = {
                 return {
                     Property(node) {
                         if (node.key.name === 'name') {
-                            const value = node.value;
-                            if (value.type === 'Literal' && value.value.endsWith('=')) {
+                            const currentNode = node.value;
+                            if (currentNode.type === 'Literal' && currentNode.value.endsWith('=')) {
                                 context.report({
                                     node,
                                     message: 'The name property must not include `=`',
                                     fix: function (fixer) {
-                                        const [, end] = value.range;
+                                        const [, end] = currentNode.range;
                                         return fixer.replaceTextRange([end - 2, end - 1], '');
                                     },
                                 });
