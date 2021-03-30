@@ -1,4 +1,4 @@
-const rmRfRegexp = /rm \-(?:f(?:(?: \-)?r)?|r(?: \-f|f)?)/;
+const RM_RF_REGEXP = /rm \-(?:f(?:(?: \-)?r)?|r(?: \-f|f)?)/;
 
 module.exports = {
     rules: {
