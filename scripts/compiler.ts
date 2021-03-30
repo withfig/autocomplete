@@ -20,15 +20,13 @@ const options: ts.TranspileOptions = {
 if (process.argv[2] == 'INVALIDATE_CACHE') {
     exec('fig settings autocomplete.developerModeNPMInvalidateCache true', (error, stdout, stderr) => {
         if (error) {
-            console.log(`node error setting Fig to NPM dev mode: ${error.message}`);
+            SpecLogger.log(`node error setting Fig to NPM dev mode: ${error.message}`, Level.ERROR);
             return;
         }
         if (stderr) {
-            console.log(`shell error setting Fig to NPM dev mode: ${stderr}`);
+            SpecLogger.log(`shell error setting Fig to NPM dev mode: ${stderr}`, Level.ERROR);
             return;
         }
-        // console.log("we are here")
-        // console.log(`stdout: ${stdout}`);
     });
 }
 
