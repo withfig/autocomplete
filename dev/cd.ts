@@ -1,3 +1,3 @@
-export const cd:Fig.Spec = {
-    name: "test"
-}
+export const cd: Fig.Spec = {
+    name: 'test',
+};
