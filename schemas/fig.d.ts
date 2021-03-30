@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 declare namespace Fig {
     // All the available templates
-    export type Template = 'filepaths' | 'folders'; // or array of templates
+    export type TemplateStrings = 'filepaths' | 'folders';
+
+    export type Template = TemplateStrings | TemplateStrings[];
 
     // The type of suggestion to use
     export type SuggestionType = 'folder' | 'file' | 'arg' | 'subcommand' | 'option' | 'special' | 'shortcut';
