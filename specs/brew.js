@@ -26,7 +26,10 @@ var completionSpec = {
       description:
         "List installed formulae that are not dependencies of another installed formula",
     },
-    { name: "doctor", description: "Check your system for potential problems" },
+    {
+      name: "doctor",
+      description: "Check your system for potential problems",
+    },
     {
       name: "info",
       description: "Display brief statistics for your Homebrew installation",
@@ -46,7 +49,7 @@ var completionSpec = {
       description: "Show Homebrew and system configuration info",
     },
     {
-      name: "aaaaaaaa",
+      name: "install",
       description: "Install <formula>",
       insertValue: "install ",
       args: {
@@ -138,7 +141,10 @@ var completionSpec = {
           name: ["-d", "--debug"],
           description: "Display any debugging information.",
         },
-        { name: ["-q", "--quiet"], description: "Suppress any warnings." },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppress any warnings.",
+        },
         {
           name: ["-v", "--verbose"],
           description: "Make some output more verbose.",
