@@ -4,4 +4,5 @@ export const completionSpec: Fig.Spec = {
   args: {
     template: "folders",
   },
+  subcommands: [{ name: "test" }],
 };
