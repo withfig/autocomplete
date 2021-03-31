@@ -19,69 +19,70 @@
 ## Add a completion spec for a CLI tool 
 Looking to improve autocomplete functionality or add support for your favorite CLI tool? We welcome contributions for new specs!
 
-Completion specs are defined in a *declarative* JSON schema, that specifies `subcommands`, `options` and `arguments`. Suggestions can be generated dynamically by running shell commands or reading local files, in addition to the information in the spec itself.
+Completion specs are defined in a *declarative* schema that specifies `subcommands`, `options` and `arguments`. Suggestions can be generated dynamically by running shell commands or reading local files, in addition to the information in the spec itself.
 
 **For more documentation and tutorials**, visit [withfig.com/docs](https://withfig.com/docs/autocomplete/getting-started)
 
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
 
 
-
-## Adding a Spec
-To add a new Spec simply run
-```bash
-npm run create-boilerplate
-```
-
-## Typechecking Your Spec
-This Repository uses TypeScript to verify the types. 
-
-You can typecheck the specs using 
+## Get Started
 
 ```bash
-npm test
-```
+git clone https://github.com/withfig/autocomplete.git fig-autocomplete
+cd fig-autocomplete
 
-## Developing a Spec
-In order to get the best developer experience while creating a new spec we added a dev mode.
-You will first need to point the `specs` folder of this repo to fig. 
-You can do that by running
-```sh
-fig settings devAutocompleteFolder $(pwd)/specs
-```
+# Install packages
+npm install
 
-Now you can invoke
-
-```sh
+# Go into testing mode
 npm run dev
 ```
 
-This command disables spec caching and will load the specs from the `devAutocompleteFolder` instead of `.fig/autocomplete`.
+Now start editing specs in the `dev/`. They will compile to the `specs/` folder on save. You can start testing your spec immediately in your terminal.
 
-it will also compile the scripts from the `dev` folder as you change them. 
+**Note**: by default, Fig looks for completion specs in your `~/.fig/autocomplete` folder
+<br/>
 
-This means you can change a spec in the dev folder and instantly try out the new spec in your terminal.
 
-## Using the specs locally
-In order to use the the specs locally you first need to compile them.
-You can do that by running
+## Auto-linting, formatting, and type-checking
+Install the following plugins discussed here: https://forum.withfig.com/t/auto-linting-and-auto-formatting-completion-specs/53
 
+
+## Other available commands
 ```bash
+
+# Create a new spec from a boilerplate template
+npm run create-boilerplate
+
+# Typecheck all specs in the dev/ folder
+npm test
+
+# Compile typescripts specs from dev/ folder to specs/ folder
 npm run build
-```
 
-after that you need to copy them into your local `.fig` folder.
-You can do that by running
-```bash
+# Copy all specs from the specs/ folder to the ~/.fig/autocomplete folder
 npm run copy:all
+
+# Copy an individual spec from the specs/ folder to the ~/.fig/autocomplete folder
+npm run copy <spec-name>
 ```
-if you wanto to copy all specs or
+
+
+## Fig Settings
+These CLI commands update the `~/.fig/settings.json` file. Read more [here](https://withfig.com/docs/support/settings). 
+
 
 ```bash
-npm run copy ./specs/<name>.js
-```
-to only copy one spec.
+# Turn on Fig developer mode
+fig settings autocomplete.developerMode true
 
+
+# Update the folder Fig uses to look for completion specs. 
+# Only works in developer mode. Otherwise, defaults to ~/.fig/autocomplete
+fig settings autocomplete.devCompletionsFolder path/to/folder
+```
+**Note**: These settings are updated automatically when starting / stopping `npm run dev`
 
 ## FAQ
 
@@ -89,7 +90,7 @@ to only copy one spec.
 Fig works with iTerm, the native MacOS Terminal app, Hyper and the integrated terminal in VSCode.
 
 #### How does Fig work?
-Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.
+Fig has built an API around the terminal that allows you to insert text, position windows, and run local shell commands and render output in a browser.
 
 #### Does Fig work on Windows or Linux?
 Currently, Fig is only available on MacOS.

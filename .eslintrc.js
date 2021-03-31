@@ -10,8 +10,18 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:fig/recommended',
     ],
-    plugins: ['fig'],
+    plugins: ["fig"],
     rules: {
         '@typescript-eslint/explicit-module-boundary-types': 0,
+        'prettier/prettier': [
+            'error',
+            {
+                // Optional Prettier config changes
+                trailingComma: 'es5',
+                printWidth: 80,
+            },
+        ],
+        'no-unused-vars': ['off'],
+        '@typescript-eslint/no-unused-vars': ['off'],
     },
 };
