@@ -45,6 +45,10 @@ Now start editing specs in the `dev/`. They will compile to the `specs/` folder 
 <br/>
 
 
+## Auto-linting, formatting, and type-checking
+Follow the instructions here: https://forum.withfig.com/t/auto-linting-and-auto-formatting-completion-specs/53
+
+
 ## Other available commands
 ```bash
 

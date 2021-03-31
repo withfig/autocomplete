@@ -28,7 +28,7 @@ var completionSpec = {
         { name: 'search', description: 'Perform a substring search of cask tokens and formula names' },
         { name: 'config', description: 'Show Homebrew and system configuration info' },
         {
-            name: 'install',
+            name: 'aaaaaaaa',
             description: 'Install <formula>',
             insertValue: 'install ',
             args: {
