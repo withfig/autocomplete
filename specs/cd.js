@@ -4,6 +4,6 @@ var completionSpec = {
     args: {
         template: "folders",
     },
-    subcommands: [{ name: "test" }],
+    subcommands: [{ name: "test" }, { name: "test" }],
 };
 
