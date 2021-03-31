@@ -7,6 +7,6 @@ module.exports = {
     extends: ['plugin:@typescript-eslint/recommended', 'prettier', 'plugin:prettier/recommended'],
     rules: {
         '@typescript-eslint/explicit-module-boundary-types': 0,
-        'no-console': 2,
+        // 'no-console': 2,
     },
 };
