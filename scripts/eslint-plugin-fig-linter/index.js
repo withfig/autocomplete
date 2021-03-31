@@ -53,10 +53,10 @@ module.exports = {
   },
   configs: {
     recommended: {
-      plugins: ["fig"],
+      plugins: ["fig-linter"],
       rules: {
-        "fig/no-malicious-script": "error",
-        "fig/no-name-equals": "error",
+        "fig-linter/no-malicious-script": "error",
+        "fig-linter/no-name-equals": "error",
       },
     },
   },

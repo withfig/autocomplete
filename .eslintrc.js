@@ -8,9 +8,9 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended",
-    "plugin:fig/recommended",
+    "plugin:fig-linter/recommended",
   ],
-  plugins: ["fig"],
+  plugins: ["fig-linter"],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "prettier/prettier": [
