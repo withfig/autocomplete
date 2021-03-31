@@ -1,11 +1,11 @@
-import fs from 'fs';
-import ts from 'typescript';
-import path from 'path';
-import { specTransformer } from './transformer';
-import SpecLogger, { Level } from './log';
-import ProgressBar from 'progress';
-import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from './constants';
-import { exec } from 'child_process';
+import fs from "fs";
+import ts from "typescript";
+import path from "path";
+import { specTransformer } from "./transformer";
+import SpecLogger, { Level } from "./log";
+import ProgressBar from "progress";
+import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from "./constants";
+import { exec } from "child_process";
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
@@ -17,9 +17,9 @@ const options: ts.TranspileOptions = {
   },
 };
 
-if (process.argv[2] == 'INVALIDATE_CACHE') {
+if (process.argv[2] == "INVALIDATE_CACHE") {
   exec(
-    'fig settings autocomplete.developerModeNPMInvalidateCache true',
+    "fig settings autocomplete.developerModeNPMInvalidateCache true",
     (error, stdout, stderr) => {
       if (error) {
         SpecLogger.log(
@@ -48,10 +48,10 @@ const processSpec = (file: string) => {
   const source = fs.readFileSync(file).toString();
   const result = ts.transpileModule(source, options);
 
-  let newName = path.basename(file, '.ts');
+  let newName = path.basename(file, ".ts");
 
-  if (!newName.endsWith('.js')) {
-    newName += '.js';
+  if (!newName.endsWith(".js")) {
+    newName += ".js";
   }
 
   const outFilePath = path.resolve(DESTINATION_FOLDER_NAME, newName);
@@ -62,7 +62,7 @@ const processSpec = (file: string) => {
   }
 
   // Remove unessesary export at the end of js files
-  const jsOutput = result.outputText.replace('export {};', '');
+  const jsOutput = result.outputText.replace("export {};", "");
 
   fs.writeFileSync(outFilePath, jsOutput);
 };
@@ -77,14 +77,14 @@ fs.readdir(SOURCE_FOLDER_NAME, (err, files) => {
     return;
   }
 
-  const specs = files.filter((file) => file !== '.DS_STORE');
+  const specs = files.filter((file) => file !== ".DS_STORE");
   SpecLogger.log(`Processing ${specs.length} specs...`);
 
-  const bar = new ProgressBar(':bar :percent', {
+  const bar = new ProgressBar(":bar :percent", {
     total: specs.length,
-    complete: '=',
-    head: '>',
-    incomplete: ' ',
+    complete: "=",
+    head: ">",
+    incomplete: " ",
   });
 
   specs.forEach((spec) => {

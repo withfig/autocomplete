@@ -11,10 +11,10 @@ import {
   VariableStatement,
   visitEachChild,
   visitNode,
-} from 'typescript';
+} from "typescript";
 
 // The name of the spec variable
-const SPEC_NAME = 'completionSpec';
+const SPEC_NAME = "completionSpec";
 const EXPORT_KEYWORD = SyntaxKind.ExportKeyword;
 
 /**

@@ -1,44 +1,44 @@
 export const completionSpec: Fig.Spec = {
-  name: 'tar',
-  description: 'Manipulating archive files',
+  name: "tar",
+  description: "Manipulating archive files",
   args: {
     variadic: true,
-    template: 'folders',
+    template: "folders",
   },
   options: [
     {
-      name: ['-c', '--create'],
-      description: 'Create a new archive',
+      name: ["-c", "--create"],
+      description: "Create a new archive",
       args: {
         variadic: true,
-        template: 'folders',
+        template: "folders",
       },
     },
     {
-      name: ['-t', '--list'],
-      description: 'List archive contents',
+      name: ["-t", "--list"],
+      description: "List archive contents",
       args: {
         generators: {
           script: "ls -1 | grep '.tar'",
-          splitOn: '\n',
+          splitOn: "\n",
         },
       },
     },
     {
-      name: ['-x', '--extract'],
-      description: 'Extract to disk',
+      name: ["-x", "--extract"],
+      description: "Extract to disk",
       args: {
         generators: {
           script: "ls -1 | grep '.tar'",
-          splitOn: '\n',
+          splitOn: "\n",
         },
       },
     },
-    { name: ['-h', '--help'], description: 'Help' },
-    { name: ['--version'], description: 'Version' },
+    { name: ["-h", "--help"], description: "Help" },
+    { name: ["--version"], description: "Version" },
     {
-      name: ['--wildcards'],
-      args: { name: 'pattern', description: 'ex: *.html' },
+      name: ["--wildcards"],
+      args: { name: "pattern", description: "ex: *.html" },
     },
   ],
 };

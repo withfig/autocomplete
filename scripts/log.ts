@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
-import chalk from 'chalk';
+import chalk from "chalk";
 
 // An enum representing the log level and the color to use
 // in chalk to render this level.
 export enum Level {
-  INFO = 'blue',
-  ERROR = 'red',
-  SUCCESS = 'green',
+  INFO = "blue",
+  ERROR = "red",
+  SUCCESS = "green",
 }
 
 /**

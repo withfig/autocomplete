@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/ban-types */
 declare namespace Fig {
   // All the available templates
-  export type TemplateStrings = 'filepaths' | 'folders';
+  export type TemplateStrings = "filepaths" | "folders";
 
   export type Template = TemplateStrings | TemplateStrings[];
 
   // The type of suggestion to use
   export type SuggestionType =
-    | 'folder'
-    | 'file'
-    | 'arg'
-    | 'subcommand'
-    | 'option'
-    | 'special'
-    | 'shortcut';
+    | "folder"
+    | "file"
+    | "arg"
+    | "subcommand"
+    | "option"
+    | "special"
+    | "shortcut";
 
   // A single T object or an array of this T object
   export type SingleOrArray<T> = T | T[];

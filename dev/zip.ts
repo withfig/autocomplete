@@ -1,46 +1,46 @@
 export const completionSpec: Fig.Spec = {
-  name: 'zip',
-  description: 'Package and compress (archive) files into zip file.',
+  name: "zip",
+  description: "Package and compress (archive) files into zip file.",
   args: [
     {
-      name: 'name',
-      description: 'name of archive',
+      name: "name",
+      description: "name of archive",
     },
     {
-      name: 'dir',
-      template: 'folders',
+      name: "dir",
+      template: "folders",
     },
   ],
   options: [
     {
-      name: ['-r'],
+      name: ["-r"],
       description:
-        'Package and compress a directory and its contents, recursively',
+        "Package and compress a directory and its contents, recursively",
     },
     {
-      name: ['-e'],
+      name: ["-e"],
     },
     {
-      name: ['-s'],
+      name: ["-s"],
       args: [
         {
-          name: 'split size',
+          name: "split size",
         },
       ],
     },
     {
-      name: ['-d'],
+      name: ["-d"],
       args: [
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: '-9',
+      name: "-9",
       description:
-        'Archive a directory and its contents with the highest level [9] of compression',
+        "Archive a directory and its contents with the highest level [9] of compression",
     },
   ],
 };

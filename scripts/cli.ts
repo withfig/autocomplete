@@ -1,16 +1,16 @@
-import inquirer from 'inquirer';
-import Logger, { Level } from './log';
-import fs from 'fs';
-import { getBoilerplateSpecContent, SOURCE_FOLDER_NAME } from './constants';
-import path from 'path';
+import inquirer from "inquirer";
+import Logger, { Level } from "./log";
+import fs from "fs";
+import { getBoilerplateSpecContent, SOURCE_FOLDER_NAME } from "./constants";
+import path from "path";
 
 async function createNewSpecCLI() {
   try {
     const { cliName } = await inquirer.prompt<{ cliName: string }>([
       {
-        type: 'input',
+        type: "input",
         message: "What's the name of the CLI you want to create the Spec for?",
-        name: 'cliName',
+        name: "cliName",
       },
     ]);
 
@@ -25,7 +25,7 @@ async function createNewSpecCLI() {
     }
 
     fs.writeFileSync(specPath, getBoilerplateSpecContent(cliName), {
-      encoding: 'utf-8',
+      encoding: "utf-8",
     });
 
     Logger.log(

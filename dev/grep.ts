@@ -1,129 +1,129 @@
 export const completionSpec: Fig.Spec = {
-  name: 'grep',
+  name: "grep",
   description:
-    'Matches patterns in input text. Supports simple patterns and regular expressions.',
+    "Matches patterns in input text. Supports simple patterns and regular expressions.",
   args: [
     {
-      name: 'search pattern',
+      name: "search pattern",
     },
     {
-      name: 'file',
-      template: 'filepaths',
+      name: "file",
+      template: "filepaths",
     },
   ],
   options: [
     {
-      name: ['-F'],
-      description: 'Search for an exact string',
+      name: ["-F"],
+      description: "Search for an exact string",
       args: [
         {
-          name: 'exact string',
+          name: "exact string",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-RIn'],
+      name: ["-RIn"],
       description:
-        'Search for a pattern [R]ecursively in the current directory, showing matching line [n]umbers, [I]gnoring non-text files',
+        "Search for a pattern [R]ecursively in the current directory, showing matching line [n]umbers, [I]gnoring non-text files",
       args: {
-        name: 'search pattern',
+        name: "search pattern",
       },
     },
     {
-      name: ['-Ei'],
+      name: ["-Ei"],
       args: [
         {
-          name: 'search pattern',
+          name: "search pattern",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-C'],
-      description: 'Print 3 lines of context around each match',
+      name: ["-C"],
+      description: "Print 3 lines of context around each match",
       args: [
         {
-          name: 'number of lines',
+          name: "number of lines",
         },
         {
-          name: 'search pattern',
+          name: "search pattern",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-B'],
-      description: 'Print 3 lines of before each match',
+      name: ["-B"],
+      description: "Print 3 lines of before each match",
       args: [
         {
-          name: 'number of lines',
+          name: "number of lines",
         },
         {
-          name: 'search pattern',
+          name: "search pattern",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-A'],
-      description: 'Print 3 lines of content after each match',
+      name: ["-A"],
+      description: "Print 3 lines of content after each match",
       args: [
         {
-          name: 'number of lines',
+          name: "number of lines",
         },
         {
-          name: 'search pattern',
+          name: "search pattern",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-Hn'],
+      name: ["-Hn"],
       description:
-        'Print file name with the corresponding line number (n) for each match',
+        "Print file name with the corresponding line number (n) for each match",
       args: [
         {
-          name: 'search pattern',
+          name: "search pattern",
         },
         {
-          name: 'file',
-          template: 'filepaths',
+          name: "file",
+          template: "filepaths",
         },
       ],
     },
     {
-      name: ['-v'],
-      description: 'Invert match for excluding specific strings',
+      name: ["-v"],
+      description: "Invert match for excluding specific strings",
       args: {
-        name: 'search pattern',
+        name: "search pattern",
       },
     },
     {
-      name: ['-V', '--version'],
-      description: 'Print version number of grep to the standard output stream',
+      name: ["-V", "--version"],
+      description: "Print version number of grep to the standard output stream",
     },
     {
-      name: ['-P', '--perl-regexp'],
-      description: 'Interpret pattern as a Perl regular expression',
+      name: ["-P", "--perl-regexp"],
+      description: "Interpret pattern as a Perl regular expression",
     },
     {
-      name: ['-f'],
+      name: ["-f"],
     },
   ],
 };

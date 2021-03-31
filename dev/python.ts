@@ -1,17 +1,17 @@
 export const completionSpec: Fig.Spec = {
-  name: 'python',
-  description: 'Run the python interpretor',
+  name: "python",
+  description: "Run the python interpretor",
   args: {
     generators: {
-      script: 'ls -1 | grep .py',
-      splitOn: '\n',
+      script: "ls -1 | grep .py",
+      splitOn: "\n",
     },
   },
   options: [
     {
-      name: ['-c <cmd>'],
+      name: ["-c <cmd>"],
       insertValue: "-c '{cursor}'",
-      description: 'program passed in as string (terminates option list)',
+      description: "program passed in as string (terminates option list)",
       args: {},
     },
   ],

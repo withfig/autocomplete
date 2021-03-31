@@ -3,67 +3,67 @@ const generators: Record<string, Fig.Generator> = {
     script: "brew services list | sed -e 's/ .*//' | tail -n +2",
     postProcess: function (out) {
       return out
-        .split('\n')
-        .filter((line) => !line.includes('unbound'))
+        .split("\n")
+        .filter((line) => !line.includes("unbound"))
         .map((line) => ({
           name: line,
-          type: 'option',
+          type: "option",
         }));
     },
   },
 };
 
 export const completionSpec: Fig.Spec = {
-  name: 'brew',
-  description: 'Package manager for macOS',
+  name: "brew",
+  description: "Package manager for macOS",
   subcommands: [
-    { name: 'list', description: 'List all installed formulae' },
+    { name: "list", description: "List all installed formulae" },
     {
-      name: 'leaves',
+      name: "leaves",
       description:
-        'List installed formulae that are not dependencies of another installed formula',
+        "List installed formulae that are not dependencies of another installed formula",
     },
     {
-      name: 'doctor',
-      description: 'Check your system for potential problems',
+      name: "doctor",
+      description: "Check your system for potential problems",
     },
     {
-      name: 'info',
-      description: 'Display brief statistics for your Homebrew installation',
+      name: "info",
+      description: "Display brief statistics for your Homebrew installation",
     },
     {
-      name: 'update',
-      description: 'Fetch the newest version of Homebrew and all formulae',
+      name: "update",
+      description: "Fetch the newest version of Homebrew and all formulae",
     },
-    { name: 'upgrade', description: 'Upgrade outdated casks and outdated' },
+    { name: "upgrade", description: "Upgrade outdated casks and outdated" },
     {
-      name: 'search',
+      name: "search",
       description:
-        'Perform a substring search of cask tokens and formula names',
+        "Perform a substring search of cask tokens and formula names",
     },
     {
-      name: 'config',
-      description: 'Show Homebrew and system configuration info',
+      name: "config",
+      description: "Show Homebrew and system configuration info",
     },
     {
-      name: 'install',
-      description: 'Install <formula>',
-      insertValue: 'install ',
+      name: "install",
+      description: "Install <formula>",
+      insertValue: "install ",
       args: {
         variadic: true,
-        name: 'formula',
-        description: 'Formula or cask to install',
+        name: "formula",
+        description: "Formula or cask to install",
         generators: {
           script:
-            'ls -1 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks',
+            "ls -1 /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/Casks",
           postProcess: function (out) {
-            return out.split('\n').map((formula) => {
+            return out.split("\n").map((formula) => {
               return {
-                name: formula.replace('.rb', ''),
-                description: 'formula',
-                icon: '🍺',
+                name: formula.replace(".rb", ""),
+                description: "formula",
+                icon: "🍺",
                 priority:
-                  (formula[0] >= '0' && formula[0] <= '9') || formula[0] == '/'
+                  (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
                     ? 0
                     : 100,
               };
@@ -74,19 +74,19 @@ export const completionSpec: Fig.Spec = {
     },
 
     {
-      name: 'uninstall',
-      description: 'Uninstall <formula>',
+      name: "uninstall",
+      description: "Uninstall <formula>",
       args: {
         variadic: true,
-        name: 'formula',
+        name: "formula",
         generators: {
-          script: 'brew list -1 --formulae',
+          script: "brew list -1 --formulae",
           postProcess: function (out) {
-            return out.split('\n').map((formula) => {
+            return out.split("\n").map((formula) => {
               return {
                 name: formula,
-                icon: '🍺',
-                description: 'Installed formula',
+                icon: "🍺",
+                description: "Installed formula",
               };
             });
           },
@@ -94,34 +94,34 @@ export const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: 'cask',
-      insertValue: 'cask ',
+      name: "cask",
+      insertValue: "cask ",
       description:
-        'Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.',
+        "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
       subcommands: [
         {
-          name: 'install',
-          insertValue: 'install ',
-          description: 'Installs the given cask',
+          name: "install",
+          insertValue: "install ",
+          description: "Installs the given cask",
           args: {
-            name: 'cask',
-            description: 'Cask to install',
+            name: "cask",
+            description: "Cask to install",
           },
         },
         {
-          name: 'uninstall',
-          insertValue: 'uninstall ',
-          description: 'Uninstalls the given cask',
+          name: "uninstall",
+          insertValue: "uninstall ",
+          description: "Uninstalls the given cask",
           args: {
             variadic: true,
             generators: {
-              script: 'brew list -1 --cask',
+              script: "brew list -1 --cask",
               postProcess: function (out) {
-                return out.split('\n').map((formula) => {
+                return out.split("\n").map((formula) => {
                   return {
                     name: formula,
-                    icon: '🍺',
-                    description: 'Installed formula',
+                    icon: "🍺",
+                    description: "Installed formula",
                   };
                 });
               },
@@ -131,48 +131,48 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: 'services',
+      name: "services",
       description:
         "Manage background services with macOS' launchctl(1) daemon manager.",
       options: [
         {
-          name: ['-d', '--debug'],
-          description: 'Display any debugging information.',
+          name: ["-d", "--debug"],
+          description: "Display any debugging information.",
         },
         {
-          name: ['-q', '--quiet'],
-          description: 'Suppress any warnings.',
+          name: ["-q", "--quiet"],
+          description: "Suppress any warnings.",
         },
         {
-          name: ['-v', '--verbose'],
-          description: 'Make some output more verbose.',
+          name: ["-v", "--verbose"],
+          description: "Make some output more verbose.",
         },
         {
-          name: ['-h', '--help'],
-          description: 'Get help with services command',
+          name: ["-h", "--help"],
+          description: "Get help with services command",
         },
       ],
       subcommands: [
         {
-          name: 'cleanup',
-          insertValue: 'cleanup',
-          description: 'Remove all unused services.',
+          name: "cleanup",
+          insertValue: "cleanup",
+          description: "Remove all unused services.",
         },
         {
-          name: 'list',
-          insertValue: 'list',
-          description: 'List all services.',
+          name: "list",
+          insertValue: "list",
+          description: "List all services.",
         },
         {
-          name: 'run',
-          insertValue: 'run ',
+          name: "run",
+          insertValue: "run ",
           description:
-            'Run the service formula without registering to launch at login (or boot).',
+            "Run the service formula without registering to launch at login (or boot).",
           options: [
             {
-              name: '--all',
-              insertValue: '--all',
-              description: 'Start all services',
+              name: "--all",
+              insertValue: "--all",
+              description: "Start all services",
             },
           ],
           args: {
@@ -181,15 +181,15 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: 'start',
-          insertValue: 'start ',
+          name: "start",
+          insertValue: "start ",
           description:
-            'Start the service formula immediately and register it to launch at login',
+            "Start the service formula immediately and register it to launch at login",
           options: [
             {
-              name: '--all',
-              insertValue: '--all',
-              description: 'Start all services',
+              name: "--all",
+              insertValue: "--all",
+              description: "Start all services",
             },
           ],
           args: {
@@ -198,15 +198,15 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: 'stop',
-          insertValue: 'stop ',
+          name: "stop",
+          insertValue: "stop ",
           description:
-            'Stop the service formula immediately and unregister it from launching at',
+            "Stop the service formula immediately and unregister it from launching at",
           options: [
             {
-              name: '--all',
-              insertValue: '--all',
-              description: 'Start all services',
+              name: "--all",
+              insertValue: "--all",
+              description: "Start all services",
             },
           ],
           args: {
@@ -215,15 +215,15 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: 'restart',
-          insertValue: 'restart ',
+          name: "restart",
+          insertValue: "restart ",
           description:
-            'Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).',
+            "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
           options: [
             {
-              name: '--all',
-              insertValue: '--all',
-              description: 'Start all services',
+              name: "--all",
+              insertValue: "--all",
+              description: "Start all services",
             },
           ],
           args: {
@@ -236,8 +236,8 @@ export const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ['--version'],
-      description: 'The current Homebrew version',
+      name: ["--version"],
+      description: "The current Homebrew version",
     },
   ],
 };
