@@ -9,16 +9,12 @@
         "copy:all": "cp $INIT_CWD/specs/*.js ~/.fig/autocomplete/",
         "create-boilerplate": "ts-node-script scripts/cli.ts",
         "build": "ts-node-script scripts/compiler.ts",
-        "lint": "eslint '*/*.{ts,js}'",
-        "lint:fix": "npm run lint -- --fix"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
+        "lint": "eslint '**/*.ts'",
+        "lint:fix": "npm run lint -- --fix",
+        "prepare": "husky install"
     },
     "lint-staged": {
-        "*.{ts,js}": [
+        "*.ts": [
             "eslint --fix"
         ]
     },
@@ -35,7 +31,7 @@
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-fig": "file:scripts/eslint-plugin-fig",
         "eslint-plugin-prettier": "^3.3.1",
-        "husky": "^4.3.8",
+        "husky": "^6.0.0",
         "inquirer": "^8.0.0",
         "lint-staged": "^10.5.4",
         "prettier": "^2.2.1",
