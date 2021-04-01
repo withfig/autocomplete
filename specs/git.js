@@ -1670,6 +1670,9 @@ var completionSpec = {
                 description: "branch to switch to",
                 isOptional: true,
                 generators: gitGenerators.branches,
+                suggestions: [
+                    { name: "-", description: "switch to the last used folder" },
+                ],
             },
         },
         {
