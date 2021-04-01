@@ -1665,14 +1665,14 @@ var completionSpec = {
                 },
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
-            subcommands: [
-                { name: "-", description: "switch to the last used branch" },
-            ],
             args: {
                 name: "branch",
                 description: "branch to switch to",
                 isOptional: true,
                 generators: gitGenerators.branches,
+                suggestions: [
+                    { name: "-", description: "switch to the last used folder" },
+                ],
             },
         },
         {
