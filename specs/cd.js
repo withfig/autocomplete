@@ -4,5 +4,6 @@ var completionSpec = {
     args: {
         template: "folders",
     },
+    subcommands: [{ name: "-", description: "switch to the last used folder" }],
 };
 
