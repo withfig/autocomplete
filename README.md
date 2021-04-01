@@ -41,7 +41,6 @@ npm run dev
 
 Now start editing specs in the `dev/`. They will compile to the `specs/` folder on save. You can start testing your spec immediately in your terminal.
 
-**Note**: by default, Fig looks for completion specs in your `~/.fig/autocomplete` folder
 <br/>
 
 
@@ -82,7 +81,8 @@ fig settings autocomplete.developerMode true
 # Only works in developer mode. Otherwise, defaults to ~/.fig/autocomplete
 fig settings autocomplete.devCompletionsFolder path/to/folder
 ```
-**Note**: These settings are updated automatically when starting / stopping `npm run dev`
+**Note 1**: These settings are updated automatically when starting / stopping `npm run dev`
+**Note 2**: When not in testing mode, Fig looks for completion specs in your `~/.fig/autocomplete` folder.
 
 ## FAQ
 
