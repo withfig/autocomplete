@@ -2,62 +2,63 @@ var completionSpec = {
     name: "wrk",
     description: "wrk - a HTTP benchmarking tool",
     args: {
-        name: "Url"
+        name: "Url",
     },
     options: [
         {
-            name: ['-c', '--c'],
-            description: 'Connections to keep open',
+            name: ["-c", "--c"],
+            description: "Connections to keep open",
             args: {
-                name: "Number"
-            }
+                name: "Number",
+            },
         },
         {
-            name: ['-d', '--duration'],
-            description: 'Duration of test',
+            name: ["-d", "--duration"],
+            description: "Duration of test",
             args: {
-                name: "Time"
-            }
+                name: "Time",
+            },
         },
         {
-            name: ['-t', '--threads'],
-            description: 'Number of threads',
+            name: ["-t", "--threads"],
+            description: "Number of threads",
             args: {
-                name: "Number"
-            }
+                name: "Number",
+            },
         },
         {
-            name: ['-s', '--script'],
-            description: 'Load Lua script file',
+            name: ["-s", "--script"],
+            description: "Load Lua script file",
             args: {
-                name: "Script"
-            }
+                name: "Script",
+            },
         },
         {
-            name: ['-H', '--header'],
-            description: 'Add header to request',
+            name: ["-H", "--header"],
+            description: "Add header to request",
             args: {
-                name: "Header"
-            }
+                name: "Header",
+            },
         },
         {
-            name: '--latency',
-            description: 'Print latency statistics'
+            name: "--latency",
+            description: "Print latency statistics",
         },
         {
-            name: '--timeout',
-            description: 'Socket/request timeout',
+            name: "--timeout",
+            description: "Socket/request timeout",
             args: {
-                name: "Time"
-            }
+                name: "Time",
+            },
         },
         {
-            name: ['-v', '--version'],
-            description: 'Print version details'
+            name: ["-v", "--version"],
+            description: "Print version details",
         },
         {
-            name: ['-h', '--help'],
-            description: 'output usage information'
-        }
-    ]
-}
+            name: ["-h", "--help"],
+            description: "output usage information",
+        },
+    ],
+};
+

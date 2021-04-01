@@ -1,8 +1,7 @@
 var getServices = {
     script: "docker-compose config --services",
-    splitOn: "\n"
-}
-
+    splitOn: "\n",
+};
 var completionSpec = {
     name: "docker-compose",
     description: "",
@@ -10,871 +9,633 @@ var completionSpec = {
         {
             name: "build",
             description: "Build or rebuild services.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "--build-arg"
-                    ],
+                    name: ["--build-arg"],
                     description: "Set build-time variables for services.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--compress"
-                    ],
+                    name: ["--compress"],
                     description: "Compress the build context using gzip.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--force-rm"
-                    ],
+                    name: ["--force-rm"],
                     description: "Always remove intermediate containers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--memory"
-                    ],
+                    name: ["-m", "--memory"],
                     description: "Set memory limit for the build container.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-cache"
-                    ],
+                    name: ["--no-cache"],
                     description: "Do not use cache when building the image.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-rm"
-                    ],
+                    name: ["--no-rm"],
                     description: "Do not remove intermediate containers after a successful build.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--parallel"
-                    ],
+                    name: ["--parallel"],
                     description: "Build images in parallel.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--progress"
-                    ],
+                    name: ["--progress"],
                     description: "Set type of progress output (auto, plain, tty).\n                            EXPERIMENTAL flag for native builder.\n                            To enable, run with COMPOSE_DOCKER_CLI_BUILD=1)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--pull"
-                    ],
+                    name: ["--pull"],
                     description: "Always attempt to pull a newer version of the image.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Don't print anything to STDOUT\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "config",
             description: "Validate and view the Compose file.",
             options: [
                 {
-                    name: [
-                        "--resolve-image-digests"
-                    ],
+                    name: ["--resolve-image-digests"],
                     description: "Pin image tags to digests.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-interpolate"
-                    ],
+                    name: ["--no-interpolate"],
                     description: "Don't interpolate environment variables.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only validate the configuration, don't print\n                             anything.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--services"
-                    ],
+                    name: ["--services"],
                     description: "Print the service names, one per line.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--volumes"
-                    ],
+                    name: ["--volumes"],
                     description: "Print the volume names, one per line.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--hash"
-                    ],
-                    description: "Print the service config hash, one per line.\n                             Set \"service1,service2\" for a list of specified services\n                             or use the wildcard symbol to display all services.\n",
-                    args: {}
-                }
+                    name: ["--hash"],
+                    description: 'Print the service config hash, one per line.\n                             Set "service1,service2" for a list of specified services\n                             or use the wildcard symbol to display all services.\n',
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "create",
             description: "Creates containers for a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "--force-recreate"
-                    ],
+                    name: ["--force-recreate"],
                     description: "Recreate containers even if their configuration and\n                           image haven't changed. Incompatible with --no-recreate.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-recreate"
-                    ],
+                    name: ["--no-recreate"],
                     description: "If containers already exist, don't recreate them.\n                           Incompatible with --force-recreate.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-build"
-                    ],
+                    name: ["--no-build"],
                     description: "Don't build an image, even if it's missing.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--build"
-                    ],
+                    name: ["--build"],
                     description: "Build images before creating containers.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "down",
             description: "Stops containers and removes containers, networks, volumes, and images",
             options: [
                 {
-                    name: [
-                        "--rmi"
-                    ],
+                    name: ["--rmi"],
                     description: "Remove images. Type must be one of:\n                              'all': Remove all images used by any service.\n                              'local': Remove only images that don't have a\n                              custom tag set by the `image` field.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v",
-                        "--volumes"
-                    ],
+                    name: ["-v", "--volumes"],
                     description: "Remove named volumes declared in the `volumes`\n                            section of the Compose file and anonymous volumes\n                            attached to containers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--remove-orphans"
-                    ],
+                    name: ["--remove-orphans"],
                     description: "Remove containers for services not defined in the\n                            Compose file\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds.\n                            (default: 10)\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "events",
             description: "Receive real time events from containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "--json"
-                    ],
+                    name: ["--json"],
                     description: "Output events as a stream of json objects\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "exec",
             description: "Execute a command in a running container",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run command in the background.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--privileged"
-                    ],
+                    name: ["--privileged"],
                     description: "Give extended privileges to the process.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-u",
-                        "--user"
-                    ],
+                    name: ["-u", "--user"],
                     description: "Run the command as this user.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-T"
-                    ],
+                    name: ["-T"],
                     description: "Disable pseudo-tty allocation. By default `docker-compose exec`\n                      allocates a TTY.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--index"
-                    ],
+                    name: ["--index"],
                     description: "index of the container if there are multiple\n                      instances of a service [default: 1]\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-e",
-                        "--env"
-                    ],
+                    name: ["-e", "--env"],
                     description: "not supported in API < 1.25)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--workdir"
-                    ],
+                    name: ["-w", "--workdir"],
                     description: "DIR Path to workdir directory for this command.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "help",
             description: "Get help on a command.",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "images",
             description: "List images used by the created containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only display IDs\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "kill",
             description: "Force stop service containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-s"
-                    ],
+                    name: ["-s"],
                     description: "SIGNAL to send to the container.\n                      Default signal is SIGKILL.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "logs",
             description: "View output from containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "--no-color"
-                    ],
+                    name: ["--no-color"],
                     description: "Produce monochrome output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-f",
-                        "--follow"
-                    ],
+                    name: ["-f", "--follow"],
                     description: "Follow log output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timestamps"
-                    ],
+                    name: ["-t", "--timestamps"],
                     description: "Show timestamps.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tail"
-                    ],
+                    name: ["--tail"],
                     description: "Number of lines to show from the end of the logs\n                        for each container.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "pause",
             description: "Pause services.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "port",
             description: "Print the public port for a port binding.",
             options: [
                 {
-                    name: [
-                        "--protocol"
-                    ],
+                    name: ["--protocol"],
                     description: "tcp or udp [default: tcp]\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--index"
-                    ],
+                    name: ["--index"],
                     description: "index of the container if there are multiple\n                      instances of a service [default: 1]\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "ps",
             description: "List containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only display IDs\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--services"
-                    ],
+                    name: ["--services"],
                     description: "Display services\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--filter"
-                    ],
+                    name: ["--filter"],
                     description: "Filter services by a property\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--all"
-                    ],
+                    name: ["-a", "--all"],
                     description: "Show all stopped containers (including those created by the run command)\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "pull",
             description: "Pulls images for services defined in a Compose file, but does not start the containers.",
             options: [
                 {
-                    name: [
-                        "--ignore-pull-failures"
-                    ],
+                    name: ["--ignore-pull-failures"],
                     description: "Pull what it can and ignores images with pull failures.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--parallel"
-                    ],
+                    name: ["--parallel"],
                     description: "Deprecated, pull multiple images in parallel (enabled by default).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-parallel"
-                    ],
+                    name: ["--no-parallel"],
                     description: "Disable parallel pulling.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Pull without printing progress information\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--include-deps"
-                    ],
+                    name: ["--include-deps"],
                     description: "Also pull services declared as dependencies\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "push",
             description: "Pushes images for services.",
             options: [
                 {
-                    name: [
-                        "--ignore-push-failures"
-                    ],
+                    name: ["--ignore-push-failures"],
                     description: "Push what it can and ignores images with push failures.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "restart",
             description: "Restart running containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds.\n                             (default: 10)\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "rm",
             description: "Removes stopped service containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-f",
-                        "--force"
-                    ],
+                    name: ["-f", "--force"],
                     description: "Don't ask to confirm removal\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--stop"
-                    ],
+                    name: ["-s", "--stop"],
                     description: "Stop the containers, if required, before removing\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v"
-                    ],
+                    name: ["-v"],
                     description: "Remove any anonymous volumes attached to containers\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--all"
-                    ],
+                    name: ["-a", "--all"],
                     description: "Deprecated - no effect.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "run",
             description: "Run a one-off command on a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run container in the background, print\n                          new container name.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--name"
-                    ],
+                    name: ["--name"],
                     description: "Assign a name to the container\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--entrypoint"
-                    ],
+                    name: ["--entrypoint"],
                     description: "Override the entrypoint of the image.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-e"
-                    ],
+                    name: ["-e"],
                     description: "Set an environment variable (can be used multiple times)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-l",
-                        "--label"
-                    ],
+                    name: ["-l", "--label"],
                     description: "Add or override a label (can be used multiple times)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-u",
-                        "--user"
-                    ],
+                    name: ["-u", "--user"],
                     description: "Run as specified username or uid\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-deps"
-                    ],
+                    name: ["--no-deps"],
                     description: "Don't start linked services.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--rm"
-                    ],
+                    name: ["--rm"],
                     description: "Remove container after run. Ignored in detached mode.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--publish"
-                    ],
+                    name: ["-p", "--publish"],
                     description: "Publish a container's port(s) to the host\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--service-ports"
-                    ],
+                    name: ["--service-ports"],
                     description: "Run command with the service's ports enabled and mapped\n                          to the host.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--use-aliases"
-                    ],
+                    name: ["--use-aliases"],
                     description: "Use the service's network aliases in the network(s) the\n                          container connects to.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v",
-                        "--volume"
-                    ],
+                    name: ["-v", "--volume"],
                     description: "Bind mount a volume (default [])\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-T"
-                    ],
+                    name: ["-T"],
                     description: "Disable pseudo-tty allocation. By default `docker-compose run`\n                          allocates a TTY.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--workdir"
-                    ],
+                    name: ["-w", "--workdir"],
                     description: "Working directory inside the container\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "scale",
             description: "Set number of containers to run for a service.",
-
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds.\n                             (default: 10)\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "start",
             description: "Start existing containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "stop",
             description: "Stop running containers without removing them.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds.\n                             (default: 10)\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "top",
             description: "Display the running processes",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "unpause",
             description: "Unpause services.",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "up",
             description: "Builds, (re)creates, starts, and attaches to containers for a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run containers in the background,\n                               print new container names. Incompatible with\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-color"
-                    ],
+                    name: ["--no-color"],
                     description: "Produce monochrome output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--quiet-pull"
-                    ],
+                    name: ["--quiet-pull"],
                     description: "Pull without printing progress information\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-deps"
-                    ],
+                    name: ["--no-deps"],
                     description: "Don't start linked services.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--force-recreate"
-                    ],
+                    name: ["--force-recreate"],
                     description: "Recreate containers even if their configuration\n                               and image haven't changed.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--always-recreate-deps"
-                    ],
+                    name: ["--always-recreate-deps"],
                     description: "Recreate dependent containers.\n                               Incompatible with --no-recreate.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-recreate"
-                    ],
+                    name: ["--no-recreate"],
                     description: "If containers already exist, don't recreate\n                               them. Incompatible with --force-recreate and -V.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-build"
-                    ],
+                    name: ["--no-build"],
                     description: "Don't build an image, even if it's missing.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-start"
-                    ],
+                    name: ["--no-start"],
                     description: "Don't start the services after creating them.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--build"
-                    ],
+                    name: ["--build"],
                     description: "Build images before starting containers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--abort-on-container-exit"
-                    ],
+                    name: ["--abort-on-container-exit"],
                     description: "Stops all containers if any container was\n                               stopped. Incompatible with -d.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--attach-dependencies"
-                    ],
+                    name: ["--attach-dependencies"],
                     description: "Attach to dependent containers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Use this timeout in seconds for container\n                               shutdown when attached or when containers are\n                               already running. (default: 10)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-V",
-                        "--renew-anon-volumes"
-                    ],
+                    name: ["-V", "--renew-anon-volumes"],
                     description: "Recreate anonymous volumes instead of retrieving\n                               data from the previous containers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--remove-orphans"
-                    ],
+                    name: ["--remove-orphans"],
                     description: "Remove containers for services not defined\n                               in the Compose file.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--exit-code-from"
-                    ],
+                    name: ["--exit-code-from"],
                     description: "Return the exit code of the selected service\n                               container. Implies --abort-on-container-exit.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--scale"
-                    ],
+                    name: ["--scale"],
                     description: "Scale SERVICE to NUM instances. Overrides the\n                               `scale` setting in the Compose file if present.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "version",
             description: "Show version information and quit.",
             options: [
                 {
-                    name: [
-                        "--short"
-                    ],
+                    name: ["--short"],
                     description: "Shows only Compose's version number.\n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
-        }
-    ]
-}
+            subcommands: [],
+        },
+    ],
+};
+

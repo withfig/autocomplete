@@ -1,167 +1,150 @@
-var generators = {
-
+var gitGenerators = {
     // Commit history
     commits: {
         script: "git log --oneline",
-        postProcess: function(out) {
+        postProcess: function (out) {
             if (out.startsWith("fatal:")) {
-                return []
+                return [];
             }
-
-            return out.split('\n').map((line) => {
+            return out.split("\n").map(function (line) {
                 return {
                     name: line.substring(0, 7),
                     icon: "fig://icon?type=node",
-                    description: line.substring(7)
-                }
-            })
-        }
+                    description: line.substring(7),
+                };
+            });
+        },
     },
-
     // Saved stashes
     // TODO: maybe only print names of stashes
     stashes: {
         script: "git stash list",
-        postProcess: function(out) {
+        postProcess: function (out) {
             if (out.startsWith("fatal:")) {
-                return []
+                return [];
             }
-
-            return out.split('\n').map((file) => {
+            return out.split("\n").map(function (file) {
                 return {
                     name: file.split(":")[2],
                     insertValue: file.split(":")[0],
-                    icon: `fig://icon?type=node`,
-                }
-            })
-        }
+                    icon: "fig://icon?type=node",
+                };
+            });
+        },
     },
-
-
     // Tree-ish
     // This needs to be fleshed out properly....
     // e.g. what is difference to commit-ish?
     // Refer to this:https://stackoverflow.com/questions/23303549/what-are-commit-ish-and-tree-ish-in-git/40910185
     // https://mirrors.edge.kernel.org/pub/software/scm/git/docs/#_identifier_terminology
-
     treeish: {
         script: "git diff --cached --name-only",
-        postProcess: function(out) {
+        postProcess: function (out) {
             if (out.startsWith("fatal:")) {
-                return []
+                return [];
             }
-
-            return out.split('\n').map((file) => {
+            return out.split("\n").map(function (file) {
                 return {
                     name: file,
                     insertValue: "-- " + file,
-                    icon: `fig://icon?type=file`,
-                    description: "staged file"
-                }
-            })
-        }
+                    icon: "fig://icon?type=file",
+                    description: "staged file",
+                };
+            });
+        },
     },
-
-
     // All branches
     branches: {
         script: "git branch --no-color",
-        postProcess: function(out) {
+        postProcess: function (out) {
             if (out.startsWith("fatal:")) {
-                return []
+                return [];
             }
-            return out.split('\n').map((elm) => {
-                return { name: elm.replace("*", "").trim(), description: "branch", icon: "fig://icon?type=git" }
-            })
-        }
+            return out.split("\n").map(function (elm) {
+                return {
+                    name: elm.replace("*", "").trim(),
+                    description: "branch",
+                    icon: "fig://icon?type=git",
+                };
+            });
+        },
     },
-
     remotes: {
         script: "git remote",
-        postProcess: function(out) {
-            return out.split('\n').map(remote => {
-                return { name: remote, description: "remote" }
-            })
-        }
+        postProcess: function (out) {
+            return out.split("\n").map(function (remote) {
+                return { name: remote, description: "remote" };
+            });
+        },
     },
-
     tags: {
         script: "git tag --list",
-        splitOn: "\n"
+        splitOn: "\n",
     },
-
     // Files for staging
     files_for_staging: {
         script: "git status --short",
-        postProcess: function(out) {
+        postProcess: function (out) {
             if (out.startsWith("fatal:")) {
-                return []
+                return [];
             }
-
             // out = out + " "
-            var items = out.split('\n').map((file) => {
-                file = file.trim()
-                var arr = file.split(" ")
-
-                return { working: arr[0], file: arr.slice(1).join(" ") }
-            })
-
-            return items.map(item => {
-                let file = item.file
-                var ext = ""
-
+            var items = out.split("\n").map(function (file) {
+                file = file.trim();
+                var arr = file.split(" ");
+                return { working: arr[0], file: arr.slice(1).join(" ") };
+            });
+            return items.map(function (item) {
+                var file = item.file;
+                var ext = "";
                 try {
-                    ext = file.split('.').slice(-1)[0]
-                } catch (e) {}
-
-                if (file.endsWith('/')) {
-                    ext = "folder"
+                    ext = file.split(".").slice(-1)[0];
                 }
-
+                catch (e) { }
+                if (file.endsWith("/")) {
+                    ext = "folder";
+                }
                 return {
                     name: file,
-                    insertValue: file.includes(' ') ? `'${file}'` : file,
-                    icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+                    insertValue: file.includes(" ") ? "'" + file + "'" : file,
+                    icon: "fig://icon?type=" + ext + "&color=ff0000&badge=" + item.working,
                     description: "Changed file",
-                    priority: 100
-                }
-            })
-        }
+                    priority: 100,
+                };
+            });
+        },
     },
-}
-
-
-let head = {
+};
+var head = {
     name: "HEAD",
     icon: "🔻",
     description: "Reset multiple commits",
-}
-
+};
 var completionSpec = {
-
     name: "git",
     description: "the stupid content tracker",
-    options: [{
+    options: [
+        {
             name: "--version",
-            description: "Output version"
+            description: "Output version",
         },
         {
             name: "--help",
-            description: "Output help"
+            description: "Output help",
         },
         {
             name: "-C",
             insertValue: "-C ",
             args: {
                 name: "path",
-                template: "folders"
+                template: "folders",
             },
-            description: "Run as if git was started in &lt;path&gt;"
+            description: "Run as if git was started in &lt;path&gt;",
         },
         {
             name: "-c name=value",
             insertValue: "-c ",
-            description: "Pass a config parameter to the command"
+            description: "Pass a config parameter to the command",
         },
         {
             name: "--exec-path[=<path>]",
@@ -171,53 +154,53 @@ var completionSpec = {
                 isOptional: true,
                 template: "folders",
             },
-            description: "Get or set GIT_EXEC_PATH for core Git programs"
+            description: "Get or set GIT_EXEC_PATH for core Git programs",
         },
         {
             name: "--html-path",
-            description: "Print Git’s HTML documentation path"
+            description: "Print Git’s HTML documentation path",
         },
         {
             name: "--man-path",
-            description: "Print the manpath for this version of Git"
+            description: "Print the manpath for this version of Git",
         },
         {
             name: "--info-path",
-            description: "Print the info path documenting this version of Git"
+            description: "Print the info path documenting this version of Git",
         },
         {
             name: ["-p", "--paginate"],
-            description: "Pipe output into `less` or custom $PAGER"
+            description: "Pipe output into `less` or custom $PAGER",
         },
         {
             name: "--no-pager",
-            description: "Do not pipe Git output into a pager"
+            description: "Do not pipe Git output into a pager",
         },
         {
             name: "--no-replace-objects",
-            description: "Do not use replacement refs"
+            description: "Do not use replacement refs",
         },
         {
             name: "--bare",
-            description: "Treat the repository as a bare repository"
+            description: "Treat the repository as a bare repository",
         },
         {
             name: "--git-dir=<path>",
             insertValue: "--git-dir=",
             args: {
                 name: "path",
-                template: "folders"
+                template: "folders",
             },
-            description: "Set the path to the repository dir (`.git`)"
+            description: "Set the path to the repository dir (`.git`)",
         },
         {
             name: "--work-tree=<path>",
             insertValue: "--work-tree=",
             args: {
                 name: "path",
-                template: "folders"
+                template: "folders",
             },
-            description: "Set working tree path"
+            description: "Set working tree path",
         },
         {
             name: "--namespace=<name>",
@@ -225,22 +208,24 @@ var completionSpec = {
             args: {
                 name: "name",
             },
-            description: "Set the Git namespace"
+            description: "Set the Git namespace",
         },
     ],
-    subcommands: [{
+    subcommands: [
+        {
             name: "commit",
             description: "Record changes to the repository",
             insertValue: "commit",
             args: {
                 name: "pathspec",
             },
-            options: [{
+            options: [
+                {
                     name: ["-m", "--message"],
                     insertValue: "-m '{cursor}'",
                     description: "use the given message as the commit message",
                     args: {
-                        name: "message"
+                        name: "message",
                     },
                 },
                 {
@@ -252,8 +237,8 @@ var completionSpec = {
                     insertValue: "-am '{cursor}'",
                     description: "stage all and use given text as commit message",
                     args: {
-                        name: "message"
-                    }
+                        name: "message",
+                    },
                 },
                 {
                     name: ["-v", "--verbose"],
@@ -266,34 +251,42 @@ var completionSpec = {
                 {
                     name: ["-C", "--reuse-message"],
                     description: "Take an existing commit object, and reuse the log message and the authorship ...",
-                    args: {
-                        name: "commit",
-                        generator: generators.commits,
-                    },
+                    args: [
+                        {
+                            name: "commit",
+                            generators: gitGenerators.commits,
+                        },
+                    ],
                 },
                 {
                     name: ["-c", "--reedit-message"],
                     description: "Like -C, but with -c the editor is invoked, so that the user can further edit...",
-                    args: {
-                        name: "commit",
-                        generator: generators.commits,
-                    },
+                    args: [
+                        {
+                            name: "commit",
+                            generators: gitGenerators.commits,
+                        },
+                    ],
                 },
                 {
                     name: ["--fixup"],
                     description: "Construct a commit message for use with rebase --autosquash. The commit messa...",
-                    args: {
-                        name: "commit",
-                        generator: generators.commits,
-                    },
+                    args: [
+                        {
+                            name: "commit",
+                            generators: gitGenerators.commits,
+                        },
+                    ],
                 },
                 {
                     name: ["--squash"],
                     description: "Construct a commit message for use with rebase --autosquash. The commit messa...",
-                    args: {
-                        name: "commit",
-                        generator: generators.commits,
-                    },
+                    args: [
+                        {
+                            name: "commit",
+                            generators: gitGenerators.commits,
+                        },
+                    ],
                 },
                 {
                     name: ["--reset-author"],
@@ -375,7 +368,11 @@ var completionSpec = {
                     args: {
                         name: "mode",
                         suggestions: [
-                            'strip', 'whitespace', 'verbatim', 'scissors', 'default',
+                            "strip",
+                            "whitespace",
+                            "verbatim",
+                            "scissors",
+                            "default",
                         ],
                     },
                 },
@@ -420,9 +417,7 @@ var completionSpec = {
                     description: "Show untracked files. The mode parameter is optional (defaults to all), and i...",
                     args: {
                         name: "mode",
-                        suggestions: [
-                            'no', 'normal', 'all',
-                        ],
+                        suggestions: ["no", "normal", "all"],
                     },
                 },
                 {
@@ -457,17 +452,19 @@ var completionSpec = {
                     name: ["--"],
                     description: "Do not interpret any more arguments as options.",
                 },
-            ]
+            ],
         },
         {
             name: "config",
             description: "set author",
-            options: [{
+            options: [
+                {
                     name: "--local",
                     description: "Default: write to the repository .git/config file",
                     args: {
                         variadic: true,
-                        suggestions: [{
+                        suggestions: [
+                            {
                                 name: "user.name",
                                 description: "set config for username",
                                 insertValue: "user.name '{cursor}'",
@@ -476,7 +473,7 @@ var completionSpec = {
                                 name: "user.email",
                                 description: "set config for email",
                                 insertValue: "user.email '{cursor}'",
-                            }
+                            },
                         ],
                     },
                 },
@@ -486,7 +483,8 @@ var completionSpec = {
                     description: "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
                     args: {
                         variadic: true,
-                        suggestions: [{
+                        suggestions: [
+                            {
                                 name: "user.name",
                                 description: "set config for username",
                                 insertValue: "user.name '{cursor}'",
@@ -495,7 +493,7 @@ var completionSpec = {
                                 name: "user.email",
                                 description: "set config for email",
                                 insertValue: "user.email '{cursor}'",
-                            }
+                            },
                         ],
                     },
                 },
@@ -528,7 +526,7 @@ var completionSpec = {
                         },
                         {
                             name: "url",
-                        }
+                        },
                     ],
                 },
                 {
@@ -544,7 +542,7 @@ var completionSpec = {
                     description: "Use the given config file instead of the one specified by GIT_CONFIG.",
                     args: {
                         name: "config-file",
-                        template: "filepaths"
+                        template: "filepaths",
                     },
                 },
                 {
@@ -584,7 +582,12 @@ var completionSpec = {
                     args: {
                         name: "type",
                         suggestions: [
-                            "bool", "int", "bool-or-int", "path", "expiry-date", "color",
+                            "bool",
+                            "int",
+                            "bool-or-int",
+                            "path",
+                            "expiry-date",
+                            "color",
                         ],
                     },
                 },
@@ -610,7 +613,7 @@ var completionSpec = {
                 },
                 {
                     name: ["--get-colorbool"],
-                    description: "Find the color setting for name (e.g. color.diff) and output \"true\" or \"false...",
+                    description: 'Find the color setting for name (e.g. color.diff) and output "true" or "false...',
                     args: {
                         name: "name",
                     },
@@ -625,7 +628,7 @@ var completionSpec = {
                         {
                             name: "default",
                             isOptional: true,
-                        }
+                        },
                     ],
                 },
                 {
@@ -647,7 +650,7 @@ var completionSpec = {
                         name: "value",
                         isOptional: true,
                     },
-                },                
+                },
             ],
         },
         {
@@ -655,49 +658,50 @@ var completionSpec = {
             description: "Reapply commits on top of another base tip",
             insertValue: "rebase",
             options: [
-                { name: ["--continue"], description: "continue the rebasing after conflict resolution" },
+                {
+                    name: ["--continue"],
+                    description: "continue the rebasing after conflict resolution",
+                },
                 { name: ["--abort"], description: "stop rebase" },
                 { name: ["--skip"], description: "skips a commit" },
                 {
                     name: ["-i"],
-                    description: "interactive"
-                }
+                    description: "interactive",
+                },
             ],
             args: {
                 suggestions: [],
-                generators: generators.commits,
+                generators: gitGenerators.commits,
             },
         },
         {
             name: "add",
             description: "Add file contents to the index",
-            options: [{
+            options: [
+                {
                     name: ["-A", "--all", "--no-ignore-removal"],
-                    description: "Add, modify, and remove index entries to match the working tree"
+                    description: "Add, modify, and remove index entries to match the working tree",
                 },
                 {
                     name: ["-f", "--force"],
-                    description: "Allow adding otherwise ignored files"
+                    description: "Allow adding otherwise ignored files",
                 },
                 {
                     name: ["-i", "--interactive"],
-                    description: "Add modified contents in the working tree interactively to the index"
+                    description: "Add modified contents in the working tree interactively to the index",
                 },
                 {
                     name: ["-n", "--dry-run"],
-                    description: "Don't actually add the files(s), just show if they exist and/or will be ignored"
+                    description: "Don't actually add the files(s), just show if they exist and/or will be ignored",
                 },
                 {
                     name: ["-p", "--patch"],
-                    description: "Interactively choose hunks of patch between the index and the work tree and add them to the index"
+                    description: "Interactively choose hunks of patch between the index and the work tree and add them to the index",
                 },
-
             ],
             args: {
                 variadic: true,
-
                 // We have a special setting for dot in the vuejs app
-
                 // suggestions: [
                 //     {
                 //         name: ".",
@@ -706,15 +710,16 @@ var completionSpec = {
                 //         icon: "fig://icon?type=folder"
                 //     }
                 // ],
-                generators: generators.files_for_staging
+                generators: gitGenerators.files_for_staging,
             },
         },
         {
             name: "status",
             description: "Show the working tree status",
-            options: [{
+            options: [
+                {
                     name: ["-v", "--verbose"],
-                    description: "be verbose"
+                    description: "be verbose",
                 },
                 {
                     name: ["-b", "--branch"],
@@ -722,15 +727,15 @@ var completionSpec = {
                 },
                 {
                     name: "--show-stash",
-                    description: "show stash information"
+                    description: "show stash information",
                 },
                 {
                     name: "--ahead-behind",
-                    description: "compute full ahead/behind values"
+                    description: "compute full ahead/behind values",
                 },
                 {
                     name: "--long",
-                    description: "show status in long format (default)"
+                    description: "show status in long format (default)",
                 },
                 {
                     name: ["-z", "--null"],
@@ -740,117 +745,124 @@ var completionSpec = {
                     name: ["-u", "--untracked-files"],
                     description: "show untracked files",
                     args: {
-                        suggestions: [{
+                        suggestions: [
+                            {
                                 name: "all",
-                                description: "(Default)"
+                                description: "(Default)",
                             },
                             {
                                 name: "normal",
                             },
                             {
                                 name: "no",
-                            }
-                        ]
-                    }
+                            },
+                        ],
+                    },
                 },
                 {
                     name: "--ignored",
                     description: "show ignored files",
                     args: {
-                        suggestions: [{
+                        suggestions: [
+                            {
                                 name: "traditional",
-                                description: "(Default)"
+                                description: "(Default)",
                             },
                             {
                                 name: "matching",
                             },
                             {
                                 name: "no",
-                            }
-                        ]
-                    }
+                            },
+                        ],
+                    },
                 },
                 {
                     name: "--no-renames",
-                    description: "do not detect renames"
+                    description: "do not detect renames",
                 },
-            ]
+            ],
         },
         {
             name: "push",
             description: "Update remote refs",
-            options: [{
+            options: [
+                {
                     name: "-all",
-                    description: "Push all branches to remote"
+                    description: "Push all branches to remote",
                 },
                 // { name: "--repo", description: "repository" },
                 // { name: "--all", description: "push all refs" },
                 // { name: "--mirror", description: "mirror all refs" },
                 { name: ["-d", "--delete"], description: "delete refs" },
-                { name: "--tags", description: "push tags (can't be used with --all or --mirror)" },
+                {
+                    name: "--tags",
+                    description: "push tags (can't be used with --all or --mirror)",
+                },
                 // { name: ["-n", "--dry-run"], description: "dry run" },
             ],
-            args: [{
+            args: [
+                {
                     name: "remote",
                     isOptional: true,
-                    generators: generators.remotes
+                    generators: gitGenerators.remotes,
                 },
                 {
                     name: "branch",
                     isOptional: true,
-                    generators: generators.branches
-                }
-            ]
+                    generators: gitGenerators.branches,
+                },
+            ],
         },
         {
             name: "pull",
             description: "Integrate with another repository",
-            args: [{
+            args: [
+                {
                     name: "remote",
                     isOptional: true,
-                    generators: generators.remotes
+                    generators: gitGenerators.remotes,
                 },
                 {
                     name: "branch",
                     isOptional: true,
-                    generators: generators.branches
-                }
-            ]
+                    generators: gitGenerators.branches,
+                },
+            ],
         },
         {
             name: "diff",
             description: "Show changes between commits, commit and working tree, etc",
-            options: [{
-                name: "--staged",
-                insertValue: "--staged",
-                description: "Show difference between the files in the staging area and the latest version",
-            }]
+            options: [
+                {
+                    name: "--staged",
+                    insertValue: "--staged",
+                    description: "Show difference between the files in the staging area and the latest version",
+                },
+            ],
         },
         {
             name: "reset",
             description: "Reset current HEAD to the specified state",
-            options: [{
+            options: [
+                {
                     name: "--keep",
                     insertValue: "--keep {cursor}",
                     description: "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            head
-                        ],
-                        generators: generators.commits
-                    }
+                        suggestions: [head],
+                        generators: gitGenerators.commits,
+                    },
                 },
                 {
                     name: "--soft",
                     insertValue: "--soft {cursor}",
                     description: "remove the last commit from the current branch, but the file changes will stay in your working tree",
                     args: {
-                        suggestions: [
-                            head
-                        ],
-                        generators: generators.commits
-                    }
+                        suggestions: [head],
+                        generators: gitGenerators.commits,
+                    },
                 },
                 {
                     name: "--hard",
@@ -858,13 +870,15 @@ var completionSpec = {
                     description: "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
                     args: {
                         variadic: true,
-                        suggestions: [{
-                            name: "HEAD~<N>",
-                            description: "Reset back to any number of commits",
-                            insertValue: "HEAD~",
-                        }],
-                        generators: generators.commits,
-                    }
+                        suggestions: [
+                            {
+                                name: "HEAD~<N>",
+                                description: "Reset back to any number of commits",
+                                insertValue: "HEAD~",
+                            },
+                        ],
+                        generators: gitGenerators.commits,
+                    },
                 },
                 {
                     name: "--mixed",
@@ -872,13 +886,15 @@ var completionSpec = {
                     description: "keep the changes in your working tree but not on the index",
                     args: {
                         variadic: true,
-                        suggestions: [{
-                            name: "HEAD~[insert # of commits]",
-                            description: "Reset back any number of commits",
-                            insertValue: "HEAD~",
-                        }],
-                        generators: generators.commits,
-                    }
+                        suggestions: [
+                            {
+                                name: "HEAD~[insert # of commits]",
+                                description: "Reset back any number of commits",
+                                insertValue: "HEAD~",
+                            },
+                        ],
+                        generators: gitGenerators.commits,
+                    },
                 },
                 {
                     name: "--merge",
@@ -887,52 +903,51 @@ var completionSpec = {
                         " between 'commit' and HEAD",
                     args: {
                         variadic: true,
-                        suggestions: [
-                            head
-                        ],
-                        generators: generators.commits,
-                    }
-                }
+                        suggestions: [head],
+                        generators: gitGenerators.commits,
+                    },
+                },
             ],
             args: {
                 isOptional: true,
                 variadic: true,
                 suggestions: [],
-                generators: generators.treeish,
+                generators: gitGenerators.treeish,
             },
-
         },
         {
             name: "log",
             description: "Show commit logs",
             insertValue: "log",
-            options: [{
+            options: [
+                {
                     name: "--follow",
                     description: "Show history of given file",
                     args: {
                         name: "file",
-                        template: "filepaths"
-                    }
+                        template: "filepaths",
+                    },
                 },
                 {
                     name: ["-q", "--quiet"],
-                    description: "suppress diff output"
+                    description: "suppress diff output",
                 },
                 {
                     name: "--source",
-                    description: "show source"
+                    description: "show source",
                 },
                 {
                     name: "--oneline",
-                    description: "show each commit as a single line "
-                }
-            ]
+                    description: "show each commit as a single line ",
+                },
+            ],
         },
         {
             name: "remote",
             description: "Manage remote repository",
             insertValue: "remote {cursor}",
-            subcommands: [{
+            subcommands: [
+                {
                     name: "add",
                     insertValue: "add {cursor}",
                     description: "add repo ",
@@ -959,14 +974,15 @@ var completionSpec = {
                 },
                 {
                     name: "show",
-                    description: "Gives some information about the remote [name]"
+                    description: "Gives some information about the remote [name]",
                 },
                 {
                     name: "prune",
-                    description: "Equivalent to git fetch --prune [name], except that no new references will be fetched"
-                }
+                    description: "Equivalent to git fetch --prune [name], except that no new references will be fetched",
+                },
             ],
-            options: [{
+            options: [
+                {
                     name: "-f",
                     insertValue: "-f",
                     description: "Fetch after remote info is added",
@@ -975,8 +991,8 @@ var completionSpec = {
                     name: "--tags",
                     insertValue: "--tags",
                     description: "Import tags from remote",
-                }
-            ]
+                },
+            ],
         },
         {
             name: "fetch",
@@ -985,12 +1001,12 @@ var completionSpec = {
                 {
                     name: "remote",
                     isOptional: true,
-                    generators: generators.remotes
+                    generators: gitGenerators.remotes,
                 },
                 {
                     name: "branch",
                     isOptional: true,
-                    generators: generators.branches
+                    generators: gitGenerators.branches,
                 },
                 {
                     name: "refspec",
@@ -1015,7 +1031,7 @@ var completionSpec = {
                     name: ["--depth"],
                     insertValue: "--depth {cursor}",
                     args: {
-                        name: 'depth',
+                        name: "depth",
                     },
                     description: "Limit fetching to the specified number of commits from the tip of each remote branch history",
                 },
@@ -1023,7 +1039,7 @@ var completionSpec = {
                     name: ["--deepen"],
                     insertValue: "--deepen {cursor}",
                     args: {
-                        name: 'depth',
+                        name: "depth",
                     },
                     description: "Similar to --depth, except it specifies the number of commits from the current shallow boundary instead of from the tip of each remote branch history",
                 },
@@ -1031,7 +1047,7 @@ var completionSpec = {
                     name: ["--shallow-since"],
                     insertValue: "--shallow-since {cursor}",
                     args: {
-                        name: 'date',
+                        name: "date",
                     },
                     description: "Deepen or shorten the history of a shallow repository to include all reachable commits after <date>",
                 },
@@ -1039,7 +1055,7 @@ var completionSpec = {
                     name: ["--shallow-exclude"],
                     insertValue: "--shallow-exclude {cursor}",
                     args: {
-                        name: 'revision',
+                        name: "revision",
                     },
                     description: "Deepen or shorten the history of a shallow repository to exclude commits reachable from a specified remote branch or tag. This option can be specified multiple times",
                 },
@@ -1055,8 +1071,8 @@ var completionSpec = {
                     name: ["--negotiation-tip"],
                     insertValue: "--negotiation-tip ",
                     args: {
-                        name: 'commit|glob',
-                        generators: generators.commits,
+                        name: "commit|glob",
+                        generators: gitGenerators.commits,
                     },
                     description: "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
                 },
@@ -1116,7 +1132,7 @@ var completionSpec = {
                     name: ["--refmap"],
                     insertValue: "--refmap {cursor}",
                     args: {
-                        name: 'refspec',
+                        name: "refspec",
                     },
                     description: "When fetching refs listed on the command line, use the specified refspec (can be given more than once) to map the refs to remote-tracking branches, instead of the values of remote.*.fetch configuration variables for the remote repository",
                 },
@@ -1139,7 +1155,7 @@ var completionSpec = {
                 {
                     name: ["-j", "--jobs"],
                     args: {
-                        name: 'n',
+                        name: "n",
                     },
                     description: "Number of parallel children to be used for all forms of fetching.",
                 },
@@ -1155,9 +1171,9 @@ var completionSpec = {
                     name: ["--submodule-prefix"],
                     insertValue: "--submodule-prefix {cursor}",
                     args: {
-                        name: 'path',
+                        name: "path",
                     },
-                    description: "Prepend <path> to paths printed in informative messages such as \”Fetching submodule foo\". This option is used internally when recursing over submodules.",
+                    description: 'Prepend <path> to paths printed in informative messages such as ”Fetching submodule foo". This option is used internally when recursing over submodules.',
                 },
                 // TODO: fig needs to accept '=' as delimiter for args/options
                 // {
@@ -1179,7 +1195,7 @@ var completionSpec = {
                     name: ["--upload-pack"],
                     insertValue: "--upload-pack {cursor}",
                     args: {
-                        name: 'upload-pack',
+                        name: "upload-pack",
                     },
                     description: "When given, and the repository to fetch from is handled by git fetch-pack, --exec=<upload-pack> is passed to the command to specify non-default path for the command run on the other end.",
                 },
@@ -1198,7 +1214,7 @@ var completionSpec = {
                 {
                     name: ["-o", "--server-option"],
                     args: {
-                        name: 'option',
+                        name: "option",
                     },
                     description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. ",
                 },
@@ -1220,64 +1236,99 @@ var completionSpec = {
                 },
                 {
                     name: "--stdin",
-                    description: "Read refspecs, one per line, from stdin in addition to those provided as arguments. The \"tag <name>\" format is not supported",
+                    description: 'Read refspecs, one per line, from stdin in addition to those provided as arguments. The "tag <name>" format is not supported',
                 },
-            ]
+            ],
         },
         {
             name: "stash",
             description: "temporarily stores all the modified tracked files",
-            subcommands: [{
-                    name: "push", // TODO: support for no subcommand is missing
+            subcommands: [
+                {
+                    name: "push",
                     description: "Save your local modifications to a new stash entry and roll them back to HEAD.",
                     insertValue: "push {cursor}",
                     options: [
-                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
-                        { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
-                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
-                        { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
+                        {
+                            name: ["-p", "--patch"],
+                            description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed.",
+                        },
+                        {
+                            name: ["-k", "--keep-index"],
+                            description: "All changed already added to the index are left intact.",
+                        },
+                        {
+                            name: ["-u", "--include-untracked"],
+                            description: "All untracked files are also stashed and then cleaned up.",
+                        },
+                        {
+                            name: ["-a", "--all"],
+                            description: "All ignored and untracked files are also stashed.",
+                        },
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages.",
+                        },
                         {
                             name: ["-m", "--message"],
                             insertValue: "-m {cursor}",
                             description: "Use the given <msg> as the stash message.",
                             args: {
-                                name: "message"
+                                name: "message",
                             },
                         },
-                        { name: "--pathspec-from-file=", description: "" }, // TODO: pathspec file nul and add description
-                        { name: "--", description: "Separates pathsec from options for disambiguation purposes." },
+                        { name: "--pathspec-from-file", description: "" },
+                        {
+                            name: "--",
+                            description: "Separates pathsec from options for disambiguation purposes.",
+                        },
                         // TODO: pathspec
-                    ]
+                    ],
                 },
                 {
                     name: "show",
                     description: "Show the changes recorded in the stash entry as a diff.",
                     insertValue: "show {cursor}",
                     options: [
-                        // TODO: All log options can be options from list. Needs to be added.
+                    // TODO: All log options can be options from list. Needs to be added.
                     ],
-                    args: [{
-                        name: "stash",
-                        isOptional: true,
-                        generators: generators.stashes
-                    }]
+                    args: [
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: gitGenerators.stashes,
+                        },
+                    ],
                 },
                 {
                     name: "save",
                     description: "Temporarily stores all the modified tracked files",
                     insertValue: "save {cursor}",
                     options: [
-                        { name: ["-p", "--patch"], description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed." },
-                        { name: ["-k", "--keep-index"], description: "All changed already added to the index are left intact." },
-                        { name: ["-u", "--include-untracked"], description: "All untracked files are also stashed and then cleaned up." },
-                        { name: ["-a", "--all"], description: "All ignored and untracked files are also stashed." },
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." },
-
+                        {
+                            name: ["-p", "--patch"],
+                            description: "Interactively select hunks from the diff between HEAD and the working tree to be stashed.",
+                        },
+                        {
+                            name: ["-k", "--keep-index"],
+                            description: "All changed already added to the index are left intact.",
+                        },
+                        {
+                            name: ["-u", "--include-untracked"],
+                            description: "All untracked files are also stashed and then cleaned up.",
+                        },
+                        {
+                            name: ["-a", "--all"],
+                            description: "All ignored and untracked files are also stashed.",
+                        },
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages.",
+                        },
                     ],
                     args: {
                         name: "message",
-                        isOptional: true
+                        isOptional: true,
                     },
                 },
                 {
@@ -1285,71 +1336,90 @@ var completionSpec = {
                     description: "Restores the most recently stashed files",
                     insertValue: "pop {cursor}",
                     options: [
-                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                        {
+                            name: "--index",
+                            description: "Tries to reinstate not only the working tree's changes, but also the index's ones.",
+                        },
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages.",
+                        },
                     ],
-                    args: [{
-                        name: "stash",
-                        isOptional: true,
-                        generators: generators.stashes
-                    }]
-
+                    args: [
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: gitGenerators.stashes,
+                        },
+                    ],
                 },
                 {
                     name: "list",
                     description: "Lists all stashed changesets",
                     insertValue: "list {cursor}",
                     options: [
-                        // TODO: All log options can be options from list. Needs to be added.
-                    ]
+                    // TODO: All log options can be options from list. Needs to be added.
+                    ],
                 },
                 {
                     name: "drop",
                     description: "Discards the most recently stashed changeset",
                     insertValue: "drop {cursor}",
                     options: [
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages.",
+                        },
                     ],
-                    args: [{
-                        name: "stash",
-                        isOptional: true,
-                        generators: generators.stashes
-                    }]
-
+                    args: [
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: gitGenerators.stashes,
+                        },
+                    ],
                 },
                 {
                     name: "clear",
                     description: " Remove all the stash entries.",
-                    insertValue: "clear"
+                    insertValue: "clear",
                 },
                 {
                     name: "apply",
                     description: "Like pop, but do not remove the state from the stash list.",
                     insertValue: "apply {cursor}",
                     options: [
-                        { name: "--index", description: "Tries to reinstate not only the working tree's changes, but also the index's ones." },
-                        { name: ["-q", "--quiet"], description: "Quiet, suppress feedback messages." }
+                        {
+                            name: "--index",
+                            description: "Tries to reinstate not only the working tree's changes, but also the index's ones.",
+                        },
+                        {
+                            name: ["-q", "--quiet"],
+                            description: "Quiet, suppress feedback messages.",
+                        },
                     ],
-                    args: [{
-                        name: "stash",
-                        isOptional: true,
-                        generators: generators.stashes
-                    }]
-
+                    args: [
+                        {
+                            name: "stash",
+                            isOptional: true,
+                            generators: gitGenerators.stashes,
+                        },
+                    ],
                 },
                 {
                     name: "branch",
                     description: "Creates and checks out a new branch named ",
                     insertValue: "branch {cursor}",
-                    args: [{
+                    args: [
+                        {
                             name: "branch",
-                            generators: generators.branches
+                            generators: gitGenerators.branches,
                         },
                         {
                             name: "stash",
                             isOptional: true,
-                            generators: generators.stashes
-                        }
+                            generators: gitGenerators.stashes,
+                        },
                     ],
                 },
                 {
@@ -1357,172 +1427,288 @@ var completionSpec = {
                     description: "Creates a stash with the message <msg>",
                     insertValue: "create {cursor}",
                     args: {
-                        name: "message"
+                        name: "message",
                     },
                 },
                 {
                     name: "store",
                     description: "Store a given stash in the stash ref., updating the staft reflog.",
                     insertValue: "store",
-                    args: {
-                        name: "message"
-                    },
-                    options: [{
+                    options: [
+                        {
                             name: ["-m", "--message"],
                             insertValue: "-m {cursor}",
                             description: "Use the given <msg> as the stash message.",
                             args: {
-                                name: "message"
+                                name: "message",
                             },
                         },
                         {
                             name: ["-q", "--quiet"],
-                            description: "Quiet, suppress feedback messages."
-                        }
+                            description: "Quiet, suppress feedback messages.",
+                        },
                     ],
-                    args: [{
-                        name: "commit",
-                        generators: generators.commits
-                    }]
+                    args: [
+                        {
+                            name: "message",
+                        },
+                        {
+                            name: "commit",
+                            generators: gitGenerators.commits,
+                        },
+                    ],
                 },
-            ]
+            ],
         },
         { name: "reflog", description: "Show history of events with hashes" },
         {
             name: "clone",
             description: "Clone a repository into a new directory",
-            args: [{ name: "repository" }, { name: "directory", template: "filepaths" }]
+            args: [
+                { name: "repository" },
+                { name: "directory", template: "filepaths" },
+            ],
         },
-        { name: "init", description: "Create an empty Git repository or reinitialize an existing one" },
-        { name: "mv", description: "Move or rename a file, a directory, or a symlink" },
+        {
+            name: "init",
+            description: "Create an empty Git repository or reinitialize an existing one",
+        },
+        {
+            name: "mv",
+            description: "Move or rename a file, a directory, or a symlink",
+        },
         {
             name: "rm",
             description: "Remove files from the working tree and from the index",
             args: {
                 variadic: true,
-                suggestions: [{
-                    name: ".",
-                    description: "current directory",
-                    insertValue: ".",
-                    icon: "fig://icon?type=folder"
-                }],
-                generators: generators.files_for_staging
+                suggestions: [
+                    {
+                        name: ".",
+                        description: "current directory",
+                        insertValue: ".",
+                        icon: "fig://icon?type=folder",
+                    },
+                ],
+                generators: gitGenerators.files_for_staging,
             },
             options: [
-                { name: "--", description: "used to separate command-line options from the list of files" },
+                {
+                    name: "--",
+                    description: "used to separate command-line options from the list of files",
+                },
                 { name: "--cached", description: "only remove from the index" },
-                { name: ["-f", "--force"], description: "override the up-to-date check" },
+                {
+                    name: ["-f", "--force"],
+                    description: "override the up-to-date check",
+                },
                 { name: "-r", description: "allow recursive removal" },
-            ]
+            ],
         },
-        { name: "bisect", description: "Use binary search to find the commit that introduced a bug" },
+        {
+            name: "bisect",
+            description: "Use binary search to find the commit that introduced a bug",
+        },
         { name: "grep", description: "Print lines matching a pattern" },
         { name: "show", description: "Show various types of objects" },
         {
             name: "branch",
             description: "List, create, or delete branches",
             options: [
-                { name: ["-a", "--all"], description: "list both remote-tracking and local branches" },
+                {
+                    name: ["-a", "--all"],
+                    description: "list both remote-tracking and local branches",
+                },
                 {
                     name: ["-d", "--delete"],
                     description: "delete fully merged branch",
                     args: {
-                        generators: generators.branches,
+                        generators: gitGenerators.branches,
                     },
                 },
                 {
                     name: "-D",
                     description: "delete branch (even if not merged)",
                     args: {
-                        generators: generators.branches,
+                        generators: gitGenerators.branches,
                     },
                 },
                 {
                     name: ["-m", "--move"],
                     description: "move/rename a branch and its reflog",
-                    args: [{
-                            generators: generators.branches,
+                    args: [
+                        {
+                            generators: gitGenerators.branches,
                         },
                         {
-                            generators: generators.branches,
+                            generators: gitGenerators.branches,
                         },
-                    ]
+                    ],
                 },
                 {
                     name: "-M",
                     description: "move/rename a branch, even if target exists",
-                    args: [{
-                            generators: generators.branches,
+                    args: [
+                        {
+                            generators: gitGenerators.branches,
                         },
                         {
-                            generators: generators.branches,
+                            generators: gitGenerators.branches,
                         },
-                    ]
+                    ],
                 },
                 { name: ["-c", "--copy"], description: "copy a branch and its reflog" },
                 { name: "-C", description: "copy a branch, even if target exists" },
                 { name: ["-l", "--list"], description: "list branch names" },
-                { name: ["--create-reflog"], description: "create the branch's reflog" },
+                {
+                    name: ["--create-reflog"],
+                    description: "create the branch's reflog",
+                },
                 {
                     name: ["--edit-description"],
                     description: "edit the description for the branch",
                     args: {
-                        generators: generators.branches,
+                        generators: gitGenerators.branches,
                     },
                 },
-                { name: ["-f", "--force"], description: "force creation, move/rename, deletion" },
-                { name: "--merged", description: "print only branches that are merged", args: { name: "commit" } },
-                { name: "--no-merged", description: "print only branches that are not merged", args: { name: "commit" } },
-                { name: "--column", description: "list branches in columns [=<style>]" },
-                { name: "--sort", description: "field name to sort on", args: { name: "key" } },
-                { name: "--points-at", description: "print only branches of the object", args: { name: "object" } },
-                { name: ["-i", "--ignore-case"], description: "sorting and filtering are case insensitive" },
-                { name: "--format", description: "format to use for the output", args: { name: "format" } }
-            ]
+                {
+                    name: ["-f", "--force"],
+                    description: "force creation, move/rename, deletion",
+                },
+                {
+                    name: "--merged",
+                    description: "print only branches that are merged",
+                    args: { name: "commit" },
+                },
+                {
+                    name: "--no-merged",
+                    description: "print only branches that are not merged",
+                    args: { name: "commit" },
+                },
+                {
+                    name: "--column",
+                    description: "list branches in columns [=<style>]",
+                },
+                {
+                    name: "--sort",
+                    description: "field name to sort on",
+                    args: { name: "key" },
+                },
+                {
+                    name: "--points-at",
+                    description: "print only branches of the object",
+                    args: { name: "object" },
+                },
+                {
+                    name: ["-i", "--ignore-case"],
+                    description: "sorting and filtering are case insensitive",
+                },
+                {
+                    name: "--format",
+                    description: "format to use for the output",
+                    args: { name: "format" },
+                },
+            ],
         },
         {
             name: "checkout",
             description: "Switch branches or restore working tree files",
             options: [
-                { name: "-b", description: "create and checkout a new branch", args: { name: "branch" } },
-                { name: "-B", description: "create/reset and checkout a branch", args: { name: "branch" } },
+                {
+                    name: "-b",
+                    description: "create and checkout a new branch",
+                    args: { name: "branch" },
+                },
+                {
+                    name: "-B",
+                    description: "create/reset and checkout a branch",
+                    args: { name: "branch" },
+                },
                 { name: "-l", description: "create reflog for new branch" },
                 { name: "--detach", description: "detach HEAD at named commit" },
-                { name: ["-t", "--track"], description: "set upstream info for new branch" },
-                { name: "--orphan", description: "new unparented branch", args: { name: "new-branch" } },
-                { name: ["-2", "--ours"], description: "checkout our version for unmerged files" },
-                { name: ["-3", "--theirs"], description: "checkout their version for unmerged files" },
-                { name: ["-f", "--force"], description: "force checkout (throw away local modifications)" },
-                { name: ["-m", "--merge"], description: "perform a 3-way merge with the new branch" },
-                { name: "--overwrite-ignore", description: "update ignored files (default)" },
-                { name: "--conflict", description: "conflict style (merge or diff3)", args: { name: "style", suggestions: [{ name: "merge" }, { name: "diff3" }] } },
+                {
+                    name: ["-t", "--track"],
+                    description: "set upstream info for new branch",
+                },
+                {
+                    name: "--orphan",
+                    description: "new unparented branch",
+                    args: { name: "new-branch" },
+                },
+                {
+                    name: ["-2", "--ours"],
+                    description: "checkout our version for unmerged files",
+                },
+                {
+                    name: ["-3", "--theirs"],
+                    description: "checkout their version for unmerged files",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "force checkout (throw away local modifications)",
+                },
+                {
+                    name: ["-m", "--merge"],
+                    description: "perform a 3-way merge with the new branch",
+                },
+                {
+                    name: "--overwrite-ignore",
+                    description: "update ignored files (default)",
+                },
+                {
+                    name: "--conflict",
+                    description: "conflict style (merge or diff3)",
+                    args: {
+                        name: "style",
+                        suggestions: [{ name: "merge" }, { name: "diff3" }],
+                    },
+                },
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
                 name: "branch",
                 description: "branch to switch to",
                 isOptional: true,
-                generators: generators.branches
-            }
+                generators: gitGenerators.branches,
+            },
         },
-        { name: "merge", description: "Join two or more development histories together" },
+        {
+            name: "merge",
+            description: "Join two or more development histories together",
+        },
         {
             name: "tag",
             description: "Create, list, delete or verify a tag object signed with GPG",
             options: [
                 { name: ["-l", " --list"], description: "list tag names" },
-                { name: "-n", description: "print <n> lines of each tag message", args: { name: "n", suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }] } },
+                {
+                    name: "-n",
+                    description: "print <n> lines of each tag message",
+                    args: {
+                        name: "n",
+                        suggestions: [{ name: "1" }, { name: "2" }, { name: "3" }],
+                    },
+                },
                 { name: ["-d", "--delete"], description: "delete tags" },
                 { name: ["-v", "--verify"], description: "verify tags" },
-                { name: ["-a", "--annotate"], description: "annotated tag, needs a message" },
-                { name: ["-m", "--message"], insertValue: "-m '{cursor}'", description: "tag message", args: { name: "message" } },
+                {
+                    name: ["-a", "--annotate"],
+                    description: "annotated tag, needs a message",
+                },
+                {
+                    name: ["-m", "--message"],
+                    insertValue: "-m '{cursor}'",
+                    description: "tag message",
+                    args: { name: "message" },
+                },
             ],
             args: {
                 name: "tagname",
                 description: "Select a tag",
-                generators: generators.tags,
+                generators: gitGenerators.tags,
                 isOptional: true,
-            }
+            },
         },
-    ]
-}
+    ],
+};
+
