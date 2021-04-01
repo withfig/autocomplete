@@ -39,7 +39,7 @@ npm install
 npm run dev
 ```
 
-Now start editing specs in the `dev/`. They will compile to the `specs/` folder on save. You can start testing your spec immediately in your terminal.
+Now start editing specs in the `dev/` folder. They will compile to the `specs/` folder on save. You can start testing your spec immediately in your terminal.
 
 <br/>
 
@@ -82,6 +82,7 @@ fig settings autocomplete.developerMode true
 fig settings autocomplete.devCompletionsFolder path/to/folder
 ```
 **Note 1**: These settings are updated automatically when starting / stopping `npm run dev`
+
 **Note 2**: When not in testing mode, Fig looks for completion specs in your `~/.fig/autocomplete` folder.
 
 ## FAQ
@@ -90,7 +91,7 @@ fig settings autocomplete.devCompletionsFolder path/to/folder
 Fig works with iTerm, the native MacOS Terminal app, Hyper and the integrated terminal in VSCode.
 
 #### How does Fig work?
-Fig has built an API around the terminal that allows you to insert text, position windows, and run local shell commands and render output in a browser.
+Fig uses the Accessibility API on Mac to insert text on your behalf and read the current keybuffer.
 
 #### Does Fig work on Windows or Linux?
 Currently, Fig is only available on MacOS.
