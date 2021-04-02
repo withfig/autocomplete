@@ -52,6 +52,62 @@ var completionSpec = {
                     },
                 },
                 {
+                    displayName: "scrollWrapAround",
+                    name: "autocomplete.scrollWrapAround",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.scrollWrapAround ",
+                    description: "A flag that determines whether the selection will wrap around when pressing arrow key at bottom or top of list.",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
+                    displayName: "insertSpaceAutomatically",
+                    name: "autocomplete.insertSpaceAutomatically",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.insertSpaceAutomatically ",
+                    description: "A flag that determines whether Fig will automatically insert a space.",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
+                    displayName: "immediatelyRunDangerousCommands",
+                    name: "autocomplete.immediatelyRunDangerousCommands",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.immediatelyRunDangerousCommands ",
+                    description: "A flag that determines whether Fig will present suggestions to immediately run commands that might be dangerous, like rm.",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
+                    displayName: "immediatelyRunGitAliases",
+                    name: "autocomplete.immediatelyRunGitAliases",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.immediatelyRunGitAliases ",
+                    description: "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
                     name: "autocomplete.disableForCommands",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.disableForCommands '{cursor}'",

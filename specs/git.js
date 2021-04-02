@@ -1468,14 +1468,237 @@ var completionSpec = {
                 { name: "repository" },
                 { name: "directory", template: "filepaths" },
             ],
+            options: [
+                {
+                    name: ["-l", "--local"],
+                    description: "Bypasses the normal git aware transport mechanism",
+                },
+                {
+                    name: ["-s", "--shared"],
+                    description: "Automatically setup .git/objects/info/alternates to share the objects with the source repository",
+                },
+                {
+                    name: ["-n", "--dry-run"],
+                    description: "Do nothing; only show what would happen",
+                },
+                {
+                    name: ["--reference"],
+                    description: "If the reference repository is on the local machine, automatically setup",
+                    args: {
+                        name: "repository",
+                    },
+                },
+                {
+                    name: "--dissociate",
+                    description: "Borrow the objects from reference repositories specified with the --reference options only to reduce network transfer, and stop borrowing from them after a clone is made by making necessary local copies of borrowed objects."
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Operate quietly. Progress is not reported to the standard error stream."
+                },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Run verbosely. Does not affect the reporting of progress status to the standard error stream."
+                },
+                {
+                    name: ["--progress"],
+                    description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless --quiet is specified. This flag forces progress status even if the standard error stream is not directed to a terminal."
+                },
+                {
+                    name: "--server-option",
+                    description: "Transmit the given string to the server when communicating using protocol version 2. The given string must not contain a NUL or LF character. The server’s handling of server options, including unknown ones, is server-specific. When multiple --server-option=<option> are given, they are all sent to the other side in the order listed on the command line."
+                },
+                {
+                    name: ["-n", "--no-checkout"],
+                    description: "No checkout of HEAD is performed after the clone is complete."
+                },
+                {
+                    name: "--bare",
+                    description: "Make a bare Git repository. That is, instead of creating <directory> and placing the administrative files in <directory>/.git, make the <directory> itself the $GIT_DIR. This obviously implies the --no-checkout because there is nowhere to check out the working tree. Also the branch heads at the remote are copied directly to corresponding local branch heads, without mapping them to refs/remotes/origin/. When this option is used, neither remote-tracking branches nor the related configuration variables are created."
+                },
+                {
+                    name: "--sparse",
+                    description: "Initialize the sparse-checkout file so the working directory starts with only the files in the root of the repository. The sparse-checkout file can be modified to grow the working directory as needed."
+                },
+                {
+                    name: "--filter",
+                    description: "Use the partial clone feature and request that the server sends a subset of reachable objects according to a given object filter. When using --filter, the supplied <filter-spec> is used for the partial clone filter. For example, --filter=blob:none will filter out all blobs (file contents) until needed by Git. Also, --filter=blob:limit=<size> will filter out all blobs of size at least <size>. For more details on filter specifications, see the --filter option in git-rev-list[1].",
+                    insertValue: "--filter=",
+                    args: { name: "filter spec" }
+                },
+                {
+                    name: "--mirror",
+                    description: "Set up a mirror of the source repository. This implies --bare. Compared to --bare, --mirror not only maps local branches of the source to local branches of the target, it maps all refs (including remote-tracking branches, notes etc.) and sets up a refspec configuration such that all these refs are overwritten by a git remote update in the target repository."
+                },
+                {
+                    name: ["-o", "--origin"],
+                    description: "Instead of using the remote name origin to keep track of the upstream repository, use <name>. Overrides clone.defaultRemoteName from the config.",
+                    args: { name: "name" }
+                },
+                {
+                    name: ["-b", "--branch"],
+                    description: "Instead of pointing the newly created HEAD to the branch pointed to by the cloned repository’s HEAD, point to <name> branch instead. In a non-bare repository, this is the branch that will be checked out. --branch can also take tags and detaches the HEAD at that commit in the resulting repository.",
+                    args: { name: "branch name" }
+                },
+                {
+                    name: ["-u", "--upload-pack"],
+                    description: "When given, and the repository to clone from is accessed via ssh, this specifies a non-default path for the command run on the other end.",
+                    args: {
+                        name: "upload pack"
+                    },
+                },
+                {
+                    name: "--template",
+                    description: "Specify the directory from which templates will be used",
+                    insertValue: "--template=",
+                    args: {
+                        name: "template directory",
+                    }
+                },
+                {
+                    name: "--depth",
+                    description: "Create a shallow clone with a history truncated to the specified number of commits. Implies --single-branch unless --no-single-branch is given to fetch the histories near the tips of all branches. If you want to clone submodules shallowly, also pass --shallow-submodules.",
+                    args: {
+                        name: "date",
+                    },
+                },
+                {
+                    name: "--shallow-since",
+                    description: "Create a shallow clone with a history after the specified time.",
+                    insertValue: "--shallow-since=",
+                    args: {
+                        name: "date",
+                    },
+                },
+                {
+                    name: "--shallow-exclude",
+                    description: "Create a shallow clone with a history, excluding commits reachable from a specified remote branch or tag. This option can be specified multiple times.",
+                    insertValue: "--shallow-exclude=",
+                    args: {
+                        name: "revision",
+                    },
+                },
+                {
+                    name: "--single-branch",
+                    description: "Clone only the history leading to the tip of a single branch, either specified by the --branch option or the primary branch remote’s HEAD points at. Further fetches into the resulting repository will only update the remote-tracking branch for the branch this option was used for the initial cloning. If the HEAD at the remote did not point at any branch when --single-branch clone was made, no remote-tracking branch is created."
+                },
+                {
+                    name: "--no-tags",
+                    description: "Don’t clone any tags, and set remote.<remote>.tagOpt=--no-tags in the config, ensuring that future git pull and git fetch operations won’t follow any tags. Subsequent explicit tag fetches will still work, (see git-fetch[1])."
+                },
+                {
+                    name: "--recurse-submodules",
+                    description: "After the clone is created, initialize and clone submodules within based on the provided pathspec. If no pathspec is provided, all submodules are initialized and cloned. This option can be given multiple times for pathspecs consisting of multiple entries.",
+                    insertValue: "--recurse-submodules=",
+                    args: {
+                        name: "pathspec",
+                    },
+                },
+                {
+                    name: "--shallow-submodules",
+                    description: "All submodules which are cloned will be shallow with a depth of 1."
+                },
+                {
+                    name: "--remote-submodules",
+                    description: "All submodules which are cloned will use the status of the submodule’s remote-tracking branch to update the submodule, rather than the superproject’s recorded SHA-1. Equivalent to passing --remote to git submodule update."
+                },
+                {
+                    name: "--separate-git-dir",
+                    description: "Instead of placing the cloned repository where it is supposed to be, place the cloned repository at the specified directory, then make a filesystem-agnostic Git symbolic link to there. The result is Git repository can be separated from working tree.",
+                    insertValue: "--separate-git-dir=",
+                    args: {
+                        name: "git dir"
+                    }
+                },
+            ],
         },
         {
             name: "init",
             description: "Create an empty Git repository or reinitialize an existing one",
+            options: [
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Only print error and warning messages",
+                },
+                {
+                    name: ["--bare"],
+                    description: "Create a bare repository",
+                },
+                {
+                    name: ["--object-format="],
+                    description: "Specify the given object format",
+                    args: {
+                        name: "format",
+                    },
+                },
+                {
+                    name: "separate-git-dir",
+                    description: "C",
+                    args: {
+                        name: "git dir",
+                    },
+                },
+                {
+                    name: ["-b", "--initial-branch"],
+                    description: "initial branch for new repo",
+                    args: {
+                        name: "branch",
+                    },
+                },
+                {
+                    name: ["--shared"],
+                    args: {
+                        suggestions: [
+                            {
+                                name: "false",
+                            },
+                            {
+                                name: "true",
+                            },
+                            {
+                                name: "umask",
+                            },
+                            {
+                                name: "group",
+                            },
+                            {
+                                name: "all",
+                            },
+                            {
+                                name: "world",
+                            },
+                            {
+                                name: "everybody",
+                            },
+                            {
+                                name: "0xxx",
+                            },
+                        ],
+                    },
+                },
+            ],
         },
         {
             name: "mv",
             description: "Move or rename a file, a directory, or a symlink",
+            options: [
+                {
+                    name: ["-f", "--force"],
+                    description: "Force renaming or moving of a file even if the target exists"
+                },
+                {
+                    name: ["-k"],
+                    description: "Skip move or rename actions which would lead to an error condition"
+                },
+                {
+                    name: ["-n", "--dry-run"],
+                    description: "Do nothing; only show what would happen",
+                },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Report the names of files as they are moved.",
+                },
+            ],
         },
         {
             name: "rm",
