@@ -1805,7 +1805,11 @@ export const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: gitGenerators.branches,
         suggestions: [
-          { name: "-", description: "switch to the last used branch" },
+          {
+            name: "-",
+            description: "switch to the last used branch",
+            icon: "fig://icon?type=git",
+          },
         ],
       },
     },
