@@ -39,13 +39,11 @@ npm install
 npm run dev
 ```
 
-Now start editing specs in the `dev/` folder. They will compile to the `specs/` folder on save. You can start testing your spec immediately in your terminal.
+Edit your spec in the `dev/` folder. It will compile to the `specs/` folder on save. Start testing your spec immediately in your terminal.
+
+**Note**: Fig usually looks for completion specs in your `~/.fig/autocomplete` folder. When in testing mode, we check your cloned repo's `specs/` folder
 
 <br/>
-
-
-## Auto-linting, formatting, and type-checking
-Install the following plugins discussed here: https://forum.withfig.com/t/auto-linting-and-auto-formatting-completion-specs/53
 
 
 ## Other available commands
@@ -68,22 +66,9 @@ npm run copy <spec-name>
 ```
 
 
-## Fig Settings
-These CLI commands update the `~/.fig/settings.json` file. Read more [here](https://withfig.com/docs/support/settings). 
+## Can I create autocomplete specs for myself / my team's internal scripts?
+Hell yeah: https://withfig.com/docs/autocomplete/getting-started
 
-
-```bash
-# Turn on Fig developer mode
-fig settings autocomplete.developerMode true
-
-
-# Update the folder Fig uses to look for completion specs. 
-# Only works in developer mode. Otherwise, defaults to ~/.fig/autocomplete
-fig settings autocomplete.devCompletionsFolder path/to/folder
-```
-**Note 1**: These settings are updated automatically when starting / stopping `npm run dev`
-
-**Note 2**: When not in testing mode, Fig looks for completion specs in your `~/.fig/autocomplete` folder.
 
 ## FAQ
 
@@ -97,11 +82,8 @@ Fig uses the Accessibility API on Mac to insert text on your behalf and read the
 Currently, Fig is only available on MacOS.
 
 #### How can I get access?
-Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week. 
-
-#### Can I use this for internal scripts and CLI tools at my company?
-Yes! Check out the [autocomplete for teams](https://withfig.com/docs/autocomplete/autocomplete-for-teams) in our docs. Reach out to hello@withfig.com if you need help.
-
+Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week.  
+ 
 
 #### Did we miss something?
 Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)
