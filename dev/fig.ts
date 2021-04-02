@@ -115,9 +115,9 @@ export const completionSpec: Fig.Spec = {
         },
         {
           displayName: "enter",
-          name: "autocomplete.immediatelyRunGitAliases",
+          name: "autocomplete.enter",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.immediatelyRunGitAliases ",
+          insertValue: "autocomplete.enter ",
           description:
             "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
           args: {
@@ -139,9 +139,9 @@ export const completionSpec: Fig.Spec = {
         },
         {
           displayName: "tab",
-          name: "autocomplete.immediatelyRunGitAliases",
+          name: "autocomplete.tab",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.immediatelyRunGitAliases ",
+          insertValue: "autocomplete.tab ",
           description:
             "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
           args: {
