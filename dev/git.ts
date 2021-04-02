@@ -1805,7 +1805,7 @@ export const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: gitGenerators.branches,
         suggestions: [
-          { name: "-", description: "switch to the last used folder" },
+          { name: "-", description: "switch to the last used branch" },
         ],
       },
     },
