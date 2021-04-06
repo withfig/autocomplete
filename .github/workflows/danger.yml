@@ -1,16 +1,14 @@
-name: Node CI
-on: [pull_request]
+name: Run Linter
 
+on: [pull_request]
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: install yarn
+      - uses: actions/checkout@v2
       - run: npm install -g yarn
-      - name: yarn install, build, and test
       - run: yarn install  --frozen-lockfile
-      - name: Danger
+      - run: npm run lint
       - run: yarn danger ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
