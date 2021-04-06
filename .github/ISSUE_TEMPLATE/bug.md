@@ -5,7 +5,7 @@ labels: "Bug"
 ---
 
 <!--
-  Please fill out each section below, otherwise, your issue will be closed. This info allows fig maintainers to diagnose (and fix!) your issue as quickly as possible.
+  Please fill out each section below, otherwise, your issue will be closed. This info allows Fig maintainers to diagnose (and fix!) your issue as quickly as possible.
 
   Useful Links:
   - Documentation: https://withfig.com/docs/autocomplete/getting-started
@@ -15,7 +15,7 @@ labels: "Bug"
 
 ### Completion Spec
 
-What completion spec does this bug refer to? Or is it fig itself?
+What completion spec does this bug refer to? Or is it Fig itself?
 
 ### Description
 

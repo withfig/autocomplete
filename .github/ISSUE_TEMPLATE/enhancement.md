@@ -1,12 +1,12 @@
 ---
 name: Enhancement
-about: You have an Idea on how to improve fig? Let us know!
+about: You have an Idea on how to improve Fig? Let us know!
 labels: "Enhancement"
 ---
 
 ### Completion Spec
 
-What completion spec does this enhancement refer to? Or is it fig itself?
+What completion spec does this enhancement refer to? Or is it Fig itself?
 
 ### Description
 

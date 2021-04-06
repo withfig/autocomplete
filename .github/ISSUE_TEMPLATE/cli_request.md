@@ -6,7 +6,7 @@ labels: "CLI Request"
 
 ### CLI Tool
 
-What CLI tool is missing autocompletion in fig?
+What CLI tool is missing autocompletion in Fig?
 
 ### Useful Links
 
