@@ -13,6 +13,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: rm -f .git/info/exclude
+      - run: git update-index --no-skip-worktree specs/*
       - uses: EndBug/add-and-commit@v7
         with: 
           add: './specs/ --force'
