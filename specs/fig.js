@@ -12,7 +12,6 @@ var completionSpec = {
             description: "update preferences",
             subcommands: [
                 {
-                    displayName: "developerMode",
                     name: "autocomplete.developerMode",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.developerMode ",
@@ -26,7 +25,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "devCompletionsFolder",
                     name: "autocomplete.devCompletionsFolder",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.devCompletionsFolder ",
@@ -52,7 +50,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "scrollWrapAround",
                     name: "autocomplete.scrollWrapAround",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.scrollWrapAround ",
@@ -66,7 +63,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "insertSpaceAutomatically",
                     name: "autocomplete.insertSpaceAutomatically",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.insertSpaceAutomatically ",
@@ -80,7 +76,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "immediatelyRunDangerousCommands",
                     name: "autocomplete.immediatelyRunDangerousCommands",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.immediatelyRunDangerousCommands ",
@@ -94,7 +89,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "immediatelyRunGitAliases",
                     name: "autocomplete.immediatelyRunGitAliases",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.immediatelyRunGitAliases ",
@@ -108,7 +102,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "enter",
                     name: "autocomplete.enter",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.enter ",
@@ -130,7 +123,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "tab",
                     name: "autocomplete.tab",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.tab ",
@@ -208,7 +200,39 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "width",
+                    name: "pty.rc",
+                    icon: "fig://icon?type=commandkey",
+                    description: "A file that will be sourced when Fig creates a pseudoterminal",
+                    args: {
+                        name: "filepath",
+                        template: "filepaths",
+                    },
+                },
+                {
+                    name: "app.launchOnStartup",
+                    icon: "fig://icon?type=commandkey",
+                    description: "A flag that determines whether the Fig app is added to Login Items. If true, Fig will launch automatically whenever you restart your computer.",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
+                    name: "app.disableTelemetry",
+                    icon: "fig://icon?type=commandkey",
+                    description: "Opt-out of all telemetry collection",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
                     name: "autocomplete.width",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.width ",
@@ -218,7 +242,6 @@ var completionSpec = {
                     },
                 },
                 {
-                    displayName: "height",
                     name: "autocomplete.height",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.height ",
