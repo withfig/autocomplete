@@ -1,8 +1,8 @@
-name: Run Linter
+name: Check PR
 
 on: [pull_request]
 jobs:
-  lint:
+  danger:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,7 +11,6 @@ jobs:
           node-version: 14.x
       - run: npm install -g yarn
       - run: yarn install  --frozen-lockfile
-      - run: npm run lint
       - run: yarn danger ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
