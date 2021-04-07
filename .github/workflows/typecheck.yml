@@ -3,7 +3,7 @@
 
 name: Typecheck Files
 
-on: [push]
+on: [push, pull_request]
 jobs:
   typecheck:
     runs-on: ubuntu-latest
