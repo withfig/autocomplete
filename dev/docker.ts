@@ -39,7 +39,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   },
   dockerHubSearch: {
     script: function (context) {
-      if (context[context.length - 1] === "") return [];
+      if (context[context.length - 1] === "") return "";
       const searchTerm = context[context.length - 1];
       return `docker search ${searchTerm} --format '{{ json . }}'`;
     },
