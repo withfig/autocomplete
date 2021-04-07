@@ -62,6 +62,7 @@ const getAllScripts = (fileContent: Node) => {
   };
 };
 
+// test
 const updatedFiles = danger.git.modified_files
   .concat(danger.git.created_files)
   .filter((file) => file.includes("dev/"));
