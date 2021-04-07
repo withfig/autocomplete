@@ -1467,7 +1467,7 @@ var completionSpec = {
             description: "Pull an image or a repository from a registry",
             args: {
                 name: "NAME[:TAG|@DIGEST]",
-                generator: dockerGenerators.dockerHubSearch
+                generators: dockerGenerators.dockerHubSearch
             },
             options: [
                 {
