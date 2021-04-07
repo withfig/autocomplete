@@ -3,10 +3,10 @@ export const completionSpec: Fig.Spec = {
   description: "copy files and directories",
   args: [
     {
-      template: "filepaths",
+      template: ["filepaths", "folders"],
     },
     {
-      template: "filepaths",
+      template: ["filepaths", "folders"],
     },
   ],
   options: [
