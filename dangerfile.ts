@@ -58,8 +58,8 @@ if (updatedFiles.length > 0) {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
-    markdown(`## ${fileName}:`);
-    markdown(allScripts.map((s) => `- ${s}`).join("\n"));
+    markdown(`### ${fileName}:`);
+    markdown(allScripts.map((s) => `- \`${s}\``).join("\n"));
   });
 } else {
   markdown("## No scripts found");
