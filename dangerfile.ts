@@ -53,16 +53,14 @@ const updatedFiles = danger.git.modified_files
   .filter((file) => file.includes("dev/"));
 
 if (updatedFiles.length > 0) {
-  markdown("## All Scripts", null, 1);
+  markdown("## All Scripts");
   updatedFiles.forEach((fileName) => {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
     markdown(
       `### ${fileName}:
-${allScripts.map((s) => `- \`${s}\``).join("\n")}`,
-      null,
-      3
+${allScripts.map((s) => `- \`${s}\``).join("\n")}`
     );
   });
 } else {
