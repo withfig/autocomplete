@@ -1,21 +1,18 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import { danger, markdown, schedule } from "danger";
+import { danger, markdown } from "danger";
 import * as fs from "fs";
 import {
+  createSourceFile,
+  forEachChild,
+  isFunctionExpression,
+  isPropertyAssignment,
+  isStringLiteral,
+  Node,
+  PropertyAssignment,
+  ScriptTarget,
   SourceFile,
   TransformerFactory,
-  visitNode,
   visitEachChild,
-  Node,
-  ScriptTarget,
-  createSourceFile,
-  isPropertyAssignment,
-  PropertyAssignment,
-  Visitor,
-  forEachChild,
-  SyntaxKind,
-  isStringLiteral,
-  isFunctionExpression,
+  visitNode,
 } from "typescript";
 
 export const specTransformer: TransformerFactory<SourceFile> = (context) => {
@@ -38,11 +35,15 @@ const getAllScripts = (fileContent: Node) => {
   const functions: [string, string][] = [];
 
   const visitor = (node: Node) => {
+    // PropertyAssignment === Key-Value pair in object
     if (isPropertyAssignment(node)) {
       const propertyKey: string = (node.name as any).escapedText;
+      // Find all scripts
       if (propertyKey === "script" && isStringLiteral(node.initializer)) {
         scripts.push(node.initializer.text);
       }
+
+      // Find all functions
       if (isFunctionExpression(node.initializer)) {
         functions.push([
           propertyKey,
@@ -87,8 +88,8 @@ ${value}
   .join("\n")}
 `;
   });
-  markdown(`# All Scripts
+  markdown(`# Overview
 ${message}`);
 } else {
-  markdown("# No scripts found");
+  markdown("# No files changed ☑️");
 }
