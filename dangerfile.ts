@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { danger, markdown } from "danger";
+import { danger, markdown, schedule } from "danger";
 import * as fs from "fs";
 import {
   SourceFile,
@@ -58,9 +58,11 @@ if (updatedFiles.length > 0) {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
-    markdown(
-      `### ${fileName}:
+    schedule(() =>
+      markdown(
+        `### ${fileName}:
 ${allScripts.map((s) => `- \`${s}\``).join("\n")}`
+      )
     );
   });
 } else {
