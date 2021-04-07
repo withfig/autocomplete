@@ -2,11 +2,6 @@ import { danger, schedule } from "danger";
 
 schedule(async () => {
   const { owner, repo, number } = danger.github.thisPR;
-  // const prInfo = await danger.github.api.pulls.get({
-  //   owner,
-  //   repo,
-  //   pull_number: number,
-  // });
 
   const { data: comments } = await danger.github.api.issues.listComments({
     issue_number: number,
@@ -19,13 +14,12 @@ schedule(async () => {
   );
 
   if (!hasGreetingComment) {
-    // const creator = prInfo.data.user.login;
     await danger.github.api.issues.createComment({
       repo,
       owner,
       issue_number: number,
       body: `<!-- id: greetingComment -->
-Hello @user, 
+Hello @${danger.github.pr.user.login}, 
 thank you very much for creating a Pull Request!
 Here is a small checklist to get this PR merged as quickly as possible:
 
