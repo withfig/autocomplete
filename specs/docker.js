@@ -51,7 +51,7 @@ var dockerGenerators = {
     dockerHubSearch: {
         script: function (context) {
             if (context[context.length - 1] === "")
-                return [];
+                return "";
             var searchTerm = context[context.length - 1];
             return "docker search " + searchTerm + " --format '{{ json . }}'";
         },
