@@ -37,6 +37,25 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  dockerHubSearch: {
+    script: function (context) {
+      if (context[context.length - 1] === "") return [];
+      const searchTerm = context[context.length - 1];
+      return `docker search ${searchTerm} --format '{{ json . }}'`;
+    },
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: `${i.Name}`,
+      }));
+    },
+    trigger: function () {
+      return true;
+    },
+    debounce: true,
+  },
 };
 
 const containersArg = {
@@ -1468,6 +1487,7 @@ export const completionSpec: Fig.Spec = {
       description: "Pull an image or a repository from a registry",
       args: {
         name: "NAME[:TAG|@DIGEST]",
+        generator: dockerGenerators.dockerHubSearch,
       },
       options: [
         {
