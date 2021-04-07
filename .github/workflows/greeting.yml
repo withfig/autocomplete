@@ -1,8 +1,8 @@
-name: Check PR
+name: Greet User
 
 on: [pull_request]
 jobs:
-  danger:
+  danger-greet:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,6 +11,6 @@ jobs:
           node-version: 14.x
       - run: npm install -g yarn
       - run: yarn install  --frozen-lockfile
-      - run: yarn danger ci
+      - run: yarn danger ci -d ./dangerfile-greeting.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
