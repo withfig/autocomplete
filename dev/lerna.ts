@@ -40,8 +40,7 @@ const getAllScriptsFromPackages: Fig.Generator = {
 
     return Array.from(new Set(scripts)).map((scriptName) => ({
       name: scriptName,
-      icon:
-        "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+      icon: "fig://icon?type=npm",
     }));
   },
 };
@@ -76,8 +75,7 @@ const npmClientOption: Fig.Option = {
     suggestions: [
       {
         name: "npm",
-        icon:
-          "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+        icon: "fig://icon?type=npm",
       },
       {
         name: "yarn",
@@ -467,8 +465,7 @@ export const completion: Fig.Spec = {
         isOptional: true,
         suggestions: SEMVER_NOUNS.map((versionName) => ({
           name: versionName,
-          icon:
-            "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+          icon: "fig://icon?type=npm",
         })),
       },
       options: [
