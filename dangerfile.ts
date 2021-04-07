@@ -15,6 +15,7 @@ import {
   forEachChild,
   SyntaxKind,
   isStringLiteral,
+  isFunctionExpression,
 } from "typescript";
 
 export const specTransformer: TransformerFactory<SourceFile> = (context) => {
@@ -32,20 +33,32 @@ export const specTransformer: TransformerFactory<SourceFile> = (context) => {
   };
 };
 
-const getAllScripts = (node: Node) => {
+const getAllScripts = (fileContent: Node) => {
   const scripts: string[] = [];
+  const functions: [string, string][] = [];
+
   const visitor = (node: Node) => {
     if (isPropertyAssignment(node)) {
-      const typedNode = node;
-      const propertyKey: string = (typedNode.name as any).escapedText;
-      if (propertyKey === "script" && isStringLiteral(typedNode.initializer)) {
-        scripts.push(typedNode.initializer.text);
+      const propertyKey: string = (node.name as any).escapedText;
+      if (propertyKey === "script" && isStringLiteral(node.initializer)) {
+        scripts.push(node.initializer.text);
+      }
+      if (isFunctionExpression(node.initializer)) {
+        functions.push([
+          propertyKey,
+          fileContent
+            .getFullText()
+            .slice(node.initializer.pos, node.initializer.end),
+        ]);
       }
     }
     forEachChild(node, visitor);
   };
-  visitor(node);
-  return scripts;
+  visitor(fileContent);
+  return {
+    scripts,
+    functions,
+  };
 };
 
 const updatedFiles = danger.git.modified_files
@@ -58,11 +71,24 @@ if (updatedFiles.length > 0) {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
-    message += `### ${fileName}:
-${allScripts.map((s) => `- \`${s}\``).join("\n")}`;
+    message += `## ${fileName}:
+### Scripts:
+${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}
+
+### Functions:
+${allScripts.functions
+  .map(
+    ([key, value]) => `**${key}:**
+\`\`\`typescript
+${value}
+\`\`\`
+`
+  )
+  .join("\n")}
+`;
   });
-  markdown(`## All Scripts
+  markdown(`# All Scripts
 ${message}`);
 } else {
-  markdown("## No scripts found");
+  markdown("# No scripts found");
 }
