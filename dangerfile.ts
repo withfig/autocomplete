@@ -52,19 +52,17 @@ const updatedFiles = danger.git.modified_files
   .concat(danger.git.created_files)
   .filter((file) => file.includes("dev/"));
 
+let message = "";
 if (updatedFiles.length > 0) {
-  markdown("## All Scripts");
   updatedFiles.forEach((fileName) => {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
-    schedule(() =>
-      markdown(
-        `### ${fileName}:
-${allScripts.map((s) => `- \`${s}\``).join("\n")}`
-      )
-    );
+    message += `### ${fileName}:
+${allScripts.map((s) => `- \`${s}\``).join("\n")}`;
   });
+  markdown(`## All Scripts
+${message}`);
 } else {
   markdown("## No scripts found");
 }
