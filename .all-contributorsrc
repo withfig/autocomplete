@@ -1,0 +1,24 @@
+{
+  "projectName": "autocomplete",
+  "projectOwner": "withfig",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 75,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "falky97",
+      "name": "Brendan Falk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4949076?v=4",
+      "profile": "https://github.com/falky97",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
