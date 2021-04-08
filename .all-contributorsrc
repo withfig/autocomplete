@@ -207,6 +207,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sauntimo",
+      "name": "Tim Saunders",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2720466?v=4",
+      "profile": "http://sauntimo.org/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
