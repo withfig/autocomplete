@@ -126,6 +126,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alexnaiman",
+      "name": "Alexandru Naiman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25799714?v=4",
+      "profile": "https://github.com/alexnaiman",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
