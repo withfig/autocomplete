@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -123,6 +123,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/vicentube"><img src="https://avatars.githubusercontent.com/u/73502080?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Vicente Úbeda</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=vicentube" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rk-yen"><img src="https://avatars.githubusercontent.com/u/4944665?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Ravi Y</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=rk-yen" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/berbaroovez"><img src="https://avatars.githubusercontent.com/u/6900468?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Carter</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=berbaroovez" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/smeevil"><img src="https://avatars.githubusercontent.com/u/13874?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Gerard de Brieder</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=smeevil" title="Code">💻</a></td>
   </tr>
 </table>
 
