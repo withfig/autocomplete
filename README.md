@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -112,6 +112,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/samwinslow"><img src="https://avatars.githubusercontent.com/u/4645779?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sam Winslow</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=samwinslow" title="Code">💻</a></td>
     <td align="center"><a href="https://jamesj.ac/kson"><img src="https://avatars.githubusercontent.com/u/13633271?v=4?s=50" width="50px;" alt=""/><br /><sub><b>James Jackson</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=jsj" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/dipakparmar"><img src="https://avatars.githubusercontent.com/u/24366206?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Dipak Parmar</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=dipakparmar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/DannyAziz"><img src="https://avatars.githubusercontent.com/u/3679064?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Danny Aziz</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=DannyAziz" title="Code">💻</a></td>
   </tr>
 </table>
 
