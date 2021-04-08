@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -107,6 +107,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/QuiiBz"><img src="https://avatars.githubusercontent.com/u/43268759?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Tom</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=QuiiBz" title="Code">💻</a></td>
     <td align="center"><a href="https://julius-kiekbusch.de/"><img src="https://avatars.githubusercontent.com/u/15707543?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Julius Kiekbusch</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=Jubeki" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/FlowyCoder"><img src="https://avatars.githubusercontent.com/u/28676154?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Flowy</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=FlowyCoder" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/samwinslow"><img src="https://avatars.githubusercontent.com/u/4645779?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Sam Winslow</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=samwinslow" title="Code">💻</a></td>
   </tr>
 </table>
 
