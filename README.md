@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -129,6 +129,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/LI0131"><img src="https://avatars.githubusercontent.com/u/4829473?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Liam McCann</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=LI0131" title="Code">💻</a></td>
     <td align="center"><a href="http://sauntimo.org/"><img src="https://avatars.githubusercontent.com/u/2720466?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Tim Saunders</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=sauntimo" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/ygaitonde"><img src="https://avatars.githubusercontent.com/u/54426809?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Yash Gaitonde</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=ygaitonde" title="Code">💻</a></td>
   </tr>
 </table>
 
