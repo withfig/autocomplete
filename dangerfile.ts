@@ -1,4 +1,4 @@
-import { danger, markdown } from "danger";
+import { danger, markdown, schedule } from "danger";
 import * as fs from "fs";
 import {
   createSourceFile,
@@ -84,19 +84,33 @@ const getAllScripts = (fileContent: Node) => {
   };
 };
 
-// Get all changed and added files
-const updatedFiles = danger.git.modified_files
-  .concat(danger.git.created_files)
-  .filter((file) => file.includes("dev/"));
+schedule(async () => {
+  const { owner, repo, number } = danger.github.thisPR;
 
-let message = "";
-if (updatedFiles.length > 0) {
-  updatedFiles.forEach((fileName) => {
-    const content = fs.readFileSync(fileName, { encoding: "utf-8" });
-    const d = createSourceFile("temp", content, ScriptTarget.Latest);
-    const allScripts = getAllScripts(d);
+  const { data: comments } = await danger.github.api.issues.listComments({
+    issue_number: number,
+    repo,
+    owner,
+  });
 
-    message += `## ${fileName}:
+  const reviewCommentRef = comments.find((comment) =>
+    comment.body.includes("id: review-bot")
+  );
+
+  // Get all changed and added files
+  const updatedFiles = danger.git.modified_files
+    .concat(danger.git.created_files)
+    .filter((file) => file.includes("dev/"));
+
+  let message = "<!-- id: review-bot -->";
+  let comment = "";
+  if (updatedFiles.length > 0) {
+    updatedFiles.forEach((fileName) => {
+      const content = fs.readFileSync(fileName, { encoding: "utf-8" });
+      const d = createSourceFile("temp", content, ScriptTarget.Latest);
+      const allScripts = getAllScripts(d);
+
+      message += `## ${fileName}:
 ### Info:
 ${allScripts.pairs
   .map(
@@ -130,9 +144,25 @@ ${value}
     : ""
 }
 `;
-  });
-  markdown(`# Overview
-${message}`);
-} else {
-  markdown("# No files changed ☑️");
-}
+    });
+    comment = `# Overview
+${message}`;
+  } else {
+    comment = "# No files changed ☑️";
+  }
+  if (reviewCommentRef != null) {
+    await danger.github.api.issues.updateComment({
+      body: comment,
+      comment_id: reviewCommentRef.id,
+      owner,
+      repo,
+    });
+  } else {
+    await danger.github.api.issues.createComment({
+      body: comment,
+      issue_number: number,
+      owner,
+      repo,
+    });
+  }
+});
