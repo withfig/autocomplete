@@ -39,7 +39,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   },
   dockerHubSearch: {
     script: function (context) {
-      if (context[context.length - 1] === "") return [];
+      if (context[context.length - 1] === "") return "";
       const searchTerm = context[context.length - 1];
       return `docker search ${searchTerm} --format '{{ json . }}'`;
     },
@@ -1486,7 +1486,7 @@ export const completionSpec: Fig.Spec = {
       description: "Pull an image or a repository from a registry",
       args: {
         name: "NAME[:TAG|@DIGEST]",
-        generator: dockerGenerators.dockerHubSearch,
+        generators: [dockerGenerators.dockerHubSearch],
         debounce: true,
       },
       options: [
