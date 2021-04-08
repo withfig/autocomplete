@@ -47,15 +47,10 @@ const getAllScripts = (fileContent: Node) => {
         scripts.push(node.initializer.text);
         lastScript = node.initializer.text;
         isLastScript = true;
-        console.log({
-          lastScript,
-          isLastScript,
-        });
       }
 
       // Find all functions
       if (isFunctionExpression(node.initializer)) {
-        console.log(isLastScript);
         if (isLastScript) {
           scripts.pop();
           pairs.push([
@@ -100,7 +95,7 @@ if (updatedFiles.length > 0) {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
-    console.log(allScripts.pairs);
+
     message += `## ${fileName}:
 ### Info:
 ${allScripts.pairs
@@ -108,9 +103,11 @@ ${allScripts.pairs
     ([scriptName, [key, value]]) => `- \`${scriptName}\`
 **${key}:**
 \`\`\`typescript
-${value}`
+${value}
+\`\`\`
+`
   )
-  .join("\n\n")}
+  .join("\n")}
 
 ### Single Scripts:
 ${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}
