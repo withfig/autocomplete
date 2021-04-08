@@ -17,3 +17,6 @@ jobs:
       - run: yarn danger ci -d ./dangerfile-greeting.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn danger ci -d ./dangerfile-invite.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
