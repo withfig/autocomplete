@@ -27,6 +27,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mattschrage",
+      "name": "Matt Schrage",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3155109?v=4",
+      "profile": "http://mschrage.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
