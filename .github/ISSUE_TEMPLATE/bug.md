@@ -1,6 +1,6 @@
 ---
 name: Bug Report 🐞
-about: Something isn't working as expected? Here is the right place to report. For questions, please use "Discussions".
+about: Something isn't working as expected? Here is the right place to report. For questions, please use forum.withfig.com
 labels: "Bug"
 ---
 

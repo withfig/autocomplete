@@ -743,10 +743,16 @@ export const completionSpec: Fig.Spec = {
           description: "interactive",
         },
       ],
-      args: {
-        suggestions: [],
-        generators: gitGenerators.commits,
-      },
+      args: [
+        {
+          name: "base",
+          generators: gitGenerators.branches,
+        },
+        {
+          name: "new base",
+          generators: gitGenerators.branches,
+        },
+      ],
     },
     {
       name: "add",
@@ -864,6 +870,35 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "clean",
+      description: "Shows which files would be removed from working directory",
+      options: [
+        {
+          name: "-n",
+          description:
+            "Don’t actually remove anything, just show what would be done.",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "If the Git configuration variable clean.requireForce is not set to false, git clean will refuse to delete files or directories unless given -f or -i.",
+        },
+      ],
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
+    },
+    {
+      name: "revert",
+      description:
+        "Create new commit that undoes all of the changes made in <commit>, then apply it to the current branch.",
+      args: {
+        name: "commit",
+        generators: gitGenerators.commits,
+      },
+    },
+    {
       name: "push",
       description: "Update remote refs",
       options: [
@@ -878,6 +913,24 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--tags",
           description: "push tags (can't be used with --all or --mirror)",
+        },
+        {
+          name: "-u",
+          args: [
+            {
+              name: "remote",
+              generators: gitGenerators.remotes,
+            },
+            {
+              name: "branch",
+              generators: gitGenerators.branches,
+            },
+          ],
+        },
+        {
+          name: "--force",
+          description:
+            "Forces the git push even if it results in a non-fast-forward merge. Do not use the --force flag unless you’re absolutely sure you know what you’re doing",
         },
         // { name: ["-n", "--dry-run"], description: "dry run" },
       ],
@@ -897,6 +950,17 @@ export const completionSpec: Fig.Spec = {
     {
       name: "pull",
       description: "Integrate with another repository",
+      options: [
+        {
+          name: "--rebase",
+          description:
+            "Fetch the remote’s copy of current branch and rebases it into the local copy.",
+          args: {
+            name: "remote",
+            generators: gitGenerators.remotes,
+          },
+        },
+      ],
       args: [
         {
           name: "remote",
@@ -920,7 +984,16 @@ export const completionSpec: Fig.Spec = {
           description:
             "Show difference between the files in the staging area and the latest version",
         },
+        {
+          name: "--cached",
+          description: "Show difference between staged changes and last commit",
+        },
       ],
+      args: {
+        name: "commit",
+        suggestions: [{ name: "HEAD" }],
+        generators: gitGenerators.commits,
+      },
     },
     {
       name: "reset",
@@ -1024,7 +1097,55 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "--oneline",
-          description: "show each commit as a single line ",
+          description: "show each commit as a single line",
+        },
+        {
+          name: "--p",
+          description: "display the full diff of each commit",
+        },
+        {
+          name: "--stat",
+          description:
+            "Include which files were altered and the relative number of lines that were added or deleted from each of them.",
+        },
+        {
+          name: "--grep",
+          description:
+            "Search for commits with a commit message that matches <pattern>",
+          insertValue: "--grep=",
+          args: {
+            name: "pattern",
+          },
+        },
+        {
+          name: "--author",
+          description: "Search for commits by a particular author.",
+          insertValue: "--author=",
+          args: {
+            name: "pattern",
+          },
+        },
+        {
+          name: "--source",
+          description: "show source",
+        },
+        {
+          name: "--oneline",
+          description: "show each commit as a single line",
+        },
+      ],
+      args: [
+        {
+          name: "since",
+          description: "commit ID, branch name, HEAD, or revision reference",
+          generators: gitGenerators.commits,
+          suggestions: [{ name: "HEAD" }],
+        },
+        {
+          name: "until",
+          description: "commit ID, branch name, HEAD, or revision reference",
+          generators: gitGenerators.commits,
+          suggestions: [{ name: "HEAD" }],
         },
       ],
     },
@@ -1047,6 +1168,10 @@ export const completionSpec: Fig.Spec = {
           name: "rm",
           insertValue: "rm",
           description: "Removes given remote [name]",
+          args: {
+            name: "remote",
+            generators: gitGenerators.remotes,
+          },
         },
         {
           name: "get-url",
@@ -1592,7 +1717,20 @@ export const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "reflog", description: "Show history of events with hashes" },
+    {
+      name: "reflog",
+      description: "Show history of events with hashes",
+      options: [
+        {
+          name: "--relative-date",
+          description: "show date info",
+        },
+        {
+          name: "--all",
+          description: "show all refs",
+        },
+      ],
+    },
     {
       name: "clone",
       description: "Clone a repository into a new directory",
@@ -1774,6 +1912,9 @@ export const completionSpec: Fig.Spec = {
       name: "init",
       description:
         "Create an empty Git repository or reinitialize an existing one",
+      args: {
+        name: "directory",
+      },
       options: [
         {
           name: ["-q", "--quiet"],
@@ -1840,6 +1981,18 @@ export const completionSpec: Fig.Spec = {
     {
       name: "mv",
       description: "Move or rename a file, a directory, or a symlink",
+      args: [
+        {
+          name: "source",
+          description: "file to move",
+          template: "filepaths",
+        },
+        {
+          name: "destination",
+          description: "location to move to",
+          template: "folders",
+        },
+      ],
       options: [
         {
           name: ["-f", "--force"],
@@ -2071,6 +2224,16 @@ export const completionSpec: Fig.Spec = {
         name: "branch",
         generators: gitGenerators.branches,
       },
+      options: [
+        {
+          name: "--no-ff",
+          description: "Merge with a nicer branch history",
+        },
+      ],
+    },
+    {
+      name: "mergetool",
+      description: "Open the git tool to fix conflicts",
     },
     {
       name: "tag",
