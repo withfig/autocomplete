@@ -1,29 +1,29 @@
+var yarnGenerators = {
+    getScripts: {
+        script: "cat package.json",
+        postProcess: function (output) {
+            if (output.trim() == "") {
+                return [];
+            }
+            try {
+                var packageContent = JSON.parse(output);
+                var scripts = packageContent["scripts"];
+                if (scripts) {
+                    return Object.keys(scripts).map(function (scriptName) { return ({
+                        name: scriptName,
+                        icon: "https://yarnpkg.com/favicon-32x32.png",
+                    }); });
+                }
+            }
+            catch (e) { }
+            return [];
+        },
+    },
+};
 var completionSpec = {
     name: "yarn",
     description: "Manage packages and run scripts",
-    args: [
-        {
-            generators: {
-                script: "cat package.json",
-                postProcess: function (out) {
-                    if (out.trim() == "") {
-                        return [];
-                    }
-                    try {
-                        var packageContent = JSON.parse(out);
-                        var scripts = packageContent["scripts"];
-                        if (scripts) {
-                            return Object.keys(scripts).map(function (key) { return ({
-                                name: key,
-                            }); });
-                        }
-                    }
-                    catch (e) { }
-                    return [];
-                },
-            },
-        },
-    ],
+    args: [{ generators: yarnGenerators.getScripts }],
     options: [
         {
             name: "--cache-folder",
@@ -602,27 +602,7 @@ var completionSpec = {
                 //            }
                 //           }
                 //     },
-                {
-                    generators: {
-                        script: "cat package.json",
-                        postProcess: function (out) {
-                            if (out.trim() == "") {
-                                return [];
-                            }
-                            try {
-                                var packageContent = JSON.parse(out);
-                                var scripts = packageContent["scripts"];
-                                if (scripts) {
-                                    return Object.keys(scripts).map(function (key) { return ({
-                                        name: key,
-                                    }); });
-                                }
-                            }
-                            catch (e) { }
-                            return [];
-                        },
-                    },
-                },
+                { generators: yarnGenerators.getScripts },
             ],
         },
         {

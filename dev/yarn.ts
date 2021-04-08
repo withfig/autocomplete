@@ -1,30 +1,30 @@
+const yarnGenerators = {
+  getScripts: {
+    script: "cat package.json",
+    postProcess: function (output) {
+      if (output.trim() == "") {
+        return [];
+      }
+      try {
+        const packageContent = JSON.parse(output);
+        const scripts = packageContent["scripts"];
+        if (scripts) {
+          return Object.keys(scripts).map((scriptName) => ({
+            name: scriptName,
+            icon: "https://yarnpkg.com/favicon-32x32.png",
+          }));
+        }
+      } catch (e) {}
+
+      return [];
+    },
+  } as Fig.Generator,
+};
+
 export const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  args: [
-    {
-      generators: {
-        script: "cat package.json",
-        postProcess: function (out) {
-          if (out.trim() == "") {
-            return [];
-          }
-
-          try {
-            const packageContent = JSON.parse(out);
-            const scripts = packageContent["scripts"];
-            if (scripts) {
-              return Object.keys(scripts).map((key) => ({
-                name: key,
-              }));
-            }
-          } catch (e) {}
-
-          return [];
-        },
-      },
-    },
-  ],
+  args: [{ generators: yarnGenerators.getScripts }],
   options: [
     {
       name: "--cache-folder",
@@ -619,26 +619,7 @@ export const completionSpec: Fig.Spec = {
         //            }
         //           }
         //     },
-        {
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() == "") {
-                return [];
-              }
-              try {
-                const packageContent = JSON.parse(out);
-                const scripts = packageContent["scripts"];
-                if (scripts) {
-                  return Object.keys(scripts).map((key) => ({
-                    name: key,
-                  }));
-                }
-              } catch (e) {}
-              return [];
-            },
-          },
-        },
+        { generators: yarnGenerators.getScripts },
       ],
     },
     {
