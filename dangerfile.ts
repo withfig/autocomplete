@@ -33,6 +33,10 @@ export const specTransformer: TransformerFactory<SourceFile> = (context) => {
 const getAllScripts = (fileContent: Node) => {
   const scripts: string[] = [];
   const functions: [string, string][] = [];
+  const pairs: [string, [string, string]][] = [];
+
+  let isLastScript = false;
+  let lastScript: string;
 
   const visitor = (node: Node) => {
     // PropertyAssignment === Key-Value pair in object
@@ -41,28 +45,51 @@ const getAllScripts = (fileContent: Node) => {
       // Find all scripts
       if (propertyKey === "script" && isStringLiteral(node.initializer)) {
         scripts.push(node.initializer.text);
+        lastScript = node.initializer.text;
+        isLastScript = true;
+        console.log({
+          lastScript,
+          isLastScript,
+        });
       }
 
       // Find all functions
       if (isFunctionExpression(node.initializer)) {
-        functions.push([
-          propertyKey,
-          fileContent
-            .getFullText()
-            .slice(node.initializer.pos, node.initializer.end),
-        ]);
+        console.log(isLastScript);
+        if (isLastScript) {
+          scripts.pop();
+          pairs.push([
+            lastScript,
+            [
+              propertyKey,
+              fileContent
+                .getFullText()
+                .slice(node.initializer.pos, node.initializer.end),
+            ],
+          ]);
+        } else {
+          functions.push([
+            propertyKey,
+            fileContent
+              .getFullText()
+              .slice(node.initializer.pos, node.initializer.end),
+          ]);
+        }
       }
     }
     forEachChild(node, visitor);
   };
+
   visitor(fileContent);
+
   return {
     scripts,
     functions,
+    pairs,
   };
 };
 
-// test
+// Get all changed and added files
 const updatedFiles = danger.git.modified_files
   .concat(danger.git.created_files)
   .filter((file) => file.includes("dev/"));
@@ -73,11 +100,22 @@ if (updatedFiles.length > 0) {
     const content = fs.readFileSync(fileName, { encoding: "utf-8" });
     const d = createSourceFile("temp", content, ScriptTarget.Latest);
     const allScripts = getAllScripts(d);
+    console.log(allScripts.pairs);
     message += `## ${fileName}:
-### Scripts:
+### Info:
+${allScripts.pairs
+  .map(
+    ([scriptName, [key, value]]) => `- \`${scriptName}\`
+**${key}:**
+\`\`\`typescript
+${value}`
+  )
+  .join("\n\n")}
+
+### Single Scripts:
 ${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}
 
-### Functions:
+### Single Functions:
 ${allScripts.functions
   .map(
     ([key, value]) => `**${key}:**
