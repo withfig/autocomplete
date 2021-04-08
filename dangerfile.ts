@@ -100,8 +100,9 @@ if (updatedFiles.length > 0) {
 ### Info:
 ${allScripts.pairs
   .map(
-    ([scriptName, [key, value]]) => `- \`${scriptName}\`
-**${key}:**
+    ([scriptName, [key, value]]) => `**Script:**
+\`${scriptName}\`
+**${key}(function):**
 \`\`\`typescript
 ${value}
 \`\`\`
