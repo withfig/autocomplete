@@ -6,7 +6,7 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 75,
+  "imageSize": 50,
   "commit": true,
   "commitConvention": "gitmoji",
   "contributors": [
@@ -15,6 +15,15 @@
       "name": "Brendan Falk",
       "avatar_url": "https://avatars.githubusercontent.com/u/4949076?v=4",
       "profile": "https://github.com/falky97",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rolandtshen",
+      "name": "Roland Shen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8952958?v=4",
+      "profile": "http://rolandshen.com/",
       "contributions": [
         "code"
       ]
