@@ -16,9 +16,7 @@ var completionSpec = {
         {
             name: "build",
             description: "Build or rebuild services.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -93,7 +91,7 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "config",
@@ -143,14 +141,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "create",
             description: "Creates containers for a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -181,7 +177,7 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "down",
@@ -218,14 +214,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "events",
             description: "Receive real time events from containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -235,14 +229,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "exec",
             description: "Execute a command in a running container",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -298,20 +290,18 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "help",
             description: "Get help on a command.",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "images",
             description: "List images used by the created containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -322,14 +312,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "kill",
             description: "Force stop service containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -339,14 +327,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "logs",
             description: "View output from containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -379,16 +365,14 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "pause",
             description: "Pause services.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "port",
@@ -409,14 +393,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "ps",
             description: "List containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -449,7 +431,7 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "pull",
@@ -492,7 +474,7 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "push",
@@ -506,14 +488,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "restart",
             description: "Restart running containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -524,14 +504,12 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "rm",
             description: "Removes stopped service containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -557,14 +535,12 @@ var completionSpec = {
                     args: {}
                 },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "run",
             description: "Run a one-off command on a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -671,12 +647,11 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "scale",
             description: "Set number of containers to run for a service.",
-
             options: [
                 {
                     name: [
@@ -687,23 +662,19 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "start",
             description: "Start existing containers.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "stop",
             description: "Stop running containers without removing them.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -714,26 +685,24 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "top",
             description: "Display the running processes",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "unpause",
             description: "Unpause services.",
             options: [],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "up",
             description: "Builds, (re)creates, starts, and attaches to containers for a service.",
-            args: {
-                generator: getServices
-            },
+            args: [getServices],
             options: [
                 {
                     name: [
@@ -858,7 +827,7 @@ var completionSpec = {
                     args: {}
                 }
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "version",

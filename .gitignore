@@ -1,6 +1,10 @@
 .DS_Store
 building_scripts/
 node_modules
+.idea
+dist
 build
 npm-debug.log
 .env
+.idea/
+.vscode

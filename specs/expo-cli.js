@@ -7,2106 +7,1524 @@ var completionSpec = {
             description: "",
             options: [
                 {
-                    name: [
-                        "-c",
-                        "--clear-credentials"
-                    ],
+                    name: ["-c", "--clear-credentials"],
                     description: "Clear stored credentials.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--release-channel"
-                    ],
+                    name: ["--release-channel"],
                     description: "Pull from specified release channel. (default: default)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-publish"
-                    ],
+                    name: ["--no-publish"],
                     description: "Disable automatic publishing before building.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-wait"
-                    ],
+                    name: ["--no-wait"],
                     description: "Exit immediately after triggering build.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--keystore-path"
-                    ],
+                    name: ["--keystore-path"],
                     description: "Path to your Keystore.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--keystore-alias"
-                    ],
+                    name: ["--keystore-alias"],
                     description: "Keystore Alias\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--generate-keystore"
-                    ],
+                    name: ["--generate-keystore"],
                     description: "[deprecated] Generate Keystore if one does not exist\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--skip-workflow-check"
-                    ],
+                    name: ["--skip-workflow-check"],
                     description: "Skip warning about build service bare workflow limitations.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--type"
-                    ],
+                    name: ["-t", "--type"],
                     description: "Type of build: [app-bundle|apk].\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "build:ios",
             description: "",
             options: [
                 {
-                    name: [
-                        "-c",
-                        "--clear-credentials"
-                    ],
+                    name: ["-c", "--clear-credentials"],
                     description: "Clear all credentials stored on Expo servers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--clear-dist-cert"
-                    ],
+                    name: ["--clear-dist-cert"],
                     description: "Remove Distribution Certificate stored on Expo servers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--clear-push-key"
-                    ],
+                    name: ["--clear-push-key"],
                     description: "Remove Push Notifications Key stored on Expo servers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--clear-push-cert"
-                    ],
+                    name: ["--clear-push-cert"],
                     description: "Remove Push Notifications Certificate stored on Expo servers. Use of Push Notifications Certificates is deprecated.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--clear-provisioning-profile"
-                    ],
+                    name: ["--clear-provisioning-profile"],
                     description: "Remove Provisioning Profile stored on Expo servers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-r",
-                        "--revoke-credentials"
-                    ],
+                    name: ["-r", "--revoke-credentials"],
                     description: "Revoke credentials on developer.apple.com, select appropriate using --clear-* options.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--apple-id"
-                    ],
+                    name: ["--apple-id"],
                     description: "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--type"
-                    ],
+                    name: ["-t", "--type"],
                     description: "Type of build: [archive|simulator].\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--release-channel"
-                    ],
+                    name: ["--release-channel"],
                     description: "Pull from specified release channel. (default: default)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-publish"
-                    ],
+                    name: ["--no-publish"],
                     description: "Disable automatic publishing before building.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-wait"
-                    ],
+                    name: ["--no-wait"],
                     description: "Exit immediately after scheduling build.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--team-id"
-                    ],
+                    name: ["--team-id"],
                     description: "Apple Team ID.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--push-id"
-                    ],
+                    name: ["--push-id"],
                     description: "Push Key ID (ex: 123AB4C56D).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--provisioning-profile-path"
-                    ],
+                    name: ["--provisioning-profile-path"],
                     description: "Path to your Provisioning Profile.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--skip-credentials-check"
-                    ],
+                    name: ["--skip-credentials-check"],
                     description: "Skip checking credentials.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--skip-workflow-check"
-                    ],
+                    name: ["--skip-workflow-check"],
                     description: "Skip warning about build service bare workflow limitations.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "build:status",
             description: "",
             options: [
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "build:web",
             description: "",
             options: [
                 {
-                    name: [
-                        "-c",
-                        "--clear"
-                    ],
+                    name: ["-c", "--clear"],
                     description: "Clear all cached build files and assets.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-pwa"
-                    ],
+                    name: ["--no-pwa"],
                     description: "Prevent webpack from generating the manifest.json and injecting meta into the index.html head.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-d",
-                        "--dev"
-                    ],
+                    name: ["-d", "--dev"],
                     description: "Turns dev flag on before bundling\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "client:install:android",
             description: "",
             options: [
                 {
-                    name: [
-                        "--latest"
-                    ],
+                    name: ["--latest"],
                     description: "Install the latest version of Expo client, ignore the current project version.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "client:install:ios",
             description: "",
             options: [
                 {
-                    name: [
-                        "--latest"
-                    ],
+                    name: ["--latest"],
                     description: "Install the latest version of Expo client, ignoring the current project version.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "client:ios",
             description: "",
             options: [
                 {
-                    name: [
-                        "--apple-id"
-                    ],
+                    name: ["--apple-id"],
                     description: "Apple ID username (please also set the Apple ID password as EXPO_APPLE_PASSWORD environment variable).\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "credentials:manager",
             description: "",
             options: [
                 {
-                    name: [
-                        "-p",
-                        "--platform"
-                    ],
+                    name: ["-p", "--platform"],
                     description: "Platform: [android|ios]\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "customize:web",
             description: "",
             options: [
                 {
-                    name: [
-                        "-f",
-                        "--force"
-                    ],
+                    name: ["-f", "--force"],
                     description: "Allows replacing existing files\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--offline"
-                    ],
+                    name: ["--offline"],
                     description: "Allows this command to run while offline\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "diagnostics",
             description: "",
             options: [
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "doctor",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "eject",
             description: "",
             options: [
                 {
-                    name: [
-                        "--force"
-                    ],
+                    name: ["--force"],
                     description: "Skip legacy eject warnings.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-install"
-                    ],
+                    name: ["--no-install"],
                     description: "Skip installing npm packages and CocoaPods.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--npm"
-                    ],
+                    name: ["--npm"],
                     description: "Use npm to install dependencies. (default when Yarn is not installed)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "export",
             description: "",
             options: [
                 {
-                    name: [
-                        "-p",
-                        "--public-url"
-                    ],
+                    name: ["-p", "--public-url"],
                     description: "The public url that will host the static files. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--output-dir"
-                    ],
+                    name: ["--output-dir"],
                     description: "The directory to export the static files to. Default directory is `dist` (default: dist)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--asset-url"
-                    ],
+                    name: ["-a", "--asset-url"],
                     description: "The absolute or relative url that will host the asset files. Default is './assets', which will be resolved against the public-url. (default: ./assets)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-d",
-                        "--dump-assetmap"
-                    ],
+                    name: ["-d", "--dump-assetmap"],
                     description: "Dump the asset map for further processing.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--dev"
-                    ],
+                    name: ["--dev"],
                     description: "Configure static files for developing locally using a non-https server\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-f",
-                        "--force"
-                    ],
+                    name: ["-f", "--force"],
                     description: "Overwrite files in output directory without prompting for confirmation\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--dump-sourcemap"
-                    ],
+                    name: ["-s", "--dump-sourcemap"],
                     description: "Dump the source map for debugging the JS bundle.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Suppress verbose output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--target"
-                    ],
+                    name: ["-t", "--target"],
                     description: "Target environment for which this export is intended. Options are `managed` or `bare`.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--merge-src-dir"
-                    ],
+                    name: ["--merge-src-dir"],
                     description: "A repeatable source dir to merge in. (default: )\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--merge-src-url"
-                    ],
+                    name: ["--merge-src-url"],
                     description: "A repeatable source tar.gz file URL to merge in. (default: )\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--max-workers"
-                    ],
+                    name: ["--max-workers"],
                     description: "Maximum number of tasks to allow Metro to spawn.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "fetch:android:hashes",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "fetch:android:keystore",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "fetch:android:upload-cert",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "fetch:ios:certs",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "init",
             description: "",
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--template"
-                    ],
-                    description: "Specify which template to use. Valid options are \"blank\", \"tabs\", \"bare-minimum\" or a package on npm (e.g. \"expo-template-bare-typescript\") that includes an Expo project template.\n",
-                    args: {}
+                    name: ["-t", "--template"],
+                    description: 'Specify which template to use. Valid options are "blank", "tabs", "bare-minimum" or a package on npm (e.g. "expo-template-bare-typescript") that includes an Expo project template.\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "--npm"
-                    ],
+                    name: ["--npm"],
                     description: "Use npm to install dependencies. (default when Yarn is not installed)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--yarn"
-                    ],
+                    name: ["--yarn"],
                     description: "Use Yarn to install dependencies. (default when Yarn is installed)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-install"
-                    ],
+                    name: ["--no-install"],
                     description: "Skip installing npm packages or CocoaPods.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--name"
-                    ],
+                    name: ["--name"],
                     description: "The name of your app visible on the home screen.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--yes"
-                    ],
-                    description: "Use default options. Same as \"expo init . --template blank\n",
-                    args: {}
+                    name: ["--yes"],
+                    description: 'Use default options. Same as "expo init . --template blank\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "install",
             description: "",
             options: [
                 {
-                    name: [
-                        "--npm"
-                    ],
+                    name: ["--npm"],
                     description: "Use npm to install dependencies. (default when package-lock.json exists)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--yarn"
-                    ],
+                    name: ["--yarn"],
                     description: "Use Yarn to install dependencies. (default when yarn.lock exists)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "login",
             description: "",
             options: [
                 {
-                    name: [
-                        "-u",
-                        "--username"
-                    ],
+                    name: ["-u", "--username"],
                     description: "Username\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--password"
-                    ],
+                    name: ["-p", "--password"],
                     description: "Password\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--otp"
-                    ],
+                    name: ["--otp"],
                     description: "One-time password from your 2FA device\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "logout",
             description: "",
             options: [
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "publish",
             description: "",
             options: [
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Suppress verbose output from the Metro bundler.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--send-to"
-                    ],
+                    name: ["-s", "--send-to"],
                     description: "A phone number or email address to send a link to\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-c",
-                        "--clear"
-                    ],
+                    name: ["-c", "--clear"],
                     description: "Clear the Metro bundler cache\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--target"
-                    ],
+                    name: ["-t", "--target"],
                     description: "Target environment for which this publish is intended. Options are `managed` or `bare`.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--max-workers"
-                    ],
+                    name: ["--max-workers"],
                     description: "Maximum number of tasks to allow Metro to spawn.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--release-channel"
-                    ],
+                    name: ["--release-channel"],
                     description: "The release channel to publish to. Default is 'default'. (default: default)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "publish:details",
             description: "",
             options: [
                 {
-                    name: [
-                        "--publish-id"
-                    ],
+                    name: ["--publish-id"],
                     description: "Publication id. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-r",
-                        "--raw"
-                    ],
+                    name: ["-r", "--raw"],
                     description: "Produce some raw output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "publish:history",
             description: "",
             options: [
                 {
-                    name: [
-                        "-c",
-                        "--release-channel"
-                    ],
+                    name: ["-c", "--release-channel"],
                     description: "Filter by release channel. If this flag is not included, the most recent publications will be shown.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--count"
-                    ],
+                    name: ["--count"],
                     description: "Number of logs to view, maximum 100, default 5.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--platform"
-                    ],
+                    name: ["-p", "--platform"],
                     description: "Filter by platform, android or ios. Defaults to both platforms.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--sdk-version"
-                    ],
+                    name: ["-s", "--sdk-version"],
                     description: "Filter by SDK version e.g. 35.0.0\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-r",
-                        "--raw"
-                    ],
+                    name: ["-r", "--raw"],
                     description: "Produce some raw output.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "publish:rollback",
             description: "",
             options: [
                 {
-                    name: [
-                        "--channel-id"
-                    ],
+                    name: ["--channel-id"],
                     description: "This flag is deprecated.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-c",
-                        "--release-channel"
-                    ],
+                    name: ["-c", "--release-channel"],
                     description: "The channel to rollback from. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--sdk-version"
-                    ],
+                    name: ["-s", "--sdk-version"],
                     description: "The sdk version to rollback. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--platform"
-                    ],
+                    name: ["-p", "--platform"],
                     description: "The platform to rollback.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "publish:set",
             description: "",
             options: [
                 {
-                    name: [
-                        "-c",
-                        "--release-channel"
-                    ],
+                    name: ["-c", "--release-channel"],
                     description: "The channel to set the published release. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--publish-id"
-                    ],
+                    name: ["-p", "--publish-id"],
                     description: "The id of the published release to serve from the channel. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "push:android:clear",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "push:android:show",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "push:android:upload",
             description: "",
             options: [
                 {
-                    name: [
-                        "--api-key"
-                    ],
+                    name: ["--api-key"],
                     description: "Server API key for FCM.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "register",
             description: "",
             options: [
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "send",
             description: "",
             options: [
                 {
-                    name: [
-                        "-s",
-                        "--send-to"
-                    ],
+                    name: ["-s", "--send-to"],
                     description: "Email address to send the URL to\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--android"
-                    ],
+                    name: ["-a", "--android"],
                     description: "Opens your app in Expo client on a connected Android device\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-i",
-                        "--ios"
-                    ],
+                    name: ["-i", "--ios"],
                     description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--web"
-                    ],
+                    name: ["-w", "--web"],
                     description: "Opens your app in a web browser\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--host"
-                    ],
-                    description: "lan (default), tunnel, localhost. Type of host to use. \"tunnel\" allows you to view your link on other networks\n",
-                    args: {}
+                    name: ["-m", "--host"],
+                    description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tunnel"
-                    ],
+                    name: ["--tunnel"],
                     description: "Same as --host tunnel\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--lan"
-                    ],
+                    name: ["--lan"],
                     description: "Same as --host lan\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--localhost"
-                    ],
+                    name: ["--localhost"],
                     description: "Same as --host localhost\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "start",
             description: "",
             options: [
                 {
-                    name: [
-                        "-s",
-                        "--send-to"
-                    ],
+                    name: ["-s", "--send-to"],
                     description: "An email address to send a link to\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-c",
-                        "--clear"
-                    ],
+                    name: ["-c", "--clear"],
                     description: "Clear the Metro bundler cache\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--max-workers"
-                    ],
+                    name: ["--max-workers"],
                     description: "Maximum number of tasks to allow Metro to spawn.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--dev"
-                    ],
+                    name: ["--dev"],
                     description: "Turn development mode on\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-dev"
-                    ],
+                    name: ["--no-dev"],
                     description: "Turn development mode off\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--minify"
-                    ],
+                    name: ["--minify"],
                     description: "Minify code\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-minify"
-                    ],
+                    name: ["--no-minify"],
                     description: "Do not minify code\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--https"
-                    ],
+                    name: ["--https"],
                     description: "To start webpack with https protocol\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-https"
-                    ],
+                    name: ["--no-https"],
                     description: "To start webpack with http protocol\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--android"
-                    ],
+                    name: ["-a", "--android"],
                     description: "Opens your app in Expo client on a connected Android device\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-i",
-                        "--ios"
-                    ],
+                    name: ["-i", "--ios"],
                     description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--web"
-                    ],
+                    name: ["-w", "--web"],
                     description: "Opens your app in a web browser\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--host"
-                    ],
-                    description: "lan (default), tunnel, localhost. Type of host to use. \"tunnel\" allows you to view your link on other networks\n",
-                    args: {}
+                    name: ["-m", "--host"],
+                    description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tunnel"
-                    ],
+                    name: ["--tunnel"],
                     description: "Same as --host tunnel\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--lan"
-                    ],
+                    name: ["--lan"],
                     description: "Same as --host lan\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--localhost"
-                    ],
+                    name: ["--localhost"],
                     description: "Same as --host localhost\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--offline"
-                    ],
+                    name: ["--offline"],
                     description: "Allows this command to run while offline\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "start:web",
             description: "",
             options: [
                 {
-                    name: [
-                        "--dev"
-                    ],
+                    name: ["--dev"],
                     description: "Turn development mode on\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-dev"
-                    ],
+                    name: ["--no-dev"],
                     description: "Turn development mode off\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--minify"
-                    ],
+                    name: ["--minify"],
                     description: "Minify code\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-minify"
-                    ],
+                    name: ["--no-minify"],
                     description: "Do not minify code\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--https"
-                    ],
+                    name: ["--https"],
                     description: "To start webpack with https protocol\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-https"
-                    ],
+                    name: ["--no-https"],
                     description: "To start webpack with http protocol\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--android"
-                    ],
+                    name: ["-a", "--android"],
                     description: "Opens your app in Expo client on a connected Android device\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-i",
-                        "--ios"
-                    ],
+                    name: ["-i", "--ios"],
                     description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--web"
-                    ],
+                    name: ["-w", "--web"],
                     description: "Opens your app in a web browser\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--host"
-                    ],
-                    description: "lan (default), tunnel, localhost. Type of host to use. \"tunnel\" allows you to view your link on other networks\n",
-                    args: {}
+                    name: ["-m", "--host"],
+                    description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tunnel"
-                    ],
+                    name: ["--tunnel"],
                     description: "Same as --host tunnel\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--lan"
-                    ],
+                    name: ["--lan"],
                     description: "Same as --host lan\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--localhost"
-                    ],
+                    name: ["--localhost"],
                     description: "Same as --host localhost\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--offline"
-                    ],
+                    name: ["--offline"],
                     description: "Allows this command to run while offline\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "upgrade",
             description: "",
             options: [
                 {
-                    name: [
-                        "--npm"
-                    ],
+                    name: ["--npm"],
                     description: "Use npm to install dependencies. (default when package-lock.json exists)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--yarn"
-                    ],
+                    name: ["--yarn"],
                     description: "Use Yarn to install dependencies. (default when yarn.lock exists)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "upload:android",
             description: "",
             options: [
                 {
-                    name: [
-                        "--latest"
-                    ],
+                    name: ["--latest"],
                     description: "upload the latest build\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--id"
-                    ],
+                    name: ["--id"],
                     description: "id of the build to upload\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--path"
-                    ],
+                    name: ["--path"],
                     description: "path to the .apk/.aab file\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--url"
-                    ],
+                    name: ["--url"],
                     description: "app archive url\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--key"
-                    ],
+                    name: ["--key"],
                     description: "path to the JSON key used to authenticate with Google Play\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--android-package"
-                    ],
+                    name: ["--android-package"],
                     description: "Android package name (using expo.android.package from app.json by default)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--type"
-                    ],
+                    name: ["--type"],
                     description: "archive type: apk, aab\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--track"
-                    ],
+                    name: ["--track"],
                     description: "the track of the application to use, choose from: production, beta, alpha, internal, rollout (default: internal)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--release-status"
-                    ],
+                    name: ["--release-status"],
                     description: "release status (used when uploading new apks/aabs), choose from: completed, draft, halted, inProgress (default: completed)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--use-submission-service"
-                    ],
+                    name: ["--use-submission-service"],
                     description: "Experimental: Use Submission Service for uploading your app. The upload process will happen on Expo servers.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--verbose"
-                    ],
+                    name: ["--verbose"],
                     description: "Always print logs from Submission Service\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "upload:ios",
             description: "",
             options: [
                 {
-                    name: [
-                        "--latest"
-                    ],
+                    name: ["--latest"],
                     description: "upload the latest build (default)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--id"
-                    ],
+                    name: ["--id"],
                     description: "id of the build to upload\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--path"
-                    ],
+                    name: ["--path"],
                     description: "path to the .ipa file\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--url"
-                    ],
+                    name: ["--url"],
                     description: "app archive url\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--apple-id"
-                    ],
+                    name: ["--apple-id"],
                     description: "your Apple ID username (you can also set EXPO_APPLE_ID env variable)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--itc-team-id"
-                    ],
+                    name: ["--itc-team-id"],
                     description: "App Store Connect Team ID - this option is deprecated, the proper ID is resolved automatically\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--apple-id-password"
-                    ],
+                    name: ["--apple-id-password"],
                     description: "your Apple ID password (you can also set EXPO_APPLE_PASSWORD env variable)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--app-name"
-                    ],
+                    name: ["--app-name"],
                     description: "the name of your app as it will appear on the App Store, this can't be longer than 30 characters (default: expo.name from app.json)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--company-name"
-                    ],
+                    name: ["--company-name"],
                     description: "the name of your company, needed only for the first upload of any app to App Store\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--sku"
-                    ],
+                    name: ["--sku"],
                     description: "a unique ID for your app that is not visible on the App Store, will be generated unless provided\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--language"
-                    ],
+                    name: ["--language"],
                     description: "primary language (e.g. English, German; run `expo upload:ios --help` to see the list of available languages) (default: English)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "url",
             description: "",
             options: [
                 {
-                    name: [
-                        "-w",
-                        "--web"
-                    ],
+                    name: ["-w", "--web"],
                     description: "Return the URL of the web app\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--android"
-                    ],
+                    name: ["-a", "--android"],
                     description: "Opens your app in Expo client on a connected Android device\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-i",
-                        "--ios"
-                    ],
+                    name: ["-i", "--ios"],
                     description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--web"
-                    ],
+                    name: ["-w", "--web"],
                     description: "Opens your app in a web browser\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--host"
-                    ],
-                    description: "lan (default), tunnel, localhost. Type of host to use. \"tunnel\" allows you to view your link on other networks\n",
-                    args: {}
+                    name: ["-m", "--host"],
+                    description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tunnel"
-                    ],
+                    name: ["--tunnel"],
                     description: "Same as --host tunnel\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--lan"
-                    ],
+                    name: ["--lan"],
                     description: "Same as --host lan\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--localhost"
-                    ],
+                    name: ["--localhost"],
                     description: "Same as --host localhost\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--offline"
-                    ],
+                    name: ["--offline"],
                     description: "Allows this command to run while offline\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "url:apk",
             description: "",
             options: [
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "url:ipa",
             description: "",
             options: [
                 {
-                    name: [
-                        "--public-url"
-                    ],
+                    name: ["--public-url"],
                     description: "The URL of an externally hosted manifest (for self-hosted apps)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "webhooks",
             description: "",
             options: [
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "webhooks:add",
             description: "",
             options: [
                 {
-                    name: [
-                        "--url"
-                    ],
+                    name: ["--url"],
                     description: "URL to request. (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--event"
-                    ],
+                    name: ["--event"],
                     description: "Event type that triggers the webhook. [build] (Required)\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--secret"
-                    ],
+                    name: ["--secret"],
                     description: "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "webhooks:remove",
             description: "",
             options: [
                 {
-                    name: [
-                        "--id"
-                    ],
+                    name: ["--id"],
                     description: "ID of the webhook to remove.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "webhooks:update",
             description: "",
             options: [
                 {
-                    name: [
-                        "--id"
-                    ],
+                    name: ["--id"],
                     description: "ID of the webhook to update.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--url"
-                    ],
+                    name: ["--url"],
                     description: "URL the webhook will request.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--event"
-                    ],
+                    name: ["--event"],
                     description: "Event type that triggers the webhook. [build]\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--secret"
-                    ],
+                    name: ["--secret"],
                     description: "Secret used to create a hash signature of the request payload, provided in the 'Expo-Signature' header.\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--config"
-                    ],
+                    name: ["--config"],
                     description: "Specify a path to app.json or app.config.js\n",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
+            subcommands: [],
         },
         {
             name: "whoami",
             description: "",
             options: [
                 {
-                    name: [
-                        "-h",
-                        "--help"
-                    ],
+                    name: ["-h", "--help"],
                     description: "output usage information\n  \n  \n",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
-        }
-    ]
-}
+            subcommands: [],
+        },
+    ],
+};
+
