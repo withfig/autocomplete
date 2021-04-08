@@ -110,15 +110,6 @@
       ]
     },
     {
-      "login": "vincentube",
-      "name": "vincentube",
-      "avatar_url": "https://avatars.githubusercontent.com/u/66803169?v=4",
-      "profile": "https://github.com/vincentube",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
       "login": "jdotjdot",
       "name": "JJ Fliegelman",
       "avatar_url": "https://avatars.githubusercontent.com/u/1328961?v=4",
@@ -159,6 +150,15 @@
       "name": "Brian",
       "avatar_url": "https://avatars.githubusercontent.com/u/61602086?v=4",
       "profile": "https://github.com/Nullfuse",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vicentube",
+      "name": "Vicente Úbeda",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73502080?v=4",
+      "profile": "https://github.com/vicentube",
       "contributions": [
         "code"
       ]
