@@ -68,8 +68,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
       return out.split("\n").map((elm) => {
+        // current branch
+        if (elm.includes("*")) {
+          return {
+            name: elm.replace("*", "").trim(),
+            description: "current branch",
+            icon: "⭐️",
+            priority: 100,
+          };
+        }
+
         return {
-          name: elm.replace("*", "").trim(),
+          name: elm.trim(),
           description: "branch",
           icon: "fig://icon?type=git",
         };
