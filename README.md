@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -103,6 +103,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/falky97"><img src="https://avatars.githubusercontent.com/u/4949076?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Brendan Falk</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=falky97" title="Code">💻</a></td>
     <td align="center"><a href="http://rolandshen.com/"><img src="https://avatars.githubusercontent.com/u/8952958?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Roland Shen</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=rolandtshen" title="Code">💻</a></td>
     <td align="center"><a href="http://mschrage.com/"><img src="https://avatars.githubusercontent.com/u/3155109?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Matt Schrage</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=mattschrage" title="Code">💻</a></td>
+    <td align="center"><a href="https://cstrnt.dev/"><img src="https://avatars.githubusercontent.com/u/20679094?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Tim Raderschad</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=cstrnt" title="Code">💻</a></td>
   </tr>
 </table>
 
