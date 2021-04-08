@@ -109,11 +109,15 @@ ${value}
 `
   )
   .join("\n")}
-
-### Single Scripts:
-${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}
-
-### Single Functions:
+${
+  allScripts.scripts.length > 0
+    ? `### Single Scripts:
+${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}`
+    : ""
+}
+${
+  allScripts.functions.length > 0
+    ? `### Single Functions:
 ${allScripts.functions
   .map(
     ([key, value]) => `**${key}:**
@@ -122,7 +126,9 @@ ${value}
 \`\`\`
 `
   )
-  .join("\n")}
+  .join("\n")}`
+    : ""
+}
 `;
   });
   markdown(`# Overview
