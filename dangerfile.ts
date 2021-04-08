@@ -30,7 +30,7 @@ export const specTransformer: TransformerFactory<SourceFile> = (context) => {
   };
 };
 
-const getAllScripts = (fileContent: Node) => {
+const getFileContent = (fileContent: Node) => {
   const scripts: string[] = [];
   const functions: [string, string][] = [];
   const pairs: [string, [string, string]][] = [];
@@ -107,12 +107,12 @@ schedule(async () => {
   if (updatedFiles.length > 0) {
     updatedFiles.forEach((fileName) => {
       const content = fs.readFileSync(fileName, { encoding: "utf-8" });
-      const d = createSourceFile("temp", content, ScriptTarget.Latest);
-      const allScripts = getAllScripts(d);
+      const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
+      const fileContent = getFileContent(sourceFile);
 
       message += `## ${fileName}:
 ### Info:
-${allScripts.pairs
+${fileContent.pairs
   .map(
     ([scriptName, [key, value]]) => `**Script:**
 \`${scriptName}\`
@@ -124,15 +124,15 @@ ${value}
   )
   .join("\n")}
 ${
-  allScripts.scripts.length > 0
+  fileContent.scripts.length > 0
     ? `### Single Scripts:
-${allScripts.scripts.map((s) => `- \`${s}\``).join("\n")}`
+${fileContent.scripts.map((s) => `- \`${s}\``).join("\n")}`
     : ""
 }
 ${
-  allScripts.functions.length > 0
+  fileContent.functions.length > 0
     ? `### Single Functions:
-${allScripts.functions
+${fileContent.functions
   .map(
     ([key, value]) => `**${key}:**
 \`\`\`typescript
