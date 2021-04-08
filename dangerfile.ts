@@ -148,7 +148,7 @@ ${value}
     comment = `# Overview
 ${message}`;
   } else {
-    comment = "# No files changed ☑️";
+    comment = `# No files changed ☑️ ${message}`;
   }
   if (reviewCommentRef != null) {
     await danger.github.api.issues.updateComment({
