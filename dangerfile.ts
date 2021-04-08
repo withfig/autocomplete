@@ -102,7 +102,7 @@ schedule(async () => {
     .concat(danger.git.created_files)
     .filter((file) => file.includes("dev/"));
 
-  let message = "<!-- id: review-bot -->";
+  let message = "<!-- id: review-bot --> \n";
   let comment = "";
   if (updatedFiles.length > 0) {
     updatedFiles.forEach((fileName) => {
