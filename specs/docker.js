@@ -51,7 +51,7 @@ var dockerGenerators = {
     dockerHubSearch: {
         script: function (context) {
             if (context[context.length - 1] === "")
-                return [];
+                return "";
             var searchTerm = context[context.length - 1];
             return "docker search " + searchTerm + " --format '{{ json . }}'";
         },
@@ -1467,7 +1467,7 @@ var completionSpec = {
             description: "Pull an image or a repository from a registry",
             args: {
                 name: "NAME[:TAG|@DIGEST]",
-                generator: dockerGenerators.dockerHubSearch
+                generators: dockerGenerators.dockerHubSearch
             },
             options: [
                 {
