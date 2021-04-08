@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
     <img width="300" src="https://github.com/withfig/fig/blob/main/static/FigBanner.png?raw=true"/>
 </p>
@@ -119,6 +119,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/omichowdhury"><img src="https://avatars.githubusercontent.com/u/969419?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Omi</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=omichowdhury" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/winnayx"><img src="https://avatars.githubusercontent.com/u/46658657?v=4?s=50" width="50px;" alt=""/><br /><sub><b>winnayx</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=winnayx" title="Code">💻</a></td>
   </tr>
 </table>
 
