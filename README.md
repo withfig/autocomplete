@@ -127,7 +127,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Chair4ce"><img src="https://avatars.githubusercontent.com/u/33118919?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Chair4ce</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=Chair4ce" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/lio131"><img src="https://avatars.githubusercontent.com/u/50743209?v=4?s=50" width="50px;" alt=""/><br /><sub><b>LIO131</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=lio131" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/LI0131"><img src="https://avatars.githubusercontent.com/u/4829473?v=4?s=50" width="50px;" alt=""/><br /><sub><b>Liam McCann</b></sub></a><br /><a href="https://github.com/withfig/autocomplete/commits?author=LI0131" title="Code">💻</a></td>
   </tr>
 </table>
 
