@@ -1,3 +1,10 @@
+var resourcesArg = {
+    name: "Resource",
+    generators: {
+        script: "kubectl api-resources -o name",
+        splitOn: "\n",
+    },
+};
 var completionSpec = {
     name: "kubectl",
     description: "",
@@ -2625,13 +2632,7 @@ var completionSpec = {
         {
             name: "get",
             description: "Display one or many resources",
-            args: {
-                name: "Resource",
-                generators: {
-                    script: "kubectl api-resources -o name",
-                    splitOn: "\n",
-                },
-            },
+            args: resourcesArg,
             options: [
                 {
                     name: ["-A", "--all-namespaces"],

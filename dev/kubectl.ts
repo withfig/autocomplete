@@ -1,3 +1,11 @@
+const resourcesArg = {
+  name: "Resource",
+  generators: {
+    script: "kubectl api-resources -o name",
+    splitOn: "\n",
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "kubectl",
   description: "",
@@ -3016,13 +3024,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "get",
       description: "Display one or many resources",
-      args: {
-        name: "Resource",
-        generators: {
-          script: "kubectl api-resources -o name",
-          splitOn: "\n",
-        },
-      },
+      args: resourcesArg,
       options: [
         {
           name: ["-A", "--all-namespaces"],
