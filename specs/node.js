@@ -5,11 +5,14 @@ var completionSpec = {
         generators: {
             template: "filepaths",
             filterTemplateSuggestions: function (paths) {
-                return paths.filter(file => {
-                    return file.name.endsWith('.js') || file.name.endsWith('/')
-                })
-            }
-        }
+                return paths.filter(function (file) {
+                    if (typeof file.name === "string") {
+                        return file.name.endsWith(".js") || file.name.endsWith("/");
+                    }
+                    return false;
+                });
+            },
+        },
     },
     options: [
         {
@@ -33,7 +36,7 @@ var completionSpec = {
         {
             name: ["-i", "--interactive"],
             description: "always enter the REPL even if stdin does not appear to be a terminal",
-        }
-    ]
+        },
+    ],
+};
 
-}
