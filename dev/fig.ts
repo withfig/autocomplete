@@ -243,14 +243,27 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "app.disableTelemetry",
+          name: "app.launchOnStartup",
           icon: "fig://icon?type=commandkey",
-          description: "Opt-out of all telemetry collection",
+          description:
+            "A flag that determines whether the Fig app is added to Login Items. If true, Fig will launch automatically whenever you restart your computer.",
           args: {
             name: "bool",
             suggestions: [
               { name: "true", icon: "fig://icon?type=string" },
               { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
+          name: "autocomplete.theme",
+          icon: "fig://icon?type=commandkey",
+          description: "Change Fig's theme",
+          args: {
+            name: "mode",
+            suggestions: [
+              { name: "light", icon: "fig://icon?type=string" },
+              { name: "dark", icon: "fig://icon?type=string" },
             ],
           },
         },
