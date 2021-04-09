@@ -219,10 +219,11 @@ var completionSpec = {
                             { name: "false", icon: "fig://icon?type=string" },
                         ],
                     },
-                }, {
-                    name: "app.launchOnStartup",
+                },
+                {
+                    name: "app.disableTelemetry",
                     icon: "fig://icon?type=commandkey",
-                    description: "A flag that determines whether the Fig app is added to Login Items. If true, Fig will launch automatically whenever you restart your computer.",
+                    description: "Opt-out of all telemetry collection",
                     args: {
                         name: "bool",
                         suggestions: [
