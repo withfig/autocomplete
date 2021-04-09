@@ -70,15 +70,22 @@ var completionSpec = {
                     return []
                 }
             }
+            catch (e) { }
+            return [];
         },
-    ],
+    },
+};
+var completionSpec = {
+    name: "yarn",
+    description: "Manage packages and run scripts",
+    args: [{ generators: yarnGenerators.getScripts }],
     options: [
         {
             name: "--cache-folder",
             description: "specify a custom folder that must be used to store the yarn cache",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "--check-files",
@@ -88,8 +95,8 @@ var completionSpec = {
             name: "--cwd",
             description: "working directory to use (default: .)",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "--disable-pnp",
@@ -100,8 +107,8 @@ var completionSpec = {
             description: "enable emoji in output (default: true)",
             args: {
                 name: "bool",
-                suggestions: [{ name: "true" }, { name: "false" }]
-            }
+                suggestions: [{ name: "true" }, { name: "false" }],
+            },
         },
         {
             name: ["--enable-pnp", "--pnp"],
@@ -127,8 +134,8 @@ var completionSpec = {
             name: "--global-folder",
             description: "specify a custom folder to store global packages",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "--har",
@@ -139,10 +146,8 @@ var completionSpec = {
             description: "",
             args: {
                 name: "path",
-                suggestions: [
-                    { name: "https://" }
-                ]
-            }
+                suggestions: [{ name: "https://" }],
+            },
         },
         {
             name: "--ignore-engines",
@@ -172,15 +177,15 @@ var completionSpec = {
             name: "--link-folder",
             description: "specify a custom folder to store global links",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "--modules-folder",
             description: "rather than installing modules into the node_modules folder relative to the cwd, output them here",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "--mutex",
@@ -188,35 +193,31 @@ var completionSpec = {
             args: [
                 {
                     name: "type",
-                    suggestions: [
-                        { name: ":" }
-                    ],
+                    suggestions: [{ name: ":" }],
                 },
                 {
                     name: "specifier",
-                    suggestions: [
-                        { name: ":" }
-                    ],
+                    suggestions: [{ name: ":" }],
                 },
-            ]
+            ],
         },
         {
             name: "--network-concurrency",
             description: "maximum number of concurrent network requests",
             args: [
                 {
-                    name: "number"
-                }
-            ]
+                    name: "number",
+                },
+            ],
         },
         {
             name: "--network-timeout",
             description: "TCP timeout for network requests",
             args: [
                 {
-                    name: "milliseconds"
-                }
-            ]
+                    name: "milliseconds",
+                },
+            ],
         },
         {
             name: "--no-bin-links",
@@ -251,9 +252,9 @@ var completionSpec = {
             description: "one-time password for two factor authentication",
             args: [
                 {
-                    name: "otpcode"
-                }
-            ]
+                    name: "otpcode",
+                },
+            ],
         },
         {
             name: "--prefer-offline",
@@ -263,22 +264,22 @@ var completionSpec = {
             name: "--preferred-cache-folder",
             description: "specify a custom folder to store the yarn cache if possible",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: ["--prod", "--production"],
             description: "",
-            args: {}
+            args: {},
         },
         {
             name: "--proxy",
             description: "",
             args: [
                 {
-                    name: "host"
-                }
-            ]
+                    name: "host",
+                },
+            ],
         },
         {
             name: "--pure-lockfile",
@@ -289,9 +290,9 @@ var completionSpec = {
             description: "override configuration registry",
             args: [
                 {
-                    name: "url"
-                }
-            ]
+                    name: "url",
+                },
+            ],
         },
         {
             name: ["-s", "--silent"],
@@ -301,8 +302,8 @@ var completionSpec = {
             name: "--scripts-prepend-node-path",
             description: "prepend the node executable dir to the PATH in scripts",
             args: {
-                suggestions: [{name: "true"}, {name: "false"}]
-            }
+                suggestions: [{ name: "true" }, { name: "false" }],
+            },
         },
         {
             name: "--skip-integrity-check",
@@ -320,8 +321,8 @@ var completionSpec = {
             name: "--use-yarnrc",
             description: "specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)",
             args: {
-                template: "filepaths"
-            }
+                template: "filepaths",
+            },
         },
         {
             name: ["-v", "--version"],
@@ -373,7 +374,7 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "audit",
@@ -389,21 +390,27 @@ var completionSpec = {
                     args: {
                         name: "group_name",
                         variadic: true,
-                    }
+                    },
                 },
                 {
                     name: "--level",
                     description: "Only print advisories with severity greater than or equal to one of the following: info|low|moderate|high|critical. Default: info",
                     args: {
                         name: "severity",
-                        suggestions: [{ name: "info" }, { name: "low" }, { name: "moderate" }, { name: "high" }, { name: "critical" }],
-                    }
+                        suggestions: [
+                            { name: "info" },
+                            { name: "low" },
+                            { name: "moderate" },
+                            { name: "high" },
+                            { name: "critical" },
+                        ],
+                    },
                 },
                 {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "autoclean",
@@ -431,7 +438,7 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "cache",
@@ -520,7 +527,7 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "exec",
@@ -530,7 +537,7 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "generate-lock-entry",
@@ -540,21 +547,21 @@ var completionSpec = {
                     name: "--use-manifest",
                     description: "Specify which manifest file to use for generating lock entry",
                     args: {
-                        template: "filepaths"
-                    }
+                        template: "filepaths",
+                    },
                 },
                 {
                     name: "--resolved",
                     description: "Generate from <*.tgz>#<hash>",
                     args: {
-                        template: "filepaths"
-                    }
+                        template: "filepaths",
+                    },
                 },
                 {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "global",
@@ -565,7 +572,7 @@ var completionSpec = {
                     description: "bin prefix to use to install binaries",
                     args: {
                         name: "prefix",
-                    }
+                    },
                 },
                 {
                     name: "--latest",
@@ -575,13 +582,12 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "help",
             description: "output usage information",
-            options: [
-            ]
+            options: [],
         },
         {
             name: "import",
@@ -613,8 +619,8 @@ var completionSpec = {
                     args: [
                         {
                             name: "version",
-                        }
-                    ]
+                        },
+                    ],
                 },
                 {
                     name: ["-2"],
@@ -624,7 +630,7 @@ var completionSpec = {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
-            ]
+            ],
         },
         {
             name: "install",
@@ -758,8 +764,7 @@ var completionSpec = {
         {
             name: "node",
             description: "",
-            options: [
-            ]
+            options: [],
         },
         {
             name: "outdated",
@@ -823,8 +828,7 @@ var completionSpec = {
         {
             name: "run",
             description: "",
-            options: [
-            ],
+            options: [],
             args: [
                 // TODO get this generator to work and combine the logic of both of these
                 //     {
@@ -841,25 +845,8 @@ var completionSpec = {
                 //            }
                 //           }
                 //     },
-                {
-                    generators: {
-                        script: "cat package.json",
-                        postProcess: function (out) {
-                            if (out.trim() == "") {
-                                return []
-                            }
-                            try {
-                                let package = JSON.parse(out)
-                                let scripts = package["scripts"]
-                                if (scripts) {
-                                    return Object.keys(scripts)
-                                }
-                            } catch (e) { }
-                            return []
-                        }
-                    }
-                },
-            ]
+                { generators: yarnGenerators.getScripts },
+            ],
         },
         {
             name: "tag",
@@ -882,8 +869,7 @@ var completionSpec = {
         {
             name: "unplug",
             description: "",
-            options: [
-            ]
+            options: [],
         },
         {
             name: "upgrade",
@@ -939,21 +925,22 @@ var completionSpec = {
                         script: "cat package.json",
                         postProcess: function (out) {
                             if (out.trim() == "") {
-                                return []
+                                return [];
                             }
                             try {
-                                let package = JSON.parse(out)
-                                let workspaces = package["workspaces"]
+                                var packageContent = JSON.parse(out);
+                                var workspaces = packageContent["workspaces"];
                                 if (workspaces) {
-                                    return workspaces
+                                    return workspaces;
                                 }
-                            } catch (e) { }
-                            return []
-                        }
-                    }
+                            }
+                            catch (e) { }
+                            return [];
+                        },
+                    },
                 },
                 // TODO arg 1 is script suggestion from the workspace specified in arg 0.
-            ]
+            ],
         },
         {
             name: "workspaces",
@@ -963,14 +950,15 @@ var completionSpec = {
                     name: "subcommand",
                     description: "",
                     args: {
-                        suggestions: [{ name: "info" }, { name: "run" }]
-                    }
+                        suggestions: [{ name: "info" }, { name: "run" }],
+                    },
                 },
                 {
                     name: "flags",
                     description: "",
                 },
-            ]
+            ],
         },
-    ]
-}
+    ],
+};
+

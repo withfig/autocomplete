@@ -3,7 +3,7 @@ var completionSpec = {
     description: "Extract compressed files in a ZIP archive.",
     args: {
         name: "file",
-        template: "filepaths"
+        template: "filepaths",
     },
     options: [
         {
@@ -11,15 +11,15 @@ var completionSpec = {
             description: "List the contents of a zip file without extracting",
             args: {
                 name: "file",
-                template: "filepaths"
-            }
+                template: "filepaths",
+            },
         },
         {
             name: ["-c"],
             args: {
                 name: "file",
-                template: "filepaths"
-            }
+                template: "filepaths",
+            },
         },
         {
             name: ["-0"],
@@ -30,16 +30,17 @@ var completionSpec = {
                 },
                 {
                     name: "file",
-                    template: "filepaths"
-                }
-            ]
+                    template: "filepaths",
+                },
+            ],
         },
         {
             name: ["-d"],
             args: {
                 name: "destination",
-                template: "folders"
-            }
-        }
-    ]
-}
+                template: "folders",
+            },
+        },
+    ],
+};
+

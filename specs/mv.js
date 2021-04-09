@@ -1,14 +1,13 @@
 var completionSpec = {
-
     name: "mv",
     description: "move & rename files and folders",
     args: [
-        {   
-            template: "filepaths"
+        {
+            template: ["filepaths", "folders"],
         },
         {
-            template: "folders"
-        }
+            template: ["filepaths", "folders"],
+        },
     ],
     options: [
         {
@@ -18,6 +17,7 @@ var completionSpec = {
         {
             name: "-P",
             description: "Don't follow symbolic links",
-        }
-    ]
-}
+        },
+    ],
+};
+

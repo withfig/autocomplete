@@ -4,41 +4,42 @@ var completionSpec = {
     args: [
         {
             name: "name",
-            description: "name of archive"
+            description: "name of archive",
         },
         {
             name: "dir",
-            template: "folders"
-        }
+            template: "folders",
+        },
     ],
     options: [
         {
             name: ["-r"],
-            description: "Package and compress a directory and its contents, recursively"
+            description: "Package and compress a directory and its contents, recursively",
         },
         {
-            name: ["-e"]
+            name: ["-e"],
         },
         {
             name: ["-s"],
             args: [
                 {
-                    name: "split size"
-                }
-            ]
+                    name: "split size",
+                },
+            ],
         },
         {
             name: ["-d"],
             args: [
                 {
                     name: "file",
-                    template: "filepaths"
-                }
-            ]
+                    template: "filepaths",
+                },
+            ],
         },
         {
             name: "-9",
             description: "Archive a directory and its contents with the highest level [9] of compression",
-        }
-    ]
-}
+        },
+    ],
+};
+

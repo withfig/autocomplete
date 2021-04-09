@@ -1,19 +1,17 @@
 var versionList = {
     script: "pyenv install -l",
-    postProcess: function(out) {
-        var lines = out.split('\n');
+    postProcess: function (out) {
+        var lines = out.split("\n");
         var versionList = [];
-        for(var i = 1; i < lines.length; i++) {
+        for (var i = 1; i < lines.length; i++) {
             versionList.push({
                 name: lines[i],
-                icon: "🐍"
-            })
+                icon: "🐍",
+            });
         }
         return versionList;
-    }
-}
-
-
+    },
+};
 var completionSpec = {
     name: "pyenv",
     description: "pyenv",
@@ -21,104 +19,104 @@ var completionSpec = {
     options: [
         {
             name: ["-h", "--help"],
-            description: "Output usage information"
-        }
+            description: "Output usage information",
+        },
     ],
     subcommands: [
         {
             name: "commands",
-            description: "Lists all available pyenv commands."
+            description: "Lists all available pyenv commands.",
         },
         {
             name: "local",
             description: "Sets a local application-specific Python version",
             args: {
                 name: "python version",
-                variadic: true
+                variadic: true,
             },
             options: [
                 {
                     name: ["--unset"],
-                }
-            ]
+                },
+            ],
         },
         {
             name: "global",
             description: "Sets the global version of Python to be used in all shells",
             args: {
-                name: "python version"
-            }
+                name: "python version",
+            },
         },
         {
             name: "shell",
             description: "Sets a shell-specific Python version",
             args: {
-                name: "python version"
+                name: "python version",
             },
             options: [
                 {
-                    name: ["--unset"]
-                }
-            ]
+                    name: ["--unset"],
+                },
+            ],
         },
         {
             name: "install",
             description: "Install a Python version",
             args: {
                 name: "python version",
-                generators: versionList
+                generators: versionList,
             },
             options: [
                 {
                     name: ["-l", "--list"],
-                    description: "List all available versions"
+                    description: "List all available versions",
                 },
                 {
                     name: ["-f", "--force"],
-                    description: "Install even if the version appears to be installed already"
+                    description: "Install even if the version appears to be installed already",
                 },
                 {
                     name: ["-s", "--skip-existing"],
-                    description: "Skip the installation if the version appears to be installed already"
+                    description: "Skip the installation if the version appears to be installed already",
                 },
                 {
                     name: ["-k", "--keep"],
-                    description: "Keep source tree in $PYENV_BUILD_ROOT after installation"
+                    description: "Keep source tree in $PYENV_BUILD_ROOT after installation",
                 },
                 {
                     name: ["-v", "--verbose"],
-                    description: "Verbose mode: print compilation status to stdout"
+                    description: "Verbose mode: print compilation status to stdout",
                 },
                 {
                     name: ["-p", "--patch"],
-                    description: "Apply a patch from stdin before building"
+                    description: "Apply a patch from stdin before building",
                 },
                 {
                     name: ["-g", "--debug"],
-                    description: "Build a debug version"
-                }
-            ]
+                    description: "Build a debug version",
+                },
+            ],
         },
         {
             name: "uninstall",
             description: "Performs a deployment (default)",
             args: {
-                name: "version"
+                name: "version",
             },
             options: [
                 {
                     name: ["-f", "--force"],
-                    description: "Attempt to remove the specified version without prompting for confirmation."
-                }
-            ]
+                    description: "Attempt to remove the specified version without prompting for confirmation.",
+                },
+            ],
         },
         {
             name: "rehash",
-            description: "Performs a deployment (default)"
+            description: "Performs a deployment (default)",
         },
         {
             name: "version",
-            description: "Displays the currently active Python version, along with information on how it was set."
+            description: "Displays the currently active Python version, along with information on how it was set.",
         },
         {
             name: "versions",
@@ -128,15 +126,16 @@ var completionSpec = {
             name: "which",
             description: "Displays the full path to the executable that pyenv will invoke when you run the given command.",
             args: {
-                name: "command"
-            }
+                name: "command",
+            },
         },
         {
             name: "whence",
             description: "Lists all Python versions with the given command installed.",
             args: {
-                name: "command"
-            }
-        }
-    ]
-}
+                name: "command",
+            },
+        },
+    ],
+};
+
