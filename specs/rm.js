@@ -1,10 +1,9 @@
 var completionSpec = {
-
     name: "rm",
     description: "remove directory entries",
     args: [
         {
-            template: "filepaths"
+            template: "filepaths",
         },
     ],
     subcommands: [],
@@ -19,20 +18,20 @@ var completionSpec = {
         },
         {
             name: "-d",
-            description: "Attempt to remove directories as well as other types of files."
+            description: "Attempt to remove directories as well as other types of files.",
         },
         {
             name: "-f",
-            description: "⚠️ Attempt to remove the files without prompting for confirmation"
+            description: "⚠️ Attempt to remove the files without prompting for confirmation",
         },
         {
             name: "-i",
-            description: "Request confirmation before attempting to remove each file"
+            description: "Request confirmation before attempting to remove each file",
         },
         {
             name: "-v",
-            description: "Be verbose when deleting files"
-        }
+            description: "Be verbose when deleting files",
+        },
+    ],
+};
 
-    ]
-}

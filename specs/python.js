@@ -4,8 +4,8 @@ var completionSpec = {
     args: {
         generators: {
             script: "ls -1 | grep .py",
-            splitOn: "\n"
-        }
+            splitOn: "\n",
+        },
     },
     options: [
         {
@@ -13,7 +13,7 @@ var completionSpec = {
             insertValue: "-c '{cursor}'",
             description: "program passed in as string (terminates option list)",
             args: {},
-        }
-    ]
+        },
+    ],
+};
 
-}
