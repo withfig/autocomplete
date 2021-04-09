@@ -1,144 +1,139 @@
 var envVarList = {
     script: "vercel env ls",
-    postProcess: function(out) {
-        var lines = out.split('\n');
+    postProcess: function (out) {
+        var lines = out.split("\n");
         var envList = [];
-        for(var i = 4; i < lines.length; i++) {
+        for (var i = 4; i < lines.length; i++) {
             var envVar = lines[i].match(/\S+/g)[0];
             envList.push({
-                name: envVar
-            })
+                name: envVar,
+            });
         }
         return envList;
-    }
-}
-
+    },
+};
 //Unfinished
 var deploymentList = {
     //Grabs all the deployments for
     script: "vercel list [project name]",
-    postProcess: function(out) {
-        console.log(out);
-        var lines = out.split('\n');
+    postProcess: function (out) {
+        var lines = out.split("\n");
         var deploymentUrlList = [];
-        for(var i = 4; i < lines.length; i++) {
+        for (var i = 4; i < lines.length; i++) {
             var deploymentUrl = lines[i].match(/\S+/g)[1];
             deploymentUrlList.push({
                 name: deploymentUrl,
-                icon: "🔗"
-            })
+                icon: "🔗",
+            });
         }
         return deploymentUrlList;
-    }
-}
-
+    },
+};
 var domainList = {
     script: "vercel domains",
-    postProcess: function(out) {
-        var lines = out.split('\n');
+    postProcess: function (out) {
+        var lines = out.split("\n");
         var domainList = [];
-        for(var i = 4; i < lines.length; i++) {
+        for (var i = 4; i < lines.length; i++) {
             var domain = lines[i].match(/\S+/g)[0];
             domainList.push({
-                name: domain
-            })
+                name: domain,
+            });
         }
         return domainList;
-    }
-}
-
+    },
+};
 var teamList = {
     script: "vercel teams list",
-    postProcess: function(out) {
-        var lines = out.split('\n');
+    postProcess: function (out) {
+        var lines = out.split("\n");
         var teamList = [];
-        for(var i = 3; i < lines.length; i++) {
+        for (var i = 3; i < lines.length; i++) {
             var teamName = lines[i].match(/\S+/g)[0];
             teamList.push({
-                name: teamName
-            })
+                name: teamName,
+            });
         }
         return teamList;
-    }
-}
-
+    },
+};
 var completionSpec = {
     name: "vercel",
     description: "CLI Interface for Vercel.com",
     args: {
         name: "path to project",
-        template: "folders"
+        template: "folders",
     },
     options: [
         {
             name: ["-h", "--help"],
-            description: "Output usage information"
+            description: "Output usage information",
         },
         {
             name: ["-v", "--version"],
-            description: "Output the version number"
+            description: "Output the version number",
         },
         {
             name: ["-V", "--platform-version"],
-            description: "Set the platform version to deploy to"
+            description: "Set the platform version to deploy to",
         },
         {
             name: ["-A", "--local-config"],
             description: "Path to the local 'vercel.json' file",
             args: [
                 {
-                    template: "filepaths"
-                }
-            ]
+                    template: "filepaths",
+                },
+            ],
         },
         {
             name: ["-Q", "--global-config"],
             description: "Path to the global '.vercel' directory",
             args: [
                 {
-                    template: "folders"
-                }
-            ]
+                    template: "folders",
+                },
+            ],
         },
         {
             name: ["-d", "--debug"],
-            description: "Provides more verbose output"
+            description: "Provides more verbose output",
         },
         {
             name: ["-f", "--force"],
-            description: "Force a new deployment even if nothing has changed"
+            description: "Force a new deployment even if nothing has changed",
         },
         {
             name: ["-with-cache"],
-            description: "Retain build cache when using --force"
+            description: "Retain build cache when using --force",
         },
         {
             name: ["-t", "--token"],
             description: "Execute command with an auth token",
             args: {
                 name: "auth token",
-                description: "auth token to add to your command"
-            }
+                description: "auth token to add to your command",
+            },
         },
         {
             name: ["-p", "--public"],
-            description: "Deployment is public ('/_src' is exposed)"
+            description: "Deployment is public ('/_src' is exposed)",
         },
         {
             name: ["-e", "--env"],
-            description: "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times."
+            description: "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times.",
         },
         {
             name: ["-b", "--build-env"],
-            description: "Similar to `--env` but for build time only."
+            description: "Similar to `--env` but for build time only.",
         },
         {
             name: ["-m", "--meta"],
-            description: "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times."
+            description: "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.",
         },
         {
             name: ["-C", "--no-clipboard"],
-            description: "Do not attempt to copy URL to clipboard"
+            description: "Do not attempt to copy URL to clipboard",
         },
         {
             name: ["-S", "--scope"],
@@ -147,28 +142,28 @@ var completionSpec = {
                 name: "team name",
                 description: "team to execute commands from",
                 // generator: teamList
-            }
+            },
         },
         {
             name: ["--regions"],
-            description: "Set default regions to enable the deployment on"
+            description: "Set default regions to enable the deployment on",
         },
         {
             name: ["--prod"],
-            description: "Create a production deployment"
+            description: "Create a production deployment",
         },
         {
             name: ["-c", "--confirm"],
-            description: "Confirm default options and skip questions"
-        }
+            description: "Confirm default options and skip questions",
+        },
     ],
     subcommands: [
         {
             name: "deploy",
             description: "Performs a deployment (default)",
             args: {
-                template: "folders"
-            }
+                template: "folders",
+            },
         },
         {
             name: "dev",
@@ -176,9 +171,9 @@ var completionSpec = {
             options: [
                 {
                     name: ["--listen"],
-                    description: "Specifies which port to run on"
+                    description: "Specifies which port to run on",
                 },
-            ]
+            ],
         },
         {
             name: "env",
@@ -190,11 +185,11 @@ var completionSpec = {
                     args: [
                         {
                             name: "type",
-                            description: "type of env variable to add"
+                            description: "type of env variable to add",
                         },
                         {
                             name: "name",
-                            description: "name of the env variable to add"
+                            description: "name of the env variable to add",
                         },
                         {
                             name: "environment",
@@ -202,19 +197,19 @@ var completionSpec = {
                             suggestions: [
                                 {
                                     name: "Production",
-                                    icon: "🔵"
+                                    icon: "🔵",
                                 },
                                 {
                                     name: "Preview",
-                                    icon: "🟠"
+                                    icon: "🟠",
                                 },
                                 {
                                     name: "Development",
-                                    icon: "🟡"
-                                }
-                            ]
-                        }
-                    ]
+                                    icon: "🟡",
+                                },
+                            ],
+                        },
+                    ],
                 },
                 {
                     name: "rm",
@@ -223,7 +218,7 @@ var completionSpec = {
                         {
                             name: "name",
                             description: "name of the variable to remove",
-//                             generator: envVarList
+                            //                             generator: envVarList
                         },
                         {
                             name: "environment",
@@ -231,18 +226,18 @@ var completionSpec = {
                             suggestions: [
                                 {
                                     name: "Production",
-                                    icon: "🔵"
+                                    icon: "🔵",
                                 },
                                 {
                                     name: "Preview",
-                                    icon: "🟠"
+                                    icon: "🟠",
                                 },
                                 {
                                     name: "Development",
-                                    icon: "🟡"
-                                }
-                            ]
-                        }
+                                    icon: "🟡",
+                                },
+                            ],
+                        },
                     ],
                 },
                 {
@@ -252,9 +247,9 @@ var completionSpec = {
                         {
                             name: "file",
                             description: "the file to write downloaded variables to",
-                            template: "filepaths"
-                        }
-                    ]
+                            template: "filepaths",
+                        },
+                    ],
                 },
                 {
                     name: "ls",
@@ -262,11 +257,11 @@ var completionSpec = {
                     args: [
                         {
                             name: "environment",
-                            description: "Environment to list variables for"
-                        }
-                    ]
-                }
-            ]
+                            description: "Environment to list variables for",
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: "init",
@@ -274,48 +269,51 @@ var completionSpec = {
             args: [
                 {
                     name: "project name",
-                    description: "Project name to initialize locally"
+                    description: "Project name to initialize locally",
                 },
                 {
                     name: "new project name",
-                    description: "initialize specific project locally and rename directory"
-                }
-            ]
+                    description: "initialize specific project locally and rename directory",
+                },
+            ],
         },
         {
             name: "list",
             description: "Lists deployments",
             args: {
                 name: "project name",
-                description: "View deployments for specified project"
+                description: "View deployments for specified project",
             },
             options: [
                 {
                     name: ["-m", "--meta"],
                     description: "Filters results based on project metadata",
                     args: {
-                        variadic: true
-                    }
-                }
-            ]
+                        variadic: true,
+                    },
+                },
+            ],
         },
         {
             name: "ls",
             description: "Lists deployments",
             args: {
                 name: "project name",
-                description: "View deployments for specified project"
-            }
+                description: "View deployments for specified project",
+            },
         },
         {
             name: "inspect",
             description: "Displays information related to a deployment",
             args: {
                 name: "url",
-                description: "The URL of the deployment to inspect"
-            }
+                description: "The URL of the deployment to inspect",
+            },
         },
-        { name: "login", description: "Logs into your account or creates a new one" },
+        {
+            name: "login",
+            description: "Logs into your account or creates a new one",
+        },
         { name: "logout", description: "Logs out of your account" },
         {
             name: "switch",
@@ -325,8 +323,8 @@ var completionSpec = {
                     name: "team name",
                     description: "team to switch to",
                     //generator: teamList
-                }
-            ]
+                },
+            ],
         },
         {
             name: "help",
@@ -334,9 +332,9 @@ var completionSpec = {
             args: [
                 {
                     name: "command",
-                    description: "command to detailed information about"
-                }
-            ]
+                    description: "command to detailed information about",
+                },
+            ],
         },
         {
             name: "rm",
@@ -350,13 +348,13 @@ var completionSpec = {
             options: [
                 {
                     name: ["-s", "--safe"],
-                    description: "Skip removal of deployments with an active preview URL or production domain"
+                    description: "Skip removal of deployments with an active preview URL or production domain",
                 },
                 {
                     name: ["-y", "--yes"],
-                    description: "Skip confirmation step for a deployment or project removal"
-                }
-            ]
+                    description: "Skip confirmation step for a deployment or project removal",
+                },
+            ],
         },
         {
             name: "remove",
@@ -366,8 +364,8 @@ var completionSpec = {
                     name: "deployment url",
                     description: "URL of the deployment to remove",
                     // generator: deploymentList
-                }
-            ]
+                },
+            ],
         },
         {
             name: "domains",
@@ -375,7 +373,7 @@ var completionSpec = {
             subcommands: [
                 {
                     name: "ls",
-                    description: "List all domains under an account"
+                    description: "List all domains under an account",
                 },
                 {
                     name: "inspect",
@@ -383,9 +381,9 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to inspect"
-                        }
-                    ]
+                            description: "domain to inspect",
+                        },
+                    ],
                 },
                 {
                     name: "add",
@@ -393,9 +391,9 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to add"
-                        }
-                    ]
+                            description: "domain to add",
+                        },
+                    ],
                 },
                 {
                     name: "rm",
@@ -403,9 +401,9 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to remove"
-                        }
-                    ]
+                            description: "domain to remove",
+                        },
+                    ],
                 },
                 {
                     name: "buy",
@@ -413,9 +411,9 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to buy"
-                        }
-                    ]
+                            description: "domain to buy",
+                        },
+                    ],
                 },
                 {
                     name: "move",
@@ -423,13 +421,13 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to move"
+                            description: "domain to move",
                         },
                         {
                             name: "account name",
-                            description: "account to move the domain to"
-                        }
-                    ]
+                            description: "account to move the domain to",
+                        },
+                    ],
                 },
                 {
                     name: "transfer-in",
@@ -437,9 +435,9 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to transfer in"
-                        }
-                    ]
+                            description: "domain to transfer in",
+                        },
+                    ],
                 },
                 {
                     name: "verify",
@@ -447,11 +445,11 @@ var completionSpec = {
                     args: [
                         {
                             name: "domain",
-                            description: "domain to verify"
-                        }
-                    ]
-                }
-            ]
+                            description: "domain to verify",
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: "dns",
@@ -468,7 +466,7 @@ var completionSpec = {
                         },
                         {
                             name: "subdomain",
-                            description: "subdomain to add record to"
+                            description: "subdomain to add record to",
                         },
                         {
                             name: "record type",
@@ -476,33 +474,33 @@ var completionSpec = {
                             suggestions: [
                                 {
                                     name: "A",
-                                    description: "A record"
+                                    description: "A record",
                                 },
                                 {
                                     name: "AAAA",
-                                    description: "AAAA record"
+                                    description: "AAAA record",
                                 },
                                 {
                                     name: "ALIAS",
-                                    description: "ALIAS record"
+                                    description: "ALIAS record",
                                 },
                                 {
                                     name: "CNAME",
-                                    description: "CName record"
+                                    description: "CName record",
                                 },
                                 {
                                     name: "TXT",
-                                    description: "TXT record"
-                                }
-                            ]
+                                    description: "TXT record",
+                                },
+                            ],
                         },
                         {
                             name: "value",
-                            description: "Record value"
-                        }
-                    ]
-                }
-            ]
+                            description: "Record value",
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: "certs",
@@ -510,7 +508,7 @@ var completionSpec = {
             subcommands: [
                 {
                     name: "ls",
-                    description: "list all certificates under an account"
+                    description: "list all certificates under an account",
                 },
                 {
                     name: "issue",
@@ -519,8 +517,8 @@ var completionSpec = {
                         name: "Domains",
                         description: "list of domains separated by commas to issue certificates for",
                         // generator: domainList,
-                        variadic: true
-                    }
+                        variadic: true,
+                    },
                 },
                 {
                     name: "rm",
@@ -528,32 +526,32 @@ var completionSpec = {
                     args: [
                         {
                             name: "certificate id",
-                            description: "id of the certificate to remove"
-                        }
-                    ]
-                }
+                            description: "id of the certificate to remove",
+                        },
+                    ],
+                },
             ],
             options: [
                 {
                     name: ["--challenge-only"],
-                    description: "Show challenges needed to issue a certificate"
+                    description: "Show challenges needed to issue a certificate",
                 },
                 {
                     name: ["--crt"],
                     description: "Include path to .crt",
-                    args: [{ template: "filepaths" }]
+                    args: [{ template: "filepaths" }],
                 },
                 {
                     name: ["--key"],
                     description: "Include path to .key",
-                    args: [{ template: "filepaths" }]
+                    args: [{ template: "filepaths" }],
                 },
                 {
                     name: ["--ca"],
                     description: "Include path to .ca",
-                    args: [{ template: "filepaths" }]
-                }
-            ]
+                    args: [{ template: "filepaths" }],
+                },
+            ],
         },
         {
             name: "secrets",
@@ -561,7 +559,7 @@ var completionSpec = {
             subcommands: [
                 {
                     name: "list",
-                    description: "list all secrets"
+                    description: "list all secrets",
                 },
                 {
                     name: "add",
@@ -569,13 +567,13 @@ var completionSpec = {
                     args: [
                         {
                             name: "secret name",
-                            description: "name of the secret to add"
+                            description: "name of the secret to add",
                         },
                         {
                             name: "secret value",
-                            description: "value of the secret to add"
-                        }
-                    ]
+                            description: "value of the secret to add",
+                        },
+                    ],
                 },
                 {
                     name: "rename",
@@ -583,13 +581,13 @@ var completionSpec = {
                     args: [
                         {
                             name: "old name",
-                            description: "old name of the secret to rename"
+                            description: "old name of the secret to rename",
                         },
                         {
                             name: "new name",
-                            description: "new name of the secret"
-                        }
-                    ]
+                            description: "new name of the secret",
+                        },
+                    ],
                 },
                 {
                     name: "remove",
@@ -597,11 +595,11 @@ var completionSpec = {
                     args: [
                         {
                             name: "secret name",
-                            description: "name of the seret to remove"
-                        }
-                    ]
-                }
-            ]
+                            description: "name of the seret to remove",
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: "logs",
@@ -611,43 +609,43 @@ var completionSpec = {
                     name: "deployment url",
                     description: "get logs for specified deployment",
                     // generator: deploymentList
-                }
+                },
             ],
             options: [
                 {
                     name: ["-a", "--all"],
-                    description: "Receive access logs in addition to regular logs"
+                    description: "Receive access logs in addition to regular logs",
                 },
                 {
                     name: ["-f", "--follow"],
-                    description: "Watch for additional logs output"
+                    description: "Watch for additional logs output",
                 },
                 {
                     name: ["-n", "--number"],
                     description: "Specify number of log lines to output",
-                    args: [{}]
+                    args: [{}],
                 },
                 {
                     name: ["-o", "--output"],
                     description: "Specifies format of logs output as 'short' or 'raw'",
-                    args: [{}]
+                    args: [{}],
                 },
                 {
                     name: ["--since"],
                     description: "Return logs after a specific ISO 8601 date",
-                    args: [{}]
+                    args: [{}],
                 },
                 {
                     name: ["-q", "--query"],
                     description: "Return logs against a search query",
-                    args: [{}]
+                    args: [{}],
                 },
                 {
                     name: ["--until"],
                     description: "Return logs up to a specific ISO 8601 date",
-                    args: [{}]
-                }
-            ]
+                    args: [{}],
+                },
+            ],
         },
         {
             name: "teams",
@@ -655,11 +653,11 @@ var completionSpec = {
             subcommands: [
                 {
                     name: "list",
-                    description: "List all teams under an account"
+                    description: "List all teams under an account",
                 },
                 {
                     name: "add",
-                    description: "Create a new team"
+                    description: "Create a new team",
                 },
                 {
                     name: "invite",
@@ -667,12 +665,16 @@ var completionSpec = {
                     args: [
                         {
                             name: "email",
-                            description: "email of member to invite to team"
-                        }
-                    ]
-                }
-            ]
+                            description: "email of member to invite to team",
+                        },
+                    ],
+                },
+            ],
         },
-        { name: "whoami", description: "Shows the username of the currently logged in user" }
-    ]
-}
+        {
+            name: "whoami",
+            description: "Shows the username of the currently logged in user",
+        },
+    ],
+};
+
