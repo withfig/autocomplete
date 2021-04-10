@@ -8,3 +8,6 @@ npm-debug.log
 .env
 .idea/
 .vscode
+
+# They will be build on merge
+specs
