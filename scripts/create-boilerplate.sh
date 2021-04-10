@@ -10,7 +10,7 @@ read -e -p "What's the name of the CLI tool you want to create an autocomplete s
 
 # Check if the given file exists
 # Must put file path in quotes in case either variable has spaces
-if [[ -f "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts" ]]; then
+if [[ -f "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts" ]]; then
   echo
   echo "$(tput setaf 1)This completion spec already exists$(tput sgr0)"
   echo
@@ -24,7 +24,7 @@ else
     # https://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
   ## Using quotes around EOF will remove expansions
     # https://superuser.com/questions/1436906/need-to-expand-a-variable-in-a-heredoc-that-is-in-quotes
-  cat <<EOF >> "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts"
+  cat <<EOF >> "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts"
 // To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 
 // The below is a dummy example for git. Make sure to change the file name!
@@ -64,6 +64,6 @@ EOF
   echo 
   echo "Start editing it at $(tput bold)dev/$USER_INPUT_CLI_TOOL.ts$(tput sgr0)... We're opening it for you now!"
   echo
-  open "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts"
+  open "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts"
   exit
 fi
