@@ -3,6 +3,9 @@ name: Build and release specs
 on:
   push:
     branches:
+      # We only want to create a new release when
+      # - a pr is merged to master
+      # - we push into master
       - "master"
 
 jobs:
@@ -11,17 +14,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        # Install all dependencies
       - name: install
         run: npm install
+        # Transpile all specs from ts to js
       - name: build
         run: npm run build
+        # Zip the transpiled files into the specs.zip file
       - name: bundle files
         run: zip -r specs.zip specs/
+        # Bump the version and create a git tag with the new version
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+        # Create a new github release with the newly created specs.zip file
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
