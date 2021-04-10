@@ -8,3 +8,5 @@ npm-debug.log
 .env
 .idea/
 .vscode
+
+specs
