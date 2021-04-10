@@ -52,7 +52,7 @@ var getAllScriptsFromPackages = {
         });
         return Array.from(new Set(scripts)).map(function (scriptName) { return ({
             name: scriptName,
-            icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+            icon: "fig://icon?type=npm",
         }); });
     },
 };
@@ -83,7 +83,7 @@ var npmClientOption = {
         suggestions: [
             {
                 name: "npm",
-                icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+                icon: "fig://icon?type=npm",
             },
             {
                 name: "yarn",
@@ -422,7 +422,7 @@ var completionSpec = {
                 isOptional: true,
                 suggestions: SEMVER_NOUNS.map(function (versionName) { return ({
                     name: versionName,
-                    icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+                    icon: "fig://icon?type=npm",
                 }); }),
             },
             options: [

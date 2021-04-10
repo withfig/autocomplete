@@ -255,6 +255,18 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "autocomplete.theme",
+          icon: "fig://icon?type=commandkey",
+          description: "Change Fig's theme",
+          args: {
+            name: "mode",
+            suggestions: [
+              { name: "light", icon: "fig://icon?type=string" },
+              { name: "dark", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
           name: "autocomplete.width",
           icon: "fig://icon?type=commandkey",
           insertValue: "autocomplete.width ",
