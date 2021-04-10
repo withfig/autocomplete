@@ -25,14 +25,16 @@ const yarnGenerators = {
 const packageList: Fig.Generator = {
   script: "cat package.json",
   postProcess: function (out) {
+    console.log("THIS IS A TEST");
+    console.log(out);
     if (out.trim() == "") {
       return [];
     }
 
     try {
       const packageContent = JSON.parse(out);
-      const dependencyScripts = packageContent["dependencies"];
-      const devDependencyScripts = packageContent["devDependencies"];
+      const dependencyScripts = packageContent["dependencies"] || {};
+      const devDependencyScripts = packageContent["devDependencies"] || {};
       if (dependencyScripts || devDependencyScripts) {
         return [
           ...Object.keys(dependencyScripts),
@@ -42,7 +44,9 @@ const packageList: Fig.Generator = {
           icon: "📦",
         }));
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
 
     return [];
   },
