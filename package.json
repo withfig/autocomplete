@@ -5,8 +5,8 @@
     "scripts": {
         "dev": "source scripts/dev.sh",
         "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-        "copy": "func() { cp \"$INIT_CWD\"/specs/${1}.js ~/.fig/autocomplete/; }; func",
-        "copy:all": "cp \"$INIT_CWD\"/specs/*.js ~/.fig/autocomplete/",
+        "copy": "func() { cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/; }; func",
+        "copy:all": "cp \"$(pwd)\"/specs/*.js ~/.fig/autocomplete/",
         "create-boilerplate": "./scripts/create-boilerplate.sh",
         "build": "ts-node-script scripts/compiler.ts",
         "lint": "eslint '*/*.ts'",
