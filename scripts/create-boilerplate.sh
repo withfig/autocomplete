@@ -1,17 +1,22 @@
 #!/bin/bash
 
-echo "$(tput setaf 4)What's the name of the CLI you want to create the Spec for?$(tput sgr0)"
-read CLI_THE_USER_INPUT
+clear
+echo 
+echo 
+# echo "$(tput setaf 4)What's the name of the CLI you want to create the Spec for?$(tput sgr0)"
+
+read -e -p "What's the name of the CLI tool you want to create an autocomplete spec for: " USER_INPUT_CLI_TOOL
+
 
 # Check if the given file exists
 # Must put file path in quotes in case either variable has spaces
-if [[ -f "$INIT_CWD/dev/$CLI_THE_USER_INPUT.ts" ]]; then
+if [[ -f "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts" ]]; then
   echo
   echo "$(tput setaf 1)This completion spec already exists$(tput sgr0)"
   echo
-  echo Start editing it from the $(tput bold)dev/$CLI_THE_USER_INPUT.ts$(tput sgr0) now!
+  echo Start editing it from the $(tput bold)dev/$USER_INPUT_CLI_TOOL.ts$(tput sgr0) now!
   echo 
-  exit 1
+  exit 0
 else 
 
   ## This is known as a here document (or heredoc)
@@ -19,10 +24,9 @@ else
     # https://stackoverflow.com/questions/4937792/using-variables-inside-a-bash-heredoc
   ## Using quotes around EOF will remove expansions
     # https://superuser.com/questions/1436906/need-to-expand-a-variable-in-a-heredoc-that-is-in-quotes
-  cat <<EOF >> "$INIT_CWD/dev/$CLI_THE_USER_INPUT.ts"
+  cat <<EOF >> "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts"
+// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 
-
-// To learn more about the spec standard visit https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "git",
@@ -31,34 +35,35 @@ export const completion: Fig.Spec = {
     {
       name: "checkout",
       description: "Switch branches or restore working tree files",
-      
-      // If a subcommand or option takes an argument, you must include the arg prop, even if it's an empty object like below
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it's an empty object (like below)
       // If you want to build custom suggestions for arguments check out: https://withfig.com/docs/autocomplete/building-a-spec#making-advanced-suggestions
-      args: { },
+      args: {},
       options: [
-        { 
-          name: ["-b"], 
-          description: "create and checkout a new branch", 
-          args: { 
-            name: "branch"
-          } 
+        {
+          name: ["-b"],
+          description: "create and checkout a new branch",
+          args: {
+            name: "branch",
+          },
         },
-      ]
+      ],
     },
   ],
   options: [
     {
       name: ["-v", "--version"],
-      description: "View your current git version"
-    }
-  ]
-}
-
+      description: "View your current git version",
+    },
+  ],
+};
 EOF
 
   echo
-  echo "$(tput setaf 2)Successfully created the new Spec $CLI_THE_USER_INPUT! Start editing it in the dev/ folder...$(tput sgr0)"
+  echo "$(tput setaf 2)Successfully created the new Spec $USER_INPUT_CLI_TOOL!$(tput sgr0)" 
+  echo 
+  echo "Start editing it at $(tput bold)dev/$USER_INPUT_CLI_TOOL.ts$(tput sgr0)... We're opening it for you now!"
   echo
-  echo Opening it for you now...
-  open "$INIT_CWD/dev/$CLI_THE_USER_INPUT.ts"
+  open "$INIT_CWD/dev/$USER_INPUT_CLI_TOOL.ts"
+  exit
 fi
