@@ -67,7 +67,7 @@ var gitGenerators = {
                         name: elm.replace("*", "").trim(),
                         description: "current branch",
                         icon: "⭐️",
-                        priority: 100
+                        priority: 100,
                     };
                 }
                 return {
