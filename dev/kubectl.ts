@@ -7,6 +7,14 @@ const resourcesArg = {
   },
 };
 
+const runningPodsArg = {
+  name: "Running Pods",
+  generators: {
+    script: "kubectl get pods --field-selector=status.phase=Running -o name",
+    splitOn: "\n",
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "kubectl",
   description: "",
@@ -482,6 +490,7 @@ export const completionSpec: Fig.Spec = {
       name: "attach",
       description:
         "Attach to a process that is already running inside an existing container.",
+      args: runningPodsArg,
       options: [
         {
           name: ["-c", "--container"],

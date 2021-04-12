@@ -6,6 +6,13 @@ var resourcesArg = {
         splitOn: "\n",
     },
 };
+var runningPodsArg = {
+    name: "Running Pods",
+    generators: {
+        script: "kubectl get pods --field-selector=status.phase=Running -o name",
+        splitOn: "\n",
+    },
+};
 var completionSpec = {
     name: "kubectl",
     description: "",
@@ -420,6 +427,7 @@ var completionSpec = {
         {
             name: "attach",
             description: "Attach to a process that is already running inside an existing container.",
+            args: runningPodsArg,
             options: [
                 {
                     name: ["-c", "--container"],
