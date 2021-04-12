@@ -1,6 +1,6 @@
 // TODO: Handle if not connected to a k8s cluster
 var resourcesArg = {
-    name: "Resource",
+    name: "Resource Type",
     generators: {
         script: "kubectl api-resources -o name",
         splitOn: "\n",
@@ -10,6 +10,16 @@ var runningPodsArg = {
     name: "Running Pods",
     generators: {
         script: "kubectl get pods --field-selector=status.phase=Running -o name",
+        splitOn: "\n",
+    },
+};
+var resourceSuggestionsFromResourceType = {
+    name: "Resource",
+    generators: {
+        script: function (context) {
+            var resourceType = context[context.length - 2];
+            return "kubectl get " + resourceType + " -o custom-columns=:.metadata.name";
+        },
         splitOn: "\n",
     },
 };
@@ -2289,7 +2299,7 @@ var completionSpec = {
         {
             name: "describe",
             description: "Show details of a specific resource or group of resources",
-            args: resourcesArg,
+            args: [resourcesArg, resourceSuggestionsFromResourceType],
             options: [
                 {
                     name: ["-A", "--all-namespaces"],
