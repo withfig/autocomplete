@@ -2631,6 +2631,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Show details of a specific resource or group of resources",
+      args: resourcesArg,
       options: [
         {
           name: ["-A", "--all-namespaces"],
