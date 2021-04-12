@@ -2852,6 +2852,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "exec",
       description: "Execute a command in a container.",
+      args: runningPodsArg,
       options: [
         {
           name: ["-c", "--container"],

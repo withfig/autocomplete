@@ -2482,6 +2482,7 @@ var completionSpec = {
         {
             name: "exec",
             description: "Execute a command in a container.",
+            args: runningPodsArg,
             options: [
                 {
                     name: ["-c", "--container"],
