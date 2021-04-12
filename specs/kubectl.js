@@ -2675,7 +2675,9 @@ var completionSpec = {
                 {
                     name: ["-f", "--filename"],
                     description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                    args: {},
+                    args: {
+                        template: "filepaths",
+                    },
                 },
                 {
                     name: ["--ignore-not-found"],
