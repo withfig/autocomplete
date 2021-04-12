@@ -1,3 +1,4 @@
+// TODO: Handle if not connected to a k8s cluster
 const resourcesArg = {
   name: "Resource",
   generators: {
@@ -2869,6 +2870,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "explain",
       description: "List the fields for supported resources",
+      args: resourcesArg,
       options: [
         {
           name: ["--api-version"],

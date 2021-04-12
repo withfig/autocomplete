@@ -1,3 +1,4 @@
+// TODO: Handle if not connected to a k8s cluster
 var resourcesArg = {
     name: "Resource",
     generators: {
@@ -2498,6 +2499,7 @@ var completionSpec = {
         {
             name: "explain",
             description: "List the fields for supported resources",
+            args: resourcesArg,
             options: [
                 {
                     name: ["--api-version"],
