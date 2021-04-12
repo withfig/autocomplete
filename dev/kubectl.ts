@@ -82,6 +82,13 @@ export const completionSpec: Fig.Spec = {
     {
       name: "annotate",
       description: "Update the annotations on one or more resources",
+      args: [
+        resourcesArg,
+        {
+          name: "KEY=VAL",
+          variadic: true,
+        },
+      ],
       options: [
         {
           name: ["--all"],
