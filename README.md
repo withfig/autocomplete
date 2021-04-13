@@ -26,7 +26,7 @@ Completion specs are defined in a *declarative* schema that specifies `subcomman
 
 **For more documentation and tutorials**, visit [withfig.com/docs](https://withfig.com/docs/autocomplete/getting-started)
 
-**To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new).
+**To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
 
 ## Get Started
@@ -69,10 +69,6 @@ npm run copy <spec-name>
 ```
 
 
-## Can I create autocomplete specs for myself / my team's internal scripts?
-Hell yeah: https://withfig.com/docs/autocomplete/getting-started
-
-
 ## FAQ
 
 #### What terminals does Fig work with?
@@ -87,6 +83,8 @@ Currently, Fig is only available on MacOS.
 #### How can I get access?
 Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week.  
  
+#### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
+Yes! Check out our guide on how to [get started building autocomplete specs](https://withfig.com/docs/autocomplete/getting-started). 
 
 #### Did we miss something?
 Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)

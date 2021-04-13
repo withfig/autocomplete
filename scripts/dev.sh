@@ -26,4 +26,4 @@ DISABLE_DEV_MODE() {
 
 trap DISABLE_DEV_MODE SIGINT SIGTERM SIGQUIT;
 
-fig settings autocomplete.developerModeNPM true && fig settings autocomplete.devCompletionsFolder $INIT_CWD/specs && ts-node-dev --respawn -s --exit-child --watch ./dev/ scripts/compiler.ts 'INVALIDATE_CACHE'
+fig settings autocomplete.developerModeNPM true && fig settings autocomplete.devCompletionsFolder "$(pwd)"/specs && ts-node-dev --respawn -s --exit-child --watch ./dev/ scripts/compiler.ts 'INVALIDATE_CACHE'

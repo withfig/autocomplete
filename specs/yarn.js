@@ -1,27 +1,87 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var yarnGenerators = {
+    getScripts: {
+        script: "cat package.json",
+        postProcess: function (output) {
+            if (output.trim() == "") {
+                return [];
+            }
+            try {
+                var packageContent = JSON.parse(output);
+                var scripts = packageContent["scripts"];
+                if (scripts) {
+                    return Object.keys(scripts).map(function (scriptName) { return ({
+                        name: scriptName,
+                        icon: "https://yarnpkg.com/favicon-32x32.png",
+                    }); });
+                }
+            }
+            catch (e) { }
+            return [];
+        },
+    },
+};
+// generate package list from package.json file
+var packageList = {
+    script: "cat package.json",
+    postProcess: function (out) {
+        console.log("THIS IS A TEST");
+        console.log(out);
+        if (out.trim() == "") {
+            return [];
+        }
+        try {
+            var packageContent = JSON.parse(out);
+            var dependencyScripts = packageContent["dependencies"] || {};
+            var devDependencyScripts = packageContent["devDependencies"] || {};
+            if (dependencyScripts || devDependencyScripts) {
+                return __spreadArray(__spreadArray([], Object.keys(dependencyScripts)), Object.keys(devDependencyScripts)).map(function (dependencyName) { return ({
+                    name: dependencyName,
+                    icon: "📦",
+                }); });
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+        return [];
+    },
+};
+var configList = {
+    script: "yarn config list",
+    postProcess: function (out) {
+        if (out.trim() == "") {
+            return [];
+        }
+        try {
+            var startIndex = out.indexOf("{");
+            var endIndex = out.indexOf("}");
+            var output = out.substring(startIndex, endIndex + 1);
+            // TODO: fix hacky code
+            // reason: JSON parse was not working without double quotes
+            output = output
+                .replace(/\'/gi, '"')
+                .replace("lastUpdateCheck", '"lastUpdateCheck"')
+                .replace("registry", '"lastUpdateCheck"');
+            var configObject = JSON.parse(output);
+            if (configObject) {
+                return Object.keys(configObject).map(function (key) { return ({ name: key }); });
+            }
+        }
+        catch (e) { }
+        return [];
+    },
+};
 var completionSpec = {
     name: "yarn",
     description: "Manage packages and run scripts",
     args: [
         {
-            generators: {
-                script: "cat package.json",
-                postProcess: function (out) {
-                    if (out.trim() == "") {
-                        return [];
-                    }
-                    try {
-                        var packageContent = JSON.parse(out);
-                        var scripts = packageContent["scripts"];
-                        if (scripts) {
-                            return Object.keys(scripts).map(function (key) { return ({
-                                name: key,
-                            }); });
-                        }
-                    }
-                    catch (e) { }
-                    return [];
-                },
-            },
+            generators: yarnGenerators.getScripts,
         },
     ],
     options: [
@@ -323,7 +383,7 @@ var completionSpec = {
         },
         {
             name: "audit",
-            description: "",
+            description: "Perform a vulnerability audit against the installed packages",
             options: [
                 {
                     name: "--summary",
@@ -359,17 +419,25 @@ var completionSpec = {
         },
         {
             name: "autoclean",
-            description: "",
+            description: "Cleans and removes unnecessary files from package dependencies",
             options: [
                 {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
+                {
+                    name: ["-i", "--init"],
+                    description: "Creates the .yarnclean file if it does not exist, and adds the default entries",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "if a .yarnclean file exists, run the clean process",
+                },
             ],
         },
         {
             name: "bin",
-            description: "",
+            description: "Displays the location of the yarn bin folder",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -382,33 +450,83 @@ var completionSpec = {
             description: "",
             options: [
                 {
-                    name: "--pattern",
-                    description: "filter cached packages by pattern",
-                    args: [
-                        {
-                            name: "pattern",
-                        },
-                    ],
-                },
-                {
                     name: ["-h", "--help"],
                     description: "output usage information",
+                },
+            ],
+            subcommands: [
+                {
+                    name: "clean",
+                    description: "clear global cache",
+                },
+                {
+                    name: "dir",
+                    description: "print yarn’s global cache path",
+                },
+                {
+                    name: "list",
+                    description: "print out every cached package",
+                    options: [
+                        {
+                            name: "--pattern",
+                            description: "filter cached packages by pattern",
+                            args: [
+                                {
+                                    name: "pattern",
+                                },
+                            ],
+                        },
+                    ],
                 },
             ],
         },
         {
             name: "config",
-            description: "",
+            description: "configure yarn",
             options: [
                 {
                     name: ["-h", "--help"],
                     description: "output usage information",
                 },
             ],
+            subcommands: [
+                {
+                    name: "set",
+                    description: "Sets the config key to a certain value",
+                    options: [
+                        {
+                            name: ["-g", "--global"],
+                            description: "set global config",
+                        },
+                    ],
+                },
+                {
+                    name: "get",
+                    description: "Print the value for a given key",
+                    args: [
+                        {
+                            generators: configList,
+                        },
+                    ],
+                },
+                {
+                    name: "delete",
+                    description: "Deletes a given key from the config",
+                    args: [
+                        {
+                            generators: configList,
+                        },
+                    ],
+                },
+                {
+                    name: "list",
+                    description: "Displays the current configuration",
+                },
+            ],
         },
         {
             name: "create",
-            description: "",
+            description: "Creates new projects from any create-* starter kits",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -428,7 +546,7 @@ var completionSpec = {
         },
         {
             name: "generate-lock-entry",
-            description: "",
+            description: "Generates a lock file entry",
             options: [
                 {
                     name: "--use-manifest",
@@ -452,7 +570,7 @@ var completionSpec = {
         },
         {
             name: "global",
-            description: "",
+            description: "Install packages globally on your operating system",
             options: [
                 {
                     name: "--prefix",
@@ -478,17 +596,17 @@ var completionSpec = {
         },
         {
             name: "import",
-            description: "",
+            description: "Generates yarn.lock from an npm package-lock.json file",
             options: [],
         },
         {
             name: "info",
-            description: "",
+            description: "Show information about a package",
             options: [],
         },
         {
             name: "init",
-            description: "",
+            description: "Interactively creates or updates a package.json file",
             options: [
                 {
                     name: ["-y", "--yes"],
@@ -519,32 +637,127 @@ var completionSpec = {
         },
         {
             name: "install",
-            description: "",
-            options: [],
+            description: "Install all the dependencies listed within package.json",
+            options: [
+                {
+                    name: "--check-files",
+                    description: "install will verify file tree of packages for consistency",
+                },
+                {
+                    name: "--flat",
+                    description: "only allow one version of a package",
+                },
+                {
+                    name: "--focus",
+                    description: "Focus on a single workspace by installing remote copies of its sibling workspaces.",
+                },
+                {
+                    name: "--force",
+                    description: " install and build packages even if they were built before, overwrite lockfile",
+                },
+                {
+                    name: "--frozen-lockfile",
+                    description: "don't generate a lockfile and fail if an update is needed",
+                },
+                {
+                    name: "--har",
+                    description: "save HAR output of network traffic",
+                },
+                {
+                    name: "--ignore-engines",
+                    description: "ignore engines check",
+                },
+                {
+                    name: "--ignore-optional",
+                    description: "ignore optional dependencies",
+                },
+                {
+                    name: "--ignore-scripts",
+                    description: "don't run lifecycle scripts",
+                },
+                {
+                    name: "--modules-folder",
+                    description: "rather than installing modules into the node_modules folder relative to the cwd, output them here",
+                    args: {
+                        template: "folders",
+                    },
+                },
+                {
+                    name: "--no-lockfile",
+                    description: "don't read or generate a lockfile",
+                },
+                {
+                    name: "--non-interactive",
+                    description: "do not show interactive prompts",
+                },
+                {
+                    name: "--offline",
+                    description: "trigger an error if any required dependencies are not available in local cache",
+                },
+                {
+                    name: ["--prod", "--production"],
+                    description: "",
+                    args: {},
+                },
+                {
+                    name: "--pure-lockfile",
+                    description: "don't generate a lockfile",
+                },
+                {
+                    name: ["-s", "--silent"],
+                    description: "skip Yarn console logs, other types of logs (script output) will be printed",
+                },
+                {
+                    name: "--verbose",
+                    description: "output verbose messages on internal operations",
+                },
+            ],
         },
         {
             name: "licenses",
             description: "",
             options: [],
+            subcommands: [
+                {
+                    name: "list",
+                    description: "List licenses for installed packages",
+                },
+                {
+                    name: "generate-disclaimer",
+                    description: "List of licenses from all the packages",
+                },
+            ],
         },
         {
             name: "link",
-            description: "",
+            description: "Symlink a package folder during development",
             options: [],
+            args: {
+                name: "package",
+            },
         },
         {
             name: "list",
-            description: "",
-            options: [],
+            description: "lists all dependencies for the current working directory",
+            options: [
+                {
+                    name: "--depth",
+                    description: "restrict the depth of the dependencies",
+                },
+                {
+                    name: "--pattern",
+                    description: "filter the list of dependencies by the pattern",
+                },
+            ],
         },
         {
             name: "login",
-            description: "",
+            description: "Store registry username and email",
             options: [],
         },
         {
             name: "logout",
-            description: "",
+            description: "Clear registry username and email",
             options: [],
         },
         {
@@ -554,33 +767,57 @@ var completionSpec = {
         },
         {
             name: "outdated",
-            description: "",
+            description: "Checks for outdated package dependencies",
             options: [],
         },
         {
             name: "owner",
-            description: "",
+            description: "Manage package owners",
             options: [],
+            subcommands: [
+                {
+                    name: "list",
+                    description: "Lists all of the owners of a package",
+                },
+                {
+                    name: "add",
+                    description: "Adds the user as an owner of the package",
+                },
+                {
+                    name: "add",
+                    description: "Removes the user as an owner of the package",
+                },
+            ],
         },
         {
             name: "pack",
-            description: "",
-            options: [],
+            description: "Creates a compressed gzip archive of package dependencies",
+            options: [
+                {
+                    name: "--filename",
+                    description: "Creates a compressed gzip archive of package dependencies and names the file filename",
+                },
+            ],
         },
         {
             name: "policies",
-            description: "",
+            description: "Defines project-wide policies for your project",
             options: [],
         },
         {
             name: "publish",
-            description: "",
+            description: "Publishes a package to the npm registry",
             options: [],
         },
         {
             name: "remove",
-            description: "",
+            description: "remove installed package",
             options: [],
+            args: [
+                {
+                    generators: packageList,
+                },
+            ],
         },
         {
             name: "run",
@@ -603,41 +840,23 @@ var completionSpec = {
                 //           }
                 //     },
                 {
-                    generators: {
-                        script: "cat package.json",
-                        postProcess: function (out) {
-                            if (out.trim() == "") {
-                                return [];
-                            }
-                            try {
-                                var packageContent = JSON.parse(out);
-                                var scripts = packageContent["scripts"];
-                                if (scripts) {
-                                    return Object.keys(scripts).map(function (key) { return ({
-                                        name: key,
-                                    }); });
-                                }
-                            }
-                            catch (e) { }
-                            return [];
-                        },
-                    },
+                    generators: yarnGenerators.getScripts,
                 },
             ],
         },
         {
             name: "tag",
-            description: "",
+            description: "Add, remove, or list tags on a package",
             options: [],
         },
         {
             name: "team",
-            description: "",
+            description: "Maintain team memberships",
             options: [],
         },
         {
             name: "unlink",
-            description: "",
+            description: "Unlink a previously created symlink for a package",
             options: [],
         },
         {
@@ -647,37 +866,45 @@ var completionSpec = {
         },
         {
             name: "upgrade",
-            description: "",
+            description: "Upgrades packages to their latest version based on the specified range",
             options: [],
         },
         {
             name: "upgrade-interactive",
-            description: "",
-            options: [],
-        },
-        {
-            name: "upgradeInteractive",
-            description: "",
+            description: "Upgrades packages in interactive mode",
             options: [],
         },
         {
             name: "version",
-            description: "",
-            options: [],
+            description: "update version of your package",
+            options: [
+                {
+                    name: ["--major"],
+                    description: "auto-increment major version number",
+                },
+                {
+                    name: ["--minor"],
+                    description: "auto-increment minor version number",
+                },
+                {
+                    name: ["--patch"],
+                    description: "auto-increment patch version number",
+                },
+            ],
         },
         {
             name: "versions",
-            description: "",
+            description: "Displays version information of the currently installed Yarn, Node.js, and its dependencies",
             options: [],
         },
         {
             name: "why",
-            description: "",
+            description: "Show information about why a package is installed",
             options: [],
         },
         {
             name: "workspace",
-            description: "",
+            description: "Manage workspace",
             options: [],
             args: [
                 {
@@ -705,7 +932,7 @@ var completionSpec = {
         },
         {
             name: "workspaces",
-            description: "",
+            description: "Show information about your workspaces",
             options: [
                 {
                     name: "subcommand",

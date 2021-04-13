@@ -48,6 +48,26 @@ var dockerGenerators = {
             }); });
         },
     },
+    dockerHubSearch: {
+        script: function (context) {
+            if (context[context.length - 1] === "")
+                return "";
+            var searchTerm = context[context.length - 1];
+            return "docker search " + searchTerm + " --format '{{ json . }}'";
+        },
+        postProcess: function (out) {
+            var allLines = out
+                .split("\n")
+                .map(function (line) { return JSON.parse(line); });
+            return allLines.map(function (i) { return ({
+                name: "" + i.Name,
+                icon: "fig://icon?type=docker",
+            }); });
+        },
+        trigger: function () {
+            return true;
+        },
+    },
 };
 var containersArg = {
     name: "container",
@@ -1447,6 +1467,8 @@ var completionSpec = {
             description: "Pull an image or a repository from a registry",
             args: {
                 name: "NAME[:TAG|@DIGEST]",
+                generators: dockerGenerators.dockerHubSearch,
+                debounce: true,
             },
             options: [
                 {
