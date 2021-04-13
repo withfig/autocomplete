@@ -11,7 +11,7 @@ module.exports = {
   create: function (context) {
     return {
       Property(node) {
-        if (node.key.name === "options") {
+        if (node.key.name === "options" || node.key.name === "subcommand") {
           if (node.value && node.value.type === "ArrayExpression") {
             node.value.elements.forEach((element) => {
               if (element.type !== "ObjectExpression") return;
