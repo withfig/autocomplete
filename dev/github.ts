@@ -25,9 +25,19 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "url|slug",
         suggestions: [
-          { name: "https://github.com/", icon: "fig://icon?type=git" },
-          { name: "https://gitlab.com/", icon: "fig://icon?type=git" },
-          { name: "https://bitbucket.com/", icon: "fig://icon?type=git" },
+          {
+            name: "https://github.com/",
+            icon: "https://github.com/fluidicon.png",
+          },
+          {
+            name: "https://gitlab.com/",
+            icon: "https://about.gitlab.com/ico/favicon-32x32.png",
+          },
+          {
+            name: "https://bitbucket.com/",
+            icon:
+              "https://wac-cdn.atlassian.com/assets/img/favicons/bitbucket/favicon-32x32.png",
+          },
         ],
       },
       options: [
