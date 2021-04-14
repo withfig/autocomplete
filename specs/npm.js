@@ -70,7 +70,7 @@ var completionSpec = {
             args: [
                 {
                     generators: {
-                        script: "cat package.json",
+                        script: "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
                         // splitOn: "\n",
                         postProcess: function (out) {
                             if (out.trim() == "") {
