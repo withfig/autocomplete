@@ -2,10 +2,18 @@ export const completionSpec: Fig.Spec = {
   name: "python3",
   description: "Run the python interpretor",
   args: {
+    name: "python script",
     isScript: true,
     generators: {
-      script: "\\ls -1 | grep .py",
-      splitOn: "\n",
+      template: "filepaths",
+      filterTemplateSuggestions: function (paths) {
+        return paths.filter((file) => {
+          if (typeof file.name === "string") {
+            return file.name.endsWith(".py") || file.name.endsWith("/");
+          }
+          return false;
+        });
+      },
     },
   },
   options: [
