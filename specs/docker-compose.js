@@ -1,14 +1,13 @@
 var getServices = {
-    script: (context) => {
-        if (context.includes('-f')) {
-            let index = context.indexOf('-f');
-            return `docker-compose -f ${context[index + 1]} config --services`
+    script: function (context) {
+        if (context.includes("-f")) {
+            var index = context.indexOf("-f");
+            return "docker-compose -f " + context[index + 1] + " config --services";
         }
-        return "docker-compose config --services"
+        return "docker-compose config --services";
     },
-    splitOn: "\n"
-}
-
+    splitOn: "\n",
+};
 var completionSpec = {
     name: "docker-compose",
     description: "",
@@ -19,77 +18,55 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "--build-arg"
-                    ],
+                    name: ["--build-arg"],
                     description: "Set build-time variables for services.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--compress"
-                    ],
+                    name: ["--compress"],
                     description: "Compress the build context using gzip.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--force-rm"
-                    ],
+                    name: ["--force-rm"],
                     description: "Always remove intermediate containers.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-m",
-                        "--memory"
-                    ],
+                    name: ["-m", "--memory"],
                     description: "Set memory limit for the build container.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-cache"
-                    ],
+                    name: ["--no-cache"],
                     description: "Do not use cache when building the image.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-rm"
-                    ],
+                    name: ["--no-rm"],
                     description: "Do not remove intermediate containers after a successful build.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--parallel"
-                    ],
+                    name: ["--parallel"],
                     description: "Build images in parallel.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--progress"
-                    ],
+                    name: ["--progress"],
                     description: "Set type of progress output (auto, plain, tty). EXPERIMENTAL flag for native builder. To enable, run with COMPOSE_DOCKER_CLI_BUILD=1)",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--pull"
-                    ],
+                    name: ["--pull"],
                     description: "Always attempt to pull a newer version of the image.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Don't print anything to STDOUT",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -98,48 +75,35 @@ var completionSpec = {
             description: "Validate and view the Compose file.",
             options: [
                 {
-                    name: [
-                        "--resolve-image-digests"
-                    ],
+                    name: ["--resolve-image-digests"],
                     description: "Pin image tags to digests.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-interpolate"
-                    ],
+                    name: ["--no-interpolate"],
                     description: "Don't interpolate environment variables.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only validate the configuration, don't print anything.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--services"
-                    ],
+                    name: ["--services"],
                     description: "Print the service names, one per line.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--volumes"
-                    ],
+                    name: ["--volumes"],
                     description: "Print the volume names, one per line.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--hash"
-                    ],
-                    description: "Print the service config hash, one per line. Set \"service1,service2\" for a list of specified services or use the wildcard symbol to display all services.",
-                    args: {}
-                }
+                    name: ["--hash"],
+                    description: 'Print the service config hash, one per line. Set "service1,service2" for a list of specified services or use the wildcard symbol to display all services.',
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -149,33 +113,25 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "--force-recreate"
-                    ],
+                    name: ["--force-recreate"],
                     description: "Recreate containers even if their configuration and image haven't changed. Incompatible with --no-recreate.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-recreate"
-                    ],
+                    name: ["--no-recreate"],
                     description: "If containers already exist, don't recreate them. Incompatible with --force-recreate.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-build"
-                    ],
+                    name: ["--no-build"],
                     description: "Don't build an image, even if it's missing.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--build"
-                    ],
+                    name: ["--build"],
                     description: "Build images before creating containers.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -184,35 +140,25 @@ var completionSpec = {
             description: "Stops containers and removes containers, networks, volumes, and images",
             options: [
                 {
-                    name: [
-                        "--rmi"
-                    ],
+                    name: ["--rmi"],
                     description: "Remove images. Type must be one of: 'all': Remove all images used by any service. 'local': Remove only images that don't have a custom tag set by the `image` field.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v",
-                        "--volumes"
-                    ],
+                    name: ["-v", "--volumes"],
                     description: "Remove named volumes declared in the `volumes` section of the Compose file and anonymous volumes attached to containers.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--remove-orphans"
-                    ],
+                    name: ["--remove-orphans"],
                     description: "Remove containers for services not defined in the Compose file",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds. (default: 10)",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -222,12 +168,10 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "--json"
-                    ],
+                    name: ["--json"],
                     description: "Output events as a stream of json objects",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -237,58 +181,40 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run command in the background.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--privileged"
-                    ],
+                    name: ["--privileged"],
                     description: "Give extended privileges to the process.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-u",
-                        "--user"
-                    ],
+                    name: ["-u", "--user"],
                     description: "Run the command as this user.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-T"
-                    ],
+                    name: ["-T"],
                     description: "Disable pseudo-tty allocation. By default `docker-compose exec` allocates a TTY.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--index"
-                    ],
+                    name: ["--index"],
                     description: "index of the container if there are multiple instances of a service [default: 1]",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-e",
-                        "--env"
-                    ],
+                    name: ["-e", "--env"],
                     description: "not supported in API < 1.25)",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--workdir"
-                    ],
+                    name: ["-w", "--workdir"],
                     description: "DIR Path to workdir directory for this command.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -304,13 +230,10 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only display IDs",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -320,12 +243,10 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-s"
-                    ],
+                    name: ["-s"],
                     description: "SIGNAL to send to the container. Default signal is SIGKILL.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -335,35 +256,25 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "--no-color"
-                    ],
+                    name: ["--no-color"],
                     description: "Produce monochrome output.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-f",
-                        "--follow"
-                    ],
+                    name: ["-f", "--follow"],
                     description: "Follow log output.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timestamps"
-                    ],
+                    name: ["-t", "--timestamps"],
                     description: "Show timestamps.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--tail"
-                    ],
+                    name: ["--tail"],
                     description: "Number of lines to show from the end of the logs for each container.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -379,19 +290,15 @@ var completionSpec = {
             description: "Print the public port for a port binding.",
             options: [
                 {
-                    name: [
-                        "--protocol"
-                    ],
+                    name: ["--protocol"],
                     description: "tcp or udp [default: tcp]",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--index"
-                    ],
+                    name: ["--index"],
                     description: "index of the container if there are multiple instances of a service [default: 1]",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -401,35 +308,25 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Only display IDs",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--services"
-                    ],
+                    name: ["--services"],
                     description: "Display services",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--filter"
-                    ],
+                    name: ["--filter"],
                     description: "Filter services by a property",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-a",
-                        "--all"
-                    ],
+                    name: ["-a", "--all"],
                     description: "Show all stopped containers (including those created by the run command)",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -438,41 +335,30 @@ var completionSpec = {
             description: "Pulls images for services defined in a Compose file, but does not start the containers.",
             options: [
                 {
-                    name: [
-                        "--ignore-pull-failures"
-                    ],
+                    name: ["--ignore-pull-failures"],
                     description: "Pull what it can and ignores images with pull failures.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--parallel"
-                    ],
+                    name: ["--parallel"],
                     description: "Deprecated, pull multiple images in parallel (enabled by default).",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-parallel"
-                    ],
+                    name: ["--no-parallel"],
                     description: "Disable parallel pulling.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-q",
-                        "--quiet"
-                    ],
+                    name: ["-q", "--quiet"],
                     description: "Pull without printing progress information",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--include-deps"
-                    ],
+                    name: ["--include-deps"],
                     description: "Also pull services declared as dependencies",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -481,12 +367,10 @@ var completionSpec = {
             description: "Pushes images for services.",
             options: [
                 {
-                    name: [
-                        "--ignore-push-failures"
-                    ],
+                    name: ["--ignore-push-failures"],
                     description: "Push what it can and ignores images with push failures.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -496,13 +380,10 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds. (default: 10)",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -512,27 +393,19 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-f",
-                        "--force"
-                    ],
+                    name: ["-f", "--force"],
                     description: "Don't ask to confirm removal",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-s",
-                        "--stop"
-                    ],
+                    name: ["-s", "--stop"],
                     description: "Stop the containers, if required, before removing",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v"
-                    ],
+                    name: ["-v"],
                     description: "Remove any anonymous volumes attached to containers",
-                    args: {}
+                    args: {},
                 },
             ],
             subcommands: [],
@@ -543,109 +416,75 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run container in the background, print new container name.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--name"
-                    ],
+                    name: ["--name"],
                     description: "Assign a name to the container",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--entrypoint"
-                    ],
+                    name: ["--entrypoint"],
                     description: "Override the entrypoint of the image.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-e"
-                    ],
+                    name: ["-e"],
                     description: "Set an environment variable (can be used multiple times)",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-l",
-                        "--label"
-                    ],
+                    name: ["-l", "--label"],
                     description: "Add or override a label (can be used multiple times)",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-u",
-                        "--user"
-                    ],
+                    name: ["-u", "--user"],
                     description: "Run as specified username or uid",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-deps"
-                    ],
+                    name: ["--no-deps"],
                     description: "Don't start linked services.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--rm"
-                    ],
+                    name: ["--rm"],
                     description: "Remove container after run. Ignored in detached mode.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-p",
-                        "--publish"
-                    ],
+                    name: ["-p", "--publish"],
                     description: "Publish a container's port(s) to the host",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--service-ports"
-                    ],
+                    name: ["--service-ports"],
                     description: "Run command with the service's ports enabled and mapped to the host.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--use-aliases"
-                    ],
+                    name: ["--use-aliases"],
                     description: "Use the service's network aliases in the network(s) the container connects to.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-v",
-                        "--volume"
-                    ],
+                    name: ["-v", "--volume"],
                     description: "Bind mount a volume (default [])",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-T"
-                    ],
+                    name: ["-T"],
                     description: "Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-w",
-                        "--workdir"
-                    ],
+                    name: ["-w", "--workdir"],
                     description: "Working directory inside the container",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -654,13 +493,10 @@ var completionSpec = {
             description: "Set number of containers to run for a service.",
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds. (default: 10)",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -677,13 +513,10 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Specify a shutdown timeout in seconds. (default: 10)",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -705,127 +538,90 @@ var completionSpec = {
             args: [getServices],
             options: [
                 {
-                    name: [
-                        "-d",
-                        "--detach"
-                    ],
+                    name: ["-d", "--detach"],
                     description: "Detached mode: Run containers in the background, print new container names. Incompatible with",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-color"
-                    ],
+                    name: ["--no-color"],
                     description: "Produce monochrome output.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--quiet-pull"
-                    ],
+                    name: ["--quiet-pull"],
                     description: "Pull without printing progress information",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-deps"
-                    ],
+                    name: ["--no-deps"],
                     description: "Don't start linked services.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--force-recreate"
-                    ],
+                    name: ["--force-recreate"],
                     description: "Recreate containers even if their configuration and image haven't changed.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--always-recreate-deps"
-                    ],
+                    name: ["--always-recreate-deps"],
                     description: "Recreate dependent containers. Incompatible with --no-recreate.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-recreate"
-                    ],
+                    name: ["--no-recreate"],
                     description: "If containers already exist, don't recreate them. Incompatible with --force-recreate and -V.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-build"
-                    ],
+                    name: ["--no-build"],
                     description: "Don't build an image, even if it's missing.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--no-start"
-                    ],
+                    name: ["--no-start"],
                     description: "Don't start the services after creating them.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--build"
-                    ],
+                    name: ["--build"],
                     description: "Build images before starting containers.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--abort-on-container-exit"
-                    ],
+                    name: ["--abort-on-container-exit"],
                     description: "Stops all containers if any container was stopped. Incompatible with -d.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--attach-dependencies"
-                    ],
+                    name: ["--attach-dependencies"],
                     description: "Attach to dependent containers.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-t",
-                        "--timeout"
-                    ],
+                    name: ["-t", "--timeout"],
                     description: "Use this timeout in seconds for container shutdown when attached or when containers are already running. (default: 10)",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "-V",
-                        "--renew-anon-volumes"
-                    ],
+                    name: ["-V", "--renew-anon-volumes"],
                     description: "Recreate anonymous volumes instead of retrieving data from the previous containers.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--remove-orphans"
-                    ],
+                    name: ["--remove-orphans"],
                     description: "Remove containers for services not defined in the Compose file.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--exit-code-from"
-                    ],
+                    name: ["--exit-code-from"],
                     description: "Return the exit code of the selected service container. Implies --abort-on-container-exit.",
-                    args: {}
+                    args: {},
                 },
                 {
-                    name: [
-                        "--scale"
-                    ],
+                    name: ["--scale"],
                     description: "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
             subcommands: [],
         },
@@ -834,180 +630,138 @@ var completionSpec = {
             description: "Show version information and quit.",
             options: [
                 {
-                    name: [
-                        "--short"
-                    ],
+                    name: ["--short"],
                     description: "Shows only Compose's version number.",
-                    args: {}
-                }
+                    args: {},
+                },
             ],
-            subcommands: []
-        }
+            subcommands: [],
+        },
     ],
     options: [
         {
-            "args": {
-                "name": "Docker Compose File",
-                generator: {
+            args: {
+                name: "Docker Compose File",
+                generators: {
                     template: "filepaths",
                     filterTemplateSuggestions: function (paths) {
-                        return paths.filter(file => {
-                            return file.name.endsWith('.yml')
-                        })
-                    }
-                }
+                        var _this = this;
+                        var suffix = ".yml";
+                        return paths.filter(function (file) {
+                            return (file.name.indexOf(suffix, _this.length - suffix.length) >= 0);
+                        });
+                    },
+                },
             },
-            "description": "Specify an alternate compose file",
-            "name": [
-                "-f",
-                "--file"
-            ],
+            description: "Specify an alternate compose file",
+            name: ["-f", "--file"],
         },
         {
-            "args": {
-                "name": "string"
+            args: {
+                name: "string",
             },
-            "description": "Specify an alternate project name",
-            "name": [
-                "-p",
-                "--project-name"
-            ]
+            description: "Specify an alternate project name",
+            name: ["-p", "--project-name"],
         },
         {
-            "args": {
-                "name": "string"
+            args: {
+                name: "string",
             },
-            "description": "Specify a profile to enable",
-            "name": [
-                "--profile"
-            ]
+            description: "Specify a profile to enable",
+            name: ["--profile"],
         },
         {
-            "args": {
-                "name": "string"
+            args: {
+                name: "string",
             },
-            "description": "Specify a context name",
-            "name": [
-                "-c",
-                "--context"
-            ]
+            description: "Specify a context name",
+            name: ["-c", "--context"],
         },
         {
-            "description": "Show more output",
-            "name": [
-                "--verbose"
-            ]
+            description: "Show more output",
+            name: ["--verbose"],
         },
         {
-            "args": {
-                "name": "LEVEL"
+            args: {
+                name: "LEVEL",
             },
-            "description": "Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
-            "name": [
-                "--log-level"
-            ]
+            description: "Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+            name: ["--log-level"],
         },
         {
-            "args": {
-                "name": "(never|always|auto)"
+            args: {
+                name: "(never|always|auto)",
             },
-            "description": "Control when to print ANSI control characters",
-            "name": [
-                "--ansi"
-            ]
+            description: "Control when to print ANSI control characters",
+            name: ["--ansi"],
         },
         {
-            "description": "Do not print ANSI control characters (DEPRECATED)",
-            "name": [
-                "--no-ansi"
-            ]
+            description: "Do not print ANSI control characters (DEPRECATED)",
+            name: ["--no-ansi"],
         },
         {
-            "description": "Print version and exit",
-            "name": [
-                "-v",
-                "--version"
-            ]
+            description: "Print version and exit",
+            name: ["-v", "--version"],
         },
         {
-            "args": {
-                "name": "HOST"
+            args: {
+                name: "HOST",
             },
-            "description": "Daemon socket to connect to",
-            "name": [
-                "-H",
-                "--host"
-            ]
+            description: "Daemon socket to connect to",
+            name: ["-H", "--host"],
         },
         {
-            "description": "Use TLS; implied by --tlsverify",
-            "name": [
-                "--tls"
-            ]
+            description: "Use TLS; implied by --tlsverify",
+            name: ["--tls"],
         },
         {
-            "args": {
-                "name": "CA_PATH"
+            args: {
+                name: "CA_PATH",
             },
-            "description": "Trust certs signed only by this CA",
-            "name": [
-                "--tlscacert"
-            ]
+            description: "Trust certs signed only by this CA",
+            name: ["--tlscacert"],
         },
         {
-            "args": {
-                "name": "CLIENT_CERT_PATH"
+            args: {
+                name: "CLIENT_CERT_PATH",
             },
-            "description": "Path to TLS certificate file",
-            "name": [
-                "--tlscert"
-            ]
+            description: "Path to TLS certificate file",
+            name: ["--tlscert"],
         },
         {
-            "args": {
-                "name": "TLS_KEY_PATH"
+            args: {
+                name: "TLS_KEY_PATH",
             },
-            "description": "Path to TLS key file",
-            "name": [
-                "--tlskey"
-            ]
+            description: "Path to TLS key file",
+            name: ["--tlskey"],
         },
         {
-            "description": "Use TLS and verify the remote",
-            "name": [
-                "--tlsverify"
-            ]
+            description: "Use TLS and verify the remote",
+            name: ["--tlsverify"],
         },
         {
-            "description": "Don't check the daemon's hostname against the",
-            "name": [
-                "--skip-hostname-check"
-            ]
+            description: "Don't check the daemon's hostname against the",
+            name: ["--skip-hostname-check"],
         },
         {
-            "args": {
-                "name": "PATH"
+            args: {
+                name: "PATH",
             },
-            "description": "Specify an alternate working directory",
-            "name": [
-                "--project-directory"
-            ]
+            description: "Specify an alternate working directory",
+            name: ["--project-directory"],
         },
         {
-            "description": "If set, Compose will attempt to convert keys",
-            "name": [
-                "--compatibility"
-            ]
+            description: "If set, Compose will attempt to convert keys",
+            name: ["--compatibility"],
         },
         {
-            "args": {
-                "name": "PATH",
+            args: {
+                name: "PATH",
                 template: "filepaths",
             },
-            "description": "Specify an alternate environment file",
-            "name": [
-                "--env-file"
-            ]
-        }
-    ]
-}
+            description: "Specify an alternate environment file",
+            name: ["--env-file"],
+        },
+    ],
+};
+
