@@ -1,3 +1,26 @@
+const searchGenerator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = context[context.length - 1];
+    return `npm search ${searchTerm}`;
+  },
+  postProcess: function (out) {
+    const allLines: Array<Record<string, string>> = out
+      .split("\n")
+      .filter(
+        (line) =>
+          !line.includes(
+            '"NAME | DESCRIPTION | AUTHOR | DATE | VERSION | KEYWORDS '
+          )
+      )
+      .map((item) => item.split("|")[0].trim());
+    return allLines;
+  },
+  trigger: function () {
+    return true;
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "npm",
   description: "Node package manager",
@@ -5,46 +28,17 @@ export const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "",
-      args: [
-        {
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() === "") {
-                return [];
-              }
-              try {
-                const packageConten = JSON.parse(out);
-                const dependencies = packageConten["dependencies"];
-                if (dependencies) {
-                  const dps = Object.keys(dependencies);
-                  return dps.map((pkg) => {
-                    const scope = pkg.indexOf("/") + 1;
-                    if (scope !== -1) {
-                      pkg = pkg.substring(scope);
-                    }
-                    const version = pkg.indexOf("@");
-                    if (version !== -1) {
-                      pkg = pkg.substring(version);
-                    }
-                    return {
-                      name: pkg,
-                      icon: `fig://icon?type=file`,
-                      description: "dependency file",
-                    };
-                  });
-                }
-              } catch (e) {}
-              return [];
-            },
-          },
-        },
-      ],
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
       options: [
         {
           name: ["-P", "--save-prod"],
           description:
-            "Package will appear in your `dependencies`. This is thedefault unless `-D` or `-O` are present.",
+            "Package will appear in your `dependencies`. This is the default unless `-D` or `-O` are present.",
         },
         {
           name: ["-D", "--save-dev"],
@@ -140,7 +134,16 @@ export const completionSpec: Fig.Spec = {
     { name: "help", description: "search npm help documentation" },
     { name: "help-search", description: "get help on npm" },
     { name: "hook", description: "manage registry hooks" },
-    { name: "i", description: "install local package" },
+    {
+      name: "i",
+      description: "install local package",
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
+    },
     {
       name: "install-ci-test",
       description: "install a project with a clean slate and run tests",
