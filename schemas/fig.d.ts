@@ -73,6 +73,13 @@ declare namespace Fig {
      * This is used in specs like rm and trash.
      */
     isDangerous?: boolean;
+    /**
+     * Specifies whether a suggestion should be hidden from results and only show is there is an exact match.
+     *
+     * @example
+     * This is used for things like "-" suggestion in cd or git checkout
+     */
+    hidden?: boolean;
   }
 
   export interface Suggestion extends BaseSuggestion {

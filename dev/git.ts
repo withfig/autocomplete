@@ -68,8 +68,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
       return out.split("\n").map((elm) => {
+        // current branch
+        if (elm.includes("*")) {
+          return {
+            name: elm.replace("*", "").trim(),
+            description: "current branch",
+            icon: "⭐️",
+            priority: 100,
+          };
+        }
+
         return {
-          name: elm.replace("*", "").trim(),
+          name: elm.trim(),
           description: "branch",
           icon: "fig://icon?type=git",
         };
@@ -2209,7 +2219,11 @@ export const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: gitGenerators.branches,
         suggestions: [
-          { name: "-", description: "switch to the last used folder" },
+          {
+            name: "-",
+            description: "switch to the last used branch",
+            icon: "fig://icon?type=git",
+          },
         ],
       },
     },

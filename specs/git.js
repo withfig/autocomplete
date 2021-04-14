@@ -61,8 +61,17 @@ var gitGenerators = {
                 return [];
             }
             return out.split("\n").map(function (elm) {
+                // current branch
+                if (elm.includes("*")) {
+                    return {
+                        name: elm.replace("*", "").trim(),
+                        description: "current branch",
+                        icon: "⭐️",
+                        priority: 100,
+                    };
+                }
                 return {
-                    name: elm.replace("*", "").trim(),
+                    name: elm.trim(),
                     description: "branch",
                     icon: "fig://icon?type=git",
                 };
@@ -2040,7 +2049,11 @@ var completionSpec = {
                 isOptional: true,
                 generators: gitGenerators.branches,
                 suggestions: [
-                    { name: "-", description: "switch to the last used folder" },
+                    {
+                        name: "-",
+                        description: "switch to the last used branch",
+                        icon: "fig://icon?type=git",
+                    },
                 ],
             },
         },
