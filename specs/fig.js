@@ -310,7 +310,11 @@ var completionSpec = {
         { name: "list", description: "list all available completion specs" },
         { name: "onboarding", description: "re-run Fig's onboarding" },
         { name: "diagnostic", description: "display diagnostic information" },
-        { name: "issue", description: "create a new Github issue in withfig/fig", icon: "fig://icon?type=github" },
+        {
+            name: "issue",
+            description: "create a new Github issue in withfig/fig",
+            icon: "fig://icon?type=github",
+        },
         { name: "quit", description: "quit the Fig application" },
         {
             name: "team:upload",
