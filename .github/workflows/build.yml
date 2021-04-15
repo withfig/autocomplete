@@ -28,6 +28,9 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.4
         with:
+          tag_prefix: spec-build-no#
+          # Bump versions in full numbers (1.0.0 -> 2.0.0)
+          default_bump: major
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
