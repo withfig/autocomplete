@@ -13,6 +13,37 @@
         "lint:fix": "npm run lint -- --fix",
         "prepare": "husky install"
     },
+    "fig": {
+        "dev": {
+            "description": "Watching and compile .ts files in ./dev",
+            "icon": "fig://template?badge=🛠",
+            "priority": 100
+        },
+        "create-boilerplate": {
+            "description": "Create a new completion spec"
+        },
+        "test": {
+            "description": "Typecheck all .ts files in /dev"
+        },
+        "copy": {
+            "description": "Copy a CLI completion spec to ~/.fig/autocomplete"
+        },
+        "copy:all": {
+            "description": "Copy all files from /specs to ~/.fig/autocomplete"
+        },
+        "build": {
+            "description": "Compile all files in /dev"
+        },
+        "lint": {
+            "description": "Check for linting issues"
+        },
+        "lint:fix": {
+            "description": "Fix linting issues"
+        },
+        "prepare": {
+            "description": "Install husky"
+        }
+    },
     "lint-staged": {
         "*.ts": [
             "eslint --fix"
