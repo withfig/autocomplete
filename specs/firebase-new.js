@@ -4,7 +4,10 @@ var completionSpec = {
     subcommands: [
         {
             name: "appdistribution:distribute",
-            description: "Usage: firebase appdistribution:distribute [options] <distribution-file>",
+            description: "upload a distribution",
+            args: {
+                name: "distribution-file",
+            },
             options: [
                 {
                     name: ["--app"],
@@ -51,7 +54,7 @@ var completionSpec = {
         },
         {
             name: "apps:android:sha:create",
-            description: "Usage: firebase apps:android:sha:create [options] <appId> <shaHash>",
+            description: "add a SHA certificate hash for a given app id.",
             args: [
                 {
                     name: "appId",
@@ -71,7 +74,7 @@ var completionSpec = {
         },
         {
             name: "apps:android:sha:delete",
-            description: "Usage: firebase apps:android:sha:delete [options] <appId> <shaId>",
+            description: "delete a SHA certificate hash for a given app id.",
             args: [
                 {
                     name: "appId",
@@ -91,7 +94,7 @@ var completionSpec = {
         },
         {
             name: "apps:create",
-            description: "Usage: firebase apps:create [options] [platform] [displayName]",
+            description: "create a new Firebase app.",
             args: [
                 {
                     name: "platform",
@@ -126,7 +129,7 @@ var completionSpec = {
         },
         {
             name: "auth:export",
-            description: "Usage: firebase auth:export [options] [dataFile]",
+            description: "Export accounts from your Firebase project into a data file",
             args: {
                 name: "dataFile",
                 template: "filepaths",
@@ -147,7 +150,7 @@ var completionSpec = {
         },
         {
             name: "auth:import",
-            description: "Usage: firebase auth:import [options] [dataFile]",
+            description: "import users into your Firebase project from a data file(.csv or .json)",
             args: {
                 name: "dataFile",
                 template: "filepaths",
@@ -207,8 +210,15 @@ var completionSpec = {
             subcommands: [],
         },
         {
+            name: "database:get",
+            description: "fetch and print JSON data at the specified path",
+            args: {
+                name: "path",
+            },
+        },
+        {
             name: "database:instances:create",
-            description: "Usage: firebase database:instances:create [options] <instanceName>",
+            description: "create a realtime database instance",
             args: {
                 name: "instanceName",
             },
@@ -228,7 +238,7 @@ var completionSpec = {
         },
         {
             name: "database:instances:list",
-            description: "Usage: firebase database:instances:list [options]",
+            description: "list realtime database instances, optionally filtered by a specified location",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -240,7 +250,7 @@ var completionSpec = {
         },
         {
             name: "database:profile",
-            description: "Usage: firebase database:profile [options]",
+            description: "profile the Realtime Database and generate a usage report",
             options: [
                 {
                     name: ["-o", "--output"],
@@ -386,7 +396,15 @@ var completionSpec = {
         },
         {
             name: "database:settings:set",
-            description: "Usage: firebase database:settings:set [options] <path> <value>",
+            description: "set the realtime database setting at path.",
+            args: [
+                {
+                    name: "path",
+                },
+                {
+                    name: "value",
+                },
+            ],
             options: [
                 {
                     name: ["--instance"],
@@ -537,7 +555,7 @@ var completionSpec = {
         },
         {
             name: "emulators:start",
-            description: "Usage: firebase emulators:start [options]",
+            description: "start the local Firebase emulators",
             options: [
                 {
                     name: ["--only"],
@@ -569,7 +587,7 @@ var completionSpec = {
         },
         {
             name: "experimental:functions:shell",
-            description: "Usage: firebase experimental:functions:shell [options]",
+            description: "launch full Node shell with emulated functions.",
             options: [
                 {
                     name: ["-p", "--port"],
@@ -586,7 +604,10 @@ var completionSpec = {
         },
         {
             name: "ext:configure",
-            description: "Usage: firebase ext:configure [options] <extensionInstanceId>",
+            description: "configure an existing extension instance",
+            args: {
+                name: "extensionInstanceId",
+            },
             options: [
                 {
                     name: ["--params"],
@@ -754,9 +775,11 @@ var completionSpec = {
         },
         {
             name: "functions:config:set",
-            description: "set environment config with key=value syntax      ",
+            description: "set environment config with key=value syntax",
             args: {
-                name: "path",
+                name: "values",
+                variadic: true,
+                description: "key=value",
             },
             options: [
                 {
@@ -769,7 +792,7 @@ var completionSpec = {
         },
         {
             name: "functions:log",
-            description: "Usage: firebase functions:log [options]",
+            description: "read logs from deployed functions",
             options: [
                 {
                     name: ["--only"],
@@ -796,7 +819,7 @@ var completionSpec = {
         },
         {
             name: "functions:shell",
-            description: "Usage: firebase functions:shell [options]",
+            description: "launch full Node shell with emulated functions",
             options: [
                 {
                     name: ["-p", "--port"],
@@ -818,7 +841,7 @@ var completionSpec = {
         },
         {
             name: "help",
-            description: "Usage: firebase help [options] [command]",
+            description: "display help information",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -830,7 +853,10 @@ var completionSpec = {
         },
         {
             name: "hosting:channel:create",
-            description: "Usage: firebase hosting:channel:create [options] [channelId]",
+            description: "create a Firebase Hosting channel",
+            args: {
+                name: "channelId",
+            },
             options: [
                 {
                     name: ["-e", "--expires"],
@@ -852,7 +878,10 @@ var completionSpec = {
         },
         {
             name: "hosting:channel:delete",
-            description: "Usage: firebase hosting:channel:delete [options] <channelId>",
+            description: "delete a Firebase Hosting channel",
+            args: {
+                name: "channelId",
+            },
             options: [
                 {
                     name: ["--site"],
@@ -874,7 +903,10 @@ var completionSpec = {
         },
         {
             name: "hosting:channel:deploy",
-            description: "Usage: firebase hosting:channel:deploy [options] [channelId]",
+            description: "deploy to a specific Firebase Hosting channel",
+            args: {
+                name: "channelId",
+            },
             options: [
                 {
                     name: ["-e", "--expires"],
@@ -906,7 +938,7 @@ var completionSpec = {
         },
         {
             name: "hosting:channel:list",
-            description: "Usage: firebase hosting:channel:list [options]",
+            description: "list all Firebase Hosting channels for your project",
             options: [
                 {
                     name: ["--site"],
@@ -923,7 +955,10 @@ var completionSpec = {
         },
         {
             name: "hosting:channel:open",
-            description: "Usage: firebase hosting:channel:open [options] [channelId]",
+            description: "opens the URL for a Firebase Hosting channel",
+            args: {
+                name: "channelId",
+            },
             options: [
                 {
                     name: ["--site"],
@@ -940,7 +975,15 @@ var completionSpec = {
         },
         {
             name: "hosting:clone",
-            description: "Usage: firebase hosting:clone [options] <source> <targetChannel>",
+            description: "clone a version from one site to another",
+            args: [
+                {
+                    name: "source",
+                },
+                {
+                    name: "targetChannel",
+                },
+            ],
             options: [
                 {
                     name: ["-h", "--help"],
@@ -952,7 +995,7 @@ var completionSpec = {
         },
         {
             name: "hosting:disable",
-            description: "Usage: firebase hosting:disable [options]",
+            description: "stop serving web traffic to your Firebase Hosting site",
             options: [
                 {
                     name: ["-y", "--confirm"],
@@ -974,7 +1017,10 @@ var completionSpec = {
         },
         {
             name: "hosting:sites:create",
-            description: "Usage: firebase hosting:sites:create [options] [siteId]",
+            description: "create a Firebase Hosting site",
+            args: {
+                name: "siteId",
+            },
             options: [
                 {
                     name: ["--app"],
@@ -991,7 +1037,10 @@ var completionSpec = {
         },
         {
             name: "hosting:sites:delete",
-            description: "Usage: firebase hosting:sites:delete [options] <siteId>",
+            description: "delete a Firebase Hosting site",
+            args: {
+                name: "siteId",
+            },
             options: [
                 {
                     name: ["-f", "--force"],
@@ -1008,7 +1057,10 @@ var completionSpec = {
         },
         {
             name: "hosting:sites:get",
-            description: "Usage: firebase hosting:sites:get [options] <siteId>",
+            description: "print info about a Firebase Hosting site",
+            args: {
+                name: "siteId",
+            },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1020,7 +1072,7 @@ var completionSpec = {
         },
         {
             name: "hosting:sites:list",
-            description: "Usage: firebase hosting:sites:list [options]",
+            description: "list Firebase Hosting sites",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1032,7 +1084,7 @@ var completionSpec = {
         },
         {
             name: "init",
-            description: "Usage: firebase init [options] [feature]",
+            description: "setup a Firebase project in the current directory",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1044,7 +1096,7 @@ var completionSpec = {
         },
         {
             name: "login",
-            description: "Usage: firebase login [options]",
+            description: "log the CLI into Firebase",
             options: [
                 {
                     name: ["--no-localhost"],
@@ -1066,7 +1118,8 @@ var completionSpec = {
         },
         {
             name: "login:add",
-            description: "Usage: firebase login:add [options] [email]",
+            description: "authorize the CLI for an additional account",
+            args: { name: "email" },
             options: [
                 {
                     name: ["--no-localhost"],
@@ -1083,7 +1136,7 @@ var completionSpec = {
         },
         {
             name: "login:ci",
-            description: "Usage: firebase login:ci [options]",
+            description: "generate an access token for use in non-interactive environments",
             options: [
                 {
                     name: ["--no-localhost"],
@@ -1100,7 +1153,7 @@ var completionSpec = {
         },
         {
             name: "login:list",
-            description: "Usage: firebase login:list [options]",
+            description: "list authorized CLI accounts",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1112,7 +1165,10 @@ var completionSpec = {
         },
         {
             name: "login:use",
-            description: "Usage: firebase login:use [options] <email>",
+            description: "set the default account to use for this project directory",
+            args: {
+                name: "email",
+            },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1124,7 +1180,10 @@ var completionSpec = {
         },
         {
             name: "logout",
-            description: "Usage: firebase logout [options] [email]",
+            description: "log the CLI out of Firebase",
+            args: {
+                name: "email",
+            },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1136,7 +1195,10 @@ var completionSpec = {
         },
         {
             name: "open",
-            description: "Usage: firebase open [options] [link]",
+            description: "quickly open a browser to relevant project resources",
+            args: {
+                name: "link",
+            },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1148,7 +1210,8 @@ var completionSpec = {
         },
         {
             name: "projects:addfirebase",
-            description: "Usage: firebase projects:addfirebase [options] [projectId]",
+            description: "add Firebase resources to a Google Cloud Platform project",
+            args: { name: "projectId" },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1160,7 +1223,8 @@ var completionSpec = {
         },
         {
             name: "projects:create",
-            description: "Usage: firebase projects:create [options] [projectId]",
+            description: "creates a new Google Cloud Platform project, then adds Firebase resources to the project",
+            args: { name: "projectId" },
             options: [
                 {
                     name: ["-n", "--display-name"],
@@ -1187,7 +1251,7 @@ var completionSpec = {
         },
         {
             name: "projects:list",
-            description: "Usage: firebase projects:list [options]",
+            description: "list all Firebase projects you have access to",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1199,7 +1263,7 @@ var completionSpec = {
         },
         {
             name: "remoteconfig:get",
-            description: "Usage: firebase remoteconfig:get [options]",
+            description: "get a Firebase project's Remote Config template",
             options: [
                 {
                     name: ["-v", "--version-number"],
@@ -1221,7 +1285,7 @@ var completionSpec = {
         },
         {
             name: "remoteconfig:rollback",
-            description: "Usage: firebase remoteconfig:rollback [options]",
+            description: "roll back a project's published Remote Config template to the one specified by the provided version number",
             options: [
                 {
                     name: ["-v", "--version-number"],
@@ -1243,7 +1307,7 @@ var completionSpec = {
         },
         {
             name: "remoteconfig:versions:list",
-            description: "Usage: firebase remoteconfig:versions:list [options]",
+            description: "get a list of Remote Config template versions that have been published for a Firebase project",
             options: [
                 {
                     name: ["--limit"],
@@ -1260,7 +1324,7 @@ var completionSpec = {
         },
         {
             name: "serve",
-            description: "Usage: firebase serve [options]",
+            description: "start a local server for your static assets",
             options: [
                 {
                     name: ["-p", "--port"],
@@ -1292,7 +1356,7 @@ var completionSpec = {
         },
         {
             name: "setup:emulators:database",
-            description: "Usage: firebase setup:emulators:database [options]",
+            description: "downloads the database emulator",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1304,7 +1368,7 @@ var completionSpec = {
         },
         {
             name: "setup:emulators:firestore",
-            description: "Usage: firebase setup:emulators:firestore [options]",
+            description: "downloads the firestore emulator",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1316,7 +1380,7 @@ var completionSpec = {
         },
         {
             name: "setup:emulators:pubsub",
-            description: "Usage: firebase setup:emulators:pubsub [options]",
+            description: "downloads the pubsub emulator",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1328,7 +1392,7 @@ var completionSpec = {
         },
         {
             name: "setup:emulators:ui",
-            description: "Usage: firebase setup:emulators:ui [options]",
+            description: "downloads the ui emulator",
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1340,7 +1404,8 @@ var completionSpec = {
         },
         {
             name: "target",
-            description: "Usage: firebase target [options] [type]",
+            description: "display configured deploy targets for the current project",
+            args: { name: "type" },
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1352,7 +1417,19 @@ var completionSpec = {
         },
         {
             name: "target:apply",
-            description: "Usage: firebase target:apply [options] <type> <name> <resources...>",
+            description: "apply a deploy target to a resource",
+            args: [
+                {
+                    name: "type",
+                },
+                {
+                    name: "name",
+                },
+                {
+                    name: "resources",
+                    variadic: true,
+                },
+            ],
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1364,7 +1441,15 @@ var completionSpec = {
         },
         {
             name: "target:clear",
-            description: "Usage: firebase target:clear [options] <type> <target>",
+            description: "clear all resources from a named resource target",
+            args: [
+                {
+                    name: "type",
+                },
+                {
+                    name: "target",
+                },
+            ],
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1376,7 +1461,15 @@ var completionSpec = {
         },
         {
             name: "target:remove",
-            description: "Usage: firebase target:remove [options] <type> <resource>",
+            description: "remove a resource target",
+            args: [
+                {
+                    name: "type",
+                },
+                {
+                    name: "resource",
+                },
+            ],
             options: [
                 {
                     name: ["-h", "--help"],
@@ -1388,7 +1481,10 @@ var completionSpec = {
         },
         {
             name: "use",
-            description: "Usage: firebase use [options] [alias_or_project_id]",
+            description: "set an active Firebase project for your working directory",
+            args: {
+                name: "alias or project id",
+            },
             options: [
                 {
                     name: ["--add"],
