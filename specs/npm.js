@@ -83,7 +83,7 @@ var completionSpec = {
                                     var keys = Object.keys(scripts).map(function (key) {
                                         return {
                                             name: key,
-                                            icon: "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
+                                            icon: "fig://icon?type=npm",
                                         };
                                     });
                                     return keys;
