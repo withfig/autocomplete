@@ -153,6 +153,13 @@ declare namespace Fig {
      * script, see `isCommand` and `isScript` in {@link {https://withfig.com/docs/autocomplete/api#arg-object | Arg}.
      */
     loadSpec?: string;
+    /**
+     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically
+     *
+     * @example
+     * Laravel artisan has its own subcommands but also lets you define your own completion spec.
+     */
+    generateSpec?: Function<string[], Promise<Subcommand[]>>;
   }
 
   export interface Option extends BaseSuggestion {
