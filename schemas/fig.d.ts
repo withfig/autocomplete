@@ -159,7 +159,7 @@ declare namespace Fig {
      * @example
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
-    generateSpec?: Function<string[], Promise<Subcommand[]>>;
+    generateSpec?: Function<string[], Promise<Spec>>;
   }
 
   export interface Option extends BaseSuggestion {
