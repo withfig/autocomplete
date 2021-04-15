@@ -3,16 +3,10 @@ var searchGenerator = {
         if (context[context.length - 1] === "")
             return "";
         var searchTerm = context[context.length - 1];
-        return "npm search " + searchTerm;
+        return "curl -s -H \"Accept: application/json\" \"https://api.npms.io/v2/search?q=" + searchTerm + "&size=250\"";
     },
     postProcess: function (out) {
-        var allLines = out
-            .split("\n")
-            .filter(function (line) {
-            return !line.includes('"NAME | DESCRIPTION | AUTHOR | DATE | VERSION | KEYWORDS ');
-        })
-            .map(function (item) { return item.split("|")[0].trim(); });
-        return allLines;
+        return JSON.parse(out).results.map(function (item) { return item.package.name; });
     },
     trigger: function () {
         return true;

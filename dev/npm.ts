@@ -1,20 +1,13 @@
-const searchGenerator = {
+const searchGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";
     const searchTerm = context[context.length - 1];
-    return `npm search ${searchTerm}`;
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=250"`;
   },
   postProcess: function (out) {
-    const allLines: Array<Record<string, string>> = out
-      .split("\n")
-      .filter(
-        (line) =>
-          !line.includes(
-            '"NAME | DESCRIPTION | AUTHOR | DATE | VERSION | KEYWORDS '
-          )
-      )
-      .map((item) => item.split("|")[0].trim());
-    return allLines;
+    return JSON.parse(out).results.map(
+      (item) => item.package.name
+    ) as Fig.Suggestion[];
   },
   trigger: function () {
     return true;
