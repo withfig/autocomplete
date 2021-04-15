@@ -67,7 +67,7 @@ var gitGenerators = {
                         name: elm.replace("*", "").trim(),
                         description: "current branch",
                         icon: "⭐️",
-                        priority: 100,
+                        // priority: 100,
                     };
                 }
                 return {
@@ -79,10 +79,29 @@ var gitGenerators = {
         },
     },
     remotes: {
-        script: "git remote",
+        script: "git remote -v",
         postProcess: function (out) {
-            return out.split("\n").map(function (remote) {
-                return { name: remote, description: "remote" };
+            var remoteURLs = out.split("\n").reduce(function (dict, line) {
+                var pair = line.split("\t");
+                var remote = pair[0];
+                console.log(remote, pair);
+                var url = pair[1].split(" ")[0];
+                dict[remote] = url;
+                return dict;
+            }, {});
+            return Object.keys(remoteURLs).map(function (remote) {
+                var url = remoteURLs[remote];
+                var icon = "box";
+                if (url.includes("github.com")) {
+                    icon = "github";
+                }
+                if (url.includes("gitlab.com")) {
+                    icon = "gitlab";
+                }
+                if (url.includes("heroku.com")) {
+                    icon = "heroku";
+                }
+                return { name: remote, icon: "fig://icon?type=" + icon, description: "remote" };
             });
         },
     },
@@ -914,6 +933,7 @@ var completionSpec = {
             ],
             args: {
                 name: "commit",
+                isOptional: true,
                 suggestions: [{ name: "HEAD" }],
                 generators: gitGenerators.commits,
             },
