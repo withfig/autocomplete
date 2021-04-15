@@ -255,6 +255,18 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "app.hideMenubarIcon",
+          icon: "fig://icon?type=commandkey",
+          description: "Hide Fig's icon ◧ in the mac status bar",
+          args: {
+            name: "bool",
+            suggestions: [
+              { name: "true", icon: "fig://icon?type=string" },
+              { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
           name: "autocomplete.theme",
           icon: "fig://icon?type=commandkey",
           description: "Change Fig's theme",
