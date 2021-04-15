@@ -1001,6 +1001,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "commit",
+        isOptional: true,
         suggestions: [{ name: "HEAD" }],
         generators: gitGenerators.commits,
       },
