@@ -10,7 +10,7 @@
   "commit": true,
   "contributorsPerLine": 10,
   "commitConvention": "gitmoji",
-  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\" style=\"border-radius: 100%;\"/></a>",
+  "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\" style=\"border-radius: 100% !important;\"/></a>",
   "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors)",
   "contributors": [
     {
