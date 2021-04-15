@@ -74,7 +74,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
             name: elm.replace("*", "").trim(),
             description: "current branch",
             icon: "⭐️",
-            priority: 100,
+            // priority: 100,
           };
         }
 
@@ -1001,6 +1001,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "commit",
+        isOptional: true,
         suggestions: [{ name: "HEAD" }],
         generators: gitGenerators.commits,
       },

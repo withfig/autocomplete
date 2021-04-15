@@ -73,6 +73,13 @@ declare namespace Fig {
      * This is used in specs like rm and trash.
      */
     isDangerous?: boolean;
+    /**
+     * Specifies whether a suggestion should be hidden from results and only show is there is an exact match.
+     *
+     * @example
+     * This is used for things like "-" suggestion in cd or git checkout
+     */
+    hidden?: boolean;
   }
 
   export interface Suggestion extends BaseSuggestion {
@@ -146,6 +153,13 @@ declare namespace Fig {
      * script, see `isCommand` and `isScript` in {@link {https://withfig.com/docs/autocomplete/api#arg-object | Arg}.
      */
     loadSpec?: string;
+    /**
+     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically
+     *
+     * @example
+     * Laravel artisan has its own subcommands but also lets you define your own completion spec.
+     */
+    generateSpec?: Function<string[], Promise<Subcommand[]>>;
   }
 
   export interface Option extends BaseSuggestion {
