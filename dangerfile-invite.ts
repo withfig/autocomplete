@@ -13,15 +13,14 @@ schedule(async () => {
 
   const org = "withfig";
   const inviteMarkdown = `
-  @${username} Thanks a lot for contributing to Fig! We've invited you to join 
-  the Fig GitHub organization – no pressure to accept! If you'd like more 
-  information on what that means, check out our [contributor guidelines][c] and
-  feel free to reach out to our team with any questions.
-  Click [here](https://figcommunity.slack.com/join/shared_invite/zt-fupa9n8g-sfHm8MyBn1DBaCj8SoIxSA#/shared-invite/email) to join our slack community.
-  Please add @${username} for code!
+  @${username} Hey! Thanks so much for your contribution! 
 
-  [c]: https://github.com/withfig/autocomplete/blob/master/CONTRIBUTING.md
-  `;
+As a token of our appreciation, we've invited you to join the Fig GitHub organization. Accepting means you can display Fig's logo on your Github profile's list of member orgs. We also have a special #contributors channel in our [community Slack](https://withfig.com/community) and we'd love for you to join.
+
+Excited to have you in the community!
+
+Matt & Brendan
+`;
 
   try {
     // This throws if the user isn't a member of the org yet. If it doesn't
