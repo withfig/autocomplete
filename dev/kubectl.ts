@@ -25,6 +25,22 @@ const sharedArgs = {
       splitOn: "\n",
     },
   },
+  listKubeConfContexts: {
+    name: "Context",
+    generators: {
+      script: function (context) {
+        console.log(context);
+        if (context.includes("--kubeconfig")) {
+          const index = context.indexOf("--kubeconfig");
+          return `kubectl config --kubeconfig=${
+            context[index + 1]
+          } get-contexts -o name`;
+        }
+        return "kubectl config get-contexts -o name";
+      },
+      splitOn: "\n",
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -1013,11 +1029,33 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-context",
           description: "Sets a context entry in kubeconfig",
+          args: sharedArgs.listKubeConfContexts,
           options: [
             {
               name: ["--current"],
               description: "Modify the current context",
               args: {},
+            },
+            {
+              name: ["--cluster=cluster_nickname"],
+              insertValue: "--cluster=",
+              args: {
+                name: "cluster_nickname",
+              },
+            },
+            {
+              name: ["--user=user_nickname"],
+              insertValue: "--user=",
+              args: {
+                name: "user_nickname",
+              },
+            },
+            {
+              name: ["--namespace=namespace"],
+              insertValue: "--namespace=",
+              args: {
+                name: "namespace",
+              },
             },
           ],
           subcommands: [],
@@ -1092,6 +1130,24 @@ export const completionSpec: Fig.Spec = {
             },
           ],
           subcommands: [],
+        },
+        {
+          name: "unset",
+          description: "Unsets an individual value in a kubeconfig file",
+          subcommands: [],
+        },
+        {
+          name: "use-context",
+          description: "Sets the current-context in a kubeconfig file",
+          args: sharedArgs.listKubeConfContexts,
+          options: [],
+          subcommands: [],
+        },
+        {
+          name: "view",
+          description:
+            "Display merged kubeconfig settings or a specified kubeconfig file",
+          options: [],
         },
       ],
     },
