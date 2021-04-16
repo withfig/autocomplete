@@ -68,8 +68,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
       return out.split("\n").map((elm) => {
+        // current branch
+        if (elm.includes("*")) {
+          return {
+            name: elm.replace("*", "").trim(),
+            description: "current branch",
+            icon: "⭐️",
+            // priority: 100,
+          };
+        }
+
         return {
-          name: elm.replace("*", "").trim(),
+          name: elm.trim(),
           description: "branch",
           icon: "fig://icon?type=git",
         };
@@ -78,10 +88,37 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   remotes: {
-    script: "git remote",
+    script: "git remote -v",
     postProcess: function (out) {
-      return out.split("\n").map((remote) => {
-        return { name: remote, description: "remote" };
+      const remoteURLs = out.split("\n").reduce((dict, line) => {
+        const pair = line.split("\t");
+        const remote = pair[0];
+        console.log(remote, pair);
+        const url = pair[1].split(" ")[0];
+
+        dict[remote] = url;
+        return dict;
+      }, {});
+
+      return Object.keys(remoteURLs).map((remote) => {
+        const url = remoteURLs[remote];
+        let icon = "box";
+        if (url.includes("github.com")) {
+          icon = "github";
+        }
+
+        if (url.includes("gitlab.com")) {
+          icon = "gitlab";
+        }
+
+        if (url.includes("heroku.com")) {
+          icon = "heroku";
+        }
+        return {
+          name: remote,
+          icon: `fig://icon?type=${icon}`,
+          description: "remote",
+        };
       });
     },
   },
@@ -991,6 +1028,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "commit",
+        isOptional: true,
         suggestions: [{ name: "HEAD" }],
         generators: gitGenerators.commits,
       },

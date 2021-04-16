@@ -67,11 +67,12 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "run",
-      description: "",
+      description: "run arbitrary package scripts",
       args: [
         {
           generators: {
-            script: "cat package.json",
+            script:
+              "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
             // splitOn: "\n",
             postProcess: function (out) {
               if (out.trim() == "") {
@@ -81,13 +82,16 @@ export const completionSpec: Fig.Spec = {
               try {
                 const packageContent = JSON.parse(out);
                 const scripts = packageContent["scripts"];
+                const figCompletions = packageContent["fig"];
+
                 if (scripts) {
                   const keys = Object.keys(scripts).map((key) => {
-                    return {
-                      name: key,
-                      icon:
-                        "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
-                    };
+                    return Object.assign(
+                      {},
+                      { icon: "fig://icon?type=npm" },
+                      figCompletions[key],
+                      { name: key, insertValue: key }
+                    ); // ensure that name and insertValue are defined by "scripts" dict
                   });
                   return keys;
                 }

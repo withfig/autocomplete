@@ -2,7 +2,7 @@ var completionSpec = {
     name: "code",
     description: "Visual Studio Code",
     args: {
-        template: "filepaths",
+        template: ["filepaths", "folders"],
     },
     options: [
         {

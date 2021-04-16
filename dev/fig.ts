@@ -255,6 +255,30 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "app.hideMenubarIcon",
+          icon: "fig://icon?type=commandkey",
+          description: "Hide Fig's icon ◧ in the mac status bar",
+          args: {
+            name: "bool",
+            suggestions: [
+              { name: "true", icon: "fig://icon?type=string" },
+              { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
+          name: "autocomplete.theme",
+          icon: "fig://icon?type=commandkey",
+          description: "Change Fig's theme",
+          args: {
+            name: "mode",
+            suggestions: [
+              { name: "light", icon: "fig://icon?type=string" },
+              { name: "dark", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
           name: "autocomplete.width",
           icon: "fig://icon?type=commandkey",
           insertValue: "autocomplete.width ",
@@ -322,6 +346,14 @@ export const completionSpec: Fig.Spec = {
     { name: "list", description: "list all available completion specs" },
     { name: "onboarding", description: "re-run Fig's onboarding" },
     { name: "diagnostic", description: "display diagnostic information" },
+    {
+      name: "issue",
+      description: "create a new Github issue in withfig/fig",
+      icon: "fig://icon?type=github",
+    },
+
+    { name: "quit", description: "quit the Fig application" },
+
     {
       name: "team:upload",
       description: "share an completion spec with your team",
