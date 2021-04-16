@@ -1463,6 +1463,9 @@ var completionSpec = {
                 {
                     name: "deployment",
                     description: "Create a deployment with the specified name.",
+                    args: {
+                        name: "NAME",
+                    },
                     options: [
                         {
                             name: ["--allow-missing-template-keys"],
