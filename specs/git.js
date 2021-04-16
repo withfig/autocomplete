@@ -101,7 +101,11 @@ var gitGenerators = {
                 if (url.includes("heroku.com")) {
                     icon = "heroku";
                 }
-                return { name: remote, icon: "fig://icon?type=" + icon, description: "remote" };
+                return {
+                    name: remote,
+                    icon: "fig://icon?type=" + icon,
+                    description: "remote",
+                };
             });
         },
     },
