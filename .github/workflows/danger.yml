@@ -4,8 +4,6 @@ on: [pull_request]
 jobs:
   danger:
     runs-on: ubuntu-latest
-    env:
-      DANGER_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -15,10 +13,10 @@ jobs:
       - run: yarn install  --frozen-lockfile
       - run: yarn danger ci
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn danger ci -d ./dangerfile-greeting.ts
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn danger ci -d ./dangerfile-invite.ts
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}          
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
