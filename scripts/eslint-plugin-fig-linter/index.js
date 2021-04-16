@@ -11,7 +11,8 @@ module.exports = {
       rules: {
         "fig-linter/no-malicious-script": "error",
         "fig-linter/no-name-equals": "error",
-        "fig-linter/no-invalid-option": "error",
+        // TODO: Re-Enable Rule if we got a proper flag for that
+        "fig-linter/no-invalid-option": "off",
         "fig-linter/no-invalid-name": "error",
       },
     },

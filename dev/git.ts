@@ -174,8 +174,7 @@ export const completionSpec: Fig.Spec = {
       description: "Pass a config parameter to the command",
     },
     {
-      name: "--exec-path[=<path>]",
-      insertValue: "--exec-path",
+      name: "--exec-path",
       args: {
         name: "path",
         isOptional: true,
@@ -212,8 +211,7 @@ export const completionSpec: Fig.Spec = {
       description: "Treat the repository as a bare repository",
     },
     {
-      name: "--git-dir=<path>",
-      insertValue: "--git-dir=",
+      name: "--git-dir",
       args: {
         name: "path",
         template: "folders",
@@ -221,8 +219,7 @@ export const completionSpec: Fig.Spec = {
       description: "Set the path to the repository dir (`.git`)",
     },
     {
-      name: "--work-tree=<path>",
-      insertValue: "--work-tree=",
+      name: "--work-tree",
       args: {
         name: "path",
         template: "folders",
@@ -230,8 +227,7 @@ export const completionSpec: Fig.Spec = {
       description: "Set working tree path",
     },
     {
-      name: "--namespace=<name>",
-      insertValue: "--namespace=",
+      name: "--namespace",
       args: {
         name: "name",
       },
