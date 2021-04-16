@@ -8,14 +8,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: danger/danger-js@9.1.6
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
       - uses: danger/danger-js@9.1.6
         with:
           args: "--dangerfile ./dangerfile-greeting.ts"
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
       - uses: danger/danger-js@9.1.6
         with:
           args: "--dangerfile ./dangerfile-invite.ts"
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}          
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}          
