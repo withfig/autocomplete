@@ -12,6 +12,7 @@ var generators = {
         },
     },
 };
+// fake-change file
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
@@ -60,7 +61,7 @@ var completionSpec = {
                                 icon: "🍺",
                                 priority: (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
                                     ? 0
-                                    : 100,
+                                    : 51,
                             };
                         });
                     },

@@ -8,7 +8,7 @@ const listTargets: Fig.Generator = {
         name: lines[i],
         description: "make target",
         icon: "🎯",
-        priority: 99,
+        priority: 80,
       });
     }
     return targets;
