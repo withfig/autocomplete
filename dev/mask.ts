@@ -1,4 +1,5 @@
 // To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
@@ -11,9 +12,9 @@ export const completion: Fig.Spec = {
     var out;
     // mask --maskfile path/tp/thing build
     if (maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > context.length) {
-      var out = await executeShellCommand("cat maskfile.md 2> /dev/null");
+      out = await executeShellCommand("cat maskfile.md 2> /dev/null");
     } else {
-      var out = await executeShellCommand(
+      out = await executeShellCommand(
         `cat ${context[maskfileLocationIdx + 1]} 2> /dev/null`
       );
     }
