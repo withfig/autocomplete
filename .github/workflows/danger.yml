@@ -6,17 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: danger/danger-js@9.1.6
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+      - uses: danger/danger-js@9.1.6
         with:
-          node-version: 14.x
-      - run: npm install -g yarn
-      - run: yarn install  --frozen-lockfile
-      - run: yarn danger ci
+          args: "--dangerfile ./dangerfile-greeting.ts"
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
-      - run: yarn danger ci -d ./dangerfile-greeting.ts
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
-      - run: yarn danger ci -d ./dangerfile-invite.ts
+      - uses: danger/danger-js@9.1.6
+        with:
+          args: "--dangerfile ./dangerfile-invite.ts"
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.DANGER_API_TOKEN }}          
