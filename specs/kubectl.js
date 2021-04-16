@@ -1,26 +1,28 @@
 // TODO: Handle if not connected to a k8s cluster
-var resourcesArg = {
-    name: "Resource Type",
-    generators: {
-        script: "kubectl api-resources -o name",
-        splitOn: "\n",
-    },
-};
-var runningPodsArg = {
-    name: "Running Pods",
-    generators: {
-        script: "kubectl get pods --field-selector=status.phase=Running -o name",
-        splitOn: "\n",
-    },
-};
-var resourceSuggestionsFromResourceType = {
-    name: "Resource",
-    generators: {
-        script: function (context) {
-            var resourceType = context[context.length - 2];
-            return "kubectl get " + resourceType + " -o custom-columns=:.metadata.name";
+var sharedArgs = {
+    resourcesArg: {
+        name: "Resource Type",
+        generators: {
+            script: "kubectl api-resources -o name",
+            splitOn: "\n",
         },
-        splitOn: "\n",
+    },
+    runningPodsArg: {
+        name: "Running Pods",
+        generators: {
+            script: "kubectl get pods --field-selector=status.phase=Running -o name",
+            splitOn: "\n",
+        },
+    },
+    resourceSuggestionsFromResourceType: {
+        name: "Resource",
+        generators: {
+            script: function (context) {
+                var resourceType = context[context.length - 2];
+                return "kubectl get " + resourceType + " -o custom-columns=:.metadata.name";
+            },
+            splitOn: "\n",
+        },
     },
 };
 var completionSpec = {
@@ -95,7 +97,7 @@ var completionSpec = {
             name: "annotate",
             description: "Update the annotations on one or more resources",
             args: [
-                resourcesArg,
+                sharedArgs.resourcesArg,
                 {
                     name: "KEY=VAL",
                     variadic: true,
@@ -437,7 +439,7 @@ var completionSpec = {
         {
             name: "attach",
             description: "Attach to a process that is already running inside an existing container.",
-            args: runningPodsArg,
+            args: sharedArgs.runningPodsArg,
             options: [
                 {
                     name: ["-c", "--container"],
@@ -2299,7 +2301,10 @@ var completionSpec = {
         {
             name: "describe",
             description: "Show details of a specific resource or group of resources",
-            args: [resourcesArg, resourceSuggestionsFromResourceType],
+            args: [
+                sharedArgs.resourcesArg,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
                 {
                     name: ["-A", "--all-namespaces"],
@@ -2493,7 +2498,7 @@ var completionSpec = {
         {
             name: "exec",
             description: "Execute a command in a container.",
-            args: runningPodsArg,
+            args: sharedArgs.runningPodsArg,
             options: [
                 {
                     name: ["-c", "--container"],
@@ -2526,7 +2531,7 @@ var completionSpec = {
         {
             name: "explain",
             description: "List the fields for supported resources",
-            args: resourcesArg,
+            args: sharedArgs.resourcesArg,
             options: [
                 {
                     name: ["--api-version"],
@@ -2661,7 +2666,7 @@ var completionSpec = {
         {
             name: "get",
             description: "Display one or many resources",
-            args: resourcesArg,
+            args: sharedArgs.resourcesArg,
             options: [
                 {
                     name: ["-A", "--all-namespaces"],
@@ -4086,7 +4091,7 @@ var completionSpec = {
                             args: {},
                         },
                         {
-                            name: ["--wanker"],
+                            name: ["--template"],
                             description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
                             args: {},
                         },
