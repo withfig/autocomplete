@@ -41,6 +41,13 @@ const sharedArgs = {
       splitOn: "\n",
     },
   },
+  listDeployments: {
+    name: "Deployments",
+    generators: {
+      script: "kubectl get deployments.apps -o name",
+      splitOn: "\n",
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -3735,6 +3742,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "history",
           description: "View previous rollout revisions and configurations.",
+          args: sharedArgs.listDeployments,
           options: [
             {
               name: ["--allow-missing-template-keys"],
@@ -3784,6 +3792,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "pause",
           description: "Mark the provided resource as paused",
+          args: sharedArgs.listDeployments,
           options: [
             {
               name: ["--allow-missing-template-keys"],
@@ -3913,6 +3922,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "status",
           description: "Show the status of the rollout.",
+          args: sharedArgs.listDeployments,
           options: [
             {
               name: ["-f", "--filename"],
@@ -3947,6 +3957,51 @@ export const completionSpec: Fig.Spec = {
             {
               name: ["-w", "--watch"],
               description: "Watch the status of the rollout until it's done.",
+              args: {},
+            },
+          ],
+          subcommands: [],
+        },
+        {
+          name: "undo",
+          description: "Rollback to a previous rollout.",
+          args: sharedArgs.listDeployments,
+          options: [
+            {
+              name: ["--to_revision=revision"],
+              insertValue: "--to_revision=",
+              args: {},
+            },
+            {
+              name: "--dry-run=strategy",
+              insertValue: "--dry-run=",
+              args: {
+                name: "Strategy",
+                suggestions: ["none", "client", "server"],
+              },
+            },
+            {
+              name: ["-f", "--filename"],
+              description:
+                "Filename, directory, or URL to files identifying the resource to get from a server.",
+              args: {},
+            },
+            {
+              name: ["-k", "--kustomize"],
+              description:
+                "Process the kustomization directory. This flag can't be used together with -f or -R.",
+              args: {},
+            },
+            {
+              name: ["-R", "--recursive"],
+              description:
+                "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
+              args: {},
+            },
+            {
+              name: ["--timeout"],
+              description:
+                "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
               args: {},
             },
           ],
