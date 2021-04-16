@@ -1,0 +1,22 @@
+name: Check PR
+
+on: [pull_request]
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm install -g yarn
+      - run: yarn install  --frozen-lockfile
+      - run: yarn danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+      - run: yarn danger ci -d ./dangerfile-greeting.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}
+      - run: yarn danger ci -d ./dangerfile-invite.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANGER_API_TOKEN }}          
