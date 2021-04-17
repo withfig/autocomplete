@@ -2,6 +2,8 @@ name: Update Docs && Website
 
 on: 
   push:
+    branches:
+      - "master"
     paths:
       - "schemas/fig.d.ts"
 
