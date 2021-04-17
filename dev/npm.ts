@@ -80,22 +80,24 @@ export const completionSpec: Fig.Spec = {
               }
 
               try {
-                const packageContent = JSON.parse(out);
-                const scripts = packageContent["scripts"];
-                const figCompletions = packageContent["fig"];
+                var packageContent = JSON.parse(out);
+                var scripts = packageContent["scripts"];
+                var figCompletions = packageContent["fig"];
 
                 if (scripts) {
                   const keys = Object.keys(scripts).map((key) => {
                     return Object.assign(
                       {},
                       { icon: "fig://icon?type=npm" },
-                      figCompletions[key],
+                      (figCompletions || {})[key], // need the || {} otherwise it errors
                       { name: key, insertValue: key }
                     ); // ensure that name and insertValue are defined by "scripts" dict
                   });
                   return keys;
                 }
-              } catch (e) {}
+              } catch (e) {
+                console.error(e);
+              }
 
               return [];
             },

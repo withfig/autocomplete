@@ -79,15 +79,18 @@ var completionSpec = {
                             try {
                                 var packageContent = JSON.parse(out);
                                 var scripts = packageContent["scripts"];
-                                var figCompletions_1 = packageContent["fig"];
+                                var figCompletions = packageContent["fig"];
                                 if (scripts) {
                                     var keys = Object.keys(scripts).map(function (key) {
-                                        return Object.assign({}, { icon: "fig://icon?type=npm" }, figCompletions_1[key], { name: key, insertValue: key }); // ensure that name and insertValue are defined by "scripts" dict
+                                        return Object.assign({}, { icon: "fig://icon?type=npm" }, (figCompletions || {})[key], // need the || {} otherwise it errors
+                                        { name: key, insertValue: key }); // ensure that name and insertValue are defined by "scripts" dict
                                     });
                                     return keys;
                                 }
                             }
-                            catch (e) { }
+                            catch (e) {
+                                console.error(e);
+                            }
                             return [];
                         },
                     },
