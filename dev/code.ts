@@ -2,7 +2,7 @@ export const completionSpec: Fig.Spec = {
   name: "code",
   description: "Visual Studio Code",
   args: {
-    template: "filepaths",
+    template: ["filepaths", "folders"],
   },
   options: [
     {
