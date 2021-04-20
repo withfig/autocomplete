@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: update submodules
         run: |
-          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/docs
+          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/docs.git
           cd docs
 
           curl https://docs-generator.cstrnt.workers.dev/ >> autocomplete/api.md
