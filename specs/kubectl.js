@@ -45,6 +45,22 @@ var sharedArgs = {
             splitOn: "\n",
         },
     },
+    listClusters: {
+        name: "Cluster",
+        generators: {
+            script: function (context) {
+                console.log(context);
+                if (context.includes("--kubeconfig")) {
+                    var index = context.indexOf("--kubeconfig");
+                    return "kubectl config --kubeconfig=" + context[index + 1] + " get-clusters";
+                }
+                return "kubectl config get-clusters";
+            },
+            postProcess: function (out) {
+                return out.split("\n").filter(function (line) { return line !== "NAME"; });
+            },
+        },
+    },
 };
 var completionSpec = {
     name: "kubectl",
@@ -947,51 +963,99 @@ var completionSpec = {
                 {
                     name: "set-credentials",
                     description: "Sets a user entry in kubeconfig",
+                    args: sharedArgs.listClusters,
                     options: [
                         {
                             name: ["--client-certificate"],
-                            description: "    --token=bearer_token",
-                            args: {},
+                            insertValue: "--client-certificate=",
+                            description: "Client cert for user entry",
+                            args: {
+                                template: "filepaths",
+                            },
+                        },
+                        {
+                            name: ["--client-key"],
+                            insertValue: "--client-key=",
+                            description: "Client key for user entry",
+                            args: {
+                                template: "filepaths",
+                            },
+                        },
+                        {
+                            name: ["--token"],
+                            insertValue: "--token=",
+                            description: "Bearer Token for user entry",
+                            args: {
+                                name: "Bearer Token",
+                            },
                         },
                         {
                             name: ["--username"],
-                            description: '  # Set only the "client-key" field on the "cluster-admin"',
-                            args: {},
+                            insertValue: "--username=",
+                            description: "Username for basic authentication",
+                            args: {
+                                name: "Username",
+                            },
+                        },
+                        {
+                            name: ["--password"],
+                            insertValue: "--password=",
+                            description: "Password for basic authentication",
+                            args: {
+                                name: "Password",
+                            },
                         },
                         {
                             name: ["--auth-provider"],
+                            insertValue: "--auth-provider=",
                             description: "Auth provider for the user entry in kubeconfig",
-                            args: {},
+                            args: {
+                                name: "Auth Provider",
+                            },
                         },
                         {
                             name: ["--auth-provider-arg"],
+                            insertValue: "--auth-provider-arg=",
                             description: "'key=value' arguments for the auth provider",
-                            args: {},
+                            args: {
+                                name: "key=value",
+                            },
                         },
                         {
                             name: ["--embed-certs"],
                             description: "Embed client cert/key for the user entry in kubeconfig",
-                            args: {},
                         },
                         {
                             name: ["--exec-api-version"],
+                            insertValue: "--exec-api-version=",
                             description: "API version of the exec credential plugin for the user entry in kubeconfig",
-                            args: {},
+                            args: {
+                                name: "API Version",
+                            },
                         },
                         {
                             name: ["--exec-arg"],
+                            insertValue: "--exec-arg=",
                             description: "New arguments for the exec credential plugin command for the user entry in kubeconfig",
-                            args: {},
+                            args: {
+                                name: "Exec Arg",
+                            },
                         },
                         {
                             name: ["--exec-command"],
+                            insertValue: "--exec-command=",
                             description: "Command for the exec credential plugin for the user entry in kubeconfig",
-                            args: {},
+                            args: {
+                                name: "Exec Command",
+                            },
                         },
                         {
                             name: ["--exec-env"],
+                            insertValue: "--exec-env=",
                             description: "'key=value' environment values for the exec credential plugin",
-                            args: {},
+                            args: {
+                                name: "key=value",
+                            },
                         },
                     ],
                     subcommands: [],
