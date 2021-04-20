@@ -30,7 +30,7 @@ jobs:
         with:
           tag_prefix: spec-build-no#
           # Bump versions in full numbers (1.0.0 -> 2.0.0)
-          default_bump: major
+          default_bump: minor
           github_token: ${{ secrets.GITHUB_TOKEN }}
         # Create a new github release with the newly created specs.zip file
       - name: Release
