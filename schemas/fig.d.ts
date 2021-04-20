@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+
 declare namespace Fig {
   // All the available templates
   export type TemplateStrings = "filepaths" | "folders";
