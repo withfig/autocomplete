@@ -323,7 +323,7 @@ declare namespace Fig {
      * Should we cache the object and if so for how long.
      *
      * @example
-     * "," or "\n" and Fig will do the work of the `postProcess` prop for you
+     * "," or "\n" and Fig will do the work of the `postProcess` prop for you.
      */
     cache?: Cache;
   }
