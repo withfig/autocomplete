@@ -11,43 +11,47 @@ var completionSpec = {
             options: [
                 {
                     name: ["--app"],
-                    description: "the app id of your Firebase app\n",
+                    description: "the app id of your Firebase app",
                     args: {},
                 },
                 {
                     name: ["--release-notes"],
-                    description: "release notes to include with this distribution\n",
-                    args: {},
+                    description: "release notes to include with this distribution",
                 },
                 {
                     name: ["--release-notes-file"],
-                    description: "path to file with release notes to include with this distribution\n",
+                    description: "path to file with release notes to include with this distribution",
                     args: {},
                 },
                 {
                     name: ["--testers"],
-                    description: "a comma separated list of tester emails to distribute to\n",
-                    args: {},
+                    description: "a comma separated list of tester emails to distribute to",
+                    args: {
+                        variadic: true,
+                    },
                 },
                 {
                     name: ["--testers-file"],
-                    description: "path to file with a comma separated list of tester emails to distribute to\n",
+                    description: "path to file with a comma separated list of tester emails to distribute to",
                     args: {},
                 },
                 {
                     name: ["--groups"],
-                    description: "a comma separated list of group aliases to distribute to\n",
-                    args: {},
+                    description: "a comma separated list of group aliases to distribute to",
+                    args: {
+                        variadic: true,
+                    },
                 },
                 {
                     name: ["--groups-file"],
-                    description: "path to file with a comma separated list of group aliases to distribute to\n",
-                    args: {},
+                    description: "path to file with a comma separated list of group aliases to distribute to",
+                    args: {
+                        variadic: true,
+                    },
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -66,8 +70,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -86,8 +89,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -106,23 +108,22 @@ var completionSpec = {
             options: [
                 {
                     name: ["-a", "--package-name"],
-                    description: "required package name for the Android app\n",
+                    description: "required package name for the Android app",
                     args: {},
                 },
                 {
                     name: ["-b", "--bundle-id"],
-                    description: "required bundle id for the iOS app\n",
+                    description: "required bundle id for the iOS app",
                     args: {},
                 },
                 {
                     name: ["-s", "--app-store-id"],
-                    description: "(optional) app store id for the iOS app\n",
+                    description: "(optional) app store id for the iOS app",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -137,13 +138,21 @@ var completionSpec = {
             options: [
                 {
                     name: ["--format"],
-                    description: "Format of exported data (csv, json). Ignored if [dataFile] has format extension.\n",
-                    args: {},
+                    description: "Format of exported data (csv, json). Ignored if [dataFile] has format extension.",
+                    args: {
+                        suggestions: [
+                            {
+                                name: "csv",
+                            },
+                            {
+                                name: "json",
+                            },
+                        ],
+                    },
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -158,53 +167,52 @@ var completionSpec = {
             options: [
                 {
                     name: ["--hash-algo"],
-                    description: "specify the hash algorithm used in password for these accounts\n",
+                    description: "specify the hash algorithm used in password for these accounts",
                     args: {},
                 },
                 {
                     name: ["--hash-key"],
-                    description: "specify the key used in hash algorithm\n",
+                    description: "specify the key used in hash algorithm",
                     args: {},
                 },
                 {
                     name: ["--salt-separator"],
-                    description: "specify the salt separator which will be appended to salt when verifying password. only used by SCRYPT now.\n",
+                    description: "specify the salt separator which will be appended to salt when verifying password. only used by SCRYPT now.",
                     args: {},
                 },
                 {
                     name: ["--rounds"],
-                    description: "specify how many rounds for hash calculation.\n",
+                    description: "specify how many rounds for hash calculation.",
                     args: {},
                 },
                 {
                     name: ["--mem-cost"],
-                    description: "specify the memory cost for firebase scrypt, or cpu/memory cost for standard scrypt\n",
+                    description: "specify the memory cost for firebase scrypt, or cpu/memory cost for standard scrypt",
                     args: {},
                 },
                 {
                     name: ["--parallelization"],
-                    description: "specify the parallelization for standard scrypt.\n",
+                    description: "specify the parallelization for standard scrypt.",
                     args: {},
                 },
                 {
                     name: ["--block-size"],
-                    description: "specify the block size (normally is 8) for standard scrypt.\n",
+                    description: "specify the block size (normally is 8) for standard scrypt.",
                     args: {},
                 },
                 {
                     name: ["--dk-len"],
-                    description: "specify derived key length for standard scrypt.\n",
+                    description: "specify derived key length for standard scrypt.",
                     args: {},
                 },
                 {
                     name: ["--hash-input-order"],
-                    description: "specify the order of password and salt. Possible values are SALT_FIRST and PASSWORD_FIRST. MD5, SHA1, SHA256, SHA512, HMAC_MD5, HMAC_SHA1, HMAC_SHA256, HMAC_SHA512 support this flag.\n",
+                    description: "specify the order of password and salt. Possible values are SALT_FIRST and PASSWORD_FIRST. MD5, SHA1, SHA256, SHA512, HMAC_MD5, HMAC_SHA1, HMAC_SHA256, HMAC_SHA512 support this flag.",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -225,13 +233,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["-l", "--location"],
-                    description: "(optional) location for the database instance, defaults to us-central1\n",
+                    description: "(optional) location for the database instance, defaults to us-central1",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -242,8 +249,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -254,38 +260,36 @@ var completionSpec = {
             options: [
                 {
                     name: ["-o", "--output"],
-                    description: "save the output to the specified file\n",
+                    description: "save the output to the specified file",
                     args: {},
                 },
                 {
                     name: ["-d", "--duration"],
-                    description: "collect database usage information for the specified number of seconds\n",
+                    description: "collect database usage information for the specified number of seconds",
                     args: {},
                 },
                 {
                     name: ["--raw"],
-                    description: "output the raw stats collected as newline delimited json\n",
+                    description: "output the raw stats collected as newline delimited json",
                     args: {},
                 },
                 {
                     name: ["--no-collapse"],
-                    description: "prevent collapsing similar paths into $wildcard locations\n",
-                    args: {},
+                    description: "prevent collapsing similar paths into $wildcard locations",
                 },
                 {
                     name: ["-i", "--input"],
-                    description: "generate the report based on the specified file instead of streaming logs from the database\n",
+                    description: "generate the report based on the specified file instead of streaming logs from the database",
                     args: {},
                 },
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -300,18 +304,17 @@ var completionSpec = {
             options: [
                 {
                     name: ["-d", "--data"],
-                    description: "specify escaped JSON directly\n",
+                    description: "specify escaped JSON directly",
                     args: {},
                 },
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -326,18 +329,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["-y", "--confirm"],
-                    description: "pass this option to bypass confirmation prompt\n",
-                    args: {},
+                    description: "pass this option to bypass confirmation prompt",
                 },
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -352,23 +353,21 @@ var completionSpec = {
             options: [
                 {
                     name: ["-d", "--data"],
-                    description: "specify escaped JSON directly\n",
+                    description: "specify escaped JSON directly",
                     args: {},
                 },
                 {
                     name: ["-y", "--confirm"],
-                    description: "pass this option to bypass confirmation prompt\n",
-                    args: {},
+                    description: "pass this option to bypass confirmation prompt",
                 },
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -383,13 +382,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, uses default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, uses default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
                     description: "output usage information ",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -408,13 +406,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
                     description: "output usage information ",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -429,23 +426,21 @@ var completionSpec = {
             options: [
                 {
                     name: ["-d", "--data"],
-                    description: "specify escaped JSON directly\n",
+                    description: "specify escaped JSON directly",
                     args: {},
                 },
                 {
                     name: ["-y", "--confirm"],
-                    description: "pass this option to bypass confirmation prompt\n",
-                    args: {},
+                    description: "pass this option to bypass confirmation prompt",
                 },
                 {
                     name: ["--instance"],
-                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)\n",
+                    description: "use the database <instance>.firebaseio.com (if omitted, use default database instance)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -456,33 +451,29 @@ var completionSpec = {
             options: [
                 {
                     name: ["-p", "--public"],
-                    description: "override the Hosting public directory specified in firebase.json\n",
-                    args: {},
+                    description: "override the Hosting public directory specified in firebase.json",
                 },
                 {
                     name: ["-m", "--message"],
-                    description: "an optional message describing this deploy\n",
+                    description: "an optional message describing this deploy",
                     args: {},
                 },
                 {
                     name: ["-f", "--force"],
-                    description: "delete Cloud Functions missing from the current working directory without confirmation\n",
-                    args: {},
+                    description: "delete Cloud Functions missing from the current working directory without confirmation",
                 },
                 {
                     name: ["--only"],
-                    description: 'only deploy to specified, comma-separated targets (e.g. "hosting,storage"). For functions, can specify filters with colons to scope function deploys to only those functions (e.g. "--only functions:func1,functions:func2"). When filtering based on export groups (the exported module object keys), use dots to specify group names (e.g. "--only functions:group1.subgroup1,functions:group2)"\n',
-                    args: {},
+                    description: 'only deploy to specified, comma-separated targets (e.g. "hosting,storage"). For functions, can specify filters with colons to scope function deploys to only those functions (e.g. "--only functions:func1,functions:func2"). When filtering based on export groups (the exported module object keys), use dots to specify group names (e.g. "--only functions:group1.subgroup1,functions:group2)"',
                 },
                 {
                     name: ["--except"],
-                    description: 'deploy to all targets except specified (e.g. "database")\n',
+                    description: 'deploy to all targets except specified (e.g. "database")',
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -496,33 +487,29 @@ var completionSpec = {
             options: [
                 {
                     name: ["--only"],
-                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]\n',
+                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
                     args: {},
                 },
                 {
                     name: ["--inspect-functions"],
-                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)\n",
-                    args: {},
+                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
                 },
                 {
                     name: ["--import"],
-                    description: "import emulator data from a previous export (see emulators:export)\n",
+                    description: "import emulator data from a previous export (see emulators:export)",
                     args: {},
                 },
                 {
                     name: ["--export-on-exit"],
-                    description: "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used\n",
-                    args: {},
+                    description: "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used",
                 },
                 {
                     name: ["--ui"],
-                    description: "run the Emulator UI\n",
-                    args: {},
+                    description: "run the Emulator UI",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -537,18 +524,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["--only"],
-                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]\n',
+                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
                     args: {},
                 },
                 {
                     name: ["--force"],
-                    description: "Overwrite any export data in the target directory.\n",
-                    args: {},
+                    description: "Overwrite any export data in the target directory.",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -559,28 +544,25 @@ var completionSpec = {
             options: [
                 {
                     name: ["--only"],
-                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]\n',
+                    description: 'only specific emulators. This is a comma separated list of emulator names. Valid options are: ["auth","functions","firestore","database","hosting","pubsub"]',
                     args: {},
                 },
                 {
                     name: ["--inspect-functions"],
-                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)\n",
+                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
                     args: {},
                 },
                 {
                     name: ["--import"],
-                    description: "import emulator data from a previous export (see emulators:export)\n",
-                    args: {},
+                    description: "import emulator data from a previous export (see emulators:export)",
                 },
                 {
                     name: ["--export-on-exit"],
-                    description: "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used\n",
-                    args: {},
+                    description: "automatically export emulator data (emulators:export) when the emulators make a clean exit (SIGINT), when no dir is provided the location of --import [dir] is used",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -591,13 +573,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["-p", "--port"],
-                    description: "the port on which to emulate functions (default: 5000) (default: 5000)\n",
+                    description: "the port on which to emulate functions (default: 5000) (default: 5000)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -611,13 +592,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--params"],
-                    description: "path of params file with .env format.\n",
+                    description: "path of params file with .env format.",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -631,13 +611,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["--markdown"],
-                    description: "output info in Markdown suitable for constructing a README file\n",
-                    args: {},
+                    description: "output info in Markdown suitable for constructing a README file",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -651,13 +629,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["-f", "--force"],
-                    description: "No confirmation. Otherwise, a confirmation prompt will appear.\n",
-                    args: {},
+                    description: "No confirmation. Otherwise, a confirmation prompt will appear.",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -673,8 +649,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -688,28 +663,23 @@ var completionSpec = {
             options: [
                 {
                     name: ["-r", "--recursive"],
-                    description: "Recursive. Delete all documents and subcollections at and under the specified level. May not be passed along with\n",
-                    args: {},
+                    description: "Recursive. Delete all documents and subcollections at and under the specified level. May not be passed along with",
                 },
                 {
                     name: ["--shallow"],
-                    description: "Shallow. Delete only documents at the specified level and ignore documents in subcollections. This action can potentially orphan documents nested in subcollections. May not be passed along with -r.\n",
-                    args: {},
+                    description: "Shallow. Delete only documents at the specified level and ignore documents in subcollections. This action can potentially orphan documents nested in subcollections. May not be passed along with -r.",
                 },
                 {
                     name: ["--all-collections"],
-                    description: "Delete all. Deletes the entire Firestore database, including all collections and documents. Any other flags or arguments will be ignored.\n",
-                    args: {},
+                    description: "Delete all. Deletes the entire Firestore database, including all collections and documents. Any other flags or arguments will be ignored.",
                 },
                 {
                     name: ["-y", "--yes"],
-                    description: "No confirmation. Otherwise, a confirmation prompt will appear.\n",
-                    args: {},
+                    description: "No confirmation. Otherwise, a confirmation prompt will appear.",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -720,13 +690,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["--pretty"],
-                    description: "Pretty print. When not specified the indexes are printed in the JSON specification format.\n",
-                    args: {},
+                    description: "Pretty print. When not specified the indexes are printed in the JSON specification format.",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -737,23 +705,22 @@ var completionSpec = {
             options: [
                 {
                     name: ["--from"],
-                    description: "the project from which to clone configuration\n",
+                    description: "the project from which to clone configuration",
                     args: {},
                 },
                 {
                     name: ["--only"],
-                    description: "a comma-separated list of keys to clone\n",
+                    description: "a comma-separated list of keys to clone",
                     args: {},
                 },
                 {
                     name: ["--except"],
-                    description: "a comma-separated list of keys to not clone\n",
+                    description: "a comma-separated list of keys to not clone",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -767,8 +734,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -784,8 +750,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -796,23 +761,21 @@ var completionSpec = {
             options: [
                 {
                     name: ["--only"],
-                    description: 'only show logs of specified, comma-seperated functions (e.g. "funcA,funcB")\n',
+                    description: 'only show logs of specified, comma-seperated functions (e.g. "funcA,funcB")',
                     args: {},
                 },
                 {
                     name: ["-n", "--lines"],
-                    description: "specify number of log lines to fetch\n",
+                    description: "specify number of log lines to fetch",
                     args: {},
                 },
                 {
                     name: ["--open"],
-                    description: "open logs page in web browser\n",
-                    args: {},
+                    description: "open logs page in web browser",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -823,18 +786,17 @@ var completionSpec = {
             options: [
                 {
                     name: ["-p", "--port"],
-                    description: "the port on which to emulate functions\n",
+                    description: "the port on which to emulate functions",
                     args: {},
                 },
                 {
                     name: ["--inspect-functions"],
-                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)\n",
+                    description: "emulate Cloud Functions in debug mode with the node inspector on the given port (9229 if not specified)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -845,8 +807,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -860,18 +821,17 @@ var completionSpec = {
             options: [
                 {
                     name: ["-e", "--expires"],
-                    description: "duration string (e.g. 12h or 30d) for channel expiration, max 30d\n",
+                    description: "duration string (e.g. 12h or 30d) for channel expiration, max 30d",
                     args: {},
                 },
                 {
                     name: ["--site"],
-                    description: "site for which to create the channel\n",
+                    description: "site for which to create the channel",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -885,18 +845,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["--site"],
-                    description: "site in which the channel exists\n",
+                    description: "site in which the channel exists",
                     args: {},
                 },
                 {
                     name: ["-f", "--force"],
-                    description: "delete without confirmation\n",
-                    args: {},
+                    description: "delete without confirmation",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -910,28 +868,24 @@ var completionSpec = {
             options: [
                 {
                     name: ["-e", "--expires"],
-                    description: "duration string (e.g. 12h, 30d) for channel expiration, max 30d; defaults to 7d\n",
+                    description: "duration string (e.g. 12h, 30d) for channel expiration, max 30d; defaults to 7d",
                     args: {},
                 },
                 {
                     name: ["--only"],
-                    description: "only create previews for specified targets\n",
-                    args: {},
+                    description: "only create previews for specified targets",
                 },
                 {
                     name: ["--open"],
-                    description: "open a browser to the channel after deploying\n",
-                    args: {},
+                    description: "open a browser to the channel after deploying",
                 },
                 {
                     name: ["--no-authorized-domains"],
-                    description: "do not sync channel domains with Firebase Auth\n",
-                    args: {},
+                    description: "do not sync channel domains with Firebase Auth",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -942,13 +896,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--site"],
-                    description: "list channels for the specified site\n",
+                    description: "list channels for the specified site",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -962,13 +915,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--site"],
-                    description: "the site to which the channel belongs\n",
+                    description: "the site to which the channel belongs",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -987,8 +939,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -999,18 +950,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["-y", "--confirm"],
-                    description: "skip confirmation\n",
-                    args: {},
+                    description: "skip confirmation",
                 },
                 {
                     name: ["-s", "--site"],
-                    description: "the site to disable\n",
+                    description: "the site to disable",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1024,13 +973,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--app"],
-                    description: "specify an existing Firebase Web App ID\n",
+                    description: "specify an existing Firebase Web App ID",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1044,13 +992,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["-f", "--force"],
-                    description: "delete without confirmation\n",
-                    args: {},
+                    description: "delete without confirmation",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1064,8 +1010,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1076,8 +1021,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1088,8 +1032,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1100,18 +1043,15 @@ var completionSpec = {
             options: [
                 {
                     name: ["--no-localhost"],
-                    description: "copy and paste a code instead of starting a local server for authentication\n",
-                    args: {},
+                    description: "copy and paste a code instead of starting a local server for authentication",
                 },
                 {
                     name: ["--reauth"],
-                    description: "force reauthentication even if already logged in\n",
-                    args: {},
+                    description: "force reauthentication even if already logged in",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1123,13 +1063,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["--no-localhost"],
-                    description: "copy and paste a code instead of starting a local server for authentication\n",
-                    args: {},
+                    description: "copy and paste a code instead of starting a local server for authentication",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1140,13 +1078,11 @@ var completionSpec = {
             options: [
                 {
                     name: ["--no-localhost"],
-                    description: "copy and paste a code instead of starting a local server for authentication\n",
-                    args: {},
+                    description: "copy and paste a code instead of starting a local server for authentication",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1157,8 +1093,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1172,8 +1107,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1187,8 +1121,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1202,8 +1135,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1215,8 +1147,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1228,23 +1159,22 @@ var completionSpec = {
             options: [
                 {
                     name: ["-n", "--display-name"],
-                    description: "(optional) display name for the project\n",
+                    description: "(optional) display name for the project",
                     args: {},
                 },
                 {
                     name: ["-o", "--organization"],
-                    description: "(optional) ID of the parent Google Cloud Platform organization under which to create this project\n",
+                    description: "(optional) ID of the parent Google Cloud Platform organization under which to create this project",
                     args: {},
                 },
                 {
                     name: ["-f", "--folder"],
-                    description: "(optional) ID of the parent Google Cloud Platform folder in which to create this project\n",
+                    description: "(optional) ID of the parent Google Cloud Platform folder in which to create this project",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1255,8 +1185,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1267,18 +1196,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["-v", "--version-number"],
-                    description: "grabs the specified version of the template\n",
-                    args: {},
+                    description: "grabs the specified version of the template",
                 },
                 {
                     name: ["-o", "--output"],
-                    description: "write config output to a filename (if omitted, will use the default file path)\n",
+                    description: "write config output to a filename (if omitted, will use the default file path)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1289,18 +1216,16 @@ var completionSpec = {
             options: [
                 {
                     name: ["-v", "--version-number"],
-                    description: "rollback to the specified version of the template\n",
+                    description: "rollback to the specified version of the template",
                     args: {},
                 },
                 {
                     name: ["--force"],
-                    description: "rollback template to the specified version without confirmation\n",
-                    args: {},
+                    description: "rollback template to the specified version without confirmation",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1311,13 +1236,12 @@ var completionSpec = {
             options: [
                 {
                     name: ["--limit"],
-                    description: "limit the number of versions being returned. Pass '0' to fetch all versions.\n",
+                    description: "limit the number of versions being returned. Pass '0' to fetch all versions.",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1328,28 +1252,26 @@ var completionSpec = {
             options: [
                 {
                     name: ["-p", "--port"],
-                    description: "the port on which to listen (default: 5000) (default: 5000)\n",
+                    description: "the port on which to listen (default: 5000) (default: 5000)",
                     args: {},
                 },
                 {
                     name: ["-o", "--host"],
-                    description: 'the host on which to listen (default: localhost) (default: "localhost")\n',
+                    description: 'the host on which to listen (default: localhost) (default: "localhost")',
                     args: {},
                 },
                 {
                     name: ["--only"],
-                    description: "only serve specified targets (valid targets are: hosting, functions)\n",
-                    args: {},
+                    description: "only serve specified targets (valid targets are: hosting, functions)",
                 },
                 {
                     name: ["--except"],
-                    description: "serve all except specified targets (valid targets are: hosting, functions)\n",
+                    description: "serve all except specified targets (valid targets are: hosting, functions)",
                     args: {},
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1360,8 +1282,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1372,8 +1293,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1384,8 +1304,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1396,8 +1315,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1409,8 +1327,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1433,8 +1350,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1453,8 +1369,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1473,8 +1388,7 @@ var completionSpec = {
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
@@ -1488,28 +1402,26 @@ var completionSpec = {
             options: [
                 {
                     name: ["--add"],
-                    description: "create a new project alias interactively\n",
+                    description: "create a new project alias interactively",
                     args: {},
                 },
                 {
                     name: ["--alias"],
-                    description: "create a new alias for the provided project id\n",
+                    description: "create a new alias for the provided project id",
                     args: {},
                 },
                 {
                     name: ["--unalias"],
-                    description: "remove an already created project alias\n",
+                    description: "remove an already created project alias",
                     args: {},
                 },
                 {
                     name: ["--clear"],
-                    description: "clear the active project selection\n",
-                    args: {},
+                    description: "clear the active project selection",
                 },
                 {
                     name: ["-h", "--help"],
-                    description: "output usage information\n",
-                    args: {},
+                    description: "output usage information",
                 },
             ],
             subcommands: [],
