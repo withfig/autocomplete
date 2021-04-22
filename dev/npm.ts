@@ -6,7 +6,11 @@ const searchGenerator: Fig.Generator = {
   },
   postProcess: function (out) {
     return JSON.parse(out).results.map(
-      (item) => item.package.name
+      (item) =>
+        ({
+          name: item.package.name,
+          description: item.package.description,
+        } as Fig.Suggestion)
     ) as Fig.Suggestion[];
   },
   trigger: function () {
