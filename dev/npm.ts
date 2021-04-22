@@ -2,20 +2,26 @@ const searchGenerator: Fig.Generator = {
   script: function (context) {
     if (context[context.length - 1] === "") return "";
     const searchTerm = context[context.length - 1];
-    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=250"`;
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
   },
   postProcess: function (out) {
-    return JSON.parse(out).results.map(
-      (item) =>
-        ({
-          name: item.package.name,
-          description: item.package.description,
-        } as Fig.Suggestion)
-    ) as Fig.Suggestion[];
+    try {
+      var temp = JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.package.name,
+            description: item.package.description,
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+
+    return temp;
   },
-  trigger: function () {
-    return true;
-  },
+  // trigger: function () {
+  //   return true;
+  // },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -24,11 +30,12 @@ export const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "install",
-      description: "",
+      description: "install local package",
       args: {
         name: "package",
-        generators: searchGenerator,
-        debounce: true,
+        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
+        // generators: searchGenerator,
+        // debounce: true,
         variadic: true,
       },
       options: [
@@ -141,8 +148,9 @@ export const completionSpec: Fig.Spec = {
       description: "install local package",
       args: {
         name: "package",
-        generators: searchGenerator,
-        debounce: true,
+        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
+        // generators: searchGenerator,
+        // debounce: true,
         variadic: true,
       },
     },

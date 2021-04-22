@@ -3,14 +3,25 @@ var searchGenerator = {
         if (context[context.length - 1] === "")
             return "";
         var searchTerm = context[context.length - 1];
-        return "curl -s -H \"Accept: application/json\" \"https://api.npms.io/v2/search?q=" + searchTerm + "&size=250\"";
+        return "curl -s -H \"Accept: application/json\" \"https://api.npms.io/v2/search?q=" + searchTerm + "&size=20\"";
     },
     postProcess: function (out) {
-        return JSON.parse(out).results.map(function (item) { return item.package.name; });
+        try {
+            var temp = JSON.parse(out).results.map(function (item) {
+                return ({
+                    name: item.package.name,
+                    description: item.package.description,
+                });
+            });
+        }
+        catch (e) {
+            return [];
+        }
+        return temp;
     },
-    trigger: function () {
-        return true;
-    },
+    // trigger: function () {
+    //   return true;
+    // },
 };
 var completionSpec = {
     name: "npm",
@@ -18,11 +29,12 @@ var completionSpec = {
     subcommands: [
         {
             name: "install",
-            description: "",
+            description: "install local package",
             args: {
                 name: "package",
-                generators: searchGenerator,
-                debounce: true,
+                // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
+                // generators: searchGenerator,
+                // debounce: true,
                 variadic: true,
             },
             options: [
@@ -126,8 +138,9 @@ var completionSpec = {
             description: "install local package",
             args: {
                 name: "package",
-                generators: searchGenerator,
-                debounce: true,
+                // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
+                // generators: searchGenerator,
+                // debounce: true,
                 variadic: true,
             },
         },
