@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
+
 declare namespace Fig {
   // All the available templates
   export type TemplateStrings = "filepaths" | "folders";
@@ -27,6 +28,9 @@ declare namespace Fig {
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
   export type Spec = Subcommand;
+
+  // Execute shell command function inside generators
+  export type ExecuteShellCommandFunction = (param: String) => Promise<String>;
 
   export interface BaseSuggestion {
     /**
@@ -159,7 +163,7 @@ declare namespace Fig {
      * @example
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
-    generateSpec?: Function<string[], Promise<Subcommand[]>>;
+    generateSpec?: Function<string[], Promise<Spec>>;
   }
 
   export interface Option extends BaseSuggestion {
@@ -319,7 +323,7 @@ declare namespace Fig {
      * Should we cache the object and if so for how long.
      *
      * @example
-     * "," or "\n" and Fig will do the work of the `postProcess` prop for you
+     * "," or "\n" and Fig will do the work of the `postProcess` prop for you.
      */
     cache?: Cache;
   }
