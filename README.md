@@ -9,7 +9,7 @@
 [![Documentation](https://img.shields.io/badge/documentation-black)](https://withfig.com/docs/autocomplete/getting-started)
 [![All-Contributors](https://img.shields.io/github/all-contributors/withfig/autocomplete)](#Contributors)
 [![Slack](https://img.shields.io/badge/slack-purple)](https://withfig.com/community)
-[![Twitter](https://img.shields.io/twitter/follow/withfig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
+[![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
 **[Fig](https://withfig.com?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
