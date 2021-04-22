@@ -7,10 +7,17 @@ echo
 
 read -e -p "What's the name of the CLI tool you want to create an autocomplete spec for: " USER_INPUT_CLI_TOOL
 
+# Must put file path in quotes in case either variable has spaces
+FILEPATH="$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts"
+
+# The actual name of the spec
+SPEC_NAME="$(basename $USER_INPUT_CLI_TOOL)"
+
+# If it's a nested path make sure the directory exists
+mkdir -p "$(dirname $FILEPATH)"
 
 # Check if the given file exists
-# Must put file path in quotes in case either variable has spaces
-if [[ -f "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts" ]]; then
+if [[ -f "$FILEPATH" ]]; then
   echo
   echo "$(tput setaf 1)This completion spec already exists$(tput sgr0)"
   echo
@@ -25,11 +32,11 @@ else
   ## Using quotes around EOF will remove expansions
     # https://superuser.com/questions/1436906/need-to-expand-a-variable-in-a-heredoc-that-is-in-quotes
   cat <<EOF >> "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts"
-// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// To learn more about Fig's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
-  name: "git",
+  name: "$SPEC_NAME",
   description: "The stupid content tracker",
   subcommands: [
     {

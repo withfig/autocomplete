@@ -12,6 +12,7 @@ var generators = {
         },
     },
 };
+// fake-change file
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
