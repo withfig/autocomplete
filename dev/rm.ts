@@ -3,6 +3,7 @@ export const completionSpec: Fig.Spec = {
   description: "remove directory entries",
   args: [
     {
+      variadic: true,
       template: "filepaths",
     },
   ],
