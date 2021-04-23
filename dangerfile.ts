@@ -1,5 +1,4 @@
-import { danger, markdown, schedule } from "danger";
-import * as fs from "fs";
+import { danger, schedule } from "danger";
 import {
   createSourceFile,
   forEachChild,
@@ -102,11 +101,20 @@ schedule(async () => {
     .concat(danger.git.created_files)
     .filter((file) => file.includes("dev/"));
 
+  // console.log(fs.readdirSync("dev/", { encoding: "utf-8" }));
   let message = "<!-- id: review-bot --> \n";
   let comment = "";
   if (updatedFiles.length > 0) {
-    updatedFiles.forEach((fileName) => {
-      const content = fs.readFileSync(fileName, { encoding: "utf-8" });
+    updatedFiles.forEach(async (fileName) => {
+      const res = await danger.github.api.repos.getContents({
+        owner: danger.github.pr.user.login,
+        repo: danger.github.pr.head.repo.name,
+        path: "dev/fastly.ts",
+      });
+      if (!res || !(res.data as any)?.content) return;
+      const content = Buffer.from((res.data as any).content, "base64").toString(
+        "utf-8"
+      );
       const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
       const fileContent = getFileContent(sourceFile);
 
