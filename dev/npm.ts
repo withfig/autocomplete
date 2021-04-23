@@ -33,9 +33,8 @@ export const completionSpec: Fig.Spec = {
       description: "install local package",
       args: {
         name: "package",
-        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
-        // generators: searchGenerator,
-        // debounce: true,
+        generators: searchGenerator,
+        debounce: true,
         variadic: true,
       },
       options: [
@@ -148,9 +147,8 @@ export const completionSpec: Fig.Spec = {
       description: "install local package",
       args: {
         name: "package",
-        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
-        // generators: searchGenerator,
-        // debounce: true,
+        generators: searchGenerator,
+        debounce: true,
         variadic: true,
       },
     },

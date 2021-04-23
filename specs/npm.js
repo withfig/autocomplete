@@ -33,8 +33,8 @@ var completionSpec = {
             args: {
                 name: "package",
                 // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
-                // generators: searchGenerator,
-                // debounce: true,
+                generators: searchGenerator,
+                debounce: true,
                 variadic: true,
             },
             options: [
