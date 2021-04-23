@@ -34,7 +34,7 @@ declare namespace Fig {
 
   export interface BaseSuggestion {
     /**
-     * The text that is displayed for a given suggestion. It will override what is in the name prop
+     * Overrides the name property.
      *
      * @example
      * For the npm CLI we have a subcommand called `install`. If we wanted
@@ -43,10 +43,8 @@ declare namespace Fig {
      */
     displayName?: string;
     /**
-     * The value that's inserted into the terminal when a user presses enter/tab
-     * or clicks on a suggestion.
-     * You can optionally specify `{cursor}` in the string and Fig will automatically
-     * place the cursor there after insert.
+     * The value that's inserted into the terminal when a user presses enter/tab or clicks on a menu item.
+     * You can optionally specify {cursor} in the string and Fig will automatically place the cursor there after insert.
      *
      * @example
      * For `git commit` the `-m` option has an insert value of `-m '{cursor}'`
@@ -59,7 +57,7 @@ declare namespace Fig {
     description?: string;
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
-     * can be a 1character string, a URL, or Fig's icon protocol (fig://) which
+     * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which
      * will get mac system icons.
      *
      * @example
@@ -88,12 +86,12 @@ declare namespace Fig {
 
   export interface Suggestion extends BaseSuggestion {
     /**
-     * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
-     * its insert and run functionality whereby selecting a suggestion runs a command.
-     * This will make it harder for a user to accidentally run a dangerous command.
+     * The text that’s rendered in each row of the dropdown.
      *
-     * @example
-     * For git, some subcommands are push, commit, checkout, add etc
+     * @remark
+     * Fig uses the name prop for parsing purposes.
+     * It is important the name prop exactly matches the CLI tool.
+     * If you want to customise it what is says in the dropdown, please use displayName
      */
     name?: SingleOrArray<string>;
     /**
@@ -105,21 +103,23 @@ declare namespace Fig {
 
   export interface Subcommand extends BaseSuggestion {
     /**
-     * The name of a subcommand. Fig uses this value for its parsing so it must be exactly right. Think of it like a token.
-     * If you want to display something custom to the user, use the displayName prop
+     * The text that’s rendered in each row of the dropdown.
      *
-     * @example
-     * For git, some subcommands are push, commit, checkout, add etc
+     * @remark
+     * Fig uses the name prop for parsing purposes.
+     * It is important the name prop exactly matches the CLI tool.
+     * If you want to customise it what is says in the dropdown, please use displayName
      */
     name: string;
 
     /**
      * A list of subcommands for this spec.
+     * Subcommands can be nested within subcommands.
      */
     subcommands?: Subcommand[];
 
     /**
-     * A list of options for this spec.
+     * A list of options for this subcommand.
      */
     options?: Option[];
 
@@ -135,7 +135,7 @@ declare namespace Fig {
     args?: SingleOrArray<Arg>;
 
     /**
-     * A list of Suggestion to make custom suggestions.
+     * A list of Suggestion objects to make custom suggestions.
      *
      * @remark
      * You should only use this for special cases. Most likely, what you are trying to
@@ -168,9 +168,7 @@ declare namespace Fig {
 
   export interface Option extends BaseSuggestion {
     /**
-     * The short and/or long name of the option. It can be a string or an array of strings.
-     * The strings must NOT include the = sign and must NOT chain options together.
-     * Fig handles all of this logic.
+     * The text that's rendered in the dropdown and inserted into the terminal. You may also include an array strings e.g. ["-m", "--message" ]
      *
      * @example
      * For git commit, we have the option ["-m", "--message"]. For ps we have the options "-a", "-u", "-x"
@@ -178,7 +176,7 @@ declare namespace Fig {
     name: SingleOrArray<String>;
 
     /**
-     * An array of args or a single arg.
+     * An array of args or a single arg object.
      *
      * @remark
      * If a subcommand takes an argument, please at least include an empty Arg Object
@@ -229,12 +227,12 @@ declare namespace Fig {
      */
     template?: Template;
     /**
-     * A list or a single generator. Generators let you run shell commands on the user's
-     * device to generate suggestions for the argument
+     * A list or a single generator.
+     * Generators let you run shell commands on the user's device to generate suggestions for arguments.
      */
     generators?: SingleOrArray<Generator>;
     /**
-     * Specifies that the argument is variadic and therefore the subcommand / option takes infinite arguments
+     * Specifies that the argument is variadic and therefore repeats infinitely.
      *
      * @example
      * `echo` takes a variadic argument (`echo hello world ...`) so does git add
@@ -256,7 +254,7 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
-     * Specifies that the argument is a script which Fig should start completing on from scratch
+     * Specifies that the argument is a script which Fig may complete on.
      *
      * @example
      * `python` take one argument which is a `.py` file. It is possible for Fig to offer for
@@ -296,7 +294,7 @@ declare namespace Fig {
      * build the `splitOn` property. Simply define a string to split the output of script on.
      *
      * @example
-     * "," or "\n" and Fig will do the work of the `postProcess` prop for you
+     * Specify "," or "\n", and Fig will do the work of the `postProcess` prop for you
      */
     splitOn?: string;
     /**
