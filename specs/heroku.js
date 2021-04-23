@@ -38,7 +38,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -76,7 +76,7 @@ var completionSpec = {
                     description: "watch add-on creation status and exit when complete",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -118,7 +118,7 @@ var completionSpec = {
                     description: "watch add-on creation status and exit when complete",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -149,7 +149,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -178,7 +178,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -199,7 +199,7 @@ var completionSpec = {
             description: "detach an existing add-on resource from an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -222,7 +222,7 @@ var completionSpec = {
                     description: "show URL, do not open browser",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -250,7 +250,7 @@ var completionSpec = {
                     description: "return add-ons in json format",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -265,7 +265,7 @@ var completionSpec = {
             description: "show detailed add-on resource and attachment information",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -289,7 +289,7 @@ var completionSpec = {
                     description: "show URL, do not open browser",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -324,7 +324,7 @@ var completionSpec = {
             description: "rename an add-on",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -357,7 +357,7 @@ var completionSpec = {
             description: "change add-on plan",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -380,7 +380,7 @@ var completionSpec = {
             description: "change add-on plan",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -408,7 +408,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -812,7 +812,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -837,7 +837,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -862,7 +862,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -900,7 +900,7 @@ var completionSpec = {
                     description: "show only dyno errors",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -914,7 +914,7 @@ var completionSpec = {
             description: "favorites an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -938,7 +938,7 @@ var completionSpec = {
             description: "unfavorites an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1058,7 +1058,7 @@ var completionSpec = {
                     name: "--json",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1089,7 +1089,7 @@ var completionSpec = {
                     name: "--json",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1110,7 +1110,7 @@ var completionSpec = {
             description: "open the app in a web browser",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1129,7 +1129,7 @@ var completionSpec = {
             description: "open the app in a web browser",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1152,7 +1152,7 @@ var completionSpec = {
                     description: "use ssh git protocol instead of https",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1175,7 +1175,7 @@ var completionSpec = {
                     description: "use ssh git protocol instead of https",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1194,7 +1194,7 @@ var completionSpec = {
             description: "show the list of available stacks",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1208,7 +1208,7 @@ var completionSpec = {
             description: "show the list of available stacks",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1222,7 +1222,7 @@ var completionSpec = {
             description: "set the stack of an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1241,7 +1241,7 @@ var completionSpec = {
             description: "set the stack of an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1260,7 +1260,7 @@ var completionSpec = {
             description: "set one or more config vars",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1280,7 +1280,7 @@ var completionSpec = {
             description: "set one or more config vars",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1305,7 +1305,7 @@ var completionSpec = {
             description: "adds a log drain to an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1331,7 +1331,7 @@ var completionSpec = {
                     name: "--extended",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1345,7 +1345,7 @@ var completionSpec = {
             description: "removes a log drain from an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1364,7 +1364,7 @@ var completionSpec = {
             description: "disables an app feature",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1383,7 +1383,7 @@ var completionSpec = {
             description: "enables an app feature",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1406,7 +1406,7 @@ var completionSpec = {
                     description: "output in json format",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1424,7 +1424,7 @@ var completionSpec = {
                     description: "output in json format",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1490,7 +1490,7 @@ var completionSpec = {
             description: "enables an experimental feature",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1514,7 +1514,7 @@ var completionSpec = {
                     description: "display as json",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1533,7 +1533,7 @@ var completionSpec = {
                     description: "display as json",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1553,7 +1553,7 @@ var completionSpec = {
             description: "display the current maintenance status of app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1567,7 +1567,7 @@ var completionSpec = {
             description: "take the app out of maintenance mode",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1581,7 +1581,7 @@ var completionSpec = {
             description: "put the app into maintenance mode",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1607,7 +1607,7 @@ var completionSpec = {
                     description: "show notifications already read",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1629,7 +1629,7 @@ var completionSpec = {
                     name: "--extended",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1649,7 +1649,7 @@ var completionSpec = {
             description: "restart app dynos",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1668,7 +1668,7 @@ var completionSpec = {
             description: "restart app dynos",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1687,7 +1687,7 @@ var completionSpec = {
             description: "restart app dynos",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1706,7 +1706,7 @@ var completionSpec = {
             description: "scale dyno quantity up or down",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1726,7 +1726,7 @@ var completionSpec = {
             description: "scale dyno quantity up or down",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1746,7 +1746,7 @@ var completionSpec = {
             description: "scale dyno quantity up or down",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1766,7 +1766,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1785,7 +1785,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1804,7 +1804,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1823,7 +1823,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1842,7 +1842,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1861,7 +1861,7 @@ var completionSpec = {
             description: "stop app dyno",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1880,7 +1880,7 @@ var completionSpec = {
             description: "manage dyno sizes",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1900,7 +1900,7 @@ var completionSpec = {
             description: "manage dyno sizes",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1920,7 +1920,7 @@ var completionSpec = {
             description: "manage dyno sizes",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1940,7 +1940,7 @@ var completionSpec = {
             description: "manage dyno sizes",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1960,7 +1960,7 @@ var completionSpec = {
             description: "manage dyno sizes",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -1992,7 +1992,7 @@ var completionSpec = {
                     name: "--extended",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2014,7 +2014,7 @@ var completionSpec = {
                     description: "output in shell format",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2033,7 +2033,7 @@ var completionSpec = {
             description: "View the release command output",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2052,7 +2052,7 @@ var completionSpec = {
             description: "rollback to a previous release",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2071,7 +2071,7 @@ var completionSpec = {
             description: "rollback to a previous release",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2360,7 +2360,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2390,7 +2390,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2404,7 +2404,7 @@ var completionSpec = {
             description: "enable ACM status for an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2418,7 +2418,7 @@ var completionSpec = {
             description: "show ACM status for an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2432,7 +2432,7 @@ var completionSpec = {
             description: "refresh ACM for an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2446,7 +2446,7 @@ var completionSpec = {
             description: "print an ordered & complete chain for a certificate",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2504,7 +2504,7 @@ var completionSpec = {
                     description: "do not prompt for any owner information",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2523,7 +2523,7 @@ var completionSpec = {
             description: "list SSL certificates for an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2551,7 +2551,7 @@ var completionSpec = {
                     description: "show associated domains",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2565,7 +2565,7 @@ var completionSpec = {
             description: "print the correct key for the given certificate",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2599,7 +2599,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2631,7 +2631,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2785,7 +2785,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2818,7 +2818,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2838,7 +2838,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2864,7 +2864,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2898,7 +2898,7 @@ var completionSpec = {
                     description: "start test run with an empty cache",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -2923,7 +2923,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3576,7 +3576,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3609,7 +3609,7 @@ var completionSpec = {
                     description: "output in json format",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3633,7 +3633,7 @@ var completionSpec = {
             description: "remove users from a team app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3671,7 +3671,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3690,7 +3690,7 @@ var completionSpec = {
             description: "add yourself to a team app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3704,7 +3704,7 @@ var completionSpec = {
             description: "add yourself to a team app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3718,7 +3718,7 @@ var completionSpec = {
             description: "remove yourself from a team app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3732,7 +3732,7 @@ var completionSpec = {
             description: "remove yourself from a team app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3746,7 +3746,7 @@ var completionSpec = {
             description: "prevent team members from joining an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3760,7 +3760,7 @@ var completionSpec = {
             description: "prevent team members from joining an app",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3782,7 +3782,7 @@ var completionSpec = {
                     description: "transfer applications in bulk",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3812,7 +3812,7 @@ var completionSpec = {
             description: "unlock an app so any team member can join",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3826,7 +3826,7 @@ var completionSpec = {
             description: "unlock an app so any team member can join",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3923,7 +3923,7 @@ var completionSpec = {
             description: "cancel an in-progress backup or restore (default newest)",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3952,7 +3952,7 @@ var completionSpec = {
                     name: "--verbose",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3975,7 +3975,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -3999,7 +3999,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4040,7 +4040,7 @@ var completionSpec = {
                     name: "--quiet",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4060,7 +4060,7 @@ var completionSpec = {
             description: "get information about a specific backup",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4090,7 +4090,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4117,7 +4117,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4136,7 +4136,7 @@ var completionSpec = {
             description: "list backup schedule",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4150,7 +4150,7 @@ var completionSpec = {
             description: "stop daily backups",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4172,7 +4172,7 @@ var completionSpec = {
                     name: "--quiet",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4194,7 +4194,7 @@ var completionSpec = {
                     name: "--quiet",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4216,7 +4216,7 @@ var completionSpec = {
                     name: "--quiet",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4235,7 +4235,7 @@ var completionSpec = {
             description: "show table and index bloat in your database ordered by most wasteful",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4254,7 +4254,7 @@ var completionSpec = {
             description: "display queries holding locks other queries are waiting to be released",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4278,7 +4278,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4308,7 +4308,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4335,7 +4335,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4363,7 +4363,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4386,7 +4386,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4422,7 +4422,7 @@ var completionSpec = {
                     description: "forces rotating the targeted credentials",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4446,7 +4446,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4469,7 +4469,7 @@ var completionSpec = {
                     description: "DEPRECATED",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4492,7 +4492,7 @@ var completionSpec = {
                     description: "format output as JSON",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4511,7 +4511,7 @@ var completionSpec = {
             description: "show database information",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4530,7 +4530,7 @@ var completionSpec = {
             description: "show database information",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4552,7 +4552,7 @@ var completionSpec = {
                     name: "--force",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4574,7 +4574,7 @@ var completionSpec = {
             description: "terminates all connections for all credentials",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4598,7 +4598,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4624,7 +4624,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4646,7 +4646,7 @@ var completionSpec = {
             description: "lists all databases and information on link",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4669,7 +4669,7 @@ var completionSpec = {
                     description: "truncates queries to 40 charaters",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4688,7 +4688,7 @@ var completionSpec = {
             description: "show current maintenance information",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4710,7 +4710,7 @@ var completionSpec = {
                     name: "--force",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4729,7 +4729,7 @@ var completionSpec = {
             description: "set weekly maintenance window",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4764,7 +4764,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4786,7 +4786,7 @@ var completionSpec = {
                     name: "--force",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4808,7 +4808,7 @@ var completionSpec = {
                     name: "--verbose",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4842,7 +4842,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4876,7 +4876,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4900,7 +4900,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4927,7 +4927,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4958,7 +4958,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -4981,7 +4981,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5000,7 +5000,7 @@ var completionSpec = {
             description: "show your current database settings",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5019,7 +5019,7 @@ var completionSpec = {
             description: "Controls whether a log message is produced when a login attempt is made. Default is true.",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5041,7 +5041,7 @@ var completionSpec = {
             description: "Controls whether a log message is produced when a session waits longer than the deadlock_timeout to acquire a lock. deadlock_timeout is set to 1 second",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5063,7 +5063,7 @@ var completionSpec = {
             description: "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE.\nVALUE needs to specified as a whole number, in milliseconds.",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5085,7 +5085,7 @@ var completionSpec = {
             description: "log_statement controls which SQL statements are logged.",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5111,7 +5111,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5139,7 +5139,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5158,7 +5158,7 @@ var completionSpec = {
             description: "show dead rows and whether an automatic vacuum is expected to be triggered",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5177,7 +5177,7 @@ var completionSpec = {
             description: "show dead rows and whether an automatic vacuum is expected to be triggered",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5205,7 +5205,7 @@ var completionSpec = {
                     description: "do not show OS notification",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5655,7 +5655,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5678,7 +5678,7 @@ var completionSpec = {
                     description: "reset credentials",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5701,7 +5701,7 @@ var completionSpec = {
                     description: "format output as JSON",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5724,7 +5724,7 @@ var completionSpec = {
                     description: "format output as JSON",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5748,7 +5748,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5780,7 +5780,7 @@ var completionSpec = {
                     description: "start maintenance without entering application maintenance mode",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5804,7 +5804,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5823,7 +5823,7 @@ var completionSpec = {
             description: "sets DATABASE as your REDIS_URL",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5847,7 +5847,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -5866,7 +5866,7 @@ var completionSpec = {
             description: "wait for Redis instance to be available",
             options: [
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6099,7 +6099,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6141,7 +6141,7 @@ var completionSpec = {
                     description: "force use of colors (even on non-tty output)",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6172,7 +6172,7 @@ var completionSpec = {
                     description: "force the command to not run in a tty",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6211,7 +6211,7 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6244,7 +6244,7 @@ var completionSpec = {
                     description: "listen on a local port",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",
@@ -6295,7 +6295,7 @@ var completionSpec = {
                     description: "disables notification when dyno is up (alternatively use HEROKU_NOTIFICATIONS=0)",
                 },
                 {
-                    name: "--app",
+                    name: ["-a", "--app"],
                     description: "app to run command against",
                     args: {
                         name: "app",

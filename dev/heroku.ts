@@ -38,7 +38,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -77,7 +77,7 @@ export const spec: Fig.Spec = {
           description: "watch add-on creation status and exit when complete",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -120,7 +120,7 @@ export const spec: Fig.Spec = {
           description: "watch add-on creation status and exit when complete",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -151,7 +151,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -180,7 +180,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -201,7 +201,7 @@ export const spec: Fig.Spec = {
       description: "detach an existing add-on resource from an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -224,7 +224,7 @@ export const spec: Fig.Spec = {
           description: "show URL, do not open browser",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -252,7 +252,7 @@ export const spec: Fig.Spec = {
           description: "return add-ons in json format",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -267,7 +267,7 @@ export const spec: Fig.Spec = {
       description: "show detailed add-on resource and attachment information",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -291,7 +291,7 @@ export const spec: Fig.Spec = {
           description: "show URL, do not open browser",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -326,7 +326,7 @@ export const spec: Fig.Spec = {
       description: "rename an add-on",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -359,7 +359,7 @@ export const spec: Fig.Spec = {
       description: "change add-on plan",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -382,7 +382,7 @@ export const spec: Fig.Spec = {
       description: "change add-on plan",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -410,7 +410,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -819,7 +819,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -844,7 +844,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -869,7 +869,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -907,7 +907,7 @@ export const spec: Fig.Spec = {
           description: "show only dyno errors",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -921,7 +921,7 @@ export const spec: Fig.Spec = {
       description: "favorites an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -945,7 +945,7 @@ export const spec: Fig.Spec = {
       description: "unfavorites an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1068,7 +1068,7 @@ export const spec: Fig.Spec = {
           name: "--json",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1099,7 +1099,7 @@ export const spec: Fig.Spec = {
           name: "--json",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1120,7 +1120,7 @@ export const spec: Fig.Spec = {
       description: "open the app in a web browser",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1139,7 +1139,7 @@ export const spec: Fig.Spec = {
       description: "open the app in a web browser",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1162,7 +1162,7 @@ export const spec: Fig.Spec = {
           description: "use ssh git protocol instead of https",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1185,7 +1185,7 @@ export const spec: Fig.Spec = {
           description: "use ssh git protocol instead of https",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1204,7 +1204,7 @@ export const spec: Fig.Spec = {
       description: "show the list of available stacks",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1218,7 +1218,7 @@ export const spec: Fig.Spec = {
       description: "show the list of available stacks",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1232,7 +1232,7 @@ export const spec: Fig.Spec = {
       description: "set the stack of an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1251,7 +1251,7 @@ export const spec: Fig.Spec = {
       description: "set the stack of an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1270,7 +1270,7 @@ export const spec: Fig.Spec = {
       description: "set one or more config vars",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1290,7 +1290,7 @@ export const spec: Fig.Spec = {
       description: "set one or more config vars",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1315,7 +1315,7 @@ export const spec: Fig.Spec = {
       description: "adds a log drain to an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1341,7 +1341,7 @@ export const spec: Fig.Spec = {
           name: "--extended",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1355,7 +1355,7 @@ export const spec: Fig.Spec = {
       description: "removes a log drain from an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1374,7 +1374,7 @@ export const spec: Fig.Spec = {
       description: "disables an app feature",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1393,7 +1393,7 @@ export const spec: Fig.Spec = {
       description: "enables an app feature",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1416,7 +1416,7 @@ export const spec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1434,7 +1434,7 @@ export const spec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1500,7 +1500,7 @@ export const spec: Fig.Spec = {
       description: "enables an experimental feature",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1524,7 +1524,7 @@ export const spec: Fig.Spec = {
           description: "display as json",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1543,7 +1543,7 @@ export const spec: Fig.Spec = {
           description: "display as json",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1563,7 +1563,7 @@ export const spec: Fig.Spec = {
       description: "display the current maintenance status of app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1577,7 +1577,7 @@ export const spec: Fig.Spec = {
       description: "take the app out of maintenance mode",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1591,7 +1591,7 @@ export const spec: Fig.Spec = {
       description: "put the app into maintenance mode",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1618,7 +1618,7 @@ export const spec: Fig.Spec = {
           description: "show notifications already read",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1640,7 +1640,7 @@ export const spec: Fig.Spec = {
           name: "--extended",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1660,7 +1660,7 @@ export const spec: Fig.Spec = {
       description: "restart app dynos",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1679,7 +1679,7 @@ export const spec: Fig.Spec = {
       description: "restart app dynos",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1698,7 +1698,7 @@ export const spec: Fig.Spec = {
       description: "restart app dynos",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1717,7 +1717,7 @@ export const spec: Fig.Spec = {
       description: "scale dyno quantity up or down",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1737,7 +1737,7 @@ export const spec: Fig.Spec = {
       description: "scale dyno quantity up or down",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1757,7 +1757,7 @@ export const spec: Fig.Spec = {
       description: "scale dyno quantity up or down",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1777,7 +1777,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1796,7 +1796,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1815,7 +1815,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1834,7 +1834,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1853,7 +1853,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1872,7 +1872,7 @@ export const spec: Fig.Spec = {
       description: "stop app dyno",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1891,7 +1891,7 @@ export const spec: Fig.Spec = {
       description: "manage dyno sizes",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1911,7 +1911,7 @@ export const spec: Fig.Spec = {
       description: "manage dyno sizes",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1931,7 +1931,7 @@ export const spec: Fig.Spec = {
       description: "manage dyno sizes",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1951,7 +1951,7 @@ export const spec: Fig.Spec = {
       description: "manage dyno sizes",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -1971,7 +1971,7 @@ export const spec: Fig.Spec = {
       description: "manage dyno sizes",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2003,7 +2003,7 @@ export const spec: Fig.Spec = {
           name: "--extended",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2025,7 +2025,7 @@ export const spec: Fig.Spec = {
           description: "output in shell format",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2044,7 +2044,7 @@ export const spec: Fig.Spec = {
       description: "View the release command output",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2063,7 +2063,7 @@ export const spec: Fig.Spec = {
       description: "rollback to a previous release",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2082,7 +2082,7 @@ export const spec: Fig.Spec = {
       description: "rollback to a previous release",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2376,7 +2376,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2406,7 +2406,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2420,7 +2420,7 @@ export const spec: Fig.Spec = {
       description: "enable ACM status for an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2434,7 +2434,7 @@ export const spec: Fig.Spec = {
       description: "show ACM status for an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2448,7 +2448,7 @@ export const spec: Fig.Spec = {
       description: "refresh ACM for an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2462,7 +2462,7 @@ export const spec: Fig.Spec = {
       description: "print an ordered & complete chain for a certificate",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2520,7 +2520,7 @@ export const spec: Fig.Spec = {
           description: "do not prompt for any owner information",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2539,7 +2539,7 @@ export const spec: Fig.Spec = {
       description: "list SSL certificates for an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2567,7 +2567,7 @@ export const spec: Fig.Spec = {
           description: "show associated domains",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2581,7 +2581,7 @@ export const spec: Fig.Spec = {
       description: "print the correct key for the given certificate",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2615,7 +2615,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2647,7 +2647,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2802,7 +2802,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2835,7 +2835,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2855,7 +2855,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2881,7 +2881,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2916,7 +2916,7 @@ export const spec: Fig.Spec = {
           description: "start test run with an empty cache",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -2942,7 +2942,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3597,7 +3597,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3630,7 +3630,7 @@ export const spec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3654,7 +3654,7 @@ export const spec: Fig.Spec = {
       description: "remove users from a team app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3693,7 +3693,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3712,7 +3712,7 @@ export const spec: Fig.Spec = {
       description: "add yourself to a team app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3726,7 +3726,7 @@ export const spec: Fig.Spec = {
       description: "add yourself to a team app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3740,7 +3740,7 @@ export const spec: Fig.Spec = {
       description: "remove yourself from a team app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3754,7 +3754,7 @@ export const spec: Fig.Spec = {
       description: "remove yourself from a team app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3768,7 +3768,7 @@ export const spec: Fig.Spec = {
       description: "prevent team members from joining an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3782,7 +3782,7 @@ export const spec: Fig.Spec = {
       description: "prevent team members from joining an app",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3804,7 +3804,7 @@ export const spec: Fig.Spec = {
           description: "transfer applications in bulk",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3834,7 +3834,7 @@ export const spec: Fig.Spec = {
       description: "unlock an app so any team member can join",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3848,7 +3848,7 @@ export const spec: Fig.Spec = {
       description: "unlock an app so any team member can join",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3946,7 +3946,7 @@ export const spec: Fig.Spec = {
       description: "cancel an in-progress backup or restore (default newest)",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3975,7 +3975,7 @@ export const spec: Fig.Spec = {
           name: "--verbose",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -3998,7 +3998,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4022,7 +4022,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4063,7 +4063,7 @@ export const spec: Fig.Spec = {
           name: "--quiet",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4083,7 +4083,7 @@ export const spec: Fig.Spec = {
       description: "get information about a specific backup",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4113,7 +4113,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4141,7 +4141,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4160,7 +4160,7 @@ export const spec: Fig.Spec = {
       description: "list backup schedule",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4174,7 +4174,7 @@ export const spec: Fig.Spec = {
       description: "stop daily backups",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4196,7 +4196,7 @@ export const spec: Fig.Spec = {
           name: "--quiet",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4218,7 +4218,7 @@ export const spec: Fig.Spec = {
           name: "--quiet",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4240,7 +4240,7 @@ export const spec: Fig.Spec = {
           name: "--quiet",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4260,7 +4260,7 @@ export const spec: Fig.Spec = {
         "show table and index bloat in your database ordered by most wasteful",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4280,7 +4280,7 @@ export const spec: Fig.Spec = {
         "display queries holding locks other queries are waiting to be released",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4304,7 +4304,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4334,7 +4334,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4361,7 +4361,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4389,7 +4389,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4413,7 +4413,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4450,7 +4450,7 @@ export const spec: Fig.Spec = {
           description: "forces rotating the targeted credentials",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4475,7 +4475,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4498,7 +4498,7 @@ export const spec: Fig.Spec = {
           description: "DEPRECATED",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4521,7 +4521,7 @@ export const spec: Fig.Spec = {
           description: "format output as JSON",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4540,7 +4540,7 @@ export const spec: Fig.Spec = {
       description: "show database information",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4559,7 +4559,7 @@ export const spec: Fig.Spec = {
       description: "show database information",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4581,7 +4581,7 @@ export const spec: Fig.Spec = {
           name: "--force",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4603,7 +4603,7 @@ export const spec: Fig.Spec = {
       description: "terminates all connections for all credentials",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4627,7 +4627,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4653,7 +4653,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4675,7 +4675,7 @@ export const spec: Fig.Spec = {
       description: "lists all databases and information on link",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4698,7 +4698,7 @@ export const spec: Fig.Spec = {
           description: "truncates queries to 40 charaters",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4717,7 +4717,7 @@ export const spec: Fig.Spec = {
       description: "show current maintenance information",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4739,7 +4739,7 @@ export const spec: Fig.Spec = {
           name: "--force",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4758,7 +4758,7 @@ export const spec: Fig.Spec = {
       description: "set weekly maintenance window",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4794,7 +4794,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4816,7 +4816,7 @@ export const spec: Fig.Spec = {
           name: "--force",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4838,7 +4838,7 @@ export const spec: Fig.Spec = {
           name: "--verbose",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4872,7 +4872,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4906,7 +4906,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4931,7 +4931,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4959,7 +4959,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -4990,7 +4990,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5013,7 +5013,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5032,7 +5032,7 @@ export const spec: Fig.Spec = {
       description: "show your current database settings",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5052,7 +5052,7 @@ export const spec: Fig.Spec = {
         "Controls whether a log message is produced when a login attempt is made. Default is true.",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5075,7 +5075,7 @@ export const spec: Fig.Spec = {
         "Controls whether a log message is produced when a session waits longer than the deadlock_timeout to acquire a lock. deadlock_timeout is set to 1 second",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5098,7 +5098,7 @@ export const spec: Fig.Spec = {
         "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE.\nVALUE needs to specified as a whole number, in milliseconds.",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5120,7 +5120,7 @@ export const spec: Fig.Spec = {
       description: "log_statement controls which SQL statements are logged.",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5147,7 +5147,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5176,7 +5176,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5196,7 +5196,7 @@ export const spec: Fig.Spec = {
         "show dead rows and whether an automatic vacuum is expected to be triggered",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5216,7 +5216,7 @@ export const spec: Fig.Spec = {
         "show dead rows and whether an automatic vacuum is expected to be triggered",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5245,7 +5245,7 @@ export const spec: Fig.Spec = {
           description: "do not show OS notification",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5702,7 +5702,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5725,7 +5725,7 @@ export const spec: Fig.Spec = {
           description: "reset credentials",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5748,7 +5748,7 @@ export const spec: Fig.Spec = {
           description: "format output as JSON",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5771,7 +5771,7 @@ export const spec: Fig.Spec = {
           description: "format output as JSON",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5795,7 +5795,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5828,7 +5828,7 @@ export const spec: Fig.Spec = {
             "start maintenance without entering application maintenance mode",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5852,7 +5852,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5871,7 +5871,7 @@ export const spec: Fig.Spec = {
       description: "sets DATABASE as your REDIS_URL",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5896,7 +5896,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -5915,7 +5915,7 @@ export const spec: Fig.Spec = {
       description: "wait for Redis instance to be available",
       options: [
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6157,7 +6157,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6202,7 +6202,7 @@ export const spec: Fig.Spec = {
           description: "force use of colors (even on non-tty output)",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6234,7 +6234,7 @@ export const spec: Fig.Spec = {
           description: "force the command to not run in a tty",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6274,7 +6274,7 @@ export const spec: Fig.Spec = {
           args: {},
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6308,7 +6308,7 @@ export const spec: Fig.Spec = {
           description: "listen on a local port",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
@@ -6361,7 +6361,7 @@ export const spec: Fig.Spec = {
             "disables notification when dyno is up (alternatively use HEROKU_NOTIFICATIONS=0)",
         },
         {
-          name: "--app",
+          name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
