@@ -68,8 +68,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
       return out.split("\n").map((elm) => {
+        // current branch
+        if (elm.includes("*")) {
+          return {
+            name: elm.replace("*", "").trim(),
+            description: "current branch",
+            icon: "⭐️",
+            // priority: 100,
+          };
+        }
+
         return {
-          name: elm.replace("*", "").trim(),
+          name: elm.trim(),
           description: "branch",
           icon: "fig://icon?type=git",
         };
@@ -78,10 +88,37 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   remotes: {
-    script: "git remote",
+    script: "git remote -v",
     postProcess: function (out) {
-      return out.split("\n").map((remote) => {
-        return { name: remote, description: "remote" };
+      const remoteURLs = out.split("\n").reduce((dict, line) => {
+        const pair = line.split("\t");
+        const remote = pair[0];
+        console.log(remote, pair);
+        const url = pair[1].split(" ")[0];
+
+        dict[remote] = url;
+        return dict;
+      }, {});
+
+      return Object.keys(remoteURLs).map((remote) => {
+        const url = remoteURLs[remote];
+        let icon = "box";
+        if (url.includes("github.com")) {
+          icon = "github";
+        }
+
+        if (url.includes("gitlab.com")) {
+          icon = "gitlab";
+        }
+
+        if (url.includes("heroku.com")) {
+          icon = "heroku";
+        }
+        return {
+          name: remote,
+          icon: `fig://icon?type=${icon}`,
+          description: "remote",
+        };
       });
     },
   },
@@ -164,8 +201,7 @@ export const completionSpec: Fig.Spec = {
       description: "Pass a config parameter to the command",
     },
     {
-      name: "--exec-path[=<path>]",
-      insertValue: "--exec-path",
+      name: "--exec-path",
       args: {
         name: "path",
         isOptional: true,
@@ -202,8 +238,7 @@ export const completionSpec: Fig.Spec = {
       description: "Treat the repository as a bare repository",
     },
     {
-      name: "--git-dir=<path>",
-      insertValue: "--git-dir=",
+      name: "--git-dir",
       args: {
         name: "path",
         template: "folders",
@@ -211,8 +246,7 @@ export const completionSpec: Fig.Spec = {
       description: "Set the path to the repository dir (`.git`)",
     },
     {
-      name: "--work-tree=<path>",
-      insertValue: "--work-tree=",
+      name: "--work-tree",
       args: {
         name: "path",
         template: "folders",
@@ -220,8 +254,7 @@ export const completionSpec: Fig.Spec = {
       description: "Set working tree path",
     },
     {
-      name: "--namespace=<name>",
-      insertValue: "--namespace=",
+      name: "--namespace",
       args: {
         name: "name",
       },
@@ -991,6 +1024,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "commit",
+        isOptional: true,
         suggestions: [{ name: "HEAD" }],
         generators: gitGenerators.commits,
       },
@@ -1642,7 +1676,6 @@ export const completionSpec: Fig.Spec = {
           name: "apply",
           description:
             "Like pop, but do not remove the state from the stash list.",
-          insertValue: "apply {cursor}",
           options: [
             {
               name: "--index",

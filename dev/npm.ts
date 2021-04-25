@@ -1,50 +1,47 @@
+const searchGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  },
+  postProcess: function (out) {
+    try {
+      var temp = JSON.parse(out).results.map(
+        (item) =>
+          ({
+            name: item.package.name,
+            description: item.package.description,
+          } as Fig.Suggestion)
+      ) as Fig.Suggestion[];
+    } catch (e) {
+      return [];
+    }
+
+    return temp;
+  },
+  // trigger: function () {
+  //   return true;
+  // },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "npm",
   description: "Node package manager",
   subcommands: [
     {
       name: "install",
-      description: "",
-      args: [
-        {
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() === "") {
-                return [];
-              }
-              try {
-                const packageConten = JSON.parse(out);
-                const dependencies = packageConten["dependencies"];
-                if (dependencies) {
-                  const dps = Object.keys(dependencies);
-                  return dps.map((pkg) => {
-                    const scope = pkg.indexOf("/") + 1;
-                    if (scope !== -1) {
-                      pkg = pkg.substring(scope);
-                    }
-                    const version = pkg.indexOf("@");
-                    if (version !== -1) {
-                      pkg = pkg.substring(version);
-                    }
-                    return {
-                      name: pkg,
-                      icon: `fig://icon?type=file`,
-                      description: "dependency file",
-                    };
-                  });
-                }
-              } catch (e) {}
-              return [];
-            },
-          },
-        },
-      ],
+      description: "Install a package and its dependencies",
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
       options: [
         {
           name: ["-P", "--save-prod"],
           description:
-            "Package will appear in your `dependencies`. This is thedefault unless `-D` or `-O` are present.",
+            "Package will appear in your `dependencies`. This is the default unless `-D` or `-O` are present.",
         },
         {
           name: ["-D", "--save-dev"],
@@ -67,11 +64,12 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "run",
-      description: "",
+      description: "run arbitrary package scripts",
       args: [
         {
           generators: {
-            script: "cat package.json",
+            script:
+              "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
             // splitOn: "\n",
             postProcess: function (out) {
               if (out.trim() == "") {
@@ -79,19 +77,24 @@ export const completionSpec: Fig.Spec = {
               }
 
               try {
-                const packageContent = JSON.parse(out);
-                const scripts = packageContent["scripts"];
+                var packageContent = JSON.parse(out);
+                var scripts = packageContent["scripts"];
+                var figCompletions = packageContent["fig"];
+
                 if (scripts) {
                   const keys = Object.keys(scripts).map((key) => {
-                    return {
-                      name: key,
-                      icon:
-                        "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
-                    };
+                    return Object.assign(
+                      {},
+                      { icon: "fig://icon?type=npm" },
+                      (figCompletions || {})[key], // need the || {} otherwise it errors
+                      { name: key, insertValue: key }
+                    ); // ensure that name and insertValue are defined by "scripts" dict
                   });
                   return keys;
                 }
-              } catch (e) {}
+              } catch (e) {
+                console.error(e);
+              }
 
               return [];
             },
@@ -139,7 +142,16 @@ export const completionSpec: Fig.Spec = {
     { name: "help", description: "search npm help documentation" },
     { name: "help-search", description: "get help on npm" },
     { name: "hook", description: "manage registry hooks" },
-    { name: "i", description: "install local package" },
+    {
+      name: "i",
+      description: "Install a package and its dependencies",
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
+    },
     {
       name: "install-ci-test",
       description: "install a project with a clean slate and run tests",

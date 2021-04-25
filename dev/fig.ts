@@ -209,6 +209,36 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "autocomplete.sortMethod",
+          description: "Specify how Fig should sort suggestions",
+          args: {
+            suggestions: [
+              {
+                name: "recency",
+                description: "Sort by recency",
+              },
+              {
+                name: "alphabetical",
+                description: "Sort by alphabetical order",
+              },
+            ],
+          },
+        },
+        {
+          name: "autocomplete.fuzzySearch",
+          description:
+            "Search of suggestions using fuzzy search rather than prefix search. NOTE: this currenty does not support the tab autocomplete underlining that prefix search has",
+          icon: "fig://icon?type=commandkey",
+          insertValue: "autocomplete.fuzzySearch ",
+          args: {
+            name: "bool",
+            suggestions: [
+              { name: "true", icon: "fig://icon?type=string" },
+              { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
           name: "pty.path",
           icon: "fig://icon?type=commandkey",
           description: "Specify the $PATH variable in Fig's pseudoterminal",
@@ -251,6 +281,30 @@ export const completionSpec: Fig.Spec = {
             suggestions: [
               { name: "true", icon: "fig://icon?type=string" },
               { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
+          name: "app.hideMenubarIcon",
+          icon: "fig://icon?type=commandkey",
+          description: "Hide Fig's icon ◧ in the mac status bar",
+          args: {
+            name: "bool",
+            suggestions: [
+              { name: "true", icon: "fig://icon?type=string" },
+              { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
+          name: "autocomplete.theme",
+          icon: "fig://icon?type=commandkey",
+          description: "Change Fig's theme",
+          args: {
+            name: "mode",
+            suggestions: [
+              { name: "light", icon: "fig://icon?type=string" },
+              { name: "dark", icon: "fig://icon?type=string" },
             ],
           },
         },
@@ -322,6 +376,14 @@ export const completionSpec: Fig.Spec = {
     { name: "list", description: "list all available completion specs" },
     { name: "onboarding", description: "re-run Fig's onboarding" },
     { name: "diagnostic", description: "display diagnostic information" },
+    {
+      name: "issue",
+      description: "create a new Github issue in withfig/fig",
+      icon: "fig://icon?type=github",
+    },
+
+    { name: "quit", description: "quit the Fig application" },
+
     {
       name: "team:upload",
       description: "share an completion spec with your team",

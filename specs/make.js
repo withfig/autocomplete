@@ -8,7 +8,7 @@ var listTargets = {
                 name: lines[i],
                 description: "make target",
                 icon: "🎯",
-                priority: 99,
+                priority: 80,
             });
         }
         return targets;

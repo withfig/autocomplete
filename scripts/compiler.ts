@@ -6,6 +6,7 @@ import SpecLogger, { Level } from "./log";
 import ProgressBar from "progress";
 import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from "./constants";
 import { exec } from "child_process";
+import chokidar from "chokidar";
 
 // The options for the TypeScript compiler
 const options: ts.TranspileOptions = {
@@ -39,22 +40,32 @@ if (process.argv[2] == "INVALIDATE_CACHE") {
   );
 }
 
+function walkDir(dir: string, callback: (path: string) => void) {
+  fs.readdirSync(dir).forEach((currentFilePath) => {
+    const dirPath = path.join(dir, currentFilePath);
+    const isDirectory = fs.statSync(dirPath).isDirectory();
+    if (isDirectory) {
+      walkDir(dirPath, callback);
+    } else {
+      callback(path.join(dir, currentFilePath));
+    }
+  });
+}
+
 /**
  * Process a spec by transpiling it with the TypeScript
  * compiler.
- * @param file The file to process
+ * @param filePath The file to process
  */
-const processSpec = (file: string) => {
-  const source = fs.readFileSync(file).toString();
+const processSpec = (filePath: string) => {
+  const source = fs.readFileSync(filePath).toString();
   const result = ts.transpileModule(source, options);
 
-  let newName = path.basename(file, ".ts");
+  const relativeFilePath = filePath
+    .replace(`${SOURCE_FOLDER_NAME}/`, "")
+    .replace(".ts", ".js");
 
-  if (!newName.endsWith(".js")) {
-    newName += ".js";
-  }
-
-  const outFilePath = path.resolve(DESTINATION_FOLDER_NAME, newName);
+  const outFilePath = path.resolve(DESTINATION_FOLDER_NAME, relativeFilePath);
   const outDirname = path.dirname(outFilePath);
 
   if (!fs.existsSync(outDirname)) {
@@ -67,17 +78,12 @@ const processSpec = (file: string) => {
   fs.writeFileSync(outFilePath, jsOutput);
 };
 
-// Process all the files in the specs directory
-fs.readdir(SOURCE_FOLDER_NAME, (err, files) => {
-  if (err) {
-    SpecLogger.log(
-      `Could not find /${DESTINATION_FOLDER_NAME} folder`,
-      Level.ERROR
-    );
-    return;
-  }
-
-  const specs = files.filter((file) => file !== ".DS_STORE");
+/**
+ * Transpiles all passed files and prints the progress
+ * @param specs Array of filepaths
+ */
+function processFiles(specs: string[]) {
+  // Process all the files in the specs directory
   SpecLogger.log(`Processing ${specs.length} specs...`);
 
   const bar = new ProgressBar(":bar :percent", {
@@ -87,8 +93,14 @@ fs.readdir(SOURCE_FOLDER_NAME, (err, files) => {
     incomplete: " ",
   });
 
+  // Make sure that the destination folder exists
+  if (!fs.existsSync(DESTINATION_FOLDER_NAME)) {
+    // if not create it
+    fs.mkdirSync(DESTINATION_FOLDER_NAME);
+  }
+
   specs.forEach((spec) => {
-    processSpec(path.join(SOURCE_FOLDER_NAME, spec));
+    processSpec(spec);
     bar.tick({ spec });
   });
 
@@ -96,4 +108,22 @@ fs.readdir(SOURCE_FOLDER_NAME, (err, files) => {
     `Specs compiled successfully to /${DESTINATION_FOLDER_NAME} folder!`,
     Level.SUCCESS
   );
-});
+}
+
+const isWatching = process.argv.includes("--watch");
+
+if (isWatching) {
+  const watcher = chokidar.watch(SOURCE_FOLDER_NAME);
+  // Process the changed file
+  watcher.on("change", (filePath: string) => {
+    processFiles([filePath]);
+  });
+} else {
+  // Get all files from the the source folder recursively
+  const specs: string[] = [];
+  walkDir(SOURCE_FOLDER_NAME, (path) => {
+    if (path === ".DS_STORE") return;
+    specs.push(path);
+  });
+  processFiles(specs);
+}

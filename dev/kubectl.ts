@@ -1,3 +1,31 @@
+// TODO: Handle if not connected to a k8s cluster
+const resourcesArg = {
+  name: "Resource Type",
+  generators: {
+    script: "kubectl api-resources -o name",
+    splitOn: "\n",
+  },
+};
+
+const runningPodsArg = {
+  name: "Running Pods",
+  generators: {
+    script: "kubectl get pods --field-selector=status.phase=Running -o name",
+    splitOn: "\n",
+  },
+};
+
+const resourceSuggestionsFromResourceType = {
+  name: "Resource",
+  generators: {
+    script: function (context) {
+      const resourceType = context[context.length - 2];
+      return `kubectl get ${resourceType} -o custom-columns=:.metadata.name`;
+    },
+    splitOn: "\n",
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "kubectl",
   description: "",
@@ -73,6 +101,13 @@ export const completionSpec: Fig.Spec = {
     {
       name: "annotate",
       description: "Update the annotations on one or more resources",
+      args: [
+        resourcesArg,
+        {
+          name: "KEY=VAL",
+          variadic: true,
+        },
+      ],
       options: [
         {
           name: ["--all"],
@@ -250,7 +285,9 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--filename"],
           description: "that contains the configuration to apply",
-          args: {},
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--force"],
@@ -274,7 +311,9 @@ export const completionSpec: Fig.Spec = {
           name: ["-k", "--kustomize"],
           description:
             "Process a kustomization directory. This flag can't be used together with -f or -R.",
-          args: {},
+          args: {
+            template: "folders",
+          },
         },
         {
           name: ["--openapi-patch"],
@@ -462,6 +501,7 @@ export const completionSpec: Fig.Spec = {
       name: "attach",
       description:
         "Attach to a process that is already running inside an existing container.",
+      args: runningPodsArg,
       options: [
         {
           name: ["-c", "--container"],
@@ -2602,6 +2642,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Show details of a specific resource or group of resources",
+      args: [resourcesArg, resourceSuggestionsFromResourceType],
       options: [
         {
           name: ["-A", "--all-namespaces"],
@@ -2823,6 +2864,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "exec",
       description: "Execute a command in a container.",
+      args: runningPodsArg,
       options: [
         {
           name: ["-c", "--container"],
@@ -2857,6 +2899,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "explain",
       description: "List the fields for supported resources",
+      args: resourcesArg,
       options: [
         {
           name: ["--api-version"],
@@ -3012,13 +3055,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "get",
       description: "Display one or many resources",
-      args: {
-        name: "Resource",
-        generators: {
-          script: "kubectl api-resources -o name",
-          splitOn: "\n",
-        },
-      },
+      args: resourcesArg,
       options: [
         {
           name: ["-A", "--all-namespaces"],
@@ -3048,7 +3085,9 @@ export const completionSpec: Fig.Spec = {
           name: ["-f", "--filename"],
           description:
             "Filename, directory, or URL to files identifying the resource to get from a server.",
-          args: {},
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--ignore-not-found"],

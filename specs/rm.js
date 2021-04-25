@@ -3,6 +3,7 @@ var completionSpec = {
     description: "remove directory entries",
     args: [
         {
+            variadic: true,
             template: "filepaths",
         },
     ],
