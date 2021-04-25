@@ -1,32 +1,67 @@
-const yarnGenerators = {
-  getScripts: {
-    script: "cat package.json",
-    postProcess: function (output) {
-      if (output.trim() == "") {
-        return [];
-      }
-      try {
-        const packageContent = JSON.parse(output);
-        const scripts = packageContent["scripts"];
-        if (scripts) {
-          return Object.keys(scripts).map((scriptName) => ({
-            name: scriptName,
-            icon: "https://yarnpkg.com/favicon-32x32.png",
-          }));
-        }
-      } catch (e) {}
+type SearchResult = {
+  package: {
+    name: string;
+    description: string;
+  };
+  searchScore: number;
+};
 
+const searchGenerator: Fig.Generator = {
+  script: function (context) {
+    if (context[context.length - 1] === "") return "";
+    const searchTerm = context[context.length - 1];
+    return `curl -s -H "Accept: application/json" "https://api.npms.io/v2/search?q=${searchTerm}&size=20"`;
+  },
+  postProcess: function (out) {
+    try {
+      const results: SearchResult[] = JSON.parse(out).results;
+      return results.map((item) => ({
+        name: item.package.name,
+        description: item.package.description,
+      })) as Fig.Suggestion[];
+    } catch (e) {
       return [];
-    },
-  } as Fig.Generator,
+    }
+  },
+};
+
+const getScriptsGenerator: Fig.Generator = {
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+  // splitOn: "\n",
+  postProcess: function (out) {
+    if (out.trim() == "") {
+      return [];
+    }
+
+    try {
+      var packageContent = JSON.parse(out);
+      var scripts = packageContent["scripts"];
+      var figCompletions = packageContent["fig"];
+
+      if (scripts) {
+        const keys = Object.keys(scripts).map((key) => {
+          return Object.assign(
+            {},
+            { icon: "fig://icon?type=npm" },
+            (figCompletions || {})[key], // need the || {} otherwise it errors
+            { name: key, insertValue: key }
+          ); // ensure that name and insertValue are defined by "scripts" dict
+        });
+        return keys;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    return [];
+  },
 };
 
 // generate package list from package.json file
 const packageList: Fig.Generator = {
   script: "cat package.json",
   postProcess: function (out) {
-    console.log("THIS IS A TEST");
-    console.log(out);
     if (out.trim() == "") {
       return [];
     }
@@ -84,7 +119,8 @@ export const completionSpec: Fig.Spec = {
   description: "Manage packages and run scripts",
   args: [
     {
-      generators: yarnGenerators.getScripts,
+      generators: getScriptsGenerator,
+      isOptional: true,
     },
   ],
   options: [
@@ -361,6 +397,12 @@ export const completionSpec: Fig.Spec = {
     {
       name: "add",
       description: "Installs a package and any packages that it depends on.",
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
       options: [
         {
           name: ["-W", "--ignore-workspace-root-check"],
@@ -593,6 +635,12 @@ export const completionSpec: Fig.Spec = {
     {
       name: "global",
       description: "Install packages globally on your operating system",
+      args: {
+        name: "package",
+        generators: searchGenerator,
+        debounce: true,
+        variadic: true,
+      },
       options: [
         {
           name: "--prefix",
@@ -870,7 +918,7 @@ export const completionSpec: Fig.Spec = {
         //           }
         //     },
         {
-          generators: yarnGenerators.getScripts,
+          generators: getScriptsGenerator,
         },
       ],
     },
