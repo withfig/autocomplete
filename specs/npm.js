@@ -1,50 +1,45 @@
+var searchGenerator = {
+    script: function (context) {
+        if (context[context.length - 1] === "")
+            return "";
+        var searchTerm = context[context.length - 1];
+        return "curl -s -H \"Accept: application/json\" \"https://api.npms.io/v2/search?q=" + searchTerm + "&size=20\"";
+    },
+    postProcess: function (out) {
+        try {
+            var temp = JSON.parse(out).results.map(function (item) {
+                return ({
+                    name: item.package.name,
+                    description: item.package.description,
+                });
+            });
+        }
+        catch (e) {
+            return [];
+        }
+        return temp;
+    },
+    // trigger: function () {
+    //   return true;
+    // },
+};
 var completionSpec = {
     name: "npm",
     description: "Node package manager",
     subcommands: [
         {
             name: "install",
-            description: "",
-            args: [
-                {
-                    generators: {
-                        script: "cat package.json",
-                        postProcess: function (out) {
-                            if (out.trim() === "") {
-                                return [];
-                            }
-                            try {
-                                var packageConten = JSON.parse(out);
-                                var dependencies = packageConten["dependencies"];
-                                if (dependencies) {
-                                    var dps = Object.keys(dependencies);
-                                    return dps.map(function (pkg) {
-                                        var scope = pkg.indexOf("/") + 1;
-                                        if (scope !== -1) {
-                                            pkg = pkg.substring(scope);
-                                        }
-                                        var version = pkg.indexOf("@");
-                                        if (version !== -1) {
-                                            pkg = pkg.substring(version);
-                                        }
-                                        return {
-                                            name: pkg,
-                                            icon: "fig://icon?type=file",
-                                            description: "dependency file",
-                                        };
-                                    });
-                                }
-                            }
-                            catch (e) { }
-                            return [];
-                        },
-                    },
-                },
-            ],
+            description: "Install a package and its dependencies",
+            args: {
+                name: "package",
+                generators: searchGenerator,
+                debounce: true,
+                variadic: true,
+            },
             options: [
                 {
                     name: ["-P", "--save-prod"],
-                    description: "Package will appear in your `dependencies`. This is thedefault unless `-D` or `-O` are present.",
+                    description: "Package will appear in your `dependencies`. This is the default unless `-D` or `-O` are present.",
                 },
                 {
                     name: ["-D", "--save-dev"],
@@ -137,7 +132,16 @@ var completionSpec = {
         { name: "help", description: "search npm help documentation" },
         { name: "help-search", description: "get help on npm" },
         { name: "hook", description: "manage registry hooks" },
-        { name: "i", description: "install local package" },
+        {
+            name: "i",
+            description: "Install a package and its dependencies",
+            args: {
+                name: "package",
+                generators: searchGenerator,
+                debounce: true,
+                variadic: true,
+            },
+        },
         {
             name: "install-ci-test",
             description: "install a project with a clean slate and run tests",

@@ -1,11 +1,12 @@
-import { danger, markdown, schedule } from "danger";
-import * as fs from "fs";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { danger, schedule } from "danger";
 import {
   createSourceFile,
   forEachChild,
   isFunctionExpression,
   isPropertyAssignment,
   isStringLiteral,
+  isTemplateExpression,
   Node,
   PropertyAssignment,
   ScriptTarget,
@@ -14,6 +15,8 @@ import {
   visitEachChild,
   visitNode,
 } from "typescript";
+
+const URL_REGEXP = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 export const specTransformer: TransformerFactory<SourceFile> = (context) => {
   return (sourceFile) => {
@@ -34,11 +37,25 @@ const getFileContent = (fileContent: Node) => {
   const scripts: string[] = [];
   const functions: [string, string][] = [];
   const pairs: [string, [string, string]][] = [];
-
+  const urls: string[] = [];
   let isLastScript = false;
   let lastScript: string;
 
   const visitor = (node: Node) => {
+    if (isStringLiteral(node)) {
+      const text = node.text;
+      if (URL_REGEXP.test(text)) {
+        const matches = text.match(URL_REGEXP);
+        urls.push(matches[0]);
+      }
+    }
+    if (isTemplateExpression(node)) {
+      const text = fileContent.getFullText().slice(node.pos, node.end);
+      if (URL_REGEXP.test(text)) {
+        const matches = text.match(URL_REGEXP);
+        urls.push(matches[0]);
+      }
+    }
     // PropertyAssignment === Key-Value pair in object
     if (isPropertyAssignment(node)) {
       const propertyKey: string = (node.name as any).escapedText;
@@ -81,6 +98,7 @@ const getFileContent = (fileContent: Node) => {
     scripts,
     functions,
     pairs,
+    urls,
   };
 };
 
@@ -102,14 +120,26 @@ schedule(async () => {
     .concat(danger.git.created_files)
     .filter((file) => file.includes("dev/"));
 
+  // console.log(fs.readdirSync("dev/", { encoding: "utf-8" }));
   let message = "<!-- id: review-bot --> \n";
   let comment = "";
+
   if (updatedFiles.length > 0) {
-    updatedFiles.forEach((fileName) => {
-      const content = fs.readFileSync(fileName, { encoding: "utf-8" });
+    const promises = updatedFiles.map(async (fileName) => {
+      const res = await danger.github.api.repos.getContents({
+        owner: danger.github.pr.user.login,
+        repo: danger.github.pr.head.repo.name,
+        path: fileName,
+        ref: danger.github.pr.head.sha,
+      });
+      if (!res || !(res.data as any)?.content) return;
+      const content = Buffer.from((res.data as any).content, "base64").toString(
+        "utf-8"
+      );
+
       const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
       const fileContent = getFileContent(sourceFile);
-
+      // START MESSAGE
       message += `## ${fileName}:
 ### Info:
 ${fileContent.pairs
@@ -143,13 +173,23 @@ ${value}
   .join("\n")}`
     : ""
 }
+${
+  fileContent.urls.length > 0
+    ? `### URLs:
+${fileContent.urls.map((s) => `- \`${s}\``).join("\n")}`
+    : ""
+}
 `;
+      // END MESSAGE
+      // END LOOP
     });
+    await Promise.all(promises);
     comment = `# Overview
 ${message}`;
   } else {
     comment = `# No files changed ☑️ ${message}`;
   }
+
   if (reviewCommentRef != null) {
     await danger.github.api.issues.updateComment({
       body: comment,
