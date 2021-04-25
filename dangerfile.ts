@@ -104,8 +104,9 @@ schedule(async () => {
   // console.log(fs.readdirSync("dev/", { encoding: "utf-8" }));
   let message = "<!-- id: review-bot --> \n";
   let comment = "";
+
   if (updatedFiles.length > 0) {
-    updatedFiles.forEach(async (fileName) => {
+    const promises = updatedFiles.map(async (fileName) => {
       const res = await danger.github.api.repos.getContents({
         owner: danger.github.pr.user.login,
         repo: danger.github.pr.head.repo.name,
@@ -120,6 +121,7 @@ schedule(async () => {
       const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
       const fileContent = getFileContent(sourceFile);
 
+      // START MESSAGE
       message += `## ${fileName}:
 ### Info:
 ${fileContent.pairs
@@ -154,12 +156,16 @@ ${value}
     : ""
 }
 `;
+      // END MESSAGE
+      // END LOOP
     });
+    await Promise.all(promises);
     comment = `# Overview
 ${message}`;
   } else {
     comment = `# No files changed ☑️ ${message}`;
   }
+
   if (reviewCommentRef != null) {
     await danger.github.api.issues.updateComment({
       body: comment,
