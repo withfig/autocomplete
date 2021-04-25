@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { danger, schedule } from "danger";
 import {
   createSourceFile,
