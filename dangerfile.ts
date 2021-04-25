@@ -109,12 +109,14 @@ schedule(async () => {
       const res = await danger.github.api.repos.getContents({
         owner: danger.github.pr.user.login,
         repo: danger.github.pr.head.repo.name,
-        path: "dev/fastly.ts",
+        path: fileName,
+        ref: danger.github.pr.head.sha,
       });
       if (!res || !(res.data as any)?.content) return;
       const content = Buffer.from((res.data as any).content, "base64").toString(
         "utf-8"
       );
+
       const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
       const fileContent = getFileContent(sourceFile);
 
