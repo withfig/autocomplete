@@ -435,7 +435,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -471,7 +470,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -495,7 +493,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -528,7 +525,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -557,7 +553,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -587,7 +582,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -622,7 +616,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
                 {
                     name: ["-a", "--app"],
@@ -2123,7 +2116,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
             ],
         },
@@ -2342,7 +2334,6 @@ var completionSpec = {
                 {
                     name: ["-h", "--help"],
                     description: "Show help for this command",
-                    args: {},
                 },
             ],
         },

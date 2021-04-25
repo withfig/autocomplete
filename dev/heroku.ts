@@ -437,7 +437,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -474,7 +473,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -498,7 +496,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -531,7 +528,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -560,7 +556,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -591,7 +586,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -627,7 +621,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
         {
           name: ["-a", "--app"],
@@ -2135,7 +2128,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
       ],
     },
@@ -2358,7 +2350,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Show help for this command",
-          args: {},
         },
       ],
     },
