@@ -6,6 +6,7 @@ import {
   isFunctionExpression,
   isPropertyAssignment,
   isStringLiteral,
+  isTemplateExpression,
   Node,
   PropertyAssignment,
   ScriptTarget,
@@ -14,6 +15,8 @@ import {
   visitEachChild,
   visitNode,
 } from "typescript";
+
+const URL_REGEXP = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 export const specTransformer: TransformerFactory<SourceFile> = (context) => {
   return (sourceFile) => {
@@ -34,11 +37,25 @@ const getFileContent = (fileContent: Node) => {
   const scripts: string[] = [];
   const functions: [string, string][] = [];
   const pairs: [string, [string, string]][] = [];
-
+  const urls: string[] = [];
   let isLastScript = false;
   let lastScript: string;
 
   const visitor = (node: Node) => {
+    if (isStringLiteral(node)) {
+      const text = node.text;
+      if (URL_REGEXP.test(text)) {
+        const matches = text.match(URL_REGEXP);
+        urls.push(matches[0]);
+      }
+    }
+    if (isTemplateExpression(node)) {
+      const text = fileContent.getFullText().slice(node.pos, node.end);
+      if (URL_REGEXP.test(text)) {
+        const matches = text.match(URL_REGEXP);
+        urls.push(matches[0]);
+      }
+    }
     // PropertyAssignment === Key-Value pair in object
     if (isPropertyAssignment(node)) {
       const propertyKey: string = (node.name as any).escapedText;
@@ -81,6 +98,7 @@ const getFileContent = (fileContent: Node) => {
     scripts,
     functions,
     pairs,
+    urls,
   };
 };
 
@@ -121,7 +139,6 @@ schedule(async () => {
 
       const sourceFile = createSourceFile("temp", content, ScriptTarget.Latest);
       const fileContent = getFileContent(sourceFile);
-
       // START MESSAGE
       message += `## ${fileName}:
 ### Info:
@@ -154,6 +171,12 @@ ${value}
 `
   )
   .join("\n")}`
+    : ""
+}
+${
+  fileContent.urls.length > 0
+    ? `### URLs:
+${fileContent.urls.map((s) => `- \`${s}\``).join("\n")}`
     : ""
 }
 `;
