@@ -35,20 +35,24 @@ const getScriptsGenerator: Fig.Generator = {
     }
 
     try {
-      var packageContent = JSON.parse(out);
-      var scripts = packageContent["scripts"];
-      var figCompletions = packageContent["fig"];
+      const packageContent = JSON.parse(out);
+      const scripts = packageContent["scripts"];
+      const figCompletions = packageContent["fig"] || {};
 
       if (scripts) {
-        const keys = Object.keys(scripts).map((key) => {
-          return Object.assign(
-            {},
-            { icon: "fig://icon?type=npm" },
-            (figCompletions || {})[key], // need the || {} otherwise it errors
-            { name: key, insertValue: key }
-          ); // ensure that name and insertValue are defined by "scripts" dict
+        return Object.keys(scripts).map((key) => {
+          const icon = "fig://icon?type=npm";
+          const customScripts: Fig.Suggestion = figCompletions[key];
+          return {
+            name: key,
+            icon,
+            /**
+             * If there are custom definitions for the scripts
+             * we want to overide the default values
+             * */
+            ...(customScripts !== undefined && customScripts),
+          };
         });
-        return keys;
       }
     } catch (e) {
       console.error(e);

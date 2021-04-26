@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
@@ -33,13 +44,13 @@ var getScriptsGenerator = {
         try {
             var packageContent = JSON.parse(out);
             var scripts = packageContent["scripts"];
-            var figCompletions = packageContent["fig"];
+            var figCompletions_1 = packageContent["fig"] || {};
             if (scripts) {
-                var keys = Object.keys(scripts).map(function (key) {
-                    return Object.assign({}, { icon: "fig://icon?type=npm" }, (figCompletions || {})[key], // need the || {} otherwise it errors
-                    { name: key, insertValue: key }); // ensure that name and insertValue are defined by "scripts" dict
+                return Object.keys(scripts).map(function (key) {
+                    var icon = "fig://icon?type=npm";
+                    var customScripts = figCompletions_1[key];
+                    return __assign({ name: key, icon: icon }, (customScripts !== undefined && customScripts));
                 });
-                return keys;
             }
         }
         catch (e) {
