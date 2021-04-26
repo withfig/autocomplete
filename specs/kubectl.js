@@ -483,7 +483,7 @@ var completionSpec = {
                 },
                 {
                     name: ["--pod-running-timeout"],
-                    insertvalue: "-pod-running-timeout=",
+                    insertValue: "-pod-running-timeout=",
                     description: "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
                     args: {},
                 },
