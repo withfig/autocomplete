@@ -2082,7 +2082,7 @@ var completionSpec = {
                     name: ["--timeout"],
                     description: "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
                     args: {
-                        name: "INT (Seconds)"
+                        name: "INT (Seconds)",
                     },
                 },
                 {
@@ -2233,7 +2233,7 @@ var completionSpec = {
                 {
                     name: "COMMAND",
                     isCommand: true,
-                }
+                },
             ],
             options: [
                 // TODO: List containers from the specified pod
@@ -2271,68 +2271,60 @@ var completionSpec = {
                 {
                     name: ["--recursive"],
                     description: "Print the fields of fields (Currently only 1 level deep)",
-                    args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "expose",
             description: "Expose a resource as a new Kubernetes service.",
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.dryRun,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.output,
+                sharedOpts.record,
+                sharedOpts.recursive,
+                sharedOpts.selector,
+                sharedOpts.template,
                 {
                     name: ["--cluster-ip"],
+                    insertValue: "--cluster-ip=",
                     description: "ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service.",
                     args: {},
                 },
                 {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
                     name: ["--external-ip"],
+                    insertValue: "--external-ip=",
                     description: "Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is routed to a node, the service can be accessed by this IP in addition to its generated service IP.",
                     args: {},
                 },
                 {
-                    name: ["-f", "--filename"],
-                    description: "Filename, directory, or URL to files identifying the resource to expose a service",
-                    args: {},
-                },
-                {
                     name: ["--generator"],
+                    insertValue: "--generator=",
                     description: "The name of the API generator to use. There are 2 generators: 'service/v1' and 'service/v2'. The only difference between them is that service port in v1 is named 'default', while it is left unnamed in v2. Default is 'service/v2'.",
                     args: {},
                 },
                 {
-                    name: ["-k", "--kustomize"],
-                    description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
-                },
-                {
                     name: ["-l", "--labels"],
+                    insertValue: "--labels=",
                     description: "Labels to apply to the service created by this call.",
                     args: {},
                 },
                 {
                     name: ["--load-balancer-ip"],
+                    insertValue: "--load-balancer-ip=",
                     description: "IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider specific).",
                     args: {},
                 },
                 {
                     name: ["--name"],
                     description: "The name for the newly created object.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
+                    insertValue: "--name=",
                     args: {},
                 },
                 {
@@ -2342,53 +2334,46 @@ var completionSpec = {
                 },
                 {
                     name: ["--port"],
+                    insertValue: "--port=",
                     description: "The port that the service should serve on. Copied from the resource being exposed, if unspecified",
                     args: {},
                 },
                 {
                     name: ["--protocol"],
+                    insertValue: "--protocol=",
                     description: "The network protocol for the service to be created. Default is 'TCP'.",
-                    args: {},
-                },
-                {
-                    name: ["--record"],
-                    description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
+                    args: {
+                        suggestions: ["TCP", "UDP", "SCTP"],
+                    },
                 },
                 {
                     name: ["--save-config"],
                     description: "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
-                    args: {},
-                },
-                {
-                    name: ["--selector"],
-                    description: "A label selector to use for this service. Only equality-based selector requirements are supported. If empty (the default) infer the selector from the replication controller or replica set.)",
-                    args: {},
                 },
                 {
                     name: ["--session-affinity"],
+                    insertValue: "--session-affinity=",
                     description: "If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP'",
                     args: {},
                 },
                 {
                     name: ["--target-port"],
+                    insertValue: "--target-port=",
                     description: "Name or number for the port on the container that the service should direct traffic to. Optional.",
                     args: {},
                 },
                 {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
-                },
-                {
                     name: ["--type"],
+                    insertValue: "--type=",
                     description: "Type for this service: ClusterIP, NodePort, LoadBalancer, or ExternalName. Default is 'ClusterIP'.",
-                    args: {},
+                    args: {
+                        suggestions: [
+                            "ClusterIP",
+                            "NodePort",
+                            "LoadBalancer",
+                            "ExternalName",
+                        ],
+                    },
                 },
             ],
             subcommands: [],
@@ -2396,114 +2381,76 @@ var completionSpec = {
         {
             name: "get",
             description: "Display one or many resources",
-            args: sharedArgs.resourcesArg,
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.fieldSelector,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.output,
+                sharedOpts.recursive,
+                sharedOpts.selector,
+                sharedOpts.template,
                 {
                     name: ["-A", "--all-namespaces"],
                     description: "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.",
-                    args: {},
-                },
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
                 },
                 {
                     name: ["--chunk-size"],
+                    insertValue: "--chunk-size=",
                     description: "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.",
                     args: {},
                 },
                 {
-                    name: ["--field-selector"],
-                    description: "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.",
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                    args: {
-                        template: "filepaths",
-                    },
-                },
-                {
                     name: ["--ignore-not-found"],
                     description: "If the requested object does not exist the command will return exit code 0.",
-                    args: {},
-                },
-                {
-                    name: ["-k", "--kustomize"],
-                    description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
                 },
                 {
                     name: ["-L", "--label-columns"],
+                    insertValue: "--label-columns",
                     description: "Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple flag options like -L label1 -L label2...",
                     args: {},
                 },
                 {
                     name: ["--no-headers"],
                     description: "When using the default or custom-column output format, don't print headers (default print headers).",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|wide|name|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=... See custom columns [http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns], golang template [http://golang.org/pkg/text/template/#pkg-overview] and jsonpath template [http://kubernetes.io/docs/user-guide/jsonpath].",
-                    args: {},
                 },
                 {
                     name: ["--output-watch-events"],
                     description: "Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.",
-                    args: {},
                 },
                 {
                     name: ["--raw"],
                     description: "Raw URI to request from the server.  Uses the transport specified by the kubeconfig file.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                    args: {},
                 },
                 {
                     name: ["--server-print"],
                     description: "If true, have the server return the appropriate table output. Supports extension APIs and CRDs.",
-                    args: {},
                 },
                 {
                     name: ["--show-kind"],
                     description: "If present, list the resource type for the requested object(s).",
-                    args: {},
                 },
                 {
                     name: ["--show-labels"],
                     description: "When printing, show all labels as the last column (default hide labels column)",
-                    args: {},
                 },
                 {
                     name: ["--sort-by"],
+                    insertValue: "--sort-by=",
                     description: "If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
                     args: {},
                 },
                 {
                     name: ["-w", "--watch"],
                     description: "After listing/getting the requested object, watch for changes. Uninitialized objects are excluded if no object name is provided.",
-                    args: {},
                 },
                 {
                     name: ["--watch-only"],
                     description: "Watch for changes to the requested object(s), without listing/getting first.",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -2511,87 +2458,92 @@ var completionSpec = {
         {
             name: "kustomize",
             description: "Print a set of API resources generated from instructions in a kustomization.yaml file.",
-            options: [],
-            subcommands: [],
+            args: {
+                name: "DIR",
+                template: "folders",
+            },
+            options: [
+                sharedOpts.output,
+                {
+                    name: "--allow-id-changes",
+                    description: "enable changes to a resourceId",
+                },
+                {
+                    name: "--enable-alpha-plugins",
+                    description: "enable kustomize plugins",
+                },
+                {
+                    name: "--enable-managedby-label",
+                    description: "	enable adding app.kubernetes.io/managed-by",
+                },
+                {
+                    name: ["--env", "-e"],
+                    description: "a list of environment variables to be used by functions",
+                    insertValue: "--env=",
+                    args: {
+                        template: "filepaths",
+                    },
+                },
+                {
+                    name: "--load-restrictor",
+                    description: "if set to 'LoadRestrictionsNone', local kustomizations may load files from outside their root. This does, however, break the relocatability of the kustomization.",
+                    insertValue: "--load-restrictor=",
+                    args: {},
+                },
+                {
+                    name: "--mount",
+                    description: "a list of storage options read from the filesystem",
+                    insertValue: "--mount=",
+                    args: {},
+                },
+                {
+                    name: "--network",
+                    description: "enable network access for functions that declare it",
+                },
+                {
+                    name: "--network-name",
+                    description: "the docker network to run the container in",
+                    insertValue: "--network-name=",
+                    args: {},
+                },
+                {
+                    name: "--reorder",
+                    description: "Reorder the resources just before output. Use 'legacy' to apply a legacy reordering (Namespaces first, Webhooks last, etc). Use 'none' to suppress a final reordering.",
+                    insertValue: "--reorder=",
+                },
+            ],
         },
         {
             name: "label",
             description: "Update the labels on a resource.",
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.dryRun,
+                sharedOpts.fieldSelector,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.local,
+                sharedOpts.output,
+                sharedOpts.record,
+                sharedOpts.recursive,
+                sharedOpts.selector,
+                sharedOpts.template,
+                sharedOpts.resourceVersion,
                 {
                     name: ["--all"],
                     description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
-                    args: {},
-                },
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
-                    name: ["--field-selector"],
-                    description: "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.",
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "Filename, directory, or URL to files identifying the resource to update the labels",
-                    args: {},
-                },
-                {
-                    name: ["-k", "--kustomize"],
-                    description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
                 },
                 {
                     name: ["--list"],
                     description: "If true, display the labels for a given resource.",
-                    args: {},
-                },
-                {
-                    name: ["--local"],
-                    description: "If true, label will NOT contact api-server but run locally.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
                 },
                 {
                     name: ["--overwrite"],
                     description: "If true, allow labels to be overwritten, otherwise reject label updates that overwrite existing labels.",
-                    args: {},
-                },
-                {
-                    name: ["--record"],
-                    description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
-                },
-                {
-                    name: ["--resource-version"],
-                    description: "If non-empty, the labels update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on, not including uninitialized ones, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2).",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -2599,11 +2551,15 @@ var completionSpec = {
         {
             name: "logs",
             description: "Print the logs for a container in a pod or specified resource. If the pod has only one container, the container name is optional.",
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
+                sharedOpts.selector,
                 {
                     name: ["--all-containers"],
                     description: "Get all containers' logs in the pod(s).",
-                    args: {},
                 },
                 {
                     name: ["-c", "--container"],
@@ -2613,67 +2569,62 @@ var completionSpec = {
                 {
                     name: ["-f", "--follow"],
                     description: "Specify if the logs should be streamed.",
-                    args: {},
                 },
                 {
                     name: ["--ignore-errors"],
                     description: "If watching / following pod logs, allow for any errors that occur to be non-fatal",
-                    args: {},
                 },
                 {
                     name: ["--insecure-skip-tls-verify-backend"],
                     description: "Skip verifying the identity of the kubelet that logs are requested from.  In theory, an attacker could provide invalid log content back. You might want to use this if your kubelet serving certificates have expired.",
-                    args: {},
                 },
                 {
                     name: ["--limit-bytes"],
+                    insertValue: "--limit-bytes=",
                     description: "Maximum bytes of logs to return. Defaults to no limit.",
                     args: {},
                 },
                 {
                     name: ["--max-log-requests"],
+                    insertValue: "--max-log-requests=",
                     description: "Specify maximum number of concurrent logs to follow when using by a selector. Defaults to 5.",
                     args: {},
                 },
                 {
                     name: ["--pod-running-timeout"],
+                    insertValue: "--pod-running-timeout=",
                     description: "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
                     args: {},
                 },
                 {
                     name: ["--prefix"],
                     description: "Prefix each log line with the log source (pod name and container name)",
-                    args: {},
                 },
                 {
                     name: ["-p", "--previous"],
                     description: "If true, print the logs for the previous instance of the container in a pod if it exists.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on.",
-                    args: {},
                 },
                 {
                     name: ["--since"],
+                    insertValue: "--since=",
                     description: "Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of since-time / since may be used.",
                     args: {},
                 },
                 {
                     name: ["--since-time"],
+                    insertValue: "--since-time=",
                     description: "Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / since may be used.",
                     args: {},
                 },
                 {
                     name: ["--tail"],
+                    insertValue: "--tail=",
                     description: "Lines of recent log file to display. Defaults to -1 with no selector, showing all log lines otherwise 10, if a selector is provided.",
                     args: {},
                 },
                 {
                     name: ["--timestamps"],
                     description: "Include timestamps on each line in the log output",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -2681,61 +2632,32 @@ var completionSpec = {
         {
             name: "patch",
             description: "Update field(s) of a resource using strategic merge patch, a JSON merge patch, or a JSON patch.",
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "Filename, directory, or URL to files identifying the resource to update",
-                    args: {},
-                },
-                {
-                    name: ["-k", "--kustomize"],
-                    description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
-                },
-                {
-                    name: ["--local"],
-                    description: "If true, patch will operate on the content of the file, not the server-side resource.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
-                },
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.dryRun,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.local,
+                sharedOpts.output,
+                sharedOpts.record,
+                sharedOpts.recursive,
+                sharedOpts.template,
                 {
                     name: ["-p", "--patch"],
                     description: "The patch to be applied to the resource JSON file.",
                     args: {},
                 },
                 {
-                    name: ["--record"],
-                    description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
-                },
-                {
                     name: ["--type"],
+                    insertValue: "--type=",
                     description: "The type of patch being provided; one of [json merge strategic]",
-                    args: {},
+                    args: {
+                        suggestions: ["json", "merge", "strategic"],
+                    },
                 },
             ],
             subcommands: [],
@@ -2749,6 +2671,14 @@ var completionSpec = {
         {
             name: "port-forward",
             description: "Forward one or more local ports to a pod. This command requires the node to have 'socat' installed.",
+            args: [
+                sharedArgs.typeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+                {
+                    name: "[LOCAL_PORT:REMOTE_PORT]",
+                    variadic: true,
+                },
+            ],
             options: [
                 {
                     name: ["--address"],
@@ -2757,6 +2687,7 @@ var completionSpec = {
                 },
                 {
                     name: ["--pod-running-timeout"],
+                    insertValue: "---pod-running-timeout=",
                     description: "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
                     args: {},
                 },
@@ -2769,61 +2700,71 @@ var completionSpec = {
             options: [
                 {
                     name: ["--accept-hosts"],
+                    insertValue: "--accept-hosts=",
                     description: "Regular expression for hosts that the proxy should accept.",
                     args: {},
                 },
                 {
                     name: ["--accept-paths"],
+                    insertValue: "--accept-paths=",
                     description: "Regular expression for paths that the proxy should accept.",
                     args: {},
                 },
                 {
                     name: ["--address"],
+                    insertValue: "--address=",
                     description: "The IP address on which to serve on.",
                     args: {},
                 },
                 {
                     name: ["--api-prefix"],
+                    insertValue: "--api-prefix=",
                     description: "Prefix to serve the proxied API under.",
                     args: {},
                 },
                 {
                     name: ["--disable-filter"],
                     description: "If true, disable request filtering in the proxy. This is dangerous, and can leave you vulnerable to XSRF attacks, when used with an accessible port.",
-                    args: {},
                 },
                 {
                     name: ["--keepalive"],
+                    insertValue: "--keepalive=",
                     description: "keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive.",
                     args: {},
                 },
                 {
                     name: ["-p", "--port"],
+                    insertValue: "--port=",
                     description: "The port on which to run the proxy. Set to 0 to pick a random port.",
                     args: {},
                 },
                 {
                     name: ["--reject-methods"],
+                    insertValue: "--reject-methods=",
                     description: "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH'). ",
                     args: {},
                 },
                 {
                     name: ["--reject-paths"],
+                    insertValue: "--reject-paths=",
                     description: "Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths.",
                     args: {},
                 },
                 {
                     name: ["-u", "--unix-socket"],
+                    insertValue: "--unix-socket=",
                     description: "Unix socket on which to run the proxy.",
                     args: {},
                 },
                 {
                     name: ["-w", "--www"],
+                    insertValue: "--www=",
                     description: "Also serve static files from the given directory under the specified prefix.",
                     args: {},
                 },
                 {
                     name: ["-P", "--www-prefix"],
+                    insertValue: "--www-prefix=",
                     description: "Prefix to serve static files under, if static file directory is specified.",
                     args: {},
                 },
@@ -2834,80 +2775,50 @@ var completionSpec = {
             name: "replace",
             description: "Replace a resource by filename or stdin.",
             options: [
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.dryRun,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.output,
+                sharedOpts.recursive,
+                sharedOpts.template,
                 {
                     name: ["--cascade"],
                     description: "If true, cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController).  Default true.",
-                    args: {},
-                },
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "to use to replace the resource.",
-                    args: {},
                 },
                 {
                     name: ["--force"],
                     description: "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
-                    args: {},
                 },
                 {
                     name: ["--grace-period"],
+                    insertValue: "--grace-period=",
                     description: "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
                     args: {},
                 },
                 {
-                    name: ["-k", "--kustomize"],
-                    description: "Process a kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
-                },
-                {
                     name: ["--raw"],
+                    insertValue: "--raw=",
                     description: "Raw URI to PUT to the server.  Uses the transport specified by the kubeconfig file.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
                     args: {},
                 },
                 {
                     name: ["--save-config"],
                     description: "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
                 },
                 {
                     name: ["--timeout"],
+                    insertValue: "--timeout=",
                     description: "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
                     args: {},
                 },
                 {
                     name: ["--validate"],
                     description: "If true, use a schema to validate the input before sending it",
-                    args: {},
                 },
                 {
                     name: ["--wait"],
                     description: "If true, wait for resources to be gone before returning. This waits for finalizers.",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -2915,46 +2826,24 @@ var completionSpec = {
         {
             name: "rollout",
             description: "Manage the rollout of a resource.",
-            options: [],
             subcommands: [
                 {
                     name: "history",
                     description: "View previous rollout revisions and configurations.",
+                    // TODO: Use this or a more general resource generator?
                     args: sharedArgs.listDeployments,
                     options: [
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
                         {
                             name: ["--revision"],
+                            insertValue: "--revision=",
                             description: "See the details, including podTemplate of the revision specified",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
+                            // Generator for revisions of resource specified in args
                             args: {},
                         },
                     ],
@@ -2965,110 +2854,40 @@ var completionSpec = {
                     description: "Mark the provided resource as paused",
                     args: sharedArgs.listDeployments,
                     options: [
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
                     ],
                     subcommands: [],
                 },
                 {
                     name: "restart",
                     description: "Restart a resource.",
+                    args: sharedArgs.listDeployments,
                     options: [
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
                     ],
                     subcommands: [],
                 },
                 {
                     name: "resume",
                     description: "Resume a paused resource",
+                    args: sharedArgs.listDeployments,
                     options: [
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
                     ],
                     subcommands: [],
                 },
@@ -3077,35 +2896,24 @@ var completionSpec = {
                     description: "Show the status of the rollout.",
                     args: sharedArgs.listDeployments,
                     options: [
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.recursive,
                         {
                             name: ["--revision"],
+                            insertValue: "--revision=",
                             description: "Pin to a specific revision for showing its status. Defaults to 0 (last revision).",
                             args: {},
                         },
                         {
                             name: ["--timeout"],
+                            insertValue: "--timeout=",
                             description: "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
                             args: {},
                         },
                         {
                             name: ["-w", "--watch"],
                             description: "Watch the status of the rollout until it's done.",
-                            args: {},
                         },
                     ],
                     subcommands: [],
@@ -3115,36 +2923,19 @@ var completionSpec = {
                     description: "Rollback to a previous rollout.",
                     args: sharedArgs.listDeployments,
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.recursive,
+                        sharedOpts.dryRun,
                         {
-                            name: ["--to_revision=revision"],
+                            name: ["--to_revision"],
                             insertValue: "--to_revision=",
                             args: {},
                         },
                         {
-                            name: "--dry-run=strategy",
-                            insertValue: "--dry-run=",
-                            args: {
-                                name: "Strategy",
-                                suggestions: ["none", "client", "server"],
-                            },
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
                             name: ["--timeout"],
+                            insertValue: "--timeout=",
                             description: "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
                             args: {},
                         },
@@ -3156,294 +2947,200 @@ var completionSpec = {
         {
             name: "run",
             description: "Create and run a particular image in a pod.",
+            args: {
+                name: "NAME",
+            },
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.filename,
+                sharedOpts.dryRun,
+                sharedOpts.kuztomize,
+                sharedOpts.recursive,
+                sharedOpts.output,
+                sharedOpts.record,
+                sharedOpts.template,
                 {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
+                    name: ["--annotations"],
+                    insertValue: "--annotations=",
+                    description: "Annotations to apply to the pod.",
                     args: {},
                 },
                 {
                     name: ["--attach"],
                     description: "If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true. With '--restart=Never' the exit code of the container process is returned.",
-                    args: {},
                 },
                 {
                     name: ["--cascade"],
-                    description: "If true, cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController).  Default true.",
-                    args: {},
+                    description: 'Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.',
+                    args: {
+                        suggestions: ["background", "orphan", "foreground"],
+                    },
                 },
                 {
                     name: ["--command"],
                     description: "If true and extra arguments are present, use them as the 'command' field in the container, rather than the 'args' field which is the default.",
-                    args: {},
-                },
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
                 },
                 {
                     name: ["--env"],
+                    insertValue: "--env=",
                     description: "Environment variables to set in the container.",
                     args: {},
                 },
                 {
                     name: ["--expose"],
                     description: "If true, service is created for the container(s) which are run",
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "to use to replace the resource.",
-                    args: {},
                 },
                 {
                     name: ["--force"],
                     description: "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
-                    args: {},
                 },
                 {
                     name: ["--grace-period"],
+                    insertValue: "--grace-period=",
                     description: "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
                     args: {},
                 },
                 {
                     name: ["--hostport"],
+                    insertValue: "--hostport=",
                     description: "The host port mapping for the container port. To demonstrate a single-machine container.",
                     args: {},
                 },
                 {
                     name: ["--image"],
+                    insertValue: "--image=",
                     description: "The image for the container to run.",
                     args: {},
                 },
                 {
                     name: ["--image-pull-policy"],
+                    insertValue: "--image-pull-policy",
                     description: "The image pull policy for the container. If left empty, this value will not be specified by the client and defaulted by the server",
                     args: {},
                 },
                 {
-                    name: ["-k", "--kustomize"],
-                    description: "Process a kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
-                },
-                {
                     name: ["-l", "--labels"],
+                    insertValue: "--labels=",
                     description: "Comma separated labels to apply to the pod(s). Will override previous values.",
                     args: {},
                 },
                 {
                     name: ["--leave-stdin-open"],
                     description: "If the pod is started in interactive mode or with stdin, leave stdin open after the first attach completes. By default, stdin will be closed after the first attach completes.",
-                    args: {},
                 },
                 {
                     name: ["--limits"],
+                    insertValue: "--limits=",
                     description: "The resource requirement limits for this container.  For example, 'cpu=200m,memory=512Mi'.  Note that server side components may assign limits depending on the server configuration, such as limit ranges.",
                     args: {},
                 },
                 {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
-                },
-                {
                     name: ["--overrides"],
+                    insertValue: "--overrides=",
                     description: "An inline JSON override for the generated object. If this is non-empty, it is used to override the generated object. Requires that the object supply a valid apiVersion field.",
                     args: {},
                 },
                 {
                     name: ["--pod-running-timeout"],
+                    insertValue: "--pod-running-timeout=",
                     description: "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
                     args: {},
                 },
                 {
                     name: ["--port"],
+                    insertValue: "--port=",
                     description: "The port that this container exposes.",
                     args: {},
                 },
                 {
                     name: ["--quiet"],
                     description: "If true, suppress prompt messages.",
-                    args: {},
-                },
-                {
-                    name: ["--record"],
-                    description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
                 },
                 {
                     name: ["--requests"],
+                    insertValue: "--requests=",
                     description: "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
                     args: {},
                 },
                 {
                     name: ["--restart"],
+                    insertValue: "--restart=",
                     description: "The restart policy for this Pod.  Legal values [Always, OnFailure, Never].  If set to 'Always' a deployment is created, if set to 'OnFailure' a job is created, if set to 'Never', a regular pod is created. For the latter two --replicas must be 1.  Default 'Always', for CronJobs `Never`.",
-                    args: {},
+                    args: {
+                        suggestions: ["Always", "OnFailure", "Never"],
+                    },
                 },
                 {
                     name: ["--rm"],
                     description: "If true, delete resources created in this command for attached containers.",
-                    args: {},
                 },
                 {
                     name: ["--save-config"],
                     description: "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
-                    args: {},
                 },
                 {
                     name: ["--serviceaccount"],
+                    insertValue: "--serviceaccount=",
                     description: "Service account to set in the pod spec.",
                     args: {},
                 },
                 {
                     name: ["-i", "--stdin"],
                     description: "Keep stdin open on the container(s) in the pod, even if nothing is attached.",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
                 },
                 {
                     name: ["--timeout"],
+                    insertValue: "--timeout=",
                     description: "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
                     args: {},
                 },
                 {
                     name: ["-t", "--tty"],
                     description: "Allocated a TTY for each container in the pod.",
-                    args: {},
                 },
                 {
                     name: ["--wait"],
                     description: "If true, wait for resources to be gone before returning. This waits for finalizers.",
-                    args: {},
-                },
-            ],
-            subcommands: [
-                {
-                    name: "undo",
-                    description: "Rollback to a previous rollout.",
-                    options: [
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
-                        {
-                            name: ["--to-revision"],
-                            description: "The revision to rollback to. Default to 0 (last revision).",
-                            args: {},
-                        },
-                    ],
-                    subcommands: [],
                 },
             ],
         },
         {
             name: "scale",
             description: "Set a new size for a Deployment, ReplicaSet, Replication Controller, or StatefulSet.",
+            args: [
+                sharedArgs.typetypeOrTypeSlashName,
+                sharedArgs.resourceSuggestionsFromResourceType,
+            ],
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.filename,
+                sharedOpts.kuztomize,
+                sharedOpts.output,
+                sharedOpts.recursive,
+                sharedOpts.record,
+                sharedOpts.resourceVersion,
+                sharedOpts.selector,
+                sharedOpts.template,
+                sharedOpts.dryRun,
                 {
                     name: ["--all"],
                     description: "Select all resources in the namespace of the specified resource types",
-                    args: {},
-                },
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
                 },
                 {
                     name: ["--current-replicas"],
+                    insertValue: "--currrent-replicas=",
                     description: "Precondition for current size. Requires that the current size of the resource match this value in order to scale.",
                     args: {},
                 },
                 {
-                    name: ["-f", "--filename"],
-                    description: "Filename, directory, or URL to files identifying the resource to set a new size",
-                    args: {},
-                },
-                {
-                    name: ["-k", "--kustomize"],
-                    description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
-                },
-                {
-                    name: ["--record"],
-                    description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
-                },
-                {
                     name: ["--replicas"],
+                    insertValue: "--replicas=",
                     description: "The new desired number of replicas. Required.",
                     args: {},
                 },
                 {
-                    name: ["--resource-version"],
-                    description: "Precondition for resource version. Requires that the current resource version match this value in order to scale.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
-                },
-                {
                     name: ["--timeout"],
+                    insertValue: "--timeout",
                     description: "The length of time to wait before giving up on a scale operation, zero means don't wait. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
                     args: {},
                 },
@@ -3453,163 +3150,101 @@ var completionSpec = {
         {
             name: "set",
             description: "Configure application resources",
-            options: [],
             subcommands: [
                 {
                     name: "env",
                     description: "Update environment variables on a pod template.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                        {
+                            name: "KEY=VALUE",
+                            variadic: true,
+                        },
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.selector,
+                        sharedOpts.template,
                         {
                             name: ["--all"],
                             description: "If true, select all resources in the namespace of the specified resource types",
-                            args: {},
-                        },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
                         },
                         {
                             name: ["-c", "--containers"],
+                            insertValue: "--containers=",
                             description: "The names of containers in the selected pod templates to change - may use wildcards",
                             args: {},
                         },
                         {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
                             name: ["-e", "--env"],
+                            insertValue: "--env=",
                             description: "Specify a key-value pair for an environment variable to set into each container.",
                             args: {},
                         },
                         {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files the resource to update the env",
-                            args: {},
-                        },
-                        {
                             name: ["--from"],
+                            insertValue: "--from=",
                             description: "The name of a resource from which to inject environment variables",
                             args: {},
                         },
                         {
                             name: ["--keys"],
+                            insertValue: "--keys=",
                             description: "Comma-separated list of keys to import from specified resource",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
                             args: {},
                         },
                         {
                             name: ["--list"],
                             description: "If true, display the environment and any changes in the standard format. this flag will removed when we have kubectl view env.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, set env will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
                         },
                         {
                             name: ["--overwrite"],
                             description: "If true, allow environment to be overwritten, otherwise reject updates that overwrite existing environment.",
-                            args: {},
                         },
                         {
                             name: ["--prefix"],
+                            insertValue: "--prefix",
                             description: "Prefix to append to variable names",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
                             args: {},
                         },
                         {
                             name: ["--resolve"],
                             description: "If true, show secret or configmap references when listing variables",
-                            args: {},
-                        },
-                        {
-                            name: ["-l", "--selector"],
-                            description: "Selector (label query) to filter on",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "image",
                     description: "Update existing container image(s) of resources.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                        {
+                            name: "CONTAINER_NAME=IMAGE_NAME",
+                            variadic: true,
+                        },
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.selector,
+                        sharedOpts.template,
+                        sharedOpts.record,
                         {
                             name: ["--all"],
                             description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
-                            args: {},
-                        },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, set image will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["--record"],
-                            description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["-l", "--selector"],
-                            description: "Selector (label query) to filter on, not including uninitialized ones, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
                         },
                     ],
                     subcommands: [],
@@ -3617,256 +3252,128 @@ var completionSpec = {
                 {
                     name: "resources",
                     description: "Specify compute resource requirements (cpu, memory) for any resource that defines a pod template.  If a pod is successfully scheduled, it is guaranteed the amount of resource requested, but may burst up to its specified limits.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.selector,
+                        sharedOpts.template,
+                        sharedOpts.record,
                         {
                             name: ["--all"],
                             description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
-                            args: {},
-                        },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
                         },
                         {
                             name: ["-c", "--containers"],
+                            insertValue: "--containers=",
                             description: "The names of containers in the selected pod templates to change, all containers are selected by default - may use wildcards",
                             args: {},
                         },
                         {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
                             name: ["--limits"],
+                            insertValue: "--limits=",
                             description: "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, set resources will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["--record"],
-                            description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
                             args: {},
                         },
                         {
                             name: ["--requests"],
+                            insertValue: "--requests=",
                             description: "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
                             args: {},
                         },
-                        {
-                            name: ["-l", "--selector"],
-                            description: "Selector (label query) to filter on, not including uninitialized ones,supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "selector",
                     description: "Set the selector on a resource. Note that the new selector will overwrite the old selector if the resource had one prior to the invocation of 'set selector'.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                        {
+                            name: "EXPRESSIONS",
+                        },
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
+                        sharedOpts.record,
+                        sharedOpts.resourceVersion,
                         {
                             name: ["--all"],
                             description: "Select all resources in the namespace of the specified resource types",
                             args: {},
                         },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "identifying the resource.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, annotation will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["--record"],
-                            description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--resource-version"],
-                            description: "If non-empty, the selectors update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
-                        },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "serviceaccount",
                     description: "Update ServiceAccount of pod template resources.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
+                        sharedOpts.record,
                         {
                             name: ["--all"],
                             description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
-                            args: {},
-                        },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files identifying the resource to get from a server.",
-                            args: {},
-                        },
-                        {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, set serviceaccount will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["--record"],
-                            description: "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                            args: {},
                         },
                     ],
-                    subcommands: [],
                 },
                 {
+                    // TODO: Check this, I think the docs are wrong...
                     name: "subject",
                     description: "Update User, Group or ServiceAccount in a RoleBinding/ClusterRoleBinding.",
+                    args: [
+                        sharedArgs.typeOrTypeSlashName,
+                        sharedArgs.resourceSuggestionsFromResourceType,
+                    ],
                     options: [
+                        sharedOpts.allowMissingTemplateKeys,
+                        sharedOpts.dryRun,
+                        sharedOpts.filename,
+                        sharedOpts.kuztomize,
+                        sharedOpts.output,
+                        sharedOpts.local,
+                        sharedOpts.recursive,
+                        sharedOpts.template,
+                        sharedOpts.record,
                         {
                             name: ["--all"],
                             description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
-                            args: {},
-                        },
-                        {
-                            name: ["--allow-missing-template-keys"],
-                            description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                            args: {},
-                        },
-                        {
-                            name: ["--dry-run"],
-                            description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                            args: {},
-                        },
-                        {
-                            name: ["-f", "--filename"],
-                            description: "Filename, directory, or URL to files the resource to update the subjects",
-                            args: {},
                         },
                         {
                             name: ["--group"],
+                            insertValue: "--group=",
                             description: "Groups to bind to the role",
                             args: {},
                         },
                         {
-                            name: ["-k", "--kustomize"],
-                            description: "Process the kustomization directory. This flag can't be used together with -f or -R.",
-                            args: {},
-                        },
-                        {
-                            name: ["--local"],
-                            description: "If true, set subject will NOT contact api-server but run locally.",
-                            args: {},
-                        },
-                        {
-                            name: ["-o", "--output"],
-                            description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                            args: {},
-                        },
-                        {
-                            name: ["-R", "--recursive"],
-                            description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                            args: {},
-                        },
-                        {
-                            name: ["-l", "--selector"],
-                            description: "Selector (label query) to filter on, not including uninitialized ones, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                            args: {},
-                        },
-                        {
                             name: ["--serviceaccount"],
+                            insertValue: "--serviceaccount=",
                             description: "Service accounts to bind to the role",
-                            args: {},
-                        },
-                        {
-                            name: ["--template"],
-                            description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
                             args: {},
                         },
                     ],
@@ -3877,46 +3384,24 @@ var completionSpec = {
         {
             name: "taint",
             description: "Update the taints on one or more nodes.",
+            args: sharedArgs.listNodes,
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.dryRun,
+                sharedOpts.output,
+                sharedOpts.selector,
+                sharedOpts.template,
                 {
                     name: ["--all"],
                     description: "Select all nodes in the cluster",
-                    args: {},
-                },
-                {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
                 },
                 {
                     name: ["--overwrite"],
                     description: "If true, allow taints to be overwritten, otherwise reject taint updates that overwrite existing taints.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
                 },
                 {
                     name: ["--validate"],
                     description: "If true, use a schema to validate the input before sending it",
-                    args: {},
                 },
             ],
             subcommands: [],
@@ -3924,38 +3409,22 @@ var completionSpec = {
         {
             name: "top",
             description: "Display Resource (CPU/Memory/Storage) usage.",
-            options: [],
-            subcommands: [],
         },
         {
             name: "uncordon",
             description: "Mark node as schedulable.",
-            options: [
-                {
-                    name: ["--dry-run"],
-                    description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on",
-                    args: {},
-                },
-            ],
+            args: sharedArgs.listNodes,
+            options: [sharedOpts.dryRun, sharedOpts.selector],
             subcommands: [],
         },
         {
             name: "version",
             description: "Print the client and server version information for the current context",
             options: [
+                sharedOpts.output,
                 {
                     name: ["--client"],
                     description: "If true, shows client version only (no server required).",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "One of 'yaml' or 'json'.",
                     args: {},
                 },
                 {
@@ -3969,11 +3438,20 @@ var completionSpec = {
         {
             name: "wait",
             description: "Experimental: Wait for a specific condition on one or many resources.",
+            // TODO: Args
+            args: {},
             options: [
+                sharedOpts.allowMissingTemplateKeys,
+                sharedOpts.fieldSelector,
+                sharedOpts.filename,
+                sharedOpts.local,
+                sharedOpts.output,
+                sharedOpts.recursive,
+                sharedOpts.selector,
+                sharedOpts.template,
                 {
                     name: ["--all"],
                     description: "Select all resources in the namespace of the specified resource types",
-                    args: {},
                 },
                 {
                     name: ["-A", "--all-namespaces"],
@@ -3981,52 +3459,14 @@ var completionSpec = {
                     args: {},
                 },
                 {
-                    name: ["--allow-missing-template-keys"],
-                    description: "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
-                    args: {},
-                },
-                {
-                    name: ["--field-selector"],
-                    description: "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.",
-                    args: {},
-                },
-                {
-                    name: ["-f", "--filename"],
-                    description: "identifying the resource.",
-                    args: {},
-                },
-                {
                     name: ["--for"],
+                    insertValue: "--for=",
                     description: "The condition to wait on: [delete|condition=condition-name].",
                     args: {},
                 },
                 {
-                    name: ["--local"],
-                    description: "If true, annotation will NOT contact api-server but run locally.",
-                    args: {},
-                },
-                {
-                    name: ["-o", "--output"],
-                    description: "Output format. One of: json|yaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-file.",
-                    args: {},
-                },
-                {
-                    name: ["-R", "--recursive"],
-                    description: "Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.",
-                    args: {},
-                },
-                {
-                    name: ["-l", "--selector"],
-                    description: "Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)",
-                    args: {},
-                },
-                {
-                    name: ["--template"],
-                    description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
-                    args: {},
-                },
-                {
                     name: ["--timeout"],
+                    insertValue: "--timeout=",
                     description: "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week.",
                     args: {},
                 },

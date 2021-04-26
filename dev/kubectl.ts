@@ -2918,7 +2918,7 @@ export const completionSpec: Fig.Spec = {
         sharedArgs.resourceSuggestionsFromResourceType,
         {
           name: "[LOCAL_PORT:REMOTE_PORT]",
-          isVariadic: true,
+          variadic: true,
         },
       ],
       options: [
@@ -3449,7 +3449,7 @@ export const completionSpec: Fig.Spec = {
             sharedArgs.resourceSuggestionsFromResourceType,
             {
               name: "KEY=VALUE",
-              isVariadic: true,
+              variadic: true,
             },
           ],
           options: [
@@ -3526,7 +3526,7 @@ export const completionSpec: Fig.Spec = {
             sharedArgs.resourceSuggestionsFromResourceType,
             {
               name: "CONTAINER_NAME=IMAGE_NAME",
-              isVariadic: true,
+              variadic: true,
             },
           ],
           options: [
