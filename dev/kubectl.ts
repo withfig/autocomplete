@@ -2151,7 +2151,7 @@ export const completionSpec: Fig.Spec = {
                   description:
                     "Port used to expose the service on each node in a cluster.",
                   args: {
-                    args: "Port (INT)",
+                    name: "Port (INT)",
                   },
                 },
                 {
