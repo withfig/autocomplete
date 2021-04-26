@@ -117,6 +117,29 @@ var sharedArgs = {
             splitOn: "\n",
         },
     },
+    listContainersFromPod: {
+        name: "Container",
+        generators: {
+            script: function (context) {
+                var podIndex = context.findIndex(function (i) {
+                    return i === "pods" ||
+                        i.includes("pods/") ||
+                        i === "pod" ||
+                        i.includes("pod/");
+                });
+                var podName = context[podIndex].includes("/")
+                    ? context[podIndex]
+                    : context[podIndex] + " + " + context[podIndex + 1];
+                return "kubectl get " + podName + " -o json";
+            },
+            postProcess: function (out) {
+                return JSON.parse(out).spec.containers.map(function (item) { return ({
+                    name: item.name,
+                    description: item.image,
+                }); });
+            },
+        },
+    },
 };
 var sharedOpts = {
     filename: {
@@ -479,8 +502,7 @@ var completionSpec = {
                 {
                     name: ["-c", "--container"],
                     description: "Container name. If omitted, the first container in the pod will be chosen",
-                    // TODO: List containers from pod
-                    args: {},
+                    args: sharedArgs.listContainersFromPod,
                 },
                 {
                     name: ["--pod-running-timeout"],
@@ -2238,12 +2260,11 @@ var completionSpec = {
                 },
             ],
             options: [
-                // TODO: List containers from the specified pod
                 sharedOpts.filename,
                 {
                     name: ["-c", "--container"],
                     description: "Container name. If omitted, the first container in the pod will be chosen",
-                    args: {},
+                    args: sharedArgs.listContainersFromPod,
                 },
                 {
                     name: ["--pod-running-timeout"],

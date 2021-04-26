@@ -111,6 +111,30 @@ const sharedArgs: Record<string, Fig.Arg> = {
       splitOn: "\n",
     },
   },
+  listContainersFromPod: {
+    name: "Container",
+    generators: {
+      script: (context) => {
+        const podIndex = context.findIndex(
+          (i) =>
+            i === "pods" ||
+            i.includes("pods/") ||
+            i === "pod" ||
+            i.includes("pod/")
+        );
+        const podName = context[podIndex].includes("/")
+          ? context[podIndex]
+          : `${context[podIndex]} + ${context[podIndex + 1]}`;
+        return `kubectl get ${podName} -o json`;
+      },
+      postProcess: function (out) {
+        return JSON.parse(out).spec.containers.map((item) => ({
+          name: item.name,
+          description: item.image,
+        }));
+      },
+    },
+  },
 };
 
 const sharedOpts: Record<string, Fig.Option> = {
@@ -520,8 +544,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-c", "--container"],
           description:
             "Container name. If omitted, the first container in the pod will be chosen",
-          // TODO: List containers from pod
-          args: {},
+          args: sharedArgs.listContainersFromPod,
         },
         {
           name: ["--pod-running-timeout"],
@@ -2434,13 +2457,12 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       options: [
-        // TODO: List containers from the specified pod
         sharedOpts.filename,
         {
           name: ["-c", "--container"],
           description:
             "Container name. If omitted, the first container in the pod will be chosen",
-          args: {},
+          args: sharedArgs.listContainersFromPod,
         },
         {
           name: ["--pod-running-timeout"],
