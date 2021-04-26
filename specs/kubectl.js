@@ -50,7 +50,6 @@ var sharedArgs = {
         name: "Context",
         generators: {
             script: function (context) {
-                console.log(context);
                 if (context.includes("--kubeconfig")) {
                     var index = context.indexOf("--kubeconfig");
                     return "kubectl config --kubeconfig=" + context[index + 1] + " get-contexts -o name";

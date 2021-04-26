@@ -40,7 +40,6 @@ const sharedArgs: Record<string, Fig.Arg> = {
     name: "Context",
     generators: {
       script: function (context) {
-        console.log(context);
         if (context.includes("--kubeconfig")) {
           const index = context.indexOf("--kubeconfig");
           return `kubectl config --kubeconfig=${
