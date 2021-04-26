@@ -721,7 +721,6 @@ export const completionSpec: Fig.Spec = {
             {
               name: ["--force"],
               description: "Update the CSR even if it is already approved.",
-              args: {},
             },
           ],
         },
@@ -741,7 +740,6 @@ export const completionSpec: Fig.Spec = {
             {
               name: ["--force"],
               description: "Update the CSR even if it is already approved.",
-              args: {},
             },
           ],
         },
@@ -1157,6 +1155,7 @@ export const completionSpec: Fig.Spec = {
       // TODO: Args and generators
       name: "cp",
       description: "Copy files and directories to and from containers.",
+      args: {},
       options: [
         {
           name: ["-c", "--container"],
