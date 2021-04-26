@@ -135,15 +135,41 @@ const gitGenerators: Record<string, Fig.Generator> = {
       if (out.startsWith("fatal:")) {
         return [];
       }
-
+      console.log(out);
       // out = out + " "
-      const items = out.split("\n").map((file) => {
+      var items = out.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
         return { working: arr[0], file: arr.slice(1).join(" ") };
       });
 
+      const intermediateFolders = items.reduce((folders, item) => {
+        item.file
+          .split("/")
+          .slice(0, -1)
+          .reduce((path, component) => {
+            const current = path + component;
+            if (!folders[current]) {
+              folders[current] = 1;
+            } else {
+              folders[current] += 1;
+            }
+            return current;
+          }, "");
+        return folders;
+      }, {});
+      console.log(intermediateFolders);
+      items = items.concat(
+        Object.keys(intermediateFolders)
+          .filter((folder) => {
+            return intermediateFolders[folder] > 1;
+          })
+          .map((elm) => {
+            return { file: elm + "/", working: "" };
+          })
+      );
+      console.log(items);
       return items.map((item) => {
         const file = item.file;
         let ext = "";
@@ -158,7 +184,6 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
         return {
           name: file,
-          insertValue: file.includes(" ") ? `'${file}'` : file,
           icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
           description: "Changed file",
           priority: 100,

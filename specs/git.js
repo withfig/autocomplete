@@ -120,12 +120,31 @@ var gitGenerators = {
             if (out.startsWith("fatal:")) {
                 return [];
             }
+            console.log(out);
             // out = out + " "
             var items = out.split("\n").map(function (file) {
                 file = file.trim();
                 var arr = file.split(" ");
                 return { working: arr[0], file: arr.slice(1).join(" ") };
             });
+            var intermediateFolders = items.reduce(function (folders, item) {
+                item.file.split('/').slice(0, -1).reduce(function (path, component) {
+                    var current = path + component;
+                    if (!folders[current]) {
+                        folders[current] = 1;
+                    }
+                    else {
+                        folders[current] += 1;
+                    }
+                    return current;
+                }, '');
+                return folders;
+            }, {});
+            console.log(intermediateFolders);
+            items = items.concat(Object.keys(intermediateFolders).filter(function (folder) {
+                return intermediateFolders[folder] > 1;
+            }).map(function (elm) { return { file: elm + "/", working: '' }; }));
+            console.log(items);
             return items.map(function (item) {
                 var file = item.file;
                 var ext = "";
@@ -138,7 +157,6 @@ var gitGenerators = {
                 }
                 return {
                     name: file,
-                    insertValue: file.includes(" ") ? "'" + file + "'" : file,
                     icon: "fig://icon?type=" + ext + "&color=ff0000&badge=" + item.working,
                     description: "Changed file",
                     priority: 100,
