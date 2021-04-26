@@ -40,8 +40,8 @@ const sharedArgs: Record<string, Fig.Arg> = {
     name: "Context",
     generators: {
       script: function (context) {
-        if (context.includes("--kubeconfig")) {
-          const index = context.indexOf("--kubeconfig");
+        const index = context.indexOf("--kubeconfig");
+        if (index !== -1) {
           return `kubectl config --kubeconfig=${
             context[index + 1]
           } get-contexts -o name`;
@@ -62,8 +62,8 @@ const sharedArgs: Record<string, Fig.Arg> = {
     name: "Cluster",
     generators: {
       script: function (context) {
-        if (context.includes("--kubeconfig")) {
-          const index = context.indexOf("--kubeconfig");
+        const index = context.indexOf("--kubeconfig");
+        if (index !== -1) {
           return `kubectl config --kubeconfig=${
             context[index + 1]
           } get-clusters`;

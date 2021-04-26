@@ -50,8 +50,8 @@ var sharedArgs = {
         name: "Context",
         generators: {
             script: function (context) {
-                if (context.includes("--kubeconfig")) {
-                    var index = context.indexOf("--kubeconfig");
+                var index = context.indexOf("--kubeconfig");
+                if (index !== -1) {
                     return "kubectl config --kubeconfig=" + context[index + 1] + " get-contexts -o name";
                 }
                 return "kubectl config get-contexts -o name";
@@ -70,8 +70,8 @@ var sharedArgs = {
         name: "Cluster",
         generators: {
             script: function (context) {
-                if (context.includes("--kubeconfig")) {
-                    var index = context.indexOf("--kubeconfig");
+                var index = context.indexOf("--kubeconfig");
+                if (index !== -1) {
                     return "kubectl config --kubeconfig=" + context[index + 1] + " get-clusters";
                 }
                 return "kubectl config get-clusters";
