@@ -142,8 +142,7 @@ var sharedArgs = {
 };
 var sharedOpts = {
     filename: {
-        name: ["-f", "--filename"],
-        description: "Filename, directory, or URL to files identifying the resource",
+        name: ["-f", "--filename"], description: "Filename, directory, or URL to files identifying the resource",
         args: {
             name: "File",
             template: "filepaths",
@@ -177,11 +176,13 @@ var sharedOpts = {
     },
     resourceVersion: {
         name: ["--resource-version"],
+        insertValue: "--resource-version=",
         description: "If non-empty, the annotation update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource.",
         args: {},
     },
     dryRun: {
         name: ["--dry-run"],
+        insertValue: "--dry-run=",
         description: 'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
         args: {
             name: "Strategy",
@@ -190,6 +191,7 @@ var sharedOpts = {
     },
     fieldSelector: {
         name: ["--field-selector"],
+        insertValue: "--field-selector=",
         description: "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.",
         args: {},
     },
@@ -216,6 +218,7 @@ var sharedOpts = {
     },
     template: {
         name: ["--template"],
+        insertValue: "--template=",
         description: "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
         args: {},
     },
