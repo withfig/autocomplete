@@ -27,7 +27,16 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export type Spec = Subcommand;
+  export interface Spec extends Subcommand {
+    /**
+     * This flag allows options to have multiple characters
+     * even though they only have one hyphen
+     *
+     * @example
+     * -mod
+     */
+    posixNoncompliantFlags?: boolean;
+  }
 
   // Execute shell command function inside generators
   export type ExecuteShellCommandFunction = (param: String) => Promise<String>;
