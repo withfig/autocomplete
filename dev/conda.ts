@@ -3,7 +3,7 @@ const getInstalledPackages: Fig.Generator = {
   postProcess: function (out) {
     const lines = out.split("\n");
     const installedPackages = [];
-    for (let i = 3; i < lines.length; i++) {
+    for (let i = 2; i < lines.length; i++) {
       installedPackages.push({
         name: lines[i],
         icon: "🐍",
@@ -13,18 +13,40 @@ const getInstalledPackages: Fig.Generator = {
   },
 };
 
-const getAllCondaPackages: Fig.Generator = {
-  script: "conda search -q",
+// const getAllCondaPackages: Fig.Generator = {
+//   //script: "conda search -q",
+//   script: function (context) {
+//     if (context[context.length - 1] === "") return "";
+//     const searchTerm = context[context.length - 1];
+//     return "conda search '*{searchTerm}*'";
+//   },
+//   postProcess: function (out) {
+//     const lines = out.split("\n");
+//     const allPackages = [];
+//     allPackages.push({name: lines[0]});
+//     // for (let i = 1; i < lines.length; i++) {
+//     //   allPackages.push({
+//     //     name: lines[i],
+//     //     icon: "🐍",
+//     //   });
+//     // }
+//     return allPackages;
+//   },
+// };
+
+const getCondaEnvironments: Fig.Generator = {
+  script: "conda env list",
   postProcess: function (out) {
     const lines = out.split("\n");
-    const allPackages = [];
-    for (let i = 1; i < lines.length; i++) {
-      allPackages.push({
-        name: lines[i],
+    const installedPackages = [];
+    for (let i = 2; i < lines.length; i++) {
+      var env_name = lines[i].split(" ")[0];
+      installedPackages.push({
+        name: env_name,
         icon: "🐍",
       });
     }
-    return allPackages;
+    return installedPackages;
   },
 };
 
@@ -32,6 +54,17 @@ export const completionSpec: Fig.Spec = {
   name: "conda",
   description: "Conda package manager",
   subcommands: [
+    {
+      name: "activate",
+      description: "Activate an environment",
+      args: {
+        generators: getCondaEnvironments,
+      },
+    },
+    {
+      name: "deactivate",
+      description: "Deactivate an environment",
+    },
     {
       name: "clean",
       description: "Remove unused packages and caches.",
@@ -165,7 +198,14 @@ export const completionSpec: Fig.Spec = {
           description:
             "Write to the active conda environment .condarc file (<no active environment>). If no environment is active, write to the user config file (/home/docs/.condarc).",
         },
-        { name: ["--file"], description: "Write to the given file." },
+        {
+          name: ["--file"],
+          description: "Write to the given file.",
+          args: {
+            name: "Target File",
+            template: "filepaths",
+          },
+        },
         {
           name: ["--show"],
           description:
@@ -271,26 +311,34 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "package_spec",
         description: "Packages to install or update in the conda environment.",
+        //generators: getAllCondaPackages
       },
       options: [
         {
           name: ["--clone"],
           description: "Path to (or name of) existing local environment.",
+          args: {
+            generators: getCondaEnvironments,
+          },
         },
         {
           name: ["--file"],
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--dev"],
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n, --name"], description: "Name of environment." },
+        { name: ["-n, --name"], description: "Name of environment.", args: {} },
         {
           name: ["-p, --prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["-c, --channel"],
@@ -341,6 +389,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-C, --use-index-cache"],
           description:
             "Use cache of channel index files, even if it has expired.",
+          args: {},
         },
         {
           name: ["-k, --insecure"],
@@ -430,32 +479,38 @@ export const completionSpec: Fig.Spec = {
         name: "package spec",
         description: "Packages to install or update in the conda environment.",
         variadic: true,
-        generators: getAllCondaPackages,
+        //generators: getAllCondaPackages,
       },
       options: [
         {
           name: ["--revision"],
           description: "Revert to the specified REVISION.",
+          args: {},
         },
         {
           name: ["--file"],
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--dev"],
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n, --name"], description: "Name of environment." },
+        { name: ["-n, --name"], description: "Name of environment.", args: {} },
         {
           name: ["-p, --prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["-c, --channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -530,6 +585,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-C", "--use-index-cache"],
           description:
             "Use cache of channel index files, even if it has expired.",
+          args: {},
         },
         {
           name: ["-k", "--insecure"],
@@ -611,10 +667,15 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-pip"],
           description: "Do not include pip-only installed packages.",
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
+        {
+          name: ["-n", "--name"],
+          description: "Name of environment.",
+          args: {},
+        },
         {
           name: ["-p", "--prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["--json"],
@@ -652,19 +713,27 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["--pkg-name"],
           description: "Package name of the created package.",
+          args: {},
         },
         {
           name: ["--pkg-version"],
           description: "Package version of the created package.",
+          args: {},
         },
         {
           name: ["--pkg-build"],
           description: "Package build number of the created package.",
+          args: {},
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
+        {
+          name: ["-n", "--name"],
+          description: "Name of environment.",
+          args: {},
+        },
         {
           name: ["-p", "--prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
       ],
     },
@@ -683,15 +752,21 @@ export const completionSpec: Fig.Spec = {
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
+        {
+          name: ["-n", "--name"],
+          description: "Name of environment.",
+          args: {},
+        },
         {
           name: ["-p", "--prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["-c", "--channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -706,6 +781,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["--all"],
@@ -770,15 +846,21 @@ export const completionSpec: Fig.Spec = {
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
+        {
+          name: ["-n", "--name"],
+          description: "Name of environment.",
+          args: {},
+        },
         {
           name: ["-p", "--prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["-c", "--channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -793,6 +875,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["--all"],
@@ -848,6 +931,7 @@ export const completionSpec: Fig.Spec = {
       description: "Run an executable in a conda environment. [Experimental]",
       args: {
         name: "executable",
+        template: "filepaths",
       },
     },
     {
@@ -869,11 +953,13 @@ export const completionSpec: Fig.Spec = {
           name: ["--subdir", "--platform"],
           description:
             "Search the given subdir. Should be formatted like 'osx-64', 'linux-32', 'win-64', and so on. The default is to search the current platform.",
+          args: {},
         },
         {
           name: ["-c", "--channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -888,6 +974,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["-C", "--use-index-cache"],
@@ -932,16 +1019,25 @@ export const completionSpec: Fig.Spec = {
           name: ["--file"],
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+          args: {
+            template: "filepaths",
+          },
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
+        {
+          name: ["-n", "--name"],
+          description: "Name of environment.",
+          args: {},
+        },
         {
           name: ["-p", "--prefix"],
           description: "Full path to environment location (i.e. prefix).",
+          args: {},
         },
         {
           name: ["-c", "--channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -956,6 +1052,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["--strict-channel-priority"],
