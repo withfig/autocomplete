@@ -27,7 +27,16 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export type Spec = Subcommand;
+  export interface Spec extends Subcommand {
+    /**
+     * This flag allows options to have multiple characters
+     * even though they only have one hyphen
+     *
+     * @example
+     * -mod
+     */
+    posixNoncompliantFlags?: boolean;
+  }
 
   // Execute shell command function inside generators
   export type ExecuteShellCommandFunction = (param: String) => Promise<String>;
@@ -87,7 +96,7 @@ declare namespace Fig {
      * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
-    prioritiy?: number;
+    priority?: number;
     /**
      * Specifies whether a suggestion should be hidden from results. Fig will only show it if the user types the exact same thing as the name
      *
