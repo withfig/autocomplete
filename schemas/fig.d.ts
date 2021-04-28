@@ -168,12 +168,22 @@ declare namespace Fig {
      */
     loadSpec?: string;
     /**
-     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically. This is a function that takes in an array of strings (the tokens the user has typed) and outputs a completion spec object
+     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically.
+     * This function takes two params:
+     * 1. Context: an array of strings (the tokens the user has typed)
+     * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
+     *
+     * It outputs a completion spec object
      *
      * @example
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
-    generateSpec?: Function<string[], Promise<Spec>>;
+    generateSpec?: (
+      context: String[],
+      executeShellCommand: ExecuteShellCommandFunction
+    ) => Promise<Spec>;
+
+    // Function<string[], Promise<Spec>>;
   }
 
   export interface Option extends BaseSuggestion {
@@ -330,7 +340,8 @@ declare namespace Fig {
     /**
      * This function takes one paramater: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
-    postProcess?: Function<string, Suggestion[]>;
+    postProcess?: (out: string, context: string[]) => Suggestion[];
+
     /**
      * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
      * The suggestions remain the same while the filteredSuggestions change on each input.
@@ -370,10 +381,12 @@ declare namespace Fig {
      *
      * It is an async function.
      *
-     * It takes on argument: an array of tokens of what the user has typed
+     * It takes two arguments:
+     * 1. Context: an array of tokens of what the user has typed
+     * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
+     *
      * It must return an array of suggestion obejcts.
      *
-     * The function also allows the use of the async function `executeShellCommand` which executes commands from the same current working directory as the user and returns the output as a text blob.
      *
      * @example
      * ```
@@ -383,7 +396,10 @@ declare namespace Fig {
      * }
      * ```
      */
-    custom?: Function<string[], Promise<Suggestion[]>>;
+    custom?: (
+      context: String[],
+      executeShellCommand: ExecuteShellCommandFunction
+    ) => Promise<Suggestion[]>;
     /**
      * For commands that take a long time to run, Fig gives you the option to cache their response. You can cache the response globally or just by the directory they were run in
      * You just need to specify a `ttl` (time to live) for how long the cache will last (this is a number)

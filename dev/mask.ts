@@ -1,10 +1,10 @@
 // To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-var executeShellCommand: Fig.ExecuteShellCommandFunction;
+// var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "mask",
-  generateSpec: async (context) => {
+  generateSpec: async (context, executeShellCommand) => {
     // See if use specified a maskfile location
 
     var maskfileLocationIdx = context.indexOf("--maskfile");
