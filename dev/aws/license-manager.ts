@@ -1,0 +1,2375 @@
+export const completionSpec: Fig.Spec = {
+  name: "license-manager",
+  description:
+    "AWS License Manager  AWS License Manager makes it easier to manage licenses from software vendors across multiple AWS accounts and on-premises servers.",
+  subcommands: [
+    {
+      name: "accept-grant",
+      description: "Accepts the specified grant.",
+      options: [
+        {
+          name: "--grant-arn",
+          description: "Amazon Resource Name (ARN) of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "check-in-license",
+      description:
+        "Checks in the specified license. Check in a license when it is no longer in use.",
+      options: [
+        {
+          name: "--license-consumption-token",
+          description: "License consumption token.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--beneficiary",
+          description: "License beneficiary.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "checkout-borrow-license",
+      description: "Checks out the specified license for offline use.",
+      options: [
+        {
+          name: "--license-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license. The license must use the borrow consumption configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--entitlements",
+          description:
+            "License entitlements. Partial checkouts are not supported.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--digital-signature-method",
+          description:
+            "Digital signature method. The possible value is JSON Web Signature (JWS) algorithm PS384. For more information, see RFC 7518 Digital Signature with RSASSA-PSS.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--node-id",
+          description: "Node ID.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--checkout-metadata",
+          description: "Information about constraints.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "checkout-license",
+      description: "Checks out the specified license.",
+      options: [
+        {
+          name: "--product-sku",
+          description: "Product SKU.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--checkout-type",
+          description: "Checkout type.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--key-fingerprint",
+          description: "Key fingerprint identifying the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--entitlements",
+          description: "License entitlements.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--beneficiary",
+          description: "License beneficiary.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--node-id",
+          description: "Node ID.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-grant",
+      description:
+        "Creates a grant for the specified license. A grant shares the use of license entitlements with specific AWS accounts.",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--grant-name",
+          description: "Grant name.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--principals",
+          description: "The grant principals.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--home-region",
+          description: "Home Region of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--allowed-operations",
+          description: "Allowed operations for the grant.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-grant-version",
+      description: "Creates a new version of the specified grant.",
+      options: [
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--grant-arn",
+          description: "Amazon Resource Name (ARN) of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--grant-name",
+          description: "Grant name.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--allowed-operations",
+          description: "Allowed operations for the grant.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--status",
+          description: "Grant status.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--source-version",
+          description: "Current version of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-license",
+      description: "Creates a license.",
+      options: [
+        {
+          name: "--license-name",
+          description: "License name.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--product-name",
+          description: "Product name.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--product-sku",
+          description: "Product SKU.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--issuer",
+          description: "License issuer.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--home-region",
+          description: "Home Region for the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--validity",
+          description:
+            "Date and time range during which the license is valid, in ISO8601-UTC format.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--entitlements",
+          description: "License entitlements.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--beneficiary",
+          description: "License beneficiary.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--consumption-configuration",
+          description:
+            "Configuration for consumption of the license. Choose a provisional configuration for workloads running with continuous connectivity. Choose a borrow configuration for workloads with offline usage.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-metadata",
+          description: "Information about the license.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-license-configuration",
+      description:
+        "Creates a license configuration. A license configuration is an abstraction of a customer license agreement that can be consumed and enforced by License Manager. Components include specifications for the license type (licensing by instance, socket, CPU, or vCPU), allowed tenancy (shared tenancy, Dedicated Instance, Dedicated Host, or all of these), license affinity to host (how long a license must be associated with a host), and the number of licenses purchased and used.",
+      options: [
+        {
+          name: "--name",
+          description: "Name of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--description",
+          description: "Description of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--license-counting-type",
+          description: "Dimension used to track the license inventory.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-count",
+          description:
+            "Number of licenses managed by the license configuration.",
+          args: {
+            name: "long",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--license-count-hard-limit",
+          description:
+            "Indicates whether hard or soft license enforcement is used. Exceeding a hard limit blocks the launch of new instances.",
+        },
+        {
+          name: "--no-license-count-hard-limit",
+          description:
+            "Indicates whether hard or soft license enforcement is used. Exceeding a hard limit blocks the launch of new instances.",
+        },
+        {
+          name: "--license-rules",
+          description:
+            "License rules. The syntax is #name=value (for example, #allowedTenancy=EC2-DedicatedHost). The available rules vary by dimension, as follows.    Cores dimension: allowedTenancy | licenseAffinityToHost | maximumCores | minimumCores     Instances dimension: allowedTenancy | maximumCores | minimumCores | maximumSockets | minimumSockets | maximumVcpus | minimumVcpus     Sockets dimension: allowedTenancy | licenseAffinityToHost | maximumSockets | minimumSockets     vCPUs dimension: allowedTenancy | honorVcpuOptimization | maximumVcpus | minimumVcpus    The unit for licenseAffinityToHost is days and the range is 1 to 180. The possible values for allowedTenancy are EC2-Default, EC2-DedicatedHost, and EC2-DedicatedInstance. The possible values for honorVcpuOptimization are True and False.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--tags",
+          description: "Tags to add to the license configuration.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--disassociate-when-not-found",
+          description:
+            "When true, disassociates a resource when software is uninstalled.",
+        },
+        {
+          name: "--no-disassociate-when-not-found",
+          description:
+            "When true, disassociates a resource when software is uninstalled.",
+        },
+        {
+          name: "--product-information-list",
+          description: "Product information.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-license-version",
+      description: "Creates a new version of the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-name",
+          description: "License name.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--product-name",
+          description: "Product name.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--issuer",
+          description: "License issuer.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--home-region",
+          description: "Home Region of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--validity",
+          description:
+            "Date and time range during which the license is valid, in ISO8601-UTC format.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-metadata",
+          description: "Information about the license.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--entitlements",
+          description: "License entitlements.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--consumption-configuration",
+          description:
+            "Configuration for consumption of the license. Choose a provisional configuration for workloads running with continuous connectivity. Choose a borrow configuration for workloads with offline usage.",
+          args: {
+            name: "structure",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--status",
+          description: "License status.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--client-token",
+          description:
+            "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--source-version",
+          description: "Current version of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "create-token",
+      description:
+        "Creates a long-lived token. A refresh token is a JWT token used to get an access token. With an access token, you can call AssumeRoleWithWebIdentity to get role credentials that you can use to call License Manager to manage the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license. The ARN is mapped to the aud claim of the JWT token.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--role-arns",
+          description:
+            "Amazon Resource Name (ARN) of the IAM roles to embed in the token. License Manager does not check whether the roles are in use.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--expiration-in-days",
+          description:
+            "Token expiration, in days, counted from token creation. The default is 365 days.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--token-properties",
+          description:
+            "Data specified by the caller to be included in the JWT token. The data is mapped to the amr claim of the JWT token.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--client-token",
+          description: "Idempotency token, valid for 10 minutes.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "delete-grant",
+      description: "Deletes the specified grant.",
+      options: [
+        {
+          name: "--grant-arn",
+          description: "Amazon Resource Name (ARN) of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--grant-version",
+          description: "Current version of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "delete-license",
+      description: "Deletes the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--source-version",
+          description: "Current version of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "delete-license-configuration",
+      description:
+        "Deletes the specified license configuration. You cannot delete a license configuration that is in use.",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description: "ID of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "delete-token",
+      description:
+        "Deletes the specified token. Must be called in the license home Region.",
+      options: [
+        {
+          name: "--token-id",
+          description: "Token ID.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "extend-license-consumption",
+      description: "Extends the expiration date for license consumption.",
+      options: [
+        {
+          name: "--license-consumption-token",
+          description: "License consumption token.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--dry-run",
+          description:
+            "Checks whether you have the required permissions for the action, without actually making the request. Provides an error response if you do not have the required permissions.",
+        },
+        {
+          name: "--no-dry-run",
+          description:
+            "Checks whether you have the required permissions for the action, without actually making the request. Provides an error response if you do not have the required permissions.",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-access-token",
+      description:
+        "Gets a temporary access token to use with AssumeRoleWithWebIdentity. Access tokens are valid for one hour.",
+      options: [
+        {
+          name: "--token",
+          description: "Refresh token, encoded as a JWT token.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--token-properties",
+          description:
+            "Token properties to validate against those present in the JWT token.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-grant",
+      description: "Gets detailed information about the specified grant.",
+      options: [
+        {
+          name: "--grant-arn",
+          description: "Amazon Resource Name (ARN) of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--grant-version",
+          description: "Grant version.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-license",
+      description: "Gets detailed information about the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-version",
+          description: "License version.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-license-configuration",
+      description:
+        "Gets detailed information about the specified license configuration.",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-license-usage",
+      description:
+        "Gets detailed information about the usage of the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "get-service-settings",
+      description: "Gets the License Manager settings for the current Region.",
+      options: [
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-associations-for-license-configuration",
+      description:
+        "Lists the resource associations for the specified license configuration. Resource associations need not consume licenses from a license configuration. For example, an AMI or a stopped instance might not consume a license (depending on the license rules).",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description: "Amazon Resource Name (ARN) of a license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-distributed-grants",
+      description: "Lists the grants distributed for the specified license.",
+      options: [
+        {
+          name: "--grant-arns",
+          description: "Amazon Resource Names (ARNs) of the grants.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters are supported:    LicenseARN     Status     PrincipalARN     ParentARN",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-failures-for-license-configuration-operations",
+      description: "Lists the license configuration operations that failed.",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description: "Amazon Resource Name of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-license-configurations",
+      description: "Lists the license configurations for your account.",
+      options: [
+        {
+          name: "--license-configuration-arns",
+          description:
+            "Amazon Resource Names (ARN) of the license configurations.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters and logical operators are supported:    licenseCountingType - The dimension on which licenses are counted. Possible values are vCPU | Instance | Core | Socket. Logical operators are EQUALS | NOT_EQUALS.    enforceLicenseCount - A Boolean value that indicates whether hard license enforcement is used. Logical operators are EQUALS | NOT_EQUALS.    usagelimitExceeded - A Boolean value that indicates whether the available licenses have been exceeded. Logical operators are EQUALS | NOT_EQUALS.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-license-specifications-for-resource",
+      description:
+        "Describes the license configurations for the specified resource.",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "Amazon Resource Name (ARN) of a resource that has an associated license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-license-versions",
+      description: "Lists all versions of the specified license.",
+      options: [
+        {
+          name: "--license-arn",
+          description: "Amazon Resource Name (ARN) of the license.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-licenses",
+      description: "Lists the licenses for your account.",
+      options: [
+        {
+          name: "--license-arns",
+          description: "Amazon Resource Names (ARNs) of the licenses.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters are supported:    Beneficiary     ProductSKU     KeyFingerprint     Status",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-received-grants",
+      description: "Lists grants that are received but not accepted.",
+      options: [
+        {
+          name: "--grant-arns",
+          description: "Amazon Resource Names (ARNs) of the grants.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters are supported:    LicenseARN     Status",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-received-licenses",
+      description: "Lists received licenses.",
+      options: [
+        {
+          name: "--license-arns",
+          description: "Amazon Resource Names (ARNs) of the licenses.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters are supported:    ProductSKU     Status     KeyFingerprint     Issuer",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-resource-inventory",
+      description: "Lists resources managed using Systems Manager inventory.",
+      options: [
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters and logical operators are supported:    account_id - The ID of the AWS account that owns the resource. Logical operators are EQUALS | NOT_EQUALS.    application_name - The name of the application. Logical operators are EQUALS | BEGINS_WITH.    license_included - The type of license included. Logical operators are EQUALS | NOT_EQUALS. Possible values are sql-server-enterprise | sql-server-standard | sql-server-web | windows-server-datacenter.    platform - The platform of the resource. Logical operators are EQUALS | BEGINS_WITH.    resource_id - The ID of the resource. Logical operators are EQUALS | NOT_EQUALS.    tag:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Logical operators are EQUALS (single account) or EQUALS | NOT_EQUALS (cross account).",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-tags-for-resource",
+      description: "Lists the tags for the specified license configuration.",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-tokens",
+      description: "Lists your tokens.",
+      options: [
+        {
+          name: "--token-ids",
+          description: "Token IDs.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filter is supported:    licenseArns",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "list-usage-for-license-configuration",
+      description:
+        "Lists all license usage records for a license configuration, displaying license consumption details by resource at a selected point in time. Use this action to audit the current license consumption for any license inventory and configuration.",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--max-results",
+          description: "Maximum number of results to return in a single call.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--next-token",
+          description: "Token for the next set of results.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--filters",
+          description:
+            "Filters to scope the results. The following filters and logical operators are supported:    resourceArn - The ARN of the license configuration resource. Logical operators are EQUALS | NOT_EQUALS.    resourceType - The resource type (EC2_INSTANCE | EC2_HOST | EC2_AMI | SYSTEMS_MANAGER_MANAGED_INSTANCE). Logical operators are EQUALS | NOT_EQUALS.    resourceAccount - The ID of the account that owns the resource. Logical operators are EQUALS | NOT_EQUALS.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--starting-token",
+          description:
+            "A token to specify where to start paginating.  This is the\nNextToken from a previously truncated response.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--page-size",
+          description:
+            "The size of each page to get in the AWS service call.  This\ndoes not affect the number of items returned in the command's\noutput.  Setting a smaller page size results in more calls to\nthe AWS service, retrieving fewer items in each call.  This can\nhelp prevent the AWS service calls from timing out.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--max-items",
+          description:
+            "The total number of items to return in the command's output.\nIf the total number of items available is more than the value\nspecified, a NextToken is provided in the command's\noutput.  To resume pagination, provide the\nNextToken value in the starting-token\nargument of a subsequent command.  Do not use the\nNextToken response element directly outside of the\nAWS CLI.\nFor usage examples, see Pagination in the AWS Command Line Interface User\nGuide.",
+          args: {
+            name: "integer",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "reject-grant",
+      description: "Rejects the specified grant.",
+      options: [
+        {
+          name: "--grant-arn",
+          description: "Amazon Resource Name (ARN) of the grant.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "tag-resource",
+      description:
+        "Adds the specified tags to the specified license configuration.",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--tags",
+          description: "One or more tags.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "untag-resource",
+      description:
+        "Removes the specified tags from the specified license configuration.",
+      options: [
+        {
+          name: "--resource-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--tag-keys",
+          description: "Keys identifying the tags to remove.",
+          args: {
+            name: "list",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "update-license-configuration",
+      description:
+        "Modifies the attributes of an existing license configuration.",
+      options: [
+        {
+          name: "--license-configuration-arn",
+          description:
+            "Amazon Resource Name (ARN) of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--license-configuration-status",
+          description: "New status of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--license-rules",
+          description:
+            "New license rule. The only rule that you can add after you create a license configuration is licenseAffinityToHost.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--license-count",
+          description:
+            "New number of licenses managed by the license configuration.",
+          args: {
+            name: "long",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--license-count-hard-limit",
+          description: "New hard limit of the number of available licenses.",
+        },
+        {
+          name: "--no-license-count-hard-limit",
+          description: "New hard limit of the number of available licenses.",
+        },
+        {
+          name: "--name",
+          description: "New name of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--description",
+          description: "New description of the license configuration.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--product-information-list",
+          description: "New product information.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--disassociate-when-not-found",
+          description:
+            "When true, disassociates a resource when software is uninstalled.",
+        },
+        {
+          name: "--no-disassociate-when-not-found",
+          description:
+            "When true, disassociates a resource when software is uninstalled.",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "update-license-specifications-for-resource",
+      description:
+        "Adds or removes the specified license configurations for the specified AWS resource. You can update the license specifications of AMIs, instances, and hosts. You cannot update the license specifications for launch templates and AWS CloudFormation templates, as they send license configurations to the operation that creates the resource.",
+      options: [
+        {
+          name: "--resource-arn",
+          description: "Amazon Resource Name (ARN) of the AWS resource.",
+          args: {
+            name: "string",
+          },
+          isOptional: false,
+        },
+        {
+          name: "--add-license-specifications",
+          description: "ARNs of the license configurations to add.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--remove-license-specifications",
+          description: "ARNs of the license configurations to remove.",
+          args: {
+            name: "list",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "update-service-settings",
+      description: "Updates License Manager settings for the current Region.",
+      options: [
+        {
+          name: "--s3-bucket-arn",
+          description:
+            "Amazon Resource Name (ARN) of the Amazon S3 bucket where the License Manager information is stored.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--sns-topic-arn",
+          description:
+            "Amazon Resource Name (ARN) of the Amazon SNS topic used for License Manager alerts.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--organization-configuration",
+          description:
+            "Enables integration with AWS Organizations for cross-account discovery.",
+          args: {
+            name: "structure",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--enable-cross-accounts-discovery",
+          description: "Activates cross-account discovery.",
+        },
+        {
+          name: "--no-enable-cross-accounts-discovery",
+          description: "Activates cross-account discovery.",
+        },
+        {
+          name: "--cli-input-json",
+          description:
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+          args: {
+            name: "string",
+          },
+          isOptional: true,
+        },
+        {
+          name: "--generate-cli-skeleton",
+          description:
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+          args: {
+            name: "string",
+            suggestions: ["input", "output"],
+          },
+          isOptional: true,
+        },
+      ],
+    },
+  ],
+};
