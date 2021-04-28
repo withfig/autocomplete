@@ -41,7 +41,7 @@ var completionSpec = {
         },
         {
             name: ["-V", "--version"],
-            description: "Print the Python version number and exit."
+            description: "Print the Python version number and exit.",
         },
         {
             name: ["-b"],
@@ -58,9 +58,9 @@ var completionSpec = {
                 suggestions: [
                     { name: "default" },
                     { name: "always" },
-                    { name: "never" }
+                    { name: "never" },
                 ],
-            }
+            },
         },
         {
             name: ["-d"],
@@ -96,7 +96,7 @@ var completionSpec = {
         },
         {
             name: ["-s"],
-            description: "Don’t add the user site-packages directory to sys.path."
+            description: "Don’t add the user site-packages directory to sys.path.",
         },
         {
             name: ["-S"],
@@ -113,7 +113,7 @@ var completionSpec = {
         {
             name: ["-W"],
             description: "Warning control. Python’s warning machinery by default prints warning messages to sys.stderr.",
-            args: {}
+            args: {},
         },
         {
             name: ["-x"],
@@ -132,9 +132,9 @@ var completionSpec = {
                     { name: "dev" },
                     { name: "utf8" },
                     { name: "pycache_prefix=PATH" },
-                ]
+                ],
             },
-        }
+        },
     ],
 };
 

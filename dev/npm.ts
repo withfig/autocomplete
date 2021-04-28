@@ -30,7 +30,7 @@ export const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "install",
-      description: "install local package",
+      description: "Install a package and its dependencies",
       args: {
         name: "package",
         generators: searchGenerator,
@@ -144,7 +144,7 @@ export const completionSpec: Fig.Spec = {
     { name: "hook", description: "manage registry hooks" },
     {
       name: "i",
-      description: "install local package",
+      description: "Install a package and its dependencies",
       args: {
         name: "package",
         generators: searchGenerator,

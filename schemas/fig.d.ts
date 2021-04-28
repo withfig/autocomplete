@@ -34,7 +34,7 @@ declare namespace Fig {
 
   export interface BaseSuggestion {
     /**
-     * The text that is displayed for a given suggestion. It will override what is in the name prop
+     * The string that is displayed in the UI for a given suggestion. This Overrides the name property.
      *
      * @example
      * For the npm CLI we have a subcommand called `install`. If we wanted
@@ -43,10 +43,9 @@ declare namespace Fig {
      */
     displayName?: string;
     /**
-     * The value that's inserted into the terminal when a user presses enter/tab
-     * or clicks on a suggestion.
-     * You can optionally specify `{cursor}` in the string and Fig will automatically
-     * place the cursor there after insert.
+     * The value that's inserted into the terminal when a user presses enter/tab or clicks on a menu item.
+     * You can optionally specify {cursor} in the string and Fig will automatically place the cursor there after insert.
+     * The default is the name prop.
      *
      * @example
      * For `git commit` the `-m` option has an insert value of `-m '{cursor}'`
@@ -54,13 +53,13 @@ declare namespace Fig {
     insertValue?: string;
     /**
      * The text that gets rendered at the bottom of the autocomplete box.
-     * Keep it short and direct!
+     * Keep it short and simple!
      */
     description?: string;
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
-     * can be a 1character string, a URL, or Fig's icon protocol (fig://) which
-     * will get mac system icons.
+     * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
+     * colorful and fun systems icons: https://withfig.com/docs/autocomplete/reference/icon-api
      *
      * @example
      * `A`, `😊`
@@ -70,30 +69,39 @@ declare namespace Fig {
     icon?: string;
     /**
      * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
-     * its insert and run functionality whereby selecting a suggestion runs a command.
+     * its "insert and run" functionality (when Fig has the red insert icon).
      * This will make it harder for a user to accidentally run a dangerous command.
      *
      * @remark
      * This is used in specs like rm and trash.
      */
     isDangerous?: boolean;
+
     /**
-     * Specifies whether a suggestion should be hidden from results and only show is there is an exact match.
+     * The priority for a given suggestion determines its ranking in the Fig popup. A higher ranked priority will be listed first. The min priority is 0. The max priority is 100. The default priority is 50.
+     * If a given suggestion has a priority between 50 and 75 (inluding the default 50) AND has been selected by the user before, the prioritiy will be replaced with 75 + the timestamp of when that suggestion was selected as a decimal.
+     * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the prioritiy will be increased by the timestamp of when that suggestion was selected as a decimal.
+     *
+     *
+     * @examlpes
+     * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
+     * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
+     */
+    priority?: number;
+    /**
+     * Specifies whether a suggestion should be hidden from results. Fig will only show it if the user types the exact same thing as the name
      *
      * @example
-     * This is used for things like "-" suggestion in cd or git checkout
+     * The "-" suggestion is hidden in the `cd` spec. You will only see it if you type cd -
      */
     hidden?: boolean;
   }
 
   export interface Suggestion extends BaseSuggestion {
     /**
-     * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
-     * its insert and run functionality whereby selecting a suggestion runs a command.
-     * This will make it harder for a user to accidentally run a dangerous command.
+     * The text that’s rendered in each row of Fig's popup. displayName will override this.
+     * he `name` props of suggestion, subcommand, options, and args objects are all different. It's important to read them all carefully.
      *
-     * @example
-     * For git, some subcommands are push, commit, checkout, add etc
      */
     name?: SingleOrArray<string>;
     /**
@@ -105,46 +113,48 @@ declare namespace Fig {
 
   export interface Subcommand extends BaseSuggestion {
     /**
-     * The name of a subcommand. Fig uses this value for its parsing so it must be exactly right. Think of it like a token.
-     * If you want to display something custom to the user, use the displayName prop
+     * The exact name of the subcommand. It is important to get this right for parsing purposes.
      *
      * @example
-     * For git, some subcommands are push, commit, checkout, add etc
+     * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
     name: string;
 
     /**
      * A list of subcommands for this spec.
+     * Subcommands can be nested within subcommands.
      */
     subcommands?: Subcommand[];
 
     /**
-     * A list of options for this spec.
+     * A list of option objects for this subcommand.
      */
     options?: Option[];
 
     /**
      * An array of args or a single arg.
      *
-     * @remark
+     * **Important**
      * If a subcommand takes an argument, please at least include an empty Arg Object
-     * (e.g. {}). If you don't, Fig will assume the subcommand does not take an argument.
-     * This means Fig will present the wrong suggestions.
+     * (e.g. `{}`). If you don't, Fig will assume the subcommand does not take an argument and we will present the wrong suggestions.
+     *
+     * @example:
+     * git push takes two arguments. The most basic representation of this is
+     * `args: [{}, {}]`
      */
 
     args?: SingleOrArray<Arg>;
 
     /**
-     * A list of Suggestion to make custom suggestions.
+     * A list of Suggestion objects that are appended to a specific subcommand. Often these are shortcuts
      *
-     * @remark
-     * You should only use this for special cases. Most likely, what you are trying to
-     * accomplish should be done with the `args` prop.
+     * @example:
+     * `commit -m '{cursor}'` is a shortcut for git
      */
     additionalSuggestions?: Suggestion[] | String[];
     /**
      * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
-     * Specify the spec name without `js`.
+     * Specify the spec name without `js`. This is simiar but different to isCommand in the Arg object so read both carefully
      *
      * @example
      * `aws-s3` refer to the `~/.fig/autocomplete/aws-s3` spec.
@@ -158,7 +168,7 @@ declare namespace Fig {
      */
     loadSpec?: string;
     /**
-     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically
+     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically. This is a function that takes in an array of strings (the tokens the user has typed) and outputs a completion spec object
      *
      * @example
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
@@ -168,46 +178,48 @@ declare namespace Fig {
 
   export interface Option extends BaseSuggestion {
     /**
-     * The short and/or long name of the option. It can be a string or an array of strings.
-     * The strings must NOT include the = sign and must NOT chain options together.
-     * Fig handles all of this logic.
+     * The exact name(s) of the option. It is very important to get this right for parsing purposes. It can be a string or an array of strings.
+     * **Important**: do NOT include an = sign here. Fig handles this logic for you. Including one will mess up the parsing.
      *
      * @example
-     * For git commit, we have the option ["-m", "--message"]. For ps we have the options "-a", "-u", "-x"
+     * For git commit -m, the option name is `["-m", "--message"]`
      */
     name: SingleOrArray<String>;
 
     /**
-     * An array of args or a single arg.
+     * An array of args or a single arg object.
      *
-     * @remark
-     * If a subcommand takes an argument, please at least include an empty Arg Object
-     * (e.g. {}). If you don't, Fig will assume the subcommand does not take an argument.
-     * This means Fig will present the wrong suggestions.
+     * **Important**
+     * If an option takes an argument, please at least include an empty Arg Object
+     * (e.g. `{}`). If you don't, Fig will assume the option does not take an argument and will present the wrong suggestions.
+     *
+     * @example:
+     * `git commit -m` takes one argument. The most basic representation of this is
+     * `args: {}`
      */
     args?: SingleOrArray<Arg>;
   }
 
   export interface Arg {
     /**
-     * The name of an argument. This is a normal string that signals to the user the type of argument they are inserting if there are no available suggestions.
-     * Unlike the subcommand and option objects, Fig does not use this value for parsing. Therefore, it can be whatever you want.
+     * The name of an argument. This is different to the `name` prop for subcommands, options, and suggestion objects so please read carefully.
+     * This is a normal, human readable string that signals to the user the type of argument they are inserting if there are no available suggestions.
+     * Fig does not use this value for parsing. Therefore, it can be whatever you want.
      *
      * @example
-     * For git commit -m, it takes an option with the name "message"
+     * The name prop for the `git commit -m` arg object is "message". You can see this when you type!
      */
     name?: string;
 
     /**
-     * The text that gets rendered at the bottom of the autocomplete box.
+     * The text that gets rendered at the bottom of the autocomplete box a) when the user is inputting an argument and there are no suggestions and b) for all generated suggestions for an argument
      * Keep it short and direct!
      */
     description?: string;
 
     /**
-     * Specifies whether the suggestion is "dangerous". If so, Fig will not enable
-     * its insert and run functionality whereby selecting a suggestion runs a command.
-     * This will make it harder for a user to accidentally run a dangerous command.
+     * Specifies whether the suggestions generated by this argument are "dangerous". If so, Fig will not enable
+     * its insert and run functionality (when the red icon appears that automatically executes commands for you rather than just inserting)
      *
      * @remark
      * This is used in specs like rm and trash.
@@ -215,60 +227,64 @@ declare namespace Fig {
     isDangerous?: boolean;
 
     /**
-     * A list of strings or Suggestion obejcts. Use this prop to specify custom suggestions
-     * that are static. If suggestions are dependent upon the user's input or context, you most likely will
+     * An array of strings or Suggestion obejcts. Use this prop to specify custom suggestions
+     * that are static (ie you know of in advance and don't have to be statically generated).
+     * If suggestions are dependent upon the user's input or context, you most likely will
      * want to use a Generator object in this arg's generator prop.
      */
     suggestions?: string[] | Suggestion[];
     /**
      * Fig has pre-built generators for common suggestion types. Currently, we support
-     * templates for either "filepaths" or "folders".
+     * templates for either "filepaths" or "folders". You can do either of these as a string or both in an array.
+     * Folders will only show folders. Filepaths will show folders and filepaths but will only offer the insert and execute functionality (the red automatic insert icon you see when using cd) for files NOT folders.
      *
      * @example
-     * `cd` uses the `folders` template.
+     * `cd` uses the `folders` template whereas ls uses `[filepaths, folders]`
      */
     template?: Template;
     /**
-     * A list or a single generator. Generators let you run shell commands on the user's
-     * device to generate suggestions for the argument
+     *
+     * Generators let you run shell commands on the user's device to generate suggestions for arguments.
+     * The generators prop takes a single generator object or a list of generator objects.
+     * The generator object outputs an array of suggestions which are offered to users when inserting an argument
      */
     generators?: SingleOrArray<Generator>;
     /**
-     * Specifies that the argument is variadic and therefore the subcommand / option takes infinite arguments
+     * Specifies that the argument is variadic and therefore repeats infinitely.
      *
      * @example
-     * `echo` takes a variadic argument (`echo hello world ...`) so does git add
+     * `echo` takes a variadic argument (`echo hello world ...`) so does `git add`
      */
     variadic?: boolean;
 
     /**
-     * True if an argument is optional.
+     * True if an argument is optional. It is important you include this for our parsing. If you don't, Fig will assume the argument is mandatory and will not offer suggestions for a user.
      *
      * @example
      * Git push [remote] [branch] takes two optional args
      */
     isOptional?: boolean;
     /**
-     * Specifies that the argument is an entirely new command which Fig should start completing on frome scratch
+     * Specifies that the argument is an entirely new command which Fig should start completing on from scratch
      *
      * @example
-     * `time` and `builtin` have only one argument and this argument has the `isCommand` property
+     * `time` and `builtin` have only one argument and this argument has the `isCommand` property. If I type `time git`, Fig will load up the git completion spec because the isCommand property is set.
      */
     isCommand?: boolean;
     /**
-     * Specifies that the argument is a script which Fig should start completing on from scratch
+     * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
-     * `python` take one argument which is a `.py` file. It is possible for Fig to offer for
-     * completions on this .py file. See {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
+     * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
+     * See our docs for more on this {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
      */
     isScript?: boolean;
 
     /**
-     * Will run the generators after 100ms of no new typing.
+     * This will debounce every keystroke event for this particular arg. If there are no keystroke events after 100ms, Fig will execute all the generators in this arg and return the suggestions.
      *
      * @example
-     * NPM install and pip install send debounced network requests after inactive typing from users
+     * NPM install and pip install send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
   }
@@ -278,52 +294,104 @@ declare namespace Fig {
    */
   export interface Generator {
     /**
-     * Must be either "filepaths" or "folders".
+     * Fig has pre-built generators for common suggestion types. Currently, we support
+     * templates for either "filepaths" or "folders". You can do either of these as a string or both in an array.
+     * Folders will only show folders. Filepaths will show folders and filepaths but will only offer the insert and execute functionality (the red automatic insert icon you see when using cd) for files NOT folders.
+     *
+     * @example
+     * `cd` uses the `folders` template whereas ls uses `[filepaths, folders]`
      */
     template?: Template;
     /**
-     * Function that lets you filter the Suggestion objects output by the template.
+     * This function takes a single argument: the array of suggestion objects output by the template prop. It then lets you edit them as you see fit. You must then return an array of suggestion objects.
+     * @example
+     * The python spec has an arg object which has a template for "filepaths" and then filters out all suggestions generated that don't end with "/" (to keep folders) or ".py" (to keep python files)
      */
     filterTemplateSuggestions?: Function<Suggestion[], Suggestion[]>;
     /**
-     * The shell command to execute in the user's current working directory. The output
-     * is a string. It is then converted into an array of Suggestion objects using
-     * `splitOn` or `postProcess`.
+     * In order to generate contextual suggestions for arguments, Fig lets you execute a shell command on the users local device as if it were done in their current working directory.
+     * You can either specify
+     * 1. a string to be executed (like `ls` or `git branch`)
+     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a kubernetes context etc)
+     * After executing the script, the output will be passed to one of `splitOn` or `postProcess` for further processing to produce suggestion objects.
+     *
+     * @example
+     * `git checkout` takes one argument which is a git branch. Its arg object has a generator with a script of `git branch`
+     * `heroku features:disable --app ABC FEATURE` the suggestion for the FEATURE argument are dependent upon the --app given (in this case ABC). Therefore, we would use a function to generate the script we would run here
      */
     script?: StringOrFunction<string[], string>;
     /**
-     * As splitting the output of script is such a common use case for `postProcess`, we
-     * build the `splitOn` property. Simply define a string to split the output of script on.
+     * A synctactic sugar over postProcess. This takes in the text output of `script`, splits it on the string you provide here, and the automatically generates an array of suggestion objects for each item.
      *
      * @example
-     * "," or "\n" and Fig will do the work of the `postProcess` prop for you
+     * Specify "," or "\n", and Fig will do the work of the `postProcess` prop for you
      */
     splitOn?: string;
     /**
-     * Define a function that takes a single input: the output of executing script. This function
-     * then returns an array of Suggestion objects that will be rendered by Fig.
+     * This function takes one paramater: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
     postProcess?: Function<string, Suggestion[]>;
     /**
-     * Defines a trigger that determines when to regenerate suggestions for this argument by
-     * re-running the generators.
+     * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
+     * The suggestions remain the same while the filteredSuggestions change on each input.
+     *
+     * Typically, Fig regenerates the suggestions every time the user hits space as in bash, a space typically delimits commands. However, if the `trigger` prop is defined, Fig will run the trigger function on each keystroke. If it returns true, instead of filtering over the suggestions, Fig will regenerate the list of suggestions THEN filter over them.
+     * The trigger function takes two inputs: the new token the user typed and the token on the keystroke before.
+     *
+     * The trigger prop can also be a simple string. This is synctactic sugar that allows you to specify a single character. If count of this character in the string before !== the count of the new string, Fig will regenerate the suggestions.
+     *
+     * Using a trigger is especially beneficial when you have an argument contained inside a single string that is not separated by a space. It is often used with a custom prop or script (as a function)
+     *
+     *Finally, make sure you don't confuse trigger with debounce. Debounce will regenerate suggestions after a period of inactivity typing. Trigger will regenerate suggestions when the function you define returns true!
+     *
+     * Use some logging in the function to work out when trigger is being run
+     *
+     * @example
+     * You can see the trigger in action every time you use file and folder completions (e.g. with `cd`). When you type a `/`, Fig will regenerate its list of file and folder suggestions by appending the path of what you've already typed to your current working directory.
+     * e.g. If I had already typed "desktop". The current list of suggestions is from the ~ directory and the filterTerm is "desktop". Then I type "/" so it says "desktop/", the trigger would return true, Fig will generate suggestions for the directory `~/desktop/` and the filterTerm will become an empty string.
+     *
      */
     trigger?: string | ((paramOne: string, paramTwo: string) => boolean);
     /**
-     * A function to determine what part of the string the user is currently typing we should
-     * use to filter our suggestions.
+     * Read the note above about how triggers work. Triggers and filterTerm may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The filterTerm defines what characters we should use to filter over these suggestions.
+     *
+     * It can be a function: this takes in what the user has currently typed as a string and outputs a separate string that is used for filtering
+     * It can also be a string: this is synctactic sugar that takes everything in the string after the character(s) you choose.
+     *
+     * Use some logging in the function to work out what the trigger is
+     *
+     * @example
+     * cd has a filter term of "/". If an argument to `cd` includes a "/" Fig will filter over all of the suggestions generated using the string AFTER the last "/"
+     *
      */
     filterTerm?: StringOrFunction<string, string>;
     /**
-     * Custom Functions let you define a function that takes an array of the user's input, run
-     * multiple shell commands on the user's machine, and then generate suggestions to display.
+     * Custom function is a bit like script as a function, however, it gives you full control.
+     *
+     * It is an async function.
+     *
+     * It takes on argument: an array of tokens of what the user has typed
+     * It must return an array of suggestion obejcts.
+     *
+     * The function also allows the use of the async function `executeShellCommand` which executes commands from the same current working directory as the user and returns the output as a text blob.
+     *
+     * @example
+     * ```
+     * custom: (context) => {
+     *    var out = await executeShellCommand("ls")
+     *    return out.split("\n").map((elm) => {name: elm})
+     * }
+     * ```
      */
     custom?: Function<string[], Promise<Suggestion[]>>;
     /**
-     * Should we cache the object and if so for how long.
+     * For commands that take a long time to run, Fig gives you the option to cache their response. You can cache the response globally or just by the directory they were run in
+     * You just need to specify a `ttl` (time to live) for how long the cache will last (this is a number)
+     * You can also optionally turn on the ability to just cache by directory (`cacheByDirectory: true`)
      *
      * @example
-     * "," or "\n" and Fig will do the work of the `postProcess` prop for you.
+     * The kubernetes spec makes use of this.
+     *
      */
     cache?: Cache;
   }

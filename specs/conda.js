@@ -309,10 +309,7 @@ var completionSpec = {
                     name: ["--dev"],
                     description: "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
                 },
-                { name: ["-n, --name"],
-                    description: "Name of environment.",
-                    args: {}
-                },
+                { name: ["-n, --name"], description: "Name of environment.", args: {} },
                 {
                     name: ["-p, --prefix"],
                     description: "Full path to environment location (i.e. prefix).",
