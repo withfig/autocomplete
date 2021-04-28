@@ -309,9 +309,8 @@ export const completionSpec: Fig.Spec = {
       description:
         "Create a new conda environment from a list of specified packages.",
       args: {
-        name: "package_spec",
-        description: "Packages to install or update in the conda environment.",
-        //generators: getAllCondaPackages
+        name: "Environment",
+        description: "Name of new conda environment",
       },
       options: [
         {
@@ -1012,6 +1011,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         variadic: true,
+        suggestions: [{ name: "conda" }],
         generators: getInstalledPackages,
       },
       options: [
@@ -1156,6 +1156,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         variadic: true,
+        generators: getInstalledPackages,
       },
       options: [
         {

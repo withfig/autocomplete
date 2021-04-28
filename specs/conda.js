@@ -56,11 +56,11 @@ var completionSpec = {
             description: "Activate an environment",
             args: {
                 generators: getCondaEnvironments,
-            }
+            },
         },
         {
             name: "deactivate",
-            description: "Deactivate an environment"
+            description: "Deactivate an environment",
         },
         {
             name: "clean",
@@ -183,7 +183,8 @@ var completionSpec = {
                     name: ["--env"],
                     description: "Write to the active conda environment .condarc file (<no active environment>). If no environment is active, write to the user config file (/home/docs/.condarc).",
                 },
-                { name: ["--file"],
+                {
+                    name: ["--file"],
                     description: "Write to the given file.",
                     args: {
                         name: "Target File",
@@ -286,24 +287,23 @@ var completionSpec = {
             name: "create",
             description: "Create a new conda environment from a list of specified packages.",
             args: {
-                name: "package_spec",
-                description: "Packages to install or update in the conda environment.",
-                //generators: getAllCondaPackages
+                name: "Environment",
+                description: "Name of new conda environment",
             },
             options: [
                 {
                     name: ["--clone"],
                     description: "Path to (or name of) existing local environment.",
                     args: {
-                        generators: getCondaEnvironments
-                    }
+                        generators: getCondaEnvironments,
+                    },
                 },
                 {
                     name: ["--file"],
                     description: "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
                     args: {
-                        template: "filepaths"
-                    }
+                        template: "filepaths",
+                    },
                 },
                 {
                     name: ["--dev"],
@@ -311,7 +311,7 @@ var completionSpec = {
                 },
                 { name: ["-n, --name"],
                     description: "Name of environment.",
-                    args: {},
+                    args: {}
                 },
                 {
                     name: ["-p, --prefix"],
@@ -452,17 +452,14 @@ var completionSpec = {
                     name: ["--file"],
                     description: "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
                     args: {
-                        template: "filepaths"
+                        template: "filepaths",
                     },
                 },
                 {
                     name: ["--dev"],
                     description: "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
                 },
-                { name: ["-n, --name"],
-                    description: "Name of environment.",
-                    args: {},
-                },
+                { name: ["-n, --name"], description: "Name of environment.", args: {} },
                 {
                     name: ["-p, --prefix"],
                     description: "Full path to environment location (i.e. prefix).",
@@ -608,7 +605,8 @@ var completionSpec = {
                     name: ["--no-pip"],
                     description: "Do not include pip-only installed packages.",
                 },
-                { name: ["-n", "--name"],
+                {
+                    name: ["-n", "--name"],
                     description: "Name of environment.",
                     args: {},
                 },
@@ -662,7 +660,8 @@ var completionSpec = {
                     description: "Package build number of the created package.",
                     args: {},
                 },
-                { name: ["-n", "--name"],
+                {
+                    name: ["-n", "--name"],
                     description: "Name of environment.",
                     args: {},
                 },
@@ -686,7 +685,8 @@ var completionSpec = {
                     name: ["--dev"],
                     description: "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
                 },
-                { name: ["-n", "--name"],
+                {
+                    name: ["-n", "--name"],
                     description: "Name of environment.",
                     args: {},
                 },
@@ -770,7 +770,8 @@ var completionSpec = {
                     name: ["--dev"],
                     description: "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
                 },
-                { name: ["-n", "--name"],
+                {
+                    name: ["-n", "--name"],
                     description: "Name of environment.",
                     args: {},
                 },
@@ -917,6 +918,7 @@ var completionSpec = {
             args: {
                 name: "package",
                 variadic: true,
+                suggestions: [{ name: "conda" }],
                 generators: getInstalledPackages,
             },
             options: [
@@ -924,10 +926,11 @@ var completionSpec = {
                     name: ["--file"],
                     description: "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
                     args: {
-                        template: "filepaths"
-                    }
+                        template: "filepaths",
+                    },
                 },
-                { name: ["-n", "--name"],
+                {
+                    name: ["-n", "--name"],
                     description: "Name of environment.",
                     args: {},
                 },
@@ -1042,6 +1045,7 @@ var completionSpec = {
             args: {
                 name: "package",
                 variadic: true,
+                generators: getInstalledPackages,
             },
             options: [
                 {
