@@ -848,35 +848,148 @@ var completionSpec = {
             description: "Update remote refs",
             options: [
                 {
-                    name: "-all",
-                    description: "Push all branches to remote",
+                    name: "--all",
+                    description: "Push all branches (i.e. refs under refs/heads/); cannot be used with other <refspec>.",
                 },
-                // { name: "--repo", description: "repository" },
-                // { name: "--all", description: "push all refs" },
-                // { name: "--mirror", description: "mirror all refs" },
-                { name: ["-d", "--delete"], description: "delete refs" },
+                {
+                    name: "--prune",
+                    description: "Remove remote branches that don't have a local counterpart",
+                },
+                {
+                    name: "--mirror",
+                    description: "Instead of naming each ref to push, specifies that all refs under refs/ be mirrored to the remote repository.",
+                },
+                {
+                    name: ["-n", "--dry-run"],
+                    description: "Do everything except actually send the updates.",
+                },
+                {
+                    name: "--porcelain",
+                    description: "Produce machine-readable output. The output status line for each ref will be tab-separated and sent to stdout instead of stderr.",
+                },
+                {
+                    name: "-d, --delete",
+                    description: "All listed refs are deleted from the remote repository. This is the same as prefixing all refs with a colon.",
+                },
                 {
                     name: "--tags",
-                    description: "push tags (can't be used with --all or --mirror)",
+                    description: "All refs under refs/tags are pushed, in addition to refspecs explicitly listed on the command line.",
                 },
                 {
-                    name: "-u",
-                    args: [
-                        {
-                            name: "remote",
-                            generators: gitGenerators.remotes,
-                        },
-                        {
-                            name: "branch",
-                            generators: gitGenerators.branches,
-                        },
-                    ],
+                    name: "--follow-tags",
+                    description: "Push all the refs that would be pushed without this option, and also push annotated tags in refs/tags that are missing from the remote but are pointing at commit-ish that are reachable from the refs being pushed. This can also be specified with configuration variable push.followTags",
                 },
                 {
-                    name: "--force",
-                    description: "Forces the git push even if it results in a non-fast-forward merge. Do not use the --force flag unless you’re absolutely sure you know what you’re doing",
+                    name: "--signed",
+                    description: "GPG-sign the push request to update refs on the receiving side, to allow it to be checked by the hooks and/or be logged. If false or --no-signed, no signing will be attempted. If true or --signed, the push will fail if the server does not support signed pushes. If set to if-asked, sign if and only if the server supports signed pushes. The push will also fail if the actual call to gpg --sign fails. See git-receive-pack(1) for the details on the receiving end.",
+                    args: {
+                        isOptional: true,
+                        suggestions: ["true", "false", "if-asked"],
+                    },
                 },
-                // { name: ["-n", "--dry-run"], description: "dry run" },
+                {
+                    name: "--no-signed",
+                    description: "GPG-sign the push request to update refs on the receiving side, to allow it to be checked by the hooks and/or be logged. If false or --no-signed, no signing will be attempted. If true or --signed, the push will fail if the server does not support signed pushes. If set to if-asked, sign if and only if the server supports signed pushes. The push will also fail if the actual call to gpg --sign fails. See git-receive-pack(1) for the details on the receiving end.",
+                    args: {
+                        isOptional: true,
+                        suggestions: ["true", "false", "if-asked"],
+                    },
+                },
+                {
+                    name: "--atomic",
+                    description: "Use an atomic transaction on the remote side if available. Either all refs are updated, or on error, no refs are updated. If the server does not support atomic pushes the push will fail.",
+                },
+                {
+                    name: "--no-atomic",
+                    description: "Use an atomic transaction on the remote side if available. Either all refs are updated, or on error, no refs are updated. If the server does not support atomic pushes the push will fail.",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "Usually, the command refuses to update a remote ref that is not an ancestor of the local ref used to overwrite it. Also, when --force-with-lease option is used, the command refuses to update a remote ref whose current value does not match what is expected. This flag disables these checks, and can cause the remote repository to lose commits; use it with care.",
+                },
+                {
+                    name: "--repo",
+                    insertValue: "--repo=",
+                    description: "This option is equivalent to the <repository> argument. If both are specified, the command-line argument takes precedence.",
+                    args: {
+                        name: "repository",
+                    },
+                },
+                {
+                    name: ["-u", "--set-upstream"],
+                    description: "For every branch that is up to date or successfully pushed, add upstream (tracking) reference, used by argument-less git-pull(1) and other commands.",
+                },
+                {
+                    name: "--thin",
+                    description: "These options are passed to git-send-pack(1). A thin transfer significantly reduces the amount of sent data when the sender and receiver share many of the same objects in common. The default is --thin.",
+                },
+                {
+                    name: "--no-thin",
+                    description: "These options are passed to git-send-pack(1). A thin transfer significantly reduces the amount of sent data when the sender and receiver share many of the same objects in common. The default is --thin.",
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Suppress all output, including the listing of updated refs, unless an error occurs. Progress is not reported to the standard error stream.",
+                },
+                { name: ["-v", "--verbose"], description: "Run verbosely" },
+                {
+                    name: "--progress",
+                    description: "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless -q is specified. This flag forces progress status even if the standard error stream is not directed to a terminal.",
+                },
+                {
+                    name: "--no-recurse-submodules",
+                    description: "May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If check is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If on-demand is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If only is used all submodules will be recursively pushed while the superproject is left unpushed. A value of no or using --no-recurse-submodules can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required.",
+                },
+                {
+                    name: "--recurse-submodules",
+                    insertValue: "--recurse-submodules=",
+                    description: "May be used to make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch. If check is used Git will verify that all submodule commits that changed in the revisions to be pushed are available on at least one remote of the submodule. If any commits are missing the push will be aborted and exit with non-zero status. If on-demand is used all submodules that changed in the revisions to be pushed will be pushed. If on-demand was not able to push all necessary revisions it will also be aborted and exit with non-zero status. If only is used all submodules will be recursively pushed while the superproject is left unpushed. A value of no or using --no-recurse-submodules can be used to override the push.recurseSubmodules configuration variable when no submodule recursion is required.",
+                    args: {
+                        suggestions: ["check", "on-demand", "only", "no"],
+                    },
+                },
+                {
+                    name: "--verify",
+                    description: "Turn on the pre-push hook. The default is --verify, giving the hook a chance to prevent the push. With",
+                },
+                {
+                    name: "--no-verify",
+                    description: "Turn off the pre-push hook. The default is --verify, giving the hook a chance to prevent the push. With",
+                },
+                {
+                    name: ["-4", "--ipv4"],
+                    description: "Use IPv4 addresses only, ignoring IPv6 addresses.",
+                },
+                {
+                    name: ["-6", "--ipv6"],
+                    description: "Use IPv6 addresses only, ignoring IPv4 addresses.",
+                },
+                {
+                    name: ["-o", "--push-option"],
+                    description: "Transmit the given string to the server, which passes them to the pre-receive as well as the post-receive hook. The given string must not contain a NUL or LF character. When multiple --push-option=<option> are given, they are all sent to the other side in the order listed on the command line. When no --push-option=<option> is given from the command line, the values of configuration variable push.pushOption are used instead.",
+                    args: {
+                        name: "option",
+                    },
+                },
+                {
+                    name: ["--receive-pack", "--exec"],
+                    description: "Path to the git-receive-pack program on the remote end. Sometimes useful when pushing to a remote repository over ssh, and you do not have the program in a directory on the default $PATH.",
+                    args: {
+                        name: "git-receive-pack",
+                    },
+                },
+                {
+                    name: "--no-force-with-lease",
+                    description: "Cancel all the previous --force-with-lease on the command line.",
+                },
+                {
+                    name: "-force-with-lease",
+                    description: "protect the named ref (alone), if it is going to be updated, by requiring its current value to be the same as the specified value <expect> (which is allowed to be different from the remote-tracking branch we have for the refname, or we do not even have to have such a remote-tracking branch when this form is used). If <expect> is the empty string, then the named ref must not already exist.",
+                    args: {
+                        name: "refname[:expect]",
+                        isOptional: true,
+                    },
+                },
             ],
             args: [
                 {
