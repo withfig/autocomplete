@@ -44,6 +44,10 @@
             "description": "Install husky"
         }
     },
+    "prettier": {
+        "trailingComma": "es5",
+        "printWidth": 80
+    },
     "lint-staged": {
         "*.ts": [
             "eslint --fix"
@@ -66,7 +70,7 @@
         "eslint-plugin-prettier": "^3.3.1",
         "husky": "^6.0.0",
         "lint-staged": "^10.5.4",
-        "prettier": "^2.2.1",
+        "prettier": "2.2.1",
         "progress": "^2.0.3",
         "ts-node": "^9.1.1",
         "typescript": "^4.2.3"

@@ -6,21 +6,21 @@ module.exports = {
   },
   extends: [
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended",
+    // "prettier",
+    // "plugin:prettier/recommended",
     "plugin:fig-linter/recommended",
   ],
   plugins: ["fig-linter"],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "prettier/prettier": [
-      "error",
-      {
-        // Optional Prettier config changes
-        trailingComma: "es5",
-        printWidth: 80,
-      },
-    ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     // Optional Prettier config changes
+    //     trailingComma: "es5",
+    //     printWidth: 80,
+    //   },
+    // ],
     "no-unused-vars": ["off"],
     "no-var": ["off"],
     "@typescript-eslint/no-unused-vars": ["off"],
