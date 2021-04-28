@@ -4,7 +4,7 @@ var completionSpec = {
     args: [
         {
             variadic: true,
-            template: "filepaths",
+            template: ["folders", "filepaths"],
         },
     ],
     subcommands: [],
