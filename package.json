@@ -50,7 +50,8 @@
     },
     "lint-staged": {
         "*.ts": [
-            "eslint --fix"
+            "eslint --fix",
+            "prettier --write --ignore-unknown"
         ]
     },
     "author": "",
