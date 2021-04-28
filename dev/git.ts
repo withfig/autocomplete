@@ -965,7 +965,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: "-d, --delete",
+          name: ["-d", "--delete"],
           description:
             "All listed refs are deleted from the remote repository. This is the same as prefixing all refs with a colon.",
         },
@@ -2440,7 +2440,7 @@ export const completionSpec: Fig.Spec = {
       description:
         "Create, list, delete or verify a tag object signed with GPG",
       options: [
-        { name: ["-l", " --list"], description: "list tag names" },
+        { name: ["-l", "--list"], description: "list tag names" },
         {
           name: "-n",
           description: "print <n> lines of each tag message",

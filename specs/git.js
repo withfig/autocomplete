@@ -868,7 +868,7 @@ var completionSpec = {
                     description: "Produce machine-readable output. The output status line for each ref will be tab-separated and sent to stdout instead of stderr.",
                 },
                 {
-                    name: "-d, --delete",
+                    name: ["-d", "--delete"],
                     description: "All listed refs are deleted from the remote repository. This is the same as prefixing all refs with a colon.",
                 },
                 {
@@ -2211,7 +2211,7 @@ var completionSpec = {
             name: "tag",
             description: "Create, list, delete or verify a tag object signed with GPG",
             options: [
-                { name: ["-l", " --list"], description: "list tag names" },
+                { name: ["-l", "--list"], description: "list tag names" },
                 {
                     name: "-n",
                     description: "print <n> lines of each tag message",
