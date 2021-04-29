@@ -5,7 +5,7 @@ const listTargets: Fig.Generator = {
     const targets = [];
     for (let i = 1; i < lines.length; i++) {
       targets.push({
-        name: lines[i],
+        name: lines[i].trim(),
         description: "make target",
         icon: "🎯",
         priority: 80,
