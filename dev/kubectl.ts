@@ -1,5 +1,7 @@
 // TODO: Handle if not connected to a k8s cluster
 // TODO: Handle if no resources found
+
+// Internal scripts for this spec, not to be confused with the script property
 const scripts = {
   types: "kubectl api-resources -o name",
   typeWithName: function (type) {
@@ -91,9 +93,7 @@ const sharedArgs: Record<string, Fig.Arg> = {
         return scripts.types;
       },
       splitOn: "\n",
-      trigger: function () {
-        return true;
-      },
+      trigger: "/",
     },
   },
   listNodes: {
@@ -945,8 +945,9 @@ export const completionSpec: Fig.Spec = {
             {
               name: ["--cluster"],
               insertValue: "--cluster=",
+              displayName: "--cluster=cluster_nickname",
               args: {
-                name: "cluster_nickname",
+                // name: "cluster_nickname",
               },
             },
             {

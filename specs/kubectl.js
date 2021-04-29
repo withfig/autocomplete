@@ -1,3 +1,5 @@
+// TODO: Handle if not connected to a k8s cluster
+// TODO: Handle if no resources found
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,8 +11,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-// TODO: Handle if not connected to a k8s cluster
-// TODO: Handle if no resources found
+// Internal scripts for this spec, not to be confused with the script property
 var scripts = {
     types: "kubectl api-resources -o name",
     typeWithName: function (type) {
@@ -97,9 +98,7 @@ var sharedArgs = {
                 return scripts.types;
             },
             splitOn: "\n",
-            trigger: function () {
-                return true;
-            },
+            trigger: "/",
         },
     },
     listNodes: {
@@ -142,7 +141,8 @@ var sharedArgs = {
 };
 var sharedOpts = {
     filename: {
-        name: ["-f", "--filename"], description: "Filename, directory, or URL to files identifying the resource",
+        name: ["-f", "--filename"],
+        description: "Filename, directory, or URL to files identifying the resource",
         args: {
             name: "File",
             template: "filepaths",
@@ -878,8 +878,9 @@ var completionSpec = {
                         {
                             name: ["--cluster"],
                             insertValue: "--cluster=",
+                            displayName: "--cluster=cluster_nickname",
                             args: {
-                                name: "cluster_nickname",
+                            // name: "cluster_nickname",
                             },
                         },
                         {
