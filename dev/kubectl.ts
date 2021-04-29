@@ -25,7 +25,10 @@ const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
   ) {
     return [];
   }
-  return out.split("\n") as Fig.Suggestion[];
+  return out.split("\n").map((item) => ({
+    name: item,
+    icon: "fig://icon?type=kubernetes",
+  })) as Fig.Suggestion[];
 };
 
 const sharedArgs: Record<string, Fig.Arg> = {
@@ -100,6 +103,7 @@ const sharedArgs: Record<string, Fig.Arg> = {
           .filter((line) => line !== "NAME")
           .map((line) => ({
             name: line,
+            icon: "fig://icon?type=kubernetes",
           }));
       },
     },
@@ -158,6 +162,7 @@ const sharedArgs: Record<string, Fig.Arg> = {
         return JSON.parse(out).spec.containers.map((item) => ({
           name: item.name,
           description: item.image,
+          icon: "fig://icon?type=kubernetes",
         }));
       },
     },

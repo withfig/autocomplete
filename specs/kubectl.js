@@ -32,7 +32,10 @@ var sharedPostProcess = function (out) {
         sharedPostProcessChecks.generalError(out)) {
         return [];
     }
-    return out.split("\n");
+    return out.split("\n").map(function (item) { return ({
+        name: item,
+        icon: "fig://icon?type=kubernetes",
+    }); });
 };
 var sharedArgs = {
     resourcesArg: {
@@ -100,6 +103,7 @@ var sharedArgs = {
                     .filter(function (line) { return line !== "NAME"; })
                     .map(function (line) { return ({
                     name: line,
+                    icon: "fig://icon?type=kubernetes",
                 }); });
             },
         },
@@ -155,6 +159,7 @@ var sharedArgs = {
                 return JSON.parse(out).spec.containers.map(function (item) { return ({
                     name: item.name,
                     description: item.image,
+                    icon: "fig://icon?type=kubernetes",
                 }); });
             },
         },
