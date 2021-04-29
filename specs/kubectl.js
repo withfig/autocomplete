@@ -1,4 +1,3 @@
-// TODO: Handle if no resources found
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -22,32 +21,32 @@ var scripts = {
 };
 var sharedPostProcessChecks = {
     connectedToCluster: function (out) {
-        return !out.includes("The connection to the server");
+        return out.includes("The connection to the server");
     },
+    generalError: function (out) {
+        return out.includes("error:");
+    },
+};
+var sharedPostProcess = function (out) {
+    if (sharedPostProcessChecks.connectedToCluster(out) ||
+        sharedPostProcessChecks.generalError(out)) {
+        return [];
+    }
+    return out.split("\n");
 };
 var sharedArgs = {
     resourcesArg: {
         name: "Resource Type",
         generators: {
             script: scripts.types,
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     runningPodsArg: {
         name: "Running Pods",
         generators: {
             script: "kubectl get pods --field-selector=status.phase=Running -o name",
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     resourceSuggestionsFromResourceType: {
@@ -57,12 +56,7 @@ var sharedArgs = {
                 var resourceType = context[context.length - 2];
                 return scripts.typeWithoutName(resourceType);
             },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
         isOptional: true,
     },
@@ -76,24 +70,14 @@ var sharedArgs = {
                 }
                 return "kubectl config get-contexts -o name";
             },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     listDeployments: {
         name: "Deployments",
         generators: {
             script: function () { return scripts.typeWithoutName("deployments"); },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     listClusters: {
@@ -107,7 +91,8 @@ var sharedArgs = {
                 return "kubectl config get-clusters";
             },
             postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
+                if (sharedPostProcessChecks.connectedToCluster(out) ||
+                    sharedPostProcessChecks.generalError(out)) {
                     return [];
                 }
                 return out
@@ -129,12 +114,7 @@ var sharedArgs = {
                 }
                 return scripts.types;
             },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
             trigger: "/",
         },
     },
@@ -142,24 +122,14 @@ var sharedArgs = {
         name: "Node",
         generators: {
             script: function () { return scripts.typeWithoutName("nodes"); },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     listClusterRoles: {
         name: "Cluster Role",
         generators: {
             script: function () { return scripts.typeWithoutName("clusterroles"); },
-            postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                    return [];
-                }
-                return out.split("\n");
-            },
+            postProcess: sharedPostProcess,
         },
     },
     listContainersFromPod: {
@@ -178,7 +148,8 @@ var sharedArgs = {
                 return "kubectl get " + podName + " -o json";
             },
             postProcess: function (out) {
-                if (!sharedPostProcessChecks.connectedToCluster(out)) {
+                if (sharedPostProcessChecks.connectedToCluster(out) ||
+                    sharedPostProcessChecks.generalError(out)) {
                     return [];
                 }
                 return JSON.parse(out).spec.containers.map(function (item) { return ({
@@ -1488,12 +1459,7 @@ var completionSpec = {
                                 name: "Cronjob",
                                 generators: {
                                     script: function () { return scripts.typeWithName("cronjob"); },
-                                    postProcess: function (out) {
-                                        if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                                            return [];
-                                        }
-                                        return out.split("\n");
-                                    },
+                                    postProcess: sharedPostProcess,
                                 },
                             },
                         },
@@ -1739,12 +1705,7 @@ var completionSpec = {
                                 name: "Role",
                                 generators: {
                                     script: function () { return scripts.typeWithoutName("roles"); },
-                                    postProcess: function (out) {
-                                        if (!sharedPostProcessChecks.connectedToCluster(out)) {
-                                            return [];
-                                        }
-                                        return out.split("\n");
-                                    },
+                                    postProcess: sharedPostProcess,
                                 },
                             },
                         },
