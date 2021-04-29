@@ -275,7 +275,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "app.disableTelemetry",
           icon: "fig://icon?type=commandkey",
-          description: "Opt-out of all telemetry collection",
+          description: "Opt-out of all non-essential telemetry collection",
           args: {
             name: "bool",
             suggestions: [
@@ -283,6 +283,7 @@ export const completionSpec: Fig.Spec = {
               { name: "false", icon: "fig://icon?type=string" },
             ],
           },
+          priority: 0,
         },
         {
           name: "app.hideMenubarIcon",
