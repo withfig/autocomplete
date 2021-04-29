@@ -1,4 +1,3 @@
-// TODO: Handle if not connected to a k8s cluster
 // TODO: Handle if no resources found
 
 // Internal scripts for this spec, not to be confused with the script property
@@ -12,19 +11,35 @@ const scripts = {
   },
 };
 
+const sharedPostProcessChecks = {
+  connectedToCluster: (out) => {
+    return !out.includes("The connection to the server");
+  },
+};
+
 const sharedArgs: Record<string, Fig.Arg> = {
   resourcesArg: {
     name: "Resource Type",
     generators: {
       script: scripts.types,
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   runningPodsArg: {
     name: "Running Pods",
     generators: {
       script: "kubectl get pods --field-selector=status.phase=Running -o name",
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   resourceSuggestionsFromResourceType: {
@@ -34,7 +49,12 @@ const sharedArgs: Record<string, Fig.Arg> = {
         const resourceType = context[context.length - 2];
         return scripts.typeWithoutName(resourceType);
       },
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
     isOptional: true,
   },
@@ -50,14 +70,24 @@ const sharedArgs: Record<string, Fig.Arg> = {
         }
         return "kubectl config get-contexts -o name";
       },
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   listDeployments: {
     name: "Deployments",
     generators: {
       script: () => scripts.typeWithoutName("deployments"),
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   listClusters: {
@@ -73,6 +103,9 @@ const sharedArgs: Record<string, Fig.Arg> = {
         return "kubectl config get-clusters";
       },
       postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
         return out
           .split("\n")
           .filter((line) => line !== "NAME")
@@ -92,7 +125,12 @@ const sharedArgs: Record<string, Fig.Arg> = {
         }
         return scripts.types;
       },
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
       trigger: "/",
     },
   },
@@ -100,14 +138,24 @@ const sharedArgs: Record<string, Fig.Arg> = {
     name: "Node",
     generators: {
       script: () => scripts.typeWithoutName("nodes"),
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   listClusterRoles: {
     name: "Cluster Role",
     generators: {
       script: () => scripts.typeWithoutName("clusterroles"),
-      splitOn: "\n",
+      postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
+        return out.split("\n");
+      },
     },
   },
   listContainersFromPod: {
@@ -127,6 +175,9 @@ const sharedArgs: Record<string, Fig.Arg> = {
         return `kubectl get ${podName} -o json`;
       },
       postProcess: function (out) {
+        if (!sharedPostProcessChecks.connectedToCluster(out)) {
+          return [];
+        }
         return JSON.parse(out).spec.containers.map((item) => ({
           name: item.name,
           description: item.image,
@@ -1552,7 +1603,12 @@ export const completionSpec: Fig.Spec = {
                 name: "Cronjob",
                 generators: {
                   script: () => scripts.typeWithName("cronjob"),
-                  splitOn: "\n",
+                  postProcess: function (out) {
+                    if (!sharedPostProcessChecks.connectedToCluster(out)) {
+                      return [];
+                    }
+                    return out.split("\n");
+                  },
                 },
               },
             },
@@ -1823,7 +1879,12 @@ export const completionSpec: Fig.Spec = {
                 name: "Role",
                 generators: {
                   script: () => scripts.typeWithoutName("roles"),
-                  splitOn: "\n",
+                  postProcess: function (out) {
+                    if (!sharedPostProcessChecks.connectedToCluster(out)) {
+                      return [];
+                    }
+                    return out.split("\n");
+                  },
                 },
               },
             },
