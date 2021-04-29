@@ -9,8 +9,8 @@
         "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
         "create-boilerplate": "./scripts/create-boilerplate.sh",
         "build": "ts-node-script scripts/compiler.ts",
-        "lint": "eslint '**/*.ts'",
-        "lint:fix": "npm run lint -- --fix",
+        "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
+        "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
         "prepare": "husky install"
     },
     "fig": {
@@ -51,7 +51,7 @@
     "lint-staged": {
         "*.ts": [
             "eslint --fix",
-            "prettier --write --ignore-unknown"
+            "npx prettier --write --ignore-unknown"
         ]
     },
     "author": "",
