@@ -1,5 +1,5 @@
 var projectAliases = {
-    script: "firebase projects:list",
+    script: "firebase projects:list", // this calls to a firebase server and is therefore slow
     postProcess: function (out) {
         var getAliasRegex = /^│ (\w.*?)│/gm;
         var aliasesRaw = [...out.matchAll(getAliasRegex)];
