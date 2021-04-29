@@ -484,22 +484,22 @@ const defaultCommands: Fig.Subcommand[] = [
         generators: {
           script: "rails g --help",
           postProcess(out) {
-            const lines = out
-              .split("Please choose a generator below.")[1]
-              .trim()
-              .split("\n");
+            const lines = out.split("Rails:")[1].trim().split("\n");
 
             type GeneratorCommand = [string, string[]];
 
-            const dict: GeneratorCommand[] = lines.reduce((arr, line) => {
-              if (line.endsWith(":"))
-                return [...arr, [line.replace(":", ""), []]];
+            const dict: GeneratorCommand[] = ["Rails:", ...lines].reduce(
+              (arr, line) => {
+                if (line.endsWith(":"))
+                  return [...arr, [line.replace(":", ""), []]];
 
-              const trimmed = line.trim();
-              if (!trimmed.length) return arr;
-              arr[arr.length - 1][1].push(line.trim());
-              return arr;
-            }, []);
+                const trimmed = line.trim();
+                if (!trimmed.length) return arr;
+                arr[arr.length - 1][1].push(line.trim());
+                return arr;
+              },
+              []
+            );
 
             return dict.reduce<Fig.Suggestion[]>((arr, [plugin, commands]) => {
               return [
@@ -624,13 +624,11 @@ export const completion: Fig.Spec = {
       };
     }
 
-    const helpText = await executeShellCommand("rails --help");
+    const helpText = await executeShellCommand("rails -T");
     const defaultCommandNames = defaultCommands.map((c) => c.name);
-    const commands: Fig.Subcommand[] = helpText
-      .split("In addition to those commands, there are:")[1]
-      .trim()
-      .split("\n")
-      .map((cmd) => ({ name: cmd.trim() }))
+    const matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
+    const commands: Fig.Subcommand[] = matches
+      .map((match) => ({ name: match[1] }))
       .filter((cmd) => !defaultCommandNames.includes(cmd.name));
 
     return {

@@ -502,11 +502,8 @@ var defaultCommands = [
                 generators: {
                     script: "rails g --help",
                     postProcess: function (out) {
-                        var lines = out
-                            .split("Please choose a generator below.")[1]
-                            .trim()
-                            .split("\n");
-                        var dict = lines.reduce(function (arr, line) {
+                        var lines = out.split("Rails:")[1].trim().split("\n");
+                        var dict = __spreadArray(["Rails:"], lines).reduce(function (arr, line) {
                             if (line.endsWith(":"))
                                 return __spreadArray(__spreadArray([], arr), [[line.replace(":", ""), []]]);
                             var trimmed = line.trim();
@@ -622,13 +619,12 @@ var defaultCommands = [
     },
     newCommand,
 ];
-// The below is a dummy example for git. Make sure to change the file name!
 var completionSpec = {
     name: "rails",
     description: "Ruby on Rails CLI",
     generateSpec: function (_, executeShellCommand) {
         return __awaiter(this, void 0, void 0, function () {
-            var gemfileMatch, isRails, helpText, defaultCommandNames, commands;
+            var gemfileMatch, isRails, helpText, defaultCommandNames, matches, commands;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, executeShellCommand("until [[ -f Gemfile ]] || [[ $PWD = '/' ]]; do cd ..; done; if [ -f Gemfile ]; then cat Gemfile | grep \"gem 'rails'\"; else echo \"\"; fi")];
@@ -641,15 +637,13 @@ var completionSpec = {
                                     subcommands: [newCommand],
                                 }];
                         }
-                        return [4 /*yield*/, executeShellCommand("rails --help")];
+                        return [4 /*yield*/, executeShellCommand("rails -T")];
                     case 2:
                         helpText = _a.sent();
                         defaultCommandNames = defaultCommands.map(function (c) { return c.name; });
-                        commands = helpText
-                            .split("In addition to those commands, there are:")[1]
-                            .trim()
-                            .split("\n")
-                            .map(function (cmd) { return ({ name: cmd.trim() }); })
+                        matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
+                        commands = matches
+                            .map(function (match) { return ({ name: match[1] }); })
                             .filter(function (cmd) { return !defaultCommandNames.includes(cmd.name); });
                         return [2 /*return*/, {
                                 name: "rails",
