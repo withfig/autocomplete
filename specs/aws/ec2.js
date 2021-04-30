@@ -1,50 +1,37 @@
+var postProcessAWS = function (out) {
+    var allLines = out.split("\n");
+    return allLines.map(function (i) {
+        try {
+            var parsedJSON = JSON.parse(i);
+            return {
+                name: parsedJSON,
+                icon: "fig://icon?type=aws",
+            };
+        }
+        catch (error) {
+            console.error(error);
+        }
+    });
+};
 var awsGenerators = {
     instances: {
         script: function (context) {
             if (context[context.length - 3] === "modify-instance-attribute" ||
                 context[context.length - 3] === "terminate-instances")
-                return "aws ec2 describe-instances  --query 'Reservations[].Instances[].InstanceId[]' --output text";
+                return "aws ec2 describe-instances  --query 'Reservations[].Instances[].InstanceId[]'";
         },
-        postProcess: function (out) {
-            if (out.startsWith("fatal")) {
-                return [];
-            }
-            // return JSON.parse(out, (Id, InstanceId) => {
-            return out.split("\t").map(function (instance) {
-                return {
-                    name: instance.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "instance",
-                };
-            });
-        },
+        postProcess: postProcessAWS,
     },
     rtb: {
-        script: "aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId' --output text",
-        postProcess: function (out) {
-            return out.split("\t").map(function (table) {
-                return {
-                    name: table.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "route table id",
-                };
-            });
-        },
+        script: "aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId'",
+        postProcess: postProcessAWS,
     },
     start: {
         script: function (context) {
             if (context[context.length - 3] === "start-instances")
-                return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[*].Instances[].InstanceId' --output text";
+                return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[*].Instances[].InstanceId'";
         },
-        postProcess: function (out) {
-            return out.split("\t").map(function (instance) {
-                return {
-                    name: instance.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "instance",
-                };
-            });
-        },
+        postProcess: postProcessAWS,
     },
     stop: {
         script: function (context) {
@@ -53,48 +40,21 @@ var awsGenerators = {
                 context[context.length - 3] === "get-console-output" ||
                 context[context.length - 3] === "monitor-instances" ||
                 context[context.length - 3] === "unmonitor-instances")
-                return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[*].Instances[].InstanceId' --output text";
+                return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[*].Instances[].InstanceId'";
         },
-        postProcess: function (out) {
-            return out.split("\t").map(function (instance) {
-                return {
-                    name: instance.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "instance",
-                };
-            });
-        },
+        postProcess: postProcessAWS,
     },
     volume_id: {
         script: function (context) {
             if (context[context.length - 3] === "attach-volume")
-                return "aws ec2 describe-volumes --query 'Volumes[*].VolumeId' --output text";
+                return "aws ec2 describe-volumes --query 'Volumes[*].VolumeId'";
         },
-        postProcess: function (out) {
-            return out.split("\t").map(function (table) {
-                return {
-                    name: table.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "volume id",
-                };
-            });
-        },
+        postProcess: postProcessAWS,
     },
-    keypair: {
-        script: function (context) {
-            if (context[context.length - 3] === "delete-key-pair")
-                return "aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName' --output text";
-        },
-        postProcess: function (out) {
-            return out.split("\t").map(function (table) {
-                return {
-                    name: table.trim(),
-                    icon: "fig://icon?type=aws",
-                    description: "keypair id",
-                };
-            });
-        },
-    },
+    test: {
+        script: "aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId'",
+        postProcess: postProcessAWS,
+    }
 };
 var completionSpec = {
     name: "ec2",
@@ -14040,7 +14000,7 @@ var completionSpec = {
                     name: "--route-table-ids",
                     description: "One or more route table IDs. Default: Describes all your route tables.",
                     args: {
-                        name: "list",
+                        generators: awsGenerators.test,
                     },
                 },
                 {
