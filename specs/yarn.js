@@ -47,7 +47,7 @@ var getScriptsGenerator = {
             var figCompletions_1 = packageContent["fig"] || {};
             if (scripts) {
                 return Object.keys(scripts).map(function (key) {
-                    var icon = "fig://icon?type=npm";
+                    var icon = "fig://icon?type=yarn";
                     var customScripts = figCompletions_1[key];
                     return __assign({ name: key, icon: icon }, (customScripts !== undefined && customScripts));
                 });

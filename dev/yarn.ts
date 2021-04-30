@@ -41,7 +41,7 @@ const getScriptsGenerator: Fig.Generator = {
 
       if (scripts) {
         return Object.keys(scripts).map((key) => {
-          const icon = "fig://icon?type=npm";
+          const icon = "fig://icon?type=yarn";
           const customScripts: Fig.Suggestion = figCompletions[key];
           return {
             name: key,
