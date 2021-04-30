@@ -43,13 +43,17 @@ var completionSpec = {
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
                 },
+            ],
+            options: [
                 {
                     name: "-p",
                     description: "A port number on which to start the application",
+                    args: {},
                 },
                 {
                     name: "-H",
                     description: "Hostname on which to start the application",
+                    args: {},
                 },
             ],
         },
@@ -62,6 +66,8 @@ var completionSpec = {
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
                 },
+            ],
+            options: [
                 {
                     name: "-p",
                     description: "A port number on which to start the application",
