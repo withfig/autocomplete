@@ -1,7 +1,10 @@
 const awsGenerators: Record<string, Fig.Generator> = {
   instances: {
     script: function (context) {
-      if (context[context.length - 3] === "modify-instance-attribute")
+      if (
+        context[context.length - 3] === "modify-instance-attribute" ||
+        context[context.length - 3] === "terminate-instances"
+      )
         return "aws ec2 describe-instances  --query 'Reservations[].Instances[].InstanceId[]' --output text";
     },
     postProcess: function (out) {
