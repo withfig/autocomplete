@@ -5,67 +5,28 @@ export const completion: Fig.Spec = {
   name: "php",
   description: "Run the PHP interpreter",
   generateSpec: async (context, executeShellCommand) => {
-    if (true)
-      return {
-        name: "php",
-        subcommands: [{ name: "artisan", loadSpec: "php/artisan" }],
-      };
+    const subcommands = [];
+
+    if ((await executeShellCommand("ls -1 artisan")) === "artisan") {
+      subcommands.push({ name: "artisan", loadSpec: "php/artisan" });
+    }
+
+    return {
+      name: "php",
+      subcommands,
+      args: {
+        generators: {
+          template: "filepaths",
+          filterTemplateSuggestions: function (suggestions) {
+            return suggestions.filter((suggestion) => {
+              return (
+                // suggestion.name.endsWith(".php") ||
+                suggestion.name.indexOf(".") === -1
+              );
+            });
+          },
+        },
+      },
+    };
   },
-  subcommands: [{ name: "test1" }, { name: "test2" }],
-
-  // args: {
-  //   generators: {
-  //     template: "filepaths",
-  //     filterTemplateSuggestions: function (suggestions) {
-  //       return suggestions.filter((suggestion) => {
-  //         return (
-  //           // suggestion.name.endsWith(".php") ||
-  //           suggestion.name.indexOf(".") === -1
-  //         );
-  //       });
-  //     },
-  //   },
-  // },
 };
-
-// var completionSpec = {
-//   name: "php",
-//   description: "Run the PHP interpreter",
-
-//   },
-//   subcommands: [
-//     {
-//       name: "artisan",
-//       description: "",
-//       options: [],
-//       args: [
-//         {
-//           generators: {
-//             script: "php artisan list --format=json",
-//             postProcess: function (out) {
-//               if (out.trim() == "") {
-//                 return [];
-//               }
-//               try {
-//                 const commands = JSON.parse(out);
-
-//                 const artisanCommands = [];
-
-//                 commands.commands.map((command) => {
-//                   artisanCommands.push({
-//                     name: command.name,
-//                     description: command.description,
-//                     icon: "https://web.tinkerwell.app/img/laravel.3cab6a56.png",
-//                   });
-//                 });
-
-//                 return artisanCommands;
-//               } catch (e) {}
-//               return [];
-//             },
-//           },
-//         },
-//       ],
-//     },
-//   ],
-// };

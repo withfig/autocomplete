@@ -36,40 +36,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var completionSpec = {
     name: "artisan",
-    description: "The stupid content tracker",
+    description: "Laravel Artisan Command",
     generateSpec: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
+        var out, subcommands, commandDefinition;
         return __generator(this, function (_a) {
-            if (true)
-                return [2 /*return*/, {
-                        name: "artisan",
-                        subcommands: [{ name: "abc" }, { name: "def" }],
-                    }];
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, executeShellCommand("php artisan list --format=json")];
+                case 1:
+                    out = _a.sent();
+                    subcommands = [];
+                    try {
+                        commandDefinition = JSON.parse(out);
+                        commandDefinition.commands.map(function (command) {
+                            subcommands.push({
+                                name: command.name,
+                                description: command.description,
+                                icon: 'https://web.tinkerwell.app/img/laravel.3cab6a56.png',
+                                args: Object.keys(command.definition.arguments).map(function (argumentKey) {
+                                    var argument = command.definition.arguments[argumentKey];
+                                    return {
+                                        name: argument.name,
+                                        description: argument.description,
+                                        isOptional: !argument.is_required
+                                    };
+                                }),
+                                options: Object.keys(command.definition.options).map(function (optionKey) {
+                                    var option = command.definition.options[optionKey];
+                                    var names = [option.name];
+                                    if (option.shortcut !== '') {
+                                        names.push(option.shortcut);
+                                    }
+                                    return {
+                                        name: names,
+                                        description: option.description,
+                                    };
+                                })
+                            });
+                        });
+                    }
+                    catch (err) {
+                        //
+                    }
+                    return [2 /*return*/, {
+                            name: "artisan",
+                            debounce: true,
+                            subcommands: subcommands,
+                        }];
+            }
         });
     }); },
-    // subcommands: [
-    //   {
-    //     name: "checkout",
-    //     description: "Switch branches or restore working tree files",
-    //     // If a subcommand or option takes an argument, you must include the args prop, even if it's an empty object (like below)
-    //     // If you want to build custom suggestions for arguments check out: https://withfig.com/docs/autocomplete/building-a-spec#making-advanced-suggestions
-    //     args: {},
-    //     options: [
-    //       {
-    //         name: ["-b"],
-    //         description: "create and checkout a new branch",
-    //         args: {
-    //           name: "branch",
-    //         },
-    //       },
-    //     ],
-    //   },
-    // ],
-    // options: [
-    //   {
-    //     name: ["-v", "--version"],
-    //     description: "View your current git version",
-    //   },
-    // ],
 };
 
