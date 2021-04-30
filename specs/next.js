@@ -16,6 +16,7 @@ var completionSpec = {
         {
             name: "build",
             description: "Create an optimized production build of your application",
+            icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
             args: [
                 {
                     name: "dir",
@@ -38,6 +39,7 @@ var completionSpec = {
         {
             name: "dev",
             description: "Start the application in development mode",
+            icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
             args: [
                 {
                     name: "dir",
@@ -62,6 +64,7 @@ var completionSpec = {
         {
             name: "start",
             description: "Start the application in production mode",
+            icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
             args: [
                 {
                     name: "dir",
@@ -84,6 +87,7 @@ var completionSpec = {
         {
             name: "export",
             description: "Exports the application for production deployment",
+            icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
             args: [
                 {
                     name: "dir",
@@ -102,6 +106,7 @@ var completionSpec = {
         {
             name: "telemetry",
             description: "Allows you to control Next.js' telemetry collection",
+            icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
             args: [
                 {
                     name: "status",
