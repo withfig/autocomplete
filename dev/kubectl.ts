@@ -978,9 +978,8 @@ export const completionSpec: Fig.Spec = {
             {
               name: ["--cluster"],
               insertValue: "--cluster=",
-              displayName: "--cluster=cluster_nickname",
               args: {
-                // name: "cluster_nickname",
+                name: "cluster_nickname",
               },
             },
             {
