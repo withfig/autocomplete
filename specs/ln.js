@@ -30,7 +30,7 @@ var completionSpec = {
         {
             name: "-n",
             description: "Same as -h don't follow symbolic links",
-        }, 
+        },
     ],
 };
 
