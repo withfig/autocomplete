@@ -21,6 +21,7 @@ export const completionSpec: Fig.Spec = {
           name: "dir",
           description: "Represent the directory of the Next.js application",
           template: "folders",
+          isOptional: true,
         },
       ],
       options: [
@@ -42,6 +43,7 @@ export const completionSpec: Fig.Spec = {
           name: "dir",
           description: "Represent the directory of the Next.js application",
           template: "folders",
+          isOptional: true,
         },
       ],
       options: [
@@ -65,6 +67,7 @@ export const completionSpec: Fig.Spec = {
           name: "dir",
           description: "Represent the directory of the Next.js application",
           template: "folders",
+          isOptional: true,
         },
       ],
       options: [
@@ -86,6 +89,7 @@ export const completionSpec: Fig.Spec = {
           name: "dir",
           description: "Represent the directory of the Next.js application",
           template: "folders",
+          isOptional: true,
         },
       ],
       options: [

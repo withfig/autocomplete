@@ -21,6 +21,7 @@ var completionSpec = {
                     name: "dir",
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
+                    isOptional: true,
                 },
             ],
             options: [
@@ -42,6 +43,7 @@ var completionSpec = {
                     name: "dir",
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
+                    isOptional: true,
                 },
             ],
             options: [
@@ -65,6 +67,7 @@ var completionSpec = {
                     name: "dir",
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
+                    isOptional: true,
                 },
             ],
             options: [
@@ -86,6 +89,7 @@ var completionSpec = {
                     name: "dir",
                     description: "Represent the directory of the Next.js application",
                     template: "folders",
+                    isOptional: true,
                 },
             ],
             options: [
