@@ -54,7 +54,7 @@ var awsGenerators = {
     test: {
         script: "aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId'",
         postProcess: postProcessAWS,
-    }
+    },
 };
 var completionSpec = {
     name: "ec2",
