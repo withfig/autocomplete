@@ -4,7 +4,7 @@ export const completionSpec: Fig.Spec = {
   args: [
     {
       variadic: true,
-      template: "filepaths",
+      template: ["folders", "filepaths"],
     },
   ],
   subcommands: [],

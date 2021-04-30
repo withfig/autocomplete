@@ -114,6 +114,7 @@ const isWatching = process.argv.includes("--watch");
 
 if (isWatching) {
   const watcher = chokidar.watch(SOURCE_FOLDER_NAME);
+
   // Process the changed file
   watcher.on("change", (filePath: string) => {
     processFiles([filePath]);
