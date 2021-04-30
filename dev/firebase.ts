@@ -1,3 +1,17 @@
+const firestoreGenerators: Record<string, Fig.Generator> = {
+  projectAliases: {
+    script: "firebase projects:list", // this calls to a firebase server and is therefore slow
+    postProcess: (out) => {
+      var getAliasRegex = /^│ (\w.*?)│/gm;
+      var aliasesRaw = Array.from(out.matchAll(getAliasRegex));
+      aliasesRaw.shift(); // first element is the table header
+      return aliasesRaw.map((raw) => {
+        return { name: raw[1].trim(), description: "projectAlias" };
+      });
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "firebase",
   description: "",
@@ -1473,6 +1487,7 @@ export const completionSpec: Fig.Spec = {
       description: "set an active Firebase project for your working directory",
       args: {
         name: "alias or project id",
+        generators: firestoreGenerators.projectAliases,
       },
       options: [
         {
