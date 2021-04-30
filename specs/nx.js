@@ -160,6 +160,77 @@ var defaultOptions = [
         description: "Show version number",
     },
 ];
+var affectedOptions = [
+    {
+        name: "--all",
+        description: "All projects",
+    },
+    {
+        name: "--base",
+        args: {},
+        description: "Base of the current branch (usually master)",
+    },
+    {
+        name: "--configuration",
+        args: {},
+        description: "This is the configuration to use when performing tasks on projects",
+    },
+    {
+        name: "--exclude",
+        args: {},
+        description: "Exclude certain projects from being processed",
+    },
+    {
+        name: "--files",
+        args: {},
+        description: "Change the way Nx is calculating the affected command by providing directly changed files, list of files delimited by commas",
+    },
+    {
+        name: "--head",
+        args: {},
+        description: "Latest commit of the current branch (usually HEAD)",
+    },
+    {
+        name: "--maxParallel",
+        args: { suggestions: ["3"] },
+        description: "Max number of parallel processes. This flag is ignored if the parallel option is set to false. (default: 3)",
+    },
+    {
+        name: "--only-failed",
+        description: "Isolate projects which previously failed",
+    },
+    {
+        name: "--parallel",
+        args: { suggestions: ["false", "true"] },
+        description: "Parallelize the command (default: false)",
+    },
+    {
+        name: "--runner",
+        args: {},
+        description: "This is the name of the tasks runner configured in nx.json",
+    },
+    {
+        name: "--skip-nx-cache",
+        description: "Rerun the tasks even when the results are available in the cache",
+    },
+    {
+        name: "--target",
+        args: {},
+        description: "Task to run for affected projects",
+    },
+    {
+        name: "--uncommitted",
+        description: "Uncommitted changes",
+    },
+    {
+        name: "--untracked",
+        description: "Untracked changes",
+    },
+    {
+        name: "--verbose",
+        description: "Print additional error stack trace on failure",
+    },
+];
 var completionSpec = {
     name: "nx",
     description: "fig completions for Nx by Nrwl",
@@ -364,80 +435,24 @@ var completionSpec = {
                 }
             ], defaultOptions),
         },
+        { name: "affected", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
         {
-            name: "affected",
-            options: __spreadArray([
-                {
-                    name: "--all",
-                    description: "All projects",
-                },
-                {
-                    name: "--base",
-                    args: {},
-                    description: "Base of the current branch (usually master)",
-                },
-                {
-                    name: "--configuration",
-                    args: {},
-                    description: "This is the configuration to use when performing tasks on projects",
-                },
-                {
-                    name: "--exclude",
-                    args: {},
-                    description: "Exclude certain projects from being processed",
-                },
-                {
-                    name: "--files",
-                    args: {},
-                    description: "Change the way Nx is calculating the affected command by providing directly changed files, list of files delimited by commas",
-                },
-                {
-                    name: "--head",
-                    args: {},
-                    description: "Latest commit of the current branch (usually HEAD)",
-                },
-                {
-                    name: "--maxParallel",
-                    args: { suggestions: ["3"] },
-                    description: "Max number of parallel processes. This flag is ignored if the parallel option is set to false. (default: 3)",
-                },
-                {
-                    name: "--only-failed",
-                    description: "Isolate projects which previously failed",
-                },
-                {
-                    name: "--parallel",
-                    args: { suggestions: ["false", "true"] },
-                    description: "Parallelize the command (default: false)",
-                },
-                {
-                    name: "--runner",
-                    args: {},
-                    description: "This is the name of the tasks runner configured in nx.json",
-                },
-                {
-                    name: "--skip-nx-cache",
-                    description: "Rerun the tasks even when the results are available in the cache",
-                },
-                {
-                    name: "--target",
-                    args: {},
-                    description: "Task to run for affected projects",
-                },
-                {
-                    name: "--uncommitted",
-                    description: "Uncommitted changes",
-                },
-                {
-                    name: "--untracked",
-                    description: "Untracked changes",
-                },
-                {
-                    name: "--verbose",
-                    description: "Print additional error stack trace on failure",
-                }
-            ], defaultOptions),
+            name: "affected:build",
+            options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions),
         },
+        {
+            name: "affected:serve",
+            options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions),
+        },
+        { name: "affected:test", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
+        { name: "affected:e2e", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
+        { name: "affected:lint", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
+        {
+            name: "affected:dep-graph",
+            options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions),
+        },
+        { name: "affected:apps", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
+        { name: "affected:libs", options: __spreadArray(__spreadArray([], affectedOptions), defaultOptions) },
         {
             name: "report",
             options: __spreadArray([], defaultOptions),
@@ -447,7 +462,7 @@ var completionSpec = {
             options: __spreadArray([], defaultOptions),
         },
         {
-            name: "connect-to-nx-cloud",
+            name: "connect-lint",
             options: __spreadArray([], defaultOptions),
         },
         {
