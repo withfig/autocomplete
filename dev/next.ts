@@ -46,12 +46,12 @@ export const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: "-p",
+          name: ["-p", "--port"],
           description: "A port number on which to start the application",
           args: {},
         },
         {
-          name: "-H",
+          name: ["-H", , "--hostname"],
           description: "Hostname on which to start the application",
           args: {},
         },
@@ -69,11 +69,11 @@ export const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: "-p",
+          name: ["-p", "--port"],
           description: "A port number on which to start the application",
         },
         {
-          name: "-H",
+          name: ["-H", , "--hostname"],
           description: "Hostname on which to start the application",
         },
       ],
