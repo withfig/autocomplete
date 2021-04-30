@@ -1589,7 +1589,7 @@ export const completionSpec: Fig.Spec = {
                     return sharedPostProcess(out).map((item) => ({
                       ...item,
                       name: `cronjob/${item.name}`,
-                    }));
+                    })) as Fig.Suggestion[];
                   },
                 },
               },
