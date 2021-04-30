@@ -1,9 +1,6 @@
 // Internal scripts for this spec, not to be confused with the script property
 const scripts = {
   types: "kubectl api-resources -o name",
-  typeWithName: function (type) {
-    return `kubectl get ${type} -o custom-columns=:.metadata.name | sed '/^[[:space:]]*$/d' | sed -e 's~^~pods/~;'`;
-  },
   typeWithoutName: function (type) {
     return `kubectl get ${type} -o custom-columns=:.metadata.name`;
   },
@@ -114,12 +111,15 @@ const sharedArgs: Record<string, Fig.Arg> = {
       script: function (context) {
         const lastInput = context[context.length - 1];
         if (lastInput.includes("/")) {
-          return scripts.typeWithName(lastInput.replace("/", ""));
+          return scripts.typeWithoutName(
+            lastInput.substring(0, lastInput.indexOf("/"))
+          );
         }
         return scripts.types;
       },
       postProcess: sharedPostProcess,
       trigger: "/",
+      filterTerm: "/",
     },
   },
   listNodes: {
@@ -1584,8 +1584,13 @@ export const completionSpec: Fig.Spec = {
               args: {
                 name: "Cronjob",
                 generators: {
-                  script: () => scripts.typeWithName("cronjob"),
-                  postProcess: sharedPostProcess,
+                  script: () => scripts.typeWithoutName("cronjob"),
+                  postProcess: (out) => {
+                    return sharedPostProcess(out).map((item) => ({
+                      ...item,
+                      name: `cronjob/${item.name}`,
+                    }));
+                  },
                 },
               },
             },

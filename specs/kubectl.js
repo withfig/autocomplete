@@ -12,9 +12,6 @@ var __assign = (this && this.__assign) || function () {
 // Internal scripts for this spec, not to be confused with the script property
 var scripts = {
     types: "kubectl api-resources -o name",
-    typeWithName: function (type) {
-        return "kubectl get " + type + " -o custom-columns=:.metadata.name | sed '/^[[:space:]]*$/d' | sed -e 's~^~pods/~;'";
-    },
     typeWithoutName: function (type) {
         return "kubectl get " + type + " -o custom-columns=:.metadata.name";
     },
@@ -114,12 +111,13 @@ var sharedArgs = {
             script: function (context) {
                 var lastInput = context[context.length - 1];
                 if (lastInput.includes("/")) {
-                    return scripts.typeWithName(lastInput.replace("/", ""));
+                    return scripts.typeWithoutName(lastInput.substring(0, lastInput.indexOf("/")));
                 }
                 return scripts.types;
             },
             postProcess: sharedPostProcess,
             trigger: "/",
+            filterTerm: "/",
         },
     },
     listNodes: {
@@ -1463,8 +1461,10 @@ var completionSpec = {
                             args: {
                                 name: "Cronjob",
                                 generators: {
-                                    script: function () { return scripts.typeWithName("cronjob"); },
-                                    postProcess: sharedPostProcess,
+                                    script: function () { return scripts.typeWithoutName("cronjob"); },
+                                    postProcess: function (out) {
+                                        return sharedPostProcess(out).map(function (item) { return (__assign(__assign({}, item), { name: "cronjob/" + item.name })); });
+                                    },
                                 },
                             },
                         },
