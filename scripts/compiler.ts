@@ -18,7 +18,7 @@ const options: ts.TranspileOptions = {
   },
 };
 
-function invalidateCache() {
+if (process.argv[2] == "INVALIDATE_CACHE") {
   exec(
     "fig settings autocomplete.developerModeNPMInvalidateCache true",
     (error, stdout, stderr) => {
@@ -38,10 +38,6 @@ function invalidateCache() {
       }
     }
   );
-}
-
-if (process.argv[2] == "INVALIDATE_CACHE") {
-  invalidateCache();
 }
 
 function walkDir(dir: string, callback: (path: string) => void) {
@@ -118,11 +114,9 @@ const isWatching = process.argv.includes("--watch");
 
 if (isWatching) {
   const watcher = chokidar.watch(SOURCE_FOLDER_NAME);
-
   // Process the changed file
   watcher.on("change", (filePath: string) => {
     processFiles([filePath]);
-    invalidateCache();
   });
 } else {
   // Get all files from the the source folder recursively

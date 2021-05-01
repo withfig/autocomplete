@@ -1,6 +1,6 @@
 name: Update Docs && Website
 
-on:
+on: 
   push:
     branches:
       - "master"
@@ -23,7 +23,7 @@ jobs:
 
           git config user.email "hello@withfig.com"
           git config user.name "Figbot"
-
+          
           git add autocomplete/api.md
           git commit -m "added updates to docs"
-          git push origin main --force
+          git push origin main
