@@ -76,7 +76,10 @@ export const completion: Fig.Spec = {
     },
     {
       description: "limit the depth of recursion",
-      name: ["-L", "--level DEPTH"],
+      name: ["-L", "--level"],
+      args: {
+        name: "DEPTH",
+      },
     },
     {
       description: "reverse the sort order",
@@ -147,6 +150,9 @@ export const completion: Fig.Spec = {
     {
       description: "glob patterns (pipe-separated) of files to ignore",
       name: ["-I", "--ignore-glob"],
+      args: {
+        name: "GLOB",
+      },
     },
     {
       description: "Ignore files mentioned in '.gitignore'",
@@ -188,6 +194,20 @@ export const completion: Fig.Spec = {
       description:
         "which timestamp field to list (modified, accessed, created)",
       name: ["-t", "--time FIELD"],
+      args: {
+        name: "FIELD",
+        suggestions: [
+          {
+            name: "modified",
+          },
+          {
+            name: "accessed",
+          },
+          {
+            name: "created",
+          },
+        ],
+      },
     },
     {
       description: "use the accessed timestamp field",
@@ -201,6 +221,23 @@ export const completion: Fig.Spec = {
       description:
         "how to format timestamps (default, iso, long-iso, full-iso)",
       name: ["--time-style"],
+      args: {
+        name: "style",
+        suggestions: [
+          {
+            name: "default",
+          },
+          {
+            name: "iso",
+          },
+          {
+            name: "long-iso",
+          },
+          {
+            name: "full-iso",
+          },
+        ],
+      },
     },
     {
       description: "list each file's Git status, if tracked or ignored",
