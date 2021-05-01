@@ -6,7 +6,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 var buildModeSuggestions = [
     {
         name: "archive",
-        description: "nuild the listed non-main packages into .a files",
+        description: "Build the listed non-main packages into .a files",
     },
     {
         name: "c-archive",
@@ -389,7 +389,7 @@ var completionSpec = {
                 {
                     name: "-f",
                     insertValue: "-f '{cursor}'",
-                    description: "specify an alternate format for te list",
+                    description: "specify an alternate format for the list",
                     args: {
                         name: "format",
                     },
