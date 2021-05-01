@@ -1,24 +1,20 @@
 var tests = {
-    script: "phpunit --list-tests",
-    postProcess: function (out) {
-        if (out.startsWith("fatal:")) {
-            return [];
-        }
-        return out.split("\n")
-            .filter(function (line) { return line.indexOf('::') > 0; })
-            .map(function (line) {
-            return {
-                name: line.substring(line.indexOf('::') + 2, line.length),
-                icon: "fig://icon?type=php",
-                description: line.substring(line.indexOf('::') + 2, line.length)
-            };
-        });
-        return out.split('\n').map(function (branch) {
-            return { name: branch.replace("*", "").trim(), description: "branch" };
-        });
-    }
+    servicesgenerators: {
+        script: "phpunit --list-tests",
+        postProcess: function (out) {
+            return out
+                .split("\n")
+                .filter(function (line) { return line.indexOf("::") > 0; })
+                .map(function (line) {
+                return {
+                    name: line.substring(line.indexOf("::") + 2, line.length),
+                    icon: "fig://icon?type=php",
+                    description: line.substring(line.indexOf("::") + 2, line.length),
+                };
+            });
+        },
+    },
 };
-// fake-change file
 var completionSpec = {
     name: "phpunit-watcher",
     description: "Automatically rerun PHPUnit tests when source code changes",
@@ -32,11 +28,11 @@ var completionSpec = {
                     description: "watch a specific test",
                     args: {
                         generators: tests,
-                        name: "filter"
-                    }
-                }
-            ]
-        }
-    ]
+                        name: "filter",
+                    },
+                },
+            ],
+        },
+    ],
 };
 
