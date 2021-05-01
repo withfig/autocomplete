@@ -32,13 +32,37 @@ else
   ## Using quotes around EOF will remove expansions
     # https://superuser.com/questions/1436906/need-to-expand-a-variable-in-a-heredoc-that-is-in-quotes
   cat <<EOF >> "$(pwd)/dev/$USER_INPUT_CLI_TOOL.ts"
+// To learn more about Fig's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+
+// The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "$SPEC_NAME",
-  description: "",
-  subcommands: [],
-  options: [],
-  // Only uncomment if $SPEC_NAME takes an argument
-  // args: {}
+  description: "The stupid content tracker",
+  subcommands: [
+    {
+      name: "checkout",
+      description: "Switch branches or restore working tree files",
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it's an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://withfig.com/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: {},
+      options: [
+        {
+          name: ["-b"],
+          description: "create and checkout a new branch",
+          args: {
+            name: "branch",
+          },
+        },
+      ],
+    },
+  ],
+  options: [
+    {
+      name: ["-v", "--version"],
+      description: "View your current git version",
+    },
+  ],
 };
 EOF
 
