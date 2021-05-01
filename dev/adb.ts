@@ -1,6 +1,3 @@
-// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-
-// The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "adb",
   description: "Android Debug Bridge",
