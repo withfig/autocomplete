@@ -7,7 +7,7 @@ var completionSpec = {
             description: " list connected devices ",
             options: [
                 {
-                    name: ["-l"],
+                    name: "-l",
                     description: "long output",
                 },
             ],
@@ -340,46 +340,46 @@ var completionSpec = {
                 },
                 {
                     description: "override platform's default ABI",
-                    name: ["--abi"],
+                    name: "--abi",
                     args: {
                         name: "ABI",
                     },
                 },
                 {
                     description: "cause the app to be installed as an ephemeral install app",
-                    name: ["--instant"],
+                    name: "--instant",
                 },
                 {
                     description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: ["--no-streaming"],
+                    name: "--no-streaming",
                 },
                 {
                     description: "force streaming APK directly into Package Manager",
-                    name: ["--streaming"],
+                    name: "--streaming",
                 },
                 {
                     description: "use fast deploy",
-                    name: ["--fastdeploy"],
+                    name: "--fastdeploy",
                 },
                 {
                     description: "prevent use of fast deploy",
-                    name: ["--no-fastdeploy"],
+                    name: "--no-fastdeploy",
                 },
                 {
                     description: "force update of deployment agent when using fast deploy",
-                    name: ["--force-agent"],
+                    name: "--force-agent",
                 },
                 {
                     description: "update deployment agent when local version is newer and using fast deploy",
-                    name: ["--date-check-agent"],
+                    name: "--date-check-agent",
                 },
                 {
                     description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: ["--version-check-agent"],
+                    name: "--version-check-agent",
                 },
                 {
                     description: "locate agent files from local source build (instead of SDK location)",
-                    name: ["--local-agent"],
+                    name: "--local-agent",
                 },
             ],
         },
@@ -424,46 +424,46 @@ var completionSpec = {
                 },
                 {
                     description: "override platform's default ABI",
-                    name: ["--abi"],
+                    name: "--abi",
                     args: {
                         name: "ABI",
                     },
                 },
                 {
                     description: "cause the app to be installed as an ephemeral install app",
-                    name: ["--instant"],
+                    name: "--instant",
                 },
                 {
                     description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: ["--no-streaming"],
+                    name: "--no-streaming",
                 },
                 {
                     description: "force streaming APK directly into Package Manager",
-                    name: ["--streaming"],
+                    name: "--streaming",
                 },
                 {
                     description: "use fast deploy",
-                    name: ["--fastdeploy"],
+                    name: "--fastdeploy",
                 },
                 {
                     description: "prevent use of fast deploy",
-                    name: ["--no-fastdeploy"],
+                    name: "--no-fastdeploy",
                 },
                 {
                     description: "force update of deployment agent when using fast deploy",
-                    name: ["--force-agent"],
+                    name: "--force-agent",
                 },
                 {
                     description: "update deployment agent when local version is newer and using fast deploy",
-                    name: ["--date-check-agent"],
+                    name: "--date-check-agent",
                 },
                 {
                     description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: ["--version-check-agent"],
+                    name: "--version-check-agent",
                 },
                 {
                     description: "locate agent files from local source build (instead of SDK location)",
-                    name: ["--local-agent"],
+                    name: "--local-agent",
                 },
             ],
         },
@@ -508,46 +508,46 @@ var completionSpec = {
                 },
                 {
                     description: "override platform's default ABI",
-                    name: ["--abi"],
+                    name: "--abi",
                     args: {
                         name: "ABI",
                     },
                 },
                 {
                     description: "cause the app to be installed as an ephemeral install app",
-                    name: ["--instant"],
+                    name: "--instant",
                 },
                 {
                     description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: ["--no-streaming"],
+                    name: "--no-streaming",
                 },
                 {
                     description: "force streaming APK directly into Package Manager",
-                    name: ["--streaming"],
+                    name: "--streaming",
                 },
                 {
                     description: "use fast deploy",
-                    name: ["--fastdeploy"],
+                    name: "--fastdeploy",
                 },
                 {
                     description: "prevent use of fast deploy",
-                    name: ["--no-fastdeploy"],
+                    name: "--no-fastdeploy",
                 },
                 {
                     description: "force update of deployment agent when using fast deploy",
-                    name: ["--force-agent"],
+                    name: "--force-agent",
                 },
                 {
                     description: "update deployment agent when local version is newer and using fast deploy",
-                    name: ["--date-check-agent"],
+                    name: "--date-check-agent",
                 },
                 {
                     description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: ["--version-check-agent"],
+                    name: "--version-check-agent",
                 },
                 {
                     description: "locate agent files from local source build (instead of SDK location)",
-                    name: ["--local-agent"],
+                    name: "--local-agent",
                 },
             ],
         },
@@ -918,47 +918,47 @@ var completionSpec = {
     options: [
         {
             description: "listen on all network interfaces, not just localhost",
-            name: ["-a"],
+            name: "-a",
         },
         {
             description: "use USB device (error if multiple devices connected)",
-            name: ["-d"],
+            name: "-d",
         },
         {
             description: "use TCP/IP device (error if multiple TCP/IP devices available)",
-            name: ["-e"],
+            name: "-e",
         },
         {
             description: "use device with given serial (overrides $ANDROID_SERIAL)",
-            name: ["-s"],
+            name: "-s",
             args: {
                 name: "SERIAL",
             },
         },
         {
             description: "use device with given transport id",
-            name: ["-t"],
+            name: "-t",
             args: {
                 name: "ID",
             },
         },
         {
             description: "name of adb server host [default=localhost]",
-            name: ["-H"],
+            name: "-H",
             args: {
                 name: "host name",
             },
         },
         {
             description: "port of adb server [default=5037]",
-            name: ["-P"],
+            name: "-P",
             args: {
                 name: "port",
             },
         },
         {
             description: "listen on given socket for adb server [default=tcp:localhost:5037]",
-            name: ["-L"],
+            name: "-L",
             args: {
                 name: "socket",
             },
