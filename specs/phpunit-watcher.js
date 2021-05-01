@@ -1,18 +1,19 @@
 var tests = {
-    servicesgenerators: {
-        script: "phpunit --list-tests",
-        postProcess: function (out) {
-            return out
-                .split("\n")
-                .filter(function (line) { return line.indexOf("::") > 0; })
-                .map(function (line) {
-                return {
-                    name: line.substring(line.indexOf("::") + 2, line.length),
-                    icon: "fig://icon?type=php",
-                    description: line.substring(line.indexOf("::") + 2, line.length),
-                };
-            });
-        },
+    script: "phpunit --list-tests",
+    postProcess: function (out) {
+        if (out.startsWith("fatal:")) {
+            return [];
+        }
+        return out
+            .split("\n")
+            .filter(function (line) { return line.indexOf("::") > 0; })
+            .map(function (line) {
+            return {
+                name: line.substring(line.indexOf("::") + 2, line.length),
+                icon: "fig://icon?type=php",
+                description: line.substring(line.indexOf("::") + 2, line.length),
+            };
+        });
     },
 };
 var completionSpec = {
