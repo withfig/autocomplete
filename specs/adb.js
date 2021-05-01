@@ -1,3 +1,149 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var installOptions = [
+    {
+        name: "-l",
+        description: "forward-lock the app",
+    },
+    {
+        name: "-r",
+        description: "replace existing application",
+    },
+    {
+        name: "-t",
+        description: "allow test packages",
+    },
+    {
+        name: "-d",
+        description: "allow version code downgrade (debuggable packages only)",
+    },
+    {
+        name: "-s",
+        description: "install on SD card instead of internal storage",
+    },
+    {
+        name: "-g",
+        description: "grant all runtime permissions",
+    },
+    {
+        description: "override platform's default ABI",
+        name: "--abi",
+        args: {
+            name: "ABI",
+        },
+    },
+    {
+        description: "cause the app to be installed as an ephemeral install app",
+        name: "--instant",
+    },
+    {
+        description: "always push APK to device and invoke Package Manager as separate steps",
+        name: "--no-streaming",
+    },
+    {
+        description: "force streaming APK directly into Package Manager",
+        name: "--streaming",
+    },
+    {
+        description: "use fast deploy",
+        name: "--fastdeploy",
+    },
+    {
+        description: "prevent use of fast deploy",
+        name: "--no-fastdeploy",
+    },
+    {
+        description: "force update of deployment agent when using fast deploy",
+        name: "--force-agent",
+    },
+    {
+        description: "update deployment agent when local version is newer and using fast deploy",
+        name: "--date-check-agent",
+    },
+    {
+        description: "update deployment agent when local version has different version code and using fast deploy",
+        name: "--version-check-agent",
+    },
+    {
+        description: "locate agent files from local source build (instead of SDK location)",
+        name: "--local-agent",
+    },
+];
+var compressionOptions = [
+    {
+        description: "enable compression with a specified algorithm (any, none, brotli)",
+        name: "-z",
+        args: {
+            name: "ALGORITHM",
+            suggestions: [
+                {
+                    name: "any",
+                },
+                {
+                    name: "none",
+                },
+                {
+                    name: "brotli",
+                },
+            ],
+        },
+    },
+    {
+        description: "disable compression",
+        name: "-Z",
+    },
+];
+var forwardConnectionSuggestions = [
+    {
+        name: "tcp",
+        insertValue: "tcp:",
+    },
+    {
+        name: "localabstract",
+        insertValue: "localabstract:",
+    },
+    {
+        name: "localreserved",
+        insertValue: "localreserved:",
+    },
+    {
+        name: "localfilesystem",
+        insertValue: "localfilesystem:",
+    },
+    {
+        name: "dev",
+        insertValue: "dev:",
+    },
+    {
+        name: "jdwp",
+        insertValue: "jdwp:",
+    },
+    {
+        name: "acceptfd",
+        insertValue: "acceptfd:",
+    },
+];
+var reverseConnectionSuggestions = [
+    {
+        name: "tcp",
+        insertValue: "tcp:",
+    },
+    {
+        name: "localabstract",
+        insertValue: "localabstract:",
+    },
+    {
+        name: "localreserved",
+        insertValue: "localreserved:",
+    },
+    {
+        name: "localfilesystem",
+        insertValue: "localfilesystem:",
+    },
+];
 var completionSpec = {
     name: "adb",
     description: "Android Debug Bridge",
@@ -313,75 +459,7 @@ var completionSpec = {
                     template: "filepaths",
                 },
             ],
-            options: [
-                {
-                    name: "-l",
-                    description: "forward-lock the app",
-                },
-                {
-                    name: "-r",
-                    description: "replace existing application",
-                },
-                {
-                    name: "-t",
-                    description: "allow test packages",
-                },
-                {
-                    name: "-d",
-                    description: "allow version code downgrade (debuggable packages only)",
-                },
-                {
-                    name: "-s",
-                    description: "install on SD card instead of internal storage",
-                },
-                {
-                    name: "-g",
-                    description: "grant all runtime permissions",
-                },
-                {
-                    description: "override platform's default ABI",
-                    name: "--abi",
-                    args: {
-                        name: "ABI",
-                    },
-                },
-                {
-                    description: "cause the app to be installed as an ephemeral install app",
-                    name: "--instant",
-                },
-                {
-                    description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: "--no-streaming",
-                },
-                {
-                    description: "force streaming APK directly into Package Manager",
-                    name: "--streaming",
-                },
-                {
-                    description: "use fast deploy",
-                    name: "--fastdeploy",
-                },
-                {
-                    description: "prevent use of fast deploy",
-                    name: "--no-fastdeploy",
-                },
-                {
-                    description: "force update of deployment agent when using fast deploy",
-                    name: "--force-agent",
-                },
-                {
-                    description: "update deployment agent when local version is newer and using fast deploy",
-                    name: "--date-check-agent",
-                },
-                {
-                    description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: "--version-check-agent",
-                },
-                {
-                    description: "locate agent files from local source build (instead of SDK location)",
-                    name: "--local-agent",
-                },
-            ],
+            options: installOptions,
         },
         {
             name: "install-multiple",
@@ -393,79 +471,12 @@ var completionSpec = {
                     variadic: true,
                 },
             ],
-            options: [
+            options: __spreadArray([
                 {
                     name: "-p",
                     description: "partial application install (install-multiple only)",
-                },
-                {
-                    name: "-l",
-                    description: "forward-lock the app",
-                },
-                {
-                    name: "-r",
-                    description: "replace existing application",
-                },
-                {
-                    name: "-t",
-                    description: "allow test packages",
-                },
-                {
-                    name: "-d",
-                    description: "allow version code downgrade (debuggable packages only)",
-                },
-                {
-                    name: "-s",
-                    description: "install on SD card instead of internal storage",
-                },
-                {
-                    name: "-g",
-                    description: "grant all runtime permissions",
-                },
-                {
-                    description: "override platform's default ABI",
-                    name: "--abi",
-                    args: {
-                        name: "ABI",
-                    },
-                },
-                {
-                    description: "cause the app to be installed as an ephemeral install app",
-                    name: "--instant",
-                },
-                {
-                    description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: "--no-streaming",
-                },
-                {
-                    description: "force streaming APK directly into Package Manager",
-                    name: "--streaming",
-                },
-                {
-                    description: "use fast deploy",
-                    name: "--fastdeploy",
-                },
-                {
-                    description: "prevent use of fast deploy",
-                    name: "--no-fastdeploy",
-                },
-                {
-                    description: "force update of deployment agent when using fast deploy",
-                    name: "--force-agent",
-                },
-                {
-                    description: "update deployment agent when local version is newer and using fast deploy",
-                    name: "--date-check-agent",
-                },
-                {
-                    description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: "--version-check-agent",
-                },
-                {
-                    description: "locate agent files from local source build (instead of SDK location)",
-                    name: "--local-agent",
-                },
-            ],
+                }
+            ], installOptions),
         },
         {
             name: "install-multi-package",
@@ -477,79 +488,12 @@ var completionSpec = {
                     variadic: true,
                 },
             ],
-            options: [
+            options: __spreadArray([
                 {
                     name: "-p",
                     description: "partial application install (install-multiple only)",
-                },
-                {
-                    name: "-l",
-                    description: "forward-lock the app",
-                },
-                {
-                    name: "-r",
-                    description: "replace existing application",
-                },
-                {
-                    name: "-t",
-                    description: "allow test packages",
-                },
-                {
-                    name: "-d",
-                    description: "allow version code downgrade (debuggable packages only)",
-                },
-                {
-                    name: "-s",
-                    description: "install on SD card instead of internal storage",
-                },
-                {
-                    name: "-g",
-                    description: "grant all runtime permissions",
-                },
-                {
-                    description: "override platform's default ABI",
-                    name: "--abi",
-                    args: {
-                        name: "ABI",
-                    },
-                },
-                {
-                    description: "cause the app to be installed as an ephemeral install app",
-                    name: "--instant",
-                },
-                {
-                    description: "always push APK to device and invoke Package Manager as separate steps",
-                    name: "--no-streaming",
-                },
-                {
-                    description: "force streaming APK directly into Package Manager",
-                    name: "--streaming",
-                },
-                {
-                    description: "use fast deploy",
-                    name: "--fastdeploy",
-                },
-                {
-                    description: "prevent use of fast deploy",
-                    name: "--no-fastdeploy",
-                },
-                {
-                    description: "force update of deployment agent when using fast deploy",
-                    name: "--force-agent",
-                },
-                {
-                    description: "update deployment agent when local version is newer and using fast deploy",
-                    name: "--date-check-agent",
-                },
-                {
-                    description: "update deployment agent when local version has different version code and using fast deploy",
-                    name: "--version-check-agent",
-                },
-                {
-                    description: "locate agent files from local source build (instead of SDK location)",
-                    name: "--local-agent",
-                },
-            ],
+                }
+            ], installOptions),
         },
         {
             name: "shell",
@@ -602,7 +546,7 @@ var completionSpec = {
         {
             name: "push",
             description: "copy local files/directories to device",
-            options: [
+            options: __spreadArray([
                 {
                     description: "only push files that are newer on the host than the device",
                     name: "--sync",
@@ -610,30 +554,8 @@ var completionSpec = {
                 {
                     description: "dry run: push files to device without storing to the filesystem",
                     name: "-n",
-                },
-                {
-                    description: "enable compression with a specified algorithm (any, none, brotli)",
-                    name: "-z",
-                    args: {
-                        name: "ALGORITHM",
-                        suggestions: [
-                            {
-                                name: "any",
-                            },
-                            {
-                                name: "none",
-                            },
-                            {
-                                name: "brotli",
-                            },
-                        ],
-                    },
-                },
-                {
-                    description: "disable compression",
-                    name: "-Z",
-                },
-            ],
+                }
+            ], compressionOptions),
             args: [
                 {
                     name: "LOCAL",
@@ -648,38 +570,16 @@ var completionSpec = {
         {
             name: "sync",
             description: "sync a local build from $ANDROID_PRODUCT_OUT to the device (default all)",
-            options: [
+            options: __spreadArray([
                 {
                     description: "dry run: push files to device without storing to the filesystem",
                     name: "-n",
                 },
                 {
-                    description: "enable compression with a specified algorithm (any, none, brotli)",
-                    name: "-z",
-                    args: {
-                        name: "ALGORITHM",
-                        suggestions: [
-                            {
-                                name: "any",
-                            },
-                            {
-                                name: "none",
-                            },
-                            {
-                                name: "brotli",
-                            },
-                        ],
-                    },
-                },
-                {
-                    description: "disable compression",
-                    name: "-Z",
-                },
-                {
                     description: "list files that would be copied, but don't copy them",
                     name: "-l",
-                },
-            ],
+                }
+            ], compressionOptions),
             args: {
                 isOptional: true,
                 suggestions: [
@@ -713,34 +613,12 @@ var completionSpec = {
         {
             name: "pull",
             description: "copy files/dirs from device",
-            options: [
+            options: __spreadArray([
                 {
                     description: "preserve file timestamp and mode",
                     name: "-a",
-                },
-                {
-                    description: "enable compression with a specified algorithm (any, none, brotli)",
-                    name: "-z",
-                    args: {
-                        name: "ALGORITHM",
-                        suggestions: [
-                            {
-                                name: "any",
-                            },
-                            {
-                                name: "none",
-                            },
-                            {
-                                name: "brotli",
-                            },
-                        ],
-                    },
-                },
-                {
-                    description: "disable compression",
-                    name: "-Z",
-                },
-            ],
+                }
+            ], compressionOptions),
             args: [
                 {
                     name: "REMOTE",
@@ -779,69 +657,11 @@ var completionSpec = {
             args: [
                 {
                     name: "LOCAL -> port|domain|device|pid",
-                    suggestions: [
-                        {
-                            name: "tcp:",
-                            insertValue: "tcp:",
-                        },
-                        {
-                            name: "localabstract:",
-                            insertValue: "localabstract:",
-                        },
-                        {
-                            name: "localreserved:",
-                            insertValue: "localreserved:",
-                        },
-                        {
-                            name: "localfilesystem:",
-                            insertValue: "localfilesystem:",
-                        },
-                        {
-                            name: "dev:",
-                            insertValue: "dev:",
-                        },
-                        {
-                            name: "jdwp:",
-                            insertValue: "jdwp:",
-                        },
-                        {
-                            name: "acceptfd:",
-                            insertValue: "acceptfd:",
-                        },
-                    ],
+                    suggestions: forwardConnectionSuggestions,
                 },
                 {
                     name: "REMOTE -> port|domain|device|pid",
-                    suggestions: [
-                        {
-                            name: "tcp:",
-                            insertValue: "tcp:",
-                        },
-                        {
-                            name: "localabstract:",
-                            insertValue: "localabstract:",
-                        },
-                        {
-                            name: "localreserved:",
-                            insertValue: "localreserved:",
-                        },
-                        {
-                            name: "localfilesystem:",
-                            insertValue: "localfilesystem:",
-                        },
-                        {
-                            name: "dev:",
-                            insertValue: "dev:",
-                        },
-                        {
-                            name: "jdwp:",
-                            insertValue: "jdwp:",
-                        },
-                        {
-                            name: "acceptfd:",
-                            insertValue: "acceptfd:",
-                        },
-                    ],
+                    suggestions: forwardConnectionSuggestions,
                 },
             ],
         },
@@ -872,45 +692,11 @@ var completionSpec = {
             args: [
                 {
                     name: "REMOTE -> port|domain|device|pid",
-                    suggestions: [
-                        {
-                            name: "tcp:",
-                            insertValue: "tcp:",
-                        },
-                        {
-                            name: "localabstract:",
-                            insertValue: "localabstract:",
-                        },
-                        {
-                            name: "localreserved:",
-                            insertValue: "localreserved:",
-                        },
-                        {
-                            name: "localfilesystem:",
-                            insertValue: "localfilesystem:",
-                        },
-                    ],
+                    suggestions: reverseConnectionSuggestions,
                 },
                 {
                     name: "LOCAL -> port|domain|device|pid",
-                    suggestions: [
-                        {
-                            name: "tcp:",
-                            insertValue: "tcp:",
-                        },
-                        {
-                            name: "localabstract:",
-                            insertValue: "localabstract:",
-                        },
-                        {
-                            name: "localreserved:",
-                            insertValue: "localreserved:",
-                        },
-                        {
-                            name: "localfilesystem:",
-                            insertValue: "localfilesystem:",
-                        },
-                    ],
+                    suggestions: reverseConnectionSuggestions,
                 },
             ],
         },

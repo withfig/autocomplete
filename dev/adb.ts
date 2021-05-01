@@ -1,3 +1,153 @@
+const installOptions = [
+  {
+    name: "-l",
+    description: "forward-lock the app",
+  },
+  {
+    name: "-r",
+    description: "replace existing application",
+  },
+  {
+    name: "-t",
+    description: "allow test packages",
+  },
+  {
+    name: "-d",
+    description: "allow version code downgrade (debuggable packages only)",
+  },
+  {
+    name: "-s",
+    description: "install on SD card instead of internal storage",
+  },
+  {
+    name: "-g",
+    description: "grant all runtime permissions",
+  },
+  {
+    description: "override platform's default ABI",
+    name: "--abi",
+    args: {
+      name: "ABI",
+    },
+  },
+  {
+    description: "cause the app to be installed as an ephemeral install app",
+    name: "--instant",
+  },
+  {
+    description:
+      "always push APK to device and invoke Package Manager as separate steps",
+    name: "--no-streaming",
+  },
+  {
+    description: "force streaming APK directly into Package Manager",
+    name: "--streaming",
+  },
+  {
+    description: "use fast deploy",
+    name: "--fastdeploy",
+  },
+  {
+    description: "prevent use of fast deploy",
+    name: "--no-fastdeploy",
+  },
+  {
+    description: "force update of deployment agent when using fast deploy",
+    name: "--force-agent",
+  },
+  {
+    description:
+      "update deployment agent when local version is newer and using fast deploy",
+    name: "--date-check-agent",
+  },
+  {
+    description:
+      "update deployment agent when local version has different version code and using fast deploy",
+    name: "--version-check-agent",
+  },
+  {
+    description:
+      "locate agent files from local source build (instead of SDK location)",
+    name: "--local-agent",
+  },
+];
+
+const compressionOptions = [
+  {
+    description:
+      "enable compression with a specified algorithm (any, none, brotli)",
+    name: "-z",
+    args: {
+      name: "ALGORITHM",
+      suggestions: [
+        {
+          name: "any",
+        },
+        {
+          name: "none",
+        },
+        {
+          name: "brotli",
+        },
+      ],
+    },
+  },
+  {
+    description: "disable compression",
+    name: "-Z",
+  },
+];
+
+const forwardConnectionSuggestions = [
+  {
+    name: "tcp",
+    insertValue: "tcp:",
+  },
+  {
+    name: "localabstract",
+    insertValue: "localabstract:",
+  },
+  {
+    name: "localreserved",
+    insertValue: "localreserved:",
+  },
+  {
+    name: "localfilesystem",
+    insertValue: "localfilesystem:",
+  },
+  {
+    name: "dev",
+    insertValue: "dev:",
+  },
+  {
+    name: "jdwp",
+    insertValue: "jdwp:",
+  },
+  {
+    name: "acceptfd",
+    insertValue: "acceptfd:",
+  },
+];
+
+const reverseConnectionSuggestions = [
+  {
+    name: "tcp",
+    insertValue: "tcp:",
+  },
+  {
+    name: "localabstract",
+    insertValue: "localabstract:",
+  },
+  {
+    name: "localreserved",
+    insertValue: "localreserved:",
+  },
+  {
+    name: "localfilesystem",
+    insertValue: "localfilesystem:",
+  },
+];
+
 export const completion: Fig.Spec = {
   name: "adb",
   description: "Android Debug Bridge",
@@ -320,82 +470,7 @@ export const completion: Fig.Spec = {
           template: "filepaths",
         },
       ],
-      options: [
-        {
-          name: "-l",
-          description: "forward-lock the app",
-        },
-        {
-          name: "-r",
-          description: "replace existing application",
-        },
-        {
-          name: "-t",
-          description: "allow test packages",
-        },
-        {
-          name: "-d",
-          description:
-            "allow version code downgrade (debuggable packages only)",
-        },
-        {
-          name: "-s",
-          description: "install on SD card instead of internal storage",
-        },
-        {
-          name: "-g",
-          description: "grant all runtime permissions",
-        },
-        {
-          description: "override platform's default ABI",
-          name: "--abi",
-          args: {
-            name: "ABI",
-          },
-        },
-        {
-          description:
-            "cause the app to be installed as an ephemeral install app",
-          name: "--instant",
-        },
-        {
-          description:
-            "always push APK to device and invoke Package Manager as separate steps",
-          name: "--no-streaming",
-        },
-        {
-          description: "force streaming APK directly into Package Manager",
-          name: "--streaming",
-        },
-        {
-          description: "use fast deploy",
-          name: "--fastdeploy",
-        },
-        {
-          description: "prevent use of fast deploy",
-          name: "--no-fastdeploy",
-        },
-        {
-          description:
-            "force update of deployment agent when using fast deploy",
-          name: "--force-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version is newer and using fast deploy",
-          name: "--date-check-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version has different version code and using fast deploy",
-          name: "--version-check-agent",
-        },
-        {
-          description:
-            "locate agent files from local source build (instead of SDK location)",
-          name: "--local-agent",
-        },
-      ],
+      options: installOptions,
     },
     {
       name: "install-multiple",
@@ -413,80 +488,7 @@ export const completion: Fig.Spec = {
           name: "-p",
           description: "partial application install (install-multiple only)",
         },
-        {
-          name: "-l",
-          description: "forward-lock the app",
-        },
-        {
-          name: "-r",
-          description: "replace existing application",
-        },
-        {
-          name: "-t",
-          description: "allow test packages",
-        },
-        {
-          name: "-d",
-          description:
-            "allow version code downgrade (debuggable packages only)",
-        },
-        {
-          name: "-s",
-          description: "install on SD card instead of internal storage",
-        },
-        {
-          name: "-g",
-          description: "grant all runtime permissions",
-        },
-        {
-          description: "override platform's default ABI",
-          name: "--abi",
-          args: {
-            name: "ABI",
-          },
-        },
-        {
-          description:
-            "cause the app to be installed as an ephemeral install app",
-          name: "--instant",
-        },
-        {
-          description:
-            "always push APK to device and invoke Package Manager as separate steps",
-          name: "--no-streaming",
-        },
-        {
-          description: "force streaming APK directly into Package Manager",
-          name: "--streaming",
-        },
-        {
-          description: "use fast deploy",
-          name: "--fastdeploy",
-        },
-        {
-          description: "prevent use of fast deploy",
-          name: "--no-fastdeploy",
-        },
-        {
-          description:
-            "force update of deployment agent when using fast deploy",
-          name: "--force-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version is newer and using fast deploy",
-          name: "--date-check-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version has different version code and using fast deploy",
-          name: "--version-check-agent",
-        },
-        {
-          description:
-            "locate agent files from local source build (instead of SDK location)",
-          name: "--local-agent",
-        },
+        ...installOptions,
       ],
     },
     {
@@ -505,80 +507,7 @@ export const completion: Fig.Spec = {
           name: "-p",
           description: "partial application install (install-multiple only)",
         },
-        {
-          name: "-l",
-          description: "forward-lock the app",
-        },
-        {
-          name: "-r",
-          description: "replace existing application",
-        },
-        {
-          name: "-t",
-          description: "allow test packages",
-        },
-        {
-          name: "-d",
-          description:
-            "allow version code downgrade (debuggable packages only)",
-        },
-        {
-          name: "-s",
-          description: "install on SD card instead of internal storage",
-        },
-        {
-          name: "-g",
-          description: "grant all runtime permissions",
-        },
-        {
-          description: "override platform's default ABI",
-          name: "--abi",
-          args: {
-            name: "ABI",
-          },
-        },
-        {
-          description:
-            "cause the app to be installed as an ephemeral install app",
-          name: "--instant",
-        },
-        {
-          description:
-            "always push APK to device and invoke Package Manager as separate steps",
-          name: "--no-streaming",
-        },
-        {
-          description: "force streaming APK directly into Package Manager",
-          name: "--streaming",
-        },
-        {
-          description: "use fast deploy",
-          name: "--fastdeploy",
-        },
-        {
-          description: "prevent use of fast deploy",
-          name: "--no-fastdeploy",
-        },
-        {
-          description:
-            "force update of deployment agent when using fast deploy",
-          name: "--force-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version is newer and using fast deploy",
-          name: "--date-check-agent",
-        },
-        {
-          description:
-            "update deployment agent when local version has different version code and using fast deploy",
-          name: "--version-check-agent",
-        },
-        {
-          description:
-            "locate agent files from local source build (instead of SDK location)",
-          name: "--local-agent",
-        },
+        ...installOptions,
       ],
     },
     {
@@ -644,29 +573,7 @@ export const completion: Fig.Spec = {
             "dry run: push files to device without storing to the filesystem",
           name: "-n",
         },
-        {
-          description:
-            "enable compression with a specified algorithm (any, none, brotli)",
-          name: "-z",
-          args: {
-            name: "ALGORITHM",
-            suggestions: [
-              {
-                name: "any",
-              },
-              {
-                name: "none",
-              },
-              {
-                name: "brotli",
-              },
-            ],
-          },
-        },
-        {
-          description: "disable compression",
-          name: "-Z",
-        },
+        ...compressionOptions,
       ],
       args: [
         {
@@ -690,32 +597,10 @@ export const completion: Fig.Spec = {
           name: "-n",
         },
         {
-          description:
-            "enable compression with a specified algorithm (any, none, brotli)",
-          name: "-z",
-          args: {
-            name: "ALGORITHM",
-            suggestions: [
-              {
-                name: "any",
-              },
-              {
-                name: "none",
-              },
-              {
-                name: "brotli",
-              },
-            ],
-          },
-        },
-        {
-          description: "disable compression",
-          name: "-Z",
-        },
-        {
           description: "list files that would be copied, but don't copy them",
           name: "-l",
         },
+        ...compressionOptions,
       ],
       args: {
         isOptional: true,
@@ -755,29 +640,7 @@ export const completion: Fig.Spec = {
           description: "preserve file timestamp and mode",
           name: "-a",
         },
-        {
-          description:
-            "enable compression with a specified algorithm (any, none, brotli)",
-          name: "-z",
-          args: {
-            name: "ALGORITHM",
-            suggestions: [
-              {
-                name: "any",
-              },
-              {
-                name: "none",
-              },
-              {
-                name: "brotli",
-              },
-            ],
-          },
-        },
-        {
-          description: "disable compression",
-          name: "-Z",
-        },
+        ...compressionOptions,
       ],
       args: [
         {
@@ -818,69 +681,11 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "LOCAL -> port|domain|device|pid",
-          suggestions: [
-            {
-              name: "tcp:",
-              insertValue: "tcp:",
-            },
-            {
-              name: "localabstract:",
-              insertValue: "localabstract:",
-            },
-            {
-              name: "localreserved:",
-              insertValue: "localreserved:",
-            },
-            {
-              name: "localfilesystem:",
-              insertValue: "localfilesystem:",
-            },
-            {
-              name: "dev:",
-              insertValue: "dev:",
-            },
-            {
-              name: "jdwp:",
-              insertValue: "jdwp:",
-            },
-            {
-              name: "acceptfd:",
-              insertValue: "acceptfd:",
-            },
-          ],
+          suggestions: forwardConnectionSuggestions,
         },
         {
           name: "REMOTE -> port|domain|device|pid",
-          suggestions: [
-            {
-              name: "tcp:",
-              insertValue: "tcp:",
-            },
-            {
-              name: "localabstract:",
-              insertValue: "localabstract:",
-            },
-            {
-              name: "localreserved:",
-              insertValue: "localreserved:",
-            },
-            {
-              name: "localfilesystem:",
-              insertValue: "localfilesystem:",
-            },
-            {
-              name: "dev:",
-              insertValue: "dev:",
-            },
-            {
-              name: "jdwp:",
-              insertValue: "jdwp:",
-            },
-            {
-              name: "acceptfd:",
-              insertValue: "acceptfd:",
-            },
-          ],
+          suggestions: forwardConnectionSuggestions,
         },
       ],
     },
@@ -912,45 +717,11 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "REMOTE -> port|domain|device|pid",
-          suggestions: [
-            {
-              name: "tcp:",
-              insertValue: "tcp:",
-            },
-            {
-              name: "localabstract:",
-              insertValue: "localabstract:",
-            },
-            {
-              name: "localreserved:",
-              insertValue: "localreserved:",
-            },
-            {
-              name: "localfilesystem:",
-              insertValue: "localfilesystem:",
-            },
-          ],
+          suggestions: reverseConnectionSuggestions,
         },
         {
           name: "LOCAL -> port|domain|device|pid",
-          suggestions: [
-            {
-              name: "tcp:",
-              insertValue: "tcp:",
-            },
-            {
-              name: "localabstract:",
-              insertValue: "localabstract:",
-            },
-            {
-              name: "localreserved:",
-              insertValue: "localreserved:",
-            },
-            {
-              name: "localfilesystem:",
-              insertValue: "localfilesystem:",
-            },
-          ],
+          suggestions: reverseConnectionSuggestions,
         },
       ],
     },
