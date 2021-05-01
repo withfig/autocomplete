@@ -121,6 +121,30 @@ const configList: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
+  generateSpec: async (context, executeShellCommand) => {
+    const { script, postProcess } = packageList;
+    const packages = postProcess(
+      await executeShellCommand(script as string)
+    ).map(({ name }) => name as string);
+
+    const cli = ["vue", "nuxt", "expo", "jest", "next"];
+    const subcommands: Fig.Subcommand[] = [];
+
+    packages
+      .filter((name) => cli.includes(name))
+      .forEach((name) => {
+        subcommands.push({
+          name,
+          loadSpec: name,
+          icon: "fig://icon?type=package",
+        });
+      });
+
+    return {
+      name: "yarn",
+      subcommands,
+    } as Fig.Spec;
+  },
   args: [
     {
       generators: getScriptsGenerator,
