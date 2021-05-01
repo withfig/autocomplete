@@ -17,7 +17,7 @@ var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
     subcommands: [
-        { name: "list", description: "List all installed formulae test" },
+        { name: "list", description: "List all installed formulae" },
         {
             name: "leaves",
             description: "List installed formulae that are not dependencies of another installed formula",
