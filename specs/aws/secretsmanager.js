@@ -1,3 +1,179 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var common = {
+    awsRegions: [
+        "af-south-1",
+        "eu-north-1",
+        "ap-south-1",
+        "eu-west-3",
+        "eu-west-2",
+        "eu-south-1",
+        "eu-west-1",
+        "ap-northeast-3",
+        "ap-northeast-2",
+        "me-south-1",
+        "ap-northeast-1",
+        "sa-east-1",
+        "ca-central-1",
+        "ap-east-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "eu-central-1",
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2",
+    ]
+};
+var generators = {
+    secretIdsGenerator: {
+        // --page-size does not affect the number of items returned,
+        // just chunks request so it won't timeout
+        script: "aws secretsmanager list-secrets --sort-order asc --page-size 100",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["SecretList"];
+                return list.map(function (item) { return ({
+                    name: item["Name"],
+                }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30,
+        },
+    },
+    kmsKeyIdGenerator: {
+        // --page-size does not affect the number of items returned,
+        // just chunks request so it won't timeout
+        script: "aws kms list-keys --page-size 100",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["Keys"];
+                return list.map(function (item) { return ({
+                    name: item["KeyId"],
+                }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30,
+        },
+    },
+    // List all json files in current directory
+    inputJSONGenerator: {
+        script: "ls -1a  *.json",
+        postProcess: function (out) {
+            return out.split("\n").map(function (fn) {
+                console.log(fn);
+                return {
+                    name: "file://" + fn,
+                };
+            });
+        },
+    },
+    getBlobsGenerator: {
+        // NOTE: this excludes files starting with dot e.g.: .gitignore
+        script: "find * -maxdepth 0 -not -type d",
+        postProcess: function (out) {
+            return out.split("\n").map(function (fn) {
+                return {
+                    name: "fileb://" + fn,
+                };
+            });
+        },
+    },
+    getReplicaRegionsGenerator: {
+        script: "aws kms list-keys --page-size 100",
+        postProcess: function (out, context) {
+            try {
+                var list = JSON.parse(out)["Keys"];
+                return list.flatMap(function (secret) {
+                    return common.awsRegions.flatMap(function (region) {
+                        return {
+                            name: "Region=" + region + ",KmsKeyId=" + secret.name,
+                        };
+                    });
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30,
+        },
+    },
+    getSecretVersionsGenerator: {
+        custom: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
+            var secretId, out, versions, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        console.log("context", secretId);
+                        secretId = context[-2];
+                        console.log("context", secretId);
+                        return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId).toString()];
+                    case 1:
+                        out = _a.sent();
+                        return [4 /*yield*/, JSON.parse(out)["VersionIdsToStages"]];
+                    case 2:
+                        versions = _a.sent();
+                        return [2 /*return*/, Object.keys(versions).map(function (key, val) { return ({
+                                name: key,
+                            }); })];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.error(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, []];
+                }
+            });
+        }); },
+    },
+};
 var completionSpec = {
     name: "secretsmanager",
     description: "AWS Secrets Manager API Reference AWS Secrets Manager provides a service to enable you to store, manage, and retrieve, secrets. This guide provides descriptions of the Secrets Manager API. For more information about using this service, see the AWS Secrets Manager User Guide.  API Version  This version of the Secrets Manager API Reference documents the Secrets Manager API version 2017-10-17.  As an alternative to using the API, you can use one of the AWS SDKs, which consist of libraries and sample code for various programming languages and platforms such as Java, Ruby, .NET, iOS, and Android. The SDKs provide a convenient way to create programmatic access to AWS Secrets Manager. For example, the SDKs provide cryptographically signing requests, managing errors, and retrying requests automatically. For more information about the AWS SDKs, including downloading and installing them, see Tools for Amazon Web Services.  We recommend you use the AWS SDKs to make programmatic API calls to Secrets Manager. However, you also can use the Secrets Manager HTTP Query API to make direct calls to the Secrets Manager web service. To learn more about the Secrets Manager HTTP Query API, see Making Query Requests in the AWS Secrets Manager User Guide.  Secrets Manager API supports GET and POST requests for all actions, and doesn't require you to use GET for some actions and POST for others. However, GET requests are subject to the limitation size of a URL. Therefore, for operations that require larger sizes, use a POST request.  Support and Feedback for AWS Secrets Manager  We welcome your feedback. Send your comments to awssecretsmanager-feedback@amazon.com, or post your feedback and questions in the AWS Secrets Manager Discussion Forum. For more information about the AWS Discussion Forums, see Forums Help.  How examples are presented  The JSON that AWS Secrets Manager expects as your request parameters and the service returns as a response to HTTP query requests contain single, long strings without line breaks or white space formatting. The JSON shown in the examples displays the code formatted with both line breaks and white space to improve readability. When example input parameters can also cause long strings extending beyond the screen, you can insert line breaks to enhance readability. You should always submit the input as a single JSON text string.  Logging API Requests  AWS Secrets Manager supports AWS CloudTrail, a service that records AWS API calls for your AWS account and delivers log files to an Amazon S3 bucket. By using information that's collected by AWS CloudTrail, you can determine the requests successfully made to Secrets Manager, who made the request, when it was made, and so on. For more about AWS Secrets Manager and support for AWS CloudTrail, see Logging AWS Secrets Manager Events with AWS CloudTrail in the AWS Secrets Manager User Guide. To learn more about CloudTrail, including enabling it and find your log files, see the AWS CloudTrail User Guide.",
@@ -9,8 +185,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret to cancel a rotation request. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -18,6 +196,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -37,6 +216,7 @@ var completionSpec = {
                 {
                     name: "--name",
                     description: "Specifies the friendly name of the new secret. The secret name must be ASCII letters, digits, or the following characters : /_+=.@-  Do not end your secret name with a hyphen followed by six characters. If you do so, you risk confusion and unexpected results when searching for a secret by partial ARN. Secrets Manager automatically adds a hyphen and six random characters at the end of the ARN.",
+                    priority: 100,
                     args: {
                         name: "string",
                     },
@@ -46,6 +226,7 @@ var completionSpec = {
                     description: "(Optional) If you include SecretString or SecretBinary, then an initial version is created as part of the secret, and this parameter specifies a unique identifier for the new version.   If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes it as the value for this parameter in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a ClientRequestToken yourself for the new version and include the value in the request.  This value helps ensure idempotency. Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during a rotation. We recommend that you generate a UUID-type value to ensure uniqueness of your versions within the specified secret.    If the ClientRequestToken value isn't already associated with a version of the secret then a new version of the secret is created.    If a version with this value already exists and the version SecretString and SecretBinary values are the same as those in the request, then the request is ignored.   If a version with this value already exists and that version's SecretString and SecretBinary values are different from those in the request, then the request fails because you cannot modify an existing version. Instead, use PutSecretValue to create a new version.   This value becomes the VersionId of the new version.",
                     args: {
                         name: "string",
+                        isOptional: true,
                     },
                 },
                 {
@@ -53,25 +234,31 @@ var completionSpec = {
                     description: "(Optional) Specifies a user-provided description of the secret.",
                     args: {
                         name: "string",
+                        isOptional: true,
                     },
                 },
                 {
                     name: "--kms-key-id",
                     description: "(Optional) Specifies the ARN, Key ID, or alias of the AWS KMS customer master key (CMK) to be used to encrypt the SecretString or SecretBinary values in the versions stored in this secret. You can specify any of the supported ways to identify a AWS KMS key ID. If you need to reference a CMK in a different account, you can use only the key ARN or the alias ARN. If you don't specify this value, then Secrets Manager defaults to using the AWS account's default CMK (the one named aws/secretsmanager). If a AWS KMS CMK with that name doesn't yet exist, then Secrets Manager creates it for you automatically the first time it needs to encrypt a version's SecretString or SecretBinary fields.  You can use the account default CMK to encrypt and decrypt only if you call this operation using credentials from the same account that owns the secret. If the secret resides in a different account, then you must create a custom CMK and specify the ARN in this field.",
+                    priority: 80,
                     args: {
                         name: "string",
+                        generators: generators.kmsKeyIdGenerator,
                     },
                 },
                 {
                     name: "--secret-binary",
                     description: "(Optional) Specifies binary data that you want to encrypt and store in the new version of the secret. To use this parameter in the command-line tools, we recommend that you store your binary data in a file and then use the appropriate technique for your tool to pass the contents of the file as a parameter. Either SecretString or SecretBinary must have a value, but not both. They cannot both be empty. This parameter is not available using the Secrets Manager console. It can be accessed only by using the AWS CLI or one of the AWS SDKs.",
+                    priority: 90,
                     args: {
                         name: "blob",
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
                     name: "--secret-string",
                     description: '(Optional) Specifies text data that you want to encrypt and store in this new version of the secret. Either SecretString or SecretBinary must have a value, but not both. They cannot both be empty. If you create a secret by using the Secrets Manager console then Secrets Manager puts the protected secret text in only the SecretString parameter. The Secrets Manager console stores the information as a JSON structure of key/value pairs that the Lambda rotation function knows how to parse. For storing multiple values, we recommend that you use a JSON text string argument and specify key/value pairs. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide. For example:  {"username":"bob","password":"abc123xyz456"}  If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.',
+                    priority: 90,
                     args: {
                         name: "string",
                     },
@@ -88,6 +275,9 @@ var completionSpec = {
                     description: "(Optional) Add a list of regions to replicate secrets. Secrets Manager replicates the KMSKeyID objects to the list of regions specified in the parameter.",
                     args: {
                         name: "list",
+                        // TODO: find out why doesn't work 
+                        // variadic: true,
+                        generators: generators.getReplicaRegionsGenerator,
                     },
                 },
                 {
@@ -103,6 +293,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -122,8 +313,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to delete the attached resource-based policy for. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -131,6 +324,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -150,8 +344,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret to delete. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -159,6 +355,7 @@ var completionSpec = {
                     description: "(Optional) Specifies the number of days that Secrets Manager waits before Secrets Manager can delete the secret. You can't use both this parameter and the ForceDeleteWithoutRecovery parameter in the same API call. This value can range from 7 to 30 days with a default value of 30.",
                     args: {
                         name: "long",
+                        suggestions: ["7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"],
                     },
                 },
                 {
@@ -174,6 +371,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -193,8 +391,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "The identifier of the secret whose details you want to retrieve. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -202,6 +402,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -285,6 +486,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -304,8 +506,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to retrieve the attached resource-based policy for. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -313,6 +517,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -332,8 +537,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret containing the version that you want to retrieve. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -341,6 +548,7 @@ var completionSpec = {
                     description: "Specifies the unique identifier of the version of the secret that you want to retrieve. If you specify both this parameter and VersionStage, the two parameters must refer to the same secret version. If you don't specify either a VersionStage or VersionId then the default is to perform the operation on the version with the VersionStage value of AWSCURRENT. This value is typically a UUID-type value with 32 hexadecimal digits.",
                     args: {
                         name: "string",
+                        // TODO custom function doesn't work?
                     },
                 },
                 {
@@ -348,6 +556,7 @@ var completionSpec = {
                     description: "Specifies the secret version that you want to retrieve by the staging label attached to the version. Staging labels are used to keep track of different versions during the rotation process. If you specify both this parameter and VersionId, the two parameters must refer to the same secret version . If you don't specify either a VersionStage or VersionId, then the default is to perform the operation on the version with the VersionStage value of AWSCURRENT.",
                     args: {
                         name: "string",
+                        // TODO custom function doesn't work?
                     },
                 },
                 {
@@ -355,6 +564,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -374,8 +584,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "The identifier for the secret containing the versions you want to list. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -405,6 +617,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -454,6 +667,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -494,8 +708,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to attach the resource-based policy. You can specify either the ARN or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -518,6 +734,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -537,8 +754,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -574,6 +793,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -593,8 +813,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Remove a secret by SecretId from replica Regions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -609,6 +831,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -628,8 +851,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Use the Secret Id to replicate a secret to regions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -652,6 +877,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -671,8 +897,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to restore from a previously scheduled deletion. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -680,6 +908,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -699,8 +928,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to rotate. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -729,6 +960,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -748,8 +980,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Response to StopReplicationToReplica of a secret, based on the SecretId.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -757,6 +991,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -776,8 +1011,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "The identifier for the secret that you want to attach tags to. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -792,6 +1029,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -811,8 +1049,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "The identifier for the secret that you want to remove tags from. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -827,6 +1067,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -846,8 +1087,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret that you want to modify or to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -890,6 +1133,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -909,8 +1153,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "Specifies the secret with the version with the list of staging labels you want to modify. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -939,6 +1185,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
@@ -958,8 +1205,10 @@ var completionSpec = {
                 {
                     name: "--secret-id",
                     description: "(Optional) The identifier of the secret with the resource-based policy you want to validate. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.  If you specify an ARN, we generally recommend that you specify a complete ARN. You can specify a partial ARN too\u2014for example, if you don\u2019t include the final hyphen and six random characters that Secrets Manager adds at the end of the ARN when you created the secret. A partial ARN match can work as long as it uniquely matches only one secret. However, if your secret has a name that ends in a hyphen followed by six characters (before Secrets Manager adds the hyphen and six characters to the ARN) and you try to use that as a partial ARN, then those characters cause Secrets Manager to assume that you\u2019re specifying a complete ARN. This confusion can cause unexpected results. To avoid this situation, we recommend that you don\u2019t create secret names ending with a hyphen followed by six characters. If you specify an incomplete ARN without the random suffix, and instead provide the 'friendly name', you must not include the random suffix. If you do include the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException or an AccessDeniedException error, depending on your permissions.",
+                    priority: 100,
                     args: {
                         name: "string",
+                        generators: generators.secretIdsGenerator,
                     },
                 },
                 {
@@ -974,6 +1223,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.inputJSONGenerator,
                     },
                 },
                 {
