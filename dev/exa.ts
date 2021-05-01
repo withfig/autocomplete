@@ -193,7 +193,7 @@ export const completion: Fig.Spec = {
     {
       description:
         "which timestamp field to list (modified, accessed, created)",
-      name: ["-t", "--time FIELD"],
+      name: ["-t", "--time"],
       args: {
         name: "FIELD",
         suggestions: [
