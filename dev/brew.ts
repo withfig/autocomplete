@@ -19,7 +19,7 @@ export const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
   subcommands: [
-    { name: "list", description: "List all installed formulae" },
+    { name: "list", description: "List all installed formulae test" },
     {
       name: "leaves",
       description:
