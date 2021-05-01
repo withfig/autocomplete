@@ -47,7 +47,7 @@ var completionSpec = {
                     subcommands = [];
                     return [4 /*yield*/, executeShellCommand("ls -1 artisan")];
                 case 1:
-                    if ((_a.sent()) === 'artisan') {
+                    if ((_a.sent()) === "artisan") {
                         subcommands.push({ name: "artisan", loadSpec: "php/artisan" });
                     }
                     return [2 /*return*/, {
