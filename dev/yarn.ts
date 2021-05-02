@@ -121,7 +121,7 @@ const configList: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (_context, executeShellCommand) => {
     const { script, postProcess } = packageList;
     const packages = postProcess(
       await executeShellCommand(script as string)
