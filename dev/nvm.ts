@@ -1,5 +1,5 @@
 // args
-const version = {
+const version: Fig.Arg = {
   name: "version",
   description: "node version",
   suggestions: [
@@ -18,56 +18,56 @@ const version = {
   ],
 };
 
-const command = {
+const command: Fig.Arg = {
   name: "command",
-  isVariadic: true,
+  variadic: true,
 };
 
-const args = {
+const args: Fig.Arg = {
   name: "args",
-  isVariadic: true,
+  variadic: true,
 };
 
-const pattern = {
+const pattern: Fig.Arg = {
   name: "pattern",
 };
 
-const name = {
+const name: Fig.Arg = {
   name: "name",
 };
 
-const ltsName = {
+const ltsName: Fig.Arg = {
   name: "LTS name",
 };
 
-const colorCodes = {
+const colorCodes: Fig.Arg = {
   name: "color codes",
   description: 'using format "yMeBg"',
 };
 
 // options
-const noColors = {
+const noColors: Fig.Option = {
   name: "--no-colors",
   description: "Suppress colored output",
 };
 
-const noAlias = {
+const noAlias: Fig.Option = {
   name: "--no-alias",
   description: "Suppress `nvm alias` output",
 };
 
-const silent = {
+const silent: Fig.Option = {
   name: "--silent",
   description: "Silences stdout/stderr output",
 };
 
-const lts = {
+const lts: Fig.Option = {
   name: "--lts",
   description:
     "Uses automatic LTS (long-term support) alias `lts/*`, if available.",
 };
 
-const ltsWithName = {
+const ltsWithName: Fig.Option = {
   name: "--lts",
   description: "Uses automatic alias for provided LTS line, if available.",
   args: [ltsName],

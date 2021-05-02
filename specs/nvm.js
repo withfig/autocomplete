@@ -30,11 +30,11 @@ var version = {
 };
 var command = {
     name: "command",
-    isVariadic: true,
+    variadic: true,
 };
 var args = {
     name: "args",
-    isVariadic: true,
+    variadic: true,
 };
 var pattern = {
     name: "pattern",
