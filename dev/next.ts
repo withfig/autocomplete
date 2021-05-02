@@ -1,7 +1,8 @@
+const icon = "https://nextjs.org/static/favicon/favicon-16x16.png";
+
 export const completionSpec: Fig.Spec = {
   name: "next",
   description: "Next.js CLI to start, build and export your application",
-  icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
   options: [
     {
       name: ["-h", "--help"],
@@ -16,7 +17,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "build",
       description: "Create an optimized production build of your application",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      icon,
       args: [
         {
           name: "dir",
@@ -39,7 +40,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "dev",
       description: "Start the application in development mode",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      icon,
       args: [
         {
           name: "dir",
@@ -64,7 +65,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "start",
       description: "Start the application in production mode",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      icon,
       args: [
         {
           name: "dir",
@@ -87,7 +88,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "export",
       description: "Exports the application for production deployment",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      icon,
       args: [
         {
           name: "dir",
@@ -106,7 +107,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "telemetry",
       description: "Allows you to control Next.js' telemetry collection",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      icon,
       args: [
         {
           name: "status",
