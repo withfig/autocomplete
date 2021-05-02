@@ -1,3 +1,85 @@
+var startWebOptions = [
+    {
+        name: ["--dev"],
+        description: "Turn development mode on\n",
+        args: {},
+    },
+    {
+        name: ["--no-dev"],
+        description: "Turn development mode off\n",
+        args: {},
+    },
+    {
+        name: ["--minify"],
+        description: "Minify code\n",
+        args: {},
+    },
+    {
+        name: ["--no-minify"],
+        description: "Do not minify code\n",
+        args: {},
+    },
+    {
+        name: ["--https"],
+        description: "To start webpack with https protocol\n",
+        args: {},
+    },
+    {
+        name: ["--no-https"],
+        description: "To start webpack with http protocol\n",
+        args: {},
+    },
+    {
+        name: ["-a", "--android"],
+        description: "Opens your app in Expo client on a connected Android device\n",
+        args: {},
+    },
+    {
+        name: ["-i", "--ios"],
+        description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
+        args: {},
+    },
+    {
+        name: ["-w", "--web"],
+        description: "Opens your app in a web browser\n",
+        args: {},
+    },
+    {
+        name: ["-m", "--host"],
+        description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
+        args: {},
+    },
+    {
+        name: ["--tunnel"],
+        description: "Same as --host tunnel\n",
+        args: {},
+    },
+    {
+        name: ["--lan"],
+        description: "Same as --host lan\n",
+        args: {},
+    },
+    {
+        name: ["--localhost"],
+        description: "Same as --host localhost\n",
+        args: {},
+    },
+    {
+        name: ["--offline"],
+        description: "Allows this command to run while offline\n",
+        args: {},
+    },
+    {
+        name: ["--config"],
+        description: "Specify a path to app.json or app.config.js\n",
+        args: {},
+    },
+    {
+        name: ["-h", "--help"],
+        description: "output usage information\n  \n  \n",
+        args: {},
+    },
+];
 var completionSpec = {
     name: "expo",
     description: "",
@@ -1042,91 +1124,14 @@ var completionSpec = {
             subcommands: [],
         },
         {
+            name: "web",
+            description: "Start a Webpack dev server for the web app",
+            options: startWebOptions,
+        },
+        {
             name: "start:web",
-            description: "",
-            options: [
-                {
-                    name: ["--dev"],
-                    description: "Turn development mode on\n",
-                    args: {},
-                },
-                {
-                    name: ["--no-dev"],
-                    description: "Turn development mode off\n",
-                    args: {},
-                },
-                {
-                    name: ["--minify"],
-                    description: "Minify code\n",
-                    args: {},
-                },
-                {
-                    name: ["--no-minify"],
-                    description: "Do not minify code\n",
-                    args: {},
-                },
-                {
-                    name: ["--https"],
-                    description: "To start webpack with https protocol\n",
-                    args: {},
-                },
-                {
-                    name: ["--no-https"],
-                    description: "To start webpack with http protocol\n",
-                    args: {},
-                },
-                {
-                    name: ["-a", "--android"],
-                    description: "Opens your app in Expo client on a connected Android device\n",
-                    args: {},
-                },
-                {
-                    name: ["-i", "--ios"],
-                    description: "Opens your app in Expo client in a currently running iOS simulator on your computer\n",
-                    args: {},
-                },
-                {
-                    name: ["-w", "--web"],
-                    description: "Opens your app in a web browser\n",
-                    args: {},
-                },
-                {
-                    name: ["-m", "--host"],
-                    description: 'lan (default), tunnel, localhost. Type of host to use. "tunnel" allows you to view your link on other networks\n',
-                    args: {},
-                },
-                {
-                    name: ["--tunnel"],
-                    description: "Same as --host tunnel\n",
-                    args: {},
-                },
-                {
-                    name: ["--lan"],
-                    description: "Same as --host lan\n",
-                    args: {},
-                },
-                {
-                    name: ["--localhost"],
-                    description: "Same as --host localhost\n",
-                    args: {},
-                },
-                {
-                    name: ["--offline"],
-                    description: "Allows this command to run while offline\n",
-                    args: {},
-                },
-                {
-                    name: ["--config"],
-                    description: "Specify a path to app.json or app.config.js\n",
-                    args: {},
-                },
-                {
-                    name: ["-h", "--help"],
-                    description: "output usage information\n  \n  \n",
-                    args: {},
-                },
-            ],
-            subcommands: [],
+            description: "Start a Webpack dev server for the web app",
+            options: startWebOptions,
         },
         {
             name: "upgrade",
