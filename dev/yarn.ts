@@ -128,17 +128,13 @@ export const completionSpec: Fig.Spec = {
     ).map(({ name }) => name as string);
 
     const cli = ["vue", "nuxt", "expo", "jest", "next"];
-    const subcommands: Fig.Subcommand[] = [];
-
-    packages
+    const subcommands = packages
       .filter((name) => cli.includes(name))
-      .forEach((name) => {
-        subcommands.push({
-          name,
-          loadSpec: name,
-          icon: "fig://icon?type=package",
-        });
-      });
+      .map((name) => ({
+        name,
+        loadSpec: name,
+        icon: "fig://icon?type=package",
+      }));
 
     return {
       name: "yarn",

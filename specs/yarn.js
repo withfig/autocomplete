@@ -147,7 +147,7 @@ var configList = {
 var completionSpec = {
     name: "yarn",
     description: "Manage packages and run scripts",
-    generateSpec: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
+    generateSpec: function (_context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
         var script, postProcess, packages, _a, cli, subcommands;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -161,16 +161,13 @@ var completionSpec = {
                         return name;
                     });
                     cli = ["vue", "nuxt", "expo", "jest", "next"];
-                    subcommands = [];
-                    packages
+                    subcommands = packages
                         .filter(function (name) { return cli.includes(name); })
-                        .forEach(function (name) {
-                        subcommands.push({
-                            name: name,
-                            loadSpec: name,
-                            icon: "fig://icon?type=package",
-                        });
-                    });
+                        .map(function (name) { return ({
+                        name: name,
+                        loadSpec: name,
+                        icon: "fig://icon?type=package",
+                    }); });
                     return [2 /*return*/, {
                             name: "yarn",
                             subcommands: subcommands,
