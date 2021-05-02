@@ -383,64 +383,63 @@ export const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["--version"],
-      description: ["Show CLI version"],
+      description: "Show CLI version",
     },
     {
       name: ["--config="],
-      description: ["Config file path (default: ~/.bosh/config)"],
+      description: "Config file path (default: ~/.bosh/config)",
     },
     {
       name: ["--environment="],
-      description: ["Director environment name or URL"],
+      description: "Director environment name or URL",
     },
     {
       name: ["--ca-cert="],
-      description: ["Director CA certificate path or value"],
+      description: "Director CA certificate path or value",
     },
     {
       name: ["--sha2"],
-      description: ["Use SHA256 checksums"],
+      description: "Use SHA256 checksums",
     },
     {
       name: ["--parallel="],
-      description: ["The max number of parallel operations (default: 5)"],
+      description: "The max number of parallel operations (default: 5)",
     },
     {
       name: ["--client="],
-      description: ["Override username or UAA client [$BOSH_CLIENT]"],
+      description: "Override username or UAA client [$BOSH_CLIENT]",
     },
     {
       name: ["--client-secret="],
-      description: [
+      description:
         "Override password or UAA client secret [$BOSH_CLIENT_SECRET]",
-      ],
     },
     {
       name: ["--deployment="],
-      description: ["Deployment name [$BOSH_DEPLOYMENT]"],
+      description: "Deployment name [$BOSH_DEPLOYMENT]",
       args: {
         generators: deployments,
       },
     },
     {
       name: ["--column="],
-      description: ["Filter to show only given column(s)"],
+      description: "Filter to show only given column(s)",
     },
     {
       name: ["--json"],
-      description: ["Output as JSON"],
+      description: "Output as JSON",
     },
     {
       name: ["--tty"],
-      description: ["Force TTY-like output"],
+      description: "Force TTY-like output",
     },
     {
       name: ["--no-color"],
-      description: ["Toggle colorized output"],
+      description: "Toggle colorized output",
     },
     {
       name: ["--non-interactive"],
-      description: ["Don't ask for user input [$BOSH_NON_INTERACTIVE]"],
+      description: "Don't ask for user input [$BOSH_NON_INTERACTIVE]",
     },
   ],
 };
