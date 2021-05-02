@@ -149,7 +149,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "build:ios",
@@ -251,7 +250,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "build:status",
@@ -273,7 +271,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "build:web",
@@ -305,7 +302,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "client:install:android",
@@ -322,7 +318,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "client:install:ios",
@@ -339,7 +334,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "client:ios",
@@ -361,7 +355,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "credentials:manager",
@@ -383,7 +376,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "customize:web",
@@ -405,7 +397,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "diagnostics",
@@ -417,7 +408,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "doctor",
@@ -434,7 +424,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "eject",
@@ -466,7 +455,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "export",
@@ -543,7 +531,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "fetch:android:hashes",
@@ -560,7 +547,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "fetch:android:keystore",
@@ -577,7 +563,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "fetch:android:upload-cert",
@@ -594,7 +579,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "fetch:ios:certs",
@@ -611,7 +595,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "init",
@@ -653,7 +636,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "install",
@@ -675,7 +657,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "login",
@@ -702,7 +683,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "logout",
@@ -714,7 +694,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "publish",
@@ -761,7 +740,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "publish:details",
@@ -788,7 +766,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "publish:history",
@@ -830,7 +807,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "publish:rollback",
@@ -867,7 +843,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "publish:set",
@@ -894,7 +869,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "push:android:clear",
@@ -911,7 +885,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "push:android:show",
@@ -928,7 +901,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "push:android:upload",
@@ -950,7 +922,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "register",
@@ -962,7 +933,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "send",
@@ -1019,7 +989,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "start",
@@ -1121,7 +1090,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "web",
@@ -1153,7 +1121,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "upload:android",
@@ -1225,7 +1192,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "upload:ios",
@@ -1302,7 +1268,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "url",
@@ -1364,7 +1329,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "url:apk",
@@ -1386,7 +1350,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "url:ipa",
@@ -1408,7 +1371,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "webhooks",
@@ -1425,7 +1387,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "webhooks:add",
@@ -1457,7 +1418,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "webhooks:remove",
@@ -1479,7 +1439,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "webhooks:update",
@@ -1516,7 +1475,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "whoami",
@@ -1528,7 +1486,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
     ],
 };
