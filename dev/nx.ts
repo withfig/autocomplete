@@ -28,7 +28,7 @@ const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
   }
 };
 
-const processGenerators: PostProcessFn = function (out) {
+const processGenerators: PostProcessFn = (out) => {
   return out
     .split("\n")
     .map((line) => line.split(" ").pop())
@@ -76,7 +76,7 @@ const nxGenerators: NxGenerators = {
   installedPlugins: {
     script: "nx list",
     cache: oneDayCache,
-    postProcess: function (out) {
+    postProcess: (out) => {
       if (out.indexOf("Installed plugins") > -1) {
         const fullList = out.split(">");
         const plugins = fullList[1].split("\n").filter(Boolean);
@@ -101,7 +101,7 @@ const nxGenerators: NxGenerators = {
     },
     trigger: ":",
     cache: oneDayCache,
-    postProcess: function (out, context) {
+    postProcess: (out, context) => {
       if (out.indexOf("Installed plugins") > -1) {
         const fullList = out.split(">");
         const plugins = fullList[1].split("\n").filter(Boolean);
