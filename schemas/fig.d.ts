@@ -128,7 +128,7 @@ declare namespace Fig {
      * @example
      * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
-    name: string;
+    name: string | string[];
 
     /**
      * A list of subcommands for this spec.
