@@ -1,27 +1,20 @@
 const postProcessAWS: Fig.Generator["postProcess"] = (out) => {
-  const allLines = out.split("\n");
-  return allLines.map((i) => {
-    try {
-      const parsedJSON = JSON.parse(i);
-      return {
-        name: parsedJSON,
-        icon: "fig://icon?type=aws",
-      };
-    } catch (error) {
-      console.error(error);
-    }
+  if (out.startsWith("fatal:")) {
+    return [];
+  }
+  return out.split(",").map((instance) => {
+    return {
+      name: instance.replace(/[\[\]'"]+/g, "").trim(),
+      icon: "fig://icon?type=aws",
+      description: "instance",
+    };
   });
 };
 
 const awsGenerators: Record<string, Fig.Generator> = {
   instances: {
-    script: function (context) {
-      if (
-        context[context.length - 3] === "modify-instance-attribute" ||
-        context[context.length - 3] === "terminate-instances"
-      )
-        return "aws ec2 describe-instances  --query 'Reservations[].Instances[].InstanceId[]'";
-    },
+    script:
+      "aws ec2 describe-instances  --query 'Reservations[*].Instances[].InstanceId'",
     postProcess: postProcessAWS,
   },
   rtb: {
@@ -30,34 +23,92 @@ const awsGenerators: Record<string, Fig.Generator> = {
     postProcess: postProcessAWS,
   },
   start: {
-    script: function (context) {
-      if (context[context.length - 3] === "start-instances")
-        return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[*].Instances[].InstanceId'";
-    },
+    script:
+      "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=stopped' --query 'Reservations[*].Instances[].InstanceId'",
     postProcess: postProcessAWS,
   },
   stop: {
-    script: function (context) {
-      if (
-        context[context.length - 3] === "stop-instances" ||
-        context[context.length - 3] === "reboot-instances" ||
-        context[context.length - 3] === "get-console-output" ||
-        context[context.length - 3] === "monitor-instances" ||
-        context[context.length - 3] === "unmonitor-instances"
-      )
-        return "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[*].Instances[].InstanceId'";
-    },
+    script:
+      "aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' --query 'Reservations[*].Instances[].InstanceId'",
     postProcess: postProcessAWS,
   },
   volume_id: {
-    script: function (context) {
-      if (context[context.length - 3] === "attach-volume")
-        return "aws ec2 describe-volumes --query 'Volumes[*].VolumeId'";
-    },
+    script: "aws ec2 describe-volumes --query 'Volumes[*].VolumeId'",
     postProcess: postProcessAWS,
   },
-  test: {
-    script: `aws ec2 describe-route-tables --query 'RouteTables[*].RouteTableId'`,
+  reserved_instance_id: {
+    script:
+      "aws ec2 describe-reserved-instances --query 'ReservedInstances[*].ReservedInstancesId'",
+    postProcess: postProcessAWS,
+  },
+  transit_gateway_multicast_domain_id: {
+    script:
+      "aws ec2 describe-transit-gateway-multicast-domains --query 'TransitGatewayMulticastDomains[*].TransitGatewayMulticastDomainId'",
+    postProcess: postProcessAWS,
+  },
+  transit_gateway_attachment_id: {
+    script:
+      "aws ec2 describe-transit-gateway-attachments --query 'TransitGatewayAttachments[*].TransitGatewayAttachementId'",
+    postProcess: postProcessAWS,
+  },
+  vpc_id: {
+    script: "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].VpcId'",
+    postProcess: postProcessAWS,
+  },
+  vpc_endpoint_id: {
+    script:
+      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].VpcEndpointId'",
+    postProcess: postProcessAWS,
+  },
+  subnet_ids: {
+    script:
+      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].SubnetIds'",
+    postProcess: postProcessAWS,
+  },
+  route_table_ids: {
+    script:
+      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].RouteTableIds'",
+    postProcess: postProcessAWS,
+  },
+  network_interface_ids: {
+    script:
+      "aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[*].NetworkInterfaceIds'",
+    postProcess: postProcessAWS,
+  },
+  instance_type: {
+    script:
+      "aws ec2 describe-instance-types --query 'InstanceTypes[*].InstanceType'",
+    postProcess: postProcessAWS,
+  },
+  snapshot_ids: {
+    script: "aws ec2 describe-snapshots --query 'Snapshots[*].SnapshotId'",
+    postProcess: postProcessAWS,
+  },
+  vpc_peering_connection_id: {
+    script:
+      "aws ec2 describe-vpc-peering-connections --query 'VpcPeeringConnections[*].VpcPeeringConnectionId'",
+    postProcess: postProcessAWS,
+  },
+  service_id: {
+    script:
+      "aws ec2 describe-vpc-endpoint-services --query 'ServiceDetails[*].ServiceId'",
+    postProcess: postProcessAWS,
+  },
+  cidr_block: {
+    script: "aws ec2 describe-subnets --query 'Subnets[*].CidrBlock'",
+    postProcess: postProcessAWS,
+  },
+  image_id: {
+    script: "aws ec2 describe-images --query 'Images[*].ImageId'",
+    postProcess: postProcessAWS,
+  },
+  key_pair: {
+    script: "aws ec2 describe-key-pairs --query 'KeyPairs[*].KeyName'",
+    postProcess: postProcessAWS,
+  },
+  internet_gateway_id: {
+    script:
+      "aws ec2 describe-internet-gateways --query 'InternetGateways[*].InternetGatewayId'",
     postProcess: postProcessAWS,
   },
 };
@@ -86,9 +137,16 @@ export const completionSpec: Fig.Spec = {
           name: "--reserved-instance-ids",
           description:
             "The IDs of the Convertible Reserved Instances to exchange for another Convertible Reserved Instance of the same or higher value.",
-          args: {
-            generators: awsGenerators.instances,
-          },
+          args: [
+            {
+              generators: awsGenerators.reserved_instance_id,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--target-configurations",
@@ -127,6 +185,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway multicast domain.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_multicast_domain_id,
           },
         },
         {
@@ -134,15 +193,23 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
           name: "--subnet-ids",
           description:
             "The IDs of the subnets to associate with the transit gateway multicast domain.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -183,6 +250,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -224,6 +292,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -275,14 +344,23 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the VPC endpoint service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
           name: "--vpc-endpoint-ids",
           description: "The IDs of one or more interface VPC endpoints.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.vpc_endpoint_id,
+            },
+            {
+              generators: awsGenerators.vpc_endpoint_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--cli-input-json",
@@ -324,6 +402,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the VPC peering connection. You must specify this parameter in the request.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -356,6 +435,7 @@ export const completionSpec: Fig.Spec = {
             "The address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -503,6 +583,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the instance type to be supported by the Dedicated Hosts. If you specify an instance type, the Dedicated Hosts support instances of the specified instance type only. If you want the Dedicated Hosts to support multiple instance types in a specific instance family, omit this parameter and specify InstanceFamily instead. You cannot specify InstanceType and InstanceFamily in the same request.",
           args: {
             name: "string",
+            generators: awsGenerators.instance_type,
           },
         },
         {
@@ -639,6 +720,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -680,6 +762,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -736,6 +819,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the instance. The instance must have exactly one attached network interface. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. For EC2-Classic, you must specify an instance ID and the instance must be in the running state.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -772,6 +856,7 @@ export const completionSpec: Fig.Spec = {
             "[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -974,6 +1059,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -1018,11 +1104,19 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--subnet-id",
-          description: "The ID of the subnet.",
-          args: {
-            name: "string",
-          },
+          name: "--subnet-ids",
+          description:
+            "The IDs of the subnets to associate with the transit gateway multicast domain.",
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--gateway-id",
@@ -1108,15 +1202,23 @@ export const completionSpec: Fig.Spec = {
             "The ID of the transit gateway attachment to associate with the transit gateway multicast domain.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
           name: "--subnet-ids",
           description:
             "The IDs of the subnets to associate with the transit gateway multicast domain.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -1164,6 +1266,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -1296,6 +1399,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -1344,6 +1448,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the internet gateway.",
           args: {
             name: "string",
+            generators: awsGenerators.internet_gateway_id,
           },
         },
         {
@@ -1399,6 +1504,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -1406,6 +1512,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -1452,6 +1559,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -1459,6 +1567,7 @@ export const completionSpec: Fig.Spec = {
           description:
             "The ID of the EBS volume. The volume and instance must be within the same Availability Zone.",
           args: {
+            name: "string",
             generators: awsGenerators.volume_id,
           },
         },
@@ -1720,6 +1829,7 @@ export const completionSpec: Fig.Spec = {
           description: "The CIDR IP range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -1863,6 +1973,7 @@ export const completionSpec: Fig.Spec = {
           description: "The CIDR IP range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -1910,6 +2021,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the instance to bundle. Type: String Default: None Required: Yes",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -2333,6 +2445,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -3700,6 +3813,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -3772,6 +3886,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -4672,6 +4787,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -4799,6 +4915,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the instance for which to replace the root volume.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -4807,6 +4924,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the snapshot from which to restore the replacement root volume. If you want to restore the volume to the initial launch state, omit this parameter.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -5018,6 +5136,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_endpoint_id,
           },
         },
         {
@@ -5042,6 +5161,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -5078,6 +5198,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of a network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -5092,6 +5213,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of a VPC peering connection.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -5250,6 +5372,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the EBS volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -5421,6 +5544,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the AMI.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -5789,6 +5913,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the source network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -5891,6 +6016,7 @@ export const completionSpec: Fig.Spec = {
             "The network interface ID that is associated with the target.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -6073,6 +6199,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the Connect attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -6294,6 +6421,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment to which traffic is routed.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -6360,6 +6488,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -6470,10 +6599,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--subnet-ids",
           description:
-            "The IDs of one or more subnets. You can specify only one subnet per Availability Zone. You must specify at least one subnet, but we recommend that you specify two subnets for better availability. The transit gateway uses one IP address from each specified subnet.",
-          args: {
-            name: "list",
-          },
+            "The IDs of the subnets to associate with the transit gateway multicast domain.",
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--options",
@@ -6577,6 +6713,7 @@ export const completionSpec: Fig.Spec = {
             "The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -6780,17 +6917,33 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--route-table-ids",
           description: "(Gateway endpoint) One or more route table IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.route_table_ids,
+            },
+            {
+              generators: awsGenerators.route_table_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--subnet-ids",
           description:
             "(Interface and Gateway Load Balancer endpoints) The ID of one or more subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify one subnet only.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--security-group-ids",
@@ -6864,6 +7017,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the endpoint service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
@@ -6871,6 +7025,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the endpoint.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_endpoint_id,
           },
         },
         {
@@ -7665,6 +7820,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the internet gateway.",
           args: {
             name: "string",
+            generators: awsGenerators.internet_gateway_id,
           },
         },
         {
@@ -7695,7 +7851,8 @@ export const completionSpec: Fig.Spec = {
           name: "--key-name",
           description: "The name of the key pair.",
           args: {
-            generators: awsGenerators.keypair,
+            name: "string",
+            generators: awsGenerators.key_pair,
           },
         },
         {
@@ -8211,6 +8368,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -8530,6 +8688,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the EBS snapshot.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -8600,11 +8759,19 @@ export const completionSpec: Fig.Spec = {
         "Deletes the specified subnet. You must terminate all running instances in the subnet before you can delete the subnet.",
       options: [
         {
-          name: "--subnet-id",
-          description: "The ID of the subnet.",
-          args: {
-            name: "string",
-          },
+          name: "--subnet-ids",
+          description:
+            "The IDs of the subnets to associate with the transit gateway multicast domain.",
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -8897,6 +9064,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the Connect attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -9017,6 +9185,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway peering attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -9195,6 +9364,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -9236,6 +9406,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -9366,9 +9537,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--service-ids",
           description: "The IDs of one or more services.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "string",
+              generators: awsGenerators.service_id,
+            },
+            {
+              generators: awsGenerators.service_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--cli-input-json",
@@ -9407,9 +9586,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--vpc-endpoint-ids",
           description: "One or more VPC endpoint IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.vpc_endpoint_id,
+            },
+            {
+              generators: awsGenerators.vpc_endpoint_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--cli-input-json",
@@ -9450,6 +9637,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the VPC peering connection.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -9603,6 +9791,7 @@ export const completionSpec: Fig.Spec = {
             "The address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -9644,6 +9833,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the AMI.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -9739,9 +9929,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--network-interface-ids",
           description: "The IDs of the group members' network interfaces.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.network_interface_ids,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -9795,9 +9993,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--network-interface-ids",
           description: "The IDs of the group sources' network interfaces.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.network_interface_ids,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -10440,9 +10646,17 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-ids",
           description:
             "One or more instance IDs. Must be instances linked to a VPC through ClassicLink.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.instances,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.instances,
+            },
+          ],
         },
         {
           name: "--max-results",
@@ -12449,6 +12663,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the AMI.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -12505,9 +12720,17 @@ export const completionSpec: Fig.Spec = {
           name: "--image-ids",
           description:
             "The image IDs. Default: Describes all images available to you.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.image_id,
+            },
+            {
+              generators: awsGenerators.image_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--owners",
@@ -12748,6 +12971,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -12795,9 +13019,17 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-ids",
           description:
             "The instance IDs. Default: Describes all your instances. Constraints: Maximum 1000 explicitly specified instance IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.instances,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.instances,
+            },
+          ],
         },
         {
           name: "--max-results",
@@ -12908,9 +13140,17 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-ids",
           description:
             "The instance IDs. Default: Describes all your instances. Constraints: Maximum 100 explicitly specified instance IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.instances,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.instances,
+            },
+          ],
         },
         {
           name: "--max-results",
@@ -13184,9 +13424,17 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-ids",
           description:
             "The instance IDs. Default: Describes all your instances.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.instances,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.instances,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -13282,9 +13530,17 @@ export const completionSpec: Fig.Spec = {
           name: "--internet-gateway-ids",
           description:
             "One or more internet gateway IDs. Default: Describes all your internet gateways.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.internet_gateway_id,
+            },
+            {
+              generators: awsGenerators.internet_gateway_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--next-token",
@@ -13448,9 +13704,17 @@ export const completionSpec: Fig.Spec = {
           name: "--key-names",
           description:
             "The key pair names. Default: Describes all your key pairs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.key_pair,
+            },
+            {
+              generators: awsGenerators.key_pair,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--key-pair-ids",
@@ -14808,6 +15072,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -14932,9 +15197,17 @@ export const completionSpec: Fig.Spec = {
           name: "--network-interface-ids",
           description:
             "One or more network interface IDs. Default: Describes all your network interfaces.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.network_interface_ids,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--next-token",
@@ -15816,9 +16089,17 @@ export const completionSpec: Fig.Spec = {
           name: "--route-table-ids",
           description:
             "One or more route table IDs. Default: Describes all your route tables.",
-          args: {
-            generators: awsGenerators.test,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.route_table_ids,
+            },
+            {
+              generators: awsGenerators.route_table_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--next-token",
@@ -16239,6 +16520,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the EBS snapshot.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -16319,9 +16601,17 @@ export const completionSpec: Fig.Spec = {
           name: "--snapshot-ids",
           description:
             "The snapshot IDs. Default: Describes the snapshots for which you have create volume permissions.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.snapshot_ids,
+            },
+            {
+              generators: awsGenerators.snapshot_ids,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -16941,9 +17231,17 @@ export const completionSpec: Fig.Spec = {
           name: "--image-ids",
           description:
             "The AMI IDs for which to show progress. Up to 20 AMI IDs can be included in a request.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.image_id,
+            },
+            {
+              generators: awsGenerators.image_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -17038,9 +17336,16 @@ export const completionSpec: Fig.Spec = {
           name: "--subnet-ids",
           description:
             "One or more subnet IDs. Default: Describes all your subnets.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -17461,9 +17766,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--transit-gateway-attachment-ids",
           description: "The IDs of the attachments.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.transit_gateway_attachment_id,
+            },
+            {
+              generators: awsGenerators.transit_gateway_attachment_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -17635,9 +17948,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--transit-gateway-attachment-ids",
           description: "The IDs of the attachments.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.transit_gateway_attachment_id,
+            },
+            {
+              generators: awsGenerators.transit_gateway_attachment_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -17810,9 +18131,17 @@ export const completionSpec: Fig.Spec = {
           name: "--transit-gateway-attachment-ids",
           description:
             "One or more IDs of the transit gateway peering attachments.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.transit_gateway_attachment_id,
+            },
+            {
+              generators: awsGenerators.transit_gateway_attachment_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -17986,9 +18315,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--transit-gateway-attachment-ids",
           description: "The IDs of the attachments.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.transit_gateway_attachment_id,
+            },
+            {
+              generators: awsGenerators.transit_gateway_attachment_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -18172,6 +18509,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -18236,9 +18574,17 @@ export const completionSpec: Fig.Spec = {
           name: "--volume-ids",
           description:
             "The IDs of the volumes. Default: Describes all your volumes.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.volume_id,
+            },
+            {
+              generators: awsGenerators.volume_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -18309,9 +18655,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--volume-ids",
           description: "The volume IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.volume_id,
+            },
+            {
+              generators: awsGenerators.volume_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -18400,9 +18754,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--volume-ids",
           description: "The IDs of the volumes.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.volume_id,
+            },
+            {
+              generators: awsGenerators.volume_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -18825,9 +19187,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--service-ids",
           description: "The IDs of one or more services.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "string",
+              generators: awsGenerators.service_id,
+            },
+            {
+              generators: awsGenerators.service_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -18915,6 +19285,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
@@ -19089,9 +19460,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--vpc-endpoint-ids",
           description: "One or more endpoint IDs.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.vpc_endpoint_id,
+            },
+            {
+              generators: awsGenerators.vpc_endpoint_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--filters",
@@ -19186,9 +19565,17 @@ export const completionSpec: Fig.Spec = {
           name: "--vpc-peering-connection-ids",
           description:
             "One or more VPC peering connection IDs. Default: Describes all your VPC peering connections.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.vpc_peering_connection_id,
+            },
+            {
+              generators: awsGenerators.vpc_peering_connection_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--next-token",
@@ -19455,6 +19842,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance to unlink from the VPC.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -19503,6 +19891,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the internet gateway.",
           args: {
             name: "string",
+            generators: awsGenerators.internet_gateway_id,
           },
         },
         {
@@ -19609,6 +19998,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the instance. If you are detaching a Multi-Attach enabled volume, you must specify an instance ID.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -19616,6 +20006,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -19830,6 +20221,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -20249,14 +20641,22 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
           name: "--subnet-ids",
           description: "The IDs of the subnets;",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -20304,6 +20704,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -20501,6 +20902,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -20602,6 +21004,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -20819,6 +21222,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the image.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -21171,6 +21575,7 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-id",
           description: "The ID of the instance.",
           args: {
+            name: "string",
             generators: awsGenerators.stop,
           },
         },
@@ -21233,6 +21638,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -21568,6 +21974,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -21767,6 +22174,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the Windows instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -21900,6 +22308,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -22535,6 +22944,7 @@ export const completionSpec: Fig.Spec = {
           description: "A unique name for the key pair.",
           args: {
             name: "string",
+            generators: awsGenerators.key_pair,
           },
         },
         {
@@ -23394,6 +23804,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the AMI.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -23546,6 +23957,7 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-id",
           description: "The ID of the instance.",
           args: {
+            name: "string",
             generators: awsGenerators.instances,
           },
         },
@@ -23666,6 +24078,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance to be modified.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -23774,6 +24187,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance with the scheduled event.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -23820,6 +24234,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -23908,6 +24323,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance that you are modifying.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -24129,6 +24545,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -24253,6 +24670,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the snapshot.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -24374,11 +24792,19 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--subnet-id",
-          description: "The ID of the subnet.",
-          args: {
-            name: "string",
-          },
+          name: "--subnet-ids",
+          description:
+            "The IDs of the subnets to associate with the transit gateway multicast domain.",
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--map-customer-owned-ip-on-launch",
@@ -24787,6 +25213,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment to which traffic is routed.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -24837,6 +25264,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -24911,6 +25339,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -24992,6 +25421,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the volume.",
           args: {
             name: "string",
+            generators: awsGenerators.volume_id,
           },
         },
         {
@@ -25113,6 +25543,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the endpoint.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_endpoint_id,
           },
         },
         {
@@ -25286,6 +25717,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
@@ -25387,6 +25819,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
@@ -25460,6 +25893,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the VPC peering connection.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -25776,9 +26210,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description: "The IDs of the instances.",
-          args: {
-            generators: awsGenerators.stop,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.stop,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.stop,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -25861,6 +26303,7 @@ export const completionSpec: Fig.Spec = {
             "The public IPv4 or IPv6 address range, in CIDR notation. The most specific IPv4 prefix that you can specify is /24. The most specific IPv6 prefix you can specify is /56. The address range cannot overlap with another address range that you've brought to this or another Region.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -26117,9 +26560,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description: "The instance IDs.",
-          args: {
-            generators: awsGenerators.stop,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.stop,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.stop,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -26352,9 +26803,17 @@ export const completionSpec: Fig.Spec = {
           name: "--network-interface-ids",
           description:
             "The group members' network interface IDs to register with the transit gateway multicast group.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.network_interface_ids,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -26409,9 +26868,17 @@ export const completionSpec: Fig.Spec = {
           name: "--network-interface-ids",
           description:
             "The group sources' network interface IDs to register with the transit gateway multicast group.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.network_interface_ids,
+            },
+            {
+              generators: awsGenerators.reserved_instance_id,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -26459,15 +26926,23 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
           name: "--subnet-ids",
           description:
             "The IDs of the subnets to associate with the transit gateway multicast domain.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              generators: awsGenerators.subnet_ids,
+            },
+            {
+              generators: awsGenerators.subnet_ids,
+              variadic: true,
+              isOptional: true,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -26507,6 +26982,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the transit gateway peering attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -26548,6 +27024,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -26599,14 +27076,23 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
           name: "--vpc-endpoint-ids",
           description: "The IDs of one or more VPC endpoints.",
-          args: {
-            name: "list",
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.vpc_endpoint_id,
+            },
+            {
+              generators: awsGenerators.vpc_endpoint_id,
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
         {
           name: "--cli-input-json",
@@ -26647,6 +27133,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the VPC peering connection.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -26995,6 +27482,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_endpoint_id,
           },
         },
         {
@@ -27018,6 +27506,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of a NAT instance in your VPC.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -27063,6 +27552,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of a network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -27077,6 +27567,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of a VPC peering connection.",
           args: {
             name: "string",
+            generators: awsGenerators.vpc_peering_connection_id,
           },
         },
         {
@@ -27172,6 +27663,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the attachment.",
           args: {
             name: "string",
+            generators: awsGenerators.transit_gateway_attachment_id,
           },
         },
         {
@@ -27610,6 +28102,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the AMI.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -27669,6 +28162,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -27710,6 +28204,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -27757,6 +28252,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the snapshot.",
           args: {
             name: "string",
+            generators: awsGenerators.snapshot_ids,
           },
         },
         {
@@ -28051,6 +28547,7 @@ export const completionSpec: Fig.Spec = {
           description: "The CIDR IP range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -28195,6 +28692,7 @@ export const completionSpec: Fig.Spec = {
           description: "The CIDR IP range.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -28249,6 +28747,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.",
           args: {
             name: "string",
+            generators: awsGenerators.image_id,
           },
         },
         {
@@ -28289,6 +28788,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the key pair. You can create a key pair using CreateKeyPair or ImportKeyPair.  If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.",
           args: {
             name: "string",
+            generators: awsGenerators.key_pair,
           },
         },
         {
@@ -28876,6 +29376,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the instance.",
           args: {
             name: "string",
+            generators: awsGenerators.instances,
           },
         },
         {
@@ -28915,9 +29416,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description: "The IDs of the instances.",
-          args: {
-            generators: awsGenerators.start,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.start,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.start,
+            },
+          ],
         },
         {
           name: "--additional-info",
@@ -29039,6 +29548,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the endpoint service.",
           args: {
             name: "string",
+            generators: awsGenerators.service_id,
           },
         },
         {
@@ -29068,9 +29578,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description: "The IDs of the instances.",
-          args: {
-            generators: awsGenerators.stop,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.stop,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.stop,
+            },
+          ],
         },
         {
           name: "--hibernate",
@@ -29187,9 +29705,17 @@ export const completionSpec: Fig.Spec = {
           name: "--instance-ids",
           description:
             "The IDs of the instances. Constraints: Up to 1000 instance IDs. We recommend breaking up this request into smaller batches.",
-          args: {
-            generators: awsGenerators.instances,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.instances,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.instances,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -29230,6 +29756,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -29269,6 +29796,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ID of the network interface.",
           args: {
             name: "string",
+            generators: awsGenerators.network_interface_ids,
           },
         },
         {
@@ -29306,9 +29834,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--instance-ids",
           description: "The IDs of the instances.",
-          args: {
-            generators: awsGenerators.stop,
-          },
+          args: [
+            {
+              name: "list",
+              generators: awsGenerators.stop,
+            },
+            {
+              isOptional: true,
+              variadic: true,
+              generators: awsGenerators.stop,
+            },
+          ],
         },
         {
           name: "--dry-run",
@@ -29463,6 +29999,7 @@ export const completionSpec: Fig.Spec = {
           description: "The address range, in CIDR notation.",
           args: {
             name: "string",
+            generators: awsGenerators.cidr_block,
           },
         },
         {
@@ -29823,9 +30360,17 @@ export const completionSpec: Fig.Spec = {
               name: "--image-ids",
               description:
                 "The image IDs. Default: Describes all images available to you.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.image_id,
+                },
+                {
+                  generators: awsGenerators.image_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--owners",
@@ -29889,9 +30434,17 @@ export const completionSpec: Fig.Spec = {
               name: "--image-ids",
               description:
                 "The image IDs. Default: Describes all images available to you.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.image_id,
+                },
+                {
+                  generators: awsGenerators.image_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--owners",
@@ -29947,9 +30500,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -30036,9 +30597,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -30125,9 +30694,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances. Constraints: Maximum 100 explicitly specified instance IDs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--max-results",
@@ -30224,9 +30801,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -30313,9 +30898,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -30402,9 +30995,17 @@ export const completionSpec: Fig.Spec = {
               name: "--key-names",
               description:
                 "The key pair names. Default: Describes all your key pairs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.key_pair,
+                },
+                {
+                  generators: awsGenerators.key_pair,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--key-pair-ids",
@@ -30557,9 +31158,17 @@ export const completionSpec: Fig.Spec = {
               name: "--network-interface-ids",
               description:
                 "One or more network interface IDs. Default: Describes all your network interfaces.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.network_interface_ids,
+                },
+                {
+                  generators: awsGenerators.reserved_instance_id,
+                  variadic: true,
+                  isOptional: true,
+                },
+              ],
             },
             {
               name: "--next-token",
@@ -30629,6 +31238,7 @@ export const completionSpec: Fig.Spec = {
               description: "The ID of the Windows instance.",
               args: {
                 name: "string",
+                generators: awsGenerators.instances,
               },
             },
             {
@@ -30806,9 +31416,17 @@ export const completionSpec: Fig.Spec = {
               name: "--snapshot-ids",
               description:
                 "The snapshot IDs. Default: Describes the snapshots for which you have create volume permissions.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.snapshot_ids,
+                },
+                {
+                  generators: awsGenerators.snapshot_ids,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -30969,9 +31587,16 @@ export const completionSpec: Fig.Spec = {
               name: "--subnet-ids",
               description:
                 "One or more subnet IDs. Default: Describes all your subnets.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  generators: awsGenerators.subnet_ids,
+                },
+                {
+                  generators: awsGenerators.subnet_ids,
+                  variadic: true,
+                  isOptional: true,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -31058,9 +31683,17 @@ export const completionSpec: Fig.Spec = {
               name: "--instance-ids",
               description:
                 "The instance IDs. Default: Describes all your instances. Constraints: Maximum 100 explicitly specified instance IDs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.instances,
+                },
+                {
+                  isOptional: true,
+                  variadic: true,
+                  generators: awsGenerators.instances,
+                },
+              ],
             },
             {
               name: "--max-results",
@@ -31156,9 +31789,17 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--volume-ids",
               description: "The volume IDs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.volume_id,
+                },
+                {
+                  generators: awsGenerators.volume_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -31245,9 +31886,17 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--volume-ids",
               description: "The volume IDs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.volume_id,
+                },
+                {
+                  generators: awsGenerators.volume_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -31334,9 +31983,17 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--volume-ids",
               description: "The volume IDs.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.volume_id,
+                },
+                {
+                  generators: awsGenerators.volume_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--dry-run",
@@ -31612,9 +32269,17 @@ export const completionSpec: Fig.Spec = {
               name: "--vpc-peering-connection-ids",
               description:
                 "One or more VPC peering connection IDs. Default: Describes all your VPC peering connections.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.vpc_peering_connection_id,
+                },
+                {
+                  generators: awsGenerators.vpc_peering_connection_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--next-token",
@@ -31701,9 +32366,17 @@ export const completionSpec: Fig.Spec = {
               name: "--vpc-peering-connection-ids",
               description:
                 "One or more VPC peering connection IDs. Default: Describes all your VPC peering connections.",
-              args: {
-                name: "list",
-              },
+              args: [
+                {
+                  name: "list",
+                  generators: awsGenerators.vpc_peering_connection_id,
+                },
+                {
+                  generators: awsGenerators.vpc_peering_connection_id,
+                  isOptional: true,
+                  variadic: true,
+                },
+              ],
             },
             {
               name: "--next-token",
