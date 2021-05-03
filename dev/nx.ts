@@ -1,95 +1,81 @@
-const nxGenerators: Record<string, Fig.Generator> = {
+type PostProcessFn = (out: string, context: string[]) => Fig.Suggestion[];
+
+type PostProcessWorkspaceFn = (
+  filterFn: (projectName: string, index: number, array: string[]) => boolean
+) => PostProcessFn;
+
+interface NxGenerators {
+  apps: Fig.Generator;
+  e2eApps: Fig.Generator;
+  appsAndLibs: Fig.Generator;
+  localSchematics: Fig.Generator;
+  localGenerators: Fig.Generator;
+  installedPlugins: Fig.Generator;
+  pluginsSchematics: Fig.Generator;
+}
+
+const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
+  try {
+    const workspace = JSON.parse(out);
+    return Object.keys(workspace.projects)
+      .filter(filterFn)
+      .map((suggestion) => ({
+        name: suggestion,
+        type: "option",
+      }));
+  } catch (err) {
+    return [];
+  }
+};
+
+const processGenerators: PostProcessFn = function (out) {
+  return out
+    .split("\n")
+    .map((line) => line.split(" ").pop())
+    .map((suggestion) => ({
+      name: suggestion,
+      type: "option",
+    }));
+};
+
+const oneDayCache: Fig.Cache = {
+  ttl: 60 * 60 * 24,
+};
+
+const nxGenerators: NxGenerators = {
   apps: {
     script: "cat workspace.json",
-    postProcess: function (out) {
-      try {
-        const workspace = JSON.parse(out);
-        return Object.keys(workspace.projects)
-          .filter(
-            (projectName) =>
-              workspace.projects[projectName].projectType === "application"
-          )
-          .filter((projectName) => !projectName.endsWith("-e2e"))
-          .map((suggestion) => ({
-            name: suggestion,
-            type: "option",
-          }));
-      } catch (err) {
-        return [];
-      }
-    },
+    postProcess: processWorkspaceJson(
+      (projectName, _, projects) =>
+        projects[projectName].projectType === "application" &&
+        !projectName.endsWith("-e2e")
+    ),
   },
   e2eApps: {
     script: "cat workspace.json",
-    postProcess: function (out) {
-      try {
-        const workspace = JSON.parse(out);
-        return Object.keys(workspace.projects)
-          .filter(
-            (projectName) =>
-              workspace.projects[projectName].projectType === "application"
-          )
-          .filter((projectName) => projectName.endsWith("-e2e"))
-          .map((suggestion) => ({
-            name: suggestion,
-            type: "option",
-          }));
-      } catch (err) {
-        return [];
-      }
-    },
+    postProcess: processWorkspaceJson(
+      (projectName, _, projects) =>
+        projects[projectName].projectType === "application" &&
+        projectName.endsWith("-e2e")
+    ),
   },
   appsAndLibs: {
     script: "cat workspace.json",
-    postProcess: function (out) {
-      try {
-        const workspace = JSON.parse(out);
-        return Object.keys(workspace.projects).map((suggestion) => ({
-          name: suggestion,
-          type: "option",
-        }));
-      } catch (err) {
-        return [];
-      }
-    },
+    postProcess: processWorkspaceJson(() => true),
   },
   localSchematics: {
     script: "ls tools/schematics",
-    cache: {
-      ttl: 60 * 60 * 24,
-    },
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => line.split(" ").pop())
-        .map((suggestion) => ({
-          name: suggestion,
-          type: "option",
-        }));
-    },
+    cache: oneDayCache,
+    postProcess: processGenerators,
   },
   localGenerators: {
     script: "ls tools/generators",
-    cache: {
-      ttl: 60 * 60 * 24,
-    },
-    postProcess: function (out) {
-      return out
-        .split("\n")
-        .map((line) => line.split(" ").pop())
-        .map((suggestion) => ({
-          name: suggestion,
-          type: "option",
-        }));
-    },
+    cache: oneDayCache,
+    postProcess: processGenerators,
   },
   installedPlugins: {
-    script: () => {
-      return "nx list";
-    },
-    cache: {
-      ttl: 60 * 60 * 24,
-    },
+    script: "nx list",
+    cache: oneDayCache,
     postProcess: function (out) {
       if (out.indexOf("Installed plugins") > -1) {
         const fullList = out.split(">");
@@ -114,9 +100,7 @@ const nxGenerators: Record<string, Fig.Generator> = {
       }
     },
     trigger: ":",
-    cache: {
-      ttl: 60 * 60 * 24,
-    },
+    cache: oneDayCache,
     postProcess: function (out, context) {
       if (out.indexOf("Installed plugins") > -1) {
         const fullList = out.split(">");

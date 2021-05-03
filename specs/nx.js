@@ -3,99 +3,64 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+var processWorkspaceJson = function (filterFn) { return function (out) {
+    try {
+        var workspace = JSON.parse(out);
+        return Object.keys(workspace.projects)
+            .filter(filterFn)
+            .map(function (suggestion) { return ({
+            name: suggestion,
+            type: "option",
+        }); });
+    }
+    catch (err) {
+        return [];
+    }
+}; };
+var processGenerators = function (out) {
+    return out
+        .split("\n")
+        .map(function (line) { return line.split(" ").pop(); })
+        .map(function (suggestion) { return ({
+        name: suggestion,
+        type: "option",
+    }); });
+};
+var oneDayCache = {
+    ttl: 60 * 60 * 24,
+};
 var nxGenerators = {
     apps: {
         script: "cat workspace.json",
-        postProcess: function (out) {
-            try {
-                var workspace_1 = JSON.parse(out);
-                return Object.keys(workspace_1.projects)
-                    .filter(function (projectName) {
-                    return workspace_1.projects[projectName].projectType === "application";
-                })
-                    .filter(function (projectName) { return !projectName.endsWith("-e2e"); })
-                    .map(function (suggestion) { return ({
-                    name: suggestion,
-                    type: "option",
-                }); });
-            }
-            catch (err) {
-                return [];
-            }
-        },
+        postProcess: processWorkspaceJson(function (projectName, _, projects) {
+            return projects[projectName].projectType === "application" &&
+                !projectName.endsWith("-e2e");
+        }),
     },
     e2eApps: {
         script: "cat workspace.json",
-        postProcess: function (out) {
-            try {
-                var workspace_2 = JSON.parse(out);
-                return Object.keys(workspace_2.projects)
-                    .filter(function (projectName) {
-                    return workspace_2.projects[projectName].projectType === "application";
-                })
-                    .filter(function (projectName) { return projectName.endsWith("-e2e"); })
-                    .map(function (suggestion) { return ({
-                    name: suggestion,
-                    type: "option",
-                }); });
-            }
-            catch (err) {
-                return [];
-            }
-        },
+        postProcess: processWorkspaceJson(function (projectName, _, projects) {
+            return projects[projectName].projectType === "application" &&
+                projectName.endsWith("-e2e");
+        }),
     },
     appsAndLibs: {
         script: "cat workspace.json",
-        postProcess: function (out) {
-            try {
-                var workspace = JSON.parse(out);
-                return Object.keys(workspace.projects).map(function (suggestion) { return ({
-                    name: suggestion,
-                    type: "option",
-                }); });
-            }
-            catch (err) {
-                return [];
-            }
-        },
+        postProcess: processWorkspaceJson(function () { return true; }),
     },
     localSchematics: {
         script: "ls tools/schematics",
-        cache: {
-            ttl: 60 * 60 * 24,
-        },
-        postProcess: function (out) {
-            return out
-                .split("\n")
-                .map(function (line) { return line.split(" ").pop(); })
-                .map(function (suggestion) { return ({
-                name: suggestion,
-                type: "option",
-            }); });
-        },
+        cache: oneDayCache,
+        postProcess: processGenerators,
     },
     localGenerators: {
         script: "ls tools/generators",
-        cache: {
-            ttl: 60 * 60 * 24,
-        },
-        postProcess: function (out) {
-            return out
-                .split("\n")
-                .map(function (line) { return line.split(" ").pop(); })
-                .map(function (suggestion) { return ({
-                name: suggestion,
-                type: "option",
-            }); });
-        },
+        cache: oneDayCache,
+        postProcess: processGenerators,
     },
     installedPlugins: {
-        script: function () {
-            return "nx list";
-        },
-        cache: {
-            ttl: 60 * 60 * 24,
-        },
+        script: "nx list",
+        cache: oneDayCache,
         postProcess: function (out) {
             if (out.indexOf("Installed plugins") > -1) {
                 var fullList = out.split(">");
@@ -121,9 +86,7 @@ var nxGenerators = {
             }
         },
         trigger: ":",
-        cache: {
-            ttl: 60 * 60 * 24,
-        },
+        cache: oneDayCache,
         postProcess: function (out, context) {
             if (out.indexOf("Installed plugins") > -1) {
                 var fullList = out.split(">");
