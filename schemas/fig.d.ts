@@ -292,6 +292,13 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
+     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     *
+     * @example
+     * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
+     */
+    isModule?: string;
+    /**
      * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
