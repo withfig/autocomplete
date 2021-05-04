@@ -8,6 +8,7 @@
         "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
         "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
         "create-boilerplate": "./scripts/create-boilerplate.sh",
+        "create-example": "./scripts/create-example.sh",
         "build": "ts-node-script scripts/compiler.ts",
         "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
         "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
@@ -21,6 +22,9 @@
         },
         "create-boilerplate": {
             "description": "Create a new completion spec"
+        },
+        "create-example": {
+            "description": "Create a dummy git completion spec"
         },
         "test": {
             "description": "Typecheck all .ts files in /dev"
