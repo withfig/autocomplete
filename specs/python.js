@@ -133,7 +133,7 @@ var completionSpec = {
                     { name: "utf8" },
                     { name: "pycache_prefix=PATH" },
                 ],
-            }
+            },
         },
     ],
 };
