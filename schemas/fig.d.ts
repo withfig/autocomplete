@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-
 declare namespace Fig {
   // All the available templates
   export type TemplateStrings = "filepaths" | "folders";
@@ -21,16 +20,27 @@ declare namespace Fig {
 
   // A function which can have a T argument and a R result, both
   // set to void by default
-  export type Function<T = void, R = void> = (param: T) => R;
+  export type Function<T = void, R = void> = (param?: T) => R;
 
   // A string or a function which can have a T argument and a R result,
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export type Spec = Subcommand;
+  export interface Spec extends Subcommand {
+    /**
+     * This flag allows options to have multiple characters
+     * even though they only have one hyphen
+     *
+     * @example
+     * -mod
+     */
+    posixNoncompliantFlags?: boolean;
+  }
 
   // Execute shell command function inside generators
-  export type ExecuteShellCommandFunction = (param: String) => Promise<String>;
+  export type ExecuteShellCommandFunction = (
+    commandToExecute: string
+  ) => Promise<string>;
 
   export interface BaseSuggestion {
     /**
@@ -118,7 +128,7 @@ declare namespace Fig {
      * @example
      * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
-    name: string;
+    name: string | string[];
 
     /**
      * A list of subcommands for this spec.
@@ -151,7 +161,7 @@ declare namespace Fig {
      * @example:
      * `commit -m '{cursor}'` is a shortcut for git
      */
-    additionalSuggestions?: Suggestion[] | String[];
+    additionalSuggestions?: Suggestion[] | string[];
     /**
      * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
      * Specify the spec name without `js`. This is simiar but different to isCommand in the Arg object so read both carefully
@@ -168,12 +178,22 @@ declare namespace Fig {
      */
     loadSpec?: string;
     /**
-     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically. This is a function that takes in an array of strings (the tokens the user has typed) and outputs a completion spec object
+     * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically.
+     * This function takes two params:
+     * 1. Context: an array of strings (the tokens the user has typed)
+     * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
+     *
+     * It outputs a completion spec object
      *
      * @example
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
-    generateSpec?: Function<string[], Promise<Spec>>;
+    generateSpec?: (
+      context?: string[],
+      executeShellCommand?: ExecuteShellCommandFunction
+    ) => Promise<Spec>;
+
+    // Function<string[], Promise<Spec>>;
   }
 
   export interface Option extends BaseSuggestion {
@@ -184,7 +204,7 @@ declare namespace Fig {
      * @example
      * For git commit -m, the option name is `["-m", "--message"]`
      */
-    name: SingleOrArray<String>;
+    name: SingleOrArray<string>;
 
     /**
      * An array of args or a single arg object.
@@ -272,6 +292,13 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
+     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     *
+     * @example
+     * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
+     */
+    isModule?: string;
+    /**
      * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
@@ -330,7 +357,8 @@ declare namespace Fig {
     /**
      * This function takes one paramater: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
-    postProcess?: Function<string, Suggestion[]>;
+    postProcess?: (out: string, context?: string[]) => Suggestion[];
+
     /**
      * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
      * The suggestions remain the same while the filteredSuggestions change on each input.
@@ -338,11 +366,14 @@ declare namespace Fig {
      * Typically, Fig regenerates the suggestions every time the user hits space as in bash, a space typically delimits commands. However, if the `trigger` prop is defined, Fig will run the trigger function on each keystroke. If it returns true, instead of filtering over the suggestions, Fig will regenerate the list of suggestions THEN filter over them.
      * The trigger function takes two inputs: the new token the user typed and the token on the keystroke before.
      *
+     * Trigger as a function takes two arguments: 1. the new token 2. the old token
+     * e.g. the old token might be `desktop` and the new token might be `desktop/`. The function may look for a different in the number of slashes. In this case there is a difference so it would return true.
+     *
      * The trigger prop can also be a simple string. This is synctactic sugar that allows you to specify a single character. If count of this character in the string before !== the count of the new string, Fig will regenerate the suggestions.
      *
      * Using a trigger is especially beneficial when you have an argument contained inside a single string that is not separated by a space. It is often used with a custom prop or script (as a function)
      *
-     *Finally, make sure you don't confuse trigger with debounce. Debounce will regenerate suggestions after a period of inactivity typing. Trigger will regenerate suggestions when the function you define returns true!
+     * Finally, make sure you don't confuse trigger with debounce. Debounce will regenerate suggestions after a period of inactivity typing. Trigger will regenerate suggestions when the function you define returns true!
      *
      * Use some logging in the function to work out when trigger is being run
      *
@@ -351,7 +382,7 @@ declare namespace Fig {
      * e.g. If I had already typed "desktop". The current list of suggestions is from the ~ directory and the filterTerm is "desktop". Then I type "/" so it says "desktop/", the trigger would return true, Fig will generate suggestions for the directory `~/desktop/` and the filterTerm will become an empty string.
      *
      */
-    trigger?: string | ((paramOne: string, paramTwo: string) => boolean);
+    trigger?: string | ((newToken: string, oldToken?: string) => boolean);
     /**
      * Read the note above about how triggers work. Triggers and filterTerm may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The filterTerm defines what characters we should use to filter over these suggestions.
      *
@@ -370,10 +401,12 @@ declare namespace Fig {
      *
      * It is an async function.
      *
-     * It takes on argument: an array of tokens of what the user has typed
+     * It takes two arguments:
+     * 1. Context: an array of tokens of what the user has typed
+     * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
+     *
      * It must return an array of suggestion obejcts.
      *
-     * The function also allows the use of the async function `executeShellCommand` which executes commands from the same current working directory as the user and returns the output as a text blob.
      *
      * @example
      * ```
@@ -383,7 +416,10 @@ declare namespace Fig {
      * }
      * ```
      */
-    custom?: Function<string[], Promise<Suggestion[]>>;
+    custom?: (
+      context: string[],
+      executeShellCommand: ExecuteShellCommandFunction
+    ) => Promise<Suggestion[]>;
     /**
      * For commands that take a long time to run, Fig gives you the option to cache their response. You can cache the response globally or just by the directory they were run in
      * You just need to specify a `ttl` (time to live) for how long the cache will last (this is a number)

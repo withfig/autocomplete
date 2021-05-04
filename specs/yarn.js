@@ -1,36 +1,68 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
     return to;
 };
-var yarnGenerators = {
-    getScripts: {
-        script: "cat package.json",
-        postProcess: function (output) {
-            if (output.trim() == "") {
-                return [];
-            }
-            try {
-                var packageContent = JSON.parse(output);
-                var scripts = packageContent["scripts"];
-                if (scripts) {
-                    return Object.keys(scripts).map(function (scriptName) { return ({
-                        name: scriptName,
-                        icon: "https://yarnpkg.com/favicon-32x32.png",
-                    }); });
-                }
-            }
-            catch (e) { }
+var searchGenerator = {
+    script: function (context) {
+        if (context[context.length - 1] === "")
+            return "";
+        var searchTerm = context[context.length - 1];
+        return "curl -s -H \"Accept: application/json\" \"https://api.npms.io/v2/search?q=" + searchTerm + "&size=20\"";
+    },
+    postProcess: function (out) {
+        try {
+            var results = JSON.parse(out).results;
+            return results.map(function (item) { return ({
+                name: item.package.name,
+                description: item.package.description,
+            }); });
+        }
+        catch (e) {
             return [];
-        },
+        }
+    },
+};
+var getScriptsGenerator = {
+    script: "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+    // splitOn: "\n",
+    postProcess: function (out) {
+        if (out.trim() == "") {
+            return [];
+        }
+        try {
+            var packageContent = JSON.parse(out);
+            var scripts = packageContent["scripts"];
+            var figCompletions_1 = packageContent["fig"] || {};
+            if (scripts) {
+                return Object.keys(scripts).map(function (key) {
+                    var icon = "fig://icon?type=yarn";
+                    var customScripts = figCompletions_1[key];
+                    return __assign({ name: key, icon: icon }, (customScripts !== undefined && customScripts));
+                });
+            }
+        }
+        catch (e) {
+            console.error(e);
+        }
+        return [];
     },
 };
 // generate package list from package.json file
 var packageList = {
     script: "cat package.json",
     postProcess: function (out) {
-        console.log("THIS IS A TEST");
-        console.log(out);
         if (out.trim() == "") {
             return [];
         }
@@ -81,7 +113,8 @@ var completionSpec = {
     description: "Manage packages and run scripts",
     args: [
         {
-            generators: yarnGenerators.getScripts,
+            generators: getScriptsGenerator,
+            isOptional: true,
         },
     ],
     options: [
@@ -346,6 +379,12 @@ var completionSpec = {
         {
             name: "add",
             description: "Installs a package and any packages that it depends on.",
+            args: {
+                name: "package",
+                generators: searchGenerator,
+                debounce: true,
+                variadic: true,
+            },
             options: [
                 {
                     name: ["-W", "--ignore-workspace-root-check"],
@@ -571,6 +610,12 @@ var completionSpec = {
         {
             name: "global",
             description: "Install packages globally on your operating system",
+            args: {
+                name: "package",
+                generators: searchGenerator,
+                debounce: true,
+                variadic: true,
+            },
             options: [
                 {
                     name: "--prefix",
@@ -840,7 +885,7 @@ var completionSpec = {
                 //           }
                 //     },
                 {
-                    generators: yarnGenerators.getScripts,
+                    generators: getScriptsGenerator,
                 },
             ],
         },

@@ -1,5 +1,4 @@
-// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-// var executeShellCommand: Fig.ExecuteShellCommandFunction;
+// To learn more about Fig's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -38,32 +37,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 // The below is a dummy example for git. Make sure to change the file name!
 var completionSpec = {
-    name: "mask",
+    name: "php",
+    description: "Run the PHP interpreter",
     generateSpec: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
-        var maskfileLocationIdx, out;
+        var subcommands;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    maskfileLocationIdx = context.indexOf("--maskfile");
-                    if (!(maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > context.length)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, executeShellCommand("cat maskfile.md 2> /dev/null")];
+                    subcommands = [];
+                    return [4 /*yield*/, executeShellCommand("ls -1 artisan")];
                 case 1:
-                    out = _a.sent();
-                    return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, executeShellCommand("cat " + context[maskfileLocationIdx + 1] + " 2> /dev/null")];
-                case 3:
-                    out = _a.sent();
-                    _a.label = 4;
-                case 4:
-                    if (!out)
-                        return [2 /*return*/, { name: "null" }];
+                    if ((_a.sent()) === "artisan") {
+                        subcommands.push({ name: "artisan", loadSpec: "php/artisan" });
+                    }
                     return [2 /*return*/, {
-                            name: "mask",
-                            subcommands: out.match(/##.*/g).map(function (elm) {
-                                return {
-                                    name: elm.slice(3),
-                                };
-                            }),
+                            name: "php",
+                            subcommands: subcommands,
+                            args: {
+                                generators: {
+                                    template: "filepaths",
+                                    filterTemplateSuggestions: function (suggestions) {
+                                        return suggestions.filter(function (suggestion) {
+                                            return (
+                                            // suggestion.name.endsWith(".php") ||
+                                            suggestion.name.indexOf(".") === -1);
+                                        });
+                                    },
+                                },
+                            },
                         }];
             }
         });

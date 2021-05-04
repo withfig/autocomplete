@@ -29,12 +29,11 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: ["-m"],
-      insertValue: "-m ",
-      description:
-        "Search sys.path for the named module and execute its contents as the __main__ module.",
+      description: "module",
       args: {
-        name: "command",
-        isCommand: true,
+        name: "python module",
+        isModule: "python/",
+        suggestions: ["http.server"],
       },
     },
     {

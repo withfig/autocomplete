@@ -3,7 +3,7 @@ export const completionSpec: Fig.Spec = {
   description: "Sublime Text",
   args: {
     variadic: true,
-    template: "filepaths",
+    template: ["folders", "filepaths"],
   },
   subcommands: [],
 };
