@@ -1,5 +1,3 @@
-// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-// var executeShellCommand: Fig.ExecuteShellCommandFunction;
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,34 +34,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// The below is a dummy example for git. Make sure to change the file name!
 var completionSpec = {
-    name: "mask",
+    name: "artisan",
+    description: "Laravel Artisan Command",
     generateSpec: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
-        var maskfileLocationIdx, out;
+        var out, subcommands, commandDefinition;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    maskfileLocationIdx = context.indexOf("--maskfile");
-                    if (!(maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > context.length)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, executeShellCommand("cat maskfile.md 2> /dev/null")];
+                case 0: return [4 /*yield*/, executeShellCommand("php artisan list --format=json")];
                 case 1:
                     out = _a.sent();
-                    return [3 /*break*/, 4];
-                case 2: return [4 /*yield*/, executeShellCommand("cat " + context[maskfileLocationIdx + 1] + " 2> /dev/null")];
-                case 3:
-                    out = _a.sent();
-                    _a.label = 4;
-                case 4:
-                    if (!out)
-                        return [2 /*return*/, { name: "null" }];
+                    subcommands = [];
+                    try {
+                        commandDefinition = JSON.parse(out);
+                        commandDefinition.commands.map(function (command) {
+                            subcommands.push({
+                                name: command.name,
+                                description: command.description,
+                                icon: "https://web.tinkerwell.app/img/laravel.3cab6a56.png",
+                                args: Object.keys(command.definition.arguments).map(function (argumentKey) {
+                                    var argument = command.definition.arguments[argumentKey];
+                                    return {
+                                        name: argument.name,
+                                        description: argument.description,
+                                        isOptional: !argument.is_required,
+                                    };
+                                }),
+                                options: Object.keys(command.definition.options).map(function (optionKey) {
+                                    var option = command.definition.options[optionKey];
+                                    var names = [option.name];
+                                    if (option.shortcut !== "") {
+                                        names.push(option.shortcut);
+                                    }
+                                    return {
+                                        name: names,
+                                        description: option.description,
+                                    };
+                                }),
+                            });
+                        });
+                    }
+                    catch (err) {
+                        //
+                    }
                     return [2 /*return*/, {
-                            name: "mask",
-                            subcommands: out.match(/##.*/g).map(function (elm) {
-                                return {
-                                    name: elm.slice(3),
-                                };
-                            }),
+                            name: "artisan",
+                            debounce: true,
+                            subcommands: subcommands,
                         }];
             }
         });
