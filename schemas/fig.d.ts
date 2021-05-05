@@ -128,7 +128,7 @@ declare namespace Fig {
      * @example
      * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
-    name: string;
+    name: string | string[];
 
     /**
      * A list of subcommands for this spec.
@@ -218,6 +218,45 @@ declare namespace Fig {
      * `args: {}`
      */
     args?: SingleOrArray<Arg>;
+    /**
+     *
+     * Signals whether an option is required. The default is an option is NOT required.
+     *
+     * Currently, signalling that an option is required doesn't do anything, however, Fig will handle it in the future
+     *
+     * @example
+     * The "-m" option of git commit is required
+     *
+     */
+    required?: boolean;
+    /**
+     *
+     * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
+     * The default is an option is NOT mutually exclusive with any other options
+     *
+     * Currently, signalling mutually exclusive options doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * You might see `[-a | --interactive | --patch]` in a man page. This means each of these options are mutually exclusive on each other.
+     * If we were defining the exclusive prop of the "-a" option, then we would have `exclusive: ["--interactive", "--patch"]`
+     *
+     *
+     */
+    exclusive?: string[];
+    /**
+     *
+     * Signals whether an option depends other options. Define this as an array of strings of the option names.
+     * The default is an option does NOT depend on any other options
+     *
+     * Currently, signalling dependsOn doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * In a tool like firebase, we may want to delete a specific extension. The command might be `firebase delete --project ABC --extension 123` This would mean we delete the 123 extension from the ABC project.
+     * In this case, `--extension ` dependsOn `--project`
+     *
+     *
+     */
+    dependsOn?: string[];
   }
 
   export interface Arg {
@@ -292,6 +331,13 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
+     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     *
+     * @example
+     * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
+     */
+    isModule?: string;
+    /**
      * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
@@ -307,6 +353,13 @@ declare namespace Fig {
      * NPM install and pip install send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
+    /**
+     * The default value for an optional argument. This is just a string
+     *
+     * @example
+     *
+     */
+    default?: string;
   }
 
   /**
@@ -405,7 +458,7 @@ declare namespace Fig {
      * ```
      * custom: (context) => {
      *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => {name: elm})
+     *    return out.split("\n").map((elm) => ({name: elm}) )
      * }
      * ```
      */
