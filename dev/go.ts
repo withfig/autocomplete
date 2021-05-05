@@ -174,6 +174,17 @@ const globalOptions: Fig.Option[] = [
     description: "module download mode to use: readonly, vendor, or mod.",
     args: {
       name: "mode",
+      suggestions: [
+        {
+          name: "readonly",
+        },
+        {
+          name: "vendor",
+        },
+        {
+          name: "mod",
+        },
+      ],
     },
   },
   {
@@ -214,6 +225,7 @@ const globalOptions: Fig.Option[] = [
 const packagesArg: Fig.Arg = {
   name: "packages",
   variadic: true,
+  isOptional: true,
 };
 
 export const completionSpec: Fig.Spec = {
@@ -228,7 +240,23 @@ export const completionSpec: Fig.Spec = {
     {
       name: "build",
       description: "compile packages and dependencies",
-      options: [...globalOptions],
+      options: [
+        ...globalOptions,
+        {
+          name: "-o",
+          description:
+            "write the resulting executable or object to the named output file or directory",
+          args: {
+            template: ["filepaths", "folders"],
+          },
+        },
+        {
+          name: "-i",
+          description:
+            "install the packages that are dependencies of the target",
+        },
+      ],
+      args: packagesArg,
     },
     {
       name: "clean",
@@ -340,7 +368,7 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "-mod",
-          description: "which module download modeto use",
+          description: "which module download mode to use",
           args: {
             name: "mode",
             suggestions: [
@@ -382,10 +410,15 @@ export const completionSpec: Fig.Spec = {
         {
           name: "-u",
           description: "update to newer minor or patch releases when available",
-        },
-        {
-          name: "-u=patch",
-          description: "update to newer patch releases",
+          args: {
+            isOptional: true,
+            suggestions: [
+              {
+                name: "patch",
+                description: "update to newer patch releases",
+              },
+            ],
+          },
         },
         {
           name: "-insecure",
@@ -399,6 +432,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "url",
+        isOptional: true,
       },
     },
     {
@@ -681,6 +715,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "package",
+        isScript: true,
       },
     },
     {
@@ -718,6 +753,7 @@ export const completionSpec: Fig.Spec = {
           description: " Compile the test binary to the named file",
           args: {
             name: "file",
+            template: "filepaths",
           },
         },
       ],

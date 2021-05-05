@@ -157,6 +157,17 @@ var globalOptions = __spreadArray(__spreadArray([], resolutionAndExecutionOption
         description: "module download mode to use: readonly, vendor, or mod.",
         args: {
             name: "mode",
+            suggestions: [
+                {
+                    name: "readonly",
+                },
+                {
+                    name: "vendor",
+                },
+                {
+                    name: "mod",
+                },
+            ],
         },
     },
     {
@@ -192,6 +203,7 @@ var globalOptions = __spreadArray(__spreadArray([], resolutionAndExecutionOption
 var packagesArg = {
     name: "packages",
     variadic: true,
+    isOptional: true,
 };
 var completionSpec = {
     name: "go",
@@ -205,7 +217,20 @@ var completionSpec = {
         {
             name: "build",
             description: "compile packages and dependencies",
-            options: __spreadArray([], globalOptions),
+            options: __spreadArray(__spreadArray([], globalOptions), [
+                {
+                    name: "-o",
+                    description: "write the resulting executable or object to the named output file or directory",
+                    args: {
+                        template: ["filepaths", "folders"],
+                    },
+                },
+                {
+                    name: "-i",
+                    description: "install the packages that are dependencies of the target",
+                },
+            ]),
+            args: packagesArg,
         },
         {
             name: "clean",
@@ -309,7 +334,7 @@ var completionSpec = {
                 },
                 {
                     name: "-mod",
-                    description: "which module download modeto use",
+                    description: "which module download mode to use",
                     args: {
                         name: "mode",
                         suggestions: [
@@ -347,10 +372,15 @@ var completionSpec = {
                 {
                     name: "-u",
                     description: "update to newer minor or patch releases when available",
-                },
-                {
-                    name: "-u=patch",
-                    description: "update to newer patch releases",
+                    args: {
+                        isOptional: true,
+                        suggestions: [
+                            {
+                                name: "patch",
+                                description: "update to newer patch releases",
+                            },
+                        ],
+                    },
                 },
                 {
                     name: "-insecure",
@@ -363,6 +393,7 @@ var completionSpec = {
             ]),
             args: {
                 name: "url",
+                isOptional: true,
             },
         },
         {
@@ -623,6 +654,7 @@ var completionSpec = {
             ]),
             args: {
                 name: "package",
+                isScript: true,
             },
         },
         {
@@ -658,6 +690,7 @@ var completionSpec = {
                     description: " Compile the test binary to the named file",
                     args: {
                         name: "file",
+                        template: "filepaths",
                     },
                 },
             ]),
