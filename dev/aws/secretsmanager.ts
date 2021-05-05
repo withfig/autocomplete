@@ -41,7 +41,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30,
+      ttl: 30000,
     },
   },
   kmsKeyIdGenerator: {
@@ -60,7 +60,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30,
+      ttl: 30000,
     },
   },
   // List all json files in current directory
@@ -94,7 +94,7 @@ const generators: Record<string, Fig.Generator> = {
         return list.flatMap((secret) => {
           return common.awsRegions.flatMap((region) => {
             return {
-              name: "Region=" + region + ",KmsKeyId=" + secret.name,
+              name: "Region=" + region + ",KmsKeyId=" + secret.KeyId,
             };
           });
         });
@@ -104,27 +104,62 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30,
+      ttl: 30000,
     },
   },
-  getSecretVersionsGenerator: {
-    custom: async (context, executeShellCommand) => {
+  getLambdasGenerator: {
+    script: "aws lambda list-functions --page-size 100",
+    postProcess: function (out, context) {
       try {
-        console.log("context", secretId);
-        var secretId = context[-2];
-        console.log("context", secretId);
-        const out = await executeShellCommand(
-          `aws secretsmanager describe-secret --secret-id ${secretId}`
-        ).toString();
-
-        const versions = await JSON.parse(out)["VersionIdsToStages"];
-        return Object.keys(versions).map((key, val) => ({
-          name: key,
+        const list = JSON.parse(out)["Functions"];
+        return list.map((item) => ({
+          name: item["FunctionArn"],
         }));
       } catch (e) {
-        console.error(e);
+        console.log(e);
       }
       return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+  getVersionIdGenerator: {
+    custom: async function (context, executeShellCommand) {
+      try {
+        // secret-id value
+        const secretId = context[context.length - 3];
+        var out = await executeShellCommand(
+          `aws secretsmanager describe-secret --secret-id ${secretId}`
+        );
+        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        return Object.keys(versions).map((elm) => ({ name: elm }));
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+  getVersionStageGenerator: {
+    custom: async function (context, executeShellCommand) {
+      try {
+        // secret-id value
+        const secretId = context[context.length - 3];
+        var out = await executeShellCommand(
+          `aws secretsmanager describe-secret --secret-id ${secretId}`
+        );
+        const versions = JSON.parse(out as string)["VersionIdsToStages"];
+        return Object.keys(versions).map((elm) => ({ name: versions[elm][0] }));
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
     },
   },
 };
@@ -189,7 +224,6 @@ export const completionSpec: Fig.Spec = {
             "(Optional) If you include SecretString or SecretBinary, then an initial version is created as part of the secret, and this parameter specifies a unique identifier for the new version.   If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes it as the value for this parameter in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a ClientRequestToken yourself for the new version and include the value in the request.  This value helps ensure idempotency. Secrets Manager uses this value to prevent the accidental creation of duplicate versions if there are failures and retries during a rotation. We recommend that you generate a UUID-type value to ensure uniqueness of your versions within the specified secret.    If the ClientRequestToken value isn't already associated with a version of the secret then a new version of the secret is created.    If a version with this value already exists and the version SecretString and SecretBinary values are the same as those in the request, then the request is ignored.   If a version with this value already exists and that version's SecretString and SecretBinary values are different from those in the request, then the request fails because you cannot modify an existing version. Instead, use PutSecretValue to create a new version.   This value becomes the VersionId of the new version.",
           args: {
             name: "string",
-            isOptional: true,
           },
         },
         {
@@ -198,7 +232,6 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies a user-provided description of the secret.",
           args: {
             name: "string",
-            isOptional: true,
           },
         },
         {
@@ -236,6 +269,8 @@ export const completionSpec: Fig.Spec = {
             '(Optional) Specifies a list of user-defined tags that are attached to the secret. Each tag is a "Key" and "Value" pair of strings. This operation only appends tags to the existing list of tags. To remove tags, you must use UntagResource.    Secrets Manager tag key names are case sensitive. A tag with the key "ABC" is a different tag from one with key "abc".   If you check tags in IAM policy Condition elements as part of your security strategy, then adding or removing a tag can change permissions. If the successful completion of this operation would result in you losing your permissions for this secret, then this operation is blocked and returns an Access Denied error.    This parameter requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide. For example:  [{"Key":"CostCenter","Value":"12345"},{"Key":"environment","Value":"production"}]  If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.  The following basic restrictions apply to tags:   Maximum number of tags per secret\u201450   Maximum key length\u2014127 Unicode characters in UTF-8   Maximum value length\u2014255 Unicode characters in UTF-8   Tag keys and values are case sensitive.   Do not use the aws: prefix in your tag names or values because AWS reserves it for AWS use. You can\'t edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.   If you use your tagging schema across multiple services and resources, remember other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @.',
           args: {
             name: "list",
+            variadic: true,
+            suggestions: ["Key=string,Value=string"],
           },
         },
         {
@@ -244,8 +279,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Add a list of regions to replicate secrets. Secrets Manager replicates the KMSKeyID objects to the list of regions specified in the parameter.",
           args: {
             name: "list",
-            // TODO: find out why doesn't work
-            // variadic: true,
+            variadic: true,
             generators: generators.getReplicaRegionsGenerator,
           },
         },
@@ -335,32 +369,9 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies the number of days that Secrets Manager waits before Secrets Manager can delete the secret. You can't use both this parameter and the ForceDeleteWithoutRecovery parameter in the same API call. This value can range from 7 to 30 days with a default value of 30.",
           args: {
             name: "long",
-            suggestions: [
-              "7",
-              "8",
-              "9",
-              "10",
-              "11",
-              "12",
-              "13",
-              "14",
-              "15",
-              "16",
-              "17",
-              "18",
-              "19",
-              "20",
-              "21",
-              "22",
-              "23",
-              "24",
-              "25",
-              "26",
-              "27",
-              "28",
-              "29",
-              "30",
-            ],
+            suggestions: Array.from({ length: 31 - 7 }, (v, k) =>
+              String(k + 7)
+            ),
           },
         },
         {
@@ -585,7 +596,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the unique identifier of the version of the secret that you want to retrieve. If you specify both this parameter and VersionStage, the two parameters must refer to the same secret version. If you don't specify either a VersionStage or VersionId then the default is to perform the operation on the version with the VersionStage value of AWSCURRENT. This value is typically a UUID-type value with 32 hexadecimal digits.",
           args: {
             name: "string",
-            // TODO custom function doesn't work?
+            generators: generators.getVersionIdGenerator,
           },
         },
         {
@@ -594,7 +605,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the secret version that you want to retrieve by the staging label attached to the version. Staging labels are used to keep track of different versions during the rotation process. If you specify both this parameter and VersionId, the two parameters must refer to the same secret version . If you don't specify either a VersionStage or VersionId, then the default is to perform the operation on the version with the VersionStage value of AWSCURRENT.",
           args: {
             name: "string",
-            // TODO custom function doesn't work?
+            generators: generators.getVersionStageGenerator,
           },
         },
         {
@@ -704,6 +715,8 @@ export const completionSpec: Fig.Spec = {
           description: "Lists the secret request filters.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: ["Key=string,Value=string"],
           },
         },
         {
@@ -711,6 +724,7 @@ export const completionSpec: Fig.Spec = {
           description: "Lists secrets in the requested order.",
           args: {
             name: "string",
+            suggestions: ["asc", "desc"],
           },
         },
         {
@@ -778,6 +792,7 @@ export const completionSpec: Fig.Spec = {
             "A JSON-formatted string constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.",
           args: {
             name: "string",
+            generators: generators.inputJSONGenerator,
           },
         },
         {
@@ -839,6 +854,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies binary data that you want to encrypt and store in the new version of the secret. To use this parameter in the command-line tools, we recommend that you store your binary data in a file and then use the appropriate technique for your tool to pass the contents of the file as a parameter. Either SecretBinary or SecretString must have a value, but not both. They cannot both be empty. This parameter is not accessible if the secret using the Secrets Manager console.",
           args: {
             name: "blob",
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -855,6 +871,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies a list of staging labels that are attached to this version of the secret. These staging labels are used to track the versions through the rotation process by the Lambda rotation function. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value for VersionStages then Secrets Manager automatically moves the staging label AWSCURRENT to this new version.",
           args: {
             name: "list",
+            generators: generators.getVersionStageGenerator,
           },
         },
         {
@@ -895,6 +912,8 @@ export const completionSpec: Fig.Spec = {
           description: "Remove replication from specific Regions.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: common.awsRegions,
           },
         },
         {
@@ -936,6 +955,8 @@ export const completionSpec: Fig.Spec = {
           description: "Add Regions to replicate the secret.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.getReplicaRegionsGenerator,
           },
         },
         {
@@ -1032,6 +1053,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies the ARN of the Lambda function that can rotate the secret.",
           args: {
             name: "string",
+            generators: generators.getLambdasGenerator,
           },
         },
         {
@@ -1040,6 +1062,9 @@ export const completionSpec: Fig.Spec = {
             "A structure that defines the rotation configuration for this secret.",
           args: {
             name: "structure",
+            description:
+              "Specifies the number of days between automatic scheduled rotations of the secret.",
+            suggestions: ["AutomaticallyAfterDays="],
           },
         },
         {
@@ -1118,6 +1143,8 @@ export const completionSpec: Fig.Spec = {
             'The tags to attach to the secret. Each element in the list consists of a Key and a Value. This parameter to the API requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide. For the AWS CLI, you can also use the syntax: --Tags Key="Key1",Value="Value1" Key="Key2",Value="Value2"[,\u2026]',
           args: {
             name: "list",
+            variadic: true,
+            suggestions: ['Key="Key1",Value="Value1"'],
           },
         },
         {
@@ -1161,6 +1188,25 @@ export const completionSpec: Fig.Spec = {
             "A list of tag key names to remove from the secret. You don't specify the value. Both the key and its associated value are removed. This parameter to the API requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.",
           args: {
             name: "list",
+            generators: {
+              custom: async function (context, executeShellCommand) {
+                try {
+                  // secret-id value
+                  const secretId = context[context.length - 3];
+                  var out = await executeShellCommand(
+                    `aws secretsmanager describe-secret --secret-id ${secretId}`
+                  );
+                  const versions = JSON.parse(out as string)["Tags"];
+                  return versions.map((elm) => ({ name: elm["Key"] }));
+                } catch (e) {
+                  console.log(e);
+                }
+                return [];
+              },
+              cache: {
+                ttl: 30000,
+              },
+            },
           },
         },
         {
@@ -1220,6 +1266,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies an updated ARN or alias of the AWS KMS customer master key (CMK) to be used to encrypt the protected text in new versions of this secret.  You can only use the account's default CMK to encrypt and decrypt if you call this operation using credentials from the same account that owns the secret. If the secret is in a different account, then you must create a custom CMK and provide the ARN of that CMK in this field. The user making the call must have permissions to both the secret and the CMK in their respective accounts.",
           args: {
             name: "string",
+            generators: generators.kmsKeyIdGenerator,
           },
         },
         {
@@ -1228,6 +1275,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) Specifies updated binary data that you want to encrypt and store in the new version of the secret. To use this parameter in the command-line tools, we recommend that you store your binary data in a file and then use the appropriate technique for your tool to pass the contents of the file as a parameter. Either SecretBinary or SecretString must have a value, but not both. They cannot both be empty. This parameter is not accessible using the Secrets Manager console.",
           args: {
             name: "blob",
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -1278,6 +1326,7 @@ export const completionSpec: Fig.Spec = {
           description: "The staging label to add to this version.",
           args: {
             name: "string",
+            generators: generators.getVersionStageGenerator,
           },
         },
         {
@@ -1286,6 +1335,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the secret version ID of the version that the staging label is to be removed from. If the staging label you are trying to attach to one version is already attached to a different version, then you must include this parameter and specify the version that the label is to be removed from. If the label is attached and you either do not specify this parameter, or the version ID does not match, then the operation fails.",
           args: {
             name: "string",
+            generators: generators.getVersionIdGenerator,
           },
         },
         {
@@ -1294,6 +1344,7 @@ export const completionSpec: Fig.Spec = {
             "(Optional) The secret version ID that you want to add the staging label. If you want to remove a label from a version, then do not specify this parameter. If the staging label is already attached to a different version of the secret, then you must also specify the RemoveFromVersionId parameter.",
           args: {
             name: "string",
+            generators: generators.getVersionIdGenerator,
           },
         },
         {
@@ -1337,6 +1388,7 @@ export const completionSpec: Fig.Spec = {
             "A JSON-formatted string constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.publi",
           args: {
             name: "string",
+            generators: generators.inputJSONGenerator,
           },
         },
         {
