@@ -1,4 +1,4 @@
-const tests: Record<string, Fig.Generator> = {
+const tests: Fig.Generator = {
   script: "phpunit --list-tests",
   postProcess: function (out) {
     if (out.startsWith("fatal:")) {
