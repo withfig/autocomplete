@@ -30,12 +30,11 @@ export const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "install",
-      description: "install local package",
+      description: "Install a package and its dependencies",
       args: {
         name: "package",
-        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
-        // generators: searchGenerator,
-        // debounce: true,
+        generators: searchGenerator,
+        debounce: true,
         variadic: true,
       },
       options: [
@@ -145,12 +144,11 @@ export const completionSpec: Fig.Spec = {
     { name: "hook", description: "manage registry hooks" },
     {
       name: "i",
-      description: "install local package",
+      description: "Install a package and its dependencies",
       args: {
         name: "package",
-        // TEMPORARILY COMMENT OUT BEFORE PUSHING DEBOUNCE BUG FIX
-        // generators: searchGenerator,
-        // debounce: true,
+        generators: searchGenerator,
+        debounce: true,
         variadic: true,
       },
     },

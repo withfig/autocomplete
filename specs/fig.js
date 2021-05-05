@@ -206,6 +206,19 @@ var completionSpec = {
                     },
                 },
                 {
+                    name: "autocomplete.fuzzySearch",
+                    description: "Search of suggestions using fuzzy search rather than prefix search. NOTE: this currenty does not support the tab autocomplete underlining that prefix search has",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.fuzzySearch ",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
                     name: "pty.path",
                     icon: "fig://icon?type=commandkey",
                     description: "Specify the $PATH variable in Fig's pseudoterminal",
@@ -239,7 +252,7 @@ var completionSpec = {
                 {
                     name: "app.disableTelemetry",
                     icon: "fig://icon?type=commandkey",
-                    description: "Opt-out of all telemetry collection",
+                    description: "Opt-out of all non-essential telemetry collection",
                     args: {
                         name: "bool",
                         suggestions: [
@@ -247,6 +260,7 @@ var completionSpec = {
                             { name: "false", icon: "fig://icon?type=string" },
                         ],
                     },
+                    priority: 0,
                 },
                 {
                     name: "app.hideMenubarIcon",

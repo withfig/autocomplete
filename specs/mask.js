@@ -1,3 +1,5 @@
+// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// var executeShellCommand: Fig.ExecuteShellCommandFunction;
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,12 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-// To learn more about FIg's autocomplete standard visit: https://withfig.com/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-var executeShellCommand;
 // The below is a dummy example for git. Make sure to change the file name!
 var completionSpec = {
     name: "mask",
-    generateSpec: function (context) { return __awaiter(void 0, void 0, void 0, function () {
+    generateSpec: function (context, executeShellCommand) { return __awaiter(void 0, void 0, void 0, function () {
         var maskfileLocationIdx, out;
         return __generator(this, function (_a) {
             switch (_a.label) {
