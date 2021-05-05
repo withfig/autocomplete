@@ -10,6 +10,7 @@ const postProcessAWS: Fig.Generator["postProcess"] = (out) => {
     };
   });
 };
+
 const awsGenerators: Record<string, Fig.Generator> = {
   instances: {
     script:
