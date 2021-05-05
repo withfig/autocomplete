@@ -480,7 +480,7 @@ declare namespace Fig {
 
   export interface Cache {
     /**
-     * Time to live for the cache in seconds
+     * Time to live for the cache in milliseconds
      *
      * @example
      * 3600
