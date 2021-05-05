@@ -1,5 +1,18 @@
 const icon = "https://nextjs.org/static/favicon/favicon-16x16.png";
 
+const hostPortOptions: Fig.Option[] = [
+  {
+    name: ["-p", "--port"],
+    description: "A port number on which to start the application",
+    args: {},
+  },
+  {
+    name: ["-H", , "--hostname"],
+    description: "Hostname on which to start the application",
+    args: {},
+  },
+];
+
 export const completionSpec: Fig.Spec = {
   name: "next",
   description: "Next.js CLI to start, build and export your application",
@@ -49,18 +62,7 @@ export const completionSpec: Fig.Spec = {
           isOptional: true,
         },
       ],
-      options: [
-        {
-          name: ["-p", "--port"],
-          description: "A port number on which to start the application",
-          args: {},
-        },
-        {
-          name: ["-H", , "--hostname"],
-          description: "Hostname on which to start the application",
-          args: {},
-        },
-      ],
+      options: hostPortOptions,
     },
     {
       name: "start",
@@ -74,16 +76,7 @@ export const completionSpec: Fig.Spec = {
           isOptional: true,
         },
       ],
-      options: [
-        {
-          name: ["-p", "--port"],
-          description: "A port number on which to start the application",
-        },
-        {
-          name: ["-H", , "--hostname"],
-          description: "Hostname on which to start the application",
-        },
-      ],
+      options: hostPortOptions,
     },
     {
       name: "export",

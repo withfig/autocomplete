@@ -1,4 +1,16 @@
 var icon = "https://nextjs.org/static/favicon/favicon-16x16.png";
+var hostPortOptions = [
+    {
+        name: ["-p", "--port"],
+        description: "A port number on which to start the application",
+        args: {},
+    },
+    {
+        name: ["-H", , "--hostname"],
+        description: "Hostname on which to start the application",
+        args: {},
+    },
+];
 var completionSpec = {
     name: "next",
     description: "Next.js CLI to start, build and export your application",
@@ -48,18 +60,7 @@ var completionSpec = {
                     isOptional: true,
                 },
             ],
-            options: [
-                {
-                    name: ["-p", "--port"],
-                    description: "A port number on which to start the application",
-                    args: {},
-                },
-                {
-                    name: ["-H", , "--hostname"],
-                    description: "Hostname on which to start the application",
-                    args: {},
-                },
-            ],
+            options: hostPortOptions,
         },
         {
             name: "start",
@@ -73,16 +74,7 @@ var completionSpec = {
                     isOptional: true,
                 },
             ],
-            options: [
-                {
-                    name: ["-p", "--port"],
-                    description: "A port number on which to start the application",
-                },
-                {
-                    name: ["-H", , "--hostname"],
-                    description: "Hostname on which to start the application",
-                },
-            ],
+            options: hostPortOptions,
         },
         {
             name: "export",
