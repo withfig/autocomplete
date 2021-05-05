@@ -270,7 +270,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: ["Key=string,Value=string"],
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -716,7 +716,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: ["Key=string,Value=string"],
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -1062,9 +1062,7 @@ export const completionSpec: Fig.Spec = {
             "A structure that defines the rotation configuration for this secret.",
           args: {
             name: "structure",
-            description:
-              "Specifies the number of days between automatic scheduled rotations of the secret.",
-            suggestions: ["AutomaticallyAfterDays="],
+            description: "AutomaticallyAfterDays=number_of_days",
           },
         },
         {
@@ -1144,7 +1142,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: ['Key="Key1",Value="Value1"'],
+            description: "Key=Key1,Value=Value1",
           },
         },
         {

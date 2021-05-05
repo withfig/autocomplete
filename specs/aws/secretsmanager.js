@@ -311,7 +311,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        suggestions: ["Key=string,Value=string"],
+                        description: "Key=string,Value=string"
                     },
                 },
                 {
@@ -398,7 +398,9 @@ var completionSpec = {
                     description: "(Optional) Specifies the number of days that Secrets Manager waits before Secrets Manager can delete the secret. You can't use both this parameter and the ForceDeleteWithoutRecovery parameter in the same API call. This value can range from 7 to 30 days with a default value of 30.",
                     args: {
                         name: "long",
-                        suggestions: Array.from({ length: (31 - 7) }, function (v, k) { return String(k + 7); }),
+                        suggestions: Array.from({ length: 31 - 7 }, function (v, k) {
+                            return String(k + 7);
+                        }),
                     },
                 },
                 {
@@ -697,7 +699,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        suggestions: ["Key=string,Value=string"],
+                        description: "Key=string,Value=string"
                     },
                 },
                 {
@@ -1007,8 +1009,7 @@ var completionSpec = {
                     description: "A structure that defines the rotation configuration for this secret.",
                     args: {
                         name: "structure",
-                        description: "Specifies the number of days between automatic scheduled rotations of the secret.",
-                        suggestions: ["AutomaticallyAfterDays="],
+                        description: "AutomaticallyAfterDays=number_of_days",
                     },
                 },
                 {
@@ -1079,7 +1080,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        suggestions: ['Key="Key1",Value="Value1"'],
+                        description: "Key=Key1,Value=Value1"
                     },
                 },
                 {
@@ -1143,7 +1144,7 @@ var completionSpec = {
                             },
                             cache: {
                                 ttl: 30000,
-                            }
+                            },
                         },
                     },
                 },
