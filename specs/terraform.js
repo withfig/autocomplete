@@ -41,7 +41,7 @@ var generalSubCommandOptions = [
     },
     {
         name: "-force",
-        insertValue: "-force=true",
+        insertValue: "-force=",
         description: "Delete the workspace even if its state is not empty. Defaults to false.",
         args: {
             name: "true or false",
@@ -340,6 +340,7 @@ var completionSpec = {
     name: "terraform",
     description: "Terraform CLI",
     options: globalOptions,
+    posixNoncompliantFlags: true,
     subcommands: __spreadArray(__spreadArray(__spreadArray([], mainCommands), otherCommands), extraCommands),
 };
 

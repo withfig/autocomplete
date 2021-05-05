@@ -27,7 +27,7 @@ const generalSubCommandOptions: Fig.Option[] = [
   },
   {
     name: "-force",
-    insertValue: "-force=true",
+    insertValue: "-force=",
     description:
       "Delete the workspace even if its state is not empty. Defaults to false.",
     args: {
@@ -358,5 +358,6 @@ export const completionSpec: Fig.Spec = {
   name: "terraform",
   description: "Terraform CLI",
   options: globalOptions,
+  posixNoncompliantFlags: true,
   subcommands: [...mainCommands, ...otherCommands, ...extraCommands],
 };
