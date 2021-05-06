@@ -5,11 +5,12 @@
     "scripts": {
         "dev": "source scripts/dev.sh",
         "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
-        "copy": "func() { cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/; }; func",
-        "copy:all": "cp \"$(pwd)\"/specs/*.js ~/.fig/autocomplete/",
+        "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
+        "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
         "create-boilerplate": "./scripts/create-boilerplate.sh",
+        "create-example": "./scripts/create-example.sh",
         "build": "ts-node-script scripts/compiler.ts",
-        "lint": "eslint '*/*.ts'",
+        "lint": "eslint '**/*.ts'",
         "lint:fix": "npm run lint -- --fix",
         "prepare": "husky install"
     },
@@ -21,6 +22,9 @@
         },
         "create-boilerplate": {
             "description": "Create a new completion spec"
+        },
+        "create-example": {
+            "description": "Create a dummy git completion spec"
         },
         "test": {
             "description": "Typecheck all .ts files in /dev"
@@ -58,6 +62,7 @@
         "@typescript-eslint/eslint-plugin": "^4.18.0",
         "@typescript-eslint/parser": "^4.18.0",
         "chalk": "^4.1.0",
+        "chokidar": "^3.5.1",
         "danger": "^10.6.4",
         "eslint": "^7.22.0",
         "eslint-config-prettier": "^8.1.0",
@@ -68,7 +73,6 @@
         "prettier": "^2.2.1",
         "progress": "^2.0.3",
         "ts-node": "^9.1.1",
-        "ts-node-dev": "^1.1.6",
         "typescript": "^4.2.3"
     }
 }

@@ -26,6 +26,15 @@ var completionSpec = {
                 isCommand: true,
             },
         },
+        {
+            name: ["-m"],
+            description: "module",
+            args: {
+                name: "python module",
+                isModule: "python/",
+                suggestions: ["http.server"],
+            },
+        },
     ],
 };
 

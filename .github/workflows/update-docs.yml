@@ -1,0 +1,29 @@
+name: Update Docs && Website
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "schemas/fig.d.ts"
+
+jobs:
+  update_page:
+    runs-on: "ubuntu-latest"
+    env:
+      UPDATE_SITE_TOKEN: ${{ secrets.UPDATE_DOCS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: update submodules
+        run: |
+          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/docs.git
+          cd docs
+
+          curl https://docs-generator.cstrnt.workers.dev/ > autocomplete/api.md
+
+          git config user.email "hello@withfig.com"
+          git config user.name "Figbot"
+
+          git add autocomplete/api.md
+          git commit -m "added updates to docs"
+          git push origin main --force
