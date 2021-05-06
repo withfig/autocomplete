@@ -35,14 +35,7 @@ var completionSpec = {
             name: "build",
             description: "Create an optimized production build of your application",
             icon: icon,
-            args: [
-                {
-                    name: "dir",
-                    description: "Represent the directory of the Next.js application",
-                    template: "folders",
-                    isOptional: true,
-                },
-            ],
+            args: [dirArgument],
             options: [
                 {
                     name: "--profile",

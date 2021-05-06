@@ -38,14 +38,7 @@ export const completionSpec: Fig.Spec = {
       name: "build",
       description: "Create an optimized production build of your application",
       icon,
-      args: [
-        {
-          name: "dir",
-          description: "Represent the directory of the Next.js application",
-          template: "folders",
-          isOptional: true,
-        },
-      ],
+      args: [dirArgument],
       options: [
         {
           name: "--profile",
