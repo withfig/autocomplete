@@ -1,22 +1,27 @@
-const source_dest_args: Fig.Arg[] = [
+const sourceDestArgs: Fig.Arg[] = [
   {
     name: "source_file",
-    // template: ["filepaths", "folders"], // is there an absolute path version of this? ln requires absolute path
+    template: ["filepaths", "folders"],
+    // variadic: true,
+    // source_file is variadic but usability wise having it is less useful
+    // because it keeps recommending "source_file" repeatedly and not "link_name or link_dirname"
+    // and since most people won't need multiple files and those who do can look it up
   },
   {
     name: "link_name or link_dirname",
+    isOptional: true,
   },
 ];
 
 export const completionSpec: Fig.Spec = {
   name: "ln",
   description: "Create (default hard) symbolic links to files",
-  args: source_dest_args,
+  args: sourceDestArgs,
   options: [
     {
       name: "-s",
       description: "Create a symbolic link",
-      args: source_dest_args,
+      args: sourceDestArgs,
     },
     {
       name: "-v",
@@ -25,7 +30,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "-F",
       description: "If link name already exists replace it",
-      args: source_dest_args,
+      args: sourceDestArgs,
     },
     {
       name: "-h",
@@ -35,12 +40,12 @@ export const completionSpec: Fig.Spec = {
       name: "-f",
       description:
         "If link name already exists unlink the old one before creating the new one",
-      args: source_dest_args,
+      args: sourceDestArgs,
     },
     {
       name: "-i",
       description: "Prompt if proposed link already exists",
-      args: source_dest_args,
+      args: sourceDestArgs,
     },
     {
       name: "-n",
