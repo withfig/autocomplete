@@ -6,42 +6,42 @@ var completionSpec = {
         isOptional: true,
         variadic: true,
     },
-    subcommands: [
+    options: [
         {
-            name: ["-b"],
+            name: "-b",
             description: "byte positions as a comma or - separated list of numbers",
             args: [
                 {
                     name: "list",
-                    description: "specifies byte positions"
-                },
-                {
-                    name: "file",
-                    template: "filepaths",
-                    isOptional: true,
-                    variadic: true,
+                    description: "specifies byte positions",
                 },
                 {
                     name: "-n",
                     description: "do not split multi-byte characters",
                     isOptional: true,
                 },
+                {
+                    name: "file",
+                    template: "filepaths",
+                    isOptional: true,
+                    variadic: true,
+                },
             ],
         },
         {
-            name: ["-c"],
+            name: "-c",
             description: "column positions as a comma or - separated list of numbers",
             args: [
                 {
                     name: "list",
-                    description: "specifies column positions"
+                    description: "specifies column positions",
                 },
                 {
                     name: "file",
                     template: "filepaths",
                     isOptional: true,
                     variadic: true,
-                }
+                },
             ],
         },
         {
@@ -50,7 +50,7 @@ var completionSpec = {
             args: [
                 {
                     name: "list",
-                    description: "specifies column positions"
+                    description: "specifies column positions",
                 },
                 {
                     name: "-d",
@@ -58,15 +58,15 @@ var completionSpec = {
                     isOptional: true,
                 },
                 {
+                    name: "-s",
+                    description: "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
+                    isOptional: true,
+                },
+                {
                     name: "file",
                     template: "filepaths",
                     isOptional: true,
                     variadic: true,
-                },
-                {
-                    name: "-s",
-                    description: "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
-                    isOptional: true,
                 },
             ],
         },

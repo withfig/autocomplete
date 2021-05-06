@@ -6,9 +6,9 @@ export const completionSpec: Fig.Spec = {
     isOptional: true,
     variadic: true,
   },
-  subcommands: [
+  options: [
     {
-      name: ["-b"],
+      name: "-b",
       description: "byte positions as a comma or - separated list of numbers",
       args: [
         {
@@ -29,7 +29,7 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-c"],
+      name: "-c",
       description: "column positions as a comma or - separated list of numbers",
       args: [
         {
