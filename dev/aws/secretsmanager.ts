@@ -128,7 +128,11 @@ const generators: Record<string, Fig.Generator> = {
     custom: async function (context, executeShellCommand) {
       try {
         // secret-id value
-        const secretId = context[context.length - 3];
+        const idx = context.indexOf("--secret-id");
+        if (idx < 0) {
+          return [];
+        }
+        const secretId = context[idx + 1];
         var out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
@@ -147,7 +151,11 @@ const generators: Record<string, Fig.Generator> = {
     custom: async function (context, executeShellCommand) {
       try {
         // secret-id value
-        const secretId = context[context.length - 3];
+        const idx = context.indexOf("--secret-id");
+        if (idx < 0) {
+          return [];
+        }
+        const secretId = context[idx + 1];
         var out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
@@ -1190,7 +1198,11 @@ export const completionSpec: Fig.Spec = {
               custom: async function (context, executeShellCommand) {
                 try {
                   // secret-id value
-                  const secretId = context[context.length - 3];
+                  const idx = context.indexOf("--secret-id");
+                  if (idx < 0) {
+                    return [];
+                  }
+                  const secretId = context[idx + 1];
                   var out = await executeShellCommand(
                     `aws secretsmanager describe-secret --secret-id ${secretId}`
                   );

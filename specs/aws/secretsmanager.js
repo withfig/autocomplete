@@ -166,12 +166,16 @@ var generators = {
     getVersionIdGenerator: {
         custom: function (context, executeShellCommand) {
             return __awaiter(this, void 0, void 0, function () {
-                var secretId, out, versions, e_1;
+                var idx, secretId, out, versions, e_1;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
-                            secretId = context[context.length - 3];
+                            idx = context.indexOf("--secret-id");
+                            if (idx < 0) {
+                                return [2 /*return*/, []];
+                            }
+                            secretId = context[idx + 1];
                             return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId)];
                         case 1:
                             out = _a.sent();
@@ -193,12 +197,16 @@ var generators = {
     getVersionStageGenerator: {
         custom: function (context, executeShellCommand) {
             return __awaiter(this, void 0, void 0, function () {
-                var secretId, out, versions_1, e_2;
+                var idx, secretId, out, versions_1, e_2;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
-                            secretId = context[context.length - 3];
+                            idx = context.indexOf("--secret-id");
+                            if (idx < 0) {
+                                return [2 /*return*/, []];
+                            }
+                            secretId = context[idx + 1];
                             return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId)];
                         case 1:
                             out = _a.sent();
@@ -311,7 +319,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string"
+                        description: "Key=string,Value=string",
                     },
                 },
                 {
@@ -699,7 +707,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string"
+                        description: "Key=string,Value=string",
                     },
                 },
                 {
@@ -1080,7 +1088,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=Key1,Value=Value1"
+                        description: "Key=Key1,Value=Value1",
                     },
                 },
                 {
@@ -1122,12 +1130,16 @@ var completionSpec = {
                         generators: {
                             custom: function (context, executeShellCommand) {
                                 return __awaiter(this, void 0, void 0, function () {
-                                    var secretId, out, versions, e_3;
+                                    var idx, secretId, out, versions, e_3;
                                     return __generator(this, function (_a) {
                                         switch (_a.label) {
                                             case 0:
                                                 _a.trys.push([0, 2, , 3]);
-                                                secretId = context[context.length - 3];
+                                                idx = context.indexOf("--secret-id");
+                                                if (idx < 0) {
+                                                    return [2 /*return*/, []];
+                                                }
+                                                secretId = context[idx + 1];
                                                 return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId)];
                                             case 1:
                                                 out = _a.sent();
