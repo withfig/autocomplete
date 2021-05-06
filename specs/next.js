@@ -11,6 +11,12 @@ var hostPortOptions = [
         args: {},
     },
 ];
+var dirArgument = {
+    name: "dir",
+    description: "Represent the directory of the Next.js application",
+    template: "folders",
+    isOptional: true,
+};
 var completionSpec = {
     name: "next",
     description: "Next.js CLI to start, build and export your application",
@@ -52,42 +58,21 @@ var completionSpec = {
             name: "dev",
             description: "Start the application in development mode",
             icon: icon,
-            args: [
-                {
-                    name: "dir",
-                    description: "Represent the directory of the Next.js application",
-                    template: "folders",
-                    isOptional: true,
-                },
-            ],
+            args: [dirArgument],
             options: hostPortOptions,
         },
         {
             name: "start",
             description: "Start the application in production mode",
             icon: icon,
-            args: [
-                {
-                    name: "dir",
-                    description: "Represent the directory of the Next.js application",
-                    template: "folders",
-                    isOptional: true,
-                },
-            ],
+            args: [dirArgument],
             options: hostPortOptions,
         },
         {
             name: "export",
             description: "Exports the application for production deployment",
             icon: icon,
-            args: [
-                {
-                    name: "dir",
-                    description: "Represent the directory of the Next.js application",
-                    template: "folders",
-                    isOptional: true,
-                },
-            ],
+            args: [dirArgument],
             options: [
                 {
                     name: "-s",

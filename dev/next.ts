@@ -13,6 +13,13 @@ const hostPortOptions: Fig.Option[] = [
   },
 ];
 
+const dirArgument: Fig.Arg = {
+  name: "dir",
+  description: "Represent the directory of the Next.js application",
+  template: "folders",
+  isOptional: true,
+};
+
 export const completionSpec: Fig.Spec = {
   name: "next",
   description: "Next.js CLI to start, build and export your application",
@@ -54,42 +61,21 @@ export const completionSpec: Fig.Spec = {
       name: "dev",
       description: "Start the application in development mode",
       icon,
-      args: [
-        {
-          name: "dir",
-          description: "Represent the directory of the Next.js application",
-          template: "folders",
-          isOptional: true,
-        },
-      ],
+      args: [dirArgument],
       options: hostPortOptions,
     },
     {
       name: "start",
       description: "Start the application in production mode",
       icon,
-      args: [
-        {
-          name: "dir",
-          description: "Represent the directory of the Next.js application",
-          template: "folders",
-          isOptional: true,
-        },
-      ],
+      args: [dirArgument],
       options: hostPortOptions,
     },
     {
       name: "export",
       description: "Exports the application for production deployment",
       icon,
-      args: [
-        {
-          name: "dir",
-          description: "Represent the directory of the Next.js application",
-          template: "folders",
-          isOptional: true,
-        },
-      ],
+      args: [dirArgument],
       options: [
         {
           name: "-s",
