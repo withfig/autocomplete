@@ -1,3 +1,215 @@
+const _prefix_s3 = "s3://";
+const _prefix_file = "file://";
+const _prefix_dir = "dir://";
+
+// TODO:
+// append "/" on first enter
+// maybe filter out files with extensions?
+// how to know what is a file?
+const generators: Record<string, Fig.Generator> = {
+  localPathsGenerator: {
+    script: (tokens) => {
+      var baseLSCommand = "\\ls -1ApL ";
+      var whatHasUserTyped = tokens[tokens.length - 1];
+
+      if (whatHasUserTyped.startsWith(_prefix_file)) {
+        whatHasUserTyped = whatHasUserTyped.slice(7);
+      } else {
+        return "echo 'file://'";
+      }
+
+      var folderPath = "";
+
+      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+          if (lastSlashIndex === 0) folderPath = "/";
+          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+
+      return baseLSCommand + folderPath;
+    },
+    postProcess: (out) => {
+      if (out.trim() === _prefix_file) {
+        return [
+          {
+            name: _prefix_file,
+            insertValue: _prefix_file,
+          },
+        ];
+      }
+      const sortFnStrings = (a, b) => {
+        return a.localeCompare(b);
+      };
+
+      const alphabeticalSortFilesAndFolders = (arr) => {
+        var dots_arr = [];
+        var other_arr = [];
+
+        arr.map((elm) => {
+          if (elm.toLowerCase() == ".ds_store") return;
+          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
+          else other_arr.push(elm);
+        });
+
+        return [
+          ...other_arr.sort(sortFnStrings),
+          "../",
+          ...dots_arr.sort(sortFnStrings),
+        ];
+      };
+
+      var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+      var final_array = [];
+
+      temp_array.forEach((item) => {
+        if (!(item === "" || item === null || item === undefined)) {
+          const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+          // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
+          // if (outputType == "folder") {
+          final_array.push({
+            type: outputType,
+            name: item,
+            insertValue: item,
+          });
+          // }
+        }
+      });
+
+      return final_array;
+    },
+
+    trigger: (newToken, oldToken) => {
+      if (!newToken.startsWith(_prefix_file)) {
+        if (!oldToken) return false;
+
+        if (oldToken.startsWith(_prefix_file)) return true;
+        return false;
+      }
+
+      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+        return true;
+      } else return false;
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefix_file)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+
+  // generate remote paths
+  remotePathsGenerator: {
+    script: (tokens) => {
+      var whatHasUserTyped = tokens[tokens.length - 1];
+      var baseLSCommand = "\\aws s3 ls ";
+
+      if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+        return "echo 's3://'";
+      }
+
+      var folderPath = "";
+
+      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+          if (lastSlashIndex === 0) folderPath = "/";
+          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+      console.log(baseLSCommand, folderPath);
+      return baseLSCommand + folderPath;
+    },
+    postProcess: (out) => {
+      if (out.trim() === _prefix_s3) {
+        return [
+          {
+            name: _prefix_s3,
+            insertValue: _prefix_s3,
+          },
+        ];
+      }
+
+      const lines = out.split("\n").map((line) => {
+        const parts = line.split(" ");
+        // sub prefix
+        if (!parts.length) {
+          return [];
+        }
+
+        return parts[parts.length - 1];
+      });
+
+      const sortFnStrings = (a, b) => {
+        return a.localeCompare(b);
+      };
+
+      const alphabeticalSortFilesAndFolders = (arr) => {
+        var dots_arr = [];
+        var other_arr = [];
+
+        arr.map((elm) => {
+          if (elm.toLowerCase() == ".ds_store") return;
+          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
+          else other_arr.push(elm);
+        });
+
+        return [
+          ...other_arr.sort(sortFnStrings),
+          "../",
+          ...dots_arr.sort(sortFnStrings),
+        ];
+      };
+
+      var temp_array = alphabeticalSortFilesAndFolders(lines);
+
+      var final_array = [];
+
+      temp_array.forEach((item) => {
+        if (!(item === "" || item === null || item === undefined)) {
+          const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+          //if (outputType == "folder") {
+          final_array.push({
+            type: outputType,
+            name: item,
+            insertValue: item,
+          });
+        }
+        //  }
+      });
+
+      return final_array;
+    },
+    trigger: (newToken, oldToken) => {
+      if (!newToken.startsWith(_prefix_s3)) {
+        if (!oldToken) return false;
+
+        if (oldToken.startsWith(_prefix_s3)) return true;
+        return false;
+      }
+
+      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+        return true;
+      } else return false;
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefix_s3)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "s3",
   description:
@@ -19,6 +231,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -43,6 +256,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "paths",
+          generators: generators.remotePathsGenerator,
         },
       ],
     },

@@ -1,3 +1,199 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+var _prefix_s3 = "s3://";
+var _prefix_file = "file://";
+var _prefix_dir = "dir://";
+var generators = {
+    localPathsGenerator: {
+        script: function (tokens) {
+            var baseLSCommand = "\\ls -1ApL ";
+            var whatHasUserTyped = tokens[tokens.length - 1];
+            if (whatHasUserTyped.startsWith(_prefix_file)) {
+                whatHasUserTyped = whatHasUserTyped.slice(7);
+            }
+            else {
+                return "echo 'file://'";
+            }
+            var folderPath = "";
+            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+            if (lastSlashIndex > -1) {
+                if (whatHasUserTyped.startsWith("~/"))
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                else if (whatHasUserTyped.startsWith("/")) {
+                    if (lastSlashIndex === 0)
+                        folderPath = "/";
+                    else
+                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                }
+                else
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+            }
+            return baseLSCommand + folderPath;
+        },
+        postProcess: function (out) {
+            if (out.trim() === _prefix_file) {
+                return [
+                    {
+                        name: _prefix_file,
+                        insertValue: _prefix_file,
+                    },
+                ];
+            }
+            var sortFnStrings = function (a, b) {
+                return a.localeCompare(b);
+            };
+            var alphabeticalSortFilesAndFolders = function (arr) {
+                var dots_arr = [];
+                var other_arr = [];
+                arr.map(function (elm) {
+                    if (elm.toLowerCase() == ".ds_store")
+                        return;
+                    if (elm.slice(0, 1) === ".")
+                        dots_arr.push(elm);
+                    else
+                        other_arr.push(elm);
+                });
+                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+                    "../"
+                ]), dots_arr.sort(sortFnStrings));
+            };
+            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+            var final_array = [];
+            temp_array.forEach(function (item) {
+                if (!(item === "" || item === null || item === undefined)) {
+                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
+                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
+                    // if (outputType == "folder") {
+                    final_array.push({
+                        type: outputType,
+                        name: item,
+                        insertValue: item,
+                    });
+                    // }
+                }
+            });
+            return final_array;
+        },
+        trigger: function (newToken, oldToken) {
+            if (!newToken.startsWith(_prefix_file)) {
+                if (!oldToken)
+                    return false;
+                if (oldToken.startsWith(_prefix_file))
+                    return true;
+                return false;
+            }
+            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+                return true;
+            }
+            else
+                return false;
+        },
+        filterTerm: function (token) {
+            if (!token.startsWith(_prefix_file))
+                return token;
+            return token.slice(token.lastIndexOf("/") + 1);
+        },
+    },
+    // generate remote paths
+    remotePathsGenerator: {
+        script: function (tokens) {
+            var whatHasUserTyped = tokens[tokens.length - 1];
+            var baseLSCommand = "\\aws s3 ls ";
+            if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+                return "echo 's3://'";
+            }
+            var folderPath = "";
+            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+            if (lastSlashIndex > -1) {
+                if (whatHasUserTyped.startsWith("~/"))
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                else if (whatHasUserTyped.startsWith("/")) {
+                    if (lastSlashIndex === 0)
+                        folderPath = "/";
+                    else
+                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                }
+                else
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+            }
+            console.log(baseLSCommand, folderPath);
+            return baseLSCommand + folderPath;
+        },
+        postProcess: function (out) {
+            if (out.trim() === _prefix_s3) {
+                return [
+                    {
+                        name: _prefix_s3,
+                        insertValue: _prefix_s3,
+                    },
+                ];
+            }
+            var lines = out.split("\n").map(function (line) {
+                var parts = line.split(' ');
+                // sub prefix
+                if (!parts.length) {
+                    return [];
+                }
+                return parts[parts.length - 1];
+            });
+            var sortFnStrings = function (a, b) {
+                return a.localeCompare(b);
+            };
+            var alphabeticalSortFilesAndFolders = function (arr) {
+                var dots_arr = [];
+                var other_arr = [];
+                arr.map(function (elm) {
+                    if (elm.toLowerCase() == ".ds_store")
+                        return;
+                    if (elm.slice(0, 1) === ".")
+                        dots_arr.push(elm);
+                    else
+                        other_arr.push(elm);
+                });
+                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+                    "../"
+                ]), dots_arr.sort(sortFnStrings));
+            };
+            var temp_array = alphabeticalSortFilesAndFolders(lines);
+            var final_array = [];
+            temp_array.forEach(function (item) {
+                if (!(item === "" || item === null || item === undefined)) {
+                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
+                    //if (outputType == "folder") {
+                    final_array.push({
+                        type: outputType,
+                        name: item,
+                        insertValue: item,
+                    });
+                }
+                //  }
+            });
+            return final_array;
+        },
+        trigger: function (newToken, oldToken) {
+            if (!newToken.startsWith(_prefix_s3)) {
+                if (!oldToken)
+                    return false;
+                if (oldToken.startsWith(_prefix_s3))
+                    return true;
+                return false;
+            }
+            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+                return true;
+            }
+            else
+                return false;
+        },
+        filterTerm: function (token) {
+            if (!token.startsWith(_prefix_s3))
+                return token;
+            return token.slice(token.lastIndexOf("/") + 1);
+        },
+    },
+};
 var completionSpec = {
     name: "s3",
     description: 'This section explains prominent concepts and notations in the set of high-level S3 commands provided.\n\nPath Argument Type\n++++++++++++++++++\n\nWhenever using a command, at least one path argument must be specified.  There\nare two types of path arguments: ``LocalPath`` and ``S3Uri``.\n\n``LocalPath``: represents the path of a local file or directory.  It can be\nwritten as an absolute path or relative path.\n\n``S3Uri``: represents the location of a S3 object, prefix, or bucket.  This\nmust be written in the form ``s3://mybucket/mykey`` where ``mybucket`` is\nthe specified S3 bucket, ``mykey`` is the specified S3 key.  The path argument\nmust begin with ``s3://`` in order to denote that the path argument refers to\na S3 object. Note that prefixes are separated by forward slashes. For\nexample, if the S3 object ``myobject`` had the prefix ``myprefix``, the\nS3 key would be ``myprefix/myobject``, and if the object was in the bucket\n``mybucket``, the ``S3Uri`` would be ``s3://mybucket/myprefix/myobject``.\n\n``S3Uri`` also supports S3 access points. To specify an access point, this\nvalue must be of the form ``s3://<access-point-arn>/<key>``. For example if\nthe access point ``myaccesspoint`` to be used has the ARN:\n``arn:aws:s3:us-west-2:123456789012:accesspoint/myaccesspoint`` and the object\nbeing accessed has the key ``mykey``, then the ``S3URI`` used must be:\n``s3://arn:aws:s3:us-west-2:123456789012:accesspoint/myaccesspoint/mykey``.\nSimilar to bucket names, you can also use prefixes with access point ARNs for\nthe ``S3Uri``. For example:\n``s3://arn:aws:s3:us-west-2:123456789012:accesspoint/myaccesspoint/myprefix/``\n\nThe higher level ``s3`` commands do **not** support access point object ARNs.\nFor example, if the following was specified:\n``s3://arn:aws:s3:us-west-2:123456789012:accesspoint/myaccesspoint/object/mykey``\nthe ``S3URI`` will resolve to the object key ``object/mykey``\n\n\n\nOrder of Path Arguments\n+++++++++++++++++++++++\n\nEvery command takes one or two positional path arguments.  The first path\nargument represents the source, which is the local file/directory or S3\nobject/prefix/bucket that is being referenced.  If there is a second path\nargument, it represents the destination, which is the local file/directory\nor S3 object/prefix/bucket that is being operated on.  Commands with only\none path argument do not have a destination because the operation is being\nperformed only on the source.\n\n\nSingle Local File and S3 Object Operations\n++++++++++++++++++++++++++++++++++++++++++\n\nSome commands perform operations only on single files and S3 objects.  The\nfollowing commands are single file/object operations if no ``--recursive``\nflag is provided.\n\n    * ``cp``\n    * ``mv``\n    * ``rm``\n\nFor this type of operation, the first path argument, the source, must exist\nand be a local file or S3 object.  The second path argument, the destination,\ncan be the name of a local file, local directory, S3 object, S3 prefix,\nor S3 bucket.\n\nThe destination is indicated as a local directory, S3 prefix, or S3 bucket\nif it ends with a forward slash or back slash.  The use of slash depends\non the path argument type.  If the path argument is a ``LocalPath``,\nthe type of slash is the separator used by the operating system.  If the\npath is a ``S3Uri``, the forward slash must always be used.  If a slash\nis at the end of the destination, the destination file or object will\nadopt the name of the source file or object.  Otherwise, if there is no\nslash at the end, the file or object will be saved under the name provided.\nSee examples in ``cp`` and ``mv`` to illustrate this description.\n\n\nDirectory and S3 Prefix Operations\n++++++++++++++++++++++++++++++++++\n\nSome commands only perform operations on the contents of a local directory\nor S3 prefix/bucket.  Adding or omitting a forward slash or back slash to\nthe end of any path argument, depending on its type, does not affect the\nresults of the operation.  The following commands will always result in\na directory or S3 prefix/bucket operation:\n\n* ``sync``\n* ``mb``\n* ``rb``\n* ``ls``\n\n\nUse of Exclude and Include Filters\n++++++++++++++++++++++++++++++++++\n\nCurrently, there is no support for the use of UNIX style wildcards in\na command\'s path arguments.  However, most commands have ``--exclude "<value>"``\nand ``--include "<value>"`` parameters that can achieve the desired result.\nThese parameters perform pattern matching to either exclude or include\na particular file or object.  The following pattern symbols are supported.\n\n    * ``*``: Matches everything\n    * ``?``: Matches any single character\n    * ``[sequence]``: Matches any character in ``sequence``\n    * ``[!sequence]``: Matches any character not in ``sequence``\n\nAny number of these parameters can be passed to a command.  You can do this by\nproviding an ``--exclude`` or ``--include`` argument multiple times, e.g.\n``--include "*.txt" --include "*.png"``.\nWhen there are multiple filters, the rule is the filters that appear later in\nthe command take precedence over filters that appear earlier in the command.\nFor example, if the filter parameters passed to the command were\n\n::\n\n    --exclude "*" --include "*.txt"\n\nAll files will be excluded from the command except for files ending with\n``.txt``  However, if the order of the filter parameters was changed to\n\n::\n\n    --include "*.txt" --exclude "*"\n\nAll files will be excluded from the command.\n\nEach filter is evaluated against the **source directory**.  If the source\nlocation is a file instead of a directory, the directory containing the file is\nused as the source directory.  For example, suppose you had the following\ndirectory structure::\n\n    /tmp/foo/\n      .git/\n      |---config\n      |---description\n      foo.txt\n      bar.txt\n      baz.jpg\n\nIn the command ``aws s3 sync /tmp/foo s3://bucket/`` the source directory is\n``/tmp/foo``.  Any include/exclude filters will be evaluated with the source\ndirectory prepended.  Below are several examples to demonstrate this.\n\nGiven the directory structure above and the command\n``aws s3 cp /tmp/foo s3://bucket/ --recursive --exclude ".git/*"``, the\nfiles ``.git/config`` and ``.git/description`` will be excluded from the\nfiles to upload because the exclude filter ``.git/*`` will have the source\nprepended to the filter.  This means that::\n\n    /tmp/foo/.git/* -> /tmp/foo/.git/config       (matches, should exclude)\n    /tmp/foo/.git/* -> /tmp/foo/.git/description  (matches, should exclude)\n    /tmp/foo/.git/* -> /tmp/foo/foo.txt  (does not match, should include)\n    /tmp/foo/.git/* -> /tmp/foo/bar.txt  (does not match, should include)\n    /tmp/foo/.git/* -> /tmp/foo/baz.jpg  (does not match, should include)\n\nThe command ``aws s3 cp /tmp/foo/ s3://bucket/ --recursive --exclude "ba*"``\nwill exclude ``/tmp/foo/bar.txt`` and ``/tmp/foo/baz.jpg``::\n\n    /tmp/foo/ba* -> /tmp/foo/.git/config      (does not match, should include)\n    /tmp/foo/ba* -> /tmp/foo/.git/description (does not match, should include)\n    /tmp/foo/ba* -> /tmp/foo/foo.txt          (does not match, should include)\n    /tmp/foo/ba* -> /tmp/foo/bar.txt  (matches, should exclude)\n    /tmp/foo/ba* -> /tmp/foo/baz.jpg  (matches, should exclude)\n\n\nNote that, by default, *all files are included*.  This means that\nproviding **only** an ``--include`` filter will not change what\nfiles are transferred.  ``--include`` will only re-include files that\nhave been excluded from an ``--exclude`` filter.  If you only want\nto upload files with a particular extension, you need to first exclude\nall files, then re-include the files with the particular extension.\nThis command will upload **only** files ending with ``.jpg``::\n\n    aws s3 cp /tmp/foo/ s3://bucket/ --recursive --exclude "*" --include "*.jpg"\n\nIf you wanted to include both ``.jpg`` files as well as ``.txt`` files you\ncan run::\n\n    aws s3 cp /tmp/foo/ s3://bucket/ --recursive \\\n        --exclude "*" --include "*.jpg" --include "*.txt"\n',
@@ -15,6 +211,7 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
+                        description: "The default & max is 1000"
                     },
                 },
                 {
@@ -37,6 +234,7 @@ var completionSpec = {
             args: [
                 {
                     name: "paths",
+                    generators: generators.remotePathsGenerator,
                 },
             ],
         },
