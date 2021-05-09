@@ -4,7 +4,7 @@ export const completion: Fig.Spec = {
   subcommands: [],
   options: [
     {
-      name: ["-g"],
+      name: ["-g", "--group"],
       description: "run command as the specified group name or ID",
       args: {
         name: "group",
@@ -12,11 +12,11 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: ["-h"],
+      name: ["-h", "--help"],
       description: "display help message and exit",
     },
     {
-      name: ["-u"],
+      name: ["-u", "--user"],
       description: "run command as specified user name or ID",
       args: {
         name: "user",
