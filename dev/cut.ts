@@ -20,12 +20,6 @@ export const completionSpec: Fig.Spec = {
           description: "do not split multi-byte characters",
           isOptional: true,
         },
-        {
-          name: "file",
-          template: "filepaths",
-          isOptional: true,
-          variadic: true,
-        },
       ],
     },
     {
@@ -36,16 +30,10 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description: "specifies column positions",
         },
-        {
-          name: "file",
-          template: "filepaths",
-          isOptional: true,
-          variadic: true,
-        },
       ],
     },
     {
-      name: ["-f"],
+      name: "-f",
       description: "field positions as a comma or - separated list of numbers",
       args: [
         {
@@ -63,12 +51,6 @@ export const completionSpec: Fig.Spec = {
           description:
             "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
           isOptional: true,
-        },
-        {
-          name: "file",
-          template: "filepaths",
-          isOptional: true,
-          variadic: true,
         },
       ],
     },
