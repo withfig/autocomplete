@@ -1,3 +1,394 @@
+const awsPrincipals = [
+  "a4b.amazonaws.com",
+  "acm-pca.amazonaws.com",
+  "acm.amazonaws.com",
+  "alexa-appkit.amazon.com",
+  "alexa-connectedhome.amazon.com",
+  "amazonmq.amazonaws.com",
+  "apigateway.amazonaws.com",
+  "appflow.amazonaws.com",
+  "application-autoscaling.amazonaws.com",
+  "appstream.application-autoscaling.amazonaws.com",
+  "appsync.amazonaws.com",
+  "athena.amazonaws.com",
+  "autoscaling.amazonaws.com",
+  "aws-artifact-account-sync.amazonaws.com",
+  "backup.amazonaws.com",
+  "batch.amazonaws.com",
+  "billingconsole.amazonaws.com",
+  "budgets.amazonaws.com",
+  "ce.amazonaws.com",
+  "channels.lex.amazonaws.com",
+  "chime.amazonaws.com",
+  "cloud9.amazonaws.com",
+  "clouddirectory.amazonaws.com",
+  "cloudformation.amazonaws.com",
+  "cloudfront.amazonaws.com",
+  "cloudhsm.amazonaws.com",
+  "cloudsearch.amazonaws.com",
+  "cloudtrail.amazonaws.com",
+  "cloudwatch-crossaccount.amazonaws.com",
+  "codebuild.amazonaws.com",
+  "codecommit.amazonaws.com",
+  "codedeploy.${AWS::Region}.amazonaws.com",
+  "codedeploy.amazonaws.com",
+  "codepipeline.amazonaws.com",
+  "codestar.amazonaws.com",
+  "cognito-identity.amazonaws.com",
+  "cognito-idp.amazonaws.com",
+  "cognito-sync.amazonaws.com",
+  "config-conforms.amazonaws.com",
+  "config-multiaccountsetup.amazonaws.com",
+  "config.amazonaws.com",
+  "connect.amazonaws.com",
+  "continuousexport.discovery.amazonaws.com",
+  "custom-resource.application-autoscaling.amazonaws.com",
+  "databrew.amazonaws.com",
+  "datapipeline.amazonaws.com",
+  "dax.amazonaws.com",
+  "deeplens.amazonaws.com",
+  "delivery.logs.amazonaws.com",
+  "diode.amazonaws.com",
+  "directconnect.amazonaws.com",
+  "discovery.amazonaws.com",
+  "dlm.amazonaws.com",
+  "dms.amazonaws.com",
+  "ds.amazonaws.com",
+  "dynamodb.amazonaws.com",
+  "dynamodb.application-autoscaling.amazonaws.com",
+  "ec.amazonaws.com",
+  "ec2.amazonaws.com",
+  "ec2.application-autoscaling.amazonaws.com",
+  "ec2fleet.amazonaws.com",
+  "ec2scheduled.amazonaws.com",
+  "ecr.amazonaws.com",
+  "ecs-tasks.amazonaws.com",
+  "ecs.amazonaws.com",
+  "ecs.application-autoscaling.amazonaws.com",
+  "edgelambda.amazonaws.com",
+  "eks.amazonaws.com",
+  "elasticache.amazonaws.com",
+  "elasticbeanstalk.amazonaws.com",
+  "elasticfilesystem.amazonaws.com",
+  "elasticloadbalancing.amazonaws.com",
+  "elasticmapreduce.amazonaws.com",
+  "elastictranscoder.amazonaws.com",
+  "email.cognito-idp.amazonaws.com",
+  "es.amazonaws.com",
+  "events.amazonaws.com",
+  "firehose.amazonaws.com",
+  "fms.amazonaws.com",
+  "freertos.amazonaws.com",
+  "fsx.amazonaws.com",
+  "gamelift.amazonaws.com",
+  "glacier.amazonaws.com",
+  "globalaccelerator.amazonaws.com",
+  "glue.amazonaws.com",
+  "greengrass.amazonaws.com",
+  "guardduty.amazonaws.com",
+  "health.amazonaws.com",
+  "iam.amazonaws.com",
+  "importexport.amazonaws.com",
+  "inspector.amazonaws.com",
+  "iot.amazonaws.com",
+  "iotanalytics.amazonaws.com",
+  "iotevents.amazonaws.com",
+  "iotsitewise.amazonaws.com",
+  "iotthingsgraph.amazonaws.com",
+  "jellyfish.amazonaws.com",
+  "kafka.amazonaws.com",
+  "kinesis.amazonaws.com",
+  "kinesisanalytics.amazonaws.com",
+  "kms.amazonaws.com",
+  "lakeformation.amazonaws.com",
+  "lambda.amazonaws.com",
+  "lex.amazonaws.com",
+  "license-manager.amazonaws.com",
+  "lightsail.amazonaws.com",
+  "logger.cloudfront.amazonaws.com",
+  "logs.amazonaws.com",
+  "machinelearning.amazonaws.com",
+  "macie.amazonaws.com",
+  "managedservices.amazonaws.com",
+  "mediaconnect.amazonaws.com",
+  "mediaconvert.amazonaws.com",
+  "mediapackage.amazonaws.com",
+  "mediastore.amazonaws.com",
+  "mediatailor.amazonaws.com",
+  "member.org.stacksets.cloudformation.amazonaws.com",
+  "metering-marketplace.amazonaws.com",
+  "migrationhub.amazonaws.com",
+  "mobilehub.amazonaws.com",
+  "monitoring.amazonaws.com",
+  "monitoring.rds.amazonaws.com",
+  "ops.apigateway.amazonaws.com",
+  "opsworks-cm.amazonaws.com",
+  "opsworks.amazonaws.com",
+  "organizations.amazonaws.com",
+  "pinpoint.amazonaws.com",
+  "polly.amazonaws.com",
+  "qldb.amazonaws.com",
+  "quicksight.amazonaws.com",
+  "ram.amazonaws.com",
+  "rds.amazonaws.com",
+  "redshift.amazonaws.com",
+  "rekognition.amazonaws.com",
+  "replication.dynamodb.amazonaws.com",
+  "replicator.lambda.amazonaws.com",
+  "resource-groups.amazonaws.com",
+  "robomaker.amazonaws.com",
+  "route53.amazonaws.com",
+  "route53domains.amazonaws.com",
+  "route53resolver.amazonaws.com",
+  "s3.amazonaws.com",
+  "sagemaker.amazonaws.com",
+  "secretsmanager.amazonaws.com",
+  "securityhub.amazonaws.com",
+  "serverlessrepo.amazonaws.com",
+  "servicecatalog.amazonaws.com",
+  "servicediscovery.amazonaws.com",
+  "ses.amazonaws.com",
+  "shield.amazonaws.com",
+  "signer.amazonaws.com",
+  "signin.amazonaws.com",
+  "sms.amazonaws.com",
+  "sns.amazonaws.com",
+  "spotfleet.amazonaws.com",
+  "sqs.amazonaws.com",
+  "ssm.amazonaws.com",
+  "sso.amazonaws.com",
+  "states.amazonaws.com",
+  "storagegateway.amazonaws.com",
+  "sts.amazonaws.com",
+  "support.amazonaws.com",
+  "swf.amazonaws.com",
+  "tagging.amazonaws.com",
+  "tagpolicies.tag.amazonaws.com",
+  "transcribe.amazonaws.com",
+  "transfer.amazonaws.com",
+  "translate.amazonaws.com",
+  "trustedadvisor.amazonaws.com",
+  "tts.amazonaws.com",
+  "vmie.amazonaws.com",
+  "waf-regional.amazonaws.com",
+  "waf.amazonaws.com",
+  "workdocs.amazonaws.com",
+  "worklink.amazonaws.com",
+  "workmail.amazonaws.com",
+  "workspaces.amazonaws.com",
+  "xray.amazonaws.com",
+];
+
+const _prefix_file = "file://";
+
+const generators: Record<string, Fig.Generator> = {
+  listOpenIdProvidersGenerator: {
+    script: "aws iam list-open-id-connect-providers",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["OpenIDConnectProviderList"];
+        return list.map((item) => ({
+          name: item["Arn"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listInstanceProfileGenerator: {
+    script: "aws iam list-instance-profiles --page-size 100",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["InstanceProfiles"];
+        return list.map((item) => ({
+          name: item["RoleName"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listUsersGenerator: {
+    script: "aws iam list-users --page-size 100",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["Users"];
+        return list.map((item) => ({
+          name: item["UserName"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listGroupsGenerator: {
+    script: "aws iam list-groups --page-size 100",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["Groups"];
+        return list.map((item) => ({
+          name: item["GroupName"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listIamPoliciesArnGenerator: {
+    script: "aws iam list-policies --page-size 100 --scope Local",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["Policies"];
+        return list.map((item) => ({
+          name: item["PolicyName"],
+          insertValue: item["Arn"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listRolesGenerator: {
+    script: "aws iam list-roles --page-size 100",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["Roles"];
+        return list.map((item) => ({
+          name: item["RoleName"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  inputFileGenerator: {
+    script: (tokens) => {
+      var baseLSCommand = "\\ls -1ApL ";
+      var whatHasUserTyped = tokens[tokens.length - 1];
+
+      if (whatHasUserTyped.startsWith(_prefix_file)) {
+        whatHasUserTyped = whatHasUserTyped.slice(7);
+      } else {
+        return "echo 'file://'";
+      }
+
+      var folderPath = "";
+
+      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+          if (lastSlashIndex === 0) folderPath = "/";
+          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+
+      return baseLSCommand + folderPath;
+    },
+    postProcess: (out) => {
+      if (out.trim() === _prefix_file) {
+        return [
+          {
+            name: _prefix_file,
+            insertValue: _prefix_file,
+          },
+        ];
+      }
+      const sortFnStrings = (a, b) => {
+        return a.localeCompare(b);
+      };
+
+      const alphabeticalSortFilesAndFolders = (arr) => {
+        var dots_arr = [];
+        var other_arr = [];
+
+        arr.map((elm) => {
+          if (elm.toLowerCase() == ".ds_store") return;
+          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
+          else other_arr.push(elm);
+        });
+
+        return [
+          ...other_arr.sort(sortFnStrings),
+          "../",
+          ...dots_arr.sort(sortFnStrings),
+        ];
+      };
+
+      var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+      var final_array = [];
+
+      temp_array.forEach((item) => {
+        if (!(item === "" || item === null || item === undefined)) {
+          const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+          // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
+          // if (outputType == "folder") {
+          final_array.push({
+            type: outputType,
+            name: item,
+            insertValue: item,
+          });
+          // }
+        }
+      });
+
+      return final_array;
+    },
+
+    trigger: (newToken, oldToken) => {
+      if (!newToken.startsWith(_prefix_file)) {
+        if (!oldToken) return false;
+
+        if (oldToken.startsWith(_prefix_file)) return true;
+        return false;
+      }
+
+      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+        return true;
+      } else return false;
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefix_file)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "iam",
   description:
@@ -14,6 +405,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProvidersGenerator,
           },
         },
         {
@@ -30,6 +422,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -54,6 +447,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfileGenerator,
           },
         },
         {
@@ -70,6 +464,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -93,6 +488,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -101,6 +497,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to add. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -109,6 +506,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -133,6 +531,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the group to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -141,6 +540,8 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            // NOTE: only suggest user policies to streamline number of returned items
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -149,6 +550,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -173,6 +575,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the role to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRolesGenerator,
           },
         },
         {
@@ -181,6 +584,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -189,6 +593,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -213,6 +618,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -221,6 +627,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -229,6 +636,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -268,6 +676,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -292,6 +701,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user that the new key will belong to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -300,6 +710,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -332,6 +743,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -356,6 +768,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the group. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -364,6 +777,7 @@ export const completionSpec: Fig.Spec = {
             'The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -372,6 +786,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -404,6 +819,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the instance profile. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -412,6 +828,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -420,6 +838,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -444,6 +863,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user to create a password for. The user must already exist. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -470,6 +890,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -494,6 +915,7 @@ export const completionSpec: Fig.Spec = {
             "The URL of the identity provider. The URL must begin with https:// and should correspond to the iss claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. You cannot register the same provider multiple times in a single AWS account. If you try to submit a URL that has already been used for an OpenID Connect provider in the AWS account, you will get an error.",
           args: {
             name: "string",
+            suggestions: ["https://"],
           },
         },
         {
@@ -518,6 +940,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM OpenID Connect (OIDC) provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -526,6 +950,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -558,6 +983,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the policy. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -566,6 +992,7 @@ export const completionSpec: Fig.Spec = {
             "The JSON policy document that you want to use as the content for the new policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -582,6 +1009,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -590,6 +1019,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -614,6 +1044,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy to which you want to add a new version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -622,6 +1053,7 @@ export const completionSpec: Fig.Spec = {
             "The JSON policy document that you want to use as the content for this new version of the policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -640,6 +1072,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -664,6 +1097,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -680,6 +1114,7 @@ export const completionSpec: Fig.Spec = {
             "The trust relationship policy document that grants an entity permission to assume the role. In IAM, you must provide a JSON policy that has been converted to a string. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)    Upon success, the response includes the same trust policy in JSON format.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -695,6 +1130,9 @@ export const completionSpec: Fig.Spec = {
             "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide.",
           args: {
             name: "integer",
+            suggestions: Array.from({ length: 13 - 1 }, (v, k) =>
+              String(k + 1)
+            ),
           },
         },
         {
@@ -703,6 +1141,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the policy that is used to set the permissions boundary for the role.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -711,6 +1150,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new role. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -719,6 +1160,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -743,6 +1185,7 @@ export const completionSpec: Fig.Spec = {
             "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP. For more information, see About SAML 2.0-based federation in the IAM User Guide",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -759,6 +1202,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -767,6 +1212,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.inputFileGenerator,
           },
         },
         {
@@ -791,6 +1237,7 @@ export const completionSpec: Fig.Spec = {
             "The service principal for the AWS service to which this role is attached. You use a string similar to a URL but without the http:// in front. For example: elasticbeanstalk.amazonaws.com.  Service principals are unique and case-sensitive. To find the exact service principal for your service-linked role, see AWS services that work with IAM in the IAM User Guide. Look for the services that have Yes in the Service-Linked Role column. Choose the Yes link to view the service-linked role documentation for that service.",
           args: {
             name: "string",
+            suggestions: awsPrincipals,
           },
         },
         {
@@ -878,6 +1325,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the user name. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -902,6 +1350,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -934,6 +1384,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the virtual MFA device. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -950,6 +1401,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM virtual MFA device. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -3196,6 +3649,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3268,6 +3722,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3340,6 +3795,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3420,6 +3876,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all entities. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3556,6 +4013,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/ gets all groups whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3732,6 +4190,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all instance profiles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all instance profiles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4062,6 +4521,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4406,6 +4866,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all roles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all roles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4654,6 +5115,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts. This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4934,6 +5396,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all user names whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all user names. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -5861,6 +6324,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM instance profile. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5901,6 +6366,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM virtual MFA device. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5941,6 +6408,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the OIDC identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5981,6 +6450,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM customer managed policy. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6021,6 +6492,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM role. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6061,6 +6534,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the SAML identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6101,6 +6576,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM server certificate. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6141,6 +6618,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM user. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -7233,6 +7712,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the server certificate. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.   If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the path parameter. The path must begin with /cloudfront and must include a trailing slash (for example, /cloudfront/test/).",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -7273,6 +7753,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
