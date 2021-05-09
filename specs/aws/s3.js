@@ -3,6 +3,30 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+// TODO: suggest available s3 endpoints
+var awsRegions = [
+    "af-south-1",
+    "eu-north-1",
+    "ap-south-1",
+    "eu-west-3",
+    "eu-west-2",
+    "eu-south-1",
+    "eu-west-1",
+    "ap-northeast-3",
+    "ap-northeast-2",
+    "me-south-1",
+    "ap-northeast-1",
+    "sa-east-1",
+    "ca-central-1",
+    "ap-east-1",
+    "ap-southeast-1",
+    "ap-southeast-2",
+    "eu-central-1",
+    "us-east-1",
+    "us-east-2",
+    "us-west-1",
+    "us-west-2",
+];
 var _prefix_s3 = "s3://";
 var _prefix_file = "file://";
 var _prefix_dir = "dir://";
@@ -97,7 +121,7 @@ var generators = {
             return token.slice(token.lastIndexOf("/") + 1);
         },
     },
-    // generate remote paths
+    // generate s3 paths (only directories)
     remotePathsGenerator: {
         script: function (tokens) {
             var whatHasUserTyped = tokens[tokens.length - 1];
@@ -119,10 +143,12 @@ var generators = {
                 else
                     folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
             }
-            console.log(baseLSCommand, folderPath);
             return baseLSCommand + folderPath;
         },
         postProcess: function (out) {
+            if (out == "") {
+                return [];
+            }
             if (out.trim() === _prefix_s3) {
                 return [
                     {
@@ -131,13 +157,39 @@ var generators = {
                     },
                 ];
             }
+            var preFound = false;
             var lines = out.split("\n").map(function (line) {
-                var parts = line.split(' ');
+                var parts = line.split(/\s+/);
                 // sub prefix
                 if (!parts.length) {
                     return [];
                 }
-                return parts[parts.length - 1];
+                var s3Path = parts[parts.length - 1];
+                // Do this in a try block beacuse of the indexing magic
+                try {
+                    // already in a sub prefix
+                    if (parts[1] == "PRE") {
+                        preFound = true;
+                        return s3Path;
+                    }
+                    var hasBackSlash = s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
+                    // it is a file, do not suggest
+                    if (preFound && !hasBackSlash) {
+                        return "";
+                    }
+                    // if parts[2] is a number (file size) => it is a file => do not suggest
+                    if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
+                        return "";
+                    }
+                    // Bucket names here, just append '/' at the end
+                    if (!hasBackSlash) {
+                        s3Path = s3Path + "/";
+                    }
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                return s3Path;
             });
             var sortFnStrings = function (a, b) {
                 return a.localeCompare(b);
@@ -192,6 +244,181 @@ var generators = {
                 return token;
             return token.slice(token.lastIndexOf("/") + 1);
         },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    // generate s3 paths (with files)
+    remoteFilePathsGenerator: {
+        script: function (tokens) {
+            var whatHasUserTyped = tokens[tokens.length - 1];
+            var baseLSCommand = "\\aws s3 ls ";
+            if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+                return "echo 's3://'";
+            }
+            var folderPath = "";
+            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+            if (lastSlashIndex > -1) {
+                if (whatHasUserTyped.startsWith("~/"))
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                else if (whatHasUserTyped.startsWith("/")) {
+                    if (lastSlashIndex === 0)
+                        folderPath = "/";
+                    else
+                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                }
+                else
+                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+            }
+            return baseLSCommand + folderPath;
+        },
+        postProcess: function (out) {
+            if (out == "") {
+                return [];
+            }
+            if (out.trim() === _prefix_s3) {
+                return [
+                    {
+                        name: _prefix_s3,
+                        insertValue: _prefix_s3,
+                    },
+                ];
+            }
+            var preFound = false;
+            var lines = out.split("\n").map(function (line) {
+                var parts = line.split(/\s+/);
+                // sub prefix
+                if (!parts.length) {
+                    return [];
+                }
+                var s3Path = parts[parts.length - 1];
+                // Do this in a try block beacuse of the indexing magic
+                try {
+                    // already in a sub prefix
+                    if (parts[1] == "PRE") {
+                        preFound = true;
+                        return s3Path;
+                    }
+                    var hasBackSlash = s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
+                    // it is a file, do not append trailing '/'
+                    if (preFound && !hasBackSlash) {
+                        return s3Path;
+                    }
+                    // if parts[2] is a number (file size) => it is a file => do not append trailing '/'
+                    if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
+                        return s3Path;
+                    }
+                    // Bucket names here, just append '/' at the end
+                    if (!hasBackSlash) {
+                        s3Path = s3Path + "/";
+                    }
+                }
+                catch (e) {
+                    console.log(e);
+                }
+                return s3Path;
+            });
+            var sortFnStrings = function (a, b) {
+                return a.localeCompare(b);
+            };
+            var alphabeticalSortFilesAndFolders = function (arr) {
+                var dots_arr = [];
+                var other_arr = [];
+                arr.map(function (elm) {
+                    if (elm.toLowerCase() == ".ds_store")
+                        return;
+                    if (elm.slice(0, 1) === ".")
+                        dots_arr.push(elm);
+                    else
+                        other_arr.push(elm);
+                });
+                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+                    "../"
+                ]), dots_arr.sort(sortFnStrings));
+            };
+            var temp_array = alphabeticalSortFilesAndFolders(lines);
+            var final_array = [];
+            temp_array.forEach(function (item) {
+                if (!(item === "" || item === null || item === undefined)) {
+                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
+                    //if (outputType == "folder") {
+                    final_array.push({
+                        type: outputType,
+                        name: item,
+                        insertValue: item,
+                    });
+                }
+                //  }
+            });
+            return final_array;
+        },
+        trigger: function (newToken, oldToken) {
+            if (!newToken.startsWith(_prefix_s3)) {
+                if (!oldToken)
+                    return false;
+                if (oldToken.startsWith(_prefix_s3))
+                    return true;
+                return false;
+            }
+            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
+                return true;
+            }
+            else
+                return false;
+        },
+        filterTerm: function (token) {
+            if (!token.startsWith(_prefix_s3))
+                return token;
+            return token.slice(token.lastIndexOf("/") + 1);
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    // just bucket names
+    listBuckets: {
+        script: "aws s3 ls --page-size 1000",
+        postProcess: function (out, context) {
+            try {
+                return out.split("\n").map(function (line) {
+                    var parts = line.split(/\s+/);
+                    // sub prefix
+                    if (!parts.length) {
+                        return [];
+                    }
+                    return {
+                        name: _prefix_s3 + parts[parts.length - 1],
+                    };
+                });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    kmsKeyIdGenerator: {
+        // --page-size does not affect the number of items returned,
+        // just chunks request so it won't timeout
+        script: "aws kms list-keys --page-size 100",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["Keys"];
+                return list.map(function (item) { return ({
+                    name: item["KeyId"],
+                }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30000,
+        },
     },
 };
 var completionSpec = {
@@ -211,7 +438,7 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
-                        description: "The default & max is 1000"
+                        description: "The default & max is 1000",
                     },
                 },
                 {
@@ -247,6 +474,7 @@ var completionSpec = {
                     description: "A suffix that is appended to a request that is for a directory on the website endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character.",
                     args: {
                         name: "string",
+                        suggestions: ["index.html"],
                     },
                 },
                 {
@@ -254,12 +482,14 @@ var completionSpec = {
                     description: "The object key name to use when a 4XX class error occurs.",
                     args: {
                         name: "string",
+                        suggestions: ["error.html"],
                     },
                 },
             ],
             args: [
                 {
                     name: "paths",
+                    generators: generators.listBuckets,
                 },
             ],
         },
@@ -338,6 +568,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -345,6 +576,7 @@ var completionSpec = {
                     description: "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
                     args: {
                         name: "string",
+                        generators: generators.kmsKeyIdGenerator,
                     },
                 },
                 {
@@ -360,6 +592,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -440,6 +673,7 @@ var completionSpec = {
                     description: "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
                     args: {
                         name: "string",
+                        suggestions: awsRegions,
                     },
                 },
                 {
@@ -478,6 +712,7 @@ var completionSpec = {
                     description: "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
                     args: {
                         name: "map",
+                        description: "KeyName1=string,KeyName2=string",
                     },
                 },
                 {
@@ -503,6 +738,10 @@ var completionSpec = {
             args: [
                 {
                     name: "paths",
+                    generators: [
+                        generators.remoteFilePathsGenerator,
+                        generators.localPathsGenerator,
+                    ],
                 },
             ],
         },
@@ -581,6 +820,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -588,6 +828,7 @@ var completionSpec = {
                     description: "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
                     args: {
                         name: "string",
+                        generators: generators.kmsKeyIdGenerator,
                     },
                 },
                 {
@@ -603,6 +844,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -683,6 +925,7 @@ var completionSpec = {
                     description: "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
                     args: {
                         name: "string",
+                        suggestions: awsRegions,
                     },
                 },
                 {
@@ -721,6 +964,7 @@ var completionSpec = {
                     description: "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
                     args: {
                         name: "map",
+                        description: "KeyName1=string,KeyName2=string",
                     },
                 },
                 {
@@ -795,6 +1039,7 @@ var completionSpec = {
             args: [
                 {
                     name: "paths",
+                    generators: generators.remoteFilePathsGenerator,
                 },
             ],
         },
@@ -873,6 +1118,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -880,6 +1126,7 @@ var completionSpec = {
                     description: "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
                     args: {
                         name: "string",
+                        generators: generators.kmsKeyIdGenerator,
                     },
                 },
                 {
@@ -895,6 +1142,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
+                        generators: generators.localPathsGenerator,
                     },
                 },
                 {
@@ -975,6 +1223,7 @@ var completionSpec = {
                     description: "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
                     args: {
                         name: "string",
+                        suggestions: awsRegions,
                     },
                 },
                 {
@@ -1013,6 +1262,7 @@ var completionSpec = {
                     description: "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
                     args: {
                         name: "map",
+                        description: "KeyName1=string,KeyName2=string",
                     },
                 },
                 {
@@ -1033,9 +1283,20 @@ var completionSpec = {
         {
             name: "mb",
             description: "Creates an S3 bucket.",
+            options: [
+                {
+                    name: "--region",
+                    description: "AWS region where the bucket is created",
+                    args: {
+                        name: "string",
+                        suggestions: awsRegions,
+                    },
+                },
+            ],
             args: [
                 {
                     name: "path",
+                    generators: generators.remotePathsGenerator,
                 },
             ],
         },
@@ -1051,6 +1312,7 @@ var completionSpec = {
             args: [
                 {
                     name: "path",
+                    generators: generators.listBuckets,
                 },
             ],
         },
@@ -1069,6 +1331,7 @@ var completionSpec = {
             args: [
                 {
                     name: "path",
+                    generators: generators.remoteFilePathsGenerator,
                 },
             ],
         },
