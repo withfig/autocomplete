@@ -1,7 +1,6 @@
 export const completion: Fig.Spec = {
   name: "sudo",
   description: "execute a command as the superuser or another user",
-  subcommands: [],
   options: [
     {
       name: ["-g", "--group"],
