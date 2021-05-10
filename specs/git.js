@@ -2176,8 +2176,8 @@ var completionSpec = {
                 { name: ["-p", "--patch"], description: "select hunks interactively" },
             ],
             args: {
-                name: "branch",
-                description: "branch to switch to",
+                name: "branch or commit",
+                description: "branch or commit to switch to",
                 isOptional: true,
                 generators: gitGenerators.branches,
                 suggestions: [
