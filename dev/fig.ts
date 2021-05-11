@@ -108,6 +108,19 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
+          name: "autocomplete.immediatelyExecute",
+          icon: "fig://icon?type=commandkey",
+          insertValue: "autocomplete.immediatelyExecuteAfterSpace",
+          description: "Show immediate execute button after space",
+          args: {
+            name: "bool",
+            suggestions: [
+              { name: "true", icon: "fig://icon?type=string" },
+              { name: "false", icon: "fig://icon?type=string" },
+            ],
+          },
+        },
+        {
           name: "autocomplete.enter",
           icon: "fig://icon?type=commandkey",
           insertValue: "autocomplete.enter ",
