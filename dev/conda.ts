@@ -1127,6 +1127,160 @@ export const completionSpec: Fig.Spec = {
       },
       options: [...update_options],
     },
+    {
+      name: "build",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "convert",
+      description:
+        "Various tools to convert conda packages. Takes a pure Python package build for one platform and converts it to work on one or more other platforms, or all.",
+      args: {
+        name: "files",
+        description: "Package files to convert",
+        variadic: true,
+        template: "filepaths",
+      },
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Show this help message and exit.",
+        },
+        {
+          name: ["-p", "--platform"],
+          description: "Platform to convert the packages to.",
+          args: {
+            suggestions: [
+              { name: "osx-64" },
+              { name: "osx-arm64" },
+              { name: "linux-32" },
+              { name: "linux-64" },
+              { name: "linux-ppc64" },
+              { name: "linux-ppc64le" },
+              { name: "linux-s390x" },
+              { name: "linux-armv6l" },
+              { name: "linux-armv7l" },
+              { name: "linux-aarch64" },
+              { name: "win-32" },
+              { name: "win-64" },
+              { name: "all" },
+            ],
+          },
+        },
+        {
+          name: ["--dependencies", "-d"],
+          description:
+            "Additional (besides python) dependencies of the converted package.",
+          args: {
+            name: "Dependencies",
+            isOptional: true,
+            variadic: true,
+          },
+        },
+        {
+          name: "--show-imports",
+          description: "Show Python imports for compiled parts of the package.",
+        },
+        {
+          name: ["-f", "--force"],
+          description:
+            "Force convert, even when a package has compiled C extensions.",
+        },
+        {
+          name: ["-o", "--output-dir"],
+          description:
+            "Directory to write the output files. The packages will be organized in platform/ subdirectories, e.g., win-32/package-1.0-py27_0.tar.bz2.",
+          args: {
+            name: "Output Directory",
+          },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Print verbose output.",
+        },
+        {
+          name: "--dry-run",
+          description: "Only display what would have been done.",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Don't print as much output.",
+        },
+      ],
+    },
+    {
+      name: "debug",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "develop",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "env",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "index",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "inspect",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "metapackage",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "render",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "server",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "skeleton",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "verify",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
   ],
   options: [
     {

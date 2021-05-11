@@ -274,13 +274,13 @@ var completionSpec = {
             options: [
                 {
                     name: ["--stack"],
-                    description: "Stack the environment being activated on top of the previous active environment."
+                    description: "Stack the environment being activated on top of the previous active environment.",
                 },
                 {
                     name: ["--no-stack"],
-                    description: "Do not stack the environment. Overrides 'auto_stack' setting"
-                }
-            ]
+                    description: "Do not stack the environment. Overrides 'auto_stack' setting",
+                },
+            ],
         },
         {
             name: "deactivate",
@@ -405,7 +405,7 @@ var completionSpec = {
                         isOptional: true,
                         variadic: true,
                         generators: getCondaConfigs,
-                    }
+                    },
                 },
                 {
                     name: ["--show-sources"],
@@ -423,7 +423,7 @@ var completionSpec = {
                         isOptional: true,
                         variadic: true,
                         generators: getCondaConfigs,
-                    }
+                    },
                 },
                 {
                     name: ["--write-default"],
@@ -436,7 +436,7 @@ var completionSpec = {
                         {
                             name: "key",
                             isOptional: true,
-                            variadic: true
+                            variadic: true,
                         },
                     ],
                 },
@@ -510,7 +510,7 @@ var completionSpec = {
                 name: "package_spec",
                 description: "Packages to install or update in the conda environment",
                 isOptional: true,
-                variadic: true
+                variadic: true,
             },
             options: __spreadArray(__spreadArray([
                 {
@@ -561,7 +561,7 @@ var completionSpec = {
                 {
                     name: ["--no-deps"],
                     description: "Do not install, update, remove, or change dependencies. This WILL lead to broken environments and inconsistent behavior. Use at your own risk.",
-                    isDangerous: true
+                    isDangerous: true,
                 },
                 { name: ["--only-deps"], description: "Only install dependencies." },
                 { name: ["--no-pin"], description: "Ignore pinned file." },
@@ -692,7 +692,7 @@ var completionSpec = {
                 {
                     name: ["--repodata-fn"],
                     description: "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
-                    args: {}
+                    args: {},
                 },
                 {
                     name: ["--strict-channel-priority"],
@@ -786,7 +786,7 @@ var completionSpec = {
             args: {
                 name: "regex",
                 description: "List only packages matching this regular expression.",
-                isOptional: true
+                isOptional: true,
             },
             options: __spreadArray(__spreadArray([
                 {
@@ -845,8 +845,8 @@ var completionSpec = {
                     description: "Given some PATH print which conda package the file came from.",
                     args: {
                         name: "Path",
-                        variadic: true
-                    }
+                        variadic: true,
+                    },
                 },
                 {
                     name: ["-r", "--reset"],
@@ -901,26 +901,32 @@ var completionSpec = {
                 template: "filepaths",
             },
             options: __spreadArray(__spreadArray([], name_options), [
-                { name: ["-v", "--verbose"],
+                {
+                    name: ["-v", "--verbose"],
                     description: "Use once for info, twice for debug, three times for trace.",
                 },
-                { name: ["--dev"],
+                {
+                    name: ["--dev"],
                     description: "Sets `CONDA_EXE` to `python -m conda`, assuming the CWD contains the root of conda development sources.",
                 },
-                { name: ["--debug-wrapper-scripts"],
+                {
+                    name: ["--debug-wrapper-scripts"],
                     description: "When this is set, where implemented, the shell wrapper scripts will echo to stderr a lot of debugging information.",
                 },
-                { name: ["--cwd"],
+                {
+                    name: ["--cwd"],
                     description: "Current working directory for command to run in. Defaults to cwd",
-                    args: {}
+                    args: {},
                 },
-                { name: ["--no-capture-output"],
+                {
+                    name: ["--no-capture-output"],
                     description: "Don't capture stdout/stderr",
                 },
-                { name: ["--live-stream"],
+                {
+                    name: ["--live-stream"],
                     description: "Display the output for the subprocess stdout and stderr on real time.",
                 },
-            ])
+            ]),
         },
         {
             name: "search",
@@ -990,7 +996,9 @@ var completionSpec = {
             args: {
                 name: "package",
                 variadic: true,
-                suggestions: [{ name: "conda", description: "Update conda", icon: "⭐️" }],
+                suggestions: [
+                    { name: "conda", description: "Update conda", icon: "⭐️" },
+                ],
                 generators: getInstalledPackages,
             },
             options: __spreadArray([], update_options),
@@ -1001,21 +1009,173 @@ var completionSpec = {
             args: {
                 name: "package",
                 variadic: true,
-                suggestions: [{ name: "conda", description: "Update conda", icon: "⭐️" }],
+                suggestions: [
+                    { name: "conda", description: "Update conda", icon: "⭐️" },
+                ],
                 generators: getInstalledPackages,
             },
             options: __spreadArray([], update_options),
+        },
+        {
+            name: "build",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "convert",
+            description: "Various tools to convert conda packages. Takes a pure Python package build for one platform and converts it to work on one or more other platforms, or all.",
+            args: {
+                name: "files",
+                description: "Package files to convert",
+                variadic: true,
+                template: "filepaths"
+            },
+            options: [
+                {
+                    name: ["-h", "--help"],
+                    description: "Show this help message and exit."
+                },
+                {
+                    name: ["-p", "--platform"],
+                    description: "Platform to convert the packages to.",
+                    args: {
+                        suggestions: [
+                            { name: "osx-64" },
+                            { name: "osx-arm64" },
+                            { name: "linux-32" },
+                            { name: "linux-64" },
+                            { name: "linux-ppc64" },
+                            { name: "linux-ppc64le" },
+                            { name: "linux-s390x" },
+                            { name: "linux-armv6l" },
+                            { name: "linux-armv7l" },
+                            { name: "linux-aarch64" },
+                            { name: "win-32" },
+                            { name: "win-64" },
+                            { name: "all" }
+                        ]
+                    }
+                },
+                {
+                    name: ["--dependencies", "-d"],
+                    description: "Additional (besides python) dependencies of the converted package.",
+                    args: {
+                        name: "Dependencies",
+                        isOptional: true,
+                        variadic: true,
+                    },
+                },
+                {
+                    name: "--show-imports",
+                    description: "Show Python imports for compiled parts of the package.",
+                },
+                {
+                    name: ["-f", "--force"],
+                    description: "Force convert, even when a package has compiled C extensions.",
+                },
+                {
+                    name: ["-o", "--output-dir"],
+                    description: "Directory to write the output files. The packages will be organized in platform/ subdirectories, e.g., win-32/package-1.0-py27_0.tar.bz2.",
+                    args: {
+                        name: "Output Directory",
+                    }
+                },
+                {
+                    name: ["-v", "--verbose"],
+                    description: "Print verbose output."
+                },
+                {
+                    name: "--dry-run",
+                    description: "Only display what would have been done."
+                },
+                {
+                    name: ["-q", "--quiet"],
+                    description: "Don't print as much output."
+                },
+            ],
+        },
+        {
+            name: "debug",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "develop",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "env",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "index",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "inspect",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "metapackage",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "render",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "server",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "skeleton",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
+        },
+        {
+            name: "verify",
+            description: "",
+            subcommands: [],
+            options: [],
+            args: {},
         },
     ],
     options: [
         {
             name: ["-h", "--help"],
-            description: "Show this help message and exit"
+            description: "Show this help message and exit",
         },
         {
             name: ["-V", "--version"],
-            description: "Show the conda version number and exit"
-        }
+            description: "Show the conda version number and exit",
+        },
     ],
 };
 
