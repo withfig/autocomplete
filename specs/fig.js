@@ -102,7 +102,7 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: "autocomplete.immediatelyExecute",
+                    name: "autocomplete.immediatelyExecuteAfterSpace",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.immediatelyExecuteAfterSpace",
                     description: "Show immediate execute button after space",

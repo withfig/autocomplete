@@ -1030,12 +1030,12 @@ var completionSpec = {
                 name: "files",
                 description: "Package files to convert",
                 variadic: true,
-                template: "filepaths"
+                template: "filepaths",
             },
             options: [
                 {
                     name: ["-h", "--help"],
-                    description: "Show this help message and exit."
+                    description: "Show this help message and exit.",
                 },
                 {
                     name: ["-p", "--platform"],
@@ -1054,9 +1054,9 @@ var completionSpec = {
                             { name: "linux-aarch64" },
                             { name: "win-32" },
                             { name: "win-64" },
-                            { name: "all" }
-                        ]
-                    }
+                            { name: "all" },
+                        ],
+                    },
                 },
                 {
                     name: ["--dependencies", "-d"],
@@ -1080,19 +1080,19 @@ var completionSpec = {
                     description: "Directory to write the output files. The packages will be organized in platform/ subdirectories, e.g., win-32/package-1.0-py27_0.tar.bz2.",
                     args: {
                         name: "Output Directory",
-                    }
+                    },
                 },
                 {
                     name: ["-v", "--verbose"],
-                    description: "Print verbose output."
+                    description: "Print verbose output.",
                 },
                 {
                     name: "--dry-run",
-                    description: "Only display what would have been done."
+                    description: "Only display what would have been done.",
                 },
                 {
                     name: ["-q", "--quiet"],
-                    description: "Don't print as much output."
+                    description: "Don't print as much output.",
                 },
             ],
         },
