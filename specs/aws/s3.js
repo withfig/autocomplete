@@ -28,18 +28,16 @@ var awsRegions = [
     "us-west-2",
 ];
 var _prefix_s3 = "s3://";
-var _prefix_file = "file://";
-var _prefix_dir = "dir://";
+var _prefix_file = "";
+var _prefix_fileb = "fileb://";
 var generators = {
-    localPathsGenerator: {
+    filesGenerator: {
         script: function (tokens) {
             var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
-            if (whatHasUserTyped.startsWith(_prefix_file)) {
-                whatHasUserTyped = whatHasUserTyped.slice(7);
-            }
-            else {
-                return "echo 'file://'";
+            if (whatHasUserTyped.startsWith(_prefix_s3) ||
+                whatHasUserTyped.startsWith(_prefix_s3.slice(0, _prefix_s3.length - 1))) {
+                return "";
             }
             var folderPath = "";
             var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
@@ -89,14 +87,11 @@ var generators = {
             temp_array.forEach(function (item) {
                 if (!(item === "" || item === null || item === undefined)) {
                     var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-                    // if (outputType == "folder") {
                     final_array.push({
                         type: outputType,
                         name: item,
                         insertValue: item,
                     });
-                    // }
                 }
             });
             return final_array;
@@ -121,13 +116,15 @@ var generators = {
             return token.slice(token.lastIndexOf("/") + 1);
         },
     },
-    // generate s3 paths (only directories)
-    remotePathsGenerator: {
+    getBlobsGenerator: {
         script: function (tokens) {
+            var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
-            var baseLSCommand = "\\aws s3 ls ";
-            if (!whatHasUserTyped.startsWith(_prefix_s3)) {
-                return "echo 's3://'";
+            if (whatHasUserTyped.startsWith(_prefix_fileb)) {
+                whatHasUserTyped = whatHasUserTyped.slice(7);
+            }
+            else {
+                return "echo 'fileb://'";
             }
             var folderPath = "";
             var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
@@ -146,51 +143,14 @@ var generators = {
             return baseLSCommand + folderPath;
         },
         postProcess: function (out) {
-            if (out == "") {
-                return [];
-            }
-            if (out.trim() === _prefix_s3) {
+            if (out.trim() === _prefix_fileb) {
                 return [
                     {
-                        name: _prefix_s3,
-                        insertValue: _prefix_s3,
+                        name: _prefix_fileb,
+                        insertValue: _prefix_fileb,
                     },
                 ];
             }
-            var preFound = false;
-            var lines = out.split("\n").map(function (line) {
-                var parts = line.split(/\s+/);
-                // sub prefix
-                if (!parts.length) {
-                    return [];
-                }
-                var s3Path = parts[parts.length - 1];
-                // Do this in a try block beacuse of the indexing magic
-                try {
-                    // already in a sub prefix
-                    if (parts[1] == "PRE") {
-                        preFound = true;
-                        return s3Path;
-                    }
-                    var hasBackSlash = s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
-                    // it is a file, do not suggest
-                    if (preFound && !hasBackSlash) {
-                        return "";
-                    }
-                    // if parts[2] is a number (file size) => it is a file => do not suggest
-                    if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
-                        return "";
-                    }
-                    // Bucket names here, just append '/' at the end
-                    if (!hasBackSlash) {
-                        s3Path = s3Path + "/";
-                    }
-                }
-                catch (e) {
-                    console.log(e);
-                }
-                return s3Path;
-            });
             var sortFnStrings = function (a, b) {
                 return a.localeCompare(b);
             };
@@ -209,27 +169,28 @@ var generators = {
                     "../"
                 ]), dots_arr.sort(sortFnStrings));
             };
-            var temp_array = alphabeticalSortFilesAndFolders(lines);
+            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
             var final_array = [];
             temp_array.forEach(function (item) {
                 if (!(item === "" || item === null || item === undefined)) {
                     var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    //if (outputType == "folder") {
+                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
+                    // if (outputType == "folder") {
                     final_array.push({
                         type: outputType,
                         name: item,
                         insertValue: item,
                     });
+                    // }
                 }
-                //  }
             });
             return final_array;
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_s3)) {
+            if (!newToken.startsWith(_prefix_fileb)) {
                 if (!oldToken)
                     return false;
-                if (oldToken.startsWith(_prefix_s3))
+                if (oldToken.startsWith(_prefix_fileb))
                     return true;
                 return false;
             }
@@ -240,24 +201,24 @@ var generators = {
                 return false;
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_s3))
+            if (!token.startsWith(_prefix_fileb))
                 return token;
             return token.slice(token.lastIndexOf("/") + 1);
         },
-        cache: {
-            ttl: 30000,
-        },
     },
     // generate s3 paths (with files)
-    remoteFilePathsGenerator: {
+    remoteFilesGenerator: {
         script: function (tokens) {
             var whatHasUserTyped = tokens[tokens.length - 1];
             var baseLSCommand = "\\aws s3 ls ";
+            var folderPath = "";
+            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+            if (!whatHasUserTyped.startsWith("s3") && lastSlashIndex > -1) {
+                return "";
+            }
             if (!whatHasUserTyped.startsWith(_prefix_s3)) {
                 return "echo 's3://'";
             }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
             if (lastSlashIndex > -1) {
                 if (whatHasUserTyped.startsWith("~/"))
                     folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
@@ -332,9 +293,7 @@ var generators = {
                     else
                         other_arr.push(elm);
                 });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
+                return __spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), dots_arr.sort(sortFnStrings));
             };
             var temp_array = alphabeticalSortFilesAndFolders(lines);
             var final_array = [];
@@ -461,7 +420,7 @@ var completionSpec = {
             args: [
                 {
                     name: "paths",
-                    generators: generators.remotePathsGenerator,
+                    generators: generators.remoteFilesGenerator,
                 },
             ],
         },
@@ -568,7 +527,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -592,7 +551,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -689,6 +648,7 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
+                        description: "The default & max is 1000",
                     },
                 },
                 {
@@ -737,10 +697,17 @@ var completionSpec = {
             ],
             args: [
                 {
-                    name: "paths",
+                    name: "source",
                     generators: [
-                        generators.remoteFilePathsGenerator,
-                        generators.localPathsGenerator,
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
+                    ],
+                },
+                {
+                    name: "destination",
+                    generators: [
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
                     ],
                 },
             ],
@@ -820,7 +787,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -844,7 +811,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -941,6 +908,7 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
+                        description: "The default & max is 1000",
                     },
                 },
                 {
@@ -982,7 +950,18 @@ var completionSpec = {
             ],
             args: [
                 {
-                    name: "paths",
+                    name: "source",
+                    generators: [
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
+                    ],
+                },
+                {
+                    name: "destination",
+                    generators: [
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
+                    ],
                 },
             ],
         },
@@ -1033,13 +1012,14 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
+                        description: "The default & max is 1000",
                     },
                 },
             ],
             args: [
                 {
                     name: "paths",
-                    generators: generators.remoteFilePathsGenerator,
+                    generators: generators.remoteFilesGenerator,
                 },
             ],
         },
@@ -1118,7 +1098,7 @@ var completionSpec = {
                     description: "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -1142,7 +1122,7 @@ var completionSpec = {
                     description: "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
                     args: {
                         name: "blob",
-                        generators: generators.localPathsGenerator,
+                        generators: generators.getBlobsGenerator,
                     },
                 },
                 {
@@ -1239,6 +1219,7 @@ var completionSpec = {
                     description: "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
                     args: {
                         name: "integer",
+                        description: "The default & max is 1000",
                     },
                 },
                 {
@@ -1276,7 +1257,18 @@ var completionSpec = {
             ],
             args: [
                 {
-                    name: "paths",
+                    name: "source",
+                    generators: [
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
+                    ],
+                },
+                {
+                    name: "destination",
+                    generators: [
+                        generators.remoteFilesGenerator,
+                        generators.filesGenerator,
+                    ],
                 },
             ],
         },
@@ -1296,7 +1288,7 @@ var completionSpec = {
             args: [
                 {
                     name: "path",
-                    generators: generators.remotePathsGenerator,
+                    generators: generators.listBuckets,
                 },
             ],
         },
@@ -1331,7 +1323,7 @@ var completionSpec = {
             args: [
                 {
                     name: "path",
-                    generators: generators.remoteFilePathsGenerator,
+                    generators: generators.remoteFilesGenerator,
                 },
             ],
         },

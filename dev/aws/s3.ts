@@ -24,19 +24,20 @@ const awsRegions = [
 ];
 
 const _prefix_s3 = "s3://";
-const _prefix_file = "file://";
-const _prefix_dir = "dir://";
+const _prefix_file = "";
+const _prefix_fileb = "fileb://";
 
 const generators: Record<string, Fig.Generator> = {
-  localPathsGenerator: {
+  filesGenerator: {
     script: (tokens) => {
       var baseLSCommand = "\\ls -1ApL ";
       var whatHasUserTyped = tokens[tokens.length - 1];
 
-      if (whatHasUserTyped.startsWith(_prefix_file)) {
-        whatHasUserTyped = whatHasUserTyped.slice(7);
-      } else {
-        return "echo 'file://'";
+      if (
+        whatHasUserTyped.startsWith(_prefix_s3) ||
+        whatHasUserTyped.startsWith(_prefix_s3.slice(0, _prefix_s3.length - 1))
+      ) {
+        return "";
       }
 
       var folderPath = "";
@@ -92,14 +93,11 @@ const generators: Record<string, Fig.Generator> = {
         if (!(item === "" || item === null || item === undefined)) {
           const outputType = item.slice(-1) === "/" ? "folder" : "file";
 
-          // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-          // if (outputType == "folder") {
           final_array.push({
             type: outputType,
             name: item,
             insertValue: item,
           });
-          // }
         }
       });
 
@@ -125,14 +123,15 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  // generate s3 paths (only directories)
-  remotePathsGenerator: {
+  getBlobsGenerator: {
     script: (tokens) => {
+      var baseLSCommand = "\\ls -1ApL ";
       var whatHasUserTyped = tokens[tokens.length - 1];
-      var baseLSCommand = "\\aws s3 ls ";
 
-      if (!whatHasUserTyped.startsWith(_prefix_s3)) {
-        return "echo 's3://'";
+      if (whatHasUserTyped.startsWith(_prefix_fileb)) {
+        whatHasUserTyped = whatHasUserTyped.slice(7);
+      } else {
+        return "echo 'fileb://'";
       }
 
       var folderPath = "";
@@ -151,61 +150,14 @@ const generators: Record<string, Fig.Generator> = {
       return baseLSCommand + folderPath;
     },
     postProcess: (out) => {
-      if (out == "") {
-        return [];
-      }
-
-      if (out.trim() === _prefix_s3) {
+      if (out.trim() === _prefix_fileb) {
         return [
           {
-            name: _prefix_s3,
-            insertValue: _prefix_s3,
+            name: _prefix_fileb,
+            insertValue: _prefix_fileb,
           },
         ];
       }
-
-      let preFound = false;
-      const lines = out.split("\n").map((line) => {
-        const parts = line.split(/\s+/);
-        // sub prefix
-        if (!parts.length) {
-          return [];
-        }
-
-        let s3Path = parts[parts.length - 1];
-
-        // Do this in a try block beacuse of the indexing magic
-        try {
-          // already in a sub prefix
-          if (parts[1] == "PRE") {
-            preFound = true;
-            return s3Path;
-          }
-
-          const hasBackSlash =
-            s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
-
-          // it is a file, do not suggest
-          if (preFound && !hasBackSlash) {
-            return "";
-          }
-
-          // if parts[2] is a number (file size) => it is a file => do not suggest
-          if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
-            return "";
-          }
-
-          // Bucket names here, just append '/' at the end
-          if (!hasBackSlash) {
-            s3Path = s3Path + "/";
-          }
-        } catch (e) {
-          console.log(e);
-        }
-
-        return s3Path;
-      });
-
       const sortFnStrings = (a, b) => {
         return a.localeCompare(b);
       };
@@ -227,7 +179,7 @@ const generators: Record<string, Fig.Generator> = {
         ];
       };
 
-      var temp_array = alphabeticalSortFilesAndFolders(lines);
+      var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
 
       var final_array = [];
 
@@ -235,23 +187,25 @@ const generators: Record<string, Fig.Generator> = {
         if (!(item === "" || item === null || item === undefined)) {
           const outputType = item.slice(-1) === "/" ? "folder" : "file";
 
-          //if (outputType == "folder") {
+          // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
+          // if (outputType == "folder") {
           final_array.push({
             type: outputType,
             name: item,
             insertValue: item,
           });
+          // }
         }
-        //  }
       });
 
       return final_array;
     },
+
     trigger: (newToken, oldToken) => {
-      if (!newToken.startsWith(_prefix_s3)) {
+      if (!newToken.startsWith(_prefix_fileb)) {
         if (!oldToken) return false;
 
-        if (oldToken.startsWith(_prefix_s3)) return true;
+        if (oldToken.startsWith(_prefix_fileb)) return true;
         return false;
       }
 
@@ -261,27 +215,28 @@ const generators: Record<string, Fig.Generator> = {
     },
 
     filterTerm: (token) => {
-      if (!token.startsWith(_prefix_s3)) return token;
+      if (!token.startsWith(_prefix_fileb)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
-    },
-    cache: {
-      ttl: 30000,
     },
   },
 
   // generate s3 paths (with files)
-  remoteFilePathsGenerator: {
+  remoteFilesGenerator: {
     script: (tokens) => {
       var whatHasUserTyped = tokens[tokens.length - 1];
       var baseLSCommand = "\\aws s3 ls ";
 
-      if (!whatHasUserTyped.startsWith(_prefix_s3)) {
-        return "echo 's3://'";
-      }
-
       var folderPath = "";
 
       var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (!whatHasUserTyped.startsWith("s3") && lastSlashIndex > -1) {
+        return "";
+      }
+
+      if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+        return "echo 's3://'";
+      }
 
       if (lastSlashIndex > -1) {
         if (whatHasUserTyped.startsWith("~/"))
@@ -317,7 +272,6 @@ const generators: Record<string, Fig.Generator> = {
         }
 
         let s3Path = parts[parts.length - 1];
-
         // Do this in a try block beacuse of the indexing magic
         try {
           // already in a sub prefix
@@ -366,7 +320,6 @@ const generators: Record<string, Fig.Generator> = {
 
         return [
           ...other_arr.sort(sortFnStrings),
-          "../",
           ...dots_arr.sort(sortFnStrings),
         ];
       };
@@ -505,7 +458,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "paths",
-          generators: generators.remotePathsGenerator,
+          generators: generators.remoteFilesGenerator,
         },
       ],
     },
@@ -625,7 +578,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -652,7 +605,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -760,6 +713,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -815,10 +769,17 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
           generators: [
-            generators.remoteFilePathsGenerator,
-            generators.localPathsGenerator,
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
           ],
         },
       ],
@@ -909,7 +870,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -936,7 +897,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -1044,6 +1005,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -1091,7 +1053,18 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
+          generators: [
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
+          ],
         },
       ],
     },
@@ -1150,13 +1123,14 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
       ],
       args: [
         {
           name: "paths",
-          generators: generators.remoteFilePathsGenerator,
+          generators: generators.remoteFilesGenerator,
         },
       ],
     },
@@ -1246,7 +1220,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -1273,7 +1247,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.localPathsGenerator,
+            generators: generators.getBlobsGenerator,
           },
         },
         {
@@ -1381,6 +1355,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -1423,7 +1398,18 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
+          generators: [
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.remoteFilesGenerator,
+            generators.filesGenerator,
+          ],
         },
       ],
     },
@@ -1443,7 +1429,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "path",
-          generators: generators.remotePathsGenerator,
+          generators: generators.listBuckets,
         },
       ],
     },
@@ -1482,7 +1468,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "path",
-          generators: generators.remoteFilePathsGenerator,
+          generators: generators.remoteFilesGenerator,
         },
       ],
     },
