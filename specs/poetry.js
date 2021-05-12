@@ -265,8 +265,97 @@ var completionSpec = {
                 },
                 {
                     name: ["--with-credentials"],
-                    description: "Include credentials for extra indices"
-                }
+                    description: "Include credentials for extra indices",
+                },
+            ]),
+        },
+        {
+            name: "help",
+            description: "Display the manual of a command",
+        },
+        {
+            name: "init",
+            description: "Creates a basic pyproject.toml file in the current directory",
+            options: __spreadArray(__spreadArray([], globalOptions), [
+                {
+                    name: ["--name"],
+                    description: "Name of the package",
+                    args: {
+                        name: "name",
+                    },
+                },
+                {
+                    name: ["--description"],
+                    description: "Description of the package",
+                    args: {
+                        name: "description",
+                    },
+                },
+                {
+                    name: ["--author"],
+                    description: "Author name of the package",
+                    args: {
+                        name: "author",
+                    },
+                },
+                {
+                    name: ["--python"],
+                    description: "Compatible Python versions",
+                    args: {
+                        name: "python version",
+                    },
+                },
+                {
+                    name: ["--dependency"],
+                    description: "Package to require, with an optional version constraint",
+                    args: {
+                        name: "dependency",
+                    },
+                },
+                {
+                    name: ["--dev-dependency"],
+                    description: "Package to require for development, with an optional version constraint",
+                    args: {
+                        name: "dev dependency",
+                    },
+                },
+                {
+                    name: ["-l", "--license"],
+                    description: "License of the package",
+                    args: {
+                        name: "license",
+                    },
+                },
+            ]),
+        },
+        {
+            name: "install",
+            description: "Installs the project dependencies",
+            options: __spreadArray(__spreadArray([], globalOptions), [
+                {
+                    name: ["--no-dev"],
+                    description: "Do not install the development dependencies",
+                },
+                {
+                    name: ["--no-root"],
+                    description: "Do not install the root package",
+                },
+                {
+                    name: ["--dry-run"],
+                    description: "Output the operations but do not execute anything",
+                },
+                {
+                    name: ["--remove-untracked"],
+                    description: "Removes packages not present in the lock file",
+                },
+                {
+                    name: ["-E", "--extras"],
+                    description: "Extra sets of dependencies to install",
+                    args: {
+                        name: "extras",
+                        description: "Extras",
+                    },
+                },
             ]),
         },
     ],
