@@ -177,6 +177,58 @@ var completionSpec = {
                 },
             ],
         },
+        {
+            name: "debug",
+            description: "Debug various elements of Peotry",
+            options: __spreadArray([], globalOptions),
+        },
+        {
+            name: "env",
+            description: "Interact with Poetry's project environments",
+            subcommands: [
+                {
+                    name: "info",
+                    description: "Displays information about the current environment",
+                    options: [
+                        {
+                            name: ["-p", "--path"],
+                            description: "Only desplay the environment's path",
+                        },
+                    ],
+                },
+                {
+                    name: "list",
+                    description: "Lists all virtualenvs associated with the current project",
+                    options: [
+                        {
+                            name: ["--full-path"],
+                            description: "Output the full paths of the virtualenvs",
+                        },
+                    ],
+                },
+                {
+                    name: "remove",
+                    description: "Removes a specific virtualenv associated with the project",
+                    args: [
+                        {
+                            name: "python",
+                            description: "The python executable to remove the virtualenv for",
+                        },
+                    ],
+                },
+                {
+                    name: "use",
+                    description: "Activates or creates a new virtualenv for the current project",
+                    args: [
+                        {
+                            name: "python",
+                            description: "The python executable to use",
+                        },
+                    ],
+                },
+            ],
+            options: __spreadArray([], globalOptions),
+        },
     ],
     options: __spreadArray([], globalOptions),
     // Only uncomment if poetry takes an argument
