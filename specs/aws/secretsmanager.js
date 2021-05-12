@@ -105,8 +105,10 @@ var generators = {
             ttl: 30000,
         },
     },
-    // List all json files in current directory
-    inputJSONGenerator: {
+    // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
+    // In case the JSON is passed as a file, the filepath must be prefixed by file://
+    // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+    listFilesGenerator: {
         script: function (tokens) {
             var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
@@ -196,7 +198,10 @@ var generators = {
             return token.slice(token.lastIndexOf("/") + 1);
         },
     },
-    getBlobsGenerator: {
+    // --secret-binary and a few other options takes a blob as parameter. 
+    // The path pointing to the blob must be prefixed by fileb://
+    // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+    listBlobsGenerator: {
         script: function (tokens) {
             var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
@@ -388,6 +393,37 @@ var generators = {
             ttl: 30000,
         },
     },
+    listTagKeys: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                var idx, secretId, out, versions, e_3;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            _a.trys.push([0, 2, , 3]);
+                            idx = context.indexOf("--secret-id");
+                            if (idx < 0) {
+                                return [2 /*return*/, []];
+                            }
+                            secretId = context[idx + 1];
+                            return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId)];
+                        case 1:
+                            out = _a.sent();
+                            versions = JSON.parse(out)["Tags"];
+                            return [2 /*return*/, versions.map(function (elm) { return ({ name: elm["Key"] }); })];
+                        case 2:
+                            e_3 = _a.sent();
+                            console.log(e_3);
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/, []];
+                    }
+                });
+            });
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
 };
 var completionSpec = {
     name: "secretsmanager",
@@ -411,7 +447,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -465,7 +501,7 @@ var completionSpec = {
                     priority: 90,
                     args: {
                         name: "blob",
-                        generators: generators.getBlobsGenerator,
+                        generators: generators.listBlobsGenerator,
                     },
                 },
                 {
@@ -507,7 +543,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -538,7 +574,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -587,7 +623,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -618,7 +654,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -702,7 +738,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -733,7 +769,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -780,7 +816,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -833,7 +869,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -886,7 +922,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -938,7 +974,7 @@ var completionSpec = {
                     description: "A JSON-formatted string constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -954,7 +990,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -992,7 +1028,7 @@ var completionSpec = {
                     description: "(Optional) Specifies binary data that you want to encrypt and store in the new version of the secret. To use this parameter in the command-line tools, we recommend that you store your binary data in a file and then use the appropriate technique for your tool to pass the contents of the file as a parameter. Either SecretBinary or SecretString must have a value, but not both. They cannot both be empty. This parameter is not accessible if the secret using the Secrets Manager console.",
                     args: {
                         name: "blob",
-                        generators: generators.getBlobsGenerator,
+                        generators: generators.listBlobsGenerator,
                     },
                 },
                 {
@@ -1015,7 +1051,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1055,7 +1091,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1103,7 +1139,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1134,7 +1170,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1188,7 +1224,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1219,7 +1255,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1259,7 +1295,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1290,37 +1326,7 @@ var completionSpec = {
                     description: "A list of tag key names to remove from the secret. You don't specify the value. Both the key and its associated value are removed. This parameter to the API requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.",
                     args: {
                         name: "list",
-                        generators: {
-                            custom: function (context, executeShellCommand) {
-                                return __awaiter(this, void 0, void 0, function () {
-                                    var idx, secretId, out, versions, e_3;
-                                    return __generator(this, function (_a) {
-                                        switch (_a.label) {
-                                            case 0:
-                                                _a.trys.push([0, 2, , 3]);
-                                                idx = context.indexOf("--secret-id");
-                                                if (idx < 0) {
-                                                    return [2 /*return*/, []];
-                                                }
-                                                secretId = context[idx + 1];
-                                                return [4 /*yield*/, executeShellCommand("aws secretsmanager describe-secret --secret-id " + secretId)];
-                                            case 1:
-                                                out = _a.sent();
-                                                versions = JSON.parse(out)["Tags"];
-                                                return [2 /*return*/, versions.map(function (elm) { return ({ name: elm["Key"] }); })];
-                                            case 2:
-                                                e_3 = _a.sent();
-                                                console.log(e_3);
-                                                return [3 /*break*/, 3];
-                                            case 3: return [2 /*return*/, []];
-                                        }
-                                    });
-                                });
-                            },
-                            cache: {
-                                ttl: 30000,
-                            },
-                        },
+                        generators: generators.listTagKeys,
                     },
                 },
                 {
@@ -1328,7 +1334,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1381,7 +1387,7 @@ var completionSpec = {
                     description: "(Optional) Specifies updated binary data that you want to encrypt and store in the new version of the secret. To use this parameter in the command-line tools, we recommend that you store your binary data in a file and then use the appropriate technique for your tool to pass the contents of the file as a parameter. Either SecretBinary or SecretString must have a value, but not both. They cannot both be empty. This parameter is not accessible using the Secrets Manager console.",
                     args: {
                         name: "blob",
-                        generators: generators.getBlobsGenerator,
+                        generators: generators.listBlobsGenerator,
                     },
                 },
                 {
@@ -1396,7 +1402,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1451,7 +1457,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1482,7 +1488,7 @@ var completionSpec = {
                     description: "A JSON-formatted string constructed according to the grammar and syntax for an AWS resource-based policy. The policy in the string identifies who can access or manage this secret and its versions. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide.publi",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1490,7 +1496,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputJSONGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
