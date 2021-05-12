@@ -28,15 +28,13 @@ const _prefix_file = "";
 const _prefix_fileb = "fileb://";
 
 const generators: Record<string, Fig.Generator> = {
-  filesGenerator: {
+  listFilesGenerator: {
     script: (tokens) => {
       var baseLSCommand = "\\ls -1ApL ";
       var whatHasUserTyped = tokens[tokens.length - 1];
 
-      if (
-        whatHasUserTyped.startsWith(_prefix_s3) ||
-        whatHasUserTyped.startsWith(_prefix_s3.slice(0, _prefix_s3.length - 1))
-      ) {
+      // Do not show file suggestions when s3:// typed
+      if (whatHasUserTyped.startsWith(_prefix_s3)) {
         return "";
       }
 
@@ -118,12 +116,19 @@ const generators: Record<string, Fig.Generator> = {
     },
 
     filterTerm: (token) => {
-      if (!token.startsWith(_prefix_file)) return token;
+      // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
+      // simly return token
+      if (!token.startsWith(_prefix_s3) && _prefix_s3.startsWith(token)) {
+        return token;
+      }
       return token.slice(token.lastIndexOf("/") + 1);
     },
   },
 
-  getBlobsGenerator: {
+  // --secret-binary and a few other options takes a blob as parameter.
+  // The path pointing to the blob must be prefixed by fileb://
+  // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+  listBlobsGenerator: {
     script: (tokens) => {
       var baseLSCommand = "\\ls -1ApL ";
       var whatHasUserTyped = tokens[tokens.length - 1];
@@ -220,8 +225,8 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
-  // generate s3 paths (with files)
-  remoteFilesGenerator: {
+  // generate s3 filepaths
+  listRemoteFilesGenerator: {
     script: (tokens) => {
       var whatHasUserTyped = tokens[tokens.length - 1];
       var baseLSCommand = "\\aws s3 ls ";
@@ -230,11 +235,14 @@ const generators: Record<string, Fig.Generator> = {
 
       var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
-      if (!whatHasUserTyped.startsWith("s3") && lastSlashIndex > -1) {
-        return "";
-      }
-
       if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+        // if whatHasUserTyped is neither s3:// or its substr permutations,
+        // then we can assume that the filepath generator is in work
+        // so do not return any s3 related filepaths
+        if (!_prefix_s3.startsWith(whatHasUserTyped)) {
+          return "";
+        }
+
         return "echo 's3://'";
       }
 
@@ -272,9 +280,16 @@ const generators: Record<string, Fig.Generator> = {
         }
 
         let s3Path = parts[parts.length - 1];
+
+        // Parsing S3 CLI Output here
         // Do this in a try block beacuse of the indexing magic
         try {
-          // already in a sub prefix
+          //Example Output:
+          //                             PRE charts/
+          //  2021-05-08 10:15:53      81765 img.jpg
+          //
+          // After we have found at least 1 PRE keyword
+          // we can assume that all lines without PRE are files
           if (parts[1] == "PRE") {
             preFound = true;
             return s3Path;
@@ -288,12 +303,14 @@ const generators: Record<string, Fig.Generator> = {
             return s3Path;
           }
 
-          // if parts[2] is a number (file size) => it is a file => do not append trailing '/'
+          // If output line's third column is a number (File size column)
+          // we can assume that it is a file so do not append trailing '/'
           if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
             return s3Path;
           }
 
-          // Bucket names here, just append '/' at the end
+          // Any leftover lines are bucket names
+          // just append '/' at the end
           if (!hasBackSlash) {
             s3Path = s3Path + "/";
           }
@@ -458,7 +475,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "paths",
-          generators: generators.remoteFilesGenerator,
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },
@@ -578,7 +595,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -605,7 +622,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -771,15 +788,15 @@ export const completionSpec: Fig.Spec = {
         {
           name: "source",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
         {
           name: "destination",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
       ],
@@ -870,7 +887,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -897,7 +914,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -1055,15 +1072,15 @@ export const completionSpec: Fig.Spec = {
         {
           name: "source",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
         {
           name: "destination",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
       ],
@@ -1130,7 +1147,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "paths",
-          generators: generators.remoteFilesGenerator,
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },
@@ -1220,7 +1237,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -1247,7 +1264,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
-            generators: generators.getBlobsGenerator,
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -1400,15 +1417,15 @@ export const completionSpec: Fig.Spec = {
         {
           name: "source",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
         {
           name: "destination",
           generators: [
-            generators.remoteFilesGenerator,
-            generators.filesGenerator,
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
           ],
         },
       ],
@@ -1468,7 +1485,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "path",
-          generators: generators.remoteFilesGenerator,
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },
