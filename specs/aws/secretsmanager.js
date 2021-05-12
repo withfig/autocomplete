@@ -62,8 +62,87 @@ var awsRegions = [
     "us-west-1",
     "us-west-2",
 ];
-var _prefix_file = "file://";
-var _prefix_fileb = "fileb://";
+var appendFolderPath = function (tokens, prefix) {
+    var baseLSCommand = "\\ls -1ApL ";
+    var whatHasUserTyped = tokens[tokens.length - 1];
+    if (whatHasUserTyped.startsWith(prefix)) {
+        whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+    }
+    else {
+        return "echo '" + prefix + "'";
+    }
+    var folderPath = "";
+    var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+    if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+            if (lastSlashIndex === 0)
+                folderPath = "/";
+            else
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        }
+        else
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+    return baseLSCommand + folderPath;
+};
+var postProcessFiles = function (out, prefix) {
+    if (out.trim() === prefix) {
+        return [
+            {
+                name: prefix,
+                insertValue: prefix,
+            },
+        ];
+    }
+    var sortFnStrings = function (a, b) {
+        return a.localeCompare(b);
+    };
+    var alphabeticalSortFilesAndFolders = function (arr) {
+        var dots_arr = [];
+        var other_arr = [];
+        arr.map(function (elm) {
+            if (elm.toLowerCase() == ".ds_store")
+                return;
+            if (elm.slice(0, 1) === ".")
+                dots_arr.push(elm);
+            else
+                other_arr.push(elm);
+        });
+        return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+            "../"
+        ]), dots_arr.sort(sortFnStrings));
+    };
+    var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+    var final_array = [];
+    temp_array.forEach(function (item) {
+        if (!(item === "" || item === null || item === undefined)) {
+            var outputType = item.slice(-1) === "/" ? "folder" : "file";
+            final_array.push({
+                type: outputType,
+                name: item,
+                insertValue: item,
+            });
+        }
+    });
+    return final_array;
+};
+var triggerPrefix = function (newToken, oldToken, prefix) {
+    if (!newToken.startsWith(prefix)) {
+        if (!oldToken)
+            return false;
+        return oldToken.startsWith(prefix);
+    }
+    return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+var filterWithPrefix = function (token, prefix) {
+    if (!token.startsWith(prefix))
+        return token;
+    return token.slice(token.lastIndexOf("/") + 1);
+};
+var _prefixFile = "file://";
+var _prefixFileb = "fileb://";
 var generators = {
     secretIdsGenerator: {
         // --page-size does not affect the number of items returned,
@@ -110,185 +189,33 @@ var generators = {
     // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
     listFilesGenerator: {
         script: function (tokens) {
-            var baseLSCommand = "\\ls -1ApL ";
-            var whatHasUserTyped = tokens[tokens.length - 1];
-            if (whatHasUserTyped.startsWith(_prefix_file)) {
-                whatHasUserTyped = whatHasUserTyped.slice(7);
-            }
-            else {
-                return "echo 'file://'";
-            }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-            }
-            return baseLSCommand + folderPath;
+            return appendFolderPath(tokens, _prefixFile);
         },
         postProcess: function (out) {
-            if (out.trim() === _prefix_file) {
-                return [
-                    {
-                        name: _prefix_file,
-                        insertValue: _prefix_file,
-                    },
-                ];
-            }
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-                    // if (outputType == "folder") {
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                    // }
-                }
-            });
-            return final_array;
+            return postProcessFiles(out, _prefixFile);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_file)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_file))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixFile);
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_file))
-                return token;
-            return token.slice(token.lastIndexOf("/") + 1);
+            return filterWithPrefix(token, _prefixFile);
         },
     },
-    // --secret-binary and a few other options takes a blob as parameter. 
+    // --secret-binary and a few other options takes a blob as parameter.
     // The path pointing to the blob must be prefixed by fileb://
     // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
     listBlobsGenerator: {
         script: function (tokens) {
-            var baseLSCommand = "\\ls -1ApL ";
-            var whatHasUserTyped = tokens[tokens.length - 1];
-            if (whatHasUserTyped.startsWith(_prefix_fileb)) {
-                whatHasUserTyped = whatHasUserTyped.slice(7);
-            }
-            else {
-                return "echo 'fileb://'";
-            }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-            }
-            return baseLSCommand + folderPath;
+            return appendFolderPath(tokens, _prefixFileb);
         },
         postProcess: function (out) {
-            if (out.trim() === _prefix_fileb) {
-                return [
-                    {
-                        name: _prefix_fileb,
-                        insertValue: _prefix_fileb,
-                    },
-                ];
-            }
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-                    // if (outputType == "folder") {
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                    // }
-                }
-            });
-            return final_array;
+            return postProcessFiles(out, _prefixFileb);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_fileb)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_fileb))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixFileb);
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_fileb))
-                return token;
-            return token.slice(token.lastIndexOf("/") + 1);
+            return filterWithPrefix(token, _prefixFileb);
         },
     },
     getReplicaRegionsGenerator: {
