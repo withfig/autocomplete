@@ -1,3 +1,5 @@
+import { findConfigFile } from "typescript";
+
 // TODO: suggest available s3 endpoints
 const awsRegions = [
   "af-south-1",
@@ -23,102 +25,128 @@ const awsRegions = [
   "us-west-2",
 ];
 
-const _prefix_s3 = "s3://";
-const _prefix_file = "";
-const _prefix_fileb = "fileb://";
+const appendFolderPath = (
+  whatHasUserTyped: string,
+  baseLSCommand: string
+): string => {
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("~/"))
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) folderPath = "/";
+      else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  return sortSuggestions(out.split("\n"));
+};
+
+const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dots_arr = [];
+    const other_arr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dots_arr.push(elm);
+      else other_arr.push(elm);
+    });
+
+    if (isS3) {
+      return [
+        ...other_arr.sort(sortFnStrings),
+        ...dots_arr.sort(sortFnStrings),
+      ];
+    }
+
+    return [
+      ...other_arr.sort(sortFnStrings),
+      "../",
+      ...dots_arr.sort(sortFnStrings),
+    ];
+  };
+
+  const temp_array = alphabeticalSortFilesAndFolders(arr);
+
+  const final_array = [];
+
+  temp_array.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      final_array.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return final_array;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const _prefixS3 = "s3://";
+const _prefixFile = "";
+const _prefixFileb = "fileb://";
 
 const generators: Record<string, Fig.Generator> = {
   listFilesGenerator: {
     script: (tokens) => {
-      var baseLSCommand = "\\ls -1ApL ";
-      var whatHasUserTyped = tokens[tokens.length - 1];
+      const baseLSCommand = "\\ls -1ApL ";
+      const whatHasUserTyped = tokens[tokens.length - 1];
 
       // Do not show file suggestions when s3:// typed
-      if (whatHasUserTyped.startsWith(_prefix_s3)) {
+      if (whatHasUserTyped.startsWith(_prefixS3)) {
         return "";
       }
 
-      var folderPath = "";
-
-      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-
-      if (lastSlashIndex > -1) {
-        if (whatHasUserTyped.startsWith("~/"))
-          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        else if (whatHasUserTyped.startsWith("/")) {
-          if (lastSlashIndex === 0) folderPath = "/";
-          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-      }
-
-      return baseLSCommand + folderPath;
+      return appendFolderPath(whatHasUserTyped, baseLSCommand);
     },
     postProcess: (out) => {
-      if (out.trim() === _prefix_file) {
-        return [
-          {
-            name: _prefix_file,
-            insertValue: _prefix_file,
-          },
-        ];
-      }
-      const sortFnStrings = (a, b) => {
-        return a.localeCompare(b);
-      };
-
-      const alphabeticalSortFilesAndFolders = (arr) => {
-        var dots_arr = [];
-        var other_arr = [];
-
-        arr.map((elm) => {
-          if (elm.toLowerCase() == ".ds_store") return;
-          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
-          else other_arr.push(elm);
-        });
-
-        return [
-          ...other_arr.sort(sortFnStrings),
-          "../",
-          ...dots_arr.sort(sortFnStrings),
-        ];
-      };
-
-      var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-
-      var final_array = [];
-
-      temp_array.forEach((item) => {
-        if (!(item === "" || item === null || item === undefined)) {
-          const outputType = item.slice(-1) === "/" ? "folder" : "file";
-
-          final_array.push({
-            type: outputType,
-            name: item,
-            insertValue: item,
-          });
-        }
-      });
-
-      return final_array;
+      return postProcessFiles(out, _prefixFile);
     },
 
     trigger: (newToken, oldToken) => {
-      if (!newToken.startsWith(_prefix_file)) {
-        if (!oldToken) return false;
-
-        if (oldToken.startsWith(_prefix_file)) return true;
-        return false;
-      }
-
-      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-        return true;
-      } else return false;
+      return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
     filterTerm: (token) => {
       // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
       // simly return token
-      if (!token.startsWith(_prefix_s3) && _prefix_s3.startsWith(token)) {
+      if (!token.startsWith(_prefixS3) && _prefixS3.startsWith(token)) {
         return token;
       }
       return token.slice(token.lastIndexOf("/") + 1);
@@ -130,97 +158,27 @@ const generators: Record<string, Fig.Generator> = {
   // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
   listBlobsGenerator: {
     script: (tokens) => {
-      var baseLSCommand = "\\ls -1ApL ";
-      var whatHasUserTyped = tokens[tokens.length - 1];
+      const baseLSCommand = "\\ls -1ApL ";
+      let whatHasUserTyped = tokens[tokens.length - 1];
 
-      if (whatHasUserTyped.startsWith(_prefix_fileb)) {
-        whatHasUserTyped = whatHasUserTyped.slice(7);
+      if (whatHasUserTyped.startsWith(_prefixFileb)) {
+        whatHasUserTyped = whatHasUserTyped.slice(_prefixFileb.length);
       } else {
         return "echo 'fileb://'";
       }
 
-      var folderPath = "";
-
-      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-
-      if (lastSlashIndex > -1) {
-        if (whatHasUserTyped.startsWith("~/"))
-          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        else if (whatHasUserTyped.startsWith("/")) {
-          if (lastSlashIndex === 0) folderPath = "/";
-          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-      }
-
-      return baseLSCommand + folderPath;
+      return appendFolderPath(whatHasUserTyped, baseLSCommand);
     },
     postProcess: (out) => {
-      if (out.trim() === _prefix_fileb) {
-        return [
-          {
-            name: _prefix_fileb,
-            insertValue: _prefix_fileb,
-          },
-        ];
-      }
-      const sortFnStrings = (a, b) => {
-        return a.localeCompare(b);
-      };
-
-      const alphabeticalSortFilesAndFolders = (arr) => {
-        var dots_arr = [];
-        var other_arr = [];
-
-        arr.map((elm) => {
-          if (elm.toLowerCase() == ".ds_store") return;
-          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
-          else other_arr.push(elm);
-        });
-
-        return [
-          ...other_arr.sort(sortFnStrings),
-          "../",
-          ...dots_arr.sort(sortFnStrings),
-        ];
-      };
-
-      var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-
-      var final_array = [];
-
-      temp_array.forEach((item) => {
-        if (!(item === "" || item === null || item === undefined)) {
-          const outputType = item.slice(-1) === "/" ? "folder" : "file";
-
-          // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-          // if (outputType == "folder") {
-          final_array.push({
-            type: outputType,
-            name: item,
-            insertValue: item,
-          });
-          // }
-        }
-      });
-
-      return final_array;
+      return postProcessFiles(out, _prefixFileb);
     },
 
     trigger: (newToken, oldToken) => {
-      if (!newToken.startsWith(_prefix_fileb)) {
-        if (!oldToken) return false;
-
-        if (oldToken.startsWith(_prefix_fileb)) return true;
-        return false;
-      }
-
-      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-        return true;
-      } else return false;
+      return triggerPrefix(newToken, oldToken, _prefixFileb);
     },
 
     filterTerm: (token) => {
-      if (!token.startsWith(_prefix_fileb)) return token;
+      if (!token.startsWith(_prefixFileb)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
     },
   },
@@ -228,18 +186,18 @@ const generators: Record<string, Fig.Generator> = {
   // generate s3 filepaths
   listRemoteFilesGenerator: {
     script: (tokens) => {
-      var whatHasUserTyped = tokens[tokens.length - 1];
-      var baseLSCommand = "\\aws s3 ls ";
+      const whatHasUserTyped = tokens[tokens.length - 1];
+      const baseLSCommand = "\\aws s3 ls ";
 
-      var folderPath = "";
+      let folderPath = "";
 
-      var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+      const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
-      if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+      if (!whatHasUserTyped.startsWith(_prefixS3)) {
         // if whatHasUserTyped is neither s3:// or its substr permutations,
         // then we can assume that the filepath generator is in work
         // so do not return any s3 related filepaths
-        if (!_prefix_s3.startsWith(whatHasUserTyped)) {
+        if (!_prefixS3.startsWith(whatHasUserTyped)) {
           return "";
         }
 
@@ -247,12 +205,7 @@ const generators: Record<string, Fig.Generator> = {
       }
 
       if (lastSlashIndex > -1) {
-        if (whatHasUserTyped.startsWith("~/"))
-          folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        else if (whatHasUserTyped.startsWith("/")) {
-          if (lastSlashIndex === 0) folderPath = "/";
-          else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
       }
 
       return baseLSCommand + folderPath;
@@ -262,11 +215,11 @@ const generators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (out.trim() === _prefix_s3) {
+      if (out.trim() === _prefixS3) {
         return [
           {
-            name: _prefix_s3,
-            insertValue: _prefix_s3,
+            name: _prefixS3,
+            insertValue: _prefixS3,
           },
         ];
       }
@@ -296,7 +249,7 @@ const generators: Record<string, Fig.Generator> = {
           }
 
           const hasBackSlash =
-            s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
+            s3Path.slice(_prefixS3.length).lastIndexOf("/") > -1;
 
           // it is a file, do not append trailing '/'
           if (preFound && !hasBackSlash) {
@@ -321,61 +274,14 @@ const generators: Record<string, Fig.Generator> = {
         return s3Path;
       });
 
-      const sortFnStrings = (a, b) => {
-        return a.localeCompare(b);
-      };
-
-      const alphabeticalSortFilesAndFolders = (arr) => {
-        var dots_arr = [];
-        var other_arr = [];
-
-        arr.map((elm) => {
-          if (elm.toLowerCase() == ".ds_store") return;
-          if (elm.slice(0, 1) === ".") dots_arr.push(elm);
-          else other_arr.push(elm);
-        });
-
-        return [
-          ...other_arr.sort(sortFnStrings),
-          ...dots_arr.sort(sortFnStrings),
-        ];
-      };
-
-      var temp_array = alphabeticalSortFilesAndFolders(lines);
-
-      var final_array = [];
-
-      temp_array.forEach((item) => {
-        if (!(item === "" || item === null || item === undefined)) {
-          const outputType = item.slice(-1) === "/" ? "folder" : "file";
-
-          //if (outputType == "folder") {
-          final_array.push({
-            type: outputType,
-            name: item,
-            insertValue: item,
-          });
-        }
-        //  }
-      });
-
-      return final_array;
+      return sortSuggestions(lines as string[], true);
     },
     trigger: (newToken, oldToken) => {
-      if (!newToken.startsWith(_prefix_s3)) {
-        if (!oldToken) return false;
-
-        if (oldToken.startsWith(_prefix_s3)) return true;
-        return false;
-      }
-
-      if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-        return true;
-      } else return false;
+      return triggerPrefix(newToken, oldToken, _prefixS3);
     },
 
     filterTerm: (token) => {
-      if (!token.startsWith(_prefix_s3)) return token;
+      if (!token.startsWith(_prefixS3)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
     },
     cache: {
@@ -395,7 +301,7 @@ const generators: Record<string, Fig.Generator> = {
             return [];
           }
           return {
-            name: _prefix_s3 + parts[parts.length - 1],
+            name: _prefixS3 + parts[parts.length - 1],
           };
         }) as Fig.Suggestion[];
       } catch (error) {

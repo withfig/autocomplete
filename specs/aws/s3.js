@@ -27,93 +27,102 @@ var awsRegions = [
     "us-west-1",
     "us-west-2",
 ];
-var _prefix_s3 = "s3://";
-var _prefix_file = "";
-var _prefix_fileb = "fileb://";
+var appendFolderPath = function (whatHasUserTyped, baseLSCommand) {
+    var folderPath = "";
+    var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+    if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+            if (lastSlashIndex === 0)
+                folderPath = "/";
+            else
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        }
+        else
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+    return baseLSCommand + folderPath;
+};
+var postProcessFiles = function (out, prefix) {
+    if (out.trim() === prefix) {
+        return [
+            {
+                name: prefix,
+                insertValue: prefix,
+            },
+        ];
+    }
+    return sortSuggestions(out.split("\n"));
+};
+var sortSuggestions = function (arr, isS3) {
+    var sortFnStrings = function (a, b) {
+        return a.localeCompare(b);
+    };
+    var alphabeticalSortFilesAndFolders = function (arr) {
+        var dots_arr = [];
+        var other_arr = [];
+        arr.map(function (elm) {
+            if (elm.toLowerCase() == ".ds_store")
+                return;
+            if (elm.slice(0, 1) === ".")
+                dots_arr.push(elm);
+            else
+                other_arr.push(elm);
+        });
+        if (isS3) {
+            return __spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), dots_arr.sort(sortFnStrings));
+        }
+        return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+            "../"
+        ]), dots_arr.sort(sortFnStrings));
+    };
+    var temp_array = alphabeticalSortFilesAndFolders(arr);
+    var final_array = [];
+    temp_array.forEach(function (item) {
+        if (!(item === "" || item === null || item === undefined)) {
+            var outputType = item.slice(-1) === "/" ? "folder" : "file";
+            final_array.push({
+                type: outputType,
+                name: item,
+                insertValue: item,
+            });
+        }
+    });
+    return final_array;
+};
+var triggerPrefix = function (newToken, oldToken, prefix) {
+    if (!newToken.startsWith(prefix)) {
+        if (!oldToken)
+            return false;
+        return oldToken.startsWith(prefix);
+    }
+    return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+var _prefixS3 = "s3://";
+var _prefixFile = "";
+var _prefixFileb = "fileb://";
 var generators = {
     listFilesGenerator: {
         script: function (tokens) {
             var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
             // Do not show file suggestions when s3:// typed
-            if (whatHasUserTyped.startsWith(_prefix_s3)) {
+            if (whatHasUserTyped.startsWith(_prefixS3)) {
                 return "";
             }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-            }
-            return baseLSCommand + folderPath;
+            return appendFolderPath(whatHasUserTyped, baseLSCommand);
         },
         postProcess: function (out) {
-            if (out.trim() === _prefix_file) {
-                return [
-                    {
-                        name: _prefix_file,
-                        insertValue: _prefix_file,
-                    },
-                ];
-            }
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                }
-            });
-            return final_array;
+            return postProcessFiles(out, _prefixFile);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_file)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_file))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixFile);
         },
         filterTerm: function (token) {
             // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
             // simly return token
-            if (!token.startsWith(_prefix_s3) && _prefix_s3.startsWith(token)) {
+            if (!token.startsWith(_prefixS3) && _prefixS3.startsWith(token)) {
                 return token;
             }
             return token.slice(token.lastIndexOf("/") + 1);
@@ -126,88 +135,22 @@ var generators = {
         script: function (tokens) {
             var baseLSCommand = "\\ls -1ApL ";
             var whatHasUserTyped = tokens[tokens.length - 1];
-            if (whatHasUserTyped.startsWith(_prefix_fileb)) {
-                whatHasUserTyped = whatHasUserTyped.slice(7);
+            if (whatHasUserTyped.startsWith(_prefixFileb)) {
+                whatHasUserTyped = whatHasUserTyped.slice(_prefixFileb.length);
             }
             else {
                 return "echo 'fileb://'";
             }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-            }
-            return baseLSCommand + folderPath;
+            return appendFolderPath(whatHasUserTyped, baseLSCommand);
         },
         postProcess: function (out) {
-            if (out.trim() === _prefix_fileb) {
-                return [
-                    {
-                        name: _prefix_fileb,
-                        insertValue: _prefix_fileb,
-                    },
-                ];
-            }
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-                    // if (outputType == "folder") {
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                    // }
-                }
-            });
-            return final_array;
+            return postProcessFiles(out, _prefixFileb);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_fileb)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_fileb))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixFileb);
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_fileb))
+            if (!token.startsWith(_prefixFileb))
                 return token;
             return token.slice(token.lastIndexOf("/") + 1);
         },
@@ -219,26 +162,17 @@ var generators = {
             var baseLSCommand = "\\aws s3 ls ";
             var folderPath = "";
             var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (!whatHasUserTyped.startsWith(_prefix_s3)) {
+            if (!whatHasUserTyped.startsWith(_prefixS3)) {
                 // if whatHasUserTyped is neither s3:// or its substr permutations,
                 // then we can assume that the filepath generator is in work
                 // so do not return any s3 related filepaths
-                if (!_prefix_s3.startsWith(whatHasUserTyped)) {
+                if (!_prefixS3.startsWith(whatHasUserTyped)) {
                     return "";
                 }
                 return "echo 's3://'";
             }
             if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
             }
             return baseLSCommand + folderPath;
         },
@@ -246,11 +180,11 @@ var generators = {
             if (out == "") {
                 return [];
             }
-            if (out.trim() === _prefix_s3) {
+            if (out.trim() === _prefixS3) {
                 return [
                     {
-                        name: _prefix_s3,
-                        insertValue: _prefix_s3,
+                        name: _prefixS3,
+                        insertValue: _prefixS3,
                     },
                 ];
             }
@@ -275,7 +209,7 @@ var generators = {
                         preFound = true;
                         return s3Path;
                     }
-                    var hasBackSlash = s3Path.slice(_prefix_s3.length).lastIndexOf("/") > -1;
+                    var hasBackSlash = s3Path.slice(_prefixS3.length).lastIndexOf("/") > -1;
                     // it is a file, do not append trailing '/'
                     if (preFound && !hasBackSlash) {
                         return s3Path;
@@ -296,54 +230,13 @@ var generators = {
                 }
                 return s3Path;
             });
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(lines);
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    //if (outputType == "folder") {
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                }
-                //  }
-            });
-            return final_array;
+            return sortSuggestions(lines, true);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_s3)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_s3))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixS3);
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_s3))
+            if (!token.startsWith(_prefixS3))
                 return token;
             return token.slice(token.lastIndexOf("/") + 1);
         },
@@ -363,7 +256,7 @@ var generators = {
                         return [];
                     }
                     return {
-                        name: _prefix_s3 + parts[parts.length - 1],
+                        name: _prefixS3 + parts[parts.length - 1],
                     };
                 });
             }
