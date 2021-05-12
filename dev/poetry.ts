@@ -223,26 +223,67 @@ export const completion: Fig.Spec = {
           name: "remove",
           description:
             "Removes a specific virtualenv associated with the project",
-          args: [
-            {
-              name: "python",
-              description: "The python executable to remove the virtualenv for",
-            },
-          ],
+          args: {
+            name: "python",
+            description: "The python executable to remove the virtualenv for",
+          },
         },
         {
           name: "use",
           description:
             "Activates or creates a new virtualenv for the current project",
-          args: [
-            {
-              name: "python",
-              description: "The python executable to use",
-            },
-          ],
+          args: {
+            name: "python",
+            description: "The python executable to use",
+          },
         },
       ],
       options: [...globalOptions],
+    },
+    {
+      name: "export",
+      description: "Exports the lock file to alternative formats",
+      options: [
+        ...globalOptions,
+        {
+          name: ["-f", "--format"],
+          description: "Format to export to",
+          args: {
+            name: "format",
+            description: "Export format",
+            suggestions: ["requirements.txt"],
+          },
+        },
+        {
+          name: ["-o", "--output"],
+          description: "The name of the output file",
+          args: {
+            name: "filename",
+            description: "Output file name",
+            suggestions: ["requirements.txt"],
+          },
+        },
+        {
+          name: ["--without-hashes"],
+          description: "Exclude hashes from the exported file",
+        },
+        {
+          name: ["--dev"],
+          description: "Include development dependencies",
+        },
+        {
+          name: ["-E", "--extras"],
+          description: "Extra sets of dependencies to include",
+          args: {
+            name: "extras",
+            description: "Extras",
+          },
+        },
+        {
+          name: ["--with-credentials"],
+          description: "Include credentials for extra indices",
+        },
+      ],
     },
   ],
   options: [...globalOptions],
