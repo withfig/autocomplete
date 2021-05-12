@@ -1,5 +1,3 @@
-import { findConfigFile } from "typescript";
-
 // TODO: suggest available s3 endpoints
 const awsRegions = [
   "af-south-1",
