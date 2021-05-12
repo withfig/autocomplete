@@ -15,11 +15,6 @@ var completionSpec = {
                     name: "list",
                     description: "specifies byte positions",
                 },
-                {
-                    name: "-n",
-                    description: "do not split multi-byte characters",
-                    isOptional: true,
-                },
             ],
         },
         {
@@ -40,17 +35,26 @@ var completionSpec = {
                     name: "list",
                     description: "specifies column positions",
                 },
-                {
-                    name: "-d",
-                    description: "use delim as the field delimiter character instead of the tab character.",
-                    isOptional: true,
-                },
-                {
-                    name: "-s",
-                    description: "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
-                    isOptional: true,
-                },
             ],
+        },
+        {
+            name: "-n",
+            description: "do not split multi-byte characters",
+        },
+        {
+            name: "-d",
+            description: "use delim as the field delimiter character instead of the tab character.",
+            args: [
+                {
+                    name: "delim",
+                    description: "field deliminator to use instead of the tab character",
+                    isOptional: true,
+                }
+            ],
+        },
+        {
+            name: "-s",
+            description: "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
         },
     ],
 };
