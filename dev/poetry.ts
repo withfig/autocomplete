@@ -379,6 +379,89 @@ export const completion: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "lock",
+      description: "Locks the project dependencies",
+      options: [
+        ...globalOptions,
+        {
+          name: ["--no-update"],
+          description: "Do not update locked versions, only refresh lock file",
+        },
+      ],
+    },
+    {
+      name: "new",
+      description: "Creates a new Python project at specified path",
+      options: [
+        ...globalOptions,
+        {
+          name: ["--name"],
+          description: "Set the resulting package name",
+          args: {
+            name: "package name",
+          },
+        },
+        {
+          name: ["--src"],
+          description: "Use the src layout for the project",
+        },
+      ],
+      args: {
+        name: "path",
+        description: "The path to create the project at",
+      },
+    },
+    {
+      name: "publish",
+      description: "Publishes a package to a remote repository",
+      options: [
+        ...globalOptions,
+        {
+          name: ["-r", "--repository"],
+          description: "The repository to publish the package to",
+          args: {
+            name: "repository",
+          },
+        },
+        {
+          name: ["-u", "--username"],
+          description: "The username to access the repository",
+          args: {
+            name: "username",
+          },
+        },
+        {
+          name: ["-p", "--password"],
+          description: "The password to access the repository",
+          args: {
+            name: "password",
+          },
+        },
+        {
+          name: ["--cert"],
+          description: "Certificate authority to access the repository",
+          args: {
+            name: "certificate authority",
+          },
+        },
+        {
+          name: ["--client-cert"],
+          description: "Client certificate to access the repository",
+          args: {
+            name: "client certificate",
+          },
+        },
+        {
+          name: ["--build"],
+          description: "Build the package before publishing",
+        },
+        {
+          name: ["--dry-run"],
+          description: "Perform all actions except upload the package",
+        },
+      ],
+    },
   ],
   options: [...globalOptions],
   // Only uncomment if poetry takes an argument
