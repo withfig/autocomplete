@@ -16,14 +16,19 @@ jobs:
       - uses: actions/checkout@v2
       - name: update submodules
         run: |
-          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/docs.git
+          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/public-site-nextjs.git
           cd docs
 
-          curl https://docs-generator.cstrnt.workers.dev/ > autocomplete/api.md
+          curl https://fig.io/api/docs/docsParser -o newDocs.zip
+
+          unzip -o newDocs.zip -d docs/autocomplete/schemas/
+
+          rm -f newDocs.zip
 
           git config user.email "hello@fig.io"
           git config user.name "Figbot"
 
-          git add autocomplete/api.md
+          git add autocomplete/schemas
+
           git commit -m "added updates to docs"
           git push origin main --force
