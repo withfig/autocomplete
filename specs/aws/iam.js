@@ -1,3 +1,39 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
@@ -183,7 +219,86 @@ var awsPrincipals = [
     "workspaces.amazonaws.com",
     "xray.amazonaws.com",
 ];
-var _prefix_file = "file://";
+var appendFolderPath = function (tokens, prefix) {
+    var baseLSCommand = "\\ls -1ApL ";
+    var whatHasUserTyped = tokens[tokens.length - 1];
+    if (whatHasUserTyped.startsWith(prefix)) {
+        whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+    }
+    else {
+        return "echo '" + prefix + "'";
+    }
+    var folderPath = "";
+    var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+    if (lastSlashIndex > -1) {
+        if (whatHasUserTyped.startsWith("~/"))
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        else if (whatHasUserTyped.startsWith("/")) {
+            if (lastSlashIndex === 0)
+                folderPath = "/";
+            else
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        }
+        else
+            folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+    return baseLSCommand + folderPath;
+};
+var postProcessFiles = function (out, prefix) {
+    if (out.trim() === prefix) {
+        return [
+            {
+                name: prefix,
+                insertValue: prefix,
+            },
+        ];
+    }
+    var sortFnStrings = function (a, b) {
+        return a.localeCompare(b);
+    };
+    var alphabeticalSortFilesAndFolders = function (arr) {
+        var dots_arr = [];
+        var other_arr = [];
+        arr.map(function (elm) {
+            if (elm.toLowerCase() == ".ds_store")
+                return;
+            if (elm.slice(0, 1) === ".")
+                dots_arr.push(elm);
+            else
+                other_arr.push(elm);
+        });
+        return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+            "../"
+        ]), dots_arr.sort(sortFnStrings));
+    };
+    var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+    var final_array = [];
+    temp_array.forEach(function (item) {
+        if (!(item === "" || item === null || item === undefined)) {
+            var outputType = item.slice(-1) === "/" ? "folder" : "file";
+            final_array.push({
+                type: outputType,
+                name: item,
+                insertValue: item,
+            });
+        }
+    });
+    return final_array;
+};
+var triggerPrefix = function (newToken, oldToken, prefix) {
+    if (!newToken.startsWith(prefix)) {
+        if (!oldToken)
+            return false;
+        return oldToken.startsWith(prefix);
+    }
+    return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+var filterWithPrefix = function (token, prefix) {
+    if (!token.startsWith(prefix))
+        return token;
+    return token.slice(token.lastIndexOf("/") + 1);
+};
+var _prefixFile = "file://";
 var generators = {
     listOpenIdProvidersGenerator: {
         script: "aws iam list-open-id-connect-providers",
@@ -276,6 +391,37 @@ var generators = {
             ttl: 30000,
         },
     },
+    listGroupPolicies: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                var idx, groupName, out, policies, e_1;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            _a.trys.push([0, 2, , 3]);
+                            idx = context.indexOf("--group-name");
+                            if (idx < 0) {
+                                return [2 /*return*/, []];
+                            }
+                            groupName = context[idx + 1];
+                            return [4 /*yield*/, executeShellCommand("aws iam list-group-policies --group-name " + groupName)];
+                        case 1:
+                            out = _a.sent();
+                            policies = JSON.parse(out)["PolicyNames"];
+                            return [2 /*return*/, policies.map(function (elm) { return ({ name: elm }); })];
+                        case 2:
+                            e_1 = _a.sent();
+                            console.log(e_1);
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/, []];
+                    }
+                });
+            });
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
     listRolesGenerator: {
         script: "aws iam list-roles --page-size 100",
         postProcess: function (out) {
@@ -294,94 +440,73 @@ var generators = {
             ttl: 30000,
         },
     },
-    inputFileGenerator: {
+    // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
+    // In case the JSON is passed as a file, the filepath must be prefixed by file://
+    // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+    listFilesGenerator: {
         script: function (tokens) {
-            var baseLSCommand = "\\ls -1ApL ";
-            var whatHasUserTyped = tokens[tokens.length - 1];
-            if (whatHasUserTyped.startsWith(_prefix_file)) {
-                whatHasUserTyped = whatHasUserTyped.slice(7);
-            }
-            else {
-                return "echo 'file://'";
-            }
-            var folderPath = "";
-            var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
-            if (lastSlashIndex > -1) {
-                if (whatHasUserTyped.startsWith("~/"))
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                else if (whatHasUserTyped.startsWith("/")) {
-                    if (lastSlashIndex === 0)
-                        folderPath = "/";
-                    else
-                        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-                }
-                else
-                    folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-            }
-            return baseLSCommand + folderPath;
+            return appendFolderPath(tokens, _prefixFile);
         },
         postProcess: function (out) {
-            if (out.trim() === _prefix_file) {
-                return [
-                    {
-                        name: _prefix_file,
-                        insertValue: _prefix_file,
-                    },
-                ];
-            }
-            var sortFnStrings = function (a, b) {
-                return a.localeCompare(b);
-            };
-            var alphabeticalSortFilesAndFolders = function (arr) {
-                var dots_arr = [];
-                var other_arr = [];
-                arr.map(function (elm) {
-                    if (elm.toLowerCase() == ".ds_store")
-                        return;
-                    if (elm.slice(0, 1) === ".")
-                        dots_arr.push(elm);
-                    else
-                        other_arr.push(elm);
-                });
-                return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
-                    "../"
-                ]), dots_arr.sort(sortFnStrings));
-            };
-            var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-            var final_array = [];
-            temp_array.forEach(function (item) {
-                if (!(item === "" || item === null || item === undefined)) {
-                    var outputType = item.slice(-1) === "/" ? "folder" : "file";
-                    // COMMENT THE BELOW IF STATEMENT OUT IF YOU ONLY WANT TO INCLUDE FOLDERS
-                    // if (outputType == "folder") {
-                    final_array.push({
-                        type: outputType,
-                        name: item,
-                        insertValue: item,
-                    });
-                    // }
-                }
-            });
-            return final_array;
+            return postProcessFiles(out, _prefixFile);
         },
         trigger: function (newToken, oldToken) {
-            if (!newToken.startsWith(_prefix_file)) {
-                if (!oldToken)
-                    return false;
-                if (oldToken.startsWith(_prefix_file))
-                    return true;
-                return false;
-            }
-            if (newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/")) {
-                return true;
-            }
-            else
-                return false;
+            return triggerPrefix(newToken, oldToken, _prefixFile);
         },
         filterTerm: function (token) {
-            if (!token.startsWith(_prefix_file))
-                return token;
-            return token.slice(token.lastIndexOf("/") + 1);
+            return filterWithPrefix(token, _prefixFile);
+        },
+    },
+    listMfaDevices: {
+        script: "aws iam list-mfa-devices --page-size 100",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["MFADevices"];
+                return list.map(function (item) { return ({
+                    name: item["SerialNumber"],
+                }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listAcessKeyIds: {
+        script: "aws iam list-access-keys --page-size 100",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["AccessKeyMetadata"];
+                return list.map(function (item) { return ({
+                    name: item["AccessKeyId"],
+                }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listAccountAliases: {
+        script: "aws iam list-account-aliases --page-size 100",
+        postProcess: function (out) {
+            try {
+                var aliases = JSON.parse(out)["AccountAliases"];
+                return aliases.map(function (elm) { return ({ name: elm }); });
+            }
+            catch (error) {
+                console.error(error);
+            }
+            return [];
+        },
+        cache: {
+            ttl: 30000,
         },
     },
 };
@@ -413,7 +538,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -450,7 +575,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -488,7 +613,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -527,7 +652,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -565,7 +690,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -603,7 +728,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -639,7 +764,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -669,7 +794,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -698,7 +823,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -720,7 +845,7 @@ var completionSpec = {
                     description: "The path to the group. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
                     args: {
                         name: "string",
-                        description: "Default path: /"
+                        description: "Default path: /",
                     },
                 },
                 {
@@ -736,7 +861,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -765,7 +890,7 @@ var completionSpec = {
                     description: "The path to the instance profile. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
                     args: {
                         name: "string",
-                        description: "Default path: /"
+                        description: "Default path: /",
                     },
                 },
                 {
@@ -774,7 +899,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -782,7 +907,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -827,7 +952,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -872,7 +997,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -880,7 +1005,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -917,7 +1042,7 @@ var completionSpec = {
                     description: "The JSON policy document that you want to use as the content for the new policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -933,7 +1058,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -941,7 +1066,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -971,7 +1096,7 @@ var completionSpec = {
                     description: "The JSON policy document that you want to use as the content for this new version of the policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -987,7 +1112,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1024,7 +1149,7 @@ var completionSpec = {
                     description: "The trust relationship policy document that grants an entity permission to assume the role. In IAM, you must provide a JSON policy that has been converted to a string. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)    Upon success, the response includes the same trust policy in JSON format.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1058,7 +1183,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -1066,7 +1191,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1088,7 +1213,7 @@ var completionSpec = {
                     description: "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP. For more information, see About SAML 2.0-based federation in the IAM User Guide",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1112,7 +1237,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
-                        generators: generators.inputFileGenerator,
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1156,6 +1281,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1177,6 +1303,7 @@ var completionSpec = {
                     description: "The name of the IAM user that is to be associated with the credentials. The new service-specific credentials have the same permissions as the associated user except that they can be used only to access the specified service. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1184,6 +1311,7 @@ var completionSpec = {
                     description: "The name of the AWS service that is to be associated with the credentials. The service you specify here is the only service that can be accessed using these credentials.",
                     args: {
                         name: "string",
+                        suggestions: awsPrincipals,
                     },
                 },
                 {
@@ -1191,6 +1319,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1220,6 +1349,7 @@ var completionSpec = {
                     description: 'The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1227,6 +1357,7 @@ var completionSpec = {
                     description: "The ARN of the policy that is used to set the permissions boundary for the user.",
                     args: {
                         name: "string",
+                        generators: generators.listIamPoliciesArnGenerator,
                     },
                 },
                 {
@@ -1235,7 +1366,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -1243,6 +1374,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1280,7 +1412,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -1309,6 +1441,7 @@ var completionSpec = {
                     description: "The name of the user whose MFA device you want to deactivate. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1316,6 +1449,7 @@ var completionSpec = {
                     description: "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the device ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
                     args: {
                         name: "string",
+                        generators: generators.listMfaDevices,
                     },
                 },
                 {
@@ -1323,6 +1457,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1344,6 +1479,7 @@ var completionSpec = {
                     description: "The name of the user whose access key pair you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1351,6 +1487,7 @@ var completionSpec = {
                     description: "The access key ID for the access key ID and secret access key you want to delete. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
                     args: {
                         name: "string",
+                        generators: generators.listAcessKeyIds,
                     },
                 },
                 {
@@ -1358,6 +1495,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1379,6 +1517,7 @@ var completionSpec = {
                     description: "The name of the account alias to delete. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row.",
                     args: {
                         name: "string",
+                        generators: generators.listAccountAliases,
                     },
                 },
                 {
@@ -1386,6 +1525,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1407,6 +1547,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1428,6 +1569,7 @@ var completionSpec = {
                     description: "The name of the IAM group to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listGroupsGenerator,
                     },
                 },
                 {
@@ -1435,6 +1577,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1456,6 +1599,7 @@ var completionSpec = {
                     description: "The name (friendly name, not ARN) identifying the group that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listGroupsGenerator,
                     },
                 },
                 {
@@ -1463,6 +1607,7 @@ var completionSpec = {
                     description: "The name identifying the policy document to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listGroupPolicies,
                     },
                 },
                 {
@@ -1470,6 +1615,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1491,6 +1637,7 @@ var completionSpec = {
                     description: "The name of the instance profile to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listInstanceProfileGenerator,
                     },
                 },
                 {
@@ -1498,6 +1645,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1519,6 +1667,7 @@ var completionSpec = {
                     description: "The name of the user whose password you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1526,6 +1675,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1547,6 +1697,7 @@ var completionSpec = {
                     description: "The Amazon Resource Name (ARN) of the IAM OpenID Connect provider resource object to delete. You can get a list of OpenID Connect provider resource ARNs by using the ListOpenIDConnectProviders operation.",
                     args: {
                         name: "string",
+                        generators: generators.listOpenIdProvidersGenerator,
                     },
                 },
                 {
@@ -1554,6 +1705,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1575,6 +1727,7 @@ var completionSpec = {
                     description: "The Amazon Resource Name (ARN) of the IAM policy you want to delete. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
                     args: {
                         name: "string",
+                        generators: generators.listIamPoliciesArnGenerator,
                     },
                 },
                 {
@@ -1582,6 +1735,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1617,6 +1771,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1645,6 +1800,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1673,6 +1829,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1708,6 +1865,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1736,6 +1894,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1771,6 +1930,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1799,6 +1959,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1827,6 +1988,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1862,6 +2024,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1897,6 +2060,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1925,6 +2089,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1953,6 +2118,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -1988,6 +2154,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2016,6 +2183,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2051,6 +2219,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2086,6 +2255,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2121,6 +2291,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2184,6 +2355,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2205,6 +2377,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2240,6 +2413,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2275,6 +2449,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2303,6 +2478,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2345,6 +2521,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2380,6 +2557,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2401,6 +2579,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2429,6 +2608,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2464,6 +2644,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2485,6 +2666,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2527,6 +2709,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2576,6 +2759,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2604,6 +2788,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2632,6 +2817,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2660,6 +2846,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2709,6 +2896,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2737,6 +2925,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2772,6 +2961,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2800,6 +2990,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2835,6 +3026,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2863,6 +3055,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2905,6 +3098,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2933,6 +3127,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -2975,6 +3170,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3024,6 +3220,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3052,6 +3249,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3080,6 +3278,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3115,6 +3314,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3157,6 +3357,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3206,6 +3407,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3270,6 +3472,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3334,6 +3537,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3398,6 +3602,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3476,6 +3681,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3532,6 +3738,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3589,6 +3796,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3645,6 +3853,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3701,6 +3910,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3744,6 +3954,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3800,6 +4011,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3856,6 +4068,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3898,6 +4111,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3954,6 +4168,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -3975,6 +4190,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4040,6 +4256,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4096,6 +4313,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4138,6 +4356,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4180,6 +4399,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4236,6 +4456,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4292,6 +4513,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4335,6 +4557,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4391,6 +4614,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4412,6 +4636,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4454,6 +4679,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4510,6 +4736,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4553,6 +4780,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4602,6 +4830,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4644,6 +4873,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4700,6 +4930,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4756,6 +4987,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4799,6 +5031,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4855,6 +5088,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4911,6 +5145,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4946,6 +5181,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -4988,6 +5224,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5023,6 +5260,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5065,6 +5303,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5100,6 +5339,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5135,6 +5375,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5170,6 +5411,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5205,6 +5447,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5268,6 +5511,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5303,6 +5547,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5331,6 +5576,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5429,6 +5675,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5548,6 +5795,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5591,7 +5839,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5599,6 +5847,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5628,7 +5877,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5636,6 +5885,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5665,7 +5915,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5673,6 +5923,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5702,7 +5953,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5710,6 +5961,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5739,7 +5991,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5747,6 +5999,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5776,7 +6029,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5784,6 +6037,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5813,7 +6067,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5821,6 +6075,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5850,7 +6105,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -5858,6 +6113,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5893,6 +6149,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5928,6 +6185,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5963,6 +6221,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -5998,6 +6257,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6033,6 +6293,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6068,6 +6329,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6103,6 +6365,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6138,6 +6401,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6180,6 +6444,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6270,6 +6535,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6305,6 +6571,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6347,6 +6614,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6390,6 +6658,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6425,6 +6694,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6467,6 +6737,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6502,6 +6773,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6537,6 +6809,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6579,6 +6852,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6621,6 +6895,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6663,6 +6938,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6705,6 +6981,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6747,6 +7024,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6782,6 +7060,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6840,7 +7119,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        description: "Key=string,Value=string..."
+                        description: "Key=string,Value=string...",
                     },
                 },
                 {
@@ -6848,6 +7127,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6883,6 +7163,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFilesGenerator,
                     },
                 },
                 {
@@ -6915,6 +7196,7 @@ var completionSpec = {
                             description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                             args: {
                                 name: "string",
+                                generators: generators.listFilesGenerator,
                             },
                         },
                         {
@@ -6943,6 +7225,7 @@ var completionSpec = {
                             description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                             args: {
                                 name: "string",
+                                generators: generators.listFilesGenerator,
                             },
                         },
                         {
@@ -6971,6 +7254,7 @@ var completionSpec = {
                             description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                             args: {
                                 name: "string",
+                                generators: generators.listFilesGenerator,
                             },
                         },
                         {
@@ -6999,6 +7283,7 @@ var completionSpec = {
                             description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                             args: {
                                 name: "string",
+                                generators: generators.listFilesGenerator,
                             },
                         },
                         {
