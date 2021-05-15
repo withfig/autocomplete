@@ -519,6 +519,83 @@ export const completion: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "shell",
+      description: "Spawns a shell within the virtual environment",
+      options: [...globalOptions],
+    },
+    {
+      name: "show",
+      description: "Shows information about packages",
+      options: [
+        ...globalOptions,
+        {
+          name: ["--no-dev"],
+          description: "Do not list the development dependencies",
+        },
+        {
+          name: ["-t", "--tree"],
+          description: "List the dependencies as a tree",
+        },
+        {
+          name: ["-l", "--latest"],
+          description: "Show the latest version",
+        },
+        {
+          name: ["-o", "--outdated"],
+          description:
+            "Show the latest version but only for packages that are outdated",
+        },
+        {
+          name: ["-a", "--all"],
+          description: "Show all packages",
+        },
+      ],
+      args: {
+        name: "dependency",
+        description: "Package to inspect",
+      },
+    },
+    {
+      name: "update",
+      description:
+        "Update the dependencies as according to the pyproject.toml file",
+      options: [
+        ...globalOptions,
+        {
+          name: ["--no-dev"],
+          description: "Do not update the development dependencies",
+        },
+        {
+          name: ["--dry-run"],
+          description: "Output the operations but do not execute anything",
+        },
+        {
+          name: ["--lock"],
+          description: "Do not perform operations",
+        },
+      ],
+      args: {
+        name: "dependency",
+        description: "Package to update",
+      },
+    },
+    {
+      name: "version",
+      description:
+        "Shows the version of the project or bumps it when a valid bump rule is provided",
+      options: [
+        ...globalOptions,
+        {
+          name: ["-s", "--short"],
+          description: "Output the version number only",
+        },
+      ],
+      args: {
+        name: "version",
+        description: "The version number or the rule to update the version",
+      },
+    },
   ],
   options: [...globalOptions],
   // Only uncomment if poetry takes an argument
