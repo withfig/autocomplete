@@ -14,12 +14,12 @@ const verbose: Fig.Option = {
 };
 
 const vverbose: Fig.Option = {
-  name: ["-vv"],
+  name: "-vv",
   description: "More verbose output",
 };
 
 const vvverbose: Fig.Option = {
-  name: ["-vvv"],
+  name: "-vvv",
   description: "Most verbose output for debug",
 };
 
@@ -29,12 +29,12 @@ const version: Fig.Option = {
 };
 
 const ansi: Fig.Option = {
-  name: ["--ansi"],
+  name: "--ansi",
   description: "Force ANSI output",
 };
 
 const noAnsi: Fig.Option = {
-  name: ["--no-ansi"],
+  name: "--no-ansi",
   description: "Disable ANSI output",
 };
 
@@ -85,16 +85,16 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--optional"],
+          name: "--optional",
           description: "Add as an optional dependency",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description:
             "Output the operations but do not execute anything (implicitly enables --verbose)",
         },
         {
-          name: ["--lock"],
+          name: "--lock",
           description: "Do not perform operations (only update the lockfile)",
         },
       ],
@@ -136,11 +136,11 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--list"],
+          name: "--list",
           description: "List configuration settings",
         },
         {
-          name: ["--unset"],
+          name: "--unset",
           description: "Unset configuration setting",
           args: {
             name: "key",
@@ -148,7 +148,7 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--local"],
+          name: "--local",
           description: "Set/Get from the project's local configuration",
         },
       ],
@@ -214,7 +214,7 @@ export const completion: Fig.Spec = {
             "Lists all virtualenvs associated with the current project",
           options: [
             {
-              name: ["--full-path"],
+              name: "--full-path",
               description: "Output the full paths of the virtualenvs",
             },
           ],
@@ -264,11 +264,11 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--without-hashes"],
+          name: "--without-hashes",
           description: "Exclude hashes from the exported file",
         },
         {
-          name: ["--dev"],
+          name: "--dev",
           description: "Include development dependencies",
         },
         {
@@ -280,7 +280,7 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--with-credentials"],
+          name: "--with-credentials",
           description: "Include credentials for extra indices",
         },
       ],
@@ -296,35 +296,35 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--name"],
+          name: "--name",
           description: "Name of the package",
           args: {
             name: "name",
           },
         },
         {
-          name: ["--description"],
+          name: "--description",
           description: "Description of the package",
           args: {
             name: "description",
           },
         },
         {
-          name: ["--author"],
+          name: "--author",
           description: "Author name of the package",
           args: {
             name: "author",
           },
         },
         {
-          name: ["--python"],
+          name: "--python",
           description: "Compatible Python versions",
           args: {
             name: "python version",
           },
         },
         {
-          name: ["--dependency"],
+          name: "--dependency",
           description:
             "Package to require, with an optional version constraint",
           args: {
@@ -332,7 +332,7 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--dev-dependency"],
+          name: "--dev-dependency",
           description:
             "Package to require for development, with an optional version constraint",
           args: {
@@ -354,19 +354,19 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--no-dev"],
+          name: "--no-dev",
           description: "Do not install the development dependencies",
         },
         {
-          name: ["--no-root"],
+          name: "--no-root",
           description: "Do not install the root package",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Output the operations but do not execute anything",
         },
         {
-          name: ["--remove-untracked"],
+          name: "--remove-untracked",
           description: "Removes packages not present in the lock file",
         },
         {
@@ -385,7 +385,7 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--no-update"],
+          name: "--no-update",
           description: "Do not update locked versions, only refresh lock file",
         },
       ],
@@ -396,14 +396,14 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--name"],
+          name: "--name",
           description: "Set the resulting package name",
           args: {
             name: "package name",
           },
         },
         {
-          name: ["--src"],
+          name: "--src",
           description: "Use the src layout for the project",
         },
       ],
@@ -439,25 +439,25 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["--cert"],
+          name: "--cert",
           description: "Certificate authority to access the repository",
           args: {
             name: "certificate authority",
           },
         },
         {
-          name: ["--client-cert"],
+          name: "--client-cert",
           description: "Client certificate to access the repository",
           args: {
             name: "client certificate",
           },
         },
         {
-          name: ["--build"],
+          name: "--build",
           description: "Build the package before publishing",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Perform all actions except upload the package",
         },
       ],
@@ -472,7 +472,7 @@ export const completion: Fig.Spec = {
           description: "Remove a package from the development dependencies",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Output the operations but do not execute anything",
         },
       ],
@@ -508,7 +508,7 @@ export const completion: Fig.Spec = {
           options: [
             ...globalOptions,
             {
-              name: ["--preview"],
+              name: "--preview",
               description: "Install prereleases",
             },
           ],
@@ -530,7 +530,7 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--no-dev"],
+          name: "--no-dev",
           description: "Do not list the development dependencies",
         },
         {
@@ -563,15 +563,15 @@ export const completion: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--no-dev"],
+          name: "--no-dev",
           description: "Do not update the development dependencies",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Output the operations but do not execute anything",
         },
         {
-          name: ["--lock"],
+          name: "--lock",
           description: "Do not perform operations",
         },
       ],

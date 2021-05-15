@@ -16,11 +16,11 @@ var verbose = {
     description: "Increase the verbosity of messages",
 };
 var vverbose = {
-    name: ["-vv"],
+    name: "-vv",
     description: "More verbose output",
 };
 var vvverbose = {
-    name: ["-vvv"],
+    name: "-vvv",
     description: "Most verbose output for debug",
 };
 var version = {
@@ -28,11 +28,11 @@ var version = {
     description: "Display this application version",
 };
 var ansi = {
-    name: ["--ansi"],
+    name: "--ansi",
     description: "Force ANSI output",
 };
 var noAnsi = {
-    name: ["--no-ansi"],
+    name: "--no-ansi",
     description: "Disable ANSI output",
 };
 var noInteraction = {
@@ -79,15 +79,15 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: ["--optional"],
+                    name: "--optional",
                     description: "Add as an optional dependency",
                 },
                 {
-                    name: ["--dry-run"],
+                    name: "--dry-run",
                     description: "Output the operations but do not execute anything (implicitly enables --verbose)",
                 },
                 {
-                    name: ["--lock"],
+                    name: "--lock",
                     description: "Do not perform operations (only update the lockfile)",
                 },
             ]),
@@ -127,11 +127,11 @@ var completionSpec = {
             description: "Manages configuration settings",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--list"],
+                    name: "--list",
                     description: "List configuration settings",
                 },
                 {
-                    name: ["--unset"],
+                    name: "--unset",
                     description: "Unset configuration setting",
                     args: {
                         name: "key",
@@ -139,7 +139,7 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: ["--local"],
+                    name: "--local",
                     description: "Set/Get from the project's local configuration",
                 },
             ]),
@@ -201,7 +201,7 @@ var completionSpec = {
                     description: "Lists all virtualenvs associated with the current project",
                     options: [
                         {
-                            name: ["--full-path"],
+                            name: "--full-path",
                             description: "Output the full paths of the virtualenvs",
                         },
                     ],
@@ -248,11 +248,11 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: ["--without-hashes"],
+                    name: "--without-hashes",
                     description: "Exclude hashes from the exported file",
                 },
                 {
-                    name: ["--dev"],
+                    name: "--dev",
                     description: "Include development dependencies",
                 },
                 {
@@ -264,7 +264,7 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: ["--with-credentials"],
+                    name: "--with-credentials",
                     description: "Include credentials for extra indices",
                 },
             ]),
@@ -278,42 +278,42 @@ var completionSpec = {
             description: "Creates a basic pyproject.toml file in the current directory",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--name"],
+                    name: "--name",
                     description: "Name of the package",
                     args: {
                         name: "name",
                     },
                 },
                 {
-                    name: ["--description"],
+                    name: "--description",
                     description: "Description of the package",
                     args: {
                         name: "description",
                     },
                 },
                 {
-                    name: ["--author"],
+                    name: "--author",
                     description: "Author name of the package",
                     args: {
                         name: "author",
                     },
                 },
                 {
-                    name: ["--python"],
+                    name: "--python",
                     description: "Compatible Python versions",
                     args: {
                         name: "python version",
                     },
                 },
                 {
-                    name: ["--dependency"],
+                    name: "--dependency",
                     description: "Package to require, with an optional version constraint",
                     args: {
                         name: "dependency",
                     },
                 },
                 {
-                    name: ["--dev-dependency"],
+                    name: "--dev-dependency",
                     description: "Package to require for development, with an optional version constraint",
                     args: {
                         name: "dev dependency",
@@ -333,19 +333,19 @@ var completionSpec = {
             description: "Installs the project dependencies",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--no-dev"],
+                    name: "--no-dev",
                     description: "Do not install the development dependencies",
                 },
                 {
-                    name: ["--no-root"],
+                    name: "--no-root",
                     description: "Do not install the root package",
                 },
                 {
-                    name: ["--dry-run"],
+                    name: "--dry-run",
                     description: "Output the operations but do not execute anything",
                 },
                 {
-                    name: ["--remove-untracked"],
+                    name: "--remove-untracked",
                     description: "Removes packages not present in the lock file",
                 },
                 {
@@ -363,7 +363,7 @@ var completionSpec = {
             description: "Locks the project dependencies",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--no-update"],
+                    name: "--no-update",
                     description: "Do not update locked versions, only refresh lock file",
                 },
             ]),
@@ -373,14 +373,14 @@ var completionSpec = {
             description: "Creates a new Python project at specified path",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--name"],
+                    name: "--name",
                     description: "Set the resulting package name",
                     args: {
                         name: "package name",
                     },
                 },
                 {
-                    name: ["--src"],
+                    name: "--src",
                     description: "Use the src layout for the project",
                 },
             ]),
@@ -415,25 +415,25 @@ var completionSpec = {
                     },
                 },
                 {
-                    name: ["--cert"],
+                    name: "--cert",
                     description: "Certificate authority to access the repository",
                     args: {
                         name: "certificate authority",
                     },
                 },
                 {
-                    name: ["--client-cert"],
+                    name: "--client-cert",
                     description: "Client certificate to access the repository",
                     args: {
                         name: "client certificate",
                     },
                 },
                 {
-                    name: ["--build"],
+                    name: "--build",
                     description: "Build the package before publishing",
                 },
                 {
-                    name: ["--dry-run"],
+                    name: "--dry-run",
                     description: "Perform all actions except upload the package",
                 },
             ]),
@@ -447,7 +447,7 @@ var completionSpec = {
                     description: "Remove a package from the development dependencies",
                 },
                 {
-                    name: ["--dry-run"],
+                    name: "--dry-run",
                     description: "Output the operations but do not execute anything",
                 },
             ]),
@@ -482,7 +482,7 @@ var completionSpec = {
                     description: "Updates Poetry to the latest version",
                     options: __spreadArray(__spreadArray([], globalOptions), [
                         {
-                            name: ["--preview"],
+                            name: "--preview",
                             description: "Install prereleases",
                         },
                     ]),
@@ -503,7 +503,7 @@ var completionSpec = {
             description: "Shows information about packages",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--no-dev"],
+                    name: "--no-dev",
                     description: "Do not list the development dependencies",
                 },
                 {
@@ -533,15 +533,15 @@ var completionSpec = {
             description: "Update the dependencies as according to the pyproject.toml file",
             options: __spreadArray(__spreadArray([], globalOptions), [
                 {
-                    name: ["--no-dev"],
+                    name: "--no-dev",
                     description: "Do not update the development dependencies",
                 },
                 {
-                    name: ["--dry-run"],
+                    name: "--dry-run",
                     description: "Output the operations but do not execute anything",
                 },
                 {
-                    name: ["--lock"],
+                    name: "--lock",
                     description: "Do not perform operations",
                 },
             ]),
