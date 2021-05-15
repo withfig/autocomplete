@@ -1,49 +1,49 @@
-const help = {
+const help: Fig.Option = {
   name: ["-h", "--help"],
   description: "Display this help message",
 };
 
-const quiet = {
+const quiet: Fig.Option = {
   name: ["-q", "--quiet"],
   description: "Do not output any message",
 };
 
-const verbose = {
+const verbose: Fig.Option = {
   name: ["-v", "--verbose"],
   description: "Increase the verbosity of messages",
 };
 
-const vverbose = {
+const vverbose: Fig.Option = {
   name: ["-vv"],
   description: "More verbose output",
 };
 
-const vvverbose = {
+const vvverbose: Fig.Option = {
   name: ["-vvv"],
   description: "Most verbose output for debug",
 };
 
-const version = {
+const version: Fig.Option = {
   name: ["-V", "--version"],
   description: "Display this application version",
 };
 
-const ansi = {
+const ansi: Fig.Option = {
   name: ["--ansi"],
   description: "Force ANSI output",
 };
 
-const noAnsi = {
+const noAnsi: Fig.Option = {
   name: ["--no-ansi"],
   description: "Disable ANSI output",
 };
 
-const noInteraction = {
+const noInteraction: Fig.Option = {
   name: ["-n", "--no-interaction"],
   description: "Do not ask any interactive question",
 };
 
-const globalOptions = [
+const globalOptions: Fig.Option[] = [
   help,
   verbose,
   vverbose,
