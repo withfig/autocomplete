@@ -21,7 +21,7 @@ jobs:
 
           curl https://docs-generator.cstrnt.workers.dev/ > autocomplete/api.md
 
-          git config user.email "hello@withfig.com"
+          git config user.email "hello@fig.io"
           git config user.name "Figbot"
 
           git add autocomplete/api.md
