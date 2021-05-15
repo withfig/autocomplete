@@ -462,6 +462,63 @@ export const completion: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "remove",
+      description: "Removes a package from the project dependencies",
+      options: [
+        ...globalOptions,
+        {
+          name: ["-D", "--dev"],
+          description: "Remove a package from the development dependencies",
+        },
+        {
+          name: ["--dry-run"],
+          description: "Output the operations but do not execute anything",
+        },
+      ],
+      args: {
+        name: "dependency",
+        description: "Package to remove",
+      },
+    },
+    {
+      name: "run",
+      description: "Runs a command in the appropriate environment",
+      args: {
+        name: "command or script",
+      },
+    },
+    {
+      name: "search",
+      description: "Searches for packages on remote repositories",
+      options: [...globalOptions],
+      args: {
+        name: "token",
+        description: "The tokens to search for",
+      },
+    },
+    {
+      name: "self",
+      description: "Interact with Poetry directly",
+      options: [...globalOptions],
+      subcommands: [
+        {
+          name: "update",
+          description: "Updates Poetry to the latest version",
+          options: [
+            ...globalOptions,
+            {
+              name: ["--preview"],
+              description: "Install prereleases",
+            },
+          ],
+          args: {
+            name: "version",
+            description: "The version to update to",
+          },
+        },
+      ],
+    },
   ],
   options: [...globalOptions],
   // Only uncomment if poetry takes an argument

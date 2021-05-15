@@ -438,6 +438,61 @@ var completionSpec = {
                 },
             ]),
         },
+        {
+            name: "remove",
+            description: "Removes a package from the project dependencies",
+            options: __spreadArray(__spreadArray([], globalOptions), [
+                {
+                    name: ["-D", "--dev"],
+                    description: "Remove a package from the development dependencies",
+                },
+                {
+                    name: ["--dry-run"],
+                    description: "Output the operations but do not execute anything",
+                },
+            ]),
+            args: {
+                name: "dependency",
+                description: "Package to remove",
+            },
+        },
+        {
+            name: "run",
+            description: "Runs a command in the appropriate environment",
+            args: {
+                name: "command or script",
+            },
+        },
+        {
+            name: "search",
+            description: "Searches for packages on remote repositories",
+            options: __spreadArray([], globalOptions),
+            args: {
+                name: "token",
+                description: "The tokens to search for",
+            },
+        },
+        {
+            name: "self",
+            description: "Interact with Poetry directly",
+            options: __spreadArray([], globalOptions),
+            subcommands: [
+                {
+                    name: "update",
+                    description: "Updates Poetry to the latest version",
+                    options: __spreadArray(__spreadArray([], globalOptions), [
+                        {
+                            name: ["--preview"],
+                            description: "Install prereleases",
+                        },
+                    ]),
+                    args: {
+                        name: "version",
+                        description: "The version to update to",
+                    },
+                },
+            ],
+        },
     ],
     options: __spreadArray([], globalOptions),
     // Only uncomment if poetry takes an argument
