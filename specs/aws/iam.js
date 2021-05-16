@@ -298,6 +298,62 @@ var filterWithPrefix = function (token, prefix) {
         return token;
     return token.slice(token.lastIndexOf("/") + 1);
 };
+var listCustomGenerator = function (context, executeShellCommand, command, option, parentKey, childKey) {
+    if (childKey === void 0) { childKey = ""; }
+    return __awaiter(void 0, void 0, Promise, function () {
+        var idx, param, out, policies, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    idx = context.indexOf(option);
+                    if (idx < 0) {
+                        return [2 /*return*/, []];
+                    }
+                    param = context[idx + 1];
+                    return [4 /*yield*/, executeShellCommand("aws iam " + command + " " + option + " " + param)];
+                case 1:
+                    out = _a.sent();
+                    policies = JSON.parse(out)[parentKey];
+                    return [2 /*return*/, policies.map(function (elm) {
+                            if (childKey) {
+                                return ({
+                                    name: elm[childKey],
+                                });
+                            }
+                            return ({
+                                name: elm,
+                            });
+                        })];
+                case 2:
+                    e_1 = _a.sent();
+                    console.log(e_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/, []];
+            }
+        });
+    });
+};
+var postPrecessGenerator = function (out, parentKey, childKey) {
+    if (childKey === void 0) { childKey = ""; }
+    try {
+        var list = JSON.parse(out)[parentKey];
+        return list.map(function (item) {
+            if (childKey) {
+                return ({
+                    name: item[childKey],
+                });
+            }
+            return ({
+                name: item,
+            });
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
+    return [];
+};
 var _prefixFile = "file://";
 var generators = {
     listOpenIdProvidersGenerator: {
@@ -321,16 +377,7 @@ var generators = {
     listInstanceProfileGenerator: {
         script: "aws iam list-instance-profiles --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["InstanceProfiles"];
-                return list.map(function (item) { return ({
-                    name: item["RoleName"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "InstanceProfiles", "RoleName");
         },
         cache: {
             ttl: 30000,
@@ -339,16 +386,19 @@ var generators = {
     listUsersGenerator: {
         script: "aws iam list-users --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["Users"];
-                return list.map(function (item) { return ({
-                    name: item["UserName"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "Users", "UserName");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listUserPoliciesGenerator: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-user-policies", "--user-name", "PolicyNames")];
+                });
+            });
         },
         cache: {
             ttl: 30000,
@@ -357,16 +407,7 @@ var generators = {
     listGroupsGenerator: {
         script: "aws iam list-groups --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["Groups"];
-                return list.map(function (item) { return ({
-                    name: item["GroupName"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "Groups", "GroupName");
         },
         cache: {
             ttl: 30000,
@@ -375,17 +416,19 @@ var generators = {
     listIamPoliciesArnGenerator: {
         script: "aws iam list-policies --page-size 100 --scope Local",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["Policies"];
-                return list.map(function (item) { return ({
-                    name: item["PolicyName"],
-                    insertValue: item["Arn"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "Policies", "PolicyName");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listPolicyVersionsGenerator: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-policy-versions", "--policy-arn", "Versions", "VersionId")];
+                });
+            });
         },
         cache: {
             ttl: 30000,
@@ -394,27 +437,8 @@ var generators = {
     listGroupPolicies: {
         custom: function (context, executeShellCommand) {
             return __awaiter(this, void 0, void 0, function () {
-                var idx, groupName, out, policies, e_1;
                 return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 2, , 3]);
-                            idx = context.indexOf("--group-name");
-                            if (idx < 0) {
-                                return [2 /*return*/, []];
-                            }
-                            groupName = context[idx + 1];
-                            return [4 /*yield*/, executeShellCommand("aws iam list-group-policies --group-name " + groupName)];
-                        case 1:
-                            out = _a.sent();
-                            policies = JSON.parse(out)["PolicyNames"];
-                            return [2 /*return*/, policies.map(function (elm) { return ({ name: elm }); })];
-                        case 2:
-                            e_1 = _a.sent();
-                            console.log(e_1);
-                            return [3 /*break*/, 3];
-                        case 3: return [2 /*return*/, []];
-                    }
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-group-policies", "--group-name", "PolicyNames")];
                 });
             });
         },
@@ -425,16 +449,19 @@ var generators = {
     listRolesGenerator: {
         script: "aws iam list-roles --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["Roles"];
-                return list.map(function (item) { return ({
-                    name: item["RoleName"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "Roles", "RoleName");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listRolePoliciesGenerator: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-role-policies", "--role-name", "PolicyNames")];
+                });
+            });
         },
         cache: {
             ttl: 30000,
@@ -460,16 +487,7 @@ var generators = {
     listMfaDevices: {
         script: "aws iam list-mfa-devices --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["MFADevices"];
-                return list.map(function (item) { return ({
-                    name: item["SerialNumber"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "MFADevices", "SerialNumber");
         },
         cache: {
             ttl: 30000,
@@ -478,16 +496,7 @@ var generators = {
     listAcessKeyIds: {
         script: "aws iam list-access-keys --page-size 100",
         postProcess: function (out) {
-            try {
-                var list = JSON.parse(out)["AccessKeyMetadata"];
-                return list.map(function (item) { return ({
-                    name: item["AccessKeyId"],
-                }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
         },
         cache: {
             ttl: 30000,
@@ -496,14 +505,58 @@ var generators = {
     listAccountAliases: {
         script: "aws iam list-account-aliases --page-size 100",
         postProcess: function (out) {
-            try {
-                var aliases = JSON.parse(out)["AccountAliases"];
-                return aliases.map(function (elm) { return ({ name: elm }); });
-            }
-            catch (error) {
-                console.error(error);
-            }
-            return [];
+            return postPrecessGenerator(out, "AccountAliases");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listSamlProvidersGenerator: {
+        script: "aws iam list-saml-providers",
+        postProcess: function (out) {
+            return postPrecessGenerator(out, "SAMLProviderList", "Arn");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listSSHPublicKeysGenerator: {
+        script: "aws iam list-ssh-public-keys --page-size 1000",
+        postProcess: function (out) {
+            return postPrecessGenerator(out, "SSHPublicKeys", "SSHPublicKeyId");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listServerCertsGenerator: {
+        script: "aws iam list-server-certificates --page-size 1000",
+        postProcess: function (out) {
+            return postPrecessGenerator(out, "ServerCertificateMetadataList", "ServerCertificateName");
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listServiceSpecificCredentials: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-service-specific-credentials", "--user-name", "ServiceSpecificCredentials", "ServiceSpecificCredentialId")];
+                });
+            });
+        },
+        cache: {
+            ttl: 30000,
+        },
+    },
+    listSigningCertificates: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-signing-certificates", "--user-name", "Certificates", "CertificateId")];
+                });
+            });
         },
         cache: {
             ttl: 30000,
@@ -1757,6 +1810,7 @@ var completionSpec = {
                     description: "The Amazon Resource Name (ARN) of the IAM policy from which you want to delete a version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
                     args: {
                         name: "string",
+                        generators: generators.listIamPoliciesArnGenerator,
                     },
                 },
                 {
@@ -1764,6 +1818,7 @@ var completionSpec = {
                     description: "The policy version to delete. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
                     args: {
                         name: "string",
+                        generators: generators.listPolicyVersionsGenerator,
                     },
                 },
                 {
@@ -1793,6 +1848,7 @@ var completionSpec = {
                     description: "The name of the role to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listRolesGenerator,
                     },
                 },
                 {
@@ -1822,6 +1878,7 @@ var completionSpec = {
                     description: "The name (friendly name, not ARN) of the IAM role from which you want to remove the permissions boundary.",
                     args: {
                         name: "string",
+                        generators: generators.listRolesGenerator,
                     },
                 },
                 {
@@ -1851,6 +1908,7 @@ var completionSpec = {
                     description: "The name (friendly name, not ARN) identifying the role that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listRolesGenerator,
                     },
                 },
                 {
@@ -1858,6 +1916,7 @@ var completionSpec = {
                     description: "The name of the inline policy to delete from the specified IAM role. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listRolePoliciesGenerator,
                     },
                 },
                 {
@@ -1887,6 +1946,7 @@ var completionSpec = {
                     description: "The Amazon Resource Name (ARN) of the SAML provider to delete.",
                     args: {
                         name: "string",
+                        generators: generators.listSamlProvidersGenerator,
                     },
                 },
                 {
@@ -1916,6 +1976,7 @@ var completionSpec = {
                     description: "The name of the IAM user associated with the SSH public key. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -1923,6 +1984,7 @@ var completionSpec = {
                     description: "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
                     args: {
                         name: "string",
+                        generators: generators.listSSHPublicKeysGenerator,
                     },
                 },
                 {
@@ -1952,6 +2014,7 @@ var completionSpec = {
                     description: "The name of the server certificate you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listServerCertsGenerator,
                     },
                 },
                 {
@@ -1981,6 +2044,7 @@ var completionSpec = {
                     description: "The name of the service-linked role to be deleted.",
                     args: {
                         name: "string",
+                        generators: generators.listRolesGenerator,
                     },
                 },
                 {
@@ -2010,6 +2074,7 @@ var completionSpec = {
                     description: "The name of the IAM user associated with the service-specific credential. If this value is not specified, then the operation assumes the user whose credentials are used to call the operation. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -2017,6 +2082,7 @@ var completionSpec = {
                     description: "The unique identifier of the service-specific credential. You can get this value by calling ListServiceSpecificCredentials. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
                     args: {
                         name: "string",
+                        generators: generators.listServiceSpecificCredentials,
                     },
                 },
                 {
@@ -2046,6 +2112,7 @@ var completionSpec = {
                     description: "The name of the user the signing certificate belongs to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -2053,6 +2120,7 @@ var completionSpec = {
                     description: "The ID of the signing certificate to delete. The format of this parameter, as described by its regex pattern, is a string of characters that can be upper- or lower-cased letters or digits.",
                     args: {
                         name: "string",
+                        generators: generators.listSigningCertificates,
                     },
                 },
                 {
@@ -2082,6 +2150,7 @@ var completionSpec = {
                     description: "The name of the user to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -2111,6 +2180,7 @@ var completionSpec = {
                     description: "The name (friendly name, not ARN) of the IAM user from which you want to remove the permissions boundary.",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -2140,6 +2210,7 @@ var completionSpec = {
                     description: "The name (friendly name, not ARN) identifying the user that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUsersGenerator,
                     },
                 },
                 {
@@ -2147,6 +2218,7 @@ var completionSpec = {
                     description: "The name identifying the policy document to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
+                        generators: generators.listUserPoliciesGenerator,
                     },
                 },
                 {
