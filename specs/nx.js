@@ -6,14 +6,19 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 var processWorkspaceJson = function (filterFn) { return function (out) {
     try {
         var workspace = JSON.parse(out);
-        return Object.keys(workspace.projects)
+        return Object.entries(workspace.projects)
             .filter(filterFn)
+            .map(function (_a) {
+            var projectName = _a[0];
+            return projectName;
+        })
             .map(function (suggestion) { return ({
             name: suggestion,
             type: "option",
         }); });
     }
     catch (err) {
+        console.log(err);
         return [];
     }
 }; };
@@ -32,16 +37,16 @@ var oneDayCache = {
 var nxGenerators = {
     apps: {
         script: "cat workspace.json",
-        postProcess: processWorkspaceJson(function (projectName, _, projects) {
-            return projects[projectName].projectType === "application" &&
-                !projectName.endsWith("-e2e");
+        postProcess: processWorkspaceJson(function (_a, _, projects) {
+            var projectName = _a[0], project = _a[1];
+            return project.projectType === "application" && !projectName.endsWith("-e2e");
         }),
     },
     e2eApps: {
         script: "cat workspace.json",
-        postProcess: processWorkspaceJson(function (projectName, _, projects) {
-            return projects[projectName].projectType === "application" &&
-                projectName.endsWith("-e2e");
+        postProcess: processWorkspaceJson(function (_a, _, projects) {
+            var projectName = _a[0], project = _a[1];
+            return project.projectType === "application" && projectName.endsWith("-e2e");
         }),
     },
     appsAndLibs: {
