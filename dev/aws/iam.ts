@@ -1,3 +1,5 @@
+import { findConfigFile } from "typescript";
+
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",
@@ -290,6 +292,7 @@ const listCustomGenerator = async (
     var out = await executeShellCommand(
       `aws iam ${command} ${option} ${param}`
     );
+
     const policies = JSON.parse(out as string)[parentKey];
     return policies.map((elm) => {
       if (childKey) {
@@ -401,7 +404,7 @@ const generators: Record<string, Fig.Generator> = {
   listIamPoliciesArnGenerator: {
     script: "aws iam list-policies --page-size 100 --scope Local",
     postProcess: function (out) {
-      return postPrecessGenerator(out, "Policies", "PolicyName");
+      return postPrecessGenerator(out, "Policies", "Arn");
     },
     cache: {
       ttl: 30000,
@@ -432,6 +435,54 @@ const generators: Record<string, Fig.Generator> = {
         "list-group-policies",
         "--group-name",
         "PolicyNames"
+      );
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listAttachedGroupPolicyArns: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-group-policies",
+        "--group-name",
+        "AttachedPolicies",
+        "PolicyArn"
+      );
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listAttachedRolePolicyArns: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-role-policies",
+        "--role-name",
+        "AttachedPolicies",
+        "PolicyArn"
+      );
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listAttachedUserPolicyArns: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-user-policies",
+        "--user-name",
+        "AttachedPolicies",
+        "PolicyArn"
       );
     },
     cache: {
@@ -534,6 +585,22 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
+  listSSHPublicKeysForUserGenerator: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-ssh-public-keys",
+        "--user-name",
+        "SSHPublicKeys",
+        "SSHPublicKeyId"
+      );
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
   listServerCertsGenerator: {
     script: "aws iam list-server-certificates --page-size 1000",
     postProcess: function (out) {
@@ -574,6 +641,38 @@ const generators: Record<string, Fig.Generator> = {
         "Certificates",
         "CertificateId"
       );
+    },
+    cache: {
+      ttl: 30000,
+    },
+  },
+
+  listAllArns: {
+    custom: async function (context, executeShellCommand) {
+      try {
+        const userArns = await executeShellCommand("aws iam list-users");
+        const groupArns = await executeShellCommand("aws iam list-groups");
+        const roleArns = await executeShellCommand("aws iam list-roles");
+        const managedPolicyArns = await executeShellCommand(
+          "aws iam list-policies --scope Local"
+        );
+
+        const list = [
+          postPrecessGenerator(userArns as string, "Users", "Arn"),
+          postPrecessGenerator(groupArns as string, "Groups", "Arn"),
+          postPrecessGenerator(roleArns as string, "Roles", "Arn"),
+          postPrecessGenerator(managedPolicyArns as string, "Policies", "Arn"),
+        ];
+
+        const merged = Array.prototype.concat.apply(
+          [],
+          list
+        ) as Fig.Suggestion[];
+        return merged;
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
     },
     cache: {
       ttl: 30000,
@@ -2486,6 +2585,7 @@ export const completionSpec: Fig.Spec = {
             "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the same as the ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -2519,6 +2619,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM group to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -2527,6 +2628,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedGroupPolicyArns,
           },
         },
         {
@@ -2560,6 +2662,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM role to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRolesGenerator,
           },
         },
         {
@@ -2568,6 +2671,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedRolePolicyArns,
           },
         },
         {
@@ -2601,6 +2705,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -2609,6 +2714,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedUserPolicyArns,
           },
         },
         {
@@ -2642,6 +2748,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user for whom you want to enable the MFA device. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -2650,6 +2757,7 @@ export const completionSpec: Fig.Spec = {
             "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the device ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -2781,6 +2889,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM resource (user, group, role, or managed policy) used to generate information about when the resource was last used in an attempt to access an AWS service.",
           args: {
             name: "string",
+            generators: generators.listAllArns,
           },
         },
         {
@@ -2789,6 +2898,7 @@ export const completionSpec: Fig.Spec = {
             "The level of detail that you want to generate. You can specify whether you want to generate information about the last attempt to access services or actions. If you specify service-level granularity, this operation generates only service data. If you specify action-level granularity, it generates service and action data. If you don't include this optional parameter, the operation generates service data.",
           args: {
             name: "string",
+            suggestions: ["SERVICE_LEVEL", "ACTION_LEVEL"],
           },
         },
         {
@@ -2822,6 +2932,7 @@ export const completionSpec: Fig.Spec = {
             "The identifier of an access key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listAcessKeyIds,
           },
         },
         {
@@ -2855,6 +2966,14 @@ export const completionSpec: Fig.Spec = {
             "A list of entity types used to filter the results. Only the entities that match the types you specify are included in the output. Use the value LocalManagedPolicy to include customer managed policies. The format for this parameter is a comma-separated (if more than one) list of strings. Each string value in the list must be one of the valid values listed below.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "User",
+              "Role",
+              "Group",
+              "LocalManagedPolicy",
+              "AWSManagedPolicy",
+            ],
           },
         },
         {
@@ -3003,6 +3122,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of a user, group, or role whose policies contain the context keys that you want listed. If you specify a user, the list includes context keys that are found in all policies that are attached to the user. The list also includes all groups that the user is a member of. If you pick a group or a role, then it includes only those context keys that are found in policies attached to that entity. Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be included as a part of a real HTML request. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAllArns,
           },
         },
         {
@@ -3069,6 +3189,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -3134,6 +3255,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group the policy is associated with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupsGenerator,
           },
         },
         {
@@ -3142,6 +3264,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document to get. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroupPolicies,
           },
         },
         {
@@ -3175,6 +3298,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfileGenerator,
           },
         },
         {
@@ -3208,6 +3332,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose login profile you want to retrieve. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -3241,6 +3366,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the OIDC provider resource object in IAM to get information for. You can get a list of OIDC provider resource ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProvidersGenerator,
           },
         },
         {
@@ -3298,6 +3424,12 @@ export const completionSpec: Fig.Spec = {
             "The key that is used to sort the results. If you choose the namespace key, the results are returned in alphabetical order. If you choose the time key, the results are sorted numerically by the date and time.",
           args: {
             name: "string",
+            suggestions: [
+              "SERVICE_NAMESPACE_ASCENDING",
+              "SERVICE_NAMESPACE_DESCENDING",
+              "LAST_AUTHENTICATED_TIME_ASCENDING",
+              "LAST_AUTHENTICATED_TIME_DESCENDING",
+            ],
           },
         },
         {
@@ -3331,6 +3463,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -3364,6 +3497,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArnGenerator,
           },
         },
         {
@@ -3372,6 +3506,7 @@ export const completionSpec: Fig.Spec = {
             "Identifies the policy version to retrieve. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits.",
           args: {
             name: "string",
+            generators: generators.listPolicyVersionsGenerator,
           },
         },
         {
@@ -3405,6 +3540,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM role to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRolesGenerator,
           },
         },
         {
@@ -3438,6 +3574,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role associated with the policy. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRolesGenerator,
           },
         },
         {
@@ -3446,6 +3583,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document to get. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRolePoliciesGenerator,
           },
         },
         {
@@ -3479,6 +3617,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the SAML provider resource object in IAM to get information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listSamlProvidersGenerator,
           },
         },
         {
@@ -3512,6 +3651,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the SSH public key. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersGenerator,
           },
         },
         {
@@ -3520,6 +3660,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listSSHPublicKeysForUserGenerator,
           },
         },
         {
@@ -3528,6 +3669,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use SSH. To retrieve the public key in PEM format, use PEM.",
           args: {
             name: "string",
+            suggestions: ["SSH", "PEM"],
           },
         },
         {
