@@ -191,7 +191,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "debug",
-      description: "Debug various elements of Peotry",
+      description: "Debug various elements of Poetry",
       options: [...globalOptions],
     },
     {
@@ -260,7 +260,7 @@ export const completion: Fig.Spec = {
           args: {
             name: "filename",
             description: "Output file name",
-            suggestions: ["requirements.txt"],
+            template: "filepaths",
           },
         },
         {
