@@ -1,6 +1,6 @@
 name: Update Docs && Website
 
-on: 
+on:
   push:
     branches:
       - "master"
@@ -21,9 +21,9 @@ jobs:
 
           curl https://docs-generator.cstrnt.workers.dev/ > autocomplete/api.md
 
-          git config user.email "hello@withfig.com"
+          git config user.email "hello@fig.io"
           git config user.name "Figbot"
-          
+
           git add autocomplete/api.md
           git commit -m "added updates to docs"
-          git push origin main
+          git push origin main --force

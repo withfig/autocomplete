@@ -18,7 +18,7 @@ const options: ts.TranspileOptions = {
   },
 };
 
-if (process.argv[2] == "INVALIDATE_CACHE") {
+function invalidateCache() {
   exec(
     "fig settings autocomplete.developerModeNPMInvalidateCache true",
     (error, stdout, stderr) => {
@@ -38,6 +38,10 @@ if (process.argv[2] == "INVALIDATE_CACHE") {
       }
     }
   );
+}
+
+if (process.argv[2] == "INVALIDATE_CACHE") {
+  invalidateCache();
 }
 
 function walkDir(dir: string, callback: (path: string) => void) {
@@ -118,6 +122,7 @@ if (isWatching) {
   // Process the changed file
   watcher.on("change", (filePath: string) => {
     processFiles([filePath]);
+    invalidateCache();
   });
 } else {
   // Get all files from the the source folder recursively
