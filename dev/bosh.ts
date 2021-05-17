@@ -1,6 +1,4 @@
-import { descriptionRule } from "danger/distribution/commands/init/default-dangerfile";
-
-var deployments = {
+const deployments: Fig.Generator = {
   script: "bosh --json deployments",
   postProcess: function (out) {
     if (out.startsWith("fatal:")) {
@@ -386,15 +384,15 @@ export const completionSpec: Fig.Spec = {
       description: "Show CLI version",
     },
     {
-      name: ["--config="],
+      name: ["--config"],
       description: "Config file path (default: ~/.bosh/config)",
     },
     {
-      name: ["--environment="],
+      name: ["--environment"],
       description: "Director environment name or URL",
     },
     {
-      name: ["--ca-cert="],
+      name: ["--ca-cert"],
       description: "Director CA certificate path or value",
     },
     {
@@ -402,27 +400,27 @@ export const completionSpec: Fig.Spec = {
       description: "Use SHA256 checksums",
     },
     {
-      name: ["--parallel="],
+      name: ["--parallel"],
       description: "The max number of parallel operations (default: 5)",
     },
     {
-      name: ["--client="],
+      name: ["--client"],
       description: "Override username or UAA client [$BOSH_CLIENT]",
     },
     {
-      name: ["--client-secret="],
+      name: ["--client-secret"],
       description:
         "Override password or UAA client secret [$BOSH_CLIENT_SECRET]",
     },
     {
-      name: ["--deployment="],
+      name: ["--deployment"],
       description: "Deployment name [$BOSH_DEPLOYMENT]",
       args: {
         generators: deployments,
       },
     },
     {
-      name: ["--column="],
+      name: ["--column"],
       description: "Filter to show only given column(s)",
     },
     {
