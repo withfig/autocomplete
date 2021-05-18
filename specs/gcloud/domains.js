@@ -134,7 +134,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "verify",
@@ -398,5 +397,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

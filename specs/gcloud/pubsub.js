@@ -661,7 +661,6 @@ var completionSpec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -953,7 +952,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "lite-topics",
@@ -1645,7 +1643,6 @@ var completionSpec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "list-subscriptions",
@@ -2158,7 +2155,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "snapshots",
@@ -2792,7 +2788,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2923,7 +2918,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "subscriptions",
@@ -4191,7 +4185,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "modify-message-ack-deadline",
@@ -5627,7 +5620,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "topics",
@@ -6775,7 +6767,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list-subscriptions",
@@ -7790,7 +7781,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -7914,5 +7904,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

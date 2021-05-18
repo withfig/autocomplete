@@ -11,31 +11,26 @@ export const completionSpec: Fig.Spec = {
       name: "help",
       description: "Show help.",
       subcommands: [],
-      options: [],
     },
     {
       name: "configure",
       description: "Configure the Fastly CLI",
       subcommands: [],
-      options: [],
     },
     {
       name: "whoami",
       description: "Get information about the currently authenticated account",
       subcommands: [],
-      options: [],
     },
     {
       name: "version",
       description: "Display version information for the Fastly CLI",
       subcommands: [],
-      options: [],
     },
     {
       name: "update",
       description: "Update the CLI to the latest version",
       subcommands: [],
-      options: [],
     },
     {
       name: "service",
@@ -80,7 +75,6 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description: "List Fastly services",
           subcommands: [],
-          options: [],
         },
         {
           name: "describe",
@@ -149,7 +143,6 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--force",
               description: "Force deletion of an active service",
-              args: [],
             },
           ],
         },
@@ -170,7 +163,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "service-version",
@@ -327,7 +319,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "compute",
@@ -418,7 +409,6 @@ export const completionSpec: Fig.Spec = {
               name: "--force",
               description:
                 "Skip non-empty directory verification step and force new project creation",
-              args: [],
             },
           ],
         },
@@ -448,12 +438,10 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--include-source",
               description: "Include source code in built package",
-              args: [],
             },
             {
               name: "--force",
               description: "Skip verification steps and force build",
-              args: [],
             },
           ],
         },
@@ -546,12 +534,10 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--include-source",
               description: "Include source code in built package",
-              args: [],
             },
             {
               name: "--force",
               description: "Skip verification steps and force build",
-              args: [],
             },
             {
               name: "--service-id",
@@ -662,7 +648,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "domain",
@@ -858,7 +843,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "backend",
@@ -973,7 +957,6 @@ export const completionSpec: Fig.Spec = {
               name: "--auto-loadbalance",
               description:
                 "Whether or not this backend should be automatically load balanced",
-              args: [],
             },
             {
               name: "--weight",
@@ -1018,12 +1001,10 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--use-ssl",
               description: "Whether or not to use SSL to reach the backend",
-              args: [],
             },
             {
               name: "--ssl-check-cert",
               description: "Be strict on checking SSL certs",
-              args: [],
             },
             {
               name: "--ssl-ca-cert",
@@ -1282,7 +1263,6 @@ export const completionSpec: Fig.Spec = {
               name: "--auto-loadbalance",
               description:
                 "Whether or not this backend should be automatically load balanced",
-              args: [],
             },
             {
               name: "--weight",
@@ -1327,12 +1307,10 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--use-ssl",
               description: "Whether or not to use SSL to reach the backend",
-              args: [],
             },
             {
               name: "--ssl-check-cert",
               description: "Be strict on checking SSL certs",
-              args: [],
             },
             {
               name: "--ssl-ca-cert",
@@ -1448,7 +1426,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "healthcheck",
@@ -1830,7 +1807,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "dictionary",
@@ -2030,7 +2006,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "dictionaryitem",
@@ -2251,7 +2226,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "logging",
@@ -2631,7 +2605,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "s3",
@@ -3179,7 +3152,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "kinesis",
@@ -3532,7 +3504,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "syslog",
@@ -3595,7 +3566,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -3822,7 +3792,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -3961,7 +3930,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "logentries",
@@ -4015,7 +3983,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--auth-token",
@@ -4184,7 +4151,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--auth-token",
@@ -4273,7 +4239,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "papertrail",
@@ -4571,7 +4536,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "sumologic",
@@ -4871,7 +4835,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "gcs",
@@ -5308,7 +5271,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "ftp",
@@ -5753,7 +5715,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "splunk",
@@ -6131,7 +6092,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "scalyr",
@@ -6432,7 +6392,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "loggly",
@@ -6713,7 +6672,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "honeycomb",
@@ -7015,7 +6973,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "heroku",
@@ -7314,7 +7271,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "sftp",
@@ -7829,7 +7785,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "logshuttle",
@@ -8129,7 +8084,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "cloudfiles",
@@ -8603,7 +8557,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "digitalocean",
@@ -9081,7 +9034,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "elasticsearch",
@@ -9523,7 +9475,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "azureblob",
@@ -10005,7 +9956,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "datadog",
@@ -10306,7 +10256,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "https",
@@ -10829,7 +10778,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "kafka",
@@ -10913,7 +10861,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -10998,7 +10945,6 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "--parse-log-keyvals",
                   description: "Parse key-value pairs within the log format",
-                  args: [],
                 },
                 {
                   name: "--max-batch-size",
@@ -11013,7 +10959,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-sasl",
                   description:
                     "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                  args: [],
                 },
                 {
                   name: "--auth-method",
@@ -11192,7 +11137,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -11277,7 +11221,6 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "--parse-log-keyvals",
                   description: "Parse key-value pairs within the log format",
-                  args: [],
                 },
                 {
                   name: "--max-batch-size",
@@ -11292,7 +11235,6 @@ export const completionSpec: Fig.Spec = {
                   name: "--use-sasl",
                   description:
                     "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                  args: [],
                 },
                 {
                   name: "--auth-method",
@@ -11362,7 +11304,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "googlepubsub",
@@ -11706,7 +11647,6 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "openstack",
@@ -12178,10 +12118,8 @@ export const completionSpec: Fig.Spec = {
               ],
             },
           ],
-          options: [],
         },
       ],
-      options: [],
     },
     {
       name: "logs",
@@ -12252,7 +12190,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "stats",
@@ -12263,7 +12200,6 @@ export const completionSpec: Fig.Spec = {
           name: "regions",
           description: "List stats regions",
           subcommands: [],
-          options: [],
         },
         {
           name: "historical",
@@ -12353,14 +12289,12 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      options: [],
     },
   ],
   options: [
     {
       name: "--help",
       description: "Show context-sensitive help.",
-      args: [],
     },
     {
       name: "--token",
@@ -12374,7 +12308,6 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--verbose",
       description: "Verbose logging",
-      args: [],
     },
   ],
 };

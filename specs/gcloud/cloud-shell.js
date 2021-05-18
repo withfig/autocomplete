@@ -500,7 +500,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -624,5 +623,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

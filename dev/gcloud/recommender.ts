@@ -357,7 +357,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-accepted",
@@ -668,7 +667,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "recommendations",
@@ -1030,7 +1028,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-claimed",
@@ -1701,7 +1698,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1825,5 +1821,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

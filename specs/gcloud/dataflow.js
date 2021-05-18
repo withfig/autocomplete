@@ -650,7 +650,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "jobs",
@@ -1329,7 +1328,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "run",
@@ -1897,7 +1895,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sql",
@@ -2387,7 +2384,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2511,5 +2507,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

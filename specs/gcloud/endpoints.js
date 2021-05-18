@@ -345,7 +345,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -476,7 +475,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -810,7 +808,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
@@ -1081,7 +1078,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "services",
@@ -2186,7 +2182,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -2625,7 +2620,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2749,5 +2743,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

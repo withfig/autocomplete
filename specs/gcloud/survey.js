@@ -123,5 +123,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

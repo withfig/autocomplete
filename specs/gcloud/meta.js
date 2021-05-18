@@ -344,7 +344,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
@@ -528,7 +527,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -659,7 +657,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "describe",
@@ -1125,7 +1122,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1256,7 +1252,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -1420,7 +1415,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "messages",
@@ -1940,7 +1934,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -2071,7 +2064,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "methods",
@@ -2589,7 +2581,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -2720,7 +2711,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "regen",
@@ -3022,7 +3012,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "cache",
@@ -3210,7 +3199,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "run",
@@ -3547,7 +3535,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -4026,7 +4013,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "cli-trees",
@@ -4174,7 +4160,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -4343,7 +4328,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -4474,7 +4458,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "debug",
@@ -4619,7 +4602,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "flag-coverage-tree",
@@ -4905,7 +4887,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "generate-command",
@@ -6032,7 +6013,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "render-markdown",
@@ -6359,7 +6339,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "parse",
@@ -6701,7 +6680,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "test",
@@ -7192,5 +7170,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -158,7 +158,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -619,7 +618,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -911,7 +909,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1035,5 +1032,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

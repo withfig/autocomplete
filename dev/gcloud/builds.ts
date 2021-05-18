@@ -494,7 +494,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "log",
@@ -1050,5 +1049,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

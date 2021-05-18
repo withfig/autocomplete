@@ -485,7 +485,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "print-access-token",
@@ -620,7 +619,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "revoke",
@@ -755,7 +753,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-quota-project",
@@ -1028,7 +1025,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "configure-docker",
@@ -1780,7 +1776,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "login",
@@ -2671,5 +2666,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

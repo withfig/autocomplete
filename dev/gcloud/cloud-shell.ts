@@ -500,7 +500,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -624,5 +623,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

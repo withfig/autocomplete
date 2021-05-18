@@ -330,7 +330,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -461,7 +460,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "models",
@@ -783,7 +781,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -914,7 +911,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "run",
@@ -1714,7 +1710,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -1845,7 +1840,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1976,7 +1970,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "ios",
@@ -2302,7 +2295,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -2433,7 +2425,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "models",
@@ -2755,7 +2746,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -2886,7 +2876,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "run",
@@ -3505,7 +3494,6 @@ var completionSpec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -3636,7 +3624,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3767,7 +3754,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "network-profiles",
@@ -4086,7 +4072,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -4217,7 +4202,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -4348,7 +4332,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4472,5 +4455,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

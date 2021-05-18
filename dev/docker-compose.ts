@@ -233,7 +233,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Get help on a command.",
-      options: [],
+
       subcommands: [],
     },
     {
@@ -296,7 +296,7 @@ export const completionSpec: Fig.Spec = {
       name: "pause",
       description: "Pause services.",
       args: [getServices],
-      options: [],
+
       subcommands: [],
     },
     {
@@ -529,7 +529,7 @@ export const completionSpec: Fig.Spec = {
       name: "start",
       description: "Start existing containers.",
       args: [getServices],
-      options: [],
+
       subcommands: [],
     },
     {
@@ -548,13 +548,13 @@ export const completionSpec: Fig.Spec = {
     {
       name: "top",
       description: "Display the running processes",
-      options: [],
+
       subcommands: [],
     },
     {
       name: "unpause",
       description: "Unpause services.",
-      options: [],
+
       subcommands: [],
     },
     {

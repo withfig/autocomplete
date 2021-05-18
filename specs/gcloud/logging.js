@@ -308,7 +308,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -439,7 +438,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "metrics",
@@ -1048,7 +1046,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1339,7 +1336,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "read",
@@ -1696,7 +1692,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1827,7 +1822,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sinks",
@@ -2506,7 +2500,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -2811,7 +2804,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "write",
@@ -3129,5 +3121,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

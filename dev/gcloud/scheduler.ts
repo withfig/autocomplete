@@ -1030,7 +1030,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -1491,7 +1490,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "pause",
@@ -3089,7 +3087,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3220,7 +3217,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3344,5 +3340,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

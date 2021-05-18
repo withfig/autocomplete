@@ -1587,7 +1587,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "findings",
@@ -3022,7 +3021,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "notifications",
@@ -4007,7 +4005,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -4293,7 +4290,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sources",
@@ -4589,7 +4585,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4713,5 +4708,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -895,7 +895,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "run",
@@ -1408,7 +1407,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
@@ -1585,7 +1583,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
@@ -1741,7 +1738,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -1872,7 +1868,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "data",
@@ -2216,7 +2211,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
@@ -2393,7 +2387,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
@@ -2549,7 +2542,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -2680,7 +2672,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "plugins",
@@ -3024,7 +3015,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
@@ -3201,7 +3191,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
@@ -3357,7 +3346,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -3488,7 +3476,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3619,7 +3606,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -4025,7 +4011,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -4522,7 +4507,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
@@ -4804,7 +4788,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4928,5 +4911,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

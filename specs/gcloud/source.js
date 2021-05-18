@@ -139,7 +139,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -347,7 +346,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -478,7 +476,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "repos",
@@ -1414,7 +1411,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -1895,7 +1891,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2019,5 +2014,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -659,7 +659,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
@@ -815,7 +814,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "describe",
@@ -971,7 +969,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
@@ -1177,7 +1174,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "modify-membership-roles",
@@ -1354,7 +1350,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1485,7 +1480,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "search",
@@ -1680,7 +1674,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1980,7 +1973,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2104,5 +2096,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -748,7 +748,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "rerun",
@@ -1324,7 +1323,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1643,7 +1641,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1774,7 +1771,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1898,5 +1894,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

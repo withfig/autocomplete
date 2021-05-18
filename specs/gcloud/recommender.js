@@ -357,7 +357,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-accepted",
@@ -668,7 +667,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "recommendations",
@@ -1030,7 +1028,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-claimed",
@@ -1701,7 +1698,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1825,5 +1821,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

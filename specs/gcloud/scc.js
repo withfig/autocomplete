@@ -1587,7 +1587,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "findings",
@@ -3022,7 +3021,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "notifications",
@@ -4007,7 +4005,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -4293,7 +4290,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sources",
@@ -4589,7 +4585,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4713,5 +4708,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

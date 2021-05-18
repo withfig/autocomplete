@@ -479,7 +479,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -906,7 +905,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "peered-dns-domains",
@@ -1041,7 +1039,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "vpc-peerings",
@@ -1215,7 +1212,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -1370,7 +1366,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "operations",
@@ -1519,7 +1514,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "wait",
@@ -1664,7 +1658,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1795,7 +1788,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1969,7 +1961,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2100,7 +2091,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2224,5 +2214,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

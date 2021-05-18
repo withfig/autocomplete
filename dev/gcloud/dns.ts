@@ -328,7 +328,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -459,7 +458,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "managed-zones",
@@ -1233,7 +1231,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1673,7 +1670,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2002,7 +1998,6 @@ export const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2133,7 +2128,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "policies",
@@ -2790,7 +2784,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -3111,7 +3104,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "project-info",
@@ -3387,7 +3379,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "record-sets",
@@ -3748,7 +3739,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3879,7 +3869,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "export",
@@ -4412,7 +4401,6 @@ export const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "transaction",
@@ -4572,7 +4560,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "add",
@@ -4919,7 +4906,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "execute",
@@ -5119,7 +5105,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "remove",
@@ -5465,7 +5450,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -5605,7 +5589,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -5736,7 +5719,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5860,5 +5842,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

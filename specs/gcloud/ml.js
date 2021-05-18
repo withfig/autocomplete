@@ -191,7 +191,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-entity-sentiment",
@@ -378,7 +377,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-sentiment",
@@ -565,7 +563,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-syntax",
@@ -752,7 +749,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "classify-text",
@@ -927,7 +923,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1058,7 +1053,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "speech",
@@ -1481,7 +1475,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "recognize",
@@ -2040,7 +2033,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "video",
@@ -3036,7 +3028,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3167,7 +3158,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "vision",
@@ -5245,7 +5235,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5369,5 +5358,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -494,7 +494,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "log",
@@ -1050,5 +1049,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

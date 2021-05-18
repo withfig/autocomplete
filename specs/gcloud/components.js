@@ -134,7 +134,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "install",
@@ -447,7 +446,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "post-process",
@@ -581,7 +579,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "reinstall",
@@ -716,7 +713,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove",
@@ -1167,7 +1163,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove",
@@ -1443,7 +1438,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "restore",
@@ -1577,7 +1571,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "update",
@@ -1842,5 +1835,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -179,7 +179,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -333,7 +332,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "describe",
@@ -487,7 +485,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -671,7 +668,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -845,7 +841,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -976,7 +971,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "levels",
@@ -1138,7 +1132,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1269,7 +1262,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
@@ -1964,7 +1956,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "replace-all",
@@ -2457,7 +2448,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "perimeters",
@@ -4053,7 +4043,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
@@ -4238,7 +4227,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -4626,7 +4614,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -4810,7 +4797,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "replace-all",
@@ -5412,7 +5398,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "policies",
@@ -5576,7 +5561,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -6043,7 +6027,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -6324,7 +6307,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -6448,5 +6430,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

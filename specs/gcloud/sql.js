@@ -173,7 +173,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -668,7 +667,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "restore",
@@ -964,7 +962,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "connect",
@@ -1792,7 +1789,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "patch",
@@ -2097,7 +2093,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
@@ -2746,7 +2741,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "flags",
@@ -2953,7 +2947,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3084,7 +3077,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "import",
@@ -3780,7 +3772,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "instances",
@@ -5453,7 +5444,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "patch",
@@ -6659,7 +6649,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -6995,7 +6984,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
@@ -7277,7 +7265,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "reschedule-maintenance",
@@ -8108,7 +8095,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -8239,7 +8225,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -8370,7 +8355,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "ssl-certs",
@@ -9032,7 +9016,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -9163,7 +9146,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "tiers",
@@ -9347,7 +9329,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -9478,7 +9459,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "users",
@@ -10010,7 +9990,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-password",
@@ -10320,7 +10299,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -10444,5 +10422,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

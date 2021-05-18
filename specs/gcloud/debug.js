@@ -712,7 +712,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "snapshots",
@@ -1792,7 +1791,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "source",
@@ -1951,7 +1949,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2082,7 +2079,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "targets",
@@ -2272,7 +2268,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2403,7 +2398,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2527,5 +2521,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -259,7 +259,6 @@ const otherCommands: Fig.Subcommand[] = [
   {
     name: "state",
     description: "Advanced state management",
-    options: [],
   },
   {
     name: "taint",

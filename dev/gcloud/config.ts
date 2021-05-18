@@ -151,7 +151,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "configurations",
@@ -890,7 +889,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1021,7 +1019,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-value",
@@ -1760,5 +1757,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

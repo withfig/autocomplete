@@ -1228,7 +1228,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1359,7 +1358,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-iam-policy",
@@ -1744,7 +1742,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "logs",
@@ -2115,7 +2112,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "regions",
@@ -2298,7 +2294,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2429,7 +2424,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
@@ -2883,5 +2877,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

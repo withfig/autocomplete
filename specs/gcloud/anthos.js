@@ -199,7 +199,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "version",
@@ -333,7 +332,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -464,7 +462,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "create-login-config",
@@ -630,7 +627,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -754,5 +750,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

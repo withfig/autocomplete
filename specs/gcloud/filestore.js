@@ -744,7 +744,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1084,7 +1083,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "locations",
@@ -1409,7 +1407,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1540,7 +1537,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1903,7 +1899,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2034,7 +2029,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "regions",
@@ -2212,7 +2206,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2343,7 +2336,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "zones",
@@ -2521,7 +2513,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2652,7 +2643,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2776,5 +2766,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

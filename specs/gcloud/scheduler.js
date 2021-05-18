@@ -1030,7 +1030,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -1491,7 +1490,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "pause",
@@ -3089,7 +3087,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3220,7 +3217,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3344,5 +3340,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

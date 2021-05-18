@@ -1332,7 +1332,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
@@ -2080,5 +2079,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

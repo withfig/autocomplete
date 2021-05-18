@@ -134,7 +134,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "install",
@@ -447,7 +446,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "post-process",
@@ -581,7 +579,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "reinstall",
@@ -716,7 +713,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove",
@@ -1167,7 +1163,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove",
@@ -1443,7 +1438,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "restore",
@@ -1577,7 +1571,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "update",
@@ -1842,5 +1835,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

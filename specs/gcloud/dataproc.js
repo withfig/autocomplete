@@ -969,7 +969,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -1257,7 +1256,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "clusters",
@@ -3143,7 +3141,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -3701,7 +3698,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "jobs",
@@ -4552,7 +4548,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -5220,7 +5215,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "pig",
@@ -5471,7 +5465,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "presto",
@@ -5723,7 +5716,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "pyspark",
@@ -6739,7 +6731,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -6895,7 +6886,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -7354,7 +7344,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -8206,7 +8195,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -8494,7 +8482,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "workflow-templates",
@@ -9003,7 +8990,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "pig",
@@ -9251,7 +9237,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "presto",
@@ -9500,7 +9485,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "pyspark",
@@ -10504,7 +10488,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -10635,7 +10618,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
@@ -11897,7 +11879,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -12081,7 +12062,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-job",
@@ -13347,7 +13327,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -13471,5 +13450,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

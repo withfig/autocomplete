@@ -468,7 +468,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "stream-logs",
@@ -1467,7 +1466,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1763,7 +1761,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "local",
@@ -1961,7 +1958,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "train",
@@ -2308,7 +2304,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "models",
@@ -3417,7 +3412,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -4103,7 +4097,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -4638,7 +4631,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
@@ -4933,7 +4925,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "predict",
@@ -5141,7 +5132,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "versions",
@@ -5985,7 +5975,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-default",
@@ -6509,7 +6498,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -6633,5 +6621,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

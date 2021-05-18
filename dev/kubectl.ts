@@ -286,7 +286,7 @@ export const completionSpec: Fig.Spec = {
       name: "alpha",
       description:
         "These commands correspond to alpha features that are not enabled in Kubernetes clusters by default.",
-      options: [],
+
       subcommands: [
         {
           name: "debug",
@@ -409,7 +409,7 @@ export const completionSpec: Fig.Spec = {
       name: "api-versions",
       description:
         'Print the supported API versions on the server, in the form of "group/version"',
-      options: [],
+
       subcommands: [],
     },
     {
@@ -836,7 +836,7 @@ export const completionSpec: Fig.Spec = {
       name: "completion",
       description:
         "Output shell completion code for the specified shell (bash or zsh). The shell code must be evaluated to provide interactive completion of kubectl commands.  This can be done by sourcing it from the .bash_profile.",
-      options: [],
+
       subcommands: [],
     },
     {
@@ -2079,7 +2079,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "service",
           description: "Create a service using specified subcommand.",
-          options: [],
+
           subcommands: [
             {
               name: "clusterip",
@@ -2970,7 +2970,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "plugin",
       description: "Provides utilities for interacting with plugins.",
-      options: [],
+
       subcommands: [],
     },
     {

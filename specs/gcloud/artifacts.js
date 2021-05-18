@@ -672,7 +672,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "tags",
@@ -1279,7 +1278,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1410,7 +1408,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "locations",
@@ -1588,7 +1585,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1719,7 +1715,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2005,7 +2000,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "packages",
@@ -2369,7 +2363,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2500,7 +2493,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "print-settings",
@@ -2669,7 +2661,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mvn",
@@ -2834,7 +2825,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "npm",
@@ -3008,7 +2998,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3139,7 +3128,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "repositories",
@@ -4216,7 +4204,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -4888,7 +4875,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "tags",
@@ -5437,7 +5423,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -5738,7 +5723,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "versions",
@@ -6127,7 +6111,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -6258,7 +6241,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -6382,5 +6364,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

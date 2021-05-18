@@ -801,7 +801,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "lookup",
@@ -1336,7 +1335,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "entry-groups",
@@ -2362,7 +2360,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -2990,7 +2987,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "search",
@@ -4510,7 +4506,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "rename",
@@ -4993,7 +4988,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "get-iam-policy",
@@ -5803,7 +5797,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "tags",
@@ -6020,7 +6013,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -6396,7 +6388,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -6735,7 +6726,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "taxonomies",
@@ -7743,7 +7733,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "policy-tags",
@@ -8486,7 +8475,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "remove-iam-policy-binding",
@@ -8964,7 +8952,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -9423,7 +9410,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -9547,5 +9533,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

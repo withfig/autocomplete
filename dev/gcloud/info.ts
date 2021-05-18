@@ -136,5 +136,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -136,5 +136,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

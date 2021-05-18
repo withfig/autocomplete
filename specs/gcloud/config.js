@@ -151,7 +151,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "configurations",
@@ -890,7 +889,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1021,7 +1019,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-value",
@@ -1760,5 +1757,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

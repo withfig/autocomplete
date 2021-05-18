@@ -150,7 +150,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -281,7 +280,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
@@ -1241,7 +1239,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1372,7 +1369,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1981,7 +1977,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2112,7 +2107,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2236,5 +2230,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

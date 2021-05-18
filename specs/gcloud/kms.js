@@ -182,7 +182,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "asymmetric-sign",
@@ -375,7 +374,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "decrypt",
@@ -568,7 +566,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "encrypt",
@@ -759,7 +756,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "import-jobs",
@@ -1689,7 +1685,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -2165,7 +2160,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "keyrings",
@@ -3039,7 +3033,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -3520,7 +3513,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "keys",
@@ -4527,7 +4519,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -5816,7 +5807,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "describe",
@@ -6897,7 +6887,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
@@ -7103,7 +7092,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "restore",
@@ -7587,7 +7575,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -7718,7 +7705,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "locations",
@@ -7901,7 +7887,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -8032,7 +8017,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -8156,5 +8140,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

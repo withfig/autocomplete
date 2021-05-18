@@ -134,7 +134,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "verify",
@@ -398,5 +397,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

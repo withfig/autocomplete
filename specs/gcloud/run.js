@@ -464,7 +464,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -655,7 +654,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "deploy",
@@ -1430,7 +1428,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -1645,7 +1642,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "describe",
@@ -1860,7 +1856,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -2109,7 +2104,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2300,7 +2294,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "regions",
@@ -2543,7 +2536,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2734,7 +2726,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "revisions",
@@ -3418,7 +3409,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3609,7 +3599,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "routes",
@@ -4073,7 +4062,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -4264,7 +4252,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "services",
@@ -5422,7 +5409,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -6835,7 +6821,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -7019,5 +7004,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

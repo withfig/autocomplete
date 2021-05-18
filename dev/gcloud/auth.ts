@@ -485,7 +485,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "print-access-token",
@@ -620,7 +619,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "revoke",
@@ -755,7 +753,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-quota-project",
@@ -1028,7 +1025,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "configure-docker",
@@ -1780,7 +1776,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "login",
@@ -2671,5 +2666,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -845,7 +845,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "reset-admin-password",
@@ -1969,7 +1968,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -2311,7 +2309,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2771,7 +2768,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2902,7 +2898,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3026,5 +3021,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -972,7 +972,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "locations",
@@ -1295,7 +1294,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1426,7 +1424,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "queues",
@@ -2480,7 +2477,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "pause",
@@ -3630,7 +3626,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "run",
@@ -3903,5 +3898,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

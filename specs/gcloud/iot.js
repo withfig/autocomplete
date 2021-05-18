@@ -203,7 +203,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -334,7 +333,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "configs",
@@ -502,7 +500,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "get-value",
@@ -666,7 +663,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
@@ -859,7 +855,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -1052,7 +1047,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1183,7 +1177,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
@@ -1579,7 +1572,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "create",
@@ -1782,7 +1774,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
@@ -2315,7 +2306,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -2626,7 +2616,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -3140,7 +3129,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list-bound-devices",
@@ -3345,7 +3333,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "unbind",
@@ -3538,7 +3525,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3669,7 +3655,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
@@ -3899,7 +3884,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "states",
@@ -4096,7 +4080,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -4227,7 +4210,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -4552,7 +4534,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "registries",
@@ -4916,7 +4897,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "create",
@@ -5081,7 +5061,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
@@ -5587,7 +5566,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -5718,7 +5696,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -6398,7 +6375,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
@@ -6874,7 +6850,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -6998,5 +6973,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

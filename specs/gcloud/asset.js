@@ -225,7 +225,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "analyze-iam-policy-longrunning",
@@ -487,7 +486,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
@@ -725,7 +723,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "feeds",
@@ -1392,7 +1389,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1793,7 +1789,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-history",
@@ -1976,7 +1971,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2251,7 +2245,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "search-all-iam-policies",
@@ -2446,7 +2439,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "search-all-resources",
@@ -2661,7 +2653,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2785,5 +2776,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

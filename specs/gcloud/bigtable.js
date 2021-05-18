@@ -681,7 +681,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -1000,7 +999,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "backups",
@@ -2117,7 +2115,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -2799,7 +2796,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "clusters",
@@ -3468,7 +3464,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -3764,7 +3759,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "instances",
@@ -4780,7 +4774,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
@@ -5666,7 +5659,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "remove-iam-policy-binding",
@@ -6052,7 +6044,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "set-iam-policy",
@@ -6339,7 +6330,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
@@ -6767,7 +6757,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -7102,7 +7091,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -7233,7 +7221,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -7357,5 +7344,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

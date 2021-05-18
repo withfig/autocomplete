@@ -1003,7 +1003,7 @@ export const completionSpec: Fig.Spec = {
       description:
         "Inspect changes to files or directories on a container's filesystem",
       args: containersArg,
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1313,7 +1313,7 @@ export const completionSpec: Fig.Spec = {
       name: "kill",
       description: "Kill one or more running containers",
       args: { ...containersArg, variadic: true },
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1365,7 +1365,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "server",
       },
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1416,7 +1416,7 @@ export const completionSpec: Fig.Spec = {
       name: "pause",
       description: "Pause all processes within one or more containers",
       args: containersArg,
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1428,7 +1428,7 @@ export const completionSpec: Fig.Spec = {
           name: "[PRIVATE_PORT[/PROTO]]",
         },
       ],
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1545,7 +1545,7 @@ export const completionSpec: Fig.Spec = {
           name: "NEW_NAME",
         },
       ],
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1825,7 +1825,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
       },
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1833,7 +1833,7 @@ export const completionSpec: Fig.Spec = {
       description: "Display the running processes of a container",
       // TODO: You can pass in psOptions?
       args: containersArg,
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1843,7 +1843,7 @@ export const completionSpec: Fig.Spec = {
         name: "container",
         generators: [dockerGenerators.pausedDockerContainers],
       },
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1991,7 +1991,7 @@ export const completionSpec: Fig.Spec = {
       description:
         "Block until one or more containers stop, then print their exit codes",
       args: containersArg,
-      options: [],
+
       subcommands: [],
     },
     {
@@ -1999,7 +1999,7 @@ export const completionSpec: Fig.Spec = {
       description: "Manage builds",
       // TODO Subcommands
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
@@ -2007,77 +2007,77 @@ export const completionSpec: Fig.Spec = {
       description: "Manage Docker configs",
       // TODO Subcommands
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "container",
       description: "Manage containers",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "context",
       description: "Manage contexts",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "image",
       description: "Manage images",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "network",
       description: "Manage networks",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "node",
       description: "Manage Swarm nodes",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "plugin",
       description: "Manage plugins",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "secret",
       description: "Manage Docker secrets",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "service",
       description: "Manage services",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "stack",
       description: "Manage Docker stacks",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "swarm",
       description: "Manage Swarm",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
@@ -2115,14 +2115,14 @@ export const completionSpec: Fig.Spec = {
       name: "trust",
       description: "Manage trust on Docker images",
       args: {},
-      options: [],
+
       subcommands: [],
     },
     {
       name: "volume",
       description: "Manage volumes",
       args: {},
-      options: [],
+
       subcommands: [],
     },
   ],

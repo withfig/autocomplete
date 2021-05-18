@@ -353,7 +353,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
@@ -1191,7 +1190,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "move",
@@ -2109,7 +2107,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "org-policies",
@@ -3214,7 +3211,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-policy",
@@ -3493,7 +3489,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3617,5 +3612,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

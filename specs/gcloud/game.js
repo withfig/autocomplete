@@ -324,7 +324,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -455,7 +454,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -798,7 +796,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -929,7 +926,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "servers",
@@ -1682,7 +1678,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -2021,7 +2016,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "configs",
@@ -2752,7 +2746,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -2883,7 +2876,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "deployments",
@@ -3855,7 +3847,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -4370,7 +4361,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "realms",
@@ -5053,7 +5043,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -5393,7 +5382,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -5524,7 +5512,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5648,5 +5635,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

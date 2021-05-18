@@ -1005,7 +1005,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "locations",
@@ -1329,7 +1328,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1460,7 +1458,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
@@ -3183,7 +3180,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3307,5 +3303,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

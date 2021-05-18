@@ -1332,7 +1332,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
@@ -2080,5 +2079,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -852,7 +852,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "stop",
@@ -1388,7 +1387,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "manifests",
@@ -1736,7 +1734,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1867,7 +1864,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2195,7 +2191,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
@@ -2467,7 +2462,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "resources",
@@ -2813,7 +2807,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2953,7 +2946,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "types",
@@ -3121,7 +3113,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3252,7 +3243,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3376,5 +3366,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

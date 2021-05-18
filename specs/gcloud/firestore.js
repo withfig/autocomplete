@@ -149,7 +149,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -280,7 +279,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
@@ -763,7 +761,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
@@ -1224,7 +1221,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1355,7 +1351,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "fields",
@@ -1699,7 +1694,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
@@ -2005,7 +1999,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2136,7 +2129,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2745,7 +2737,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2876,7 +2867,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3000,5 +2990,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };
