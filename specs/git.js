@@ -137,7 +137,6 @@ var gitGenerators = {
         }
         return {
           name: file,
-          insertValue: file.includes(" ") ? "'" + file + "'" : file,
           icon:
             "fig://icon?type=" + ext + "&color=ff0000&badge=" + item.working,
           description: "Changed file",
