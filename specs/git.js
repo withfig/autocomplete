@@ -138,7 +138,6 @@ var gitGenerators = {
                 }
                 return {
                     name: file,
-                    insertValue: file.includes(" ") ? "'" + file + "'" : file,
                     icon: "fig://icon?type=" + ext + "&color=ff0000&badge=" + item.working,
                     description: "Changed file",
                     priority: 100,
@@ -1612,9 +1611,6 @@ var completionSpec = {
                     name: "show",
                     description: "Show the changes recorded in the stash entry as a diff.",
                     insertValue: "show {cursor}",
-                    options: [
-                    // TODO: All log options can be options from list. Needs to be added.
-                    ],
                     args: [
                         {
                             name: "stash",
@@ -1680,9 +1676,6 @@ var completionSpec = {
                     name: "list",
                     description: "Lists all stashed changesets",
                     insertValue: "list {cursor}",
-                    options: [
-                    // TODO: All log options can be options from list. Needs to be added.
-                    ],
                 },
                 {
                     name: "drop",
