@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "login",
           description: "Authenticate clusters using the Anthos client.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -203,7 +203,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "version",
           description: "Get version info for the Anthos Auth client.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -466,7 +466,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "create-login-config",
       description: "Generates a login configuration file.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",

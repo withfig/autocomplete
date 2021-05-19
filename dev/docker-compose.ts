@@ -71,7 +71,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "config",
@@ -109,7 +108,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "create",
@@ -139,7 +137,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "down",
@@ -170,7 +167,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "events",
@@ -183,7 +179,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "exec",
@@ -228,13 +223,10 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "help",
       description: "Get help on a command.",
-
-      subcommands: [],
     },
     {
       name: "images",
@@ -247,7 +239,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "kill",
@@ -261,7 +252,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "logs",
@@ -290,14 +280,11 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "pause",
       description: "Pause services.",
       args: [getServices],
-
-      subcommands: [],
     },
     {
       name: "port",
@@ -315,7 +302,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "ps",
@@ -344,7 +330,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "pull",
@@ -379,7 +364,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "push",
@@ -392,7 +376,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "restart",
@@ -405,7 +388,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "rm",
@@ -428,7 +410,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "run",
@@ -511,7 +492,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "scale",
@@ -523,14 +503,11 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "start",
       description: "Start existing containers.",
       args: [getServices],
-
-      subcommands: [],
     },
     {
       name: "stop",
@@ -543,19 +520,14 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "top",
       description: "Display the running processes",
-
-      subcommands: [],
     },
     {
       name: "unpause",
       description: "Unpause services.",
-
-      subcommands: [],
     },
     {
       name: "up",
@@ -659,7 +631,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "version",
@@ -671,7 +642,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
   ],
   options: [

@@ -15,7 +15,7 @@ export const completionSpec: Fig.Spec = {
               name: "app-engine",
               description:
                 "Create a Cloud Scheduler job with an App Engine target.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -311,7 +311,7 @@ export const completionSpec: Fig.Spec = {
               name: "http",
               description:
                 "Create a Cloud Scheduler job that triggers an action via HTTP.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -640,7 +640,7 @@ export const completionSpec: Fig.Spec = {
               name: "pubsub",
               description:
                 "Create a Cloud Scheduler job with a Pub/Sub target.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1034,7 +1034,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1175,7 +1175,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1316,7 +1316,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List jobs.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1494,7 +1494,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "pause",
           description: "Pause the execution of a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1635,7 +1635,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "resume",
           description: "Resume execution of a paused job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1776,7 +1776,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "run",
           description: "Trigger an on-demand execution of a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1923,7 +1923,7 @@ export const completionSpec: Fig.Spec = {
               name: "app-engine",
               description:
                 "Update a Cloud Scheduler job with an App Engine target.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2275,7 +2275,7 @@ export const completionSpec: Fig.Spec = {
               name: "http",
               description:
                 "Update a Cloud Scheduler job that triggers an action via HTTP.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2655,7 +2655,7 @@ export const completionSpec: Fig.Spec = {
               name: "pubsub",
               description:
                 "Update a Cloud Scheduler job with a Pub/Sub target.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",

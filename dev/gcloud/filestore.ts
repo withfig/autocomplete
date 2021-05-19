@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Filestore instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -225,7 +225,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Filestore instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -390,7 +390,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a Cloud Filestore instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -550,7 +550,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Filestore instances.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -748,7 +748,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Filestore instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1092,7 +1092,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "*(DEPRECATED)*  Describe a Cloud Filestore location.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1233,7 +1233,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "*(DEPRECATED)*  List all Cloud Filestore locations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1545,7 +1545,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Filestore operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1705,7 +1705,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all Cloud Filestore operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2037,7 +2037,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Filestore regions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2344,7 +2344,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Filestore zones.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",

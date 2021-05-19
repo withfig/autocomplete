@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "create-app-engine-task",
       description: "Create and add a task that targets App Engine.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -226,7 +226,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "create-http-task",
       description: "Create and add a task that targets a HTTP endpoint.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -480,7 +480,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete a task from a queue.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -629,7 +629,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Show details about a task.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -788,7 +788,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List tasks.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -980,7 +980,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a location.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1120,7 +1120,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists the locations where Cloud Tasks is available.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1432,7 +1432,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a tasks queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1603,7 +1603,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Tasks queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1833,7 +1833,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1973,7 +1973,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about a queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2113,7 +2113,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2303,7 +2303,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all queues.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2481,7 +2481,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "pause",
           description: "Pause a queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2621,7 +2621,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "purge",
           description: "Purge a queue by deleting all of its tasks.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2761,7 +2761,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of tasks queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2932,7 +2932,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "resume",
           description: "Request to resume a paused or disabled queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3072,7 +3072,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3228,7 +3228,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Tasks queue.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3630,7 +3630,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Force a task to run now.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",

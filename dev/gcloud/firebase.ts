@@ -17,7 +17,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android locale.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -159,7 +159,7 @@ export const completionSpec: Fig.Spec = {
                   name: "list",
                   description:
                     "List all Android locales available for testing internationalized apps.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -469,7 +469,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android model.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -610,7 +610,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "list",
                   description: "List all Android models available for testing.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -916,7 +916,7 @@ export const completionSpec: Fig.Spec = {
               name: "run",
               description:
                 "Invoke a test in Firebase Test Lab for Android and view test results.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1397,7 +1397,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an Android OS version.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1539,7 +1539,7 @@ export const completionSpec: Fig.Spec = {
                   name: "list",
                   description:
                     "List all Android OS versions available for testing.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1982,7 +1982,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS locale.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2124,7 +2124,7 @@ export const completionSpec: Fig.Spec = {
                   name: "list",
                   description:
                     "List all iOS locales available for testing internationalized apps.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2434,7 +2434,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS model.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2575,7 +2575,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "list",
                   description: "List all iOS models available for testing.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2881,7 +2881,7 @@ export const completionSpec: Fig.Spec = {
               name: "run",
               description:
                 "Invoke a test in Firebase Test Lab for iOS and view test results.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3182,7 +3182,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "describe",
                   description: "Describe an iOS operating system version.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -3323,7 +3323,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "list",
                   description: "List all iOS versions available for testing.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -3762,7 +3762,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a network profile.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3903,7 +3903,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all network profiles available for testing.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",

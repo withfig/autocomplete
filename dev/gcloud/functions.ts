@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "add-iam-policy-binding",
       description: "Add an IAM policy binding for a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -177,7 +177,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "call",
       description: "Trigger execution of a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -338,7 +338,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "delete",
       description: "Delete a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -489,7 +489,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "deploy",
       description: "Create or update a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -942,7 +942,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Display details of a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1099,7 +1099,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List types of events that can be a trigger for a Google Cloud Function.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1362,7 +1362,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1558,7 +1558,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List Google Cloud Functions.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1751,7 +1751,7 @@ export const completionSpec: Fig.Spec = {
           name: "read",
           description:
             "Display log entries produced by Google Cloud Functions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2120,7 +2120,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List regions available to Google Cloud Functions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2429,7 +2429,7 @@ export const completionSpec: Fig.Spec = {
       name: "remove-iam-policy-binding",
       description:
         "Removes an IAM policy binding from a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -2601,7 +2601,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "set-iam-policy",
       description: "Sets IAM policy for a Google Cloud Function.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",

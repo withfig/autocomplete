@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
           name: "analyze-entities",
           description:
             "Use Google Cloud Natural Language API to identify entities in text.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -196,7 +196,7 @@ export const completionSpec: Fig.Spec = {
           name: "analyze-entity-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify entity-level sentiment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -382,7 +382,7 @@ export const completionSpec: Fig.Spec = {
           name: "analyze-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify sentiments in a text.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -568,7 +568,7 @@ export const completionSpec: Fig.Spec = {
           name: "analyze-syntax",
           description:
             "Use Google Cloud Natural Language API to identify linguistic information.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -753,7 +753,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "classify-text",
           description: "Classifies input document into categories.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1066,7 +1066,7 @@ export const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get description of a long-running speech recognition operation.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1208,7 +1208,7 @@ export const completionSpec: Fig.Spec = {
               name: "wait",
               description:
                 "Poll long-running speech recognition operation until it completes.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1480,7 +1480,7 @@ export const completionSpec: Fig.Spec = {
           name: "recognize",
           description:
             "Get transcripts of short (less than 60 seconds) audio from an audio file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1691,7 +1691,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "recognize-long-running",
           description: "Get transcripts of longer audio from an audio file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2041,7 +2041,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-explicit-content",
           description: "Detect explicit content in videos.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2222,7 +2222,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-labels",
           description: "Detect general labels for videos.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2414,7 +2414,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-shot-changes",
           description: "Detect shot changes in videos.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2601,7 +2601,7 @@ export const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Get description of a long-running video analysis operation.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2752,7 +2752,7 @@ export const completionSpec: Fig.Spec = {
               name: "wait",
               description:
                 "Poll long-running video analysis operation until it completes.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3166,7 +3166,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-document",
           description: "Detect dense text in an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3316,7 +3316,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-faces",
           description: "Detect faces within an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3466,7 +3466,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-image-properties",
           description: "Detect general attributes of an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3607,7 +3607,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-labels",
           description: "Detect broad sets of categories within an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3758,7 +3758,7 @@ export const completionSpec: Fig.Spec = {
           name: "detect-landmarks",
           description:
             "Detect popular natural and man-made structures within an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3908,7 +3908,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-logos",
           description: "Detect popular product logos within an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4059,7 +4059,7 @@ export const completionSpec: Fig.Spec = {
           name: "detect-objects",
           description:
             "Detect and extract multiple objects in an image with object localization.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4200,7 +4200,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-safe-search",
           description: "Detect explicit content in an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4341,7 +4341,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detect-text",
           description: "Detect and extract text within an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4492,7 +4492,7 @@ export const completionSpec: Fig.Spec = {
           name: "detect-text-pdf",
           description:
             "Detect and transcribe text from PDF files stored in Google Cloud Storage.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4650,7 +4650,7 @@ export const completionSpec: Fig.Spec = {
           name: "detect-text-tiff",
           description:
             "Detect and transcribe text from TIFF files stored in Google Cloud Storage.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4808,7 +4808,7 @@ export const completionSpec: Fig.Spec = {
           name: "detect-web",
           description:
             "Detect entities in an image from similar images on the web.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4958,7 +4958,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "suggest-crop",
           description: "Suggest a bounding box in an image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
