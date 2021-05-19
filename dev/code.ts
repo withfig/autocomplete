@@ -4,9 +4,11 @@ const commonOptions: Fig.Option[] = [
     description: "Compare two files with each other.",
     args: [
       {
+        name: "The first file to diff",
         template: "filepaths",
       },
       {
+        name: "The second file to diff",
         template: "filepaths",
       },
     ],
@@ -15,6 +17,7 @@ const commonOptions: Fig.Option[] = [
     name: ["-a", "--add"],
     description: "Add folder(s) to the last active window",
     args: {
+      name: "The folder to add",
       template: "folders",
     },
   },
@@ -23,6 +26,7 @@ const commonOptions: Fig.Option[] = [
     description:
       "Open a file at the path on the specified line and character position.",
     args: {
+      name: "The file go to",
       // TODO: Support :line[:character] completion
       template: "filepaths",
     },
@@ -67,6 +71,7 @@ const commonOptions: Fig.Option[] = [
     description:
       "Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code.",
     args: {
+      name: "The user data directory",
       template: "folders",
     },
   },
@@ -81,6 +86,7 @@ const extensionManagementOptions: Fig.Option[] = [
     name: "--extensions-dir",
     description: "Set the root path for extensions.",
     args: {
+      name: "The folder to use for extensions",
       template: "folders",
     },
   },
@@ -174,6 +180,7 @@ const troubleshootingOptions: Fig.Option[] = [
     name: "--sync",
     description: "Turn sync on or off.",
     args: {
+      name: "Whether to enable sync",
       suggestions: ["on", "off"],
     },
   },
