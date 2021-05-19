@@ -4,6 +4,5 @@ var completionSpec = {
     args: {
         template: "filepaths",
     },
-    subcommands: [],
 };
 
