@@ -107,6 +107,7 @@ const extensionManagementOptions: Fig.Option[] = [
     description:
       "Installs or updates the extension. The identifier of an extension is always `${publisher}.${name}\n\nUse `--force` argument to update to latest version. To install a specific version provide `@${version}`. For example: 'vscode.csharp@1.2.3'.",
     args: {
+      // TODO: Create extension ID generator
       name: "extension-id[@version] | path-to-vsix",
     },
   },
@@ -114,6 +115,7 @@ const extensionManagementOptions: Fig.Option[] = [
     name: "--uninstall-extension",
     description: "Uninstalls an extension.",
     args: {
+      // TODO: Create extension ID generator
       name: "extension-id",
     },
   },
@@ -128,6 +130,80 @@ const troubleshootingOptions: Fig.Option[] = [
   {
     name: ["-v", "--version"],
     description: "Print version.",
+  },
+  {
+    name: "--verbose",
+    description: "Print verbose output (implies --wait).",
+  },
+  {
+    name: "--log",
+    description: "Log level to use. Default is 'info'.",
+    args: {
+      suggestions: [
+        "critical",
+        "error",
+        "warn",
+        "info",
+        "debug",
+        "trace",
+        "off",
+      ],
+    },
+  },
+  {
+    name: ["-s", "--status"],
+    description: "Print process usage and diagnostics information.",
+  },
+  {
+    name: "--prof-startup",
+    description: "Run CPU profiler during startup.",
+  },
+  {
+    name: "--disable-extensions",
+    description: "Disable all installed extensions.",
+  },
+  {
+    name: "--disable-extension",
+    description: "Disable an extension.",
+    args: {
+      // TODO: Create extension ID generator
+      name: "extension-id",
+    },
+  },
+  {
+    name: "--sync",
+    description: "Turn sync on or off.",
+    args: {
+      suggestions: ["on", "off"],
+    },
+  },
+  {
+    name: "--inspect-extensions",
+    description:
+      "Allow debugging and profiling of extensions. Check the developer tools for the connection URI.",
+    args: {
+      name: "port",
+    },
+  },
+  {
+    name: "--inspect-brk-extensions",
+    description:
+      "Allow debugging and profiling of extensions with the extension host being paused after start. Check the developer tools for the connection URI.",
+    args: {
+      name: "port",
+    },
+  },
+  {
+    name: "--disable-gpu",
+    description: "Disable GPU hardware acceleration.",
+  },
+  {
+    name: "--max-memory",
+    description: "Max memory size for a window (in Mbytes).",
+  },
+  {
+    name: "--telemetry",
+    description: "Shows all telemetry events which VS code collects.",
   },
 ];
 
