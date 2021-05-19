@@ -207,6 +207,9 @@ const troubleshootingOptions: Fig.Option[] = [
   {
     name: "--max-memory",
     description: "Max memory size for a window (in Mbytes).",
+    args: {
+      name: "Memory in Mbytes",
+    },
   },
   {
     name: "--telemetry",
