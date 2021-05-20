@@ -11,11 +11,11 @@ var commonOptions = [
     description: "Compare two files with each other.",
     args: [
       {
-        name: "The first file to diff",
+        name: "file",
         template: "filepaths",
       },
       {
-        name: "The second file to diff",
+        name: "file",
         template: "filepaths",
       },
     ],
@@ -24,7 +24,7 @@ var commonOptions = [
     name: ["-a", "--add"],
     description: "Add folder(s) to the last active window",
     args: {
-      name: "The folder to add",
+      name: "folder",
       template: "folders",
     },
   },
@@ -33,8 +33,8 @@ var commonOptions = [
     description:
       "Open a file at the path on the specified line and character position.",
     args: {
-      name: "The file go to",
-      // TODO: Support :line[:character] completion
+      name: "file:line[:character]",
+      // TODO: Support :line[:character] completion?
       template: "filepaths",
     },
   },
@@ -54,6 +54,7 @@ var commonOptions = [
     name: "--locale",
     description: "The locale to use (e.g. en-US or zh-TW).",
     args: {
+      name: "locale",
       suggestions: [
         // Supported locales: https://code.visualstudio.com/docs/getstarted/locales#_available-locales
         { name: "en", icon: "🇺🇸", description: "English (US)" },
@@ -78,7 +79,7 @@ var commonOptions = [
     description:
       "Specifies the directory that user data is kept in. Can be used to open multiple distinct instances of Code.",
     args: {
-      name: "The user data directory",
+      name: "dir",
       template: "folders",
     },
   },
@@ -92,27 +93,46 @@ var extensionManagementOptions = [
     name: "--extensions-dir",
     description: "Set the root path for extensions.",
     args: {
-      name: "The folder to use for extensions",
+      name: "dir",
       template: "folders",
     },
   },
   {
     name: "--list-extensions",
     description: "List the installed extensions.",
+  },
+  {
+    name: "--category",
+    description:
+      "Filters installed extensions by provided category, when using --list-extensions.",
     args: {
-      isOptional: true,
+      name: "category",
       suggestions: [
-        {
-          name: "--category",
-          description: "Filters installed extensions by provided category",
-        },
-        {
-          name: "--show-versions",
-          description:
-            "Show versions of installed extensions, when using --list-extensions.",
-        },
+        "azure",
+        "data science",
+        "debuggers",
+        "extension packs",
+        "education",
+        "formatters",
+        "keymaps",
+        "language packs",
+        "linters",
+        "machine learning",
+        "notebooks",
+        "programming languages",
+        "scm providers",
+        "snippets",
+        "testing",
+        "themes",
+        "visualization",
+        "other",
       ],
     },
+  },
+  {
+    name: "--show-versions",
+    description:
+      "Show versions of installed extensions, when using --list-extensions.",
   },
   {
     name: "--install-extension",
@@ -148,8 +168,9 @@ var troubleshootingOptions = [
   },
   {
     name: "--log",
-    description: "Log level to use. Default is 'info'.",
+    description: "Log level to use. Default is 'info' when unspecified.",
     args: {
+      name: "level",
       suggestions: [
         "critical",
         "error",
@@ -212,6 +233,10 @@ var troubleshootingOptions = [
   {
     name: "--max-memory",
     description: "Max memory size for a window (in Mbytes).",
+    args: {
+      name: "memory",
+      description: "Memory in megabytes",
+    },
   },
   {
     name: "--telemetry",
