@@ -102,6 +102,19 @@ var completionSpec = {
                     },
                 },
                 {
+                    name: "autocomplete.immediatelyExecuteAfterSpace",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.immediatelyExecuteAfterSpace",
+                    description: "Show immediate execute button after space",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
                     name: "autocomplete.enter",
                     icon: "fig://icon?type=commandkey",
                     insertValue: "autocomplete.enter ",
@@ -190,6 +203,35 @@ var completionSpec = {
                     },
                 },
                 {
+                    name: "autocomplete.sortMethod",
+                    description: "Specify how Fig should sort suggestions",
+                    args: {
+                        suggestions: [
+                            {
+                                name: "recency",
+                                description: "Sort by recency",
+                            },
+                            {
+                                name: "alphabetical",
+                                description: "Sort by alphabetical order",
+                            },
+                        ],
+                    },
+                },
+                {
+                    name: "autocomplete.fuzzySearch",
+                    description: "Search of suggestions using fuzzy search rather than prefix search. NOTE: this currenty does not support the tab autocomplete underlining that prefix search has",
+                    icon: "fig://icon?type=commandkey",
+                    insertValue: "autocomplete.fuzzySearch ",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
                     name: "pty.path",
                     icon: "fig://icon?type=commandkey",
                     description: "Specify the $PATH variable in Fig's pseudoterminal",
@@ -223,12 +265,37 @@ var completionSpec = {
                 {
                     name: "app.disableTelemetry",
                     icon: "fig://icon?type=commandkey",
-                    description: "Opt-out of all telemetry collection",
+                    description: "Opt-out of all non-essential telemetry collection",
                     args: {
                         name: "bool",
                         suggestions: [
                             { name: "true", icon: "fig://icon?type=string" },
                             { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                    priority: 0,
+                },
+                {
+                    name: "app.hideMenubarIcon",
+                    icon: "fig://icon?type=commandkey",
+                    description: "Hide Fig's icon ◧ in the mac status bar",
+                    args: {
+                        name: "bool",
+                        suggestions: [
+                            { name: "true", icon: "fig://icon?type=string" },
+                            { name: "false", icon: "fig://icon?type=string" },
+                        ],
+                    },
+                },
+                {
+                    name: "autocomplete.theme",
+                    icon: "fig://icon?type=commandkey",
+                    description: "Change Fig's theme",
+                    args: {
+                        name: "mode",
+                        suggestions: [
+                            { name: "light", icon: "fig://icon?type=string" },
+                            { name: "dark", icon: "fig://icon?type=string" },
                         ],
                     },
                 },
@@ -298,6 +365,12 @@ var completionSpec = {
         { name: "list", description: "list all available completion specs" },
         { name: "onboarding", description: "re-run Fig's onboarding" },
         { name: "diagnostic", description: "display diagnostic information" },
+        {
+            name: "issue",
+            description: "create a new Github issue in withfig/fig",
+            icon: "fig://icon?type=github",
+        },
+        { name: "quit", description: "quit the Fig application" },
         {
             name: "team:upload",
             description: "share an completion spec with your team",

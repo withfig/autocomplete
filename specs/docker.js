@@ -61,13 +61,13 @@ var dockerGenerators = {
                 .map(function (line) { return JSON.parse(line); });
             return allLines.map(function (i) { return ({
                 name: "" + i.Name,
+                icon: "fig://icon?type=docker",
             }); });
         },
         trigger: function () {
             return true;
         },
-        debounce: true
-    }
+    },
 };
 var containersArg = {
     name: "container",
@@ -1467,7 +1467,8 @@ var completionSpec = {
             description: "Pull an image or a repository from a registry",
             args: {
                 name: "NAME[:TAG|@DIGEST]",
-                generators: dockerGenerators.dockerHubSearch
+                generators: dockerGenerators.dockerHubSearch,
+                debounce: true,
             },
             options: [
                 {

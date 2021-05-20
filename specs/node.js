@@ -2,6 +2,8 @@ var completionSpec = {
     name: "node",
     description: "Run the node interpretor",
     args: {
+        name: "node script",
+        isScript: true,
         generators: {
             template: "filepaths",
             filterTemplateSuggestions: function (paths) {
