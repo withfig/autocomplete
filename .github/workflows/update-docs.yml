@@ -30,5 +30,5 @@ jobs:
 
           git add docs/autocomplete/schemas/
 
-          git commit -m "added updates to docs"
+          git commit -m "added updates to docs" --allow-empty
           git push origin main --force

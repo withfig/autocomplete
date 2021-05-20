@@ -455,7 +455,7 @@ declare namespace Fig {
      *
      *
      * @example
-     * ```ts
+     * ```
      * const generator: Fig.Generator = {
      *   custom: (context) => {
      *     const out = await executeShellCommand("ls");
