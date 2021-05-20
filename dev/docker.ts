@@ -49,6 +49,7 @@ const dockerGenerators: Record<string, Fig.Generator> = {
         .map((line) => JSON.parse(line));
       return allLines.map((i) => ({
         name: `${i.Name}`,
+        icon: "fig://icon?type=docker",
       }));
     },
     trigger: function () {

@@ -7,8 +7,6 @@
     "lib": ["ESNext"],
     "noImplicitAny": false
   },
-  "include": ["./dev/**/*"],
-  "files": [
-    "./schemas/fig.d.ts",
-  ]
+  "include": ["./dev/**/*", "dangerfile.ts"],
+  "files": ["./schemas/fig.d.ts"]
 }

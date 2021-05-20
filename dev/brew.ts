@@ -65,7 +65,7 @@ export const completionSpec: Fig.Spec = {
                 priority:
                   (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
                     ? 0
-                    : 100,
+                    : 51,
               };
             });
           },

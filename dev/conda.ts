@@ -3,7 +3,7 @@ const getInstalledPackages: Fig.Generator = {
   postProcess: function (out) {
     const lines = out.split("\n");
     const installedPackages = [];
-    for (let i = 3; i < lines.length; i++) {
+    for (let i = 2; i < lines.length; i++) {
       installedPackages.push({
         name: lines[i],
         icon: "🐍",
@@ -13,25 +13,307 @@ const getInstalledPackages: Fig.Generator = {
   },
 };
 
-const getAllCondaPackages: Fig.Generator = {
-  script: "conda search -q",
+// const getAllCondaPackages: Fig.Generator = {
+//   //script: "conda search -q",
+//   script: function (context) {
+//     if (context[context.length - 1] === "") return "";
+//     const searchTerm = context[context.length - 1];
+//     return "conda search '*{searchTerm}*'";
+//   },
+//   postProcess: function (out) {
+//     const lines = out.split("\n");
+//     const allPackages = [];
+//     allPackages.push({name: lines[0]});
+//     // for (let i = 1; i < lines.length; i++) {
+//     //   allPackages.push({
+//     //     name: lines[i],
+//     //     icon: "🐍",
+//     //   });
+//     // }
+//     return allPackages;
+//   },
+// };
+
+const getCondaEnvironments: Fig.Generator = {
+  script: "conda env list",
   postProcess: function (out) {
     const lines = out.split("\n");
-    const allPackages = [];
-    for (let i = 1; i < lines.length; i++) {
-      allPackages.push({
-        name: lines[i],
+    const installedPackages: Fig.Suggestion[] = [];
+    for (let i = 2; i < lines.length; i++) {
+      var env_name = lines[i].split(" ")[0];
+      installedPackages.push({
+        name: env_name,
         icon: "🐍",
       });
     }
-    return allPackages;
+    return installedPackages;
   },
 };
+
+const getCondaConfigs: Fig.Generator = {
+  script: "conda config --show",
+  postProcess: function (out) {
+    const lines = out.split("\n");
+    const configs: Fig.Suggestion[] = [];
+    for (let i = 2; i < lines.length; i++) {
+      var config_name = lines[i].split(":")[0];
+      if (config_name.includes("-") == false) {
+        configs.push({
+          name: config_name,
+          icon: "🐍",
+        });
+      }
+    }
+    return configs;
+  },
+};
+
+const name_options: Fig.Option[] = [
+  {
+    name: ["-n", "--name"],
+    description: "Name of environment.",
+    args: {
+      name: "Environment",
+    },
+  },
+  {
+    name: ["-p", "--prefix"],
+    description: "Full path to environment location (i.e. prefix).",
+    args: {
+      name: "path",
+      template: "filepaths",
+    },
+  },
+];
+
+const remove_options: Fig.Option[] = [
+  {
+    name: ["--dev"],
+    description:
+      "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
+  },
+  ...name_options,
+  {
+    name: ["-c", "--channel"],
+    description:
+      "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+    args: {},
+  },
+  {
+    name: ["--use-local"],
+    description: "Use locally built packages. Identical to '-c local'.",
+  },
+  {
+    name: ["--override-channels"],
+    description:
+      "Do not search default or .condarc channels. Requires --channel.",
+  },
+  {
+    name: ["--repodata-fn"],
+    description:
+      "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+    args: {},
+  },
+  {
+    name: ["--all"],
+    description: "Remove all packages, i.e., the entire environment.",
+  },
+  {
+    name: ["--features"],
+    description: "Remove features (instead of packages).",
+  },
+  {
+    name: ["--force-remove, --force"],
+    description:
+      "Forces removal of a package without removing packages that depend on it. Using this option will usually leave your environment in a broken and inconsistent state.",
+  },
+  { name: ["--no-pin"], description: "Ignore pinned file." },
+  {
+    name: ["-C", "--use-index-cache"],
+    description: "Use cache of channel index files, even if it has expired.",
+  },
+  {
+    name: ["-k", "--insecure"],
+    description:
+      "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
+  },
+  {
+    name: ["--offline"],
+    description: "Offline mode. Don't connect to the Internet.",
+  },
+  {
+    name: ["-d", "--dry-run"],
+    description: "Only display what would have been done.",
+  },
+  {
+    name: ["--json"],
+    description:
+      "Report all output as json. Suitable for using conda programmatically.",
+  },
+  {
+    name: ["-q", "--quiet"],
+    description: "Do not display progress bar.",
+  },
+  {
+    name: ["-v", "--verbose"],
+    description:
+      "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+  },
+  { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
+];
+
+const update_options: Fig.Option[] = [
+  {
+    name: ["--file"],
+    description:
+      "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+    args: {
+      template: "filepaths",
+    },
+  },
+  ...name_options,
+  {
+    name: ["-c", "--channel"],
+    description:
+      "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+    args: {},
+  },
+  {
+    name: ["--use-local"],
+    description: "Use locally built packages. Identical to '-c local'.",
+  },
+  {
+    name: ["--override-channels"],
+    description:
+      "Do not search default or .condarc channels. Requires --channel.",
+  },
+  {
+    name: ["--repodata-fn"],
+    description:
+      "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+    args: {},
+  },
+  {
+    name: ["--strict-channel-priority"],
+    description:
+      "Packages in lower priority channels are not considered if a package with the same name appears in a higher priority channel.",
+  },
+  {
+    name: ["--no-channel-priority"],
+    description:
+      "Package version takes precedence over channel priority. Overrides the value given by conda config --show channel_priority.",
+  },
+  {
+    name: ["--no-deps"],
+    description:
+      "Do not install, update, remove, or change dependencies. This WILL lead to broken environments and inconsistent behavior. Use at your own risk.",
+  },
+  { name: ["--only-deps"], description: "Only install dependencies." },
+  { name: ["--no-pin"], description: "Ignore pinned file." },
+  {
+    name: ["--force-reinstall"],
+    description:
+      "Ensure that any user-requested package for the current operation is uninstalled and reinstalled, even if that package already exists in the environment.",
+  },
+  {
+    name: ["--freeze-installed", "--no-update-deps"],
+    description: "Do not update or change already-installed dependencies.",
+  },
+  { name: ["--update-deps"], description: "Update dependencies." },
+  {
+    name: ["-S", "--satisfied-skip-solve"],
+    description:
+      "Exit early and do not run the solver if the requested specs are satisfied. Also skips aggressive updates as configured by 'aggressive_update_packages'. Similar to the default behavior of 'pip install'.",
+  },
+  {
+    name: ["--update-all", "--all"],
+    description: "Update all installed packages in the environment.",
+  },
+  {
+    name: ["--update-specs"],
+    description: "Update based on provided specifications.",
+  },
+  {
+    name: ["--copy"],
+    description:
+      "Install all packages using copies instead of hard- or soft-linking.",
+  },
+  {
+    name: ["--clobber"],
+    description:
+      "Allow clobbering of overlapping file paths within packages, and suppress related warnings.",
+  },
+  {
+    name: ["-C", "--use-index-cache"],
+    description: "Use cache of channel index files, even if it has expired.",
+  },
+  {
+    name: ["-k", "--insecure"],
+    description:
+      "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
+  },
+  {
+    name: ["--offline"],
+    description: "Offline mode. Don't connect to the Internet.",
+  },
+  {
+    name: ["-d", "--dry-run"],
+    description: "Only display what would have been done.",
+  },
+  {
+    name: ["--json"],
+    description:
+      "Report all output as json. Suitable for using conda programmatically.",
+  },
+  {
+    name: ["-q", "--quiet"],
+    description: "Do not display progress bar.",
+  },
+  {
+    name: ["-v", "--verbose"],
+    description:
+      "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+  },
+  { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
+  {
+    name: ["--download-only"],
+    description:
+      "Solve an environment and ensure package caches are populated, but exit prior to unlinking and linking packages into the prefix.",
+  },
+  {
+    name: ["--show-channel-urls"],
+    description:
+      "Show channel urls. Overrides the value given by conda config --show show_channel_urls.",
+  },
+];
 
 export const completionSpec: Fig.Spec = {
   name: "conda",
   description: "Conda package manager",
   subcommands: [
+    {
+      name: "activate",
+      description: "Activate an environment",
+      args: {
+        generators: getCondaEnvironments,
+      },
+      options: [
+        {
+          name: ["--stack"],
+          description:
+            "Stack the environment being activated on top of the previous active environment.",
+        },
+        {
+          name: ["--no-stack"],
+          description:
+            "Do not stack the environment. Overrides 'auto_stack' setting",
+        },
+      ],
+    },
+    {
+      name: "deactivate",
+      description: "Deactivate an environment",
+    },
     {
       name: "clean",
       description: "Remove unused packages and caches.",
@@ -96,14 +378,12 @@ export const completionSpec: Fig.Spec = {
       description: "Compare packages between conda environments.",
       args: {
         name: "file",
+        description:
+          "Path to the environment file that is to be compared against",
         template: "filepaths",
       },
       options: [
-        {
-          name: ["file"],
-          description:
-            "Path to the environment file that is to be compared against",
-        },
+        ...name_options,
         {
           name: ["-h", "--help"],
           description: "Show this help message and exit.",
@@ -121,21 +401,6 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["-q", "--quiet"],
           description: "Do not display progress bar.",
-        },
-        {
-          name: ["-n", "--name"],
-          description: "Name of environment.",
-          args: {
-            name: "environment",
-          },
-        },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-          args: {
-            name: "path",
-            template: "filepaths",
-          },
         },
       ],
     },
@@ -165,11 +430,24 @@ export const completionSpec: Fig.Spec = {
           description:
             "Write to the active conda environment .condarc file (<no active environment>). If no environment is active, write to the user config file (/home/docs/.condarc).",
         },
-        { name: ["--file"], description: "Write to the given file." },
+        {
+          name: ["--file"],
+          description: "Write to the given file.",
+          args: {
+            name: "Target File",
+            template: "filepaths",
+          },
+        },
         {
           name: ["--show"],
           description:
             "Display configuration values as calculated and compiled. If no arguments given, show information for all configuration values.",
+          args: {
+            name: "Configuration values",
+            isOptional: true,
+            variadic: true,
+            generators: getCondaConfigs,
+          },
         },
         {
           name: ["--show-sources"],
@@ -183,6 +461,12 @@ export const completionSpec: Fig.Spec = {
           name: ["--describe"],
           description:
             "Describe given configuration parameters. If no arguments given, show information for all configuration parameters.",
+          args: {
+            name: "Configuration values",
+            isOptional: true,
+            variadic: true,
+            generators: getCondaConfigs,
+          },
         },
         {
           name: ["--write-default"],
@@ -195,6 +479,8 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "key",
+              isOptional: true,
+              variadic: true,
             },
           ],
         },
@@ -270,32 +556,37 @@ export const completionSpec: Fig.Spec = {
         "Create a new conda environment from a list of specified packages.",
       args: {
         name: "package_spec",
-        description: "Packages to install or update in the conda environment.",
+        description: "Packages to install or update in the conda environment",
+        isOptional: true,
+        variadic: true,
       },
       options: [
         {
           name: ["--clone"],
           description: "Path to (or name of) existing local environment.",
+          args: {
+            generators: getCondaEnvironments,
+          },
         },
         {
           name: ["--file"],
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--dev"],
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n, --name"], description: "Name of environment." },
-        {
-          name: ["-p, --prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
+        ...name_options,
         {
           name: ["-c, --channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -310,6 +601,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["--strict-channel-priority"],
@@ -325,6 +617,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-deps"],
           description:
             "Do not install, update, remove, or change dependencies. This WILL lead to broken environments and inconsistent behavior. Use at your own risk.",
+          isDangerous: true,
         },
         { name: ["--only-deps"], description: "Only install dependencies." },
         { name: ["--no-pin"], description: "Ignore pinned file." },
@@ -430,32 +723,33 @@ export const completionSpec: Fig.Spec = {
         name: "package spec",
         description: "Packages to install or update in the conda environment.",
         variadic: true,
-        generators: getAllCondaPackages,
+        //generators: getAllCondaPackages,
       },
       options: [
         {
           name: ["--revision"],
           description: "Revert to the specified REVISION.",
+          args: {},
         },
         {
           name: ["--file"],
           description:
             "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+          args: {
+            template: "filepaths",
+          },
         },
         {
           name: ["--dev"],
           description:
             "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
         },
-        { name: ["-n, --name"], description: "Name of environment." },
-        {
-          name: ["-p, --prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
+        ...name_options,
         {
           name: ["-c, --channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -470,6 +764,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["--strict-channel-priority"],
@@ -577,6 +872,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "regex",
         description: "List only packages matching this regular expression.",
+        isOptional: true,
       },
       options: [
         {
@@ -599,6 +895,10 @@ export const completionSpec: Fig.Spec = {
             "List explicitly all installed conda packaged with URL (output may be used by conda create --file).",
         },
         {
+          name: ["--md5"],
+          description: "Add MD5 hashsum when using --explicit.",
+        },
+        {
           name: ["-e", "--export"],
           description:
             "Output requirement string only (output may be used by conda create --file).",
@@ -611,11 +911,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-pip"],
           description: "Do not include pip-only installed packages.",
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
+        ...name_options,
         {
           name: ["--json"],
           description:
@@ -640,6 +936,10 @@ export const completionSpec: Fig.Spec = {
           name: ["-w", "--which"],
           description:
             "Given some PATH print which conda package the file came from.",
+          args: {
+            name: "Path",
+            variadic: true,
+          },
         },
         {
           name: ["-r", "--reset"],
@@ -652,20 +952,19 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["--pkg-name"],
           description: "Package name of the created package.",
+          args: {},
         },
         {
           name: ["--pkg-version"],
           description: "Package version of the created package.",
+          args: {},
         },
         {
           name: ["--pkg-build"],
           description: "Package build number of the created package.",
+          args: {},
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
+        ...name_options,
       ],
     },
     {
@@ -677,84 +976,7 @@ export const completionSpec: Fig.Spec = {
         variadic: true,
         generators: getInstalledPackages,
       },
-      options: [
-        {
-          name: ["--dev"],
-          description:
-            "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
-        },
-        { name: ["-n", "--name"], description: "Name of environment." },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
-        {
-          name: ["-c", "--channel"],
-          description:
-            "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
-        },
-        {
-          name: ["--use-local"],
-          description: "Use locally built packages. Identical to '-c local'.",
-        },
-        {
-          name: ["--override-channels"],
-          description:
-            "Do not search default or .condarc channels. Requires --channel.",
-        },
-        {
-          name: ["--repodata-fn"],
-          description:
-            "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
-        },
-        {
-          name: ["--all"],
-          description: "Remove all packages, i.e., the entire environment.",
-        },
-        {
-          name: ["--features"],
-          description: "Remove features (instead of packages).",
-        },
-        {
-          name: ["--force-remove, --force"],
-          description:
-            "Forces removal of a package without removing packages that depend on it. Using this option will usually leave your environment in a broken and inconsistent state.",
-        },
-        { name: ["--no-pin"], description: "Ignore pinned file." },
-        {
-          name: ["-C", "--use-index-cache"],
-          description:
-            "Use cache of channel index files, even if it has expired.",
-        },
-        {
-          name: ["-k", "--insecure"],
-          description:
-            "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
-        },
-        {
-          name: ["--offline"],
-          description: "Offline mode. Don't connect to the Internet.",
-        },
-        {
-          name: ["-d", "--dry-run"],
-          description: "Only display what would have been done.",
-        },
-        {
-          name: ["--json"],
-          description:
-            "Report all output as json. Suitable for using conda programmatically.",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Do not display progress bar.",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description:
-            "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
-        },
-        { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
-      ],
+      options: [...remove_options],
     },
     {
       name: "uninstall",
@@ -764,91 +986,48 @@ export const completionSpec: Fig.Spec = {
         variadic: true,
         generators: getInstalledPackages,
       },
-      options: [
-        {
-          name: ["--dev"],
-          description:
-            "Use sys.executable -m conda in wrapper scripts instead of CONDA_EXE. This is mainly for use during tests where we test new conda source against old Python versions.",
-        },
-        { name: ["-n", "--name"], description: "Name of environment." },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
-        {
-          name: ["-c", "--channel"],
-          description:
-            "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
-        },
-        {
-          name: ["--use-local"],
-          description: "Use locally built packages. Identical to '-c local'.",
-        },
-        {
-          name: ["--override-channels"],
-          description:
-            "Do not search default or .condarc channels. Requires --channel.",
-        },
-        {
-          name: ["--repodata-fn"],
-          description:
-            "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
-        },
-        {
-          name: ["--all"],
-          description: "Remove all packages, i.e., the entire environment.",
-        },
-        {
-          name: ["--features"],
-          description: "Remove features (instead of packages).",
-        },
-        {
-          name: ["--force-remove, --force"],
-          description:
-            "Forces removal of a package without removing packages that depend on it. Using this option will usually leave your environment in a broken and inconsistent state.",
-        },
-        { name: ["--no-pin"], description: "Ignore pinned file." },
-        {
-          name: ["-C", "--use-index-cache"],
-          description:
-            "Use cache of channel index files, even if it has expired.",
-        },
-        {
-          name: ["-k", "--insecure"],
-          description:
-            "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
-        },
-        {
-          name: ["--offline"],
-          description: "Offline mode. Don't connect to the Internet.",
-        },
-        {
-          name: ["-d", "--dry-run"],
-          description: "Only display what would have been done.",
-        },
-        {
-          name: ["--json"],
-          description:
-            "Report all output as json. Suitable for using conda programmatically.",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Do not display progress bar.",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description:
-            "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
-        },
-        { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
-      ],
+      options: [...remove_options],
     },
     {
       name: "run",
       description: "Run an executable in a conda environment. [Experimental]",
       args: {
         name: "executable",
+        template: "filepaths",
       },
+      options: [
+        ...name_options,
+        {
+          name: ["-v", "--verbose"],
+          description:
+            "Use once for info, twice for debug, three times for trace.",
+        },
+        {
+          name: ["--dev"],
+          description:
+            "Sets `CONDA_EXE` to `python -m conda`, assuming the CWD contains the root of conda development sources.",
+        },
+        {
+          name: ["--debug-wrapper-scripts"],
+          description:
+            "When this is set, where implemented, the shell wrapper scripts will echo to stderr a lot of debugging information.",
+        },
+        {
+          name: ["--cwd"],
+          description:
+            "Current working directory for command to run in. Defaults to cwd",
+          args: {},
+        },
+        {
+          name: ["--no-capture-output"],
+          description: "Don't capture stdout/stderr",
+        },
+        {
+          name: ["--live-stream"],
+          description:
+            "Display the output for the subprocess stdout and stderr on real time.",
+        },
+      ],
     },
     {
       name: "search",
@@ -869,11 +1048,13 @@ export const completionSpec: Fig.Spec = {
           name: ["--subdir", "--platform"],
           description:
             "Search the given subdir. Should be formatted like 'osx-64', 'linux-32', 'win-64', and so on. The default is to search the current platform.",
+          args: {},
         },
         {
           name: ["-c", "--channel"],
           description:
             "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+          args: {},
         },
         {
           name: ["--use-local"],
@@ -888,6 +1069,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--repodata-fn"],
           description:
             "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
+          args: {},
         },
         {
           name: ["-C", "--use-index-cache"],
@@ -925,133 +1107,12 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         variadic: true,
+        suggestions: [
+          { name: "conda", description: "Update conda", icon: "⭐️" },
+        ],
         generators: getInstalledPackages,
       },
-      options: [
-        {
-          name: ["--file"],
-          description:
-            "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
-        },
-        { name: ["-n", "--name"], description: "Name of environment." },
-        {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
-        },
-        {
-          name: ["-c", "--channel"],
-          description:
-            "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
-        },
-        {
-          name: ["--use-local"],
-          description: "Use locally built packages. Identical to '-c local'.",
-        },
-        {
-          name: ["--override-channels"],
-          description:
-            "Do not search default or .condarc channels. Requires --channel.",
-        },
-        {
-          name: ["--repodata-fn"],
-          description:
-            "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
-        },
-        {
-          name: ["--strict-channel-priority"],
-          description:
-            "Packages in lower priority channels are not considered if a package with the same name appears in a higher priority channel.",
-        },
-        {
-          name: ["--no-channel-priority"],
-          description:
-            "Package version takes precedence over channel priority. Overrides the value given by conda config --show channel_priority.",
-        },
-        {
-          name: ["--no-deps"],
-          description:
-            "Do not install, update, remove, or change dependencies. This WILL lead to broken environments and inconsistent behavior. Use at your own risk.",
-        },
-        { name: ["--only-deps"], description: "Only install dependencies." },
-        { name: ["--no-pin"], description: "Ignore pinned file." },
-        {
-          name: ["--force-reinstall"],
-          description:
-            "Ensure that any user-requested package for the current operation is uninstalled and reinstalled, even if that package already exists in the environment.",
-        },
-        {
-          name: ["--freeze-installed", "--no-update-deps"],
-          description:
-            "Do not update or change already-installed dependencies.",
-        },
-        { name: ["--update-deps"], description: "Update dependencies." },
-        {
-          name: ["-S", "--satisfied-skip-solve"],
-          description:
-            "Exit early and do not run the solver if the requested specs are satisfied. Also skips aggressive updates as configured by 'aggressive_update_packages'. Similar to the default behavior of 'pip install'.",
-        },
-        {
-          name: ["--update-all", "--all"],
-          description: "Update all installed packages in the environment.",
-        },
-        {
-          name: ["--update-specs"],
-          description: "Update based on provided specifications.",
-        },
-        {
-          name: ["--copy"],
-          description:
-            "Install all packages using copies instead of hard- or soft-linking.",
-        },
-        {
-          name: ["--clobber"],
-          description:
-            "Allow clobbering of overlapping file paths within packages, and suppress related warnings.",
-        },
-        {
-          name: ["-C", "--use-index-cache"],
-          description:
-            "Use cache of channel index files, even if it has expired.",
-        },
-        {
-          name: ["-k", "--insecure"],
-          description:
-            "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
-        },
-        {
-          name: ["--offline"],
-          description: "Offline mode. Don't connect to the Internet.",
-        },
-        {
-          name: ["-d", "--dry-run"],
-          description: "Only display what would have been done.",
-        },
-        {
-          name: ["--json"],
-          description:
-            "Report all output as json. Suitable for using conda programmatically.",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Do not display progress bar.",
-        },
-        {
-          name: ["-v", "--verbose"],
-          description:
-            "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
-        },
-        { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
-        {
-          name: ["--download-only"],
-          description:
-            "Solve an environment and ensure package caches are populated, but exit prior to unlinking and linking packages into the prefix.",
-        },
-        {
-          name: ["--show-channel-urls"],
-          description:
-            "Show channel urls. Overrides the value given by conda config --show show_channel_urls.",
-        },
-      ],
+      options: [...update_options],
     },
     {
       name: "upgrade",
@@ -1059,132 +1120,176 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "package",
         variadic: true,
+        suggestions: [
+          { name: "conda", description: "Update conda", icon: "⭐️" },
+        ],
+        generators: getInstalledPackages,
+      },
+      options: [...update_options],
+    },
+    {
+      name: "build",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "convert",
+      description:
+        "Various tools to convert conda packages. Takes a pure Python package build for one platform and converts it to work on one or more other platforms, or all.",
+      args: {
+        name: "files",
+        description: "Package files to convert",
+        variadic: true,
+        template: "filepaths",
       },
       options: [
         {
-          name: ["--file"],
+          name: ["-h", "--help"],
+          description: "Show this help message and exit.",
+        },
+        {
+          name: ["-p", "--platform"],
+          description: "Platform to convert the packages to.",
+          args: {
+            suggestions: [
+              { name: "osx-64" },
+              { name: "osx-arm64" },
+              { name: "linux-32" },
+              { name: "linux-64" },
+              { name: "linux-ppc64" },
+              { name: "linux-ppc64le" },
+              { name: "linux-s390x" },
+              { name: "linux-armv6l" },
+              { name: "linux-armv7l" },
+              { name: "linux-aarch64" },
+              { name: "win-32" },
+              { name: "win-64" },
+              { name: "all" },
+            ],
+          },
+        },
+        {
+          name: ["--dependencies", "-d"],
           description:
-            "Read package versions from the given file. Repeated file specifications can be passed (e.g. --file=file1 --file=file2).",
+            "Additional (besides python) dependencies of the converted package.",
+          args: {
+            name: "Dependencies",
+            isOptional: true,
+            variadic: true,
+          },
         },
-        { name: ["-n", "--name"], description: "Name of environment." },
         {
-          name: ["-p", "--prefix"],
-          description: "Full path to environment location (i.e. prefix).",
+          name: "--show-imports",
+          description: "Show Python imports for compiled parts of the package.",
         },
         {
-          name: ["-c", "--channel"],
+          name: ["-f", "--force"],
           description:
-            "they are given (including local directories using the 'file://' syntax or simply a path like '/home/conda/mychan' or '../mychan'). Then, the defaults or channels from .condarc are searched (unless --override-channels is given). You can use 'defaults' to get the default packages for conda. You can also use any name and the .condarc channel_alias value will be prepended. The default channel_alias is http://conda.anaconda.org/.",
+            "Force convert, even when a package has compiled C extensions.",
         },
         {
-          name: ["--use-local"],
-          description: "Use locally built packages. Identical to '-c local'.",
-        },
-        {
-          name: ["--override-channels"],
+          name: ["-o", "--output-dir"],
           description:
-            "Do not search default or .condarc channels. Requires --channel.",
-        },
-        {
-          name: ["--repodata-fn"],
-          description:
-            "Specify name of repodata on remote server. Conda will try whatever you specify, but will ultimately fall back to repodata.json if your specs are not satisfiable with what you specify here. This is used to employ repodata that is reduced in time scope. You may pass this flag more than once. Leftmost entries are tried first, and the fallback to repodata.json is added for you automatically.",
-        },
-        {
-          name: ["--strict-channel-priority"],
-          description:
-            "Packages in lower priority channels are not considered if a package with the same name appears in a higher priority channel.",
-        },
-        {
-          name: ["--no-channel-priority"],
-          description:
-            "Package version takes precedence over channel priority. Overrides the value given by conda config --show channel_priority.",
-        },
-        {
-          name: ["--no-deps"],
-          description:
-            "Do not install, update, remove, or change dependencies. This WILL lead to broken environments and inconsistent behavior. Use at your own risk.",
-        },
-        { name: ["--only-deps"], description: "Only install dependencies." },
-        { name: ["--no-pin"], description: "Ignore pinned file." },
-        {
-          name: ["--force-reinstall"],
-          description:
-            "Ensure that any user-requested package for the current operation is uninstalled and reinstalled, even if that package already exists in the environment.",
-        },
-        {
-          name: ["--freeze-installed", "--no-update-deps"],
-          description:
-            "Do not update or change already-installed dependencies.",
-        },
-        { name: ["--update-deps"], description: "Update dependencies." },
-        {
-          name: ["-S", "--satisfied-skip-solve"],
-          description:
-            "Exit early and do not run the solver if the requested specs are satisfied. Also skips aggressive updates as configured by 'aggressive_update_packages'. Similar to the default behavior of 'pip install'.",
-        },
-        {
-          name: ["--update-all", "--all"],
-          description: "Update all installed packages in the environment.",
-        },
-        {
-          name: ["--update-specs"],
-          description: "Update based on provided specifications.",
-        },
-        {
-          name: ["--copy"],
-          description:
-            "Install all packages using copies instead of hard- or soft-linking.",
-        },
-        {
-          name: ["--clobber"],
-          description:
-            "Allow clobbering of overlapping file paths within packages, and suppress related warnings.",
-        },
-        {
-          name: ["-C", "--use-index-cache"],
-          description:
-            "Use cache of channel index files, even if it has expired.",
-        },
-        {
-          name: ["-k", "--insecure"],
-          description:
-            "Allow conda to perform insecure SSL connections and transfers. Equivalent to setting 'ssl_verify' to 'false'.",
-        },
-        {
-          name: ["--offline"],
-          description: "Offline mode. Don't connect to the Internet.",
-        },
-        {
-          name: ["-d", "--dry-run"],
-          description: "Only display what would have been done.",
-        },
-        {
-          name: ["--json"],
-          description:
-            "Report all output as json. Suitable for using conda programmatically.",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Do not display progress bar.",
+            "Directory to write the output files. The packages will be organized in platform/ subdirectories, e.g., win-32/package-1.0-py27_0.tar.bz2.",
+          args: {
+            name: "Output Directory",
+          },
         },
         {
           name: ["-v", "--verbose"],
-          description:
-            "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
-        },
-        { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
-        {
-          name: ["--download-only"],
-          description:
-            "Solve an environment and ensure package caches are populated, but exit prior to unlinking and linking packages into the prefix.",
+          description: "Print verbose output.",
         },
         {
-          name: ["--show-channel-urls"],
-          description:
-            "Show channel urls. Overrides the value given by conda config --show show_channel_urls.",
+          name: "--dry-run",
+          description: "Only display what would have been done.",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Don't print as much output.",
         },
       ],
+    },
+    {
+      name: "debug",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "develop",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "env",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "index",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "inspect",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "metapackage",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "render",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "server",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "skeleton",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+    {
+      name: "verify",
+      description: "",
+      subcommands: [],
+      options: [],
+      args: {},
+    },
+  ],
+  options: [
+    {
+      name: ["-h", "--help"],
+      description: "Show this help message and exit",
+    },
+    {
+      name: ["-V", "--version"],
+      description: "Show the conda version number and exit",
     },
   ],
 };
