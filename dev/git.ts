@@ -158,7 +158,6 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
         return {
           name: file,
-          insertValue: file.includes(" ") ? `'${file}'` : file,
           icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
           description: "Changed file",
           priority: 100,
@@ -265,9 +264,11 @@ export const completionSpec: Fig.Spec = {
     {
       name: "commit",
       description: "Record changes to the repository",
-      insertValue: "commit",
       args: {
         name: "pathspec",
+        isOptional: true,
+        variadic: true,
+        template: "filepaths",
       },
       options: [
         {
@@ -496,6 +497,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "mode",
             suggestions: ["no", "normal", "all"],
+            isOptional: true,
           },
         },
         {
@@ -792,32 +794,109 @@ export const completionSpec: Fig.Spec = {
       description: "Add file contents to the index",
       options: [
         {
-          name: ["-A", "--all", "--no-ignore-removal"],
+          name: ["-n", "--dry-run"],
           description:
-            "Add, modify, and remove index entries to match the working tree",
+            "Don’t actually add the file(s), just show if they exist and/or will be ignored.",
         },
+        { name: ["-v", "--verbose"], description: "Be verbose." },
         {
           name: ["-f", "--force"],
-          description: "Allow adding otherwise ignored files",
+          description: "Allow adding otherwise ignored files.",
         },
         {
           name: ["-i", "--interactive"],
           description:
-            "Add modified contents in the working tree interactively to the index",
-        },
-        {
-          name: ["-n", "--dry-run"],
-          description:
-            "Don't actually add the files(s), just show if they exist and/or will be ignored",
+            "Add modified contents in the working tree interactively to the index. Optional path arguments may be supplied to limit operation to a subset of the working tree. See “Interactive mode” for details.",
         },
         {
           name: ["-p", "--patch"],
           description:
-            "Interactively choose hunks of patch between the index and the work tree and add them to the index",
+            "Interactively choose hunks of patch between the index and the work tree and add them to the index. This gives the user a chance to review the difference before adding modified contents to the index.",
+        },
+        {
+          name: ["-e", "--edit"],
+          description:
+            "Open the diff vs. the index in an editor and let the user edit it. After the editor was closed, adjust the hunk headers and apply the patch to the index.",
+        },
+        {
+          name: ["-u", "--update"],
+          description:
+            "Update the index just where it already has an entry matching <pathspec>. This removes as well as modifies index entries to match the working tree, but adds no new files.",
+        },
+        {
+          name: ["-A", "--all", "--no-ignore-removal"],
+          description:
+            "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry. This adds, modifies, and removes index entries to match the working tree.",
+        },
+        {
+          name: ["--no-all", "--ignore-removal"],
+          description:
+            "Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree. This option is a no-op when no <pathspec> is used.",
+        },
+        {
+          name: ["-N", "--intent-to-add"],
+          description:
+            "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a.",
+        },
+        {
+          name: ["--refresh"],
+          description:
+            "Don’t add the file(s), but only refresh their stat() information in the index.",
+        },
+        {
+          name: ["--ignore-errors"],
+          description:
+            "If some files could not be added because of errors indexing them, do not abort the operation, but continue adding the others. The command shall still exit with non-zero status. The configuration variable add.ignoreErrors can be set to true to make this the default behaviour.",
+        },
+        {
+          name: ["--ignore-missing"],
+          description:
+            "This option can only be used together with --dry-run. By using this option the user can check if any of the given files would be ignored, no matter if they are already present in the work tree or not.",
+        },
+        {
+          name: ["--no-warn-embedded-repo"],
+          description:
+            "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules. This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
+        },
+        {
+          name: ["--renormalize"],
+          description:
+            "Apply the 'clean' process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u.",
+        },
+        {
+          name: ["--chmod"],
+          description:
+            "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged.",
+          insertValue: "--chmod=",
+          args: {
+            suggestions: ["+x", "-x"],
+          },
+        },
+        {
+          name: ["--pathspec-from-file"],
+          description:
+            "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config[1]). See also --pathspec-file-nul and global --literal-pathspecs.",
+          args: {
+            name: "File",
+            description: "File with pathspec",
+            template: "filepaths",
+          },
+        },
+        {
+          name: ["--pathspec-file-nul"],
+          description:
+            "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
+        },
+        {
+          name: "--",
+          description:
+            "This option can be used to separate command-line options from the list of files.",
         },
       ],
       args: {
+        name: "pathspec",
         variadic: true,
+        isOptional: true,
 
         // We have a special setting for dot in the vuejs app
 
@@ -996,10 +1075,6 @@ export const completionSpec: Fig.Spec = {
           name: "--no-signed",
           description:
             "GPG-sign the push request to update refs on the receiving side, to allow it to be checked by the hooks and/or be logged. If false or --no-signed, no signing will be attempted. If true or --signed, the push will fail if the server does not support signed pushes. If set to if-asked, sign if and only if the server supports signed pushes. The push will also fail if the actual call to gpg --sign fails. See git-receive-pack(1) for the details on the receiving end.",
-          args: {
-            isOptional: true,
-            suggestions: ["true", "false", "if-asked"],
-          },
         },
 
         {
@@ -1740,9 +1815,7 @@ export const completionSpec: Fig.Spec = {
           description:
             "Show the changes recorded in the stash entry as a diff.",
           insertValue: "show {cursor}",
-          options: [
-            // TODO: All log options can be options from list. Needs to be added.
-          ],
+
           args: [
             {
               name: "stash",
@@ -1812,9 +1885,6 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description: "Lists all stashed changesets",
           insertValue: "list {cursor}",
-          options: [
-            // TODO: All log options can be options from list. Needs to be added.
-          ],
         },
         {
           name: "drop",
@@ -2353,69 +2423,205 @@ export const completionSpec: Fig.Spec = {
       description: "Switch branches or restore working tree files",
       options: [
         {
-          name: "-b",
-          description: "create and checkout a new branch",
-          args: { name: "branch" },
+          name: ["-q", "--quiet"],
+          description: "Quiet, suppress feedback messages.",
         },
+
         {
-          name: "-B",
-          description: "create/reset and checkout a branch",
-          args: { name: "branch" },
+          name: ["--progress"],
+          description:
+            "Progress status is reported on the standard error stream by default when it is attached to a terminal, unless --quiet is specified. This flag enables progress reporting even if not attached to a terminal, regardless of --quiet.",
         },
-        { name: "-l", description: "create reflog for new branch" },
-        { name: "--detach", description: "detach HEAD at named commit" },
+
         {
-          name: ["-t", "--track"],
-          description: "set upstream info for new branch",
+          name: ["--no-progress"],
+          description: "Disable progress status reporting",
         },
-        {
-          name: "--orphan",
-          description: "new unparented branch",
-          args: { name: "new-branch" },
-        },
-        {
-          name: ["-2", "--ours"],
-          description: "checkout our version for unmerged files",
-        },
-        {
-          name: ["-3", "--theirs"],
-          description: "checkout their version for unmerged files",
-        },
+
         {
           name: ["-f", "--force"],
-          description: "force checkout (throw away local modifications)",
+          description:
+            "When switching branches, proceed even if the index or the working tree differs from HEAD. This is used to throw away local changes.",
         },
+
+        {
+          name: ["-2", "--ours"],
+          description:
+            "When checking out paths from the index, check out stage #2 (ours) for unmerged paths.",
+        },
+
+        {
+          name: ["-3", "--theirs"],
+          description:
+            "When checking out paths from the index, check out stage #3 (theirs) for unmerged paths.",
+        },
+
+        {
+          name: ["-b"],
+          description:
+            "Create a new branch named <new_branch> and start it at <start_point>; see git-branch[1] for details.",
+          args: {
+            name: "New Branch",
+          },
+        },
+
+        {
+          name: ["-B"],
+          description:
+            "Creates the branch <new_branch> and start it at <start_point>; if it already exists, then reset it to <start_point>. This is equivalent to running 'git branch' with '-f'; see git-branch[1] for details.",
+          args: {
+            name: "New Branch",
+          },
+        },
+
+        {
+          name: ["-t", "--track"],
+          description:
+            "When creating a new branch, set up 'upstream' configuration.",
+        },
+
+        {
+          name: ["--no-track"],
+          description:
+            "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
+        },
+
+        {
+          name: ["--guess"],
+          description:
+            "If <branch> is not found but there does exist a tracking branch in exactly one remote (call it <remote>) with a matching name, treat as equivalent to $ git checkout -b <branch> --track <remote>/<branch>",
+        },
+
+        { name: ["--no-guess"], description: "Disable --guess" },
+
+        {
+          name: ["-l"],
+          description:
+            "Create the new branch’s reflog; see git-branch[1] for details.",
+        },
+
+        {
+          name: ["-d", "--detach"],
+          description:
+            "Rather than checking out a branch to work on it, check out a commit for inspection and discardable experiments. This is the default behavior of git checkout <commit> when <commit> is not a branch name.",
+        },
+
+        {
+          name: ["--orphan"],
+          description:
+            "Create a new orphan branch, named <new_branch>, started from <start_point> and switch to it.",
+          args: {
+            name: "New Branch",
+          },
+        },
+
+        {
+          name: ["--ignore-skip-worktree-bits"],
+          description:
+            "In sparse checkout mode, git checkout -- <paths> would update only entries matched by <paths> and sparse patterns in $GIT_DIR/info/sparse-checkout. This option ignores the sparse patterns and adds back any files in <paths>.",
+        },
+
         {
           name: ["-m", "--merge"],
-          description: "perform a 3-way merge with the new branch",
+          description:
+            "When switching branches, if you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context. ",
         },
+
         {
-          name: "--overwrite-ignore",
-          description: "update ignored files (default)",
-        },
-        {
-          name: "--conflict",
-          description: "conflict style (merge or diff3)",
+          name: ["--conflict"],
+          description:
+            "The same as --merge option above, but changes the way the conflicting hunks are presented, overriding the merge.conflictStyle configuration variable. Possible values are 'merge' (default) and 'diff3' (in addition to what is shown by 'merge' style, shows the original contents).",
+          insertValue: "--conflict=",
           args: {
-            name: "style",
-            suggestions: [{ name: "merge" }, { name: "diff3" }],
+            isOptional: true,
+            suggestions: ["merge", "diff3"],
           },
         },
-        { name: ["-p", "--patch"], description: "select hunks interactively" },
-      ],
-      args: {
-        name: "branch",
-        description: "branch to switch to",
-        isOptional: true,
-        generators: gitGenerators.branches,
-        suggestions: [
-          {
-            name: "-",
-            description: "switch to the last used branch",
-            icon: "fig://icon?type=git",
+
+        {
+          name: ["-p", "--patch"],
+          description:
+            "Interactively select hunks in the difference between the <tree-ish> (or the index, if unspecified) and the working tree.",
+        },
+
+        {
+          name: ["--ignore-other-worktrees"],
+          description:
+            "git checkout refuses when the wanted ref is already checked out by another worktree. This option makes it check the ref out anyway. In other words, the ref can be held by more than one worktree.",
+        },
+
+        {
+          name: ["--overwrite-ignore"],
+          description:
+            "Silently overwrite ignored files when switching branches. This is the default behavior. ",
+        },
+
+        {
+          name: ["--no-overwrite-ignore"],
+          description:
+            "Use --no-overwrite-ignore to abort the operation when the new branch contains ignored files.",
+        },
+
+        {
+          name: ["--recurse-submodules"],
+          description:
+            "Using --recurse-submodules will update the content of all active submodules according to the commit recorded in the superproject. If local modifications in a submodule would be overwritten the checkout will fail unless -f is used. If nothing (or --no-recurse-submodules) is used, submodules working trees will not be updated. Just like git-submodule[1], this will detach HEAD of the submodule.",
+        },
+
+        {
+          name: ["--no-recurse-submodules"],
+          description: "Submodules working trees will not be updated",
+        },
+
+        {
+          name: ["--overlay "],
+          description:
+            "In the default overlay mode, git checkout never removes files from the index or the working tree.",
+        },
+
+        {
+          name: ["--no-overlay"],
+          description:
+            "When specifying --no-overlay, files that appear in the index and working tree, but not in <tree-ish> are removed, to make them match <tree-ish> exactly.",
+        },
+
+        {
+          name: ["--pathspec-from-file"],
+          description:
+            "Pathspec is passed in <file> instead of commandline args. ",
+          args: {
+            name: "file",
+            template: "filepaths",
           },
-        ],
-      },
+        },
+
+        {
+          name: ["--pathspec-file-nul"],
+          description: "Only meaningful with --pathspec-from-file.",
+        },
+      ],
+      args: [
+        {
+          name: "branch or commit",
+          description: "branch or commit to switch to",
+          isOptional: true,
+          generators: gitGenerators.branches,
+          suggestions: [
+            {
+              name: "-",
+              description: "switch to the last used branch",
+              icon: "fig://icon?type=git",
+            },
+          ],
+        },
+        {
+          name: "pathspec",
+          description: "Limits the paths affected by the operation.",
+          isOptional: true,
+          variadic: true,
+          template: "filepaths",
+        },
+      ],
     },
     {
       name: "merge",
@@ -2468,6 +2674,15 @@ export const completionSpec: Fig.Spec = {
         generators: gitGenerators.tags,
         isOptional: true,
       },
+    },
+  ],
+  additionalSuggestions: [
+    {
+      name: "commit -m 'msg'",
+      description: "Git commit shortcut",
+      insertValue: "commit -m '{cursor}'",
+      icon: "fig://template?color=2ecc71&badge=🔥",
+      // type: "shortcut",
     },
   ],
 };

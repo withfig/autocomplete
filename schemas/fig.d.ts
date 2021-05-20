@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-types */
-
 declare namespace Fig {
   // All the available templates
   export type TemplateStrings = "filepaths" | "folders";
@@ -21,7 +20,7 @@ declare namespace Fig {
 
   // A function which can have a T argument and a R result, both
   // set to void by default
-  export type Function<T = void, R = void> = (param: T) => R;
+  export type Function<T = void, R = void> = (param?: T) => R;
 
   // A string or a function which can have a T argument and a R result,
   // both set to void by default
@@ -39,7 +38,9 @@ declare namespace Fig {
   }
 
   // Execute shell command function inside generators
-  export type ExecuteShellCommandFunction = (param: String) => Promise<String>;
+  export type ExecuteShellCommandFunction = (
+    commandToExecute: string
+  ) => Promise<string>;
 
   export interface BaseSuggestion {
     /**
@@ -68,7 +69,7 @@ declare namespace Fig {
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
      * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
-     * colorful and fun systems icons: https://withfig.com/docs/autocomplete/reference/icon-api
+     * colorful and fun systems icons: https://fig.io/docs/autocomplete/reference/icon-api
      *
      * @example
      * `A`, `😊`
@@ -92,7 +93,7 @@ declare namespace Fig {
      * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the prioritiy will be increased by the timestamp of when that suggestion was selected as a decimal.
      *
      *
-     * @examlpes
+     * @examples
      * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
@@ -127,7 +128,7 @@ declare namespace Fig {
      * @example
      * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
-    name: string;
+    name: string | string[];
 
     /**
      * A list of subcommands for this spec.
@@ -160,7 +161,7 @@ declare namespace Fig {
      * @example:
      * `commit -m '{cursor}'` is a shortcut for git
      */
-    additionalSuggestions?: Suggestion[] | String[];
+    additionalSuggestions?: Suggestion[] | string[];
     /**
      * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
      * Specify the spec name without `js`. This is simiar but different to isCommand in the Arg object so read both carefully
@@ -173,7 +174,7 @@ declare namespace Fig {
      *
      * If your CLI tool takes another CLI command (e.g. time , builtin... ) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in {@link {https://withfig.com/docs/autocomplete/api#arg-object | Arg}.
+     * script, see `isCommand` and `isScript` in {@link {https://fig.io/docs/autocomplete/api#arg-object | Arg}.
      */
     loadSpec?: string;
     /**
@@ -188,8 +189,8 @@ declare namespace Fig {
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
     generateSpec?: (
-      context: String[],
-      executeShellCommand: ExecuteShellCommandFunction
+      context?: string[],
+      executeShellCommand?: ExecuteShellCommandFunction
     ) => Promise<Spec>;
 
     // Function<string[], Promise<Spec>>;
@@ -203,7 +204,7 @@ declare namespace Fig {
      * @example
      * For git commit -m, the option name is `["-m", "--message"]`
      */
-    name: SingleOrArray<String>;
+    name: SingleOrArray<string>;
 
     /**
      * An array of args or a single arg object.
@@ -217,6 +218,45 @@ declare namespace Fig {
      * `args: {}`
      */
     args?: SingleOrArray<Arg>;
+    /**
+     *
+     * Signals whether an option is required. The default is an option is NOT required.
+     *
+     * Currently, signalling that an option is required doesn't do anything, however, Fig will handle it in the future
+     *
+     * @example
+     * The "-m" option of git commit is required
+     *
+     */
+    required?: boolean;
+    /**
+     *
+     * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
+     * The default is an option is NOT mutually exclusive with any other options
+     *
+     * Currently, signalling mutually exclusive options doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * You might see `[-a | --interactive | --patch]` in a man page. This means each of these options are mutually exclusive on each other.
+     * If we were defining the exclusive prop of the "-a" option, then we would have `exclusive: ["--interactive", "--patch"]`
+     *
+     *
+     */
+    exclusive?: string[];
+    /**
+     *
+     * Signals whether an option depends other options. Define this as an array of strings of the option names.
+     * The default is an option does NOT depend on any other options
+     *
+     * Currently, signalling dependsOn doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * In a tool like firebase, we may want to delete a specific extension. The command might be `firebase delete --project ABC --extension 123` This would mean we delete the 123 extension from the ABC project.
+     * In this case, `--extension ` dependsOn `--project`
+     *
+     *
+     */
+    dependsOn?: string[];
   }
 
   export interface Arg {
@@ -291,11 +331,18 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
+     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     *
+     * @example
+     * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
+     */
+    isModule?: string;
+    /**
      * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
-     * See our docs for more on this {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
+     * See our docs for more on this {@link https://fig.io/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
      */
     isScript?: boolean;
 
@@ -306,10 +353,17 @@ declare namespace Fig {
      * NPM install and pip install send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
+    /**
+     * The default value for an optional argument. This is just a string
+     *
+     * @example
+     *
+     */
+    default?: string;
   }
 
   /**
-   * @see https://withfig.com/docs/autocomplete/api#generator-object
+   * @see https://fig.io/docs/autocomplete/api#generator-object
    */
   export interface Generator {
     /**
@@ -349,7 +403,7 @@ declare namespace Fig {
     /**
      * This function takes one paramater: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
-    postProcess?: (out: string, context: string[]) => Suggestion[];
+    postProcess?: (out: string, context?: string[]) => Suggestion[];
 
     /**
      * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
@@ -358,11 +412,14 @@ declare namespace Fig {
      * Typically, Fig regenerates the suggestions every time the user hits space as in bash, a space typically delimits commands. However, if the `trigger` prop is defined, Fig will run the trigger function on each keystroke. If it returns true, instead of filtering over the suggestions, Fig will regenerate the list of suggestions THEN filter over them.
      * The trigger function takes two inputs: the new token the user typed and the token on the keystroke before.
      *
+     * Trigger as a function takes two arguments: 1. the new token 2. the old token
+     * e.g. the old token might be `desktop` and the new token might be `desktop/`. The function may look for a different in the number of slashes. In this case there is a difference so it would return true.
+     *
      * The trigger prop can also be a simple string. This is synctactic sugar that allows you to specify a single character. If count of this character in the string before !== the count of the new string, Fig will regenerate the suggestions.
      *
      * Using a trigger is especially beneficial when you have an argument contained inside a single string that is not separated by a space. It is often used with a custom prop or script (as a function)
      *
-     *Finally, make sure you don't confuse trigger with debounce. Debounce will regenerate suggestions after a period of inactivity typing. Trigger will regenerate suggestions when the function you define returns true!
+     * Finally, make sure you don't confuse trigger with debounce. Debounce will regenerate suggestions after a period of inactivity typing. Trigger will regenerate suggestions when the function you define returns true!
      *
      * Use some logging in the function to work out when trigger is being run
      *
@@ -371,7 +428,7 @@ declare namespace Fig {
      * e.g. If I had already typed "desktop". The current list of suggestions is from the ~ directory and the filterTerm is "desktop". Then I type "/" so it says "desktop/", the trigger would return true, Fig will generate suggestions for the directory `~/desktop/` and the filterTerm will become an empty string.
      *
      */
-    trigger?: string | ((paramOne: string, paramTwo: string) => boolean);
+    trigger?: string | ((newToken: string, oldToken?: string) => boolean);
     /**
      * Read the note above about how triggers work. Triggers and filterTerm may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The filterTerm defines what characters we should use to filter over these suggestions.
      *
@@ -398,15 +455,17 @@ declare namespace Fig {
      *
      *
      * @example
-     * ```
-     * custom: (context) => {
-     *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => {name: elm})
-     * }
+     * ```ts
+     * const generator: Fig.Generator = {
+     *   custom: (context) => {
+     *     const out = await executeShellCommand("ls");
+     *     return out.split("\n").map((elm) => ({ name: elm }));
+     *   },
+     * };
      * ```
      */
     custom?: (
-      context: String[],
+      context: string[],
       executeShellCommand: ExecuteShellCommandFunction
     ) => Promise<Suggestion[]>;
     /**
@@ -423,7 +482,7 @@ declare namespace Fig {
 
   export interface Cache {
     /**
-     * Time to live for the cache in seconds
+     * Time to live for the cache in milliseconds
      *
      * @example
      * 3600
