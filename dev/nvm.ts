@@ -81,7 +81,7 @@ export const completionSpec: Fig.Spec = {
       name: "install",
       description:
         "Download and install a <version>. Uses .nvmrc if available and version is omitted.",
-      args: [version],
+      args: [{ ...version, isOptional: true }],
       options: [
         {
           name: "-s",
@@ -151,21 +151,21 @@ export const completionSpec: Fig.Spec = {
       name: "use",
       description:
         "Modify PATH to use <version>. Uses .nvmrc if available and version is omitted.",
-      args: [version],
+      args: [{ ...version, isOptional: true }],
       options: [silent, lts, ltsWithName],
     },
     {
       name: "exec",
       description:
         "Run <command> on <version>. Uses .nvmrc if available and version is omitted.",
-      args: [version, command],
+      args: [{ ...version, isOptional: true }, command],
       options: [silent, lts, ltsWithName],
     },
     {
       name: "run",
       description:
         "Run `node` on <version> with <args> as arguments. Uses .nvmrc if available and version is omitted.",
-      args: [version, args],
+      args: [{ ...version, isOptional: true }, args],
       options: [silent, lts, ltsWithName],
     },
     {
@@ -264,7 +264,7 @@ export const completionSpec: Fig.Spec = {
       name: "which",
       description:
         "Display path to installed node version. Uses .nvmrc if available and version is omitted.",
-      args: [version],
+      args: [{ ...version, isOptional: true }],
       subcommands: [
         {
           name: "current",
