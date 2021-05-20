@@ -361,7 +361,7 @@ var postPrecessGenerator = function (out, parentKey, childKey) {
     return [];
 };
 var MultiSuggestionsGenerator = function (context, executeShellCommand, enabled) { return __awaiter(void 0, void 0, void 0, function () {
-    var list, i, out, merged, e_2;
+    var list, i, out, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -379,9 +379,7 @@ var MultiSuggestionsGenerator = function (context, executeShellCommand, enabled)
             case 3:
                 i++;
                 return [3 /*break*/, 1];
-            case 4:
-                merged = Array.prototype.concat.apply([], list);
-                return [2 /*return*/, merged];
+            case 4: return [2 /*return*/, list.flat()];
             case 5:
                 e_2 = _a.sent();
                 console.log(e_2);
@@ -396,7 +394,7 @@ var generators = {
         postProcess: function (out, context) {
             try {
                 var accountId = JSON.parse(out)["Account"];
-                return [({ name: "arn:aws:iam::" + accountId + "-ID:root" })];
+                return [{ name: "arn:aws:iam::" + accountId + "-ID:root" }];
             }
             catch (error) {
                 console.error(error);
@@ -467,9 +465,9 @@ var generators = {
                             out = _a.sent();
                             policies = JSON.parse(out)["InstanceProfile"];
                             return [2 /*return*/, policies["Roles"].map(function (elm) {
-                                    return ({
+                                    return {
                                         name: elm["RoleName"],
-                                    });
+                                    };
                                 })];
                         case 2:
                             e_3 = _a.sent();
@@ -5904,7 +5902,7 @@ var completionSpec = {
                     description: "The name of the user to remove. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
                     args: {
                         name: "string",
-                        generators: generators.listUsersInGroup
+                        generators: generators.listUsersInGroup,
                     },
                 },
                 {
@@ -6985,7 +6983,7 @@ var completionSpec = {
                     description: "The status you want to assign to the secret access key. Active means that the key can be used for programmatic calls to AWS, while Inactive means that the key cannot be used.",
                     args: {
                         name: "string",
-                        suggestions: ["Active", "Inactive"]
+                        suggestions: ["Active", "Inactive"],
                     },
                 },
                 {
@@ -7499,7 +7497,7 @@ var completionSpec = {
                     description: "The status to be assigned to the service-specific credential.",
                     args: {
                         name: "string",
-                        suggestions: ["Active", "Inactive"]
+                        suggestions: ["Active", "Inactive"],
                     },
                 },
                 {

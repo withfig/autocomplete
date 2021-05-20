@@ -188,8 +188,8 @@ const identityStruct = [
 const _prefixFile = "file://";
 
 const appendFolderPath = (tokens: string[], prefix: string): string => {
-  var baseLSCommand = "\\ls -1ApL ";
-  var whatHasUserTyped = tokens[tokens.length - 1];
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (whatHasUserTyped.startsWith(prefix)) {
     whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
@@ -226,8 +226,8 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   };
 
   const alphabeticalSortFilesAndFolders = (arr) => {
-    var dots_arr = [];
-    var other_arr = [];
+    const dots_arr = [];
+    const other_arr = [];
 
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
@@ -242,9 +242,9 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
     ];
   };
 
-  var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+  const temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
 
-  var final_array = [];
+  const final_array = [];
 
   temp_array.forEach((item) => {
     if (!(item === "" || item === null || item === undefined)) {
@@ -294,7 +294,7 @@ const listCustomGenerator = async (
       return [];
     }
     const param = context[idx + 1];
-    var out = await executeShellCommand(
+    const out = await executeShellCommand(
       `aws iam ${command} ${option} ${param}`
     );
 
@@ -356,8 +356,7 @@ const MultiSuggestionsGenerator = async (
       );
     }
 
-    const merged = Array.prototype.concat.apply([], list) as Fig.Suggestion[];
-    return merged;
+    return list.flat();
   } catch (e) {
     console.log(e);
   }
@@ -443,7 +442,7 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const param = context[idx + 1];
-        var out = await executeShellCommand(
+        const out = await executeShellCommand(
           `aws iam get-instance-profile --instance-profile-name ${param}`
         );
 
