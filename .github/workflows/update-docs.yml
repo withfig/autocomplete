@@ -25,7 +25,7 @@ jobs:
 
           rm -f newDocs.zip
 
-          git config user.email "hello@fig.io"
+          git config user.email "tim@withfig.com"
           git config user.name "Figbot"
 
           git add docs/autocomplete/schemas/
