@@ -19,7 +19,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-C"],
       description: "Causes Ruby to switch to the directory.",
-      args: { name: "directory" },
+      args: { name: "directory", template: "folders" },
     },
     {
       name: ["-F"],
@@ -30,7 +30,7 @@ export const completionSpec: Fig.Spec = {
       name: ["-I"],
       description:
         "Used to tell Ruby where to load the library scripts. Directory path will be added to the load-path variable ($:).",
-      args: { name: "directory" },
+      args: { name: "directory", template: "folders" },
     },
     {
       name: ["-K"],
@@ -44,8 +44,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: ["-T"],
-      description:
-        "] Turns on taint checks at the specified level (default 1).",
+      description: "Turns on taint checks at the specified level (default 1).",
       args: { name: "level" },
     },
     {
@@ -75,7 +74,7 @@ export const completionSpec: Fig.Spec = {
       name: ["-i"],
       description:
         "Specifies in-place-edit mode. The extension, if specified, is added to old file name to make a backup copy.",
-      args: { name: "extension" },
+      args: { name: "extension", isOptional: true },
     },
     {
       name: ["-l"],
@@ -113,8 +112,8 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-x"],
       description:
-        "] Tells Ruby that the script is embedded in a message. Leading garbage will be discarded until the first that starts with “#!” and contains the string, “ruby”. Any meaningful switches on that line will applied. The end of script must be specified with either EOF, ^D (control-D), ^Z (control-Z), or reserved word __END__. If the directory name is specified, Ruby will switch to that directory before executing script.",
-      args: { name: "directory" },
+        "Tells Ruby that the script is embedded in a message. Leading garbage will be discarded until the first that starts with “#!” and contains the string, “ruby”. Any meaningful switches on that line will applied. The end of script must be specified with either EOF, ^D (control-D), ^Z (control-Z), or reserved word __END__. If the directory name is specified, Ruby will switch to that directory before executing script.",
+      args: { name: "directory", template: "folders" },
     },
     {
       name: ["-y", "--yydebug"],

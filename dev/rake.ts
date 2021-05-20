@@ -4,6 +4,7 @@ export const completionSpec: Fig.Spec = {
   args: {
     name: "targets",
     variadic: true,
+    isOptional: true,
   },
   options: [
     {
@@ -11,12 +12,17 @@ export const completionSpec: Fig.Spec = {
       description: "Do a dry run without executing actions.",
     },
     {
-      name: ["-H", "--help"],
+      name: ["-h", "-H", "--help"],
       description: "Display this help message.",
     },
     {
-      name: ["-I", "--libdir=LIBDIR"],
+      name: ["-I", "--libdir"],
+      insertValue: "--libdir=",
       description: "Include LIBDIR in the search path for required modules.",
+      args: {
+        name: "LIBDIR",
+        template: "folders",
+      },
     },
     {
       name: ["-P", "--prereqs"],
@@ -27,12 +33,21 @@ export const completionSpec: Fig.Spec = {
       description: "Do not log messages to standard output",
     },
     {
-      name: ["-f", "--rakefile=FILE"],
+      name: ["-f", "--rakefile"],
+      insertValue: "--rakeFile=",
       description: "Use FILE as the rakefile.",
+      args: {
+        name: "FILE",
+        template: "filepaths",
+      },
     },
     {
-      name: ["-r", "--require=MODULE"],
+      name: ["-r", "--require"],
+      insertValue: "--require=",
       description: "Require MODULE before executing rakefile.",
+      args: {
+        name: "MODULE",
+      },
     },
     {
       name: ["-s", "--silent"],
@@ -42,12 +57,19 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-T", "--tasks"],
       description: "Display the tasks and dependencies, then exit.",
+      args: {
+        name: "pattern",
+        isOptional: true,
+      },
     },
     {
       name: ["-t", "--trace"],
       description: "Turn on invoke/execute tracing, enable full backtrace.",
+      args: {
+        name: "output",
+        isOptional: true,
+      },
     },
-    { name: ["-h", "--usage"], description: "Display usage." },
     {
       name: ["-v", "--verbose"],
       description: "Log message to standard output (default).",

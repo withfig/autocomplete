@@ -1,6 +1,18 @@
+const versionArg: Fig.Arg = {
+  name: "version",
+  isOptional: true,
+};
+
+const versionOptions: Fig.Option[] = [
+  {
+    name: "--unset",
+  },
+];
+
 export const completionSpec: Fig.Spec = {
   name: "rbenv",
-  description: "",
+  description:
+    "Pick a Ruby version for your application and guarantee that your development environment matches production",
   subcommands: [
     {
       name: "commands",
@@ -13,14 +25,12 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-sh"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "global",
       description: "Set or show the global Ruby version",
-      options: [],
-      subcommands: [],
-      args: {},
+      args: versionArg,
+      options: versionOptions,
     },
     {
       name: "install",
@@ -29,27 +39,24 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["--version"],
           description: "Show version of ruby-build ",
-          args: {},
+          args: versionArg,
         },
       ],
-      subcommands: [],
     },
     {
       name: "local",
       description: "Set or show the local application-specific Ruby version",
-      options: [],
-      subcommands: [],
+      args: versionArg,
+      options: versionOptions,
     },
     {
       name: "rehash",
       description: "Rehash rbenv shims (run this after installing executables)",
-      options: [],
-      subcommands: [],
     },
     {
       name: "shell",
       description: "Set or show the shell-specific Ruby version",
-      subcommands: [],
+      args: versionArg,
     },
     {
       name: "uninstall",
@@ -62,25 +69,18 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "versions",
       description: "List installed Ruby versions",
-      options: [],
-      subcommands: [],
     },
     {
       name: "whence",
       description: "List all Ruby versions that contain the given executable",
-      options: [],
-      subcommands: [],
     },
     {
       name: "which",
       description: "Display the full path to an executable",
-      options: [],
-      subcommands: [],
       args: [{ name: "command" }],
     },
   ],
