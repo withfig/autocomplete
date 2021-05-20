@@ -455,11 +455,13 @@ declare namespace Fig {
      *
      *
      * @example
-     * ```
-     * custom: (context) => {
-     *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => ({name: elm}) )
-     * }
+     * ```ts
+     * const generator: Fig.Generator = {
+     *   custom: (context) => {
+     *     const out = await executeShellCommand("ls");
+     *     return out.split("\n").map((elm) => ({ name: elm }));
+     *   },
+     * };
      * ```
      */
     custom?: (
