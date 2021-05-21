@@ -235,6 +235,20 @@ export const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "analytics",
+      description: "Manages analytics preferences",
+      subcommands: [
+        {
+          name: "on",
+          description: "Turns on analytics",
+        },
+        {
+          name: "off",
+          description: "Turns off analytics",
+        },
+      ],
+    },
   ],
   options: [
     {
