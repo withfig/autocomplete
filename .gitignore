@@ -7,4 +7,3 @@ build
 npm-debug.log
 .env
 .idea/
-.vscode
