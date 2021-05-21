@@ -21,7 +21,7 @@ module.exports = {
                 (prop) => prop.key && prop.key.name === "name"
               );
 
-              if (!nameProp) return
+              if (!nameProp) return;
 
               // Case: The name value is a string (single value)
               if (nameProp.value.type === "Literal") {

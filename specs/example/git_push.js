@@ -14,36 +14,35 @@
 // Why is this the case? Inputting arguments is optional but if you input the first one, you must input the secon
 // <arg1> [arg2...] -> This is just one argument that is NOT optional and is variadic
 var completionSpec = {
-    name: "git_push_example",
-    description: "",
-    subcommands: [],
-    // [<repository> [<refspec>...]]
-    // This is tricky. The arguments are surrounded by square brackets.
-    // Even though ther are triangular brackets around repository is a strange git syntax. indicating the first arg is optional
-    //
-    //
-    args: [
-        { name: "repository", isOptional: true },
-        { name: "refspec", isOptional: true, variadic: true },
-    ],
-    options: [
-        // [--follow-tags]
-        // Despite the square brackets, Fig does not currently have a syntax to support optional options
-        { name: "--all" },
-        // [--all | --mirror | --tags]
-        // The | symbol means mutually exclusive. Fig currently doesn't support mutually exclusive options.
-        // so you should list each option on their own.
-        { name: "--all" },
-        { name: "--mirror" },
-        { name: "--tags" },
-        // [-n | --dry-run]
-        { name: ["-n", "--dry-run"] },
-        { name: "--receive-pack", args: { name: "git-receive-pack" } },
-        // ...
-        { name: ["-u", "--set-upstream"] },
-        { name: "-o", args: { name: "string" } },
-        { name: "--push-option", args: { name: "string" } }, // arg is mandatory
-        // [--[no-]signed|--signed=(true|false|if-asked)]
-    ],
+  name: "git_push_example",
+  description: "",
+  subcommands: [],
+  // [<repository> [<refspec>...]]
+  // This is tricky. The arguments are surrounded by square brackets.
+  // Even though ther are triangular brackets around repository is a strange git syntax. indicating the first arg is optional
+  //
+  //
+  args: [
+    { name: "repository", isOptional: true },
+    { name: "refspec", isOptional: true, variadic: true },
+  ],
+  options: [
+    // [--follow-tags]
+    // Despite the square brackets, Fig does not currently have a syntax to support optional options
+    { name: "--all" },
+    // [--all | --mirror | --tags]
+    // The | symbol means mutually exclusive. Fig currently doesn't support mutually exclusive options.
+    // so you should list each option on their own.
+    { name: "--all" },
+    { name: "--mirror" },
+    { name: "--tags" },
+    // [-n | --dry-run]
+    { name: ["-n", "--dry-run"] },
+    { name: "--receive-pack", args: { name: "git-receive-pack" } },
+    // ...
+    { name: ["-u", "--set-upstream"] },
+    { name: "-o", args: { name: "string" } },
+    { name: "--push-option", args: { name: "string" } }, // arg is mandatory
+    // [--[no-]signed|--signed=(true|false|if-asked)]
+  ],
 };
-

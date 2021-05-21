@@ -49,6 +49,6 @@ By contributing, you agree that your contributions will be licensed under its MI
 
 ## Questions and support
 
-For product support, visit our [docs](https://fig.io/docs) and join the [Fig Community](https://figcommunity.slack.com/join/shared_invite/zt-fupa9n8g-sfHm8MyBn1DBaCj8SoIxSA#/) for instant support and discussion.
+For product support, visit our [docs](https://fig.io/docs) and join the [Fig Community](https://fig.io/community) for instant support and discussion.
 
 Any unanswered questions or inquiries? We're always open to chat at hello@fig.io.

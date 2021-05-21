@@ -356,8 +356,6 @@ declare namespace Fig {
     /**
      * The default value for an optional argument. This is just a string
      *
-     * @example
-     *
      */
     default?: string;
   }
