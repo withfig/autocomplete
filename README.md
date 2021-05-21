@@ -8,7 +8,7 @@
 [![Signup](https://img.shields.io/badge/signup-private%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
 [![Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/autocomplete/getting-started)
 [![All-Contributors](https://img.shields.io/github/all-contributors/withfig/autocomplete)](#Contributors)
-[![Slack](https://img.shields.io/badge/slack-purple)](https://fig.io/community)
+![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
 [![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
 **[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
@@ -64,6 +64,16 @@ npm run copy:all
 npm run copy <spec-name>
 ```
 
+## Need Help?
+
+<p align="center">
+    Join our community
+<br/>
+<a href="https://fig.io/community">
+    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" /> 
+</a>
+</p>
+
 ## FAQ
 
 #### What terminals does Fig work with?
@@ -88,7 +98,7 @@ Yes! Check out our guide on how to [get started building autocomplete specs](htt
 
 #### Did we miss something?
 
-Get in touch at hello@fig.io or chat with us on [Slack](https://fig.io/community)
+Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community)
 
 ## Contributors ✨
 
