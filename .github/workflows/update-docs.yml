@@ -11,19 +11,24 @@ jobs:
   update_page:
     runs-on: "ubuntu-latest"
     env:
-      UPDATE_SITE_TOKEN: ${{ secrets.UPDATE_DOCS_TOKEN }}
+      UPDATE_SITE_TOKEN: ${{ secrets.UPDATE_PRIVATE_DOCS_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: update submodules
         run: |
-          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/docs.git
-          cd docs
+          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/public-site-nextjs.git
+          cd public-site-nextjs
 
-          curl https://docs-generator.cstrnt.workers.dev/ > autocomplete/api.md
+          curl https://fig.io/api/docs/parseDocs -o newDocs.zip
 
-          git config user.email "hello@withfig.com"
+          unzip -o newDocs.zip -d docs/autocomplete/schemas/
+
+          rm -f newDocs.zip
+
+          git config user.email "tim@withfig.com"
           git config user.name "Figbot"
 
-          git add autocomplete/api.md
-          git commit -m "added updates to docs"
+          git add docs/autocomplete/schemas/
+
+          git commit -m "added updates to docs" --allow-empty
           git push origin main --force

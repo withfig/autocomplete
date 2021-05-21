@@ -13,8 +13,6 @@ const generators: Record<string, Fig.Generator> = {
   },
 };
 
-// fake-change file
-
 export const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
@@ -232,6 +230,20 @@ export const completionSpec: Fig.Spec = {
             variadic: true,
             generators: generators.servicesGenerator,
           },
+        },
+      ],
+    },
+    {
+      name: "analytics",
+      description: "Manages analytics preferences",
+      subcommands: [
+        {
+          name: "on",
+          description: "Turns on analytics",
+        },
+        {
+          name: "off",
+          description: "Turns off analytics",
         },
       ],
     },

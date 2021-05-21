@@ -1,3 +1,14 @@
+var projectAliasesGenerator = {
+    script: "firebase projects:list",
+    postProcess: function (out) {
+        var getAliasRegex = /^│ (\w.*?)│/gm;
+        var aliasesRaw = Array.from(out.matchAll(getAliasRegex));
+        aliasesRaw.shift(); // first element is the table header
+        return aliasesRaw.map(function (alias) {
+            return { name: alias[1].trim(), description: "projectAlias" };
+        });
+    },
+};
 var completionSpec = {
     name: "firebase",
     description: "",
@@ -1398,6 +1409,7 @@ var completionSpec = {
             description: "set an active Firebase project for your working directory",
             args: {
                 name: "alias or project id",
+                generators: projectAliasesGenerator,
             },
             options: [
                 {

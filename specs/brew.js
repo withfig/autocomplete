@@ -12,7 +12,6 @@ var generators = {
         },
     },
 };
-// fake-change file
 var completionSpec = {
     name: "brew",
     description: "Package manager for macOS",
@@ -219,6 +218,20 @@ var completionSpec = {
                         variadic: true,
                         generators: generators.servicesGenerator,
                     },
+                },
+            ],
+        },
+        {
+            name: "analytics",
+            description: "Manages analytics preferences",
+            subcommands: [
+                {
+                    name: "on",
+                    description: "Turns on analytics",
+                },
+                {
+                    name: "off",
+                    description: "Turns off analytics",
                 },
             ],
         },
