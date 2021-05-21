@@ -1,4 +1,4 @@
-const installOptions = [
+const installOptions: Fig.Option[] = [
   {
     name: "-l",
     description: "forward-lock the app",
@@ -72,7 +72,7 @@ const installOptions = [
   },
 ];
 
-const compressionOptions = [
+const compressionOptions: Fig.Option[] = [
   {
     description:
       "enable compression with a specified algorithm (any, none, brotli)",
@@ -98,7 +98,7 @@ const compressionOptions = [
   },
 ];
 
-const forwardConnectionSuggestions = [
+const forwardConnectionSuggestions: Fig.Suggestion[] = [
   {
     name: "tcp",
     insertValue: "tcp:",
@@ -129,7 +129,7 @@ const forwardConnectionSuggestions = [
   },
 ];
 
-const reverseConnectionSuggestions = [
+const reverseConnectionSuggestions: Fig.Suggestion[] = [
   {
     name: "tcp",
     insertValue: "tcp:",
@@ -379,6 +379,7 @@ export const completion: Fig.Spec = {
         "generate adb public/private key; private key stored in FILE",
       args: {
         name: "FILE",
+        template: "filepaths",
       },
     },
     {
@@ -543,6 +544,7 @@ export const completion: Fig.Spec = {
       args: {
         isOptional: true,
         name: "COMMANDS ...",
+        variadic: true,
       },
     },
     {

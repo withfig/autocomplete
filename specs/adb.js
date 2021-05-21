@@ -369,6 +369,7 @@ var completionSpec = {
             description: "generate adb public/private key; private key stored in FILE",
             args: {
                 name: "FILE",
+                template: "filepaths",
             },
         },
         {
@@ -527,6 +528,7 @@ var completionSpec = {
             args: {
                 isOptional: true,
                 name: "COMMANDS ...",
+                variadic: true,
             },
         },
         {
