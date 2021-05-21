@@ -64,6 +64,16 @@ npm run copy:all
 npm run copy <spec-name>
 ```
 
+## Need Help?
+
+<p align="center">
+    Join our community
+<br/>
+<a href="https://fig.io/community">
+    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" /> 
+</a>
+</p>
+
 ## FAQ
 
 #### What terminals does Fig work with?
