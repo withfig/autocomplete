@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -214,7 +214,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -354,7 +354,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -498,7 +498,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "add",
               description: "Create a new membership in an existing group.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -659,12 +659,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
               description: "Delete a membership from an existing group.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -815,12 +814,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "describe",
               description: "Describe a membership in a group.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -971,12 +969,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
               description: "List memberships in an existing group.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1177,13 +1174,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "modify-membership-roles",
               description:
                 "Add/remove/modify membership roles of a membership in a group.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1354,7 +1350,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1485,12 +1480,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "search",
           description: "Searches for Groups matching a specified query.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1680,12 +1674,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1980,7 +1973,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2104,5 +2096,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

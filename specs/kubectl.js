@@ -263,7 +263,6 @@ var completionSpec = {
         {
             name: "alpha",
             description: "These commands correspond to alpha features that are not enabled in Kubernetes clusters by default.",
-            options: [],
             subcommands: [
                 {
                     name: "debug",
@@ -320,7 +319,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
             ],
         },
@@ -374,13 +372,10 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "api-versions",
             description: 'Print the supported API versions on the server, in the form of "group/version"',
-            options: [],
-            subcommands: [],
         },
         {
             name: "apply",
@@ -757,15 +752,12 @@ var completionSpec = {
                             description: "If true, keep the managedFields when printing objects in JSON or YAML format.",
                         },
                     ],
-                    subcommands: [],
                 },
             ],
         },
         {
             name: "completion",
             description: "Output shell completion code for the specified shell (bash or zsh). The shell code must be evaluated to provide interactive completion of kubectl commands.  This can be done by sourcing it from the .bash_profile.",
-            options: [],
-            subcommands: [],
         },
         {
             name: "config",
@@ -811,7 +803,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "get-users",
@@ -845,7 +836,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "set-cluster",
@@ -921,7 +911,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "set-credentials",
@@ -1021,7 +1010,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "unset",
@@ -1115,7 +1103,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "create",
@@ -1205,7 +1192,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "clusterrolebinding",
@@ -1254,7 +1240,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "configmap",
@@ -1304,7 +1289,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "cronjob",
@@ -1349,7 +1333,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "deployment",
@@ -1484,7 +1467,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "namespace",
@@ -1591,7 +1573,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "quota",
@@ -1633,7 +1614,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "role",
@@ -1676,7 +1656,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "rolebinding",
@@ -1737,7 +1716,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "secret",
@@ -1807,7 +1785,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                         {
                             name: "generic",
@@ -1863,7 +1840,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                         {
                             name: "tls",
@@ -1911,7 +1887,6 @@ var completionSpec = {
                 {
                     name: "service",
                     description: "Create a service using specified subcommand.",
-                    options: [],
                     subcommands: [
                         {
                             name: "clusterip",
@@ -1950,7 +1925,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                         {
                             name: "externalname",
@@ -1987,7 +1961,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                         {
                             name: "loadbalancer",
@@ -2017,7 +1990,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                         {
                             name: "nodeport",
@@ -2054,7 +2026,6 @@ var completionSpec = {
                                     description: "If true, use a schema to validate the input before sending it",
                                 },
                             ],
-                            subcommands: [],
                         },
                     ],
                 },
@@ -2078,7 +2049,6 @@ var completionSpec = {
                             description: "If true, use a schema to validate the input before sending it",
                         },
                     ],
-                    subcommands: [],
                 },
             ],
         },
@@ -2141,7 +2111,6 @@ var completionSpec = {
                     description: "If true, wait for resources to be gone before returning. This waits for finalizers.",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "describe",
@@ -2188,7 +2157,6 @@ var completionSpec = {
                     description: "If true, apply runs in the server instead of the client.",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "drain",
@@ -2426,7 +2394,6 @@ var completionSpec = {
                     },
                 },
             ],
-            subcommands: [],
         },
         {
             name: "get",
@@ -2503,7 +2470,6 @@ var completionSpec = {
                     description: "Watch for changes to the requested object(s), without listing/getting first.",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "kustomize",
@@ -2596,7 +2562,6 @@ var completionSpec = {
                     description: "If true, allow labels to be overwritten, otherwise reject label updates that overwrite existing labels.",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "logs",
@@ -2677,7 +2642,6 @@ var completionSpec = {
                     description: "Include timestamps on each line in the log output",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "patch",
@@ -2710,13 +2674,10 @@ var completionSpec = {
                     },
                 },
             ],
-            subcommands: [],
         },
         {
             name: "plugin",
             description: "Provides utilities for interacting with plugins.",
-            options: [],
-            subcommands: [],
         },
         {
             name: "port-forward",
@@ -2742,7 +2703,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "proxy",
@@ -2819,7 +2779,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "replace",
@@ -2871,7 +2830,6 @@ var completionSpec = {
                     description: "If true, wait for resources to be gone before returning. This waits for finalizers.",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "rollout",
@@ -2897,7 +2855,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "pause",
@@ -2911,7 +2868,6 @@ var completionSpec = {
                         sharedOpts.recursive,
                         sharedOpts.template,
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "restart",
@@ -2925,7 +2881,6 @@ var completionSpec = {
                         sharedOpts.recursive,
                         sharedOpts.template,
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "resume",
@@ -2939,7 +2894,6 @@ var completionSpec = {
                         sharedOpts.recursive,
                         sharedOpts.template,
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "status",
@@ -2966,7 +2920,6 @@ var completionSpec = {
                             description: "Watch the status of the rollout until it's done.",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "undo",
@@ -2990,7 +2943,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
             ],
         },
@@ -3195,7 +3147,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "set",
@@ -3297,7 +3248,6 @@ var completionSpec = {
                             description: "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
                         },
                     ],
-                    subcommands: [],
                 },
                 {
                     name: "resources",
@@ -3427,7 +3377,6 @@ var completionSpec = {
                             args: {},
                         },
                     ],
-                    subcommands: [],
                 },
             ],
         },
@@ -3454,7 +3403,6 @@ var completionSpec = {
                     description: "If true, use a schema to validate the input before sending it",
                 },
             ],
-            subcommands: [],
         },
         {
             name: "top",
@@ -3465,7 +3413,6 @@ var completionSpec = {
             description: "Mark node as schedulable.",
             args: sharedArgs.listNodes,
             options: [sharedOpts.dryRun, sharedOpts.selector],
-            subcommands: [],
         },
         {
             name: "version",
@@ -3483,7 +3430,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "wait",
@@ -3521,7 +3467,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
     ],
 };

@@ -93,7 +93,7 @@ declare namespace Fig {
      * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the prioritiy will be increased by the timestamp of when that suggestion was selected as a decimal.
      *
      *
-     * @examlpes
+     * @examples
      * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
@@ -356,8 +356,6 @@ declare namespace Fig {
     /**
      * The default value for an optional argument. This is just a string
      *
-     * @example
-     *
      */
     default?: string;
   }
@@ -456,10 +454,12 @@ declare namespace Fig {
      *
      * @example
      * ```
-     * custom: (context) => {
-     *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => ({name: elm}) )
-     * }
+     * const generator: Fig.Generator = {
+     *   custom: (context) => {
+     *     const out = await executeShellCommand("ls");
+     *     return out.split("\n").map((elm) => ({ name: elm }));
+     *   },
+     * };
      * ```
      */
     custom?: (

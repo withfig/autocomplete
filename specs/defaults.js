@@ -96,7 +96,6 @@ var valueArgs = [
 var completionSpec = {
     name: "defaults",
     description: "Command line interface to a user's defaults.",
-    options: [],
     subcommands: [
         {
             name: "read",
@@ -130,7 +129,6 @@ var completionSpec = {
         {
             name: "domains",
             description: "lists all domains",
-            args: [],
         },
         {
             name: "find",

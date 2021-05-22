@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new connectivity test.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -292,7 +292,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a connectivity test.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -438,7 +438,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a connectivity test.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -579,7 +579,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List connectivity tests.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -748,12 +748,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "rerun",
           description: "Rerun a connectivity test.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -899,7 +898,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an existing connectivity test.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1324,7 +1323,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1333,7 +1331,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Network Management operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1474,7 +1472,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Network Management operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1643,7 +1641,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1774,7 +1771,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1898,5 +1894,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

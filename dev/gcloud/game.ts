@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Location.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -150,7 +150,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Locations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -324,7 +324,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -455,7 +454,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -464,7 +462,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -614,7 +612,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -798,7 +796,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -929,7 +926,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "servers",
@@ -942,7 +938,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Game Server Cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1156,7 +1152,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Game Server Cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1330,7 +1326,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Game Server Cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1489,7 +1485,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Game Server Clusters.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1682,12 +1678,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description: "Update a Game Server Cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2021,7 +2016,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "configs",
@@ -2030,7 +2024,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Game Server Config.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2236,7 +2230,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Game Server Config.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2400,7 +2394,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Game Server Config.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2559,7 +2553,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Configs.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2752,7 +2746,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -2883,7 +2876,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "deployments",
@@ -2892,7 +2884,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Deployment.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3066,7 +3058,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Deployment.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3221,7 +3213,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Deployment.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3371,7 +3363,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe-rollout",
               description: "Describe a Rollout.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3521,7 +3513,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "fetch-state",
               description: "Fetches the state of a Deployment.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3671,7 +3663,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Deployments.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3855,12 +3847,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description: "Update a Deployment.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4049,7 +4040,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "update-rollout",
               description: "Update a Deployment Rollout.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4370,7 +4361,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "realms",
@@ -4379,7 +4369,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Realm.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4564,7 +4554,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Realm.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4719,7 +4709,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Realm.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4869,7 +4859,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Realms.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5053,12 +5043,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description: "Update a Realm.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5393,7 +5382,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -5524,7 +5512,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5648,5 +5635,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

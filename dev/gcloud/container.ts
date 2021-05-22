@@ -15,7 +15,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Binary Authorization attestation.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -213,12 +213,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
               description: "List Binary Authorization attestations.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -423,7 +422,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -554,7 +552,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "attestors",
@@ -565,7 +562,7 @@ export const completionSpec: Fig.Spec = {
               name: "add-iam-policy-binding",
               description:
                 "Add IAM policy binding to a Binary Authorization attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -727,7 +724,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create an Attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -897,7 +894,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete an Attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1038,7 +1035,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe an Attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1179,7 +1176,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "get-iam-policy",
               description: "Get the IAM policy for an attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1366,7 +1363,7 @@ export const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List Attestors associated with the current project.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1540,7 +1537,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "public-keys",
@@ -1550,7 +1546,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "add",
                   description: "Add a public key to an Attestor.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1806,12 +1802,11 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "remove",
                   description: "Remove a public key from an Attestor.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1962,7 +1957,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "update",
                   description: "Update a public key on an Attestor.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2259,13 +2254,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "remove-iam-policy-binding",
               description:
                 "Remove IAM policy binding of a Binary Authorization attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2427,7 +2421,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "set-iam-policy",
               description: "Set the IAM policy for an attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2574,7 +2568,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update an existing Attestor.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2850,12 +2844,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create-signature-payload",
           description: "Create a JSON container image signature object.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2995,7 +2988,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "policy",
@@ -3005,7 +2997,7 @@ export const completionSpec: Fig.Spec = {
               name: "add-iam-policy-binding",
               description:
                 "Add IAM policy binding to a Binary Authorization policy.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3155,13 +3147,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "export",
               description:
                 "Export the Binary Authorization policy for the current project.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3290,13 +3281,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "get-iam-policy",
               description:
                 "Get the IAM policy for a Binary Authorization policy.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3470,13 +3460,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "import",
               description:
                 "Import a Binary Authorization policy to the current project.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3623,7 +3612,7 @@ export const completionSpec: Fig.Spec = {
               name: "remove-iam-policy-binding",
               description:
                 "Remove IAM policy binding of a Binary Authorization policy.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3773,13 +3762,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "set-iam-policy",
               description:
                 "Set the IAM policy for a Binary Authorization policy.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4046,7 +4034,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -4177,7 +4164,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "clusters",
@@ -4186,7 +4172,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a cluster for running containers.",
-          subcommands: [],
+
           options: [
             {
               name: "--accelerator",
@@ -5175,7 +5161,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing cluster for running containers.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5339,7 +5325,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing cluster for running containers.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5498,7 +5484,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-credentials",
           description: "Fetch credentials for a running cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5663,7 +5649,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing clusters for running containers.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5856,12 +5842,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "resize",
           description: "Resizes an existing cluster for running containers.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6054,7 +6039,7 @@ export const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update cluster settings for an existing container cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6741,7 +6726,7 @@ export const completionSpec: Fig.Spec = {
           name: "upgrade",
           description:
             "Upgrade the Kubernetes version of an existing container cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7084,12 +7069,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-server-config",
       description: "Get Kubernetes Engine server config.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -7267,7 +7251,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "hub",
@@ -7282,7 +7265,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a new membership for a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7466,7 +7449,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a membership.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7621,7 +7604,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a membership.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7771,7 +7754,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List memberships.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7945,12 +7928,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "register",
               description: "Register a cluster with Hub.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8162,7 +8144,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "unregister",
               description: "Unregister a cluster from Hub.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8344,7 +8326,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a membership.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8650,7 +8632,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -8781,7 +8762,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "images",
@@ -8790,7 +8770,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-tag",
           description: "Adds tags to existing image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8937,7 +8917,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete existing images.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9083,7 +9063,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Lists information about the specified image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9224,7 +9204,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing images.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9408,12 +9388,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list-tags",
           description: "List tags and digests for the specified image.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9594,7 +9573,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "untag",
           description: "Remove existing image tags.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9861,7 +9840,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "node-pools",
@@ -9871,7 +9849,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a node pool in a running cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--accelerator",
@@ -10355,7 +10333,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing node pool in a running cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10529,7 +10507,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an existing node pool for a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10698,7 +10676,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing node pools for a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10901,12 +10879,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "rollback",
           description: "Rollback a node-pool upgrade.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11080,7 +11057,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates a node pool in a running cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11475,7 +11452,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -11485,7 +11461,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11644,7 +11620,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List operations for container clusters.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11832,12 +11808,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description: "Poll an operation for completion.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12141,7 +12116,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "subnets",
@@ -12152,7 +12126,7 @@ export const completionSpec: Fig.Spec = {
           name: "list-usable",
           description:
             "List subnets usable for cluster creation in a specific project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12336,7 +12310,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -12467,7 +12440,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -12591,5 +12563,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };
