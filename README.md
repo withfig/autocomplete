@@ -5,15 +5,15 @@
 ---
 
 ![os](https://img.shields.io/badge/os-%20macOS-light)
-[![Signup](https://img.shields.io/badge/signup-private%20beta-blueviolet)](https://withfig.com?ref=github_autocomplete)
-[![Documentation](https://img.shields.io/badge/documentation-black)](https://withfig.com/docs/autocomplete/getting-started)
+[![Signup](https://img.shields.io/badge/signup-private%20beta-blueviolet)](https://fig.io?ref=github_autocomplete)
+[![Documentation](https://img.shields.io/badge/documentation-black)](https://fig.io/docs/autocomplete/getting-started)
 [![All-Contributors](https://img.shields.io/github/all-contributors/withfig/autocomplete)](#Contributors)
-[![Slack](https://img.shields.io/badge/slack-purple)](https://withfig.com/community)
+![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
 [![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://withfig.com?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
+**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to the terminal.** As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
-![Fig Visual Autocomplete For Your Terminal Demo](https://withfig.com/gifs/demo-with-header.gif)
+![Fig Visual Autocomplete For Your Terminal Demo](https://fig.io/gifs/demo-with-header.gif)
 
 ## Add a completion spec for a CLI tool
 
@@ -21,7 +21,7 @@ Looking to improve autocomplete functionality or add support for your favorite C
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions can be generated dynamically by running shell commands or reading local files, in addition to the information in the spec itself.
 
-**For more documentation and tutorials**, visit [withfig.com/docs](https://withfig.com/docs/autocomplete/getting-started)
+**For more documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs/autocomplete/getting-started)
 
 **To request completions for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -64,6 +64,16 @@ npm run copy:all
 npm run copy <spec-name>
 ```
 
+## Need Help?
+
+<p align="center">
+    Join our community
+<br/>
+<a href="https://fig.io/community">
+    <img src="http://fig.io/icons/discord-logo-square.png" width="80px" height="80px" /> 
+</a>
+</p>
+
 ## FAQ
 
 #### What terminals does Fig work with?
@@ -80,15 +90,15 @@ Currently, Fig is only available on MacOS.
 
 #### How can I get access?
 
-Sign up for the waitlist at [withfig.com](https://withfig.com?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week.
+Sign up for the waitlist at [fig.io](https://fig.io?ref=github-autocomplete). Fig is currently in a private beta. We are onboarding batches of new users each week.
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 
-Yes! Check out our guide on how to [get started building autocomplete specs](https://withfig.com/docs/autocomplete/getting-started).
+Yes! Check out our guide on how to [get started building autocomplete specs](https://fig.io/docs/autocomplete/getting-started).
 
 #### Did we miss something?
 
-Get in touch at hello@withfig.com or chat with us on [Slack](https://withfig.com/community)
+Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community)
 
 ## Contributors ✨
 

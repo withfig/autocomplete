@@ -121,6 +121,26 @@ const configList: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
+  generateSpec: async (_context, executeShellCommand) => {
+    const { script, postProcess } = packageList;
+    const packages = postProcess(
+      await executeShellCommand(script as string)
+    ).map(({ name }) => name as string);
+
+    const cli = ["vue", "nuxt", "expo", "jest", "next"];
+    const subcommands = packages
+      .filter((name) => cli.includes(name))
+      .map((name) => ({
+        name,
+        loadSpec: name,
+        icon: "fig://icon?type=package",
+      }));
+
+    return {
+      name: "yarn",
+      subcommands,
+    } as Fig.Spec;
+  },
   args: [
     {
       generators: getScriptsGenerator,
@@ -666,17 +686,14 @@ export const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "output usage information",
-      options: [],
     },
     {
       name: "import",
       description: "Generates yarn.lock from an npm package-lock.json file",
-      options: [],
     },
     {
       name: "info",
       description: "Show information about a package",
-      options: [],
     },
     {
       name: "init",
@@ -797,7 +814,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "licenses",
       description: "",
-      options: [],
+
       subcommands: [
         {
           name: "list",
@@ -812,7 +829,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "link",
       description: "Symlink a package folder during development",
-      options: [],
+
       args: {
         name: "package",
       },
@@ -834,27 +851,23 @@ export const completionSpec: Fig.Spec = {
     {
       name: "login",
       description: "Store registry username and email",
-      options: [],
     },
     {
       name: "logout",
       description: "Clear registry username and email",
-      options: [],
     },
     {
       name: "node",
       description: "",
-      options: [],
     },
     {
       name: "outdated",
       description: "Checks for outdated package dependencies",
-      options: [],
     },
     {
       name: "owner",
       description: "Manage package owners",
-      options: [],
+
       subcommands: [
         {
           name: "list",
@@ -884,17 +897,15 @@ export const completionSpec: Fig.Spec = {
     {
       name: "policies",
       description: "Defines project-wide policies for your project",
-      options: [],
     },
     {
       name: "publish",
       description: "Publishes a package to the npm registry",
-      options: [],
     },
     {
       name: "remove",
       description: "remove installed package",
-      options: [],
+
       args: [
         {
           generators: packageList,
@@ -904,7 +915,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "",
-      options: [],
+
       args: [
         // TODO get this generator to work and combine the logic of both of these
         //     {
@@ -929,33 +940,27 @@ export const completionSpec: Fig.Spec = {
     {
       name: "tag",
       description: "Add, remove, or list tags on a package",
-      options: [],
     },
     {
       name: "team",
       description: "Maintain team memberships",
-      options: [],
     },
     {
       name: "unlink",
       description: "Unlink a previously created symlink for a package",
-      options: [],
     },
     {
       name: "unplug",
       description: "",
-      options: [],
     },
     {
       name: "upgrade",
       description:
         "Upgrades packages to their latest version based on the specified range",
-      options: [],
     },
     {
       name: "upgrade-interactive",
       description: "Upgrades packages in interactive mode",
-      options: [],
     },
     {
       name: "version",
@@ -979,17 +984,15 @@ export const completionSpec: Fig.Spec = {
       name: "versions",
       description:
         "Displays version information of the currently installed Yarn, Node.js, and its dependencies",
-      options: [],
     },
     {
       name: "why",
       description: "Show information about why a package is installed",
-      options: [],
     },
     {
       name: "workspace",
       description: "Manage workspace",
-      options: [],
+
       args: [
         {
           name: "name",

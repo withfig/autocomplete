@@ -69,7 +69,7 @@ declare namespace Fig {
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
      * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
-     * colorful and fun systems icons: https://withfig.com/docs/autocomplete/reference/icon-api
+     * colorful and fun systems icons: https://fig.io/docs/autocomplete/reference/icon-api
      *
      * @example
      * `A`, `😊`
@@ -93,7 +93,7 @@ declare namespace Fig {
      * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the prioritiy will be increased by the timestamp of when that suggestion was selected as a decimal.
      *
      *
-     * @examlpes
+     * @examples
      * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
@@ -128,7 +128,7 @@ declare namespace Fig {
      * @example
      * For npm, the subcommand is `npm install` would have "name: install" (no extra spaces or characters, exactly like this)
      */
-    name: string;
+    name: string | string[];
 
     /**
      * A list of subcommands for this spec.
@@ -174,7 +174,7 @@ declare namespace Fig {
      *
      * If your CLI tool takes another CLI command (e.g. time , builtin... ) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in {@link {https://withfig.com/docs/autocomplete/api#arg-object | Arg}.
+     * script, see `isCommand` and `isScript` in {@link {https://fig.io/docs/autocomplete/api#arg-object | Arg}.
      */
     loadSpec?: string;
     /**
@@ -218,6 +218,45 @@ declare namespace Fig {
      * `args: {}`
      */
     args?: SingleOrArray<Arg>;
+    /**
+     *
+     * Signals whether an option is required. The default is an option is NOT required.
+     *
+     * Currently, signalling that an option is required doesn't do anything, however, Fig will handle it in the future
+     *
+     * @example
+     * The "-m" option of git commit is required
+     *
+     */
+    required?: boolean;
+    /**
+     *
+     * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
+     * The default is an option is NOT mutually exclusive with any other options
+     *
+     * Currently, signalling mutually exclusive options doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * You might see `[-a | --interactive | --patch]` in a man page. This means each of these options are mutually exclusive on each other.
+     * If we were defining the exclusive prop of the "-a" option, then we would have `exclusive: ["--interactive", "--patch"]`
+     *
+     *
+     */
+    exclusive?: string[];
+    /**
+     *
+     * Signals whether an option depends other options. Define this as an array of strings of the option names.
+     * The default is an option does NOT depend on any other options
+     *
+     * Currently, signalling dependsOn doesn't do anything in Fig, however, Fig will handle it in the future.
+     *
+     * @example
+     * In a tool like firebase, we may want to delete a specific extension. The command might be `firebase delete --project ABC --extension 123` This would mean we delete the 123 extension from the ABC project.
+     * In this case, `--extension ` dependsOn `--project`
+     *
+     *
+     */
+    dependsOn?: string[];
   }
 
   export interface Arg {
@@ -292,11 +331,18 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
+     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     *
+     * @example
+     * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
+     */
+    isModule?: string;
+    /**
      * Exactly the same as the `isCommand` prop except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
-     * See our docs for more on this {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
+     * See our docs for more on this {@link https://fig.io/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
      */
     isScript?: boolean;
 
@@ -307,10 +353,15 @@ declare namespace Fig {
      * NPM install and pip install send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
+    /**
+     * The default value for an optional argument. This is just a string
+     *
+     */
+    default?: string;
   }
 
   /**
-   * @see https://withfig.com/docs/autocomplete/api#generator-object
+   * @see https://fig.io/docs/autocomplete/api#generator-object
    */
   export interface Generator {
     /**
@@ -403,10 +454,12 @@ declare namespace Fig {
      *
      * @example
      * ```
-     * custom: (context) => {
-     *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => {name: elm})
-     * }
+     * const generator: Fig.Generator = {
+     *   custom: (context) => {
+     *     const out = await executeShellCommand("ls");
+     *     return out.split("\n").map((elm) => ({ name: elm }));
+     *   },
+     * };
      * ```
      */
     custom?: (
@@ -427,7 +480,7 @@ declare namespace Fig {
 
   export interface Cache {
     /**
-     * Time to live for the cache in seconds
+     * Time to live for the cache in milliseconds
      *
      * @example
      * 3600

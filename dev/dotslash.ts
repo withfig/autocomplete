@@ -2,7 +2,6 @@
 
 export const completionSpec: Fig.Spec = {
   name: "dotslash",
-  description: "Change the shell working directory",
   args: {
     template: "filepaths",
   },

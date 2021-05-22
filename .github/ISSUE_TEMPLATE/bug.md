@@ -8,7 +8,7 @@ labels: "Bug"
   Please fill out each section below, otherwise, your issue will be closed. This info allows Fig maintainers to diagnose (and fix!) your issue as quickly as possible.
 
   Useful Links:
-  - Documentation: https://withfig.com/docs/autocomplete/getting-started
+  - Documentation: https://fig.io/docs/autocomplete/getting-started
 
   Before opening a new issue, please search existing issues: https://github.com/withfig/autocomplete/issues
 -->
@@ -35,11 +35,11 @@ What happened.
 
 ### System Information
 
-*Fig Version:* 
+_Fig Version:_
 
-*OS:*
+_OS:_
 
-*Device:*
+_Device:_
 
 ### Potential Solution
 
