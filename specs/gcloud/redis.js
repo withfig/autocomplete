@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Memorystore Redis instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -252,7 +251,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a Redis instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -392,7 +390,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show metadata for a Memorystore Redis instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -528,7 +525,6 @@ var completionSpec = {
                 {
                     name: "export",
                     description: "Export data from a Memorystore Redis instance to Google Cloud Storage.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -673,7 +669,6 @@ var completionSpec = {
                 {
                     name: "failover",
                     description: "Failover a standard tier Cloud Memorystore for Redis instance from the master node to its replica.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -822,7 +817,6 @@ var completionSpec = {
                 {
                     name: "import",
                     description: "Import data to a Memorystore Redis instance from Google Cloud Storage.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -967,7 +961,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Memorystore Redis instances.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1132,12 +1125,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update Memorystore Redis instances.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1335,7 +1326,6 @@ var completionSpec = {
                 {
                     name: "upgrade",
                     description: "Upgrade a Memorystore for Redis instance to a specified Redis version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1598,7 +1588,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -1607,7 +1596,6 @@ var completionSpec = {
                 {
                     name: "cancel",
                     description: "Cancel a Memorystore Redis import or export operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1743,7 +1731,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show metadata for a Memorystore Redis operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1879,7 +1866,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Memorystore Redis operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2044,7 +2030,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2162,7 +2147,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "regions",
@@ -2171,7 +2155,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show metadata for a Memorystore Redis region.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2298,7 +2281,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Memorystore Redis regions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2454,7 +2436,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2572,7 +2553,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "zones",
@@ -2581,7 +2561,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Memorystore Redis zones.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2742,7 +2721,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2860,7 +2838,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2971,6 +2948,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

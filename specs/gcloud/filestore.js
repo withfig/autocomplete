@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Filestore instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -205,7 +204,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a Cloud Filestore instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -354,7 +352,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show metadata for a Cloud Filestore instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -499,7 +496,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Cloud Filestore instances.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -673,12 +669,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update a Cloud Filestore instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -980,7 +974,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "locations",
@@ -989,7 +982,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "*(DEPRECATED)*  Describe a Cloud Filestore location.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1116,7 +1108,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "*(DEPRECATED)*  List all Cloud Filestore locations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1272,7 +1263,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1390,7 +1380,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -1399,7 +1388,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Filestore operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1544,7 +1532,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List all Cloud Filestore operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1718,7 +1705,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1836,7 +1822,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "regions",
@@ -1845,7 +1830,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Filestore regions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1997,7 +1981,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2115,7 +2098,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "zones",
@@ -2124,7 +2106,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Filestore zones.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2276,7 +2257,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2394,7 +2374,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2505,6 +2484,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

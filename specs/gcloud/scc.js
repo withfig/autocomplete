@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an asset given its resource name or asset id.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -154,7 +153,6 @@ var completionSpec = {
                 {
                     name: "get-parent",
                     description: "Get the Parent for an asset given its resource name or asset id.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -299,7 +297,6 @@ var completionSpec = {
                 {
                     name: "get-project",
                     description: "Get the Project for an asset given its resource name or asset id.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -444,7 +441,6 @@ var completionSpec = {
                 {
                     name: "group",
                     description: "Filter an organization's assets and groups them by their specified properties.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -625,7 +621,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Cloud Security Command Center assets.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -833,7 +828,6 @@ var completionSpec = {
                 {
                     name: "list-marks",
                     description: "List an assets's security marks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1023,7 +1017,6 @@ var completionSpec = {
                 {
                     name: "run-discovery",
                     description: "Scan an organization for new/modified/deleted assets.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1150,7 +1143,6 @@ var completionSpec = {
                 {
                     name: "update-marks",
                     description: "Update Cloud Security Command Center asset's security marks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1426,7 +1418,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "findings",
@@ -1435,7 +1426,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Security Command Center finding.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1636,7 +1626,6 @@ var completionSpec = {
                 {
                     name: "group",
                     description: "Filter an organization or source's findings and groups them by their specified properties.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1826,7 +1815,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List an organization or source's findings.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2043,7 +2031,6 @@ var completionSpec = {
                 {
                     name: "list-marks",
                     description: "List a finding's security marks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2242,7 +2229,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update a Cloud Security Command Center finding.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2432,7 +2418,6 @@ var completionSpec = {
                 {
                     name: "update-marks",
                     description: "Update Cloud Security Command Center finding's security marks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2717,7 +2702,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "notifications",
@@ -2726,7 +2710,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Security Command Center notification config.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2890,7 +2873,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a Cloud Security Command Center notification config.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3026,7 +3008,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Security Command Center notification config.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3162,7 +3143,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Cloud Security Command Center notification configs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3325,7 +3305,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update a Cloud Security Command Center notification config.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3601,7 +3580,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -3610,7 +3588,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud SCC's long running scan operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3859,7 +3836,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "sources",
@@ -3868,7 +3844,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a source given its display name or source id.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4126,7 +4101,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -4237,6 +4211,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

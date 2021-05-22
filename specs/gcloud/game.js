@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Location.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -136,7 +135,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Locations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -292,7 +290,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -410,7 +407,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -419,7 +415,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -555,7 +550,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -720,7 +714,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -838,7 +831,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "servers",
@@ -851,7 +843,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a Game Server Cluster.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1048,7 +1039,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a Game Server Cluster.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1207,7 +1197,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe a Game Server Cluster.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1352,7 +1341,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List Game Server Clusters.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1526,12 +1514,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "update",
                             description: "Update a Game Server Cluster.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1834,7 +1820,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "configs",
@@ -1843,7 +1828,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a Game Server Config.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2029,7 +2013,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a Game Server Config.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2178,7 +2161,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe a Game Server Config.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2323,7 +2305,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List Configs.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2497,7 +2478,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -2615,7 +2595,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "deployments",
@@ -2624,7 +2603,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a Deployment.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2782,7 +2760,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a Deployment.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2922,7 +2899,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe a Deployment.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3058,7 +3034,6 @@ var completionSpec = {
                         {
                             name: "describe-rollout",
                             description: "Describe a Rollout.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3194,7 +3169,6 @@ var completionSpec = {
                         {
                             name: "fetch-state",
                             description: "Fetches the state of a Deployment.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3330,7 +3304,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List Deployments.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3495,12 +3468,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "update",
                             description: "Update a Deployment.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3671,7 +3642,6 @@ var completionSpec = {
                         {
                             name: "update-rollout",
                             description: "Update a Deployment Rollout.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3960,7 +3930,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "realms",
@@ -3969,7 +3938,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a Realm.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4137,7 +4105,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a Realm.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4277,7 +4244,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe a Realm.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4413,7 +4379,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List Realms.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4578,12 +4543,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "update",
                             description: "Update a Realm.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4886,7 +4849,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -5004,7 +4966,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -5115,6 +5076,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

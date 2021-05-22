@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "add-iam-policy-binding",
             description: "Add IAM policy binding for an organization.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -170,7 +169,6 @@ var completionSpec = {
         {
             name: "describe",
             description: "Show metadata for an organization.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -297,7 +295,6 @@ var completionSpec = {
         {
             name: "get-iam-policy",
             description: "Get IAM policy for an organization.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -460,7 +457,6 @@ var completionSpec = {
         {
             name: "list",
             description: "List organizations accessible by the active account.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -616,12 +612,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "remove-iam-policy-binding",
             description: "Remove IAM policy binding for an organization.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -790,7 +784,6 @@ var completionSpec = {
         {
             name: "set-iam-policy",
             description: "Set IAM policy for an organization.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1028,6 +1021,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

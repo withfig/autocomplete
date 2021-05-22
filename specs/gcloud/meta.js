@@ -13,7 +13,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe the details of a collection for an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -149,7 +148,6 @@ var completionSpec = {
                         {
                             name: "lint",
                             description: "Show which collections have non-compliant list API methods.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -310,12 +308,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "list",
                             description: "List the resource collections for an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -476,7 +472,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -594,12 +589,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "describe",
                     description: "Describe the details of an API registered in gcloud.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -739,7 +732,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe the details of an API in discovery service.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -866,7 +858,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List the APIs available via discovery service.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1013,7 +1004,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -1131,12 +1121,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "list",
                     description: "List the APIs registered in gcloud.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1279,7 +1267,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "messages",
@@ -1288,7 +1275,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe the details of a proto message in an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1434,7 +1420,6 @@ var completionSpec = {
                         {
                             name: "generate-export-schemas",
                             description: "Generate YAML export schemas for a message in a given API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1589,7 +1574,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List the proto messages for an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1751,7 +1735,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -1869,7 +1852,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "methods",
@@ -1878,7 +1860,6 @@ var completionSpec = {
                         {
                             name: "call",
                             description: "Calls an API method with specific parameters.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2028,7 +2009,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe the details of a collection for an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2174,7 +2154,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List the methods of a resource collection for an API.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2336,7 +2315,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -2454,12 +2432,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "regen",
                     description: "Regenerate given API(s) in gcloud.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2726,7 +2702,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "cache",
@@ -2739,7 +2714,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List all Cloud SDK command argument completer objects.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2895,12 +2869,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "run",
                             description: "Cloud SDK completer module tester.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3198,12 +3170,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "delete",
                     description: "Delete a persistent cache or tables in the cache.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3339,7 +3309,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the tables or table contents in a persistent cache.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3628,7 +3597,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "cli-trees",
@@ -3637,7 +3605,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the installed gcloud interactive CLI trees.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3762,12 +3729,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Updates gcloud CLI command trees in the installation directory.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3914,7 +3879,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -4032,12 +3996,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "debug",
             description: "Run an interactive debug console with the Cloud SDK libraries loaded.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4162,7 +4124,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "flag-coverage-tree",
@@ -4171,7 +4132,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Generates the flag coverage tree.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4421,12 +4381,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "generate-command",
             description: "Generate YAML file to implement given command.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4562,7 +4520,6 @@ var completionSpec = {
         {
             name: "generate-help-docs",
             description: "Generate and/or update help document directories.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4746,7 +4703,6 @@ var completionSpec = {
         {
             name: "lint",
             description: "Validate gcloud flags according to Cloud SDK CLI Style.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4873,7 +4829,6 @@ var completionSpec = {
         {
             name: "list-commands",
             description: "List all possible gcloud commands excluding flags.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -5016,7 +4971,6 @@ var completionSpec = {
         {
             name: "list-files-for-upload",
             description: "List files for upload.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -5143,7 +5097,6 @@ var completionSpec = {
         {
             name: "list-from-json",
             description: "Read JSON data and list it on the standard output.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -5306,7 +5259,6 @@ var completionSpec = {
         {
             name: "list-gcloud",
             description: "List the gcloud CLI command tree with flag, positional and help details.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -5435,12 +5387,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "render-markdown",
             description: "Uses gcloud's markdown renderer to render the given markdown file.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -5587,7 +5537,6 @@ var completionSpec = {
                 {
                     name: "generate",
                     description: "Cloud SDK resource test URI generator.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5731,12 +5680,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "parse",
                     description: "Cloud SDK resource parser module tester.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6038,12 +5985,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "test",
             description: "Run miscellaneous gcloud command and CLI test scenarios.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -6248,7 +6193,6 @@ var completionSpec = {
         {
             name: "validate-yaml",
             description: "Validate a YAML file against a JSON Schema.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -6486,6 +6430,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

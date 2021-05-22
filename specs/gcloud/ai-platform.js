@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "cancel",
                     description: "Cancel a running AI Platform job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -136,7 +135,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an AI Platform job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -267,7 +265,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing AI Platform jobs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -423,12 +420,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "stream-logs",
                     description: "Show logs from a running AI Platform job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -581,7 +576,6 @@ var completionSpec = {
                         {
                             name: "prediction",
                             description: "Start an AI Platform batch prediction job.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -811,7 +805,6 @@ var completionSpec = {
                         {
                             name: "training",
                             description: "Submit an AI Platform training job.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1328,12 +1321,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update an AI Platform job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1595,7 +1586,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "local",
@@ -1604,7 +1594,6 @@ var completionSpec = {
                 {
                     name: "predict",
                     description: "Run prediction locally.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1775,12 +1764,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "train",
                     description: "Run an AI Platform training job locally.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2088,7 +2075,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "models",
@@ -2097,7 +2083,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding for a model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2267,7 +2252,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a new AI Platform model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2434,7 +2418,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an existing AI Platform model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2584,7 +2567,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an existing AI Platform model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2734,7 +2716,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2920,7 +2901,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing AI Platform models.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3099,12 +3079,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding for a model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3274,7 +3252,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3429,7 +3406,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update an existing AI Platform model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3723,7 +3699,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -3732,7 +3707,6 @@ var completionSpec = {
                 {
                     name: "cancel",
                     description: "Cancel an AI Platform operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3882,7 +3856,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an AI Platform operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4032,7 +4005,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing AI Platform jobs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4211,12 +4183,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "wait",
                     description: "Wait for an AI Platform operation to complete.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4479,12 +4449,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "predict",
             description: "Run AI Platform online prediction.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4669,7 +4637,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "versions",
@@ -4678,7 +4645,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a new AI Platform version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--accelerator",
@@ -4932,7 +4898,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an existing AI Platform version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5092,7 +5057,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an existing AI Platform version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5252,7 +5216,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing AI Platform versions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5441,12 +5404,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set-default",
                     description: "Sets an existing AI Platform version as the default for its model.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5606,7 +5567,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update an AI Platform version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5918,7 +5878,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -6029,6 +5988,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

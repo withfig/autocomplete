@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding for a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -191,7 +191,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -353,12 +353,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -498,7 +497,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -638,7 +637,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-ancestors-iam-policy",
           description: "Get IAM policies for a folder and its ancestors.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -819,7 +818,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -999,7 +998,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List folders accessible by the active account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1191,13 +1190,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "move",
           description:
             "Move a folder to a new position within the same organization.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1360,7 +1358,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding for a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1547,7 +1545,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1692,7 +1690,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "undelete",
           description: "Undelete a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1832,7 +1830,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update the display name of a folder.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2109,7 +2107,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "org-policies",
@@ -2119,7 +2116,7 @@ export const completionSpec: Fig.Spec = {
           name: "allow",
           description:
             "Add values to an Organization Policy allowed_values list policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2273,7 +2270,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an Organization Policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2422,7 +2419,7 @@ export const completionSpec: Fig.Spec = {
           name: "deny",
           description:
             "Add values to an Organization Policy denied_values list policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2576,7 +2573,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an Organization Policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2729,7 +2726,7 @@ export const completionSpec: Fig.Spec = {
           name: "disable-enforce",
           description:
             "Turns off enforcement of boolean Organization Policy constraint.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2878,7 +2875,7 @@ export const completionSpec: Fig.Spec = {
           name: "enable-enforce",
           description:
             "Turns on enforcement of boolean Organization Policy constraint.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3027,7 +3024,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List Organization Policies associated with the specified resource.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3214,12 +3211,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-policy",
           description: "Set Organization Policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3493,7 +3489,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3617,5 +3612,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

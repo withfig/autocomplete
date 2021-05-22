@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes all entries from a log.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -136,7 +135,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists your project's logs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -279,7 +277,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -397,7 +394,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "metrics",
@@ -406,7 +402,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a logs-based metric.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -553,7 +548,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a logs-based metric.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -680,7 +674,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Shows the definition of a logs-based metric.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -807,7 +800,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Displays all logs-based metrics.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -950,12 +942,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Updates the definition of a logs-based metric.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1213,12 +1203,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "read",
             description: "Read log entries.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1394,7 +1382,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists all available resource descriptors.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1537,7 +1524,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1655,7 +1641,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "sinks",
@@ -1664,7 +1649,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a sink.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1827,7 +1811,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a sink.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1972,7 +1955,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Displays information about a sink.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2117,7 +2099,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists the defined sinks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2278,12 +2259,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Updates a sink.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2555,12 +2534,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "write",
             description: "Write a log entry.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -2844,6 +2821,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

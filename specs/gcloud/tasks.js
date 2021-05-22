@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "create-app-engine-task",
             description: "Create and add a task that targets App Engine.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -205,7 +204,6 @@ var completionSpec = {
         {
             name: "create-http-task",
             description: "Create and add a task that targets a HTTP endpoint.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -435,7 +433,6 @@ var completionSpec = {
         {
             name: "delete",
             description: "Delete a task from a queue.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -571,7 +568,6 @@ var completionSpec = {
         {
             name: "describe",
             description: "Show details about a task.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -716,7 +712,6 @@ var completionSpec = {
         {
             name: "list",
             description: "List tasks.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -882,7 +877,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "locations",
@@ -891,7 +885,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show details about a location.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1018,7 +1011,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists the locations where Cloud Tasks is available.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1174,7 +1166,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1292,7 +1283,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "queues",
@@ -1301,7 +1291,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding for a tasks queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1457,7 +1446,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Tasks queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1665,7 +1653,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1792,7 +1779,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show details about a queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1919,7 +1905,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2091,7 +2076,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List all queues.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2247,12 +2231,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "pause",
                     description: "Pause a queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2379,7 +2361,6 @@ var completionSpec = {
                 {
                     name: "purge",
                     description: "Purge a queue by deleting all of its tasks.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2506,7 +2487,6 @@ var completionSpec = {
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding of tasks queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2662,7 +2642,6 @@ var completionSpec = {
                 {
                     name: "resume",
                     description: "Request to resume a paused or disabled queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2789,7 +2768,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2930,7 +2908,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update a Cloud Tasks queue.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3287,12 +3264,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "run",
             description: "Force a task to run now.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -3534,6 +3509,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

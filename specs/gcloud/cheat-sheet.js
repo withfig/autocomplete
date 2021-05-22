@@ -1,7 +1,6 @@
 var completionSpec = {
     name: "cheat-sheet",
     description: "Display gcloud cheat sheet.",
-    subcommands: [],
     options: [
         {
             name: "--account",
@@ -110,6 +109,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

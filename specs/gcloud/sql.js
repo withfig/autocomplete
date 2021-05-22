@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a backup of a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -157,12 +156,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "delete",
                     description: "Delete a backup of a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -303,7 +300,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Retrieves information about a backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -440,7 +436,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists all backups associated with a given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -606,12 +601,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "restore",
                     description: "Restores a backup of a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -874,12 +867,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "connect",
             description: "Connects to a Cloud SQL instance.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1028,7 +1019,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a database for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1187,7 +1177,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a Cloud SQL database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1324,7 +1313,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Displays configuration and metadata about a Cloud SQL database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1461,7 +1449,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists databases for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1627,12 +1614,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "patch",
                     description: "Patches the settings of a Cloud SQL database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1904,7 +1889,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "export",
@@ -1913,7 +1897,6 @@ var completionSpec = {
                 {
                     name: "bak",
                     description: "Export data from a Cloud SQL instance to a BAK file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2058,7 +2041,6 @@ var completionSpec = {
                 {
                     name: "csv",
                     description: "Exports data from a Cloud SQL instance to a CSV file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2217,7 +2199,6 @@ var completionSpec = {
                 {
                     name: "sql",
                     description: "Exports data from a Cloud SQL instance to a SQL file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2488,7 +2469,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "flags",
@@ -2497,7 +2477,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List customizable flags for Google Cloud SQL instances.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2675,7 +2654,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2793,7 +2771,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "import",
@@ -2802,7 +2779,6 @@ var completionSpec = {
                 {
                     name: "bak",
                     description: "Import data into a Cloud SQL instance from a BAK file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2981,7 +2957,6 @@ var completionSpec = {
                 {
                     name: "csv",
                     description: "Imports data into a Cloud SQL instance from a CSV file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3155,7 +3130,6 @@ var completionSpec = {
                 {
                     name: "sql",
                     description: "Imports data into a Cloud SQL instance from a SQL dump file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3422,7 +3396,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "instances",
@@ -3431,7 +3404,6 @@ var completionSpec = {
                 {
                     name: "clone",
                     description: "Clones a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3596,7 +3568,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a new Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4083,7 +4054,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4214,7 +4184,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Displays configuration and metadata about a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4341,7 +4310,6 @@ var completionSpec = {
                 {
                     name: "export",
                     description: "*(DEPRECATED)*  Exports data from a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4495,7 +4463,6 @@ var completionSpec = {
                 {
                     name: "failover",
                     description: "Causes a high-availability Cloud SQL instance to failover.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4626,7 +4593,6 @@ var completionSpec = {
                 {
                     name: "import",
                     description: "*(DEPRECATED)*  Imports data into a Cloud SQL instance from Google Cloud Storage.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4771,7 +4737,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists Cloud SQL instances in a given project.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4927,12 +4892,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "patch",
                     description: "Updates the settings of a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5352,7 +5315,6 @@ var completionSpec = {
                 {
                     name: "promote-replica",
                     description: "Promotes Cloud SQL read replica to a stand-alone instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5483,7 +5445,6 @@ var completionSpec = {
                 {
                     name: "reset-ssl-config",
                     description: "Deletes all client certificates and generates a new server certificate.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5614,7 +5575,6 @@ var completionSpec = {
                 {
                     name: "restart",
                     description: "Restarts a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5745,7 +5705,6 @@ var completionSpec = {
                 {
                     name: "restore-backup",
                     description: "Restores a backup of a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6007,7 +5966,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -6016,7 +5974,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Retrieves information about a Cloud SQL instance operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6143,7 +6100,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists all instance operations for the given Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6309,12 +6265,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "wait",
                     description: "Waits for one or more operations to complete.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6563,12 +6517,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "reschedule-maintenance",
             description: "Reschedule a Cloud SQL instance's maintenance.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -6726,7 +6678,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a client certificate for a Cloud SQL instance.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -6868,7 +6819,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a client certificate for a Cloud SQL instance.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -7009,7 +6959,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Retrieve information about a client cert for a Cloud SQL instance.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -7146,7 +7095,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List all client certs for a Cloud SQL instance.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -7312,7 +7260,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -7430,7 +7377,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -7548,7 +7494,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "ssl-certs",
@@ -7557,7 +7502,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "*(DEPRECATED)*  Creates an SSL certificate for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7699,7 +7643,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "*(DEPRECATED)*  Deletes an SSL certificate for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7840,7 +7783,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "*(DEPRECATED)*  Retrieves information about an SSL cert for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7977,7 +7919,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "*(DEPRECATED)*  Lists all SSL certs for a Cloud SQL instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -8143,7 +8084,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -8261,7 +8201,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "tiers",
@@ -8270,7 +8209,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists all available service tiers for Google Cloud SQL.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -8426,7 +8364,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -8544,7 +8481,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "users",
@@ -8553,7 +8489,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a user in a given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -8712,7 +8647,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a Cloud SQL user in a given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -8862,7 +8796,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists Cloud SQL users in a given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -9028,12 +8961,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set-password",
                     description: "Changes a user's password in a given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -9309,7 +9240,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -9420,6 +9350,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -187,7 +186,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a managed Microsoft Active Directory domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -318,7 +316,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -445,7 +442,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Describe the IAM policy for a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -608,7 +604,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Managed Microsoft AD domains.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -760,12 +755,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "reset-admin-password",
                     description: "Reset the admin password for a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -892,7 +885,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1028,7 +1020,6 @@ var completionSpec = {
                         {
                             name: "create",
                             description: "Create a Microsoft Active Directory Trust between a Managed Microsoft AD domain and another domain.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1219,7 +1210,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete an Active Directory Trust between a Managed Microsoft AD domain and a target domain.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1360,7 +1350,6 @@ var completionSpec = {
                         {
                             name: "update",
                             description: "Update target DNS IP addresses for a Managed Microsoft AD trust.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1511,7 +1500,6 @@ var completionSpec = {
                         {
                             name: "validate-state",
                             description: "Validate the state of a Managed Microsoft AD trust.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1765,12 +1753,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update a Managed Microsoft AD domain.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2072,7 +2058,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -2081,7 +2066,6 @@ var completionSpec = {
                 {
                     name: "cancel",
                     description: "Cancel a Managed Microsoft AD operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2208,7 +2192,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Managed Microsoft AD operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2335,7 +2318,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Managed Microsoft AD operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2487,7 +2469,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2605,7 +2586,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2716,6 +2696,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

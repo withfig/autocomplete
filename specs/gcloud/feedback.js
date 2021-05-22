@@ -1,7 +1,6 @@
 var completionSpec = {
     name: "feedback",
     description: "Provide feedback to the Google Cloud SDK team.",
-    subcommands: [],
     options: [
         {
             name: "--account",
@@ -119,6 +118,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

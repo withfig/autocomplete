@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "browse",
             description: "Open the current app in a web browser.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -134,12 +133,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "create",
             description: "Create an App Engine app within the current Google Cloud Project.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -264,12 +261,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "deploy",
             description: "Deploy the local code and/or configuration of your app to App Engine.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -444,7 +439,6 @@ var completionSpec = {
         {
             name: "describe",
             description: "Display all data about an existing service.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -560,7 +554,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "domain-mappings",
@@ -569,7 +562,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a domain mapping.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -714,7 +706,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a specified domain mapping.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -841,7 +832,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describes a specified domain mapping.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -968,7 +958,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists domain mappings.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1124,12 +1113,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Updates a domain mapping.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1391,7 +1378,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "firewall-rules",
@@ -1400,7 +1386,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a firewall rule.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1556,7 +1541,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a specified firewall rule.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1683,7 +1667,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Prints the fields of a specified firewall rule.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1810,7 +1793,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists the firewall rules.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1966,12 +1948,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "test-ip",
                     description: "Display firewall rules that match a given IP.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2098,7 +2078,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Updates a firewall rule.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2365,12 +2344,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "gen-repo-info-file",
             description: "[DEPRECATED] Saves repository information in a file.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -2513,7 +2490,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "instances",
@@ -2522,7 +2498,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a specified instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2659,7 +2634,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Display all data about an existing instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2796,7 +2770,6 @@ var completionSpec = {
                 {
                     name: "disable-debug",
                     description: "Disable debug mode for an instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2932,7 +2905,6 @@ var completionSpec = {
                 {
                     name: "enable-debug",
                     description: "Enable debug mode for an instance (only works on the flexible environment).",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3068,7 +3040,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the instances affiliated with the current App Engine project.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3233,12 +3204,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "scp",
                     description: "SCP from or to the VM of an App Engine Flexible instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3387,7 +3356,6 @@ var completionSpec = {
                 {
                     name: "ssh",
                     description: "SSH into the VM of an App Engine Flexible instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3650,7 +3618,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "logs",
@@ -3659,7 +3626,6 @@ var completionSpec = {
                 {
                     name: "read",
                     description: "Reads log entries for the current App Engine app.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3818,12 +3784,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "tail",
                     description: "Streams logs for App Engine apps.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3973,7 +3937,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -4091,12 +4054,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "open-console",
             description: "Open the App Engine dashboard, or log viewer, in a web browser.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -4225,7 +4186,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -4234,7 +4194,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describes the operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4361,7 +4320,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4521,12 +4479,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "wait",
                     description: "Polls an operation until completion.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4766,7 +4722,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "regions",
@@ -4775,7 +4730,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the availability of flex and standard environments for each region.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4931,7 +4885,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -5049,7 +5002,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "services",
@@ -5058,7 +5010,6 @@ var completionSpec = {
                 {
                     name: "browse",
                     description: "Open the specified service(s) in a browser.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5189,7 +5140,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete services in the current project.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5316,7 +5266,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Display all data about an existing service.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5443,7 +5392,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List your existing services.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5599,12 +5547,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set-traffic",
                     description: "Set traffic splitting settings.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5754,7 +5700,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update service-level settings.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6008,7 +5953,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "ssl-certificates",
@@ -6017,7 +5961,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Uploads a new SSL certificate.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6163,12 +6106,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "delete",
                     description: "Deletes an SSL certificate.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6295,7 +6236,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describes a specified SSL certificate.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6422,7 +6362,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists the SSL certificates.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6578,12 +6517,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Updates an SSL certificate.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6850,12 +6787,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "update",
             description: "Updates an App Engine application.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -6975,7 +6910,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "versions",
@@ -6984,7 +6918,6 @@ var completionSpec = {
                 {
                     name: "browse",
                     description: "Open the specified versions in a browser.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7124,7 +7057,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a specified version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7260,7 +7192,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Display all data about an existing version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7397,7 +7328,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List your existing versions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7566,12 +7496,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "migrate",
                     description: "Migrate traffic from one version to another for a set of services.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7707,7 +7635,6 @@ var completionSpec = {
                 {
                     name: "start",
                     description: "Start serving specified versions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7843,7 +7770,6 @@ var completionSpec = {
                 {
                     name: "stop",
                     description: "Stop serving specified versions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -8092,7 +8018,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -8203,6 +8128,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

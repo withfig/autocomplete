@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "config-helper",
             description: "A helper for providing auth and config data to external tools.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -134,7 +133,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "configurations",
@@ -143,7 +141,6 @@ var completionSpec = {
                 {
                     name: "activate",
                     description: "Activates an existing named configuration.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -270,7 +267,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a new named configuration.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -401,7 +397,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Deletes a named configuration.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -528,7 +523,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describes a named configuration by listing its properties.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -659,7 +653,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "Lists existing named configurations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -802,7 +795,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -920,12 +912,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "get-value",
             description: "Print the value of a Cloud SDK property.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1052,7 +1042,6 @@ var completionSpec = {
         {
             name: "list",
             description: "List Cloud SDK properties for the currently active configuration.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1210,7 +1199,6 @@ var completionSpec = {
         {
             name: "set",
             description: "Set a Cloud SDK property.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1346,7 +1334,6 @@ var completionSpec = {
         {
             name: "unset",
             description: "Unset a Cloud SDK property.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1583,6 +1570,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

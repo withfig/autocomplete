@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "cancel",
             description: "Cancel an ongoing build.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -141,7 +140,6 @@ var completionSpec = {
         {
             name: "describe",
             description: "Get information about a particular build.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -277,7 +275,6 @@ var completionSpec = {
         {
             name: "list",
             description: "List builds.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -446,12 +443,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "log",
             description: "Stream the logs for a build.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -591,7 +586,6 @@ var completionSpec = {
         {
             name: "submit",
             description: "Submit a build using Google Cloud Build.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -944,6 +938,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

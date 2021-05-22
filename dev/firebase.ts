@@ -71,7 +71,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
 
     {
@@ -91,7 +90,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "apps:android:sha:delete",
@@ -110,7 +108,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "apps:create",
@@ -144,7 +141,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "auth:export",
@@ -175,7 +171,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "auth:import",
@@ -241,7 +236,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:get",
@@ -268,7 +262,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:instances:list",
@@ -280,7 +273,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:profile",
@@ -325,7 +317,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:push",
@@ -351,7 +342,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:remove",
@@ -376,7 +366,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:set",
@@ -407,7 +396,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:settings:get",
@@ -429,7 +417,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information ",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:settings:set",
@@ -454,7 +441,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information ",
         },
       ],
-      subcommands: [],
     },
     {
       name: "database:update",
@@ -485,7 +471,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "deploy",
@@ -522,7 +507,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "emulators:exec",
@@ -563,7 +547,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "emulators:export",
@@ -588,7 +571,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "emulators:start",
@@ -621,7 +603,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "experimental:functions:shell",
@@ -638,7 +619,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "ext:configure",
@@ -657,7 +637,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "ext:info",
@@ -677,7 +656,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "ext:uninstall",
@@ -697,7 +675,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "ext:update",
@@ -714,7 +691,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "firestore:delete",
@@ -748,7 +724,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "firestore:indexes",
@@ -764,7 +739,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "functions:config:clone",
@@ -790,7 +764,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "functions:config:get",
@@ -804,7 +777,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "functions:config:set",
@@ -820,7 +792,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "functions:log",
@@ -846,7 +817,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "functions:shell",
@@ -868,7 +838,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "help",
@@ -879,7 +848,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:channel:create",
@@ -904,7 +872,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:channel:delete",
@@ -927,7 +894,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:channel:deploy",
@@ -959,7 +925,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:channel:list",
@@ -975,7 +940,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:channel:open",
@@ -994,7 +958,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:clone",
@@ -1013,7 +976,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:disable",
@@ -1033,7 +995,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:sites:create",
@@ -1052,7 +1013,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:sites:delete",
@@ -1070,7 +1030,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:sites:get",
@@ -1084,7 +1043,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "hosting:sites:list",
@@ -1095,7 +1053,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "init",
@@ -1106,7 +1063,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "login",
@@ -1126,7 +1082,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "login:add",
@@ -1143,7 +1098,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "login:ci",
@@ -1160,7 +1114,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "login:list",
@@ -1171,7 +1124,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "login:use",
@@ -1185,7 +1137,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "logout",
@@ -1199,7 +1150,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "open",
@@ -1213,7 +1163,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "projects:addfirebase",
@@ -1225,7 +1174,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "projects:create",
@@ -1255,7 +1203,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "projects:list",
@@ -1266,7 +1213,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "remoteconfig:get",
@@ -1287,7 +1233,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "remoteconfig:rollback",
@@ -1309,7 +1254,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "remoteconfig:versions:list",
@@ -1327,7 +1271,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "serve",
@@ -1361,7 +1304,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "setup:emulators:database",
@@ -1372,7 +1314,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "setup:emulators:firestore",
@@ -1383,7 +1324,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "setup:emulators:pubsub",
@@ -1394,7 +1334,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "setup:emulators:ui",
@@ -1405,7 +1344,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "target",
@@ -1417,7 +1355,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "target:apply",
@@ -1440,7 +1377,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "target:clear",
@@ -1459,7 +1395,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "target:remove",
@@ -1478,7 +1413,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
     {
       name: "use",
@@ -1512,7 +1446,6 @@ export const completionSpec: Fig.Spec = {
           description: "output usage information",
         },
       ],
-      subcommands: [],
     },
   ],
 };

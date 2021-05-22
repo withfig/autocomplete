@@ -70,7 +70,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "build:ios",
@@ -180,7 +179,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "build:status",
@@ -203,7 +201,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "build:web",
@@ -236,7 +233,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "client:install:android",
@@ -254,7 +250,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "client:install:ios",
@@ -272,7 +267,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "client:ios",
@@ -295,7 +289,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "credentials:manager",
@@ -317,7 +310,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "customize:web",
@@ -339,7 +331,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "diagnostics",
@@ -351,7 +342,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "doctor",
@@ -368,7 +358,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "eject",
@@ -401,7 +390,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "export",
@@ -485,7 +473,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "fetch:android:hashes",
@@ -502,7 +489,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "fetch:android:keystore",
@@ -519,7 +505,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "fetch:android:upload-cert",
@@ -536,7 +521,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "fetch:ios:certs",
@@ -553,7 +537,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "init",
@@ -599,7 +582,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "install",
@@ -623,7 +605,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "login",
@@ -650,7 +631,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "logout",
@@ -662,7 +642,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "publish",
@@ -711,7 +690,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "publish:details",
@@ -738,7 +716,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "publish:history",
@@ -782,7 +759,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "publish:rollback",
@@ -819,7 +795,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "publish:set",
@@ -847,7 +822,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "push:android:clear",
@@ -864,7 +838,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "push:android:show",
@@ -881,7 +854,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "push:android:upload",
@@ -903,7 +875,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "register",
@@ -915,7 +886,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "send",
@@ -975,7 +945,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "start",
@@ -1080,7 +1049,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "start:web",
@@ -1170,7 +1138,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "upgrade",
@@ -1194,7 +1161,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "upload:android",
@@ -1271,7 +1237,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "upload:ios",
@@ -1356,7 +1321,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "url",
@@ -1421,7 +1385,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "url:apk",
@@ -1444,7 +1407,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "url:ipa",
@@ -1467,7 +1429,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "webhooks",
@@ -1484,7 +1445,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "webhooks:add",
@@ -1518,7 +1478,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "webhooks:remove",
@@ -1540,7 +1499,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "webhooks:update",
@@ -1578,7 +1536,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "whoami",
@@ -1590,7 +1547,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
   ],
 };

@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "login",
                     description: "Authenticate clusters using the Anthos client.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -178,12 +177,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "version",
                     description: "Get version info for the Anthos Auth client.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -299,7 +296,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -417,12 +413,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "create-login-config",
             description: "Generates a login configuration file.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -566,7 +560,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -677,6 +670,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

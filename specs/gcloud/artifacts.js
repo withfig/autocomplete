@@ -13,7 +13,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete an Artifact Registry container image.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -148,7 +147,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe an Artifact Registry container image.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -304,7 +302,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List Artifact Registry container images.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -606,7 +603,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "tags",
@@ -615,7 +611,6 @@ var completionSpec = {
                         {
                             name: "add",
                             description: "Add a tag to a container image in Artifact Registry.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -747,7 +742,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a tag from a container image in Artifact Registry.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -874,7 +868,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List all tags associated with a container image in Artifact Registry.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -1150,7 +1143,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1268,7 +1260,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "locations",
@@ -1277,7 +1268,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List all Artifact Registry supported locations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1429,7 +1419,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1547,7 +1536,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -1556,7 +1544,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Artifact Registry operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1805,7 +1792,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "packages",
@@ -1814,7 +1800,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an Artifact Registry package.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1963,7 +1948,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Artifact Registry packages.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2133,7 +2117,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2251,7 +2234,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "print-settings",
@@ -2260,7 +2242,6 @@ var completionSpec = {
                 {
                     name: "gradle",
                     description: "Print a snippet to add a repository to the Gradle build.gradle file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2404,12 +2385,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "mvn",
                     description: "Print a snippet to add a Maven repository to the pom.xml file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2553,12 +2532,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "npm",
                     description: "Print credential settings to add to the .npmrc file.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2711,7 +2688,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2829,7 +2805,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "repositories",
@@ -2838,7 +2813,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add an IAM policy binding to the IAM policy of an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3012,7 +2986,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3189,7 +3162,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3329,7 +3301,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3465,7 +3436,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get IAM policy for an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3637,7 +3607,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List repositories in the specified project.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3799,12 +3768,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove an IAM policy binding from the IAM policy of an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3982,7 +3949,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4123,7 +4089,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update an Artifact Registry repository.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4403,7 +4368,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "tags",
@@ -4412,7 +4376,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create an Artifact Registry tag.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4566,7 +4529,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an Artifact Registry tag.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4720,7 +4682,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Artifact Registry tags.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4900,12 +4861,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update an Artifact Registry tag.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5172,7 +5131,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "versions",
@@ -5181,7 +5139,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an Artifact Registry package version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5343,7 +5300,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Artifact Registry package versions.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5523,7 +5479,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -5641,7 +5596,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -5752,6 +5706,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

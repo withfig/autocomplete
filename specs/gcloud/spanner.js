@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding to a Cloud Spanner backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -165,7 +164,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a backup of a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -333,7 +331,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an existing backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -469,7 +466,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Retrieves information about a backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -605,7 +601,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a Cloud Spanner backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -777,7 +772,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing Cloud Spanner Cloud Spanner backups.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -947,12 +941,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding of a Cloud Spanner backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1108,7 +1100,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a Cloud Spanner backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1249,7 +1240,6 @@ var completionSpec = {
                 {
                     name: "update-metadata",
                     description: "Updates the metadata of a Cloud Spanner a backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1516,7 +1506,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "databases",
@@ -1525,7 +1514,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding to a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1681,7 +1669,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1843,7 +1830,6 @@ var completionSpec = {
                         {
                             name: "describe",
                             description: "Describe the DDL for a Cloud Spanner database.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2019,7 +2005,6 @@ var completionSpec = {
                         {
                             name: "update",
                             description: "Update the DDL for a Cloud Spanner database.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2290,12 +2275,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "delete",
                     description: "Delete a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2431,7 +2414,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2567,7 +2549,6 @@ var completionSpec = {
                 {
                     name: "execute-sql",
                     description: "Executes a SQL query against a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2735,7 +2716,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2907,7 +2887,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the Cloud Spanner databases contained within the given instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3072,12 +3051,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding of a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3233,7 +3210,6 @@ var completionSpec = {
                 {
                     name: "restore",
                     description: "Restore a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3391,7 +3367,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "sessions",
@@ -3400,7 +3375,6 @@ var completionSpec = {
                         {
                             name: "delete",
                             description: "Delete a Cloud Spanner session.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3545,7 +3519,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List the Cloud Spanner sessions contained within the given database.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -3729,7 +3702,6 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                     ],
                     options: [
@@ -3847,12 +3819,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4106,7 +4076,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "instance-configs",
@@ -4115,7 +4084,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Spanner instance config.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4242,7 +4210,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the available Cloud Spanner instance configs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4398,7 +4365,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -4516,7 +4482,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "instances",
@@ -4525,7 +4490,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding to a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4672,7 +4636,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4833,7 +4796,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4960,7 +4922,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5087,7 +5048,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5250,7 +5210,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the Cloud Spanner instances in this project.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5406,12 +5365,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding of a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5558,7 +5515,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5690,7 +5646,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update a Cloud Spanner instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5952,7 +5907,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -5961,7 +5915,6 @@ var completionSpec = {
                 {
                     name: "cancel",
                     description: "Cancel a Cloud Spanner operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6116,7 +6069,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Spanner operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6271,7 +6223,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List the Cloud Spanner operations on the given instance or database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6471,7 +6422,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -6589,7 +6539,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "rows",
@@ -6598,7 +6547,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a row in a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6753,12 +6701,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "insert",
                     description: "Insert a row in a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6913,12 +6859,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update a row in a Cloud Spanner database.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -7073,7 +7017,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -7191,7 +7134,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -7302,6 +7244,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

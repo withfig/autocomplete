@@ -1,7 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "init",
   description: "Initialize or reinitialize gcloud.",
-  subcommands: [],
+
   options: [
     {
       name: "--account",

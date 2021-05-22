@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a new Bigtable app profile.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -176,7 +175,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a Bigtable app profile.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -316,7 +314,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an existing Bigtable app profile.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -452,7 +449,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Bigtable app profiles.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -618,12 +614,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update a Bigtable app profile.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -907,7 +901,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "backups",
@@ -916,7 +909,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add an IAM policy binding to a Cloud Bigtable Backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1099,7 +1091,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Creates a backup of a Cloud Bigtable table.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1276,7 +1267,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an existing backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1421,7 +1411,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Retrieves information about a backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1566,7 +1555,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get an IAM policy on a Cloud Bigtable Backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1747,7 +1735,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing Bigtable backups.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1923,12 +1910,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove an IAM policy binding from a Cloud Bigtable Backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2115,7 +2100,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set an IAM policy on a Cloud Bigtable Backup.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2265,7 +2249,6 @@ var completionSpec = {
                 {
                     name: "update",
                     description: "Update a backup, only supported for the following fields: --expiration-date and --retention-period.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2541,7 +2524,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "clusters",
@@ -2550,7 +2532,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a bigtable cluster.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2709,7 +2690,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete a bigtable cluster.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2845,7 +2825,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an existing Bigtable cluster.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2981,7 +2960,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing Bigtable clusters.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3147,12 +3125,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update a Bigtable cluster's number of nodes.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3415,7 +3391,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "instances",
@@ -3424,7 +3399,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add an IAM policy binding to a Cloud Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3571,7 +3545,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create a new Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3759,7 +3732,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an existing Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3886,7 +3858,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an existing Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4013,7 +3984,6 @@ var completionSpec = {
                 {
                     name: "get-iam-policy",
                     description: "Get the IAM policy for a Cloud Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4176,7 +4146,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List existing Bigtable instances.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4332,12 +4301,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove an IAM policy binding from a Cloud Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4484,7 +4451,6 @@ var completionSpec = {
                 {
                     name: "set-iam-policy",
                     description: "Set IAM policy for an instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -4620,7 +4586,6 @@ var completionSpec = {
                         {
                             name: "add-iam-policy-binding",
                             description: "Add an IAM policy binding to a Cloud Bigtable table.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4794,7 +4759,6 @@ var completionSpec = {
                         {
                             name: "get-iam-policy",
                             description: "Get an IAM policy on a Cloud Bigtable table.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -4966,7 +4930,6 @@ var completionSpec = {
                         {
                             name: "list",
                             description: "List existing Bigtable instance tables.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -5132,12 +5095,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "remove-iam-policy-binding",
                             description: "Remove an IAM policy binding from a Cloud Bigtable table.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -5315,7 +5276,6 @@ var completionSpec = {
                         {
                             name: "restore",
                             description: "Restore a Cloud Bigtable backup to a new table.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -5482,12 +5442,10 @@ var completionSpec = {
                                     },
                                 },
                             ],
-                            args: [],
                         },
                         {
                             name: "set-iam-policy",
                             description: "Set an IAM policy on a Cloud Bigtable table.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -5741,12 +5699,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Modify an existing Bigtable instance.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -5882,7 +5838,6 @@ var completionSpec = {
                 {
                     name: "upgrade",
                     description: "Upgrade an existing instance's type from development to production.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6126,7 +6081,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "operations",
@@ -6135,7 +6089,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a Cloud Bigtable operation.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6262,7 +6215,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Cloud Bigtable operations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -6428,7 +6380,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -6546,7 +6497,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -6657,6 +6607,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

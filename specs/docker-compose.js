@@ -68,7 +68,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "config",
@@ -105,7 +104,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "create",
@@ -133,7 +131,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "down",
@@ -160,7 +157,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "events",
@@ -173,7 +169,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "exec",
@@ -216,13 +211,10 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "help",
             description: "Get help on a command.",
-            options: [],
-            subcommands: [],
         },
         {
             name: "images",
@@ -235,7 +227,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "kill",
@@ -248,7 +239,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "logs",
@@ -276,14 +266,11 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "pause",
             description: "Pause services.",
             args: [getServices],
-            options: [],
-            subcommands: [],
         },
         {
             name: "port",
@@ -300,7 +287,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "ps",
@@ -328,7 +314,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "pull",
@@ -360,7 +345,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "push",
@@ -372,7 +356,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "restart",
@@ -385,7 +368,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "rm",
@@ -408,7 +390,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "run",
@@ -486,7 +467,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "scale",
@@ -498,14 +478,11 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "start",
             description: "Start existing containers.",
             args: [getServices],
-            options: [],
-            subcommands: [],
         },
         {
             name: "stop",
@@ -518,19 +495,14 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "top",
             description: "Display the running processes",
-            options: [],
-            subcommands: [],
         },
         {
             name: "unpause",
             description: "Unpause services.",
-            options: [],
-            subcommands: [],
         },
         {
             name: "up",
@@ -623,7 +595,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
         {
             name: "version",
@@ -635,7 +606,6 @@ var completionSpec = {
                     args: {},
                 },
             ],
-            subcommands: [],
         },
     ],
     options: [

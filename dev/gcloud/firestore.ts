@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Google Cloud Firestore Native database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -149,7 +149,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -280,12 +279,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
       description: "export Cloud Firestore documents to Google Cloud Storage.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -442,7 +440,7 @@ export const completionSpec: Fig.Spec = {
       name: "import",
       description:
         "import Cloud Firestore documents from Google Cloud Storage.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -606,7 +604,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a new composite index.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -763,12 +761,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
               description: "Delete the given composite index.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -909,7 +906,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe the given composite index.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1050,7 +1047,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List composite indexes.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1224,7 +1221,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1355,7 +1351,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "fields",
@@ -1365,7 +1360,7 @@ export const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Describe the index configuration of the given field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1515,7 +1510,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List fields with non-default index settings.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1699,12 +1694,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description: "Update the index configuration of the given field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2005,7 +1999,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2136,7 +2129,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2146,7 +2138,7 @@ export const completionSpec: Fig.Spec = {
           name: "cancel",
           description:
             "Cancel a currently-running Cloud Firestore admin operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2287,7 +2279,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a completed Cloud Firestore admin operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2429,7 +2421,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Retrieves information about a Cloud Firestore admin operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2571,7 +2563,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List pending Cloud Firestore admin operations and their status.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2745,7 +2737,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2876,7 +2867,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3000,5 +2990,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

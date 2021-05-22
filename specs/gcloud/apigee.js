@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "deploy",
                     description: "Deploy an API proxy to an environment.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -167,7 +166,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Apigee API proxy.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -307,7 +305,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee API proxies.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -472,12 +469,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "undeploy",
                     description: "Undeploy an Apigee API proxy from an environment.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -744,7 +739,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "applications",
@@ -753,7 +747,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Apigee application.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -889,7 +882,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee applications.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1063,7 +1055,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1181,7 +1172,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "deployments",
@@ -1190,7 +1180,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Apigee API proxy deployment.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1344,7 +1333,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee API proxy deployments.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1536,7 +1524,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1654,7 +1641,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "developers",
@@ -1663,7 +1649,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Apigee developer.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1799,7 +1784,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee developers by email address.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1964,7 +1948,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2082,7 +2065,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "environments",
@@ -2091,7 +2073,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee deployment environments.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2256,7 +2237,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2374,7 +2354,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "organizations",
@@ -2383,7 +2362,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee organizations and their paired Cloud Platform projects.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2539,7 +2517,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2657,7 +2634,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "products",
@@ -2666,7 +2642,6 @@ var completionSpec = {
                 {
                     name: "create",
                     description: "Create an Apigee API product.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2916,7 +2891,6 @@ var completionSpec = {
                 {
                     name: "delete",
                     description: "Delete an Apigee API product.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3052,7 +3026,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe an Apigee API product.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3188,7 +3161,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List Apigee API products.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3353,12 +3325,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "update",
                     description: "Update an existing Apigee API product.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -3790,7 +3760,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -3901,6 +3870,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

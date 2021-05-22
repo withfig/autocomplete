@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "iam",
             description: "Troubleshoot the IAM Policy.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -258,6 +257,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

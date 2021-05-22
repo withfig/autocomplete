@@ -9,7 +9,6 @@ var completionSpec = {
                 {
                     name: "get",
                     description: "Get the setting for an IAP resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -158,12 +157,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set",
                     description: "Set the setting for an IAP resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -436,7 +433,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "web",
@@ -445,7 +441,6 @@ var completionSpec = {
                 {
                     name: "add-iam-policy-binding",
                     description: "Add IAM policy binding to an IAP IAM resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -617,12 +612,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "disable",
                     description: "Disable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -757,12 +750,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "enable",
                     description: "Enable Cloud Identity-Aware Proxy (Cloud IAP) on an IAP resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -917,12 +908,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "get-iam-policy",
                     description: "Get IAM policy for an IAP IAM resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1092,12 +1081,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "remove-iam-policy-binding",
                     description: "Remove IAM policy binding from an IAP IAM resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1273,12 +1260,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "set-iam-policy",
                     description: "Set the IAM policy for an IAP IAM resource.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1536,7 +1521,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -1647,6 +1631,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

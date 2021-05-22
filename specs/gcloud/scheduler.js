@@ -13,7 +13,6 @@ var completionSpec = {
                         {
                             name: "app-engine",
                             description: "Create a Cloud Scheduler job with an App Engine target.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -276,7 +275,6 @@ var completionSpec = {
                         {
                             name: "http",
                             description: "Create a Cloud Scheduler job that triggers an action via HTTP.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -569,7 +567,6 @@ var completionSpec = {
                         {
                             name: "pubsub",
                             description: "Create a Cloud Scheduler job with a Pub/Sub target.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -919,12 +916,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "delete",
                     description: "Delete a job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1051,7 +1046,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Show details about a job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1178,7 +1172,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List jobs.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1334,12 +1327,10 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
                 {
                     name: "pause",
                     description: "Pause the execution of a job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1466,7 +1457,6 @@ var completionSpec = {
                 {
                     name: "resume",
                     description: "Resume execution of a paused job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1593,7 +1583,6 @@ var completionSpec = {
                 {
                     name: "run",
                     description: "Trigger an on-demand execution of a job.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1724,7 +1713,6 @@ var completionSpec = {
                         {
                             name: "app-engine",
                             description: "Update a Cloud Scheduler job with an App Engine target.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2035,7 +2023,6 @@ var completionSpec = {
                         {
                             name: "http",
                             description: "Update a Cloud Scheduler job that triggers an action via HTTP.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2371,7 +2358,6 @@ var completionSpec = {
                         {
                             name: "pubsub",
                             description: "Update a Cloud Scheduler job with a Pub/Sub target.",
-                            subcommands: [],
                             options: [
                                 {
                                     name: "--account",
@@ -2756,7 +2742,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -2874,7 +2859,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2985,6 +2969,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

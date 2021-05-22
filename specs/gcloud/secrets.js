@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "add-iam-policy-binding",
             description: "Add IAM policy binding to a secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -170,7 +169,6 @@ var completionSpec = {
         {
             name: "create",
             description: "Create a new secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -333,7 +331,6 @@ var completionSpec = {
         {
             name: "delete",
             description: "Delete a secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -460,7 +457,6 @@ var completionSpec = {
         {
             name: "describe",
             description: "Describe a secret's metadata.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -587,7 +583,6 @@ var completionSpec = {
         {
             name: "get-iam-policy",
             description: "Get the IAM policy for the secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -750,7 +745,6 @@ var completionSpec = {
         {
             name: "list",
             description: "List all secret names.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -906,7 +900,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "locations",
@@ -915,7 +908,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe a location.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1042,7 +1034,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List all available locations.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1198,7 +1189,6 @@ var completionSpec = {
                             },
                         },
                     ],
-                    args: [],
                 },
             ],
             options: [
@@ -1316,12 +1306,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "remove-iam-policy-binding",
             description: "Remove IAM policy binding for a secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1490,7 +1478,6 @@ var completionSpec = {
         {
             name: "set-iam-policy",
             description: "Set the IAM policy binding for a secret.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1622,7 +1609,6 @@ var completionSpec = {
         {
             name: "update",
             description: "Update a secret's metadata.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1775,7 +1761,6 @@ var completionSpec = {
                 {
                     name: "access",
                     description: "Access a secret version's data.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -1911,7 +1896,6 @@ var completionSpec = {
                 {
                     name: "add",
                     description: "Create a new version of an existing secret.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2048,7 +2032,6 @@ var completionSpec = {
                 {
                     name: "describe",
                     description: "Describe metadata about the secret version.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2184,7 +2167,6 @@ var completionSpec = {
                 {
                     name: "destroy",
                     description: "Destroy a secret version's metadata and secret data.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2320,7 +2302,6 @@ var completionSpec = {
                 {
                     name: "disable",
                     description: "Disable the version of the provided secret.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2456,7 +2437,6 @@ var completionSpec = {
                 {
                     name: "enable",
                     description: "Enable the version of the provided secret.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2592,7 +2572,6 @@ var completionSpec = {
                 {
                     name: "list",
                     description: "List all versions for a secret.",
-                    subcommands: [],
                     options: [
                         {
                             name: "--account",
@@ -2872,7 +2851,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2983,6 +2961,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

@@ -5,7 +5,6 @@ var completionSpec = {
         {
             name: "accessibility",
             description: "Reference for `Accessibility` features.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -121,12 +120,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "arg-files",
             description: "Supplementary help for arg-files to be used with *gcloud firebase test*.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -242,12 +239,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "cli-trees",
             description: "CLI trees supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -363,12 +358,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "client-certificate",
             description: "Client certificate authorization supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -484,12 +477,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "command-conventions",
             description: "gcloud command conventions supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -605,12 +596,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "configurations",
             description: "Supplementary help for named configurations.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -726,12 +715,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "datetimes",
             description: "Date/time input format supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -847,12 +834,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "escaping",
             description: "List/dictionary-type argument escaping supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -968,12 +953,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "filters",
             description: "Resource filters supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1089,12 +1072,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "flags-file",
             description: "--flags-file=YAML_FILE supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1210,12 +1191,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "formats",
             description: "Resource formats supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1331,12 +1310,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "gcloudignore",
             description: "Reference for `.gcloudignore` files.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1452,12 +1429,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "offline-help",
             description: "Setting up gcloud command offline help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1573,12 +1548,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "projections",
             description: "Resource projections supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1694,12 +1667,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "resource-keys",
             description: "Resource keys supplementary help.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1815,12 +1786,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "startup",
             description: "Supplementary help for gcloud startup options.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -1936,12 +1905,10 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
         {
             name: "uninstall",
             description: "Supplementary help for uninstalling Cloud SDK.",
-            subcommands: [],
             options: [
                 {
                     name: "--account",
@@ -2057,7 +2024,6 @@ var completionSpec = {
                     },
                 },
             ],
-            args: [],
         },
     ],
     options: [
@@ -2168,6 +2134,5 @@ var completionSpec = {
             },
         },
     ],
-    args: [],
 };
 

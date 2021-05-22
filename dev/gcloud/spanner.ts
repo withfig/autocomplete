@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a Cloud Spanner backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -180,7 +180,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a backup of a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -366,7 +366,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an existing backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -516,7 +516,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Retrieves information about a backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -666,7 +666,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Spanner backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -856,7 +856,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List existing Cloud Spanner Cloud Spanner backups.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1045,12 +1045,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a Cloud Spanner backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1221,7 +1220,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a Cloud Spanner backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1377,7 +1376,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update-metadata",
           description: "Updates the metadata of a Cloud Spanner a backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1673,7 +1672,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "databases",
@@ -1682,7 +1680,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1853,7 +1851,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2032,7 +2030,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe the DDL for a Cloud Spanner database.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2227,7 +2225,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update the DDL for a Cloud Spanner database.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2528,12 +2526,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2683,7 +2680,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2833,7 +2830,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "execute-sql",
           description: "Executes a SQL query against a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3019,7 +3016,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3210,7 +3207,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the Cloud Spanner databases contained within the given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3394,12 +3391,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3570,7 +3566,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "restore",
           description: "Restore a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3744,7 +3740,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "sessions",
@@ -3753,7 +3748,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Cloud Spanner session.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3913,7 +3908,7 @@ export const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "List the Cloud Spanner sessions contained within the given database.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4117,7 +4112,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -4248,12 +4242,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4534,7 +4527,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "instance-configs",
@@ -4543,7 +4535,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Spanner instance config.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4683,7 +4675,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the available Cloud Spanner instance configs.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4857,7 +4849,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -4988,7 +4979,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "instances",
@@ -4997,7 +4987,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5159,7 +5149,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5335,7 +5325,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5475,7 +5465,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5615,7 +5605,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5796,7 +5786,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the Cloud Spanner instances in this project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5970,12 +5960,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6137,7 +6126,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6284,7 +6273,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Spanner instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6573,7 +6562,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -6582,7 +6570,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel a Cloud Spanner operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6753,7 +6741,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Spanner operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6925,7 +6913,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the Cloud Spanner operations on the given instance or database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7147,7 +7135,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -7278,7 +7265,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "rows",
@@ -7287,7 +7273,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a row in a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7456,12 +7442,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "insert",
           description: "Insert a row in a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7631,12 +7616,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a row in a Cloud Spanner database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7806,7 +7790,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -7937,7 +7920,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -8061,5 +8043,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };
