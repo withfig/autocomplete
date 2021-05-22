@@ -1301,7 +1301,6 @@ export const spec: Fig.Spec = {
     {
       name: "dashboard",
       description: "display information about favorite apps",
-      options: [],
     },
     {
       name: "drains:add",
@@ -1462,7 +1461,6 @@ export const spec: Fig.Spec = {
     {
       name: "keys:clear",
       description: "remove all SSH keys for current user",
-      options: [],
     },
     {
       name: "keys",
@@ -1481,7 +1479,7 @@ export const spec: Fig.Spec = {
     {
       name: "keys:remove",
       description: "remove an SSH key from the user",
-      options: [],
+
       args: [
         {
           name: "key",
@@ -2921,7 +2919,6 @@ export const spec: Fig.Spec = {
       name: "ci:migrate-manifest",
       description:
         "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key.",
-      options: [],
     },
     {
       name: "ci:open",
@@ -3410,7 +3407,7 @@ export const spec: Fig.Spec = {
     {
       name: "authorizations:revoke",
       description: "revoke OAuth authorization",
-      options: [],
+
       args: [
         {
           name: "id",
@@ -3420,7 +3417,7 @@ export const spec: Fig.Spec = {
     {
       name: "authorizations:rotate",
       description: "updates an OAuth authorization token",
-      options: [],
+
       args: [
         {
           name: "id",
@@ -3478,7 +3475,7 @@ export const spec: Fig.Spec = {
     {
       name: "clients:destroy",
       description: "delete client by ID",
-      options: [],
+
       args: [
         {
           name: "id",
@@ -3557,7 +3554,7 @@ export const spec: Fig.Spec = {
     {
       name: "sessions:destroy",
       description: "delete (logout) OAuth session by ID",
-      options: [],
+
       args: [
         {
           name: "id",
@@ -3604,7 +3601,7 @@ export const spec: Fig.Spec = {
     },
     {
       name: "sharing:add",
-      options: [],
+
       args: [
         {
           name: "sharin",
@@ -3632,7 +3629,7 @@ export const spec: Fig.Spec = {
     },
     {
       name: "sharing:access",
-      options: [],
+
       args: [
         {
           name: "sharin",
@@ -3661,7 +3658,7 @@ export const spec: Fig.Spec = {
     },
     {
       name: "sharing:remove",
-      options: [],
+
       args: [
         {
           name: "sharin",
@@ -3812,7 +3809,7 @@ export const spec: Fig.Spec = {
     },
     {
       name: "sharing:transfer",
-      options: [],
+
       args: [
         {
           name: "sharin",
@@ -3890,7 +3887,6 @@ export const spec: Fig.Spec = {
     },
     {
       name: "orgs:default",
-      options: [],
     },
     {
       name: "orgs",
@@ -6567,7 +6563,6 @@ export const spec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [],
     },
     {
       name: "outbound-rules",

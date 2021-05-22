@@ -1,7 +1,15 @@
 type PostProcessFn = (out: string, context: string[]) => Fig.Suggestion[];
 
+interface NxProject {
+  projectType: string;
+}
+
 type PostProcessWorkspaceFn = (
-  filterFn: (projectName: string, index: number, array: string[]) => boolean
+  filterFn: (
+    projectEntry: [string, NxProject],
+    index: number,
+    array: [string, NxProject][]
+  ) => boolean
 ) => PostProcessFn;
 
 interface NxGenerators {
@@ -17,13 +25,15 @@ interface NxGenerators {
 const processWorkspaceJson: PostProcessWorkspaceFn = (filterFn) => (out) => {
   try {
     const workspace = JSON.parse(out);
-    return Object.keys(workspace.projects)
+    return Object.entries<NxProject>(workspace.projects)
       .filter(filterFn)
+      .map(([projectName]) => projectName)
       .map((suggestion) => ({
         name: suggestion,
         type: "option",
       }));
   } catch (err) {
+    console.log(err);
     return [];
   }
 };
@@ -46,17 +56,15 @@ const nxGenerators: NxGenerators = {
   apps: {
     script: "cat workspace.json",
     postProcess: processWorkspaceJson(
-      (projectName, _, projects) =>
-        projects[projectName].projectType === "application" &&
-        !projectName.endsWith("-e2e")
+      ([projectName, project], _, projects) =>
+        project.projectType === "application" && !projectName.endsWith("-e2e")
     ),
   },
   e2eApps: {
     script: "cat workspace.json",
     postProcess: processWorkspaceJson(
-      (projectName, _, projects) =>
-        projects[projectName].projectType === "application" &&
-        projectName.endsWith("-e2e")
+      ([projectName, project], _, projects) =>
+        project.projectType === "application" && projectName.endsWith("-e2e")
     ),
   },
   appsAndLibs: {

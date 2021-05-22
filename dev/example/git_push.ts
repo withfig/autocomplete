@@ -22,7 +22,6 @@
 export const completion: Fig.Spec = {
   name: "git_push_example",
   description: "",
-  subcommands: [],
 
   // [<repository> [<refspec>...]]
 
