@@ -31,12 +31,17 @@ const appendFolderPath = (
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
   if (lastSlashIndex > -1) {
-    if (whatHasUserTyped.startsWith("~/"))
+    if (whatHasUserTyped.startsWith("~/")) {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    else if (whatHasUserTyped.startsWith("/")) {
-      if (lastSlashIndex === 0) folderPath = "/";
-      else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) {
+        folderPath = "/";
+      } else {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
   }
 
   return baseLSCommand + folderPath;
@@ -65,8 +70,11 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
 
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
-      if (elm.slice(0, 1) === ".") dots_arr.push(elm);
-      else other_arr.push(elm);
+      if (elm.slice(0, 1) === ".") {
+        dots_arr.push(elm);
+      } else {
+        other_arr.push(elm);
+      }
     });
 
     if (isS3) {
@@ -88,7 +96,7 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
   const final_array = [];
 
   temp_array.forEach((item) => {
-    if (!(item === "" || item === null || item === undefined)) {
+    if (item !== "" && item !== null) {
       const outputType = item.slice(-1) === "/" ? "folder" : "file";
 
       final_array.push({
@@ -241,7 +249,7 @@ const generators: Record<string, Fig.Generator> = {
           //
           // After we have found at least 1 PRE keyword
           // we can assume that all lines without PRE are files
-          if (parts[1] == "PRE") {
+          if (parts[1] === "PRE") {
             preFound = true;
             return s3Path;
           }
@@ -1342,7 +1350,7 @@ export const completionSpec: Fig.Spec = {
           name: "--region",
           description: "AWS region where the bucket is created",
           args: {
-            name: "string",
+            name: "region",
             suggestions: awsRegions,
           },
         },

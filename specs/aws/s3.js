@@ -31,16 +31,20 @@ var appendFolderPath = function (whatHasUserTyped, baseLSCommand) {
     var folderPath = "";
     var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
     if (lastSlashIndex > -1) {
-        if (whatHasUserTyped.startsWith("~/"))
+        if (whatHasUserTyped.startsWith("~/")) {
             folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        else if (whatHasUserTyped.startsWith("/")) {
-            if (lastSlashIndex === 0)
-                folderPath = "/";
-            else
-                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
         }
-        else
+        else if (whatHasUserTyped.startsWith("/")) {
+            if (lastSlashIndex === 0) {
+                folderPath = "/";
+            }
+            else {
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+            }
+        }
+        else {
             folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        }
     }
     return baseLSCommand + folderPath;
 };
@@ -65,10 +69,12 @@ var sortSuggestions = function (arr, isS3) {
         arr.map(function (elm) {
             if (elm.toLowerCase() == ".ds_store")
                 return;
-            if (elm.slice(0, 1) === ".")
+            if (elm.slice(0, 1) === ".") {
                 dots_arr.push(elm);
-            else
+            }
+            else {
                 other_arr.push(elm);
+            }
         });
         if (isS3) {
             return __spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), dots_arr.sort(sortFnStrings));
@@ -80,7 +86,7 @@ var sortSuggestions = function (arr, isS3) {
     var temp_array = alphabeticalSortFilesAndFolders(arr);
     var final_array = [];
     temp_array.forEach(function (item) {
-        if (!(item === "" || item === null || item === undefined)) {
+        if (item !== "" && item !== null) {
             var outputType = item.slice(-1) === "/" ? "folder" : "file";
             final_array.push({
                 type: outputType,
@@ -205,7 +211,7 @@ var generators = {
                     //
                     // After we have found at least 1 PRE keyword
                     // we can assume that all lines without PRE are files
-                    if (parts[1] == "PRE") {
+                    if (parts[1] === "PRE") {
                         preFound = true;
                         return s3Path;
                     }
@@ -1190,7 +1196,7 @@ var completionSpec = {
                     name: "--region",
                     description: "AWS region where the bucket is created",
                     args: {
-                        name: "string",
+                        name: "region",
                         suggestions: awsRegions,
                     },
                 },
