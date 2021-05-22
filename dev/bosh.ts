@@ -1,15 +1,25 @@
+const genericPathArg: Fig.Arg = {
+  name: "PATH",
+  template: "filepaths",
+};
+
 const deployments: Fig.Generator = {
   script: "bosh --json deployments",
   postProcess: function (out) {
     if (out.startsWith("fatal:")) {
       return [];
     }
-    return out.Tables[0].Rows.forEach((deployment) => {
-      return {
-        name: deployment.name,
-        description: "deployment",
-      };
-    });
+    try {
+      const parsedOutput = JSON.parse(out);
+      return parsedOutput.Tables[0].Rows.forEach((deployment) => {
+        return {
+          name: deployment.name,
+          description: "deployment",
+        };
+      });
+    } catch (e) {
+      return [];
+    }
   },
 };
 
@@ -20,30 +30,54 @@ export const completionSpec: Fig.Spec = {
     {
       name: "add-blob",
       description: "Add blob",
+      args: [
+        {
+          name: "PATH",
+          template: "filepaths",
+        },
+        {
+          name: "BLOBS-PATH",
+          template: "filepaths",
+        },
+      ],
     },
     {
       name: "unignore",
       description: "Unignore an instance",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "update-cloud-config",
       description: "Update current cloud config",
+      args: genericPathArg,
     },
     {
       name: "update-config",
       description: "Update config",
+      args: {
+        ...genericPathArg,
+        isOptional: true,
+      },
     },
     {
       name: "update-cpi-config",
       description: "Update current CPI config",
+      args: genericPathArg,
     },
     {
       name: "update-resurrection",
       description: "Enable/disable resurrection",
+      args: {
+        suggestions: ["on", "off"],
+      },
     },
     {
       name: "update-runtime-config",
       description: "Update current runtime config",
+      args: genericPathArg,
     },
     {
       name: "upload-blobs",
@@ -52,10 +86,18 @@ export const completionSpec: Fig.Spec = {
     {
       name: "upload-release",
       description: "Upload release",
+      args: {
+        name: "URL",
+        isOptional: true,
+      },
     },
     {
       name: "upload-stemcell",
       description: "Upload stemcell",
+      args: {
+        name: "fileOrUrl",
+        template: "filepaths",
+      },
     },
     {
       name: "variables",
@@ -64,6 +106,15 @@ export const completionSpec: Fig.Spec = {
     {
       name: "vendor-package",
       description: "Vendor package",
+      args: [
+        {
+          name: "PACKAGE",
+        },
+        {
+          name: "SRC-DIR",
+          template: "folders",
+        },
+      ],
     },
     {
       name: "vms",
@@ -72,6 +123,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "orphan-disk",
       description: "Orphan disk",
+      args: {
+        name: "CID",
+      },
     },
     {
       name: "networks",
@@ -84,6 +138,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "tasks",
       description: "List running or recent tasks",
+      args: {
+        name: "ID",
+        isOptional: true,
+      },
     },
     {
       name: "task",
@@ -92,6 +150,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "take-snapshot",
       description: "Take snapshot",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "sync-blobs",
@@ -104,6 +166,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "stop",
       description: "Stop instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "stemcells",
@@ -116,14 +182,26 @@ export const completionSpec: Fig.Spec = {
     {
       name: "start",
       description: "Start instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "ssh",
       description: "SSH into instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "snapshots",
       description: "List snapshots",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "sha2ify-release",
@@ -140,10 +218,17 @@ export const completionSpec: Fig.Spec = {
     {
       name: "run-errand",
       description: "Run errand",
+      args: {
+        name: "NAME",
+      },
     },
     {
       name: "restart",
       description: "Restart instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "reset-release",
@@ -152,6 +237,16 @@ export const completionSpec: Fig.Spec = {
     {
       name: "repack-stemcell",
       description: "Repack stemcell",
+      args: [
+        {
+          name: "Path-to-Stemcell",
+          template: "filepaths",
+        },
+        {
+          name: "Path-to-Result",
+          template: "filepaths",
+        },
+      ],
     },
     {
       name: "remove-blob",
@@ -164,6 +259,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "recreate",
       description: "Recreate instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "orphaned-vms",
@@ -172,6 +271,11 @@ export const completionSpec: Fig.Spec = {
     {
       name: "scp",
       description: "SCP to/from instance(s)",
+      args: {
+        name: "PATH...",
+        variadic: true,
+        template: "filepaths",
+      },
     },
     {
       name: "scp",
@@ -184,6 +288,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "ignore",
       description: "Ignore an instance",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+      },
     },
     {
       name: "init-release",
@@ -192,14 +299,22 @@ export const completionSpec: Fig.Spec = {
     {
       name: "inspect-local-release",
       description: "Display information from release metadata",
+      args: genericPathArg,
     },
     {
       name: "inspect-local-stemcell",
       description: "Display information from stemcell metadata",
+      args: {
+        name: "PATH-TO-STEMCELL",
+        template: "filepaths",
+      },
     },
     {
       name: "inspect-release",
       description: "List release contents such as jobs",
+      args: {
+        name: "NAME/VERSION",
+      },
     },
     {
       name: "instances",
@@ -208,6 +323,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "interpolate",
       description: "Interpolates variables into a manifest",
+      args: genericPathArg,
     },
     {
       name: "locks",
@@ -224,6 +340,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "logs",
       description: "Fetch logs from instance(s)",
+      args: {
+        name: "INSTANCE-GROUP/INSTANCE-ID",
+        isOptional: true,
+      },
     },
     {
       name: "deployment",
@@ -256,6 +376,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "event",
       description: "Show event details",
+      args: {
+        name: "ID",
+      },
     },
     {
       name: "events",
@@ -264,30 +387,54 @@ export const completionSpec: Fig.Spec = {
     {
       name: "export-release",
       description: "Export the compiled release to a tarball",
+      args: [
+        {
+          name: "NAME/VERSION",
+        },
+        {
+          name: "OS/VERSION",
+        },
+      ],
     },
     {
       name: "finalize-release",
       description: "Create final release from dev release tarball",
+      args: genericPathArg,
     },
     {
       name: "generate-job",
       description: "Generate job",
+      args: {
+        name: "NAME",
+      },
     },
     {
       name: "generate-package",
       description: "Generate package",
+      args: {
+        name: "NAME",
+      },
     },
     {
       name: "create-release",
       description: "Create release",
+      args: {
+        ...genericPathArg,
+        isOptional: true,
+      },
     },
     {
       name: "curl",
       description: "Make an HTTP request to the Director",
+      args: genericPathArg,
     },
     {
       name: "delete-config",
       description: "Delete config",
+      args: {
+        name: "ID",
+        isOptional: true,
+      },
     },
     {
       name: "delete-deployment",
@@ -296,22 +443,35 @@ export const completionSpec: Fig.Spec = {
     {
       name: "delete-disk",
       description: "Delete disk",
+      args: {
+        name: "CID",
+      },
     },
     {
       name: "delete-env",
       description: "Delete BOSH environment",
+      args: genericPathArg,
     },
     {
       name: "delete-network",
       description: "Delete network",
+      args: {
+        name: "NAME",
+      },
     },
     {
       name: "delete-release",
       description: "Delete release",
+      args: {
+        name: "NAME/VERSION",
+      },
     },
     {
       name: "delete-snapshot",
       description: "Delete snapshot",
+      args: {
+        name: "CID",
+      },
     },
     {
       name: "delete-snapshots",
@@ -320,22 +480,36 @@ export const completionSpec: Fig.Spec = {
     {
       name: "delete-stemcell",
       description: "Delete stemcell",
+      args: {},
     },
     {
       name: "delete-vm",
       description: "Delete VM",
+      args: {
+        name: "CID",
+      },
     },
     {
       name: "deploy",
       description: "Update deployment",
+      args: genericPathArg,
     },
     {
       name: "alias-env",
       description: "Alias environment to save URL and CA certificate",
+      args: {},
     },
     {
       name: "attach-disk",
       description: "Attach disk to an instance",
+      args: [
+        {
+          name: "INSTANCE-GROUP/INSTANCE-ID",
+        },
+        {
+          name: "DISK-CID",
+        },
+      ],
     },
     {
       name: "blobs",
@@ -344,6 +518,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "cancel-task",
       description: "Cancel task at its next checkpoint",
+      args: {
+        name: "ID",
+      },
     },
     {
       name: "cancel-tasks",
@@ -364,6 +541,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Show current config for either ID or both type and name",
+      args: {
+        name: "ID",
+        isOptional: true,
+      },
     },
     {
       name: "configs",
@@ -376,6 +557,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "create-env",
       description: "Create or update BOSH environment",
+      args: genericPathArg,
     },
   ],
   options: [
@@ -386,14 +568,19 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--config"],
       description: "Config file path (default: ~/.bosh/config)",
+      args: genericPathArg,
     },
     {
-      name: ["--environment"],
+      name: ["-e", "--environment"],
       description: "Director environment name or URL",
+      args: {
+        name: "name",
+      },
     },
     {
       name: ["--ca-cert"],
       description: "Director CA certificate path or value",
+      args: genericPathArg,
     },
     {
       name: ["--sha2"],
@@ -402,15 +589,28 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--parallel"],
       description: "The max number of parallel operations (default: 5)",
+      args: {
+        name: "amount",
+        // Generate whole numbers from 1 to 20
+        suggestions: Array.from({ length: 20 }, (_, i) => i + 1).map((number) =>
+          number.toString()
+        ),
+      },
     },
     {
       name: ["--client"],
       description: "Override username or UAA client [$BOSH_CLIENT]",
+      args: {
+        name: "name",
+      },
     },
     {
       name: ["--client-secret"],
       description:
         "Override password or UAA client secret [$BOSH_CLIENT_SECRET]",
+      args: {
+        name: "secret",
+      },
     },
     {
       name: ["--deployment"],
@@ -422,6 +622,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--column"],
       description: "Filter to show only given column(s)",
+      args: {
+        name: "name",
+        variadic: true,
+      },
     },
     {
       name: ["--json"],
@@ -436,7 +640,7 @@ export const completionSpec: Fig.Spec = {
       description: "Toggle colorized output",
     },
     {
-      name: ["--non-interactive"],
+      name: ["-n", "--non-interactive"],
       description: "Don't ask for user input [$BOSH_NON_INTERACTIVE]",
     },
   ],
