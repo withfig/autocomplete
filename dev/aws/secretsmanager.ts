@@ -22,9 +22,11 @@ const awsRegions = [
   "us-west-2",
 ];
 
+const ttl = 30000;
+
 const appendFolderPath = (tokens: string[], prefix: string): string => {
-  var baseLSCommand = "\\ls -1ApL ";
-  var whatHasUserTyped = tokens[tokens.length - 1];
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
 
   if (whatHasUserTyped.startsWith(prefix)) {
     whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
@@ -36,12 +38,17 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
   if (lastSlashIndex > -1) {
-    if (whatHasUserTyped.startsWith("~/"))
+    if (whatHasUserTyped.startsWith("~/")) {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    else if (whatHasUserTyped.startsWith("/")) {
-      if (lastSlashIndex === 0) folderPath = "/";
-      else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) {
+        folderPath = "/";
+      } else {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
   }
 
   return baseLSCommand + folderPath;
@@ -61,8 +68,8 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   };
 
   const alphabeticalSortFilesAndFolders = (arr) => {
-    var dots_arr = [];
-    var other_arr = [];
+    const dots_arr = [];
+    const other_arr = [];
 
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
@@ -77,9 +84,9 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
     ];
   };
 
-  var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+  const temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
 
-  var final_array = [];
+  const final_array = [];
 
   temp_array.forEach((item) => {
     if (!(item === "" || item === null || item === undefined)) {
@@ -135,7 +142,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
   kmsKeyIdGenerator: {
@@ -154,7 +161,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -205,7 +212,7 @@ const generators: Record<string, Fig.Generator> = {
         return list.flatMap((secret) => {
           return awsRegions.flatMap((region) => {
             return {
-              name: "Region=" + region + ",KmsKeyId=" + secret.KeyId,
+              name: `Region=${region},KmsKeyId=${secret.KeyId}`,
             };
           });
         });
@@ -215,7 +222,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
   getLambdasGenerator: {
@@ -232,7 +239,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
   getVersionIdGenerator: {
@@ -244,7 +251,7 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = context[idx + 1];
-        var out = await executeShellCommand(
+        const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
         const versions = JSON.parse(out as string)["VersionIdsToStages"];
@@ -255,7 +262,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
   getVersionStageGenerator: {
@@ -267,7 +274,7 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = context[idx + 1];
-        var out = await executeShellCommand(
+        const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
         const versions = JSON.parse(out as string)["VersionIdsToStages"];
@@ -278,7 +285,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -291,7 +298,7 @@ const generators: Record<string, Fig.Generator> = {
           return [];
         }
         const secretId = context[idx + 1];
-        var out = await executeShellCommand(
+        const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
         const versions = JSON.parse(out as string)["Tags"];
@@ -302,7 +309,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 };

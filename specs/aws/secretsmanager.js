@@ -62,6 +62,7 @@ var awsRegions = [
     "us-west-1",
     "us-west-2",
 ];
+var ttl = 30000;
 var appendFolderPath = function (tokens, prefix) {
     var baseLSCommand = "\\ls -1ApL ";
     var whatHasUserTyped = tokens[tokens.length - 1];
@@ -74,16 +75,20 @@ var appendFolderPath = function (tokens, prefix) {
     var folderPath = "";
     var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
     if (lastSlashIndex > -1) {
-        if (whatHasUserTyped.startsWith("~/"))
+        if (whatHasUserTyped.startsWith("~/")) {
             folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-        else if (whatHasUserTyped.startsWith("/")) {
-            if (lastSlashIndex === 0)
-                folderPath = "/";
-            else
-                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
         }
-        else
+        else if (whatHasUserTyped.startsWith("/")) {
+            if (lastSlashIndex === 0) {
+                folderPath = "/";
+            }
+            else {
+                folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+            }
+        }
+        else {
             folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+        }
     }
     return baseLSCommand + folderPath;
 };
@@ -161,7 +166,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     kmsKeyIdGenerator: {
@@ -181,7 +186,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
@@ -237,7 +242,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     getLambdasGenerator: {
@@ -255,7 +260,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     getVersionIdGenerator: {
@@ -286,7 +291,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     getVersionStageGenerator: {
@@ -317,7 +322,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listTagKeys: {
@@ -348,7 +353,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
 };
