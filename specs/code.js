@@ -26,6 +26,7 @@ var commonOptions = [
     args: {
       name: "folder",
       template: "folders",
+      variadic: true,
     },
   },
   {
