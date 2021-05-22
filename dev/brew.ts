@@ -35,6 +35,42 @@ export const completionSpec: Fig.Spec = {
       name: "update",
       description: "Fetch the newest version of Homebrew and all formulae",
     },
+    {
+      name: "outdated",
+      description:
+        "List installed casks and formulae that have an updated version available",
+      options: [
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information.",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "List only the names of outdated kegs.",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Include detailed version information.",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show help message for the outdated command.",
+        },
+        { name: "--cask", description: "List only outdated casks." },
+        {
+          name: "--fetch-HEAD",
+          description:
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated.",
+        },
+        { name: "--formula", description: "List only outdated formulae." },
+        {
+          name: "--greedy",
+          description:
+            "Print outdated casks with auto_updates or version :latest.",
+        },
+        { name: "--json", description: "Print output in JSON format." },
+      ],
+    },
     { name: "upgrade", description: "Upgrade outdated casks and outdated" },
     {
       name: "search",
@@ -72,7 +108,6 @@ export const completionSpec: Fig.Spec = {
         },
       },
     },
-
     {
       name: "uninstall",
       description: "Uninstall <formula>",
