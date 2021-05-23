@@ -130,13 +130,12 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // Files for staging
   files_for_staging: {
-    custom: async (context, runFigCommand) => {
-      const out = await runFigCommand("git status --short");
-
-      if (out.startsWith("fatal:")) {
+    script: "git status --short",
+    postProcess: (output, context) => {
+      if (output.startsWith("fatal:")) {
         return [];
       }
-      const items = out.split("\n").map((file) => {
+      const items = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
