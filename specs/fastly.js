@@ -4,11502 +4,12132 @@
 // Built with go version go1.16.3 linux/amd64
 //
 var completionSpec = {
-    name: "fastly",
-    description: "A CLI for interacting with the Fastly platform",
-    subcommands: [
+  name: "fastly",
+  description: "A CLI for interacting with the Fastly platform",
+  subcommands: [
+    {
+      name: "help",
+      description: "Show help.",
+    },
+    {
+      name: "configure",
+      description: "Configure the Fastly CLI",
+    },
+    {
+      name: "whoami",
+      description: "Get information about the currently authenticated account",
+    },
+    {
+      name: "version",
+      description: "Display version information for the Fastly CLI",
+    },
+    {
+      name: "update",
+      description: "Update the CLI to the latest version",
+    },
+    {
+      name: "service",
+      description: "Manipulate Fastly services",
+      subcommands: [
         {
-            name: "help",
-            description: "Show help.",
+          name: "create",
+          description: "Create a Fastly service",
+          options: [
+            {
+              name: "--name",
+              description: "Service name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--type",
+              description:
+                'Service type. Can be one of "wasm" or "vcl", defaults to "wasm".',
+              args: [
+                {
+                  name: "type",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "Human-readable comment",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "configure",
-            description: "Configure the Fastly CLI",
+          name: "list",
+          description: "List Fastly services",
         },
         {
-            name: "whoami",
-            description: "Get information about the currently authenticated account",
+          name: "describe",
+          description: "Show detailed information about a Fastly service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "version",
-            description: "Display version information for the Fastly CLI",
+          name: "update",
+          description: "Update a Fastly service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Service name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "Human-readable comment",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "update",
-            description: "Update the CLI to the latest version",
+          name: "delete",
+          description: "Delete a Fastly service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--force",
+              description: "Force deletion of an active service",
+            },
+          ],
         },
         {
-            name: "service",
-            description: "Manipulate Fastly services",
-            subcommands: [
+          name: "search",
+          description: "Search for a Fastly service by name",
+          options: [
+            {
+              name: "--name",
+              description: "Service name",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a Fastly service",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Service name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--type",
-                            description: 'Service type. Can be one of "wasm" or "vcl", defaults to "wasm".',
-                            args: [
-                                {
-                                    name: "type",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "Human-readable comment",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "name",
                 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "service-version",
+      description: "Manipulate Fastly service versions",
+      subcommands: [
+        {
+          name: "clone",
+          description: "Clone a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "list",
-                    description: "List Fastly services",
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version you wish to clone",
+              args: [
                 {
-                    name: "describe",
-                    description: "Show detailed information about a Fastly service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
-                {
-                    name: "update",
-                    description: "Update a Fastly service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Service name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "Human-readable comment",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "delete",
-                    description: "Delete a Fastly service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--force",
-                            description: "Force deletion of an active service",
-                        },
-                    ],
-                },
-                {
-                    name: "search",
-                    description: "Search for a Fastly service by name",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Service name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "service-version",
-            description: "Manipulate Fastly service versions",
-            subcommands: [
+          name: "list",
+          description: "List Fastly service versions",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "clone",
-                    description: "Clone a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version you wish to clone",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
-                {
-                    name: "list",
-                    description: "List Fastly service versions",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "update",
-                    description: "Update a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version you wish to update",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "Human-readable comment",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "activate",
-                    description: "Activate a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version you wish to activate",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "deactivate",
-                    description: "Deactivate a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version you wish to deactivate",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "lock",
-                    description: "Lock a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version you wish to lock",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "compute",
-            description: "Manage Compute@Edge packages",
-            subcommands: [
+          name: "update",
+          description: "Update a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "init",
-                    description: "Initialize a new Compute@Edge package locally",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Name of package, defaulting to directory name of the --path destination",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--description",
-                            description: "Description of the package",
-                            args: [
-                                {
-                                    name: "description",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--author",
-                            description: "Author(s) of the package",
-                            args: [
-                                {
-                                    name: "author",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--language",
-                            description: "Language of the package",
-                            args: [
-                                {
-                                    name: "language",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--from",
-                            description: "Git repository containing package template",
-                            args: [
-                                {
-                                    name: "from",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--branch",
-                            description: "Git branch name to clone from package template repository",
-                            args: [
-                                {
-                                    name: "branch",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--tag",
-                            description: "Git tag name to clone from package template repository",
-                            args: [
-                                {
-                                    name: "tag",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "Destination to write the new package, defaulting to the current directory",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--force",
-                            description: "Skip non-empty directory verification step and force new project creation",
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version you wish to update",
+              args: [
                 {
-                    name: "build",
-                    description: "Build a Compute@Edge package locally",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Package name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--language",
-                            description: "Language type",
-                            args: [
-                                {
-                                    name: "language",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--include-source",
-                            description: "Include source code in built package",
-                        },
-                        {
-                            name: "--force",
-                            description: "Skip verification steps and force build",
-                        },
-                    ],
+                  name: "version",
                 },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "Human-readable comment",
+              args: [
                 {
-                    name: "deploy",
-                    description: "Deploy a package to a Fastly Compute@Edge service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version to activate",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "Path to package",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--domain",
-                            description: "The name of the domain associated to the package",
-                            args: [
-                                {
-                                    name: "domain",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--backend",
-                            description: "A hostname, IPv4, or IPv6 address for the package backend",
-                            args: [
-                                {
-                                    name: "backend",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--backend-port",
-                            description: "A port number for the package backend",
-                            args: [
-                                {
-                                    name: "backend-port",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "comment",
                 },
-                {
-                    name: "publish",
-                    description: "Build and deploy a Compute@Edge package to a Fastly service",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Package name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--language",
-                            description: "Language type",
-                            args: [
-                                {
-                                    name: "language",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--include-source",
-                            description: "Include source code in built package",
-                        },
-                        {
-                            name: "--force",
-                            description: "Skip verification steps and force build",
-                        },
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of version to activate",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "Path to package",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--domain",
-                            description: "The name of the domain associated to the package",
-                            args: [
-                                {
-                                    name: "domain",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--backend",
-                            description: "A hostname, IPv4, or IPv6 address for the package backend",
-                            args: [
-                                {
-                                    name: "backend",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--backend-port",
-                            description: "A port number for the package backend",
-                            args: [
-                                {
-                                    name: "backend-port",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "update",
-                    description: "Update a package on a Fastly Compute@Edge service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "Path to package",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "validate",
-                    description: "Validate a Compute@Edge package",
-                    options: [
-                        {
-                            name: "--path",
-                            description: "Path to package",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "domain",
-            description: "Manipulate Fastly service version domains",
-            subcommands: [
+          name: "activate",
+          description: "Activate a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a domain on a Fastly service version",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Domain name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version you wish to activate",
+              args: [
                 {
-                    name: "list",
-                    description: "List domains on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
-                {
-                    name: "describe",
-                    description: "Show detailed information about a domain on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of domain",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "update",
-                    description: "Update a domain on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Domain name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--new-name",
-                            description: "New domain name",
-                            args: [
-                                {
-                                    name: "new-name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "delete",
-                    description: "Delete a domain on a Fastly service version",
-                    options: [
-                        {
-                            name: "--name",
-                            description: "Domain name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "backend",
-            description: "Manipulate Fastly service version backends",
-            subcommands: [
+          name: "deactivate",
+          description: "Deactivate a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a backend on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Backend name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--address",
-                            description: "A hostname, IPv4, or IPv6 address for the backend",
-                            args: [
-                                {
-                                    name: "address",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--port",
-                            description: "Port number of the address",
-                            args: [
-                                {
-                                    name: "port",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--override-host",
-                            description: "The hostname to override the Host header",
-                            args: [
-                                {
-                                    name: "override-host",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--connect-timeout",
-                            description: "How long to wait for a timeout in milliseconds",
-                            args: [
-                                {
-                                    name: "connect-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--max-conn",
-                            description: "Maximum number of connections",
-                            args: [
-                                {
-                                    name: "max-conn",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--first-byte-timeout",
-                            description: "How long to wait for the first bytes in milliseconds",
-                            args: [
-                                {
-                                    name: "first-byte-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--between-bytes-timeout",
-                            description: "How long to wait between bytes in milliseconds",
-                            args: [
-                                {
-                                    name: "between-bytes-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--auto-loadbalance",
-                            description: "Whether or not this backend should be automatically load balanced",
-                        },
-                        {
-                            name: "--weight",
-                            description: "Weight used to load balance this backend against others",
-                            args: [
-                                {
-                                    name: "weight",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--request-condition",
-                            description: "Condition, which if met, will select this backend during a request",
-                            args: [
-                                {
-                                    name: "request-condition",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--healthcheck",
-                            description: "The name of the healthcheck to use with this backend",
-                            args: [
-                                {
-                                    name: "healthcheck",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--shield",
-                            description: "The shield POP designated to reduce inbound load on this origin by serving the cached data to the rest of the network",
-                            args: [
-                                {
-                                    name: "shield",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--use-ssl",
-                            description: "Whether or not to use SSL to reach the backend",
-                        },
-                        {
-                            name: "--ssl-check-cert",
-                            description: "Be strict on checking SSL certs",
-                        },
-                        {
-                            name: "--ssl-ca-cert",
-                            description: "CA certificate attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-ca-cert",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-client-cert",
-                            description: "Client certificate attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-client-cert",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-client-key",
-                            description: "Client key attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-client-key",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-cert-hostname",
-                            description: "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
-                            args: [
-                                {
-                                    name: "ssl-cert-hostname",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-sni-hostname",
-                            description: "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
-                            args: [
-                                {
-                                    name: "ssl-sni-hostname",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--min-tls-version",
-                            description: "Minimum allowed TLS version on SSL connections to this backend",
-                            args: [
-                                {
-                                    name: "min-tls-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--max-tls-version",
-                            description: "Maximum allowed TLS version on SSL connections to this backend",
-                            args: [
-                                {
-                                    name: "max-tls-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-ciphers",
-                            description: "List of OpenSSL ciphers (see https://www.openssl.org/docs/man1.0.2/man1/ciphers for details)",
-                            args: [
-                                {
-                                    name: "ssl-ciphers",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version you wish to deactivate",
+              args: [
                 {
-                    name: "list",
-                    description: "List backends on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
-                {
-                    name: "describe",
-                    description: "Show detailed information about a backend on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of backend",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "update",
-                    description: "Update a backend on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "backend name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--new-name",
-                            description: "New backend name",
-                            args: [
-                                {
-                                    name: "new-name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--address",
-                            description: "A hostname, IPv4, or IPv6 address for the backend",
-                            args: [
-                                {
-                                    name: "address",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--port",
-                            description: "Port number of the address",
-                            args: [
-                                {
-                                    name: "port",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--override-host",
-                            description: "The hostname to override the Host header",
-                            args: [
-                                {
-                                    name: "override-host",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--connect-timeout",
-                            description: "How long to wait for a timeout in milliseconds",
-                            args: [
-                                {
-                                    name: "connect-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--max-conn",
-                            description: "Maximum number of connections",
-                            args: [
-                                {
-                                    name: "max-conn",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--first-byte-timeout",
-                            description: "How long to wait for the first bytes in milliseconds",
-                            args: [
-                                {
-                                    name: "first-byte-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--between-bytes-timeout",
-                            description: "How long to wait between bytes in milliseconds",
-                            args: [
-                                {
-                                    name: "between-bytes-timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--auto-loadbalance",
-                            description: "Whether or not this backend should be automatically load balanced",
-                        },
-                        {
-                            name: "--weight",
-                            description: "Weight used to load balance this backend against others",
-                            args: [
-                                {
-                                    name: "weight",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--request-condition",
-                            description: "condition, which if met, will select this backend during a request",
-                            args: [
-                                {
-                                    name: "request-condition",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--healthcheck",
-                            description: "The name of the healthcheck to use with this backend",
-                            args: [
-                                {
-                                    name: "healthcheck",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--shield",
-                            description: "The shield POP designated to reduce inbound load on this origin by serving the cached data to the rest of the network",
-                            args: [
-                                {
-                                    name: "shield",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--use-ssl",
-                            description: "Whether or not to use SSL to reach the backend",
-                        },
-                        {
-                            name: "--ssl-check-cert",
-                            description: "Be strict on checking SSL certs",
-                        },
-                        {
-                            name: "--ssl-ca-cert",
-                            description: "CA certificate attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-ca-cert",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-client-cert",
-                            description: "Client certificate attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-client-cert",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-client-key",
-                            description: "Client key attached to origin",
-                            args: [
-                                {
-                                    name: "ssl-client-key",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-cert-hostname",
-                            description: "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
-                            args: [
-                                {
-                                    name: "ssl-cert-hostname",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-sni-hostname",
-                            description: "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
-                            args: [
-                                {
-                                    name: "ssl-sni-hostname",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--min-tls-version",
-                            description: "Minimum allowed TLS version on SSL connections to this backend",
-                            args: [
-                                {
-                                    name: "min-tls-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--max-tls-version",
-                            description: "Maximum allowed TLS version on SSL connections to this backend",
-                            args: [
-                                {
-                                    name: "max-tls-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--ssl-ciphers",
-                            description: "List of OpenSSL ciphers (see https://www.openssl.org/docs/man1.0.2/man1/ciphers for details)",
-                            args: [
-                                {
-                                    name: "ssl-ciphers",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "delete",
-                    description: "Delete a backend on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Backend name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "healthcheck",
-            description: "Manipulate Fastly service version healthchecks",
-            subcommands: [
+          name: "lock",
+          description: "Lock a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a healthcheck on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Healthcheck name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--method",
-                            description: "Which HTTP method to use",
-                            args: [
-                                {
-                                    name: "method",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--host",
-                            description: "Which host to check",
-                            args: [
-                                {
-                                    name: "host",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "The path to check",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--http-version",
-                            description: "Whether to use version 1.0 or 1.1 HTTP",
-                            args: [
-                                {
-                                    name: "http-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--timeout",
-                            description: "Timeout in milliseconds",
-                            args: [
-                                {
-                                    name: "timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--check-interval",
-                            description: "How often to run the healthcheck in milliseconds",
-                            args: [
-                                {
-                                    name: "check-interval",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--expected-response",
-                            description: "The status code expected from the host",
-                            args: [
-                                {
-                                    name: "expected-response",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--window",
-                            description: "The number of most recent healthcheck queries to keep for this healthcheck",
-                            args: [
-                                {
-                                    name: "window",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--threshold",
-                            description: "How many healthchecks must succeed to be considered healthy",
-                            args: [
-                                {
-                                    name: "threshold",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--initial",
-                            description: "When loading a config, the initial number of probes to be seen as OK",
-                            args: [
-                                {
-                                    name: "initial",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version you wish to lock",
+              args: [
                 {
-                    name: "list",
-                    description: "List healthchecks on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "compute",
+      description: "Manage Compute@Edge packages",
+      subcommands: [
+        {
+          name: "init",
+          description: "Initialize a new Compute@Edge package locally",
+          options: [
+            {
+              name: "--name",
+              description:
+                "Name of package, defaulting to directory name of the --path destination",
+              args: [
                 {
-                    name: "describe",
-                    description: "Show detailed information about a healthcheck on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of healthcheck",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "name",
                 },
+              ],
+            },
+            {
+              name: "--description",
+              description: "Description of the package",
+              args: [
                 {
-                    name: "update",
-                    description: "Update a healthcheck on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Healthcheck name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--new-name",
-                            description: "Healthcheck name",
-                            args: [
-                                {
-                                    name: "new-name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--comment",
-                            description: "A descriptive note",
-                            args: [
-                                {
-                                    name: "comment",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--method",
-                            description: "Which HTTP method to use",
-                            args: [
-                                {
-                                    name: "method",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--host",
-                            description: "Which host to check",
-                            args: [
-                                {
-                                    name: "host",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--path",
-                            description: "The path to check",
-                            args: [
-                                {
-                                    name: "path",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--http-version",
-                            description: "Whether to use version 1.0 or 1.1 HTTP",
-                            args: [
-                                {
-                                    name: "http-version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--timeout",
-                            description: "Timeout in milliseconds",
-                            args: [
-                                {
-                                    name: "timeout",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--check-interval",
-                            description: "How often to run the healthcheck in milliseconds",
-                            args: [
-                                {
-                                    name: "check-interval",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--expected-response",
-                            description: "The status code expected from the host",
-                            args: [
-                                {
-                                    name: "expected-response",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--window",
-                            description: "The number of most recent healthcheck queries to keep for this healthcheck",
-                            args: [
-                                {
-                                    name: "window",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--threshold",
-                            description: "How many healthchecks must succeed to be considered healthy",
-                            args: [
-                                {
-                                    name: "threshold",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--initial",
-                            description: "When loading a config, the initial number of probes to be seen as OK",
-                            args: [
-                                {
-                                    name: "initial",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "description",
                 },
+              ],
+            },
+            {
+              name: "--author",
+              description: "Author(s) of the package",
+              args: [
                 {
-                    name: "delete",
-                    description: "Delete a healthcheck on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Healthcheck name",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "author",
                 },
-            ],
+              ],
+            },
+            {
+              name: "--language",
+              description: "Language of the package",
+              args: [
+                {
+                  name: "language",
+                },
+              ],
+            },
+            {
+              name: "--from",
+              description: "Git repository containing package template",
+              args: [
+                {
+                  name: "from",
+                },
+              ],
+            },
+            {
+              name: "--branch",
+              description:
+                "Git branch name to clone from package template repository",
+              args: [
+                {
+                  name: "branch",
+                },
+              ],
+            },
+            {
+              name: "--tag",
+              description:
+                "Git tag name to clone from package template repository",
+              args: [
+                {
+                  name: "tag",
+                },
+              ],
+            },
+            {
+              name: "--path",
+              description:
+                "Destination to write the new package, defaulting to the current directory",
+              args: [
+                {
+                  name: "path",
+                },
+              ],
+            },
+            {
+              name: "--force",
+              description:
+                "Skip non-empty directory verification step and force new project creation",
+            },
+          ],
         },
         {
-            name: "dictionary",
-            description: "Manipulate Fastly edge dictionaries",
-            subcommands: [
+          name: "build",
+          description: "Build a Compute@Edge package locally",
+          options: [
+            {
+              name: "--name",
+              description: "Package name",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a Fastly edge dictionary on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of Dictionary",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--write-only",
-                            description: "Whether to mark this dictionary as write-only. Can be true or false (defaults to false)",
-                            args: [
-                                {
-                                    name: "write-only",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "name",
                 },
+              ],
+            },
+            {
+              name: "--language",
+              description: "Language type",
+              args: [
                 {
-                    name: "describe",
-                    description: "Show detailed information about a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of Dictionary",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "language",
                 },
-                {
-                    name: "delete",
-                    description: "Delete a Fastly edge dictionary from a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Name of Dictionary",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "list",
-                    description: "List all dictionaries on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "update",
-                    description: "Update name of dictionary on a Fastly service version",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--version",
-                            description: "Number of service version",
-                            args: [
-                                {
-                                    name: "version",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--name",
-                            description: "Old name of Dictionary",
-                            args: [
-                                {
-                                    name: "name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--new-name",
-                            description: "New name of Dictionary",
-                            args: [
-                                {
-                                    name: "new-name",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--write-only",
-                            description: "Whether to mark this dictionary as write-only. Can be true or false (defaults to false)",
-                            args: [
-                                {
-                                    name: "write-only",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+            {
+              name: "--include-source",
+              description: "Include source code in built package",
+            },
+            {
+              name: "--force",
+              description: "Skip verification steps and force build",
+            },
+          ],
         },
         {
-            name: "dictionaryitem",
-            description: "Manipulate Fastly edge dictionary items",
-            subcommands: [
+          name: "deploy",
+          description: "Deploy a package to a Fastly Compute@Edge service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "list",
-                    description: "List items in a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version to activate",
+              args: [
                 {
-                    name: "describe",
-                    description: "Show detailed information about a Fastly edge dictionary item",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--key",
-                            description: "Dictionary item key",
-                            args: [
-                                {
-                                    name: "key",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
+              ],
+            },
+            {
+              name: "--path",
+              description: "Path to package",
+              args: [
                 {
-                    name: "create",
-                    description: "Create a new item on a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--key",
-                            description: "Dictionary item key",
-                            args: [
-                                {
-                                    name: "key",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--value",
-                            description: "Dictionary item value",
-                            args: [
-                                {
-                                    name: "value",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "path",
                 },
+              ],
+            },
+            {
+              name: "--domain",
+              description: "The name of the domain associated to the package",
+              args: [
                 {
-                    name: "update",
-                    description: "Update or insert an item on a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--key",
-                            description: "Dictionary item key",
-                            args: [
-                                {
-                                    name: "key",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--value",
-                            description: "Dictionary item value",
-                            args: [
-                                {
-                                    name: "value",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "domain",
                 },
+              ],
+            },
+            {
+              name: "--backend",
+              description:
+                "A hostname, IPv4, or IPv6 address for the package backend",
+              args: [
                 {
-                    name: "delete",
-                    description: "Delete an item from a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--key",
-                            description: "Dictionary item key",
-                            args: [
-                                {
-                                    name: "key",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "backend",
                 },
+              ],
+            },
+            {
+              name: "--backend-port",
+              description: "A port number for the package backend",
+              args: [
                 {
-                    name: "batchmodify",
-                    description: "Update multiple items in a Fastly edge dictionary",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--dictionary-id",
-                            description: "Dictionary ID",
-                            args: [
-                                {
-                                    name: "dictionary-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--file",
-                            description: "Batch update json file",
-                            args: [
-                                {
-                                    name: "file",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "backend-port",
                 },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "logging",
-            description: "Manipulate Fastly service version logging endpoints",
-            subcommands: [
+          name: "publish",
+          description:
+            "Build and deploy a Compute@Edge package to a Fastly service",
+          options: [
+            {
+              name: "--name",
+              description: "Package name",
+              args: [
                 {
-                    name: "bigquery",
-                    description: "Manipulate Fastly service version BigQuery logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a BigQuery logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the BigQuery logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--project-id",
-                                    description: "Your Google Cloud Platform project ID",
-                                    args: [
-                                        {
-                                            name: "project-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--dataset",
-                                    description: "Your BigQuery dataset",
-                                    args: [
-                                        {
-                                            name: "dataset",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--table",
-                                    description: "Your BigQuery table",
-                                    args: [
-                                        {
-                                            name: "table",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--template-suffix",
-                                    description: "BigQuery table name suffix template",
-                                    args: [
-                                        {
-                                            name: "template-suffix",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Must produce JSON that matches the schema of your BigQuery table",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List BigQuery endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a BigQuery logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the BigQuery logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a BigQuery logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the BigQuery logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the BigQuery logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--project-id",
-                                    description: "Your Google Cloud Platform project ID",
-                                    args: [
-                                        {
-                                            name: "project-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--dataset",
-                                    description: "Your BigQuery dataset",
-                                    args: [
-                                        {
-                                            name: "dataset",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--table",
-                                    description: "Your BigQuery table",
-                                    args: [
-                                        {
-                                            name: "table",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--template-suffix",
-                                    description: "BigQuery table name suffix template",
-                                    args: [
-                                        {
-                                            name: "template-suffix",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Must produce JSON that matches the schema of your BigQuery table",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a BigQuery logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the BigQuery logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "name",
                 },
+              ],
+            },
+            {
+              name: "--language",
+              description: "Language type",
+              args: [
                 {
-                    name: "s3",
-                    description: "Manipulate Fastly service version S3 logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an Amazon S3 logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the S3 logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "Your S3 bucket name",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your S3 account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your S3 account secret key",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--iam-role",
-                                    description: "The IAM role ARN for logging",
-                                    args: [
-                                        {
-                                            name: "iam-role",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--domain",
-                                    description: "The domain of the S3 endpoint",
-                                    args: [
-                                        {
-                                            name: "domain",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--redundancy",
-                                    description: "The S3 redundancy level. Can be either standard or reduced_redundancy",
-                                    args: [
-                                        {
-                                            name: "redundancy",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--server-side-encryption",
-                                    description: "Set to enable S3 Server Side Encryption. Can be either AES256 or aws:kms",
-                                    args: [
-                                        {
-                                            name: "server-side-encryption",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--server-side-encryption-kms-key-id",
-                                    description: "Server-side KMS Key ID. Must be set if server-side-encryption is set to aws:kms",
-                                    args: [
-                                        {
-                                            name: "server-side-encryption-kms-key-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List S3 endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a S3 logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the S3 logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a S3 logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the S3 logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the S3 logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "Your S3 bucket name",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your S3 account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your S3 account secret key",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--iam-role",
-                                    description: "The IAM role ARN for logging",
-                                    args: [
-                                        {
-                                            name: "iam-role",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--domain",
-                                    description: "The domain of the S3 endpoint",
-                                    args: [
-                                        {
-                                            name: "domain",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--redundancy",
-                                    description: "The S3 redundancy level. Can be either standard or reduced_redundancy",
-                                    args: [
-                                        {
-                                            name: "redundancy",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--server-side-encryption",
-                                    description: "Set to enable S3 Server Side Encryption. Can be either AES256 or aws:kms",
-                                    args: [
-                                        {
-                                            name: "server-side-encryption",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--server-side-encryption-kms-key-id",
-                                    description: "Server-side KMS Key ID. Must be set if server-side-encryption is set to aws:kms",
-                                    args: [
-                                        {
-                                            name: "server-side-encryption-kms-key-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a S3 logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the S3 logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "language",
                 },
+              ],
+            },
+            {
+              name: "--include-source",
+              description: "Include source code in built package",
+            },
+            {
+              name: "--force",
+              description: "Skip verification steps and force build",
+            },
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "kinesis",
-                    description: "Manipulate a Kinesis logging endpoint for a specific Fastly service version",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an Amazon Kinesis logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kinesis logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--stream-name",
-                                    description: "The Amazon Kinesis stream to send logs to",
-                                    args: [
-                                        {
-                                            name: "stream-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The AWS region where the Kinesis stream exists",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "The access key associated with the target Amazon Kinesis stream",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "The secret key associated with the target Amazon Kinesis stream",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--iam-role",
-                                    description: "The IAM role ARN for logging",
-                                    args: [
-                                        {
-                                            name: "iam-role",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Kinesis endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Kinesis logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kinesis logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Kinesis logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kinesis logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Kinesis logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--stream-name",
-                                    description: "Your Kinesis stream name",
-                                    args: [
-                                        {
-                                            name: "stream-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your Kinesis account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your Kinesis account secret key",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--iam-role",
-                                    description: "The IAM role ARN for logging",
-                                    args: [
-                                        {
-                                            name: "iam-role",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The AWS region where the Kinesis stream exists",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Kinesis logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kinesis logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of version to activate",
+              args: [
                 {
-                    name: "syslog",
-                    description: "Manipulate Fastly service version Syslog logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Syslog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Syslog logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "A hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "Used during the TLS handshake to validate the certificate",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "Whether to prepend each message with a specific token",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Syslog endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Syslog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Syslog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Syslog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Syslog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Syslog logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "A hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "Used during the TLS handshake to validate the certificate",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "Whether to prepend each message with a specific token",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Syslog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Syslog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "version",
                 },
+              ],
+            },
+            {
+              name: "--path",
+              description: "Path to package",
+              args: [
                 {
-                    name: "logentries",
-                    description: "Manipulate Fastly service version Logentries logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Logentries logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logentries logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "Use token based authentication (https://logentries.com/doc/input-token/)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Logentries endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Logentries logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logentries logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Logentries logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logentries logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Logentries logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "Use token based authentication (https://logentries.com/doc/input-token/)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Logentries logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logentries logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "path",
                 },
+              ],
+            },
+            {
+              name: "--domain",
+              description: "The name of the domain associated to the package",
+              args: [
                 {
-                    name: "papertrail",
-                    description: "Manipulate Fastly service version Papertrail logging endpoints.",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Papertrail logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Papertrail logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "A hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Papertrail endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Papertrail logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Papertrail logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Papertrail logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Papertrail logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Papertrail logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "A hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Papertrail logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Papertrail logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "domain",
                 },
+              ],
+            },
+            {
+              name: "--backend",
+              description:
+                "A hostname, IPv4, or IPv6 address for the package backend",
+              args: [
                 {
-                    name: "sumologic",
-                    description: "Manipulate Fastly service version Sumologic logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Sumologic logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Sumologic logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to POST to",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Sumologic endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Sumologic logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Sumologic logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Sumologic logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Sumologic logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Sumologic logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to POST to",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Sumologic logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Sumologic logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "backend",
                 },
+              ],
+            },
+            {
+              name: "--backend-port",
+              description: "A port number for the package backend",
+              args: [
                 {
-                    name: "gcs",
-                    description: "Manipulate Fastly service version GCS logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a GCS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the GCS logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your GCS service account email address. The client_email field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The bucket of the GCS bucket",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your GCS account secret key. The private_key field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to (default '/')",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List GCS endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a GCS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the GCS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a GCS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the GCS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the GCS logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The bucket of the GCS bucket",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your GCS service account email address. The client_email field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your GCS account secret key. The private_key field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to (default '/')",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a GCS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the GCS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
+                  name: "backend-port",
                 },
-                {
-                    name: "ftp",
-                    description: "Manipulate Fastly service version FTP logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an FTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the FTP logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "An hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for the server (can be anonymous)",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "The password for the server (for anonymous use an email address)",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload log files to. If the path ends in / then it is treated as a directory",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List FTP endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an FTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the FTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an FTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the FTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the FTP logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "An hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--username",
-                                    description: "The username for the server (can be anonymous)",
-                                    args: [
-                                        {
-                                            name: "username",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "The password for the server (for anonymous use an email address)",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload log files to. If the path ends in / then it is treated as a directory",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an FTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the FTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "splunk",
-                    description: "Manipulate Fastly service version Splunk logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Splunk logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Splunk logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to POST to",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "A Splunk token for use in posting logs over HTTP to your collector",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Splunk endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Splunk logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Splunk logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Splunk logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Splunk logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Splunk logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to POST to.",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "\tWhere in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Splunk logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Splunk logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "scalyr",
-                    description: "Manipulate Fastly service version Scalyr logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Scalyr logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Scalyr logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://www.scalyr.com/keys)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Scalyr endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Scalyr logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Scalyr logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Scalyr logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Scalyr logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Scalyr logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://www.scalyr.com/keys)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Scalyr logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Scalyr logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "loggly",
-                    description: "Manipulate Fastly service version Loggly logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Loggly logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Loggly logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Loggly endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Loggly logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Loggly logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Loggly logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Loggly logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Loggly logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Loggly logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Loggly logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "honeycomb",
-                    description: "Manipulate Fastly service version Honeycomb logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Honeycomb logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Honeycomb logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--dataset",
-                                    description: "The Honeycomb Dataset you want to log to",
-                                    args: [
-                                        {
-                                            name: "dataset",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The Write Key from the Account page of your Honeycomb account",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Honeycomb endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Honeycomb logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Honeycomb logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Honeycomb logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Honeycomb logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Honeycomb logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--dataset",
-                                    description: "The Honeycomb Dataset you want to log to",
-                                    args: [
-                                        {
-                                            name: "dataset",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The Write Key from the Account page of your Honeycomb account",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Honeycomb logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Honeycomb logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "heroku",
-                    description: "Manipulate Fastly service version Heroku logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Heroku logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Heroku logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The url to stream logs to",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://devcenter.heroku.com/articles/add-on-partner-log-integration)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Heroku endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Heroku logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Heroku logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Heroku logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Heroku logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Heroku logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The url to stream logs to",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The token to use for authentication (https://devcenter.heroku.com/articles/add-on-partner-log-integration)",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Heroku logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Heroku logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "sftp",
-                    description: "Manipulate Fastly service version SFTP logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an SFTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the SFTP logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "The hostname or IPv4 addres",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for the server",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--ssh-known-hosts",
-                                    description: "A list of host keys for all hosts we can connect to over SFTP",
-                                    args: [
-                                        {
-                                            name: "ssh-known-hosts",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "The password for the server. If both password and secret_key are passed, secret_key will be used in preference",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "The SSH private key for the server. If both password and secret_key are passed, secret_key will be used in preference",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to. The directory must exist on the SFTP server before logs can be saved to it",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List SFTP endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an SFTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the SFTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an SFTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the SFTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the SFTP logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--address",
-                                    description: "The hostname or IPv4 address",
-                                    args: [
-                                        {
-                                            name: "address",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--port",
-                                    description: "The port number",
-                                    args: [
-                                        {
-                                            name: "port",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "The SSH private key for the server. If both password and secret_key are passed, secret_key will be used in preference",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--ssh-known-hosts",
-                                    description: "A list of host keys for all hosts we can connect to over SFTP",
-                                    args: [
-                                        {
-                                            name: "ssh-known-hosts",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for the server",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "The password for the server. If both password and secret_key are passed, secret_key will be used in preference",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to. The directory must exist on the SFTP server before logs can be saved to it",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an SFTP logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the SFTP logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "logshuttle",
-                    description: "Manipulate Fastly service version Logshuttle logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Logshuttle logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logshuttle logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "Your Log Shuttle endpoint url",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The data authentication token associated with this endpoint",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Logshuttle endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Logshuttle logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logshuttle logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Logshuttle logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logshuttle logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Logshuttle logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "Your Log Shuttle endpoint url",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The data authentication token associated with this endpoint",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Logshuttle logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Logshuttle logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "cloudfiles",
-                    description: "Manipulate Fastly service version Cloudfiles logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Cloudfiles logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Cloudfiles logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for your Cloudfile account",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your Cloudfile account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of your Cloudfiles container",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region to stream logs to. One of: DFW-Dallas, ORD-Chicago, IAD-Northern Virginia, LON-London, SYD-Sydney, HKG-Hong Kong",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Cloudfiles endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Cloudfiles logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Cloudfiles logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Cloudfiles logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Cloudfiles logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Cloudfiles logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for your Cloudfile account",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your Cloudfile account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of your Cloudfiles container",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region to stream logs to. One of: DFW-Dallas, ORD-Chicago, IAD-Northern Virginia, LON-London, SYD-Sydney, HKG-Hong Kong",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Cloudfiles logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Cloudfiles logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "digitalocean",
-                    description: "Manipulate Fastly service version DigitalOcean Spaces logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a DigitalOcean Spaces logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the DigitalOcean Spaces logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of the DigitalOcean Space",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your DigitalOcean Spaces account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your DigitalOcean Spaces account secret key",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--domain",
-                                    description: "The domain of the DigitalOcean Spaces endpoint (default 'nyc3.digitaloceanspaces.com')",
-                                    args: [
-                                        {
-                                            name: "domain",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List DigitalOcean Spaces logging endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a DigitalOcean Spaces logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the DigitalOcean Spaces logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a DigitalOcean Spaces logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the DigitalOcean Spaces logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the DigitalOcean Spaces logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of the DigitalOcean Space",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--domain",
-                                    description: "The domain of the DigitalOcean Spaces endpoint (default 'nyc3.digitaloceanspaces.com')",
-                                    args: [
-                                        {
-                                            name: "domain",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your DigitalOcean Spaces account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your DigitalOcean Spaces account secret key",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a DigitalOcean Spaces logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the DigitalOcean Spaces logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "elasticsearch",
-                    description: "Manipulate Fastly service version Elasticsearch logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an Elasticsearch logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Elasticsearch logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--index",
-                                    description: "The name of the Elasticsearch index to send documents (logs) to. The index must follow the Elasticsearch index format rules (https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html). We support strftime (http://man7.org/linux/man-pages/man3/strftime.3.html) interpolated variables inside braces prefixed with a pound symbol. For example, #{%F} will interpolate as YYYY-MM-DD with today's date",
-                                    args: [
-                                        {
-                                            name: "index",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to stream logs to. Must use HTTPS.",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--pipeline",
-                                    description: "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing. For example my_pipeline_id. Learn more about creating a pipeline in the Elasticsearch docs (https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html)",
-                                    args: [
-                                        {
-                                            name: "pipeline",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Elasticsearch can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-entries",
-                                    description: "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-entries",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-bytes",
-                                    description: "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-bytes",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Elasticsearch endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an Elasticsearch logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Elasticsearch logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an Elasticsearch logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Elasticsearch logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Elasticsearch logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--index",
-                                    description: "The name of the Elasticsearch index to send documents (logs) to. The index must follow the Elasticsearch index format rules (https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html). We support strftime (http://man7.org/linux/man-pages/man3/strftime.3.html) interpolated variables inside braces prefixed with a pound symbol. For example, #{%F} will interpolate as YYYY-MM-DD with today's date",
-                                    args: [
-                                        {
-                                            name: "index",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "The URL to stream logs to. Must use HTTPS.",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--pipeline",
-                                    description: "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing. For example my_pipeline_id. Learn more about creating a pipeline in the Elasticsearch docs (https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html)",
-                                    args: [
-                                        {
-                                            name: "pipeline",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Elasticsearch can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-entries",
-                                    description: "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-entries",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-bytes",
-                                    description: "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-bytes",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an Elasticsearch logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Elasticsearch logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "azureblob",
-                    description: "Manipulate Fastly service version Azure Blob Storage logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an Azure Blob Storage logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Azure Blob Storage logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--container",
-                                    description: "The name of the Azure Blob Storage container in which to store logs",
-                                    args: [
-                                        {
-                                            name: "container",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--account-name",
-                                    description: "The unique Azure Blob Storage namespace in which your data objects are stored",
-                                    args: [
-                                        {
-                                            name: "account-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--sas-token",
-                                    description: "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work",
-                                    args: [
-                                        {
-                                            name: "sas-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--file-max-bytes",
-                                    description: "The maximum size of a log file in bytes",
-                                    args: [
-                                        {
-                                            name: "file-max-bytes",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Azure Blob Storage logging endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an Azure Blob Storage logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Azure Blob Storage logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an Azure Blob Storage logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Azure Blob Storage logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Azure Blob Storage logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--container",
-                                    description: "The name of the Azure Blob Storage container in which to store logs",
-                                    args: [
-                                        {
-                                            name: "container",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--account-name",
-                                    description: "The unique Azure Blob Storage namespace in which your data objects are stored",
-                                    args: [
-                                        {
-                                            name: "account-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--sas-token",
-                                    description: "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work",
-                                    args: [
-                                        {
-                                            name: "sas-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--file-max-bytes",
-                                    description: "The maximum size of a log file in bytes",
-                                    args: [
-                                        {
-                                            name: "file-max-bytes",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an Azure Blob Storage logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Azure Blob Storage logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "datadog",
-                    description: "Manipulate Fastly service version Datadog logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Datadog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Datadog logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The API key from your Datadog account",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. For details on the default value refer to the documentation (https://developer.fastly.com/reference/api/logging/datadog/)",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Datadog endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Datadog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Datadog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Datadog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Datadog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Datadog logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--auth-token",
-                                    description: "The API key from your Datadog account",
-                                    args: [
-                                        {
-                                            name: "auth-token",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--region",
-                                    description: "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
-                                    args: [
-                                        {
-                                            name: "region",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. For details on the default value refer to the documentation (https://developer.fastly.com/reference/api/logging/datadog/)",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Datadog logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Datadog logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "https",
-                    description: "Manipulate Fastly service version HTTPS logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an HTTPS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the HTTPS logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "URL that log data will be sent to. Must use the https protocol",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--content-type",
-                                    description: "Content type of the header sent with the request",
-                                    args: [
-                                        {
-                                            name: "content-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--header-name",
-                                    description: "Name of the custom header sent with the request",
-                                    args: [
-                                        {
-                                            name: "header-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--header-value",
-                                    description: "Value of the custom header sent with the request",
-                                    args: [
-                                        {
-                                            name: "header-value",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--method",
-                                    description: "HTTP method used for request. Can be POST or PUT. Defaults to POST if not specified",
-                                    args: [
-                                        {
-                                            name: "method",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--json-format",
-                                    description: "Enforces valid JSON formatting for log entries. Can be disabled 0, array of json (wraps JSON log batches in an array) 1, or newline delimited json (places each JSON log entry onto a new line in a batch) 2",
-                                    args: [
-                                        {
-                                            name: "json-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that HTTPS can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-entries",
-                                    description: "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-entries",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-bytes",
-                                    description: "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-bytes",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List HTTPS endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an HTTPS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the HTTPS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an HTTPS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the HTTPS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the HTTPS logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "URL that log data will be sent to. Must use the https protocol",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--content-type",
-                                    description: "Content type of the header sent with the request",
-                                    args: [
-                                        {
-                                            name: "content-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--header-name",
-                                    description: "Name of the custom header sent with the request",
-                                    args: [
-                                        {
-                                            name: "header-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--header-value",
-                                    description: "Value of the custom header sent with the request",
-                                    args: [
-                                        {
-                                            name: "header-value",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--method",
-                                    description: "HTTP method used for request. Can be POST or PUT. Defaults to POST if not specified",
-                                    args: [
-                                        {
-                                            name: "method",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--json-format",
-                                    description: "Enforces valid JSON formatting for log entries. Can be disabled 0, array of json (wraps JSON log batches in an array) 1, or newline delimited json (places each JSON log entry onto a new line in a batch) 2",
-                                    args: [
-                                        {
-                                            name: "json-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that HTTPS can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-entries",
-                                    description: "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-entries",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--request-max-bytes",
-                                    description: "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
-                                    args: [
-                                        {
-                                            name: "request-max-bytes",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an HTTPS logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the HTTPS logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "kafka",
-                    description: "Manipulate Fastly service version Kafka logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Kafka logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kafka logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--topic",
-                                    description: "The Kafka topic to send logs to",
-                                    args: [
-                                        {
-                                            name: "topic",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--brokers",
-                                    description: "A comma-separated list of IP addresses or hostnames of Kafka brokers",
-                                    args: [
-                                        {
-                                            name: "brokers",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: "The codec used for compression of your logs. One of: gzip, snappy, lz4",
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--required-acks",
-                                    description: "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0\tNo servers need to respond. -1\tWait for all in-sync replicas to respond",
-                                    args: [
-                                        {
-                                            name: "required-acks",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Kafka can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--parse-log-keyvals",
-                                    description: "Parse key-value pairs within the log format",
-                                },
-                                {
-                                    name: "--max-batch-size",
-                                    description: "The maximum size of the log batch in bytes",
-                                    args: [
-                                        {
-                                            name: "max-batch-size",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-sasl",
-                                    description: "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                                },
-                                {
-                                    name: "--auth-method",
-                                    description: "SASL authentication method. Valid values are: plain, scram-sha-256, scram-sha-512",
-                                    args: [
-                                        {
-                                            name: "auth-method",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--username",
-                                    description: "SASL authentication username. Required if --auth-method is specified",
-                                    args: [
-                                        {
-                                            name: "username",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "SASL authentication password. Required if --auth-method is specified",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Kafka endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Kafka logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kafka logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Kafka logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kafka logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Kafka logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--topic",
-                                    description: "The Kafka topic to send logs to",
-                                    args: [
-                                        {
-                                            name: "topic",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--brokers",
-                                    description: "A comma-separated list of IP addresses or hostnames of Kafka brokers",
-                                    args: [
-                                        {
-                                            name: "brokers",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: "The codec used for compression of your logs. One of: gzip, snappy, lz4",
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--required-acks",
-                                    description: "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0\tNo servers need to respond. -1\tWait for all in-sync replicas to respond",
-                                    args: [
-                                        {
-                                            name: "required-acks",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-tls",
-                                    description: "Whether to use TLS for secure logging. Can be either true or false",
-                                },
-                                {
-                                    name: "--tls-ca-cert",
-                                    description: "A secure certificate to authenticate the server with. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-ca-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-cert",
-                                    description: "The client certificate used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-cert",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-client-key",
-                                    description: "The client private key used to make authenticated requests. Must be in PEM format",
-                                    args: [
-                                        {
-                                            name: "tls-client-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--tls-hostname",
-                                    description: "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
-                                    args: [
-                                        {
-                                            name: "tls-hostname",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting. Your log must produce valid JSON that Kafka can ingest",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--parse-log-keyvals",
-                                    description: "Parse key-value pairs within the log format",
-                                },
-                                {
-                                    name: "--max-batch-size",
-                                    description: "The maximum size of the log batch in bytes",
-                                    args: [
-                                        {
-                                            name: "max-batch-size",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--use-sasl",
-                                    description: "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                                },
-                                {
-                                    name: "--auth-method",
-                                    description: "SASL authentication method. Valid values are: plain, scram-sha-256, scram-sha-512",
-                                    args: [
-                                        {
-                                            name: "auth-method",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--username",
-                                    description: "SASL authentication username. Required if --auth-method is specified",
-                                    args: [
-                                        {
-                                            name: "username",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--password",
-                                    description: "SASL authentication password. Required if --auth-method is specified",
-                                    args: [
-                                        {
-                                            name: "password",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Kafka logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Kafka logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "googlepubsub",
-                    description: "Manipulate Fastly service version Google Cloud Pub/Sub logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the Google Cloud Pub/Sub logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--topic",
-                                    description: "The Google Cloud Pub/Sub topic to which logs will be published",
-                                    args: [
-                                        {
-                                            name: "topic",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--project-id",
-                                    description: "The ID of your Google Cloud Platform project",
-                                    args: [
-                                        {
-                                            name: "project-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List Google Cloud Pub/Sub endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Google Cloud Pub/Sub logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Google Cloud Pub/Sub logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the Google Cloud Pub/Sub logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--secret-key",
-                                    description: "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
-                                    args: [
-                                        {
-                                            name: "secret-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--topic",
-                                    description: "The Google Cloud Pub/Sub topic to which logs will be published",
-                                    args: [
-                                        {
-                                            name: "topic",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--project-id",
-                                    description: "The ID of your Google Cloud Platform project",
-                                    args: [
-                                        {
-                                            name: "project-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the Google Cloud Pub/Sub logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "openstack",
-                    description: "Manipulate Fastly service version OpenStack logging endpoints",
-                    subcommands: [
-                        {
-                            name: "create",
-                            description: "Create an OpenStack logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--name",
-                                    description: "The name of the OpenStack logging object. Used as a primary key for API access",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of your OpenStack container",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your OpenStack account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for your OpenStack account",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "Your OpenStack auth url",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "list",
-                            description: "List OpenStack logging endpoints on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "describe",
-                            description: "Show detailed information about an OpenStack logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the OpenStack logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "update",
-                            description: "Update an OpenStack logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the OpenStack logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--new-name",
-                                    description: "New name of the OpenStack logging object",
-                                    args: [
-                                        {
-                                            name: "new-name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--bucket",
-                                    description: "The name of the Openstack Space",
-                                    args: [
-                                        {
-                                            name: "bucket",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--access-key",
-                                    description: "Your OpenStack account access key",
-                                    args: [
-                                        {
-                                            name: "access-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--user",
-                                    description: "The username for your OpenStack account.",
-                                    args: [
-                                        {
-                                            name: "user",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--url",
-                                    description: "Your OpenStack auth url.",
-                                    args: [
-                                        {
-                                            name: "url",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--path",
-                                    description: "The path to upload logs to",
-                                    args: [
-                                        {
-                                            name: "path",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--period",
-                                    description: "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
-                                    args: [
-                                        {
-                                            name: "period",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--gzip-level",
-                                    description: "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
-                                    args: [
-                                        {
-                                            name: "gzip-level",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format",
-                                    description: "Apache style log formatting",
-                                    args: [
-                                        {
-                                            name: "format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--format-version",
-                                    description: "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
-                                    args: [
-                                        {
-                                            name: "format-version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--response-condition",
-                                    description: "The name of an existing condition in the configured endpoint, or leave blank to always execute",
-                                    args: [
-                                        {
-                                            name: "response-condition",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--message-type",
-                                    description: "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
-                                    args: [
-                                        {
-                                            name: "message-type",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--timestamp-format",
-                                    description: 'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
-                                    args: [
-                                        {
-                                            name: "timestamp-format",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--placement",
-                                    description: "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
-                                    args: [
-                                        {
-                                            name: "placement",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--public-key",
-                                    description: "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
-                                    args: [
-                                        {
-                                            name: "public-key",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--compression-codec",
-                                    description: 'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
-                                    args: [
-                                        {
-                                            name: "compression-codec",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            name: "delete",
-                            description: "Delete an OpenStack logging endpoint on a Fastly service version",
-                            options: [
-                                {
-                                    name: "--version",
-                                    description: "Number of service version",
-                                    args: [
-                                        {
-                                            name: "version",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--name",
-                                    description: "The name of the OpenStack logging object",
-                                    args: [
-                                        {
-                                            name: "name",
-                                        },
-                                    ],
-                                },
-                                {
-                                    name: "--service-id",
-                                    description: "Service ID",
-                                    args: [
-                                        {
-                                            name: "service-id",
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
         {
-            name: "logs",
-            description: "Compute@Edge Log Tailing",
-            subcommands: [
+          name: "update",
+          description:
+            "Update a package on a Fastly Compute@Edge service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "tail",
-                    description: "Tail Compute@Edge logs",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--from",
-                            description: "From time, in unix seconds",
-                            args: [
-                                {
-                                    name: "from",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--to",
-                            description: "To time, in unix seconds",
-                            args: [
-                                {
-                                    name: "to",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--sort-buffer",
-                            description: "Sort buffer is how long to buffer logs, attempting to sort them before printing, defaults to 1s (second)",
-                            args: [
-                                {
-                                    name: "sort-buffer",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--search-padding",
-                            description: "Search padding is how much of a window on either side of From and To to use for searching, defaults to 2s (seconds)",
-                            args: [
-                                {
-                                    name: "search-padding",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--stream",
-                            description: "Stream specifies which of 'stdout' or 'stderr' to output, defaults to undefined (all streams)",
-                            args: [
-                                {
-                                    name: "stream",
-                                },
-                            ],
-                        },
-                    ],
+                  name: "service-id",
                 },
-            ],
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--path",
+              description: "Path to package",
+              args: [
+                {
+                  name: "path",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "stats",
-            description: "View statistics (historical and realtime) for a Fastly service",
-            subcommands: [
+          name: "validate",
+          description: "Validate a Compute@Edge package",
+          options: [
+            {
+              name: "--path",
+              description: "Path to package",
+              args: [
                 {
-                    name: "regions",
-                    description: "List stats regions",
+                  name: "path",
                 },
-                {
-                    name: "historical",
-                    description: "View historical stats for a Fastly service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--from",
-                            description: "From time, accepted formats at https://docs.fastly.com/api/stats#Range",
-                            args: [
-                                {
-                                    name: "from",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--to",
-                            description: "To time",
-                            args: [
-                                {
-                                    name: "to",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--by",
-                            description: "Aggregation period (minute/hour/day)",
-                            args: [
-                                {
-                                    name: "by",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--region",
-                            description: "Filter by region ('stats regions' to list)",
-                            args: [
-                                {
-                                    name: "region",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--format",
-                            description: "Output format (json)",
-                            args: [
-                                {
-                                    name: "format",
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    name: "realtime",
-                    description: "View realtime stats for a Fastly service",
-                    options: [
-                        {
-                            name: "--service-id",
-                            description: "Service ID",
-                            args: [
-                                {
-                                    name: "service-id",
-                                },
-                            ],
-                        },
-                        {
-                            name: "--format",
-                            description: "Output format (json)",
-                            args: [
-                                {
-                                    name: "format",
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
+              ],
+            },
+          ],
         },
-    ],
-    options: [
+      ],
+    },
+    {
+      name: "domain",
+      description: "Manipulate Fastly service version domains",
+      subcommands: [
         {
-            name: "--help",
-            description: "Show context-sensitive help.",
+          name: "create",
+          description: "Create a domain on a Fastly service version",
+          options: [
+            {
+              name: "--name",
+              description: "Domain name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "--token",
-            description: "Fastly API token (or via FASTLY_API_TOKEN)",
-            args: [
+          name: "list",
+          description: "List domains on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
                 {
-                    name: "token",
+                  name: "service-id",
                 },
-            ],
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
         },
         {
-            name: "--verbose",
-            description: "Verbose logging",
+          name: "describe",
+          description:
+            "Show detailed information about a domain on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of domain",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
         },
-    ],
+        {
+          name: "update",
+          description: "Update a domain on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Domain name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--new-name",
+              description: "New domain name",
+              args: [
+                {
+                  name: "new-name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a domain on a Fastly service version",
+          options: [
+            {
+              name: "--name",
+              description: "Domain name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "backend",
+      description: "Manipulate Fastly service version backends",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a backend on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Backend name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--address",
+              description: "A hostname, IPv4, or IPv6 address for the backend",
+              args: [
+                {
+                  name: "address",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+            {
+              name: "--port",
+              description: "Port number of the address",
+              args: [
+                {
+                  name: "port",
+                },
+              ],
+            },
+            {
+              name: "--override-host",
+              description: "The hostname to override the Host header",
+              args: [
+                {
+                  name: "override-host",
+                },
+              ],
+            },
+            {
+              name: "--connect-timeout",
+              description: "How long to wait for a timeout in milliseconds",
+              args: [
+                {
+                  name: "connect-timeout",
+                },
+              ],
+            },
+            {
+              name: "--max-conn",
+              description: "Maximum number of connections",
+              args: [
+                {
+                  name: "max-conn",
+                },
+              ],
+            },
+            {
+              name: "--first-byte-timeout",
+              description:
+                "How long to wait for the first bytes in milliseconds",
+              args: [
+                {
+                  name: "first-byte-timeout",
+                },
+              ],
+            },
+            {
+              name: "--between-bytes-timeout",
+              description: "How long to wait between bytes in milliseconds",
+              args: [
+                {
+                  name: "between-bytes-timeout",
+                },
+              ],
+            },
+            {
+              name: "--auto-loadbalance",
+              description:
+                "Whether or not this backend should be automatically load balanced",
+            },
+            {
+              name: "--weight",
+              description:
+                "Weight used to load balance this backend against others",
+              args: [
+                {
+                  name: "weight",
+                },
+              ],
+            },
+            {
+              name: "--request-condition",
+              description:
+                "Condition, which if met, will select this backend during a request",
+              args: [
+                {
+                  name: "request-condition",
+                },
+              ],
+            },
+            {
+              name: "--healthcheck",
+              description:
+                "The name of the healthcheck to use with this backend",
+              args: [
+                {
+                  name: "healthcheck",
+                },
+              ],
+            },
+            {
+              name: "--shield",
+              description:
+                "The shield POP designated to reduce inbound load on this origin by serving the cached data to the rest of the network",
+              args: [
+                {
+                  name: "shield",
+                },
+              ],
+            },
+            {
+              name: "--use-ssl",
+              description: "Whether or not to use SSL to reach the backend",
+            },
+            {
+              name: "--ssl-check-cert",
+              description: "Be strict on checking SSL certs",
+            },
+            {
+              name: "--ssl-ca-cert",
+              description: "CA certificate attached to origin",
+              args: [
+                {
+                  name: "ssl-ca-cert",
+                },
+              ],
+            },
+            {
+              name: "--ssl-client-cert",
+              description: "Client certificate attached to origin",
+              args: [
+                {
+                  name: "ssl-client-cert",
+                },
+              ],
+            },
+            {
+              name: "--ssl-client-key",
+              description: "Client key attached to origin",
+              args: [
+                {
+                  name: "ssl-client-key",
+                },
+              ],
+            },
+            {
+              name: "--ssl-cert-hostname",
+              description:
+                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
+              args: [
+                {
+                  name: "ssl-cert-hostname",
+                },
+              ],
+            },
+            {
+              name: "--ssl-sni-hostname",
+              description:
+                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
+              args: [
+                {
+                  name: "ssl-sni-hostname",
+                },
+              ],
+            },
+            {
+              name: "--min-tls-version",
+              description:
+                "Minimum allowed TLS version on SSL connections to this backend",
+              args: [
+                {
+                  name: "min-tls-version",
+                },
+              ],
+            },
+            {
+              name: "--max-tls-version",
+              description:
+                "Maximum allowed TLS version on SSL connections to this backend",
+              args: [
+                {
+                  name: "max-tls-version",
+                },
+              ],
+            },
+            {
+              name: "--ssl-ciphers",
+              description:
+                "List of OpenSSL ciphers (see https://www.openssl.org/docs/man1.0.2/man1/ciphers for details)",
+              args: [
+                {
+                  name: "ssl-ciphers",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List backends on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "describe",
+          description:
+            "Show detailed information about a backend on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of backend",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update a backend on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "backend name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--new-name",
+              description: "New backend name",
+              args: [
+                {
+                  name: "new-name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+            {
+              name: "--address",
+              description: "A hostname, IPv4, or IPv6 address for the backend",
+              args: [
+                {
+                  name: "address",
+                },
+              ],
+            },
+            {
+              name: "--port",
+              description: "Port number of the address",
+              args: [
+                {
+                  name: "port",
+                },
+              ],
+            },
+            {
+              name: "--override-host",
+              description: "The hostname to override the Host header",
+              args: [
+                {
+                  name: "override-host",
+                },
+              ],
+            },
+            {
+              name: "--connect-timeout",
+              description: "How long to wait for a timeout in milliseconds",
+              args: [
+                {
+                  name: "connect-timeout",
+                },
+              ],
+            },
+            {
+              name: "--max-conn",
+              description: "Maximum number of connections",
+              args: [
+                {
+                  name: "max-conn",
+                },
+              ],
+            },
+            {
+              name: "--first-byte-timeout",
+              description:
+                "How long to wait for the first bytes in milliseconds",
+              args: [
+                {
+                  name: "first-byte-timeout",
+                },
+              ],
+            },
+            {
+              name: "--between-bytes-timeout",
+              description: "How long to wait between bytes in milliseconds",
+              args: [
+                {
+                  name: "between-bytes-timeout",
+                },
+              ],
+            },
+            {
+              name: "--auto-loadbalance",
+              description:
+                "Whether or not this backend should be automatically load balanced",
+            },
+            {
+              name: "--weight",
+              description:
+                "Weight used to load balance this backend against others",
+              args: [
+                {
+                  name: "weight",
+                },
+              ],
+            },
+            {
+              name: "--request-condition",
+              description:
+                "condition, which if met, will select this backend during a request",
+              args: [
+                {
+                  name: "request-condition",
+                },
+              ],
+            },
+            {
+              name: "--healthcheck",
+              description:
+                "The name of the healthcheck to use with this backend",
+              args: [
+                {
+                  name: "healthcheck",
+                },
+              ],
+            },
+            {
+              name: "--shield",
+              description:
+                "The shield POP designated to reduce inbound load on this origin by serving the cached data to the rest of the network",
+              args: [
+                {
+                  name: "shield",
+                },
+              ],
+            },
+            {
+              name: "--use-ssl",
+              description: "Whether or not to use SSL to reach the backend",
+            },
+            {
+              name: "--ssl-check-cert",
+              description: "Be strict on checking SSL certs",
+            },
+            {
+              name: "--ssl-ca-cert",
+              description: "CA certificate attached to origin",
+              args: [
+                {
+                  name: "ssl-ca-cert",
+                },
+              ],
+            },
+            {
+              name: "--ssl-client-cert",
+              description: "Client certificate attached to origin",
+              args: [
+                {
+                  name: "ssl-client-cert",
+                },
+              ],
+            },
+            {
+              name: "--ssl-client-key",
+              description: "Client key attached to origin",
+              args: [
+                {
+                  name: "ssl-client-key",
+                },
+              ],
+            },
+            {
+              name: "--ssl-cert-hostname",
+              description:
+                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
+              args: [
+                {
+                  name: "ssl-cert-hostname",
+                },
+              ],
+            },
+            {
+              name: "--ssl-sni-hostname",
+              description:
+                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
+              args: [
+                {
+                  name: "ssl-sni-hostname",
+                },
+              ],
+            },
+            {
+              name: "--min-tls-version",
+              description:
+                "Minimum allowed TLS version on SSL connections to this backend",
+              args: [
+                {
+                  name: "min-tls-version",
+                },
+              ],
+            },
+            {
+              name: "--max-tls-version",
+              description:
+                "Maximum allowed TLS version on SSL connections to this backend",
+              args: [
+                {
+                  name: "max-tls-version",
+                },
+              ],
+            },
+            {
+              name: "--ssl-ciphers",
+              description:
+                "List of OpenSSL ciphers (see https://www.openssl.org/docs/man1.0.2/man1/ciphers for details)",
+              args: [
+                {
+                  name: "ssl-ciphers",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a backend on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Backend name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "healthcheck",
+      description: "Manipulate Fastly service version healthchecks",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a healthcheck on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Healthcheck name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+            {
+              name: "--method",
+              description: "Which HTTP method to use",
+              args: [
+                {
+                  name: "method",
+                },
+              ],
+            },
+            {
+              name: "--host",
+              description: "Which host to check",
+              args: [
+                {
+                  name: "host",
+                },
+              ],
+            },
+            {
+              name: "--path",
+              description: "The path to check",
+              args: [
+                {
+                  name: "path",
+                },
+              ],
+            },
+            {
+              name: "--http-version",
+              description: "Whether to use version 1.0 or 1.1 HTTP",
+              args: [
+                {
+                  name: "http-version",
+                },
+              ],
+            },
+            {
+              name: "--timeout",
+              description: "Timeout in milliseconds",
+              args: [
+                {
+                  name: "timeout",
+                },
+              ],
+            },
+            {
+              name: "--check-interval",
+              description: "How often to run the healthcheck in milliseconds",
+              args: [
+                {
+                  name: "check-interval",
+                },
+              ],
+            },
+            {
+              name: "--expected-response",
+              description: "The status code expected from the host",
+              args: [
+                {
+                  name: "expected-response",
+                },
+              ],
+            },
+            {
+              name: "--window",
+              description:
+                "The number of most recent healthcheck queries to keep for this healthcheck",
+              args: [
+                {
+                  name: "window",
+                },
+              ],
+            },
+            {
+              name: "--threshold",
+              description:
+                "How many healthchecks must succeed to be considered healthy",
+              args: [
+                {
+                  name: "threshold",
+                },
+              ],
+            },
+            {
+              name: "--initial",
+              description:
+                "When loading a config, the initial number of probes to be seen as OK",
+              args: [
+                {
+                  name: "initial",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List healthchecks on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "describe",
+          description:
+            "Show detailed information about a healthcheck on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of healthcheck",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update a healthcheck on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Healthcheck name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--new-name",
+              description: "Healthcheck name",
+              args: [
+                {
+                  name: "new-name",
+                },
+              ],
+            },
+            {
+              name: "--comment",
+              description: "A descriptive note",
+              args: [
+                {
+                  name: "comment",
+                },
+              ],
+            },
+            {
+              name: "--method",
+              description: "Which HTTP method to use",
+              args: [
+                {
+                  name: "method",
+                },
+              ],
+            },
+            {
+              name: "--host",
+              description: "Which host to check",
+              args: [
+                {
+                  name: "host",
+                },
+              ],
+            },
+            {
+              name: "--path",
+              description: "The path to check",
+              args: [
+                {
+                  name: "path",
+                },
+              ],
+            },
+            {
+              name: "--http-version",
+              description: "Whether to use version 1.0 or 1.1 HTTP",
+              args: [
+                {
+                  name: "http-version",
+                },
+              ],
+            },
+            {
+              name: "--timeout",
+              description: "Timeout in milliseconds",
+              args: [
+                {
+                  name: "timeout",
+                },
+              ],
+            },
+            {
+              name: "--check-interval",
+              description: "How often to run the healthcheck in milliseconds",
+              args: [
+                {
+                  name: "check-interval",
+                },
+              ],
+            },
+            {
+              name: "--expected-response",
+              description: "The status code expected from the host",
+              args: [
+                {
+                  name: "expected-response",
+                },
+              ],
+            },
+            {
+              name: "--window",
+              description:
+                "The number of most recent healthcheck queries to keep for this healthcheck",
+              args: [
+                {
+                  name: "window",
+                },
+              ],
+            },
+            {
+              name: "--threshold",
+              description:
+                "How many healthchecks must succeed to be considered healthy",
+              args: [
+                {
+                  name: "threshold",
+                },
+              ],
+            },
+            {
+              name: "--initial",
+              description:
+                "When loading a config, the initial number of probes to be seen as OK",
+              args: [
+                {
+                  name: "initial",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete a healthcheck on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Healthcheck name",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "dictionary",
+      description: "Manipulate Fastly edge dictionaries",
+      subcommands: [
+        {
+          name: "create",
+          description:
+            "Create a Fastly edge dictionary on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of Dictionary",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--write-only",
+              description:
+                "Whether to mark this dictionary as write-only. Can be true or false (defaults to false)",
+              args: [
+                {
+                  name: "write-only",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "describe",
+          description:
+            "Show detailed information about a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of Dictionary",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description:
+            "Delete a Fastly edge dictionary from a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Name of Dictionary",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List all dictionaries on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update name of dictionary on a Fastly service version",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--version",
+              description: "Number of service version",
+              args: [
+                {
+                  name: "version",
+                },
+              ],
+            },
+            {
+              name: "--name",
+              description: "Old name of Dictionary",
+              args: [
+                {
+                  name: "name",
+                },
+              ],
+            },
+            {
+              name: "--new-name",
+              description: "New name of Dictionary",
+              args: [
+                {
+                  name: "new-name",
+                },
+              ],
+            },
+            {
+              name: "--write-only",
+              description:
+                "Whether to mark this dictionary as write-only. Can be true or false (defaults to false)",
+              args: [
+                {
+                  name: "write-only",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "dictionaryitem",
+      description: "Manipulate Fastly edge dictionary items",
+      subcommands: [
+        {
+          name: "list",
+          description: "List items in a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "describe",
+          description:
+            "Show detailed information about a Fastly edge dictionary item",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+            {
+              name: "--key",
+              description: "Dictionary item key",
+              args: [
+                {
+                  name: "key",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Create a new item on a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+            {
+              name: "--key",
+              description: "Dictionary item key",
+              args: [
+                {
+                  name: "key",
+                },
+              ],
+            },
+            {
+              name: "--value",
+              description: "Dictionary item value",
+              args: [
+                {
+                  name: "value",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update or insert an item on a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+            {
+              name: "--key",
+              description: "Dictionary item key",
+              args: [
+                {
+                  name: "key",
+                },
+              ],
+            },
+            {
+              name: "--value",
+              description: "Dictionary item value",
+              args: [
+                {
+                  name: "value",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Delete an item from a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+            {
+              name: "--key",
+              description: "Dictionary item key",
+              args: [
+                {
+                  name: "key",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "batchmodify",
+          description: "Update multiple items in a Fastly edge dictionary",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--dictionary-id",
+              description: "Dictionary ID",
+              args: [
+                {
+                  name: "dictionary-id",
+                },
+              ],
+            },
+            {
+              name: "--file",
+              description: "Batch update json file",
+              args: [
+                {
+                  name: "file",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "logging",
+      description: "Manipulate Fastly service version logging endpoints",
+      subcommands: [
+        {
+          name: "bigquery",
+          description:
+            "Manipulate Fastly service version BigQuery logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a BigQuery logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the BigQuery logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--project-id",
+                  description: "Your Google Cloud Platform project ID",
+                  args: [
+                    {
+                      name: "project-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--dataset",
+                  description: "Your BigQuery dataset",
+                  args: [
+                    {
+                      name: "dataset",
+                    },
+                  ],
+                },
+                {
+                  name: "--table",
+                  description: "Your BigQuery table",
+                  args: [
+                    {
+                      name: "table",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--template-suffix",
+                  description: "BigQuery table name suffix template",
+                  args: [
+                    {
+                      name: "template-suffix",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Must produce JSON that matches the schema of your BigQuery table",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List BigQuery endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a BigQuery logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the BigQuery logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a BigQuery logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the BigQuery logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the BigQuery logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--project-id",
+                  description: "Your Google Cloud Platform project ID",
+                  args: [
+                    {
+                      name: "project-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--dataset",
+                  description: "Your BigQuery dataset",
+                  args: [
+                    {
+                      name: "dataset",
+                    },
+                  ],
+                },
+                {
+                  name: "--table",
+                  description: "Your BigQuery table",
+                  args: [
+                    {
+                      name: "table",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--template-suffix",
+                  description: "BigQuery table name suffix template",
+                  args: [
+                    {
+                      name: "template-suffix",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Must produce JSON that matches the schema of your BigQuery table",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a BigQuery logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the BigQuery logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "s3",
+          description: "Manipulate Fastly service version S3 logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an Amazon S3 logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the S3 logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "Your S3 bucket name",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your S3 account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description: "Your S3 account secret key",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--iam-role",
+                  description: "The IAM role ARN for logging",
+                  args: [
+                    {
+                      name: "iam-role",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--domain",
+                  description: "The domain of the S3 endpoint",
+                  args: [
+                    {
+                      name: "domain",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--redundancy",
+                  description:
+                    "The S3 redundancy level. Can be either standard or reduced_redundancy",
+                  args: [
+                    {
+                      name: "redundancy",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--server-side-encryption",
+                  description:
+                    "Set to enable S3 Server Side Encryption. Can be either AES256 or aws:kms",
+                  args: [
+                    {
+                      name: "server-side-encryption",
+                    },
+                  ],
+                },
+                {
+                  name: "--server-side-encryption-kms-key-id",
+                  description:
+                    "Server-side KMS Key ID. Must be set if server-side-encryption is set to aws:kms",
+                  args: [
+                    {
+                      name: "server-side-encryption-kms-key-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List S3 endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a S3 logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the S3 logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a S3 logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the S3 logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the S3 logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "Your S3 bucket name",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your S3 account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description: "Your S3 account secret key",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--iam-role",
+                  description: "The IAM role ARN for logging",
+                  args: [
+                    {
+                      name: "iam-role",
+                    },
+                  ],
+                },
+                {
+                  name: "--domain",
+                  description: "The domain of the S3 endpoint",
+                  args: [
+                    {
+                      name: "domain",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--redundancy",
+                  description:
+                    "The S3 redundancy level. Can be either standard or reduced_redundancy",
+                  args: [
+                    {
+                      name: "redundancy",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--server-side-encryption",
+                  description:
+                    "Set to enable S3 Server Side Encryption. Can be either AES256 or aws:kms",
+                  args: [
+                    {
+                      name: "server-side-encryption",
+                    },
+                  ],
+                },
+                {
+                  name: "--server-side-encryption-kms-key-id",
+                  description:
+                    "Server-side KMS Key ID. Must be set if server-side-encryption is set to aws:kms",
+                  args: [
+                    {
+                      name: "server-side-encryption-kms-key-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a S3 logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the S3 logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "kinesis",
+          description:
+            "Manipulate a Kinesis logging endpoint for a specific Fastly service version",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an Amazon Kinesis logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Kinesis logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--stream-name",
+                  description: "The Amazon Kinesis stream to send logs to",
+                  args: [
+                    {
+                      name: "stream-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description: "The AWS region where the Kinesis stream exists",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description:
+                    "The access key associated with the target Amazon Kinesis stream",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "The secret key associated with the target Amazon Kinesis stream",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--iam-role",
+                  description: "The IAM role ARN for logging",
+                  args: [
+                    {
+                      name: "iam-role",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Kinesis endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Kinesis logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kinesis logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Kinesis logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kinesis logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Kinesis logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--stream-name",
+                  description: "Your Kinesis stream name",
+                  args: [
+                    {
+                      name: "stream-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your Kinesis account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description: "Your Kinesis account secret key",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--iam-role",
+                  description: "The IAM role ARN for logging",
+                  args: [
+                    {
+                      name: "iam-role",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description: "The AWS region where the Kinesis stream exists",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Kinesis logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kinesis logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "syslog",
+          description:
+            "Manipulate Fastly service version Syslog logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Syslog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Syslog logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "A hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "Used during the TLS handshake to validate the certificate",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "Whether to prepend each message with a specific token",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Syslog endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Syslog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Syslog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Syslog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Syslog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Syslog logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "A hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "Used during the TLS handshake to validate the certificate",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "Whether to prepend each message with a specific token",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Syslog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Syslog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "logentries",
+          description:
+            "Manipulate Fastly service version Logentries logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Logentries logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Logentries logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "Use token based authentication (https://logentries.com/doc/input-token/)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Logentries endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Logentries logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logentries logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Logentries logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logentries logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Logentries logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "Use token based authentication (https://logentries.com/doc/input-token/)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Logentries logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logentries logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "papertrail",
+          description:
+            "Manipulate Fastly service version Papertrail logging endpoints.",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Papertrail logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Papertrail logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "A hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Papertrail endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Papertrail logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Papertrail logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Papertrail logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Papertrail logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Papertrail logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "A hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Papertrail logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Papertrail logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "sumologic",
+          description:
+            "Manipulate Fastly service version Sumologic logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Sumologic logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Sumologic logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to POST to",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Sumologic endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Sumologic logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Sumologic logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Sumologic logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Sumologic logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Sumologic logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to POST to",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Sumologic logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Sumologic logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "gcs",
+          description:
+            "Manipulate Fastly service version GCS logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a GCS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the GCS logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your GCS service account email address. The client_email field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The bucket of the GCS bucket",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your GCS account secret key. The private_key field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to (default '/')",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List GCS endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a GCS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the GCS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a GCS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the GCS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the GCS logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The bucket of the GCS bucket",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your GCS service account email address. The client_email field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your GCS account secret key. The private_key field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to (default '/')",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a GCS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the GCS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "ftp",
+          description:
+            "Manipulate Fastly service version FTP logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an FTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the FTP logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "An hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for the server (can be anonymous)",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "The password for the server (for anonymous use an email address)",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description:
+                    "The path to upload log files to. If the path ends in / then it is treated as a directory",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List FTP endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an FTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the FTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an FTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the FTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the FTP logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "An hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--username",
+                  description: "The username for the server (can be anonymous)",
+                  args: [
+                    {
+                      name: "username",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "The password for the server (for anonymous use an email address)",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description:
+                    "The path to upload log files to. If the path ends in / then it is treated as a directory",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (the default, version 2 log format) or 1 (the version 1 log format). The logging call gets placed by default in vcl_log if format_version is set to 2 and in vcl_deliver if format_version is set to 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an FTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the FTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "splunk",
+          description:
+            "Manipulate Fastly service version Splunk logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Splunk logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Splunk logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to POST to",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "A Splunk token for use in posting logs over HTTP to your collector",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Splunk endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Splunk logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Splunk logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Splunk logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Splunk logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Splunk logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to POST to.",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "\tWhere in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description: "",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Splunk logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Splunk logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "scalyr",
+          description:
+            "Manipulate Fastly service version Scalyr logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Scalyr logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Scalyr logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://www.scalyr.com/keys)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Scalyr endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Scalyr logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Scalyr logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Scalyr logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Scalyr logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Scalyr logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://www.scalyr.com/keys)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Scalyr logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Scalyr logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "loggly",
+          description:
+            "Manipulate Fastly service version Loggly logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Loggly logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Loggly logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Loggly endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Loggly logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Loggly logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Loggly logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Loggly logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Loggly logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://www.loggly.com/docs/customer-token-authentication-token/)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Loggly logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Loggly logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "honeycomb",
+          description:
+            "Manipulate Fastly service version Honeycomb logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Honeycomb logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Honeycomb logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--dataset",
+                  description: "The Honeycomb Dataset you want to log to",
+                  args: [
+                    {
+                      name: "dataset",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The Write Key from the Account page of your Honeycomb account",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Honeycomb endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Honeycomb logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Honeycomb logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Honeycomb logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Honeycomb logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Honeycomb logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Honeycomb can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--dataset",
+                  description: "The Honeycomb Dataset you want to log to",
+                  args: [
+                    {
+                      name: "dataset",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The Write Key from the Account page of your Honeycomb account",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Honeycomb logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Honeycomb logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "heroku",
+          description:
+            "Manipulate Fastly service version Heroku logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Heroku logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Heroku logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The url to stream logs to",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://devcenter.heroku.com/articles/add-on-partner-log-integration)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Heroku endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Heroku logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Heroku logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Heroku logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Heroku logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Heroku logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The url to stream logs to",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The token to use for authentication (https://devcenter.heroku.com/articles/add-on-partner-log-integration)",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Heroku logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Heroku logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "sftp",
+          description:
+            "Manipulate Fastly service version SFTP logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an SFTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the SFTP logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "The hostname or IPv4 addres",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for the server",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--ssh-known-hosts",
+                  description:
+                    "A list of host keys for all hosts we can connect to over SFTP",
+                  args: [
+                    {
+                      name: "ssh-known-hosts",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "The password for the server. If both password and secret_key are passed, secret_key will be used in preference",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "The SSH private key for the server. If both password and secret_key are passed, secret_key will be used in preference",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description:
+                    "The path to upload logs to. The directory must exist on the SFTP server before logs can be saved to it",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List SFTP endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an SFTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the SFTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an SFTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the SFTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the SFTP logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--address",
+                  description: "The hostname or IPv4 address",
+                  args: [
+                    {
+                      name: "address",
+                    },
+                  ],
+                },
+                {
+                  name: "--port",
+                  description: "The port number",
+                  args: [
+                    {
+                      name: "port",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "The SSH private key for the server. If both password and secret_key are passed, secret_key will be used in preference",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--ssh-known-hosts",
+                  description:
+                    "A list of host keys for all hosts we can connect to over SFTP",
+                  args: [
+                    {
+                      name: "ssh-known-hosts",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for the server",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "The password for the server. If both password and secret_key are passed, secret_key will be used in preference",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description:
+                    "The path to upload logs to. The directory must exist on the SFTP server before logs can be saved to it",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an SFTP logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the SFTP logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "logshuttle",
+          description:
+            "Manipulate Fastly service version Logshuttle logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Logshuttle logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Logshuttle logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "Your Log Shuttle endpoint url",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The data authentication token associated with this endpoint",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Logshuttle endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Logshuttle logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logshuttle logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Logshuttle logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logshuttle logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Logshuttle logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "Your Log Shuttle endpoint url",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description:
+                    "The data authentication token associated with this endpoint",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Logshuttle logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Logshuttle logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "cloudfiles",
+          description:
+            "Manipulate Fastly service version Cloudfiles logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Cloudfiles logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Cloudfiles logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for your Cloudfile account",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your Cloudfile account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of your Cloudfiles container",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region to stream logs to. One of: DFW-Dallas, ORD-Chicago, IAD-Northern Virginia, LON-London, SYD-Sydney, HKG-Hong Kong",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Cloudfiles endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Cloudfiles logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Cloudfiles logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Cloudfiles logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Cloudfiles logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Cloudfiles logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for your Cloudfile account",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your Cloudfile account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of your Cloudfiles container",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region to stream logs to. One of: DFW-Dallas, ORD-Chicago, IAD-Northern Virginia, LON-London, SYD-Sydney, HKG-Hong Kong",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Cloudfiles logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Cloudfiles logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "digitalocean",
+          description:
+            "Manipulate Fastly service version DigitalOcean Spaces logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a DigitalOcean Spaces logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the DigitalOcean Spaces logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of the DigitalOcean Space",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your DigitalOcean Spaces account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description: "Your DigitalOcean Spaces account secret key",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--domain",
+                  description:
+                    "The domain of the DigitalOcean Spaces endpoint (default 'nyc3.digitaloceanspaces.com')",
+                  args: [
+                    {
+                      name: "domain",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List DigitalOcean Spaces logging endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a DigitalOcean Spaces logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the DigitalOcean Spaces logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a DigitalOcean Spaces logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the DigitalOcean Spaces logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description:
+                    "New name of the DigitalOcean Spaces logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of the DigitalOcean Space",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--domain",
+                  description:
+                    "The domain of the DigitalOcean Spaces endpoint (default 'nyc3.digitaloceanspaces.com')",
+                  args: [
+                    {
+                      name: "domain",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your DigitalOcean Spaces account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description: "Your DigitalOcean Spaces account secret key",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a DigitalOcean Spaces logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the DigitalOcean Spaces logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "elasticsearch",
+          description:
+            "Manipulate Fastly service version Elasticsearch logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an Elasticsearch logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Elasticsearch logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--index",
+                  description:
+                    "The name of the Elasticsearch index to send documents (logs) to. The index must follow the Elasticsearch index format rules (https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html). We support strftime (http://man7.org/linux/man-pages/man3/strftime.3.html) interpolated variables inside braces prefixed with a pound symbol. For example, #{%F} will interpolate as YYYY-MM-DD with today's date",
+                  args: [
+                    {
+                      name: "index",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to stream logs to. Must use HTTPS.",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--pipeline",
+                  description:
+                    "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing. For example my_pipeline_id. Learn more about creating a pipeline in the Elasticsearch docs (https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html)",
+                  args: [
+                    {
+                      name: "pipeline",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Elasticsearch can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-entries",
+                  description:
+                    "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-entries",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-bytes",
+                  description:
+                    "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-bytes",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Elasticsearch endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an Elasticsearch logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Elasticsearch logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an Elasticsearch logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Elasticsearch logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Elasticsearch logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--index",
+                  description:
+                    "The name of the Elasticsearch index to send documents (logs) to. The index must follow the Elasticsearch index format rules (https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html). We support strftime (http://man7.org/linux/man-pages/man3/strftime.3.html) interpolated variables inside braces prefixed with a pound symbol. For example, #{%F} will interpolate as YYYY-MM-DD with today's date",
+                  args: [
+                    {
+                      name: "index",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "The URL to stream logs to. Must use HTTPS.",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--pipeline",
+                  description:
+                    "The ID of the Elasticsearch ingest pipeline to apply pre-process transformations to before indexing. For example my_pipeline_id. Learn more about creating a pipeline in the Elasticsearch docs (https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html)",
+                  args: [
+                    {
+                      name: "pipeline",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Elasticsearch can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-entries",
+                  description:
+                    "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-entries",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-bytes",
+                  description:
+                    "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-bytes",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an Elasticsearch logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Elasticsearch logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "azureblob",
+          description:
+            "Manipulate Fastly service version Azure Blob Storage logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an Azure Blob Storage logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Azure Blob Storage logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--container",
+                  description:
+                    "The name of the Azure Blob Storage container in which to store logs",
+                  args: [
+                    {
+                      name: "container",
+                    },
+                  ],
+                },
+                {
+                  name: "--account-name",
+                  description:
+                    "The unique Azure Blob Storage namespace in which your data objects are stored",
+                  args: [
+                    {
+                      name: "account-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--sas-token",
+                  description:
+                    "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work",
+                  args: [
+                    {
+                      name: "sas-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--file-max-bytes",
+                  description: "The maximum size of a log file in bytes",
+                  args: [
+                    {
+                      name: "file-max-bytes",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Azure Blob Storage logging endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an Azure Blob Storage logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Azure Blob Storage logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an Azure Blob Storage logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Azure Blob Storage logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description:
+                    "New name of the Azure Blob Storage logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--container",
+                  description:
+                    "The name of the Azure Blob Storage container in which to store logs",
+                  args: [
+                    {
+                      name: "container",
+                    },
+                  ],
+                },
+                {
+                  name: "--account-name",
+                  description:
+                    "The unique Azure Blob Storage namespace in which your data objects are stored",
+                  args: [
+                    {
+                      name: "account-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--sas-token",
+                  description:
+                    "The Azure shared access signature providing write access to the blob service objects. Be sure to update your token before it expires or the logging functionality will not work",
+                  args: [
+                    {
+                      name: "sas-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--file-max-bytes",
+                  description: "The maximum size of a log file in bytes",
+                  args: [
+                    {
+                      name: "file-max-bytes",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an Azure Blob Storage logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Azure Blob Storage logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "datadog",
+          description:
+            "Manipulate Fastly service version Datadog logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Datadog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Datadog logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description: "The API key from your Datadog account",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. For details on the default value refer to the documentation (https://developer.fastly.com/reference/api/logging/datadog/)",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Datadog endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Datadog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Datadog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Datadog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Datadog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Datadog logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--auth-token",
+                  description: "The API key from your Datadog account",
+                  args: [
+                    {
+                      name: "auth-token",
+                    },
+                  ],
+                },
+                {
+                  name: "--region",
+                  description:
+                    "The region that log data will be sent to. One of US or EU. Defaults to US if undefined",
+                  args: [
+                    {
+                      name: "region",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. For details on the default value refer to the documentation (https://developer.fastly.com/reference/api/logging/datadog/)",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Datadog logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Datadog logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "https",
+          description:
+            "Manipulate Fastly service version HTTPS logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an HTTPS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the HTTPS logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description:
+                    "URL that log data will be sent to. Must use the https protocol",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--content-type",
+                  description:
+                    "Content type of the header sent with the request",
+                  args: [
+                    {
+                      name: "content-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--header-name",
+                  description:
+                    "Name of the custom header sent with the request",
+                  args: [
+                    {
+                      name: "header-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--header-value",
+                  description:
+                    "Value of the custom header sent with the request",
+                  args: [
+                    {
+                      name: "header-value",
+                    },
+                  ],
+                },
+                {
+                  name: "--method",
+                  description:
+                    "HTTP method used for request. Can be POST or PUT. Defaults to POST if not specified",
+                  args: [
+                    {
+                      name: "method",
+                    },
+                  ],
+                },
+                {
+                  name: "--json-format",
+                  description:
+                    "Enforces valid JSON formatting for log entries. Can be disabled 0, array of json (wraps JSON log batches in an array) 1, or newline delimited json (places each JSON log entry onto a new line in a batch) 2",
+                  args: [
+                    {
+                      name: "json-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that HTTPS can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-entries",
+                  description:
+                    "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-entries",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-bytes",
+                  description:
+                    "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-bytes",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List HTTPS endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an HTTPS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the HTTPS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an HTTPS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the HTTPS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the HTTPS logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description:
+                    "URL that log data will be sent to. Must use the https protocol",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--content-type",
+                  description:
+                    "Content type of the header sent with the request",
+                  args: [
+                    {
+                      name: "content-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--header-name",
+                  description:
+                    "Name of the custom header sent with the request",
+                  args: [
+                    {
+                      name: "header-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--header-value",
+                  description:
+                    "Value of the custom header sent with the request",
+                  args: [
+                    {
+                      name: "header-value",
+                    },
+                  ],
+                },
+                {
+                  name: "--method",
+                  description:
+                    "HTTP method used for request. Can be POST or PUT. Defaults to POST if not specified",
+                  args: [
+                    {
+                      name: "method",
+                    },
+                  ],
+                },
+                {
+                  name: "--json-format",
+                  description:
+                    "Enforces valid JSON formatting for log entries. Can be disabled 0, array of json (wraps JSON log batches in an array) 1, or newline delimited json (places each JSON log entry onto a new line in a batch) 2",
+                  args: [
+                    {
+                      name: "json-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that HTTPS can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-entries",
+                  description:
+                    "Maximum number of logs to append to a batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-entries",
+                    },
+                  ],
+                },
+                {
+                  name: "--request-max-bytes",
+                  description:
+                    "Maximum size of log batch, if non-zero. Defaults to 0 for unbounded",
+                  args: [
+                    {
+                      name: "request-max-bytes",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an HTTPS logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the HTTPS logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "kafka",
+          description:
+            "Manipulate Fastly service version Kafka logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Kafka logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Kafka logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--topic",
+                  description: "The Kafka topic to send logs to",
+                  args: [
+                    {
+                      name: "topic",
+                    },
+                  ],
+                },
+                {
+                  name: "--brokers",
+                  description:
+                    "A comma-separated list of IP addresses or hostnames of Kafka brokers",
+                  args: [
+                    {
+                      name: "brokers",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    "The codec used for compression of your logs. One of: gzip, snappy, lz4",
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+                {
+                  name: "--required-acks",
+                  description:
+                    "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0\tNo servers need to respond. -1\tWait for all in-sync replicas to respond",
+                  args: [
+                    {
+                      name: "required-acks",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Kafka can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--parse-log-keyvals",
+                  description: "Parse key-value pairs within the log format",
+                },
+                {
+                  name: "--max-batch-size",
+                  description: "The maximum size of the log batch in bytes",
+                  args: [
+                    {
+                      name: "max-batch-size",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-sasl",
+                  description:
+                    "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
+                },
+                {
+                  name: "--auth-method",
+                  description:
+                    "SASL authentication method. Valid values are: plain, scram-sha-256, scram-sha-512",
+                  args: [
+                    {
+                      name: "auth-method",
+                    },
+                  ],
+                },
+                {
+                  name: "--username",
+                  description:
+                    "SASL authentication username. Required if --auth-method is specified",
+                  args: [
+                    {
+                      name: "username",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "SASL authentication password. Required if --auth-method is specified",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List Kafka endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Kafka logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kafka logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Kafka logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kafka logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the Kafka logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--topic",
+                  description: "The Kafka topic to send logs to",
+                  args: [
+                    {
+                      name: "topic",
+                    },
+                  ],
+                },
+                {
+                  name: "--brokers",
+                  description:
+                    "A comma-separated list of IP addresses or hostnames of Kafka brokers",
+                  args: [
+                    {
+                      name: "brokers",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    "The codec used for compression of your logs. One of: gzip, snappy, lz4",
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+                {
+                  name: "--required-acks",
+                  description:
+                    "The Number of acknowledgements a leader must receive before a write is considered successful. One of: 1 (default) One server needs to respond. 0\tNo servers need to respond. -1\tWait for all in-sync replicas to respond",
+                  args: [
+                    {
+                      name: "required-acks",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-tls",
+                  description:
+                    "Whether to use TLS for secure logging. Can be either true or false",
+                },
+                {
+                  name: "--tls-ca-cert",
+                  description:
+                    "A secure certificate to authenticate the server with. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-ca-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-cert",
+                  description:
+                    "The client certificate used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-cert",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-client-key",
+                  description:
+                    "The client private key used to make authenticated requests. Must be in PEM format",
+                  args: [
+                    {
+                      name: "tls-client-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--tls-hostname",
+                  description:
+                    "The hostname used to verify the server's certificate. It can either be the Common Name or a Subject Alternative Name (SAN)",
+                  args: [
+                    {
+                      name: "tls-hostname",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description:
+                    "Apache style log formatting. Your log must produce valid JSON that Kafka can ingest",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--parse-log-keyvals",
+                  description: "Parse key-value pairs within the log format",
+                },
+                {
+                  name: "--max-batch-size",
+                  description: "The maximum size of the log batch in bytes",
+                  args: [
+                    {
+                      name: "max-batch-size",
+                    },
+                  ],
+                },
+                {
+                  name: "--use-sasl",
+                  description:
+                    "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
+                },
+                {
+                  name: "--auth-method",
+                  description:
+                    "SASL authentication method. Valid values are: plain, scram-sha-256, scram-sha-512",
+                  args: [
+                    {
+                      name: "auth-method",
+                    },
+                  ],
+                },
+                {
+                  name: "--username",
+                  description:
+                    "SASL authentication username. Required if --auth-method is specified",
+                  args: [
+                    {
+                      name: "username",
+                    },
+                  ],
+                },
+                {
+                  name: "--password",
+                  description:
+                    "SASL authentication password. Required if --auth-method is specified",
+                  args: [
+                    {
+                      name: "password",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Kafka logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the Kafka logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "googlepubsub",
+          description:
+            "Manipulate Fastly service version Google Cloud Pub/Sub logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Google Cloud Pub/Sub logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--topic",
+                  description:
+                    "The Google Cloud Pub/Sub topic to which logs will be published",
+                  args: [
+                    {
+                      name: "topic",
+                    },
+                  ],
+                },
+                {
+                  name: "--project-id",
+                  description: "The ID of your Google Cloud Platform project",
+                  args: [
+                    {
+                      name: "project-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List Google Cloud Pub/Sub endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Google Cloud Pub/Sub logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Google Cloud Pub/Sub logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description:
+                    "New name of the Google Cloud Pub/Sub logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description:
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--secret-key",
+                  description:
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
+                  args: [
+                    {
+                      name: "secret-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--topic",
+                  description:
+                    "The Google Cloud Pub/Sub topic to which logs will be published",
+                  args: [
+                    {
+                      name: "topic",
+                    },
+                  ],
+                },
+                {
+                  name: "--project-id",
+                  description: "The ID of your Google Cloud Platform project",
+                  args: [
+                    {
+                      name: "project-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug. This field is not required and has no default value",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description:
+                    "The name of the Google Cloud Pub/Sub logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "openstack",
+          description:
+            "Manipulate Fastly service version OpenStack logging endpoints",
+          subcommands: [
+            {
+              name: "create",
+              description:
+                "Create an OpenStack logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--name",
+                  description:
+                    "The name of the OpenStack logging object. Used as a primary key for API access",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of your OpenStack container",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your OpenStack account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for your OpenStack account",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "Your OpenStack auth url",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "List OpenStack logging endpoints on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "describe",
+              description:
+                "Show detailed information about an OpenStack logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the OpenStack logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Update an OpenStack logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the OpenStack logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+                {
+                  name: "--new-name",
+                  description: "New name of the OpenStack logging object",
+                  args: [
+                    {
+                      name: "new-name",
+                    },
+                  ],
+                },
+                {
+                  name: "--bucket",
+                  description: "The name of the Openstack Space",
+                  args: [
+                    {
+                      name: "bucket",
+                    },
+                  ],
+                },
+                {
+                  name: "--access-key",
+                  description: "Your OpenStack account access key",
+                  args: [
+                    {
+                      name: "access-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--user",
+                  description: "The username for your OpenStack account.",
+                  args: [
+                    {
+                      name: "user",
+                    },
+                  ],
+                },
+                {
+                  name: "--url",
+                  description: "Your OpenStack auth url.",
+                  args: [
+                    {
+                      name: "url",
+                    },
+                  ],
+                },
+                {
+                  name: "--path",
+                  description: "The path to upload logs to",
+                  args: [
+                    {
+                      name: "path",
+                    },
+                  ],
+                },
+                {
+                  name: "--period",
+                  description:
+                    "How frequently log files are finalized so they can be available for reading (in seconds, default 3600)",
+                  args: [
+                    {
+                      name: "period",
+                    },
+                  ],
+                },
+                {
+                  name: "--gzip-level",
+                  description:
+                    "What level of GZIP encoding to have when dumping logs (default 0, no compression)",
+                  args: [
+                    {
+                      name: "gzip-level",
+                    },
+                  ],
+                },
+                {
+                  name: "--format",
+                  description: "Apache style log formatting",
+                  args: [
+                    {
+                      name: "format",
+                    },
+                  ],
+                },
+                {
+                  name: "--format-version",
+                  description:
+                    "The version of the custom logging format used for the configured endpoint. Can be either 2 (default) or 1",
+                  args: [
+                    {
+                      name: "format-version",
+                    },
+                  ],
+                },
+                {
+                  name: "--response-condition",
+                  description:
+                    "The name of an existing condition in the configured endpoint, or leave blank to always execute",
+                  args: [
+                    {
+                      name: "response-condition",
+                    },
+                  ],
+                },
+                {
+                  name: "--message-type",
+                  description:
+                    "How the message should be formatted. One of: classic (default), loggly, logplex or blank",
+                  args: [
+                    {
+                      name: "message-type",
+                    },
+                  ],
+                },
+                {
+                  name: "--timestamp-format",
+                  description:
+                    'strftime specified timestamp formatting (default "%Y-%m-%dT%H:%M:%S.000")',
+                  args: [
+                    {
+                      name: "timestamp-format",
+                    },
+                  ],
+                },
+                {
+                  name: "--placement",
+                  description:
+                    "Where in the generated VCL the logging call should be placed, overriding any format_version default. Can be none or waf_debug",
+                  args: [
+                    {
+                      name: "placement",
+                    },
+                  ],
+                },
+                {
+                  name: "--public-key",
+                  description:
+                    "A PGP public key that Fastly will use to encrypt your log files before writing them to disk",
+                  args: [
+                    {
+                      name: "public-key",
+                    },
+                  ],
+                },
+                {
+                  name: "--compression-codec",
+                  description:
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                  args: [
+                    {
+                      name: "compression-codec",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description:
+                "Delete an OpenStack logging endpoint on a Fastly service version",
+              options: [
+                {
+                  name: "--version",
+                  description: "Number of service version",
+                  args: [
+                    {
+                      name: "version",
+                    },
+                  ],
+                },
+                {
+                  name: "--name",
+                  description: "The name of the OpenStack logging object",
+                  args: [
+                    {
+                      name: "name",
+                    },
+                  ],
+                },
+                {
+                  name: "--service-id",
+                  description: "Service ID",
+                  args: [
+                    {
+                      name: "service-id",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "logs",
+      description: "Compute@Edge Log Tailing",
+      subcommands: [
+        {
+          name: "tail",
+          description: "Tail Compute@Edge logs",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--from",
+              description: "From time, in unix seconds",
+              args: [
+                {
+                  name: "from",
+                },
+              ],
+            },
+            {
+              name: "--to",
+              description: "To time, in unix seconds",
+              args: [
+                {
+                  name: "to",
+                },
+              ],
+            },
+            {
+              name: "--sort-buffer",
+              description:
+                "Sort buffer is how long to buffer logs, attempting to sort them before printing, defaults to 1s (second)",
+              args: [
+                {
+                  name: "sort-buffer",
+                },
+              ],
+            },
+            {
+              name: "--search-padding",
+              description:
+                "Search padding is how much of a window on either side of From and To to use for searching, defaults to 2s (seconds)",
+              args: [
+                {
+                  name: "search-padding",
+                },
+              ],
+            },
+            {
+              name: "--stream",
+              description:
+                "Stream specifies which of 'stdout' or 'stderr' to output, defaults to undefined (all streams)",
+              args: [
+                {
+                  name: "stream",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "stats",
+      description:
+        "View statistics (historical and realtime) for a Fastly service",
+      subcommands: [
+        {
+          name: "regions",
+          description: "List stats regions",
+        },
+        {
+          name: "historical",
+          description: "View historical stats for a Fastly service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--from",
+              description:
+                "From time, accepted formats at https://docs.fastly.com/api/stats#Range",
+              args: [
+                {
+                  name: "from",
+                },
+              ],
+            },
+            {
+              name: "--to",
+              description: "To time",
+              args: [
+                {
+                  name: "to",
+                },
+              ],
+            },
+            {
+              name: "--by",
+              description: "Aggregation period (minute/hour/day)",
+              args: [
+                {
+                  name: "by",
+                },
+              ],
+            },
+            {
+              name: "--region",
+              description: "Filter by region ('stats regions' to list)",
+              args: [
+                {
+                  name: "region",
+                },
+              ],
+            },
+            {
+              name: "--format",
+              description: "Output format (json)",
+              args: [
+                {
+                  name: "format",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "realtime",
+          description: "View realtime stats for a Fastly service",
+          options: [
+            {
+              name: "--service-id",
+              description: "Service ID",
+              args: [
+                {
+                  name: "service-id",
+                },
+              ],
+            },
+            {
+              name: "--format",
+              description: "Output format (json)",
+              args: [
+                {
+                  name: "format",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  options: [
+    {
+      name: "--help",
+      description: "Show context-sensitive help.",
+    },
+    {
+      name: "--token",
+      description: "Fastly API token (or via FASTLY_API_TOKEN)",
+      args: [
+        {
+          name: "token",
+        },
+      ],
+    },
+    {
+      name: "--verbose",
+      description: "Verbose logging",
+    },
+  ],
 };
-
