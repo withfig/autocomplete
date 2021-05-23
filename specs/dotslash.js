@@ -3,5 +3,5 @@ var completionSpec = {
   name: "dotslash",
   args: {
     template: "filepaths",
-  }
+  },
 };
