@@ -28,6 +28,30 @@ var clientsArg = {
     },
   },
 };
+var formatOption = {
+  name: "-F",
+  description: "Format output",
+  args: {
+    name: "format",
+    description: "The format for the output of this command",
+  },
+};
+var flagsOption = {
+  name: "-f",
+  description: "Set client flags",
+  args: {
+    name: "flags",
+    description: "Comma-separated list of flags",
+    suggestions: [
+      "active-pane",
+      "ignore-size",
+      "no-output",
+      "pause-after",
+      "read-only",
+      "wait-exit",
+    ],
+  },
+};
 var completionSpec = {
   name: "tmux",
   description: "A terminal multiplexer",
@@ -45,22 +69,7 @@ var completionSpec = {
           description:
             "Send SIGHUP to the parent process and detach the client",
         },
-        {
-          name: "-f",
-          description: "Set client flags",
-          args: {
-            name: "flags",
-            description: "Comma-separated list of flags",
-            suggestions: [
-              "active-pane",
-              "ignore-size",
-              "no-output",
-              "pause-after",
-              "read-only",
-              "wait-exit",
-            ],
-          },
-        },
+        flagsOption,
         {
           name: "-c",
           description: "Set the session's working directory",
@@ -291,6 +300,11 @@ var completionSpec = {
           name: "-a",
           description: "Kill/delete all session but the current",
         },
+        {
+          name: "-C",
+          description:
+            "Clear alerts (bell, activity, or silence) in all windows linked to the session",
+        },
       ],
     },
     {
@@ -329,6 +343,7 @@ var completionSpec = {
       name: ["lsc", "list-clients"],
       description: "List clients attached to a server",
       options: [
+        formatOption,
         {
           name: "-t",
           description: "List only clients connected to that session",
@@ -339,6 +354,12 @@ var completionSpec = {
     {
       name: ["lscm", "list-commands"],
       description: "List supported sub-commands",
+      args: {
+        name: "command",
+        description: "The command to list syntax of",
+        isOptional: true,
+      },
+      options: [formatOption],
     },
     {
       name: ["lsk", "list-keys"],
@@ -351,6 +372,16 @@ var completionSpec = {
     {
       name: ["ls", "list-sessions"],
       description: "List sessions managed by a server",
+      options: [
+        formatOption,
+        {
+          name: "-f",
+          description: "Filter the sessions",
+          args: {
+            name: "filter",
+          },
+        },
+      ],
     },
     {
       name: ["lsw", "list-windows"],
@@ -412,7 +443,62 @@ var completionSpec = {
     {
       name: ["new", "new-session"],
       description: "Create a new session",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the session",
+      },
       options: [
+        {
+          name: "-A",
+          description:
+            "Behave like attach-session if session-name already exist",
+        },
+        {
+          name: "-d",
+          description: "Use the initial size from default-size",
+        },
+        {
+          name: "-D",
+          description: "Behave like -d if -A is set",
+        },
+        {
+          name: "-E",
+          description: "Do not use update-environment option",
+        },
+        {
+          name: "-P",
+          description: "Print informations about the new session",
+        },
+        {
+          name: "-X",
+          description: "Behave like -x if -A is set",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the session",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        flagsOption,
+        formatOption,
+        {
+          name: "-n",
+          description: "Start a new session with the given name",
+          args: {
+            name: "window-name",
+          },
+        },
         {
           name: "-s",
           description: "Start a new session with the given name",
@@ -420,11 +506,19 @@ var completionSpec = {
             name: "session-name",
           },
         },
+        // TODO group-name
         {
-          name: "-n",
-          description: "Start a new session with the given window",
+          name: "-x",
+          description: "The width of the session",
           args: {
-            name: "window-name",
+            name: "width",
+          },
+        },
+        {
+          name: "-y",
+          description: "The height of the session",
+          args: {
+            name: "height",
           },
         },
       ],
@@ -631,6 +725,28 @@ var completionSpec = {
     {
       name: ["source", "source-file"],
       description: "Execute tmux commands from a file",
+      args: {
+        name: "path",
+        variadic: true,
+      },
+      options: [
+        {
+          name: "-F",
+          description: "Expand path as a format",
+        },
+        {
+          name: "-n",
+          description: "Parse the file but don't run commands",
+        },
+        {
+          name: "-q",
+          description: "Don't return any error if path does not exist",
+        },
+        {
+          name: "-v",
+          description: "Show the parsed command and line numbers if possible",
+        },
+      ],
     },
     {
       name: ["splitw", "split-window"],
@@ -664,14 +780,45 @@ var completionSpec = {
       description: "Switch the client to another session",
       options: [
         {
-          name: "-t",
-          description: "Switch the client to the target-session",
-          args: sessionsArg,
+          name: "-E",
+          description: "Do not use update-environment option",
+        },
+        {
+          name: "-l",
+          description: "Move the client to the last session",
+        },
+        {
+          name: "-n",
+          description: "Move the client to the next session",
+        },
+        {
+          name: "-p",
+          description: "Move the client to the previous session",
+        },
+        {
+          name: "-r",
+          description: "Toggle the client read-only and ignore-size flags",
+        },
+        {
+          name: "-Z",
+          description: "Keep the window zoomed if it was zoomed",
         },
         {
           name: "-c",
           description: "The target client",
           args: clientsArg,
+        },
+        {
+          name: "-t",
+          description: "Switch the client to the target-session",
+          args: sessionsArg,
+        },
+        {
+          name: "-T",
+          description: "Set the client's key table",
+          args: {
+            name: "key-table",
+          },
         },
       ],
     },
