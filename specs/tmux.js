@@ -13,6 +13,21 @@ var sessionsArg = {
     },
   },
 };
+var clientsArg = {
+  name: "target-client",
+  generators: {
+    script: "tmux lsc",
+    postProcess: function (out) {
+      return out.split("\n").map(function (line) {
+        var content = line.split(":");
+        return {
+          name: content[0],
+          description: content[1],
+        };
+      });
+    },
+  },
+};
 var completionSpec = {
   name: "tmux",
   description: "A terminal multiplexer",
@@ -101,10 +116,37 @@ var completionSpec = {
     {
       name: "command-prompt",
       description: "Open the tmux command prompt in a client",
+      // TODO add other options
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["confirm", "confirm-before"],
-      description: "Run a commannd but ask for confirmation before",
+      description: "Run a command but ask for confirmation before",
+      args: {
+        name: "command",
+        description: "The command to run",
+        variadic: true,
+      },
+      options: [
+        {
+          name: "-p",
+          description: "A prompt to display for confirmation",
+          args: {
+            name: "prompt",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: "copy-mode",
@@ -119,6 +161,28 @@ var completionSpec = {
       description: "Detach a client from the server",
       options: [
         {
+          name: "-a",
+          description: "Kills all but the client given with -t",
+        },
+        {
+          name: "-P",
+          description: "Send SIGHUP to the parent process",
+        },
+        {
+          name: "-E",
+          description: "Run the given shell-command to replace the client",
+          args: {
+            name: "shell-command",
+            description: "The shell-command to run",
+            variadic: true,
+          },
+        },
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+        {
           name: "-s",
           description: "Detach all clients attached to the specified session",
           args: sessionsArg,
@@ -126,12 +190,62 @@ var completionSpec = {
       ],
     },
     {
+      name: ["menu", "display-menu"],
+      description: "Display menu on target-client",
+      // TODO add other options
+      options: [
+        {
+          name: "-c",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
+    },
+    {
       name: ["display", "display-message"],
       description: "Display a message in the status line",
+      // TODO add other options
+      options: [
+        {
+          name: "-c",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["displayp", "display-panes"],
       description: "Display an indicator for each visible pane",
+      args: {
+        name: "template",
+        default: "'select-pane -t %%'",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-b",
+          description:
+            "Do not block other commands from running until the indicator is closed",
+        },
+        {
+          name: "-N",
+          description: "Do not close the indicator when a key is pressed",
+        },
+        {
+          name: "-d",
+          description: "Specify the duration",
+          args: {
+            name: "duration",
+            description:
+              "The duration to close the indicator after in milliseconds",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["findw", "find-window"],
@@ -252,10 +366,25 @@ var completionSpec = {
     {
       name: ["loadb", "load-buffer"],
       description: "Load a file intoa paste buffer",
+      // TODO add other options
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["lockc", "lock-client"],
       description: "Lock a client",
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["lock", "lock-server"],
@@ -345,6 +474,14 @@ var completionSpec = {
     {
       name: ["refresh", "refresh-client"],
       description: "Refresh a client",
+      // TODO add other options
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["rename", "rename-session"],
@@ -420,6 +557,14 @@ var completionSpec = {
     {
       name: ["setb", "set-buffer"],
       description: "Set content of a paste buffer",
+      // TODO add other options
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["setenv", "set-environment"],
@@ -459,6 +604,21 @@ var completionSpec = {
     {
       name: ["showmsgs", "show-messages"],
       description: "Show client's message log",
+      options: [
+        {
+          name: "-T",
+          description: "Show debugging information about terminals",
+        },
+        {
+          name: "-J",
+          description: "Show debugging information about jobs",
+        },
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["show", "show-options"],
@@ -483,6 +643,13 @@ var completionSpec = {
     {
       name: ["suspendc", "suspend-client"],
       description: "Suspend a client",
+      options: [
+        {
+          name: "-t",
+          description: "The target client",
+          args: clientsArg,
+        },
+      ],
     },
     {
       name: ["swapp", "swap-pane"],
@@ -500,6 +667,11 @@ var completionSpec = {
           name: "-t",
           description: "Switch the client to the target-session",
           args: sessionsArg,
+        },
+        {
+          name: "-c",
+          description: "The target client",
+          args: clientsArg,
         },
       ],
     },
