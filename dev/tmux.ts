@@ -1,3 +1,20 @@
+const sessionsArg: Fig.Arg = {
+  name: "target-session",
+  generators: {
+    script: "tmux ls",
+    postProcess: (out) => {
+      return out.split("\n").map((line) => {
+        const content = line.split(":");
+
+        return {
+          name: content[0],
+          description: content[1],
+        };
+      });
+    },
+  },
+};
+
 export const completion: Fig.Spec = {
   name: "tmux",
   description: "A terminal multiplexer",
@@ -47,9 +64,7 @@ export const completion: Fig.Spec = {
         {
           name: "-t",
           description: "Attach to a session with the given name",
-          args: {
-            name: "target-session",
-          },
+          args: sessionsArg,
         },
       ],
     },
@@ -104,6 +119,13 @@ export const completion: Fig.Spec = {
     {
       name: ["detach", "detach-client"],
       description: "Detach a client from the server",
+      options: [
+        {
+          name: "-s",
+          description: "Detach all clients attached to the specified session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["display", "display-message"],
@@ -120,6 +142,13 @@ export const completion: Fig.Spec = {
     {
       name: ["has", "has-session"],
       description: "Check and report if a session exists on the server",
+      options: [
+        {
+          name: "-t",
+          description: "Specify the target session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["if", "if-shell"],
@@ -144,9 +173,7 @@ export const completion: Fig.Spec = {
         {
           name: "-t",
           description: "Kill/delete session with the given name",
-          args: {
-            name: "session-name",
-          },
+          args: sessionsArg,
         },
         {
           name: "-a",
@@ -165,6 +192,14 @@ export const completion: Fig.Spec = {
     {
       name: ["last", "last-window"],
       description: "Select the previously selected window",
+      options: [
+        {
+          name: "-t",
+          description:
+            "Select the previously select window of the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["linkw", "link-window"],
@@ -181,6 +216,13 @@ export const completion: Fig.Spec = {
     {
       name: ["lsc", "list-clients"],
       description: "List clients attached to a server",
+      options: [
+        {
+          name: "-t",
+          description: "List only clients connected to that session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["lscm", "list-commands"],
@@ -200,7 +242,14 @@ export const completion: Fig.Spec = {
     },
     {
       name: ["lsw", "list-windows"],
-      description: "List windows of a sessions",
+      description: "List windows of a session",
+      options: [
+        {
+          name: "-t",
+          description: "List windows of the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["loadb", "load-buffer"],
@@ -217,6 +266,13 @@ export const completion: Fig.Spec = {
     {
       name: ["locks", "lock-session"],
       description: "Lock all clients attached to a session",
+      options: [
+        {
+          name: "-t",
+          description: "Lock all clients attached to target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["movep", "move-pane"],
@@ -257,6 +313,13 @@ export const completion: Fig.Spec = {
     {
       name: ["next", "next-window"],
       description: "Move to the next window in a session",
+      options: [
+        {
+          name: "-t",
+          description: "Move to the next window of the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["pasteb", "paste-buffer"],
@@ -273,6 +336,13 @@ export const completion: Fig.Spec = {
     {
       name: ["prev", "previous-window"],
       description: "Move to the previous window in a session",
+      options: [
+        {
+          name: "-t",
+          description: "Move to the previous window of the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["refresh", "refresh-client"],
@@ -281,6 +351,17 @@ export const completion: Fig.Spec = {
     {
       name: ["rename", "rename-session"],
       description: "Rename a session",
+      options: [
+        {
+          name: "-t",
+          description: "Rename the target-session",
+          args: sessionsArg,
+        },
+      ],
+      args: {
+        name: "new-name",
+        description: "The new name of the session",
+      },
     },
     {
       name: ["renamew", "rename-window"],
@@ -365,6 +446,13 @@ export const completion: Fig.Spec = {
     {
       name: ["showenv", "show-environment"],
       description: "Display the environment",
+      options: [
+        {
+          name: "-t",
+          description: "Displat the environment of the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: "show-hooks",
@@ -409,6 +497,13 @@ export const completion: Fig.Spec = {
     {
       name: ["switchc", "switch-client"],
       description: "Switch the client to another session",
+      options: [
+        {
+          name: "-t",
+          description: "Switch the client to the target-session",
+          args: sessionsArg,
+        },
+      ],
     },
     {
       name: ["unbind", "unbind-key"],
