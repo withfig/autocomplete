@@ -7,10 +7,48 @@ export const completion: Fig.Spec = {
       description: "Attach to last session",
       options: [
         {
+          name: "-d",
+          description: "Detach all others clients to the session",
+        },
+        {
+          name: "-x",
+          description:
+            "Send SIGHUP to the parent process and detach the client",
+        },
+        {
+          name: "-f",
+          description: "Set client flags",
+          args: {
+            name: "flags",
+            description: "Comma-separated list of flags",
+            suggestions: [
+              "active-pane",
+              "ignore-size",
+              "no-output",
+              "pause-after",
+              "read-only",
+              "wait-exit",
+            ],
+          },
+        },
+        {
+          name: "-c",
+          description: "Set the session's working directory",
+          args: {
+            name: "working-directory",
+            description: "The session's working directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-E",
+          description: "Don't use update-environment option",
+        },
+        {
           name: "-t",
           description: "Attach to a session with the given name",
           args: {
-            name: "session-name",
+            name: "target-session",
           },
         },
       ],
