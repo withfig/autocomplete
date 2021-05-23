@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show details about the configuration of a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -139,13 +139,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description:
             "Update the Cloud Source Repositories configuration of the current project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -347,7 +346,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -478,7 +476,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "repos",
@@ -487,7 +484,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "clone",
           description: "Clone a cloud source repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -638,7 +635,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a cloud source repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -779,7 +776,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a cloud source repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -924,7 +921,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a cloud source repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1065,7 +1062,7 @@ export const completionSpec: Fig.Spec = {
           name: "get-iam-policy",
           description:
             "Get the IAM policy for the named cloud source repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1245,7 +1242,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List the repositories the currently active project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1414,12 +1411,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for the named repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1565,7 +1561,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update the configuration of a Cloud Source Repository.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1895,7 +1891,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2019,5 +2014,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

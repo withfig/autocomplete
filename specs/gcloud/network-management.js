@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new connectivity test.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -292,7 +291,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a connectivity test.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -438,7 +436,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe a connectivity test.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -579,7 +576,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List connectivity tests.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -748,12 +744,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "rerun",
           description: "Rerun a connectivity test.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -899,7 +893,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update an existing connectivity test.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1324,7 +1317,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1333,7 +1325,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe a Network Management operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1474,7 +1465,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List Network Management operations.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1643,7 +1633,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1774,7 +1763,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1898,5 +1886,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

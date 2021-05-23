@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -161,7 +161,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -312,7 +312,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Export an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -473,7 +473,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -624,7 +624,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "import",
           description: "Import an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -785,7 +785,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List autoscaling policies.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -969,12 +969,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an autoscaling policy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1257,7 +1256,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "clusters",
@@ -1266,7 +1264,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1988,7 +1986,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2144,7 +2142,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "View the details of a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2295,7 +2293,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "diagnose",
           description: "Run a detailed diagnostic on a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2446,7 +2444,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Export a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2607,7 +2605,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2798,7 +2796,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "import",
           description: "Import a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2964,7 +2962,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "View a list of clusters in a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3143,12 +3141,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3306,7 +3303,7 @@ export const completionSpec: Fig.Spec = {
           name: "update",
           description:
             "Update labels and/or the number of worker nodes in a cluster.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3701,7 +3698,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "jobs",
@@ -3710,7 +3706,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete the record of an inactive job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3861,7 +3857,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "View the details of a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4012,7 +4008,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4203,7 +4199,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "kill",
           description: "Kill an active job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4354,7 +4350,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List jobs in a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4552,12 +4548,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4719,7 +4714,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "hadoop",
               description: "Submit a Hadoop job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4984,7 +4979,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "hive",
               description: "Submit a Hive job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5220,12 +5215,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "pig",
               description: "Submit a Pig job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5471,12 +5465,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "presto",
               description: "Submit a Presto job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5723,12 +5716,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "pyspark",
               description: "Submit a PySpark job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -5989,7 +5981,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark",
               description: "Submit a Spark job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -6255,7 +6247,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark-r",
               description: "Submit a SparkR job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -6496,7 +6488,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark-sql",
               description: "Submit a Spark SQL job to a cluster.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -6739,7 +6731,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -6895,12 +6886,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update the labels for a job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7077,7 +7067,7 @@ export const completionSpec: Fig.Spec = {
           name: "wait",
           description:
             "View the output of a job as it runs or after it completes.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7354,7 +7344,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -7363,7 +7352,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "cancel",
           description: "Cancel an active operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7514,7 +7503,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete the record of an inactive operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7665,7 +7654,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "View the details of an operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7816,7 +7805,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for an operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8007,7 +7996,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "View the list of all operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8206,12 +8195,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set IAM policy for an operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8494,7 +8482,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "workflow-templates",
@@ -8508,7 +8495,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "hadoop",
               description: "Add a hadoop job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8770,7 +8757,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "hive",
               description: "Add a Hive job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -9003,12 +8990,11 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "pig",
               description: "Add a Pig job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -9251,12 +9237,11 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "presto",
               description: "Add a Presto job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -9500,12 +9485,11 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "pyspark",
               description: "Add a PySpark job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -9763,7 +9747,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark",
               description: "Add a Spark job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -10026,7 +10010,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark-r",
               description: "Add a SparkR job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -10264,7 +10248,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "spark-sql",
               description: "Add a SparkSql job to the workflow template.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -10504,7 +10488,6 @@ export const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -10635,12 +10618,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
           description: "Create a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10801,7 +10783,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10952,7 +10934,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11103,7 +11085,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Export a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11264,7 +11246,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get IAM policy for a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11415,7 +11397,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "import",
           description: "Import a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11576,7 +11558,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "instantiate",
           description: "Instantiate a workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11742,7 +11724,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "instantiate-from-file",
           description: "Instantiate a workflow template from a file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -11897,12 +11879,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description: "List workflow templates.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12081,12 +12062,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-job",
           description: "Remove a job from workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12247,7 +12227,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-cluster-selector",
           description: "Set cluster selector for the workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12407,7 +12387,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -12564,7 +12544,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-managed-cluster",
           description: "Set a managed cluster for the workflow template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -13347,7 +13327,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -13471,5 +13450,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

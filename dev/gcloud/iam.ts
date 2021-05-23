@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list-grantable-roles",
       description: "List IAM grantable roles for a resource.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -166,7 +166,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list-testable-permissions",
       description: "List IAM testable permissions for a resource.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -321,7 +321,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "copy",
           description: "Create a role from an existing role.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -508,12 +508,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
           description: "Create a custom role for a project or an organization.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -702,7 +701,7 @@ export const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete a custom role from an organization or a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -842,7 +841,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a role.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -983,7 +982,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the roles defined at a parent organization or a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1145,13 +1144,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "undelete",
           description:
             "Undelete a custom role from an organization or a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1291,7 +1289,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an IAM custom role.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1624,7 +1622,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "service-accounts",
@@ -1633,7 +1630,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to an IAM service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1815,7 +1812,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a service account for a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1974,7 +1971,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a service account from a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2115,7 +2112,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Show metadata for a service account from a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2256,7 +2253,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disable an IAM service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2397,7 +2394,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "enable",
           description: "Enable an IAM service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2538,7 +2535,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2723,7 +2720,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a private key for a service account.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -2885,7 +2882,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a user-managed key from a service account.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3036,7 +3033,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List the keys for a service account.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3235,12 +3232,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "upload",
               description: "Upload a public key for an IAM service account.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -3518,12 +3514,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description: "List all of a project's service accounts.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3687,12 +3682,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from a service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3879,7 +3873,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4026,7 +4020,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "sign-blob",
           description: "Sign a blob with a managed service account key.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4182,7 +4176,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update an IAM service account.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4467,7 +4461,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4591,5 +4584,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

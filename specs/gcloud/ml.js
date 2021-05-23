@@ -10,7 +10,6 @@ var completionSpec = {
           name: "analyze-entities",
           description:
             "Use Google Cloud Natural Language API to identify entities in text.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -191,13 +190,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-entity-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify entity-level sentiment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -378,13 +375,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-sentiment",
           description:
             "Use Google Cloud Natural Language API to identify sentiments in a text.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -565,13 +560,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "analyze-syntax",
           description:
             "Use Google Cloud Natural Language API to identify linguistic information.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -752,12 +745,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "classify-text",
           description: "Classifies input document into categories.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -927,7 +918,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1058,7 +1048,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "speech",
@@ -1072,7 +1061,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Get description of a long-running speech recognition operation.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1214,7 +1202,6 @@ var completionSpec = {
               name: "wait",
               description:
                 "Poll long-running speech recognition operation until it completes.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1481,13 +1468,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "recognize",
           description:
             "Get transcripts of short (less than 60 seconds) audio from an audio file.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1698,7 +1683,6 @@ var completionSpec = {
         {
           name: "recognize-long-running",
           description: "Get transcripts of longer audio from an audio file.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2040,7 +2024,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "video",
@@ -2049,7 +2032,6 @@ var completionSpec = {
         {
           name: "detect-explicit-content",
           description: "Detect explicit content in videos.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2230,7 +2212,6 @@ var completionSpec = {
         {
           name: "detect-labels",
           description: "Detect general labels for videos.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2422,7 +2403,6 @@ var completionSpec = {
         {
           name: "detect-shot-changes",
           description: "Detect shot changes in videos.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2609,7 +2589,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Get description of a long-running video analysis operation.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -2760,7 +2739,6 @@ var completionSpec = {
               name: "wait",
               description:
                 "Poll long-running video analysis operation until it completes.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3036,7 +3014,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3167,7 +3144,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "vision",
@@ -3176,7 +3152,6 @@ var completionSpec = {
         {
           name: "detect-document",
           description: "Detect dense text in an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3326,7 +3301,6 @@ var completionSpec = {
         {
           name: "detect-faces",
           description: "Detect faces within an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3476,7 +3450,6 @@ var completionSpec = {
         {
           name: "detect-image-properties",
           description: "Detect general attributes of an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3617,7 +3590,6 @@ var completionSpec = {
         {
           name: "detect-labels",
           description: "Detect broad sets of categories within an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3768,7 +3740,6 @@ var completionSpec = {
           name: "detect-landmarks",
           description:
             "Detect popular natural and man-made structures within an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3918,7 +3889,6 @@ var completionSpec = {
         {
           name: "detect-logos",
           description: "Detect popular product logos within an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4069,7 +4039,6 @@ var completionSpec = {
           name: "detect-objects",
           description:
             "Detect and extract multiple objects in an image with object localization.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4210,7 +4179,6 @@ var completionSpec = {
         {
           name: "detect-safe-search",
           description: "Detect explicit content in an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4351,7 +4319,6 @@ var completionSpec = {
         {
           name: "detect-text",
           description: "Detect and extract text within an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4502,7 +4469,6 @@ var completionSpec = {
           name: "detect-text-pdf",
           description:
             "Detect and transcribe text from PDF files stored in Google Cloud Storage.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4660,7 +4626,6 @@ var completionSpec = {
           name: "detect-text-tiff",
           description:
             "Detect and transcribe text from TIFF files stored in Google Cloud Storage.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4818,7 +4783,6 @@ var completionSpec = {
           name: "detect-web",
           description:
             "Detect entities in an image from similar images on the web.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4968,7 +4932,6 @@ var completionSpec = {
         {
           name: "suggest-crop",
           description: "Suggest a bounding box in an image.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -5245,7 +5208,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5369,5 +5331,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

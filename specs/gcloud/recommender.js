@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe an insight.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -168,7 +167,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List insights for a Cloud project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -357,12 +355,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-accepted",
           description: "Mark an insight's state as ACCEPTED.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -668,7 +664,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "recommendations",
@@ -677,7 +672,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe a recommendation for a Cloud project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -836,7 +830,6 @@ var completionSpec = {
         {
           name: "list",
           description: "Lists recommendations for a Cloud project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1030,12 +1023,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-claimed",
           description: "Mark a recommendation's state as CLAIMED.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1215,7 +1206,6 @@ var completionSpec = {
         {
           name: "mark-failed",
           description: "Mark a recommendation's state as FAILED.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1395,7 +1385,6 @@ var completionSpec = {
         {
           name: "mark-succeeded",
           description: "Mark a recommendation's state as SUCCEEDED.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1701,7 +1690,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1825,5 +1813,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

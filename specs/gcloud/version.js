@@ -1,7 +1,6 @@
 var completionSpec = {
   name: "version",
   description: "Print version information for Cloud SDK components.",
-  subcommands: [],
   options: [
     {
       name: "--account",
@@ -123,5 +122,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

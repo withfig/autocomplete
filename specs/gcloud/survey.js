@@ -1,7 +1,6 @@
 var completionSpec = {
   name: "survey",
   description: "Invoke a customer satisfaction survey for Cloud SDK.",
-  subcommands: [],
   options: [
     {
       name: "--account",
@@ -123,5 +122,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

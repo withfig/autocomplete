@@ -10,7 +10,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about the configuration of a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -139,13 +138,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description:
             "Update the Cloud Source Repositories configuration of the current project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -347,7 +344,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -478,7 +474,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "repos",
@@ -487,7 +482,6 @@ var completionSpec = {
         {
           name: "clone",
           description: "Clone a cloud source repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -638,7 +632,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a cloud source repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -779,7 +772,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a cloud source repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -924,7 +916,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe a cloud source repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1065,7 +1056,6 @@ var completionSpec = {
           name: "get-iam-policy",
           description:
             "Get the IAM policy for the named cloud source repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1245,7 +1235,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List the repositories the currently active project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1414,12 +1403,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for the named repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1565,7 +1552,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update the configuration of a Cloud Source Repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1895,7 +1881,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2019,5 +2004,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

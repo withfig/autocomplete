@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new group.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -214,7 +213,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete an existing group.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -354,7 +352,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe an existing group.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -498,7 +495,6 @@ var completionSpec = {
             {
               name: "add",
               description: "Create a new membership in an existing group.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -659,12 +655,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
               description: "Delete a membership from an existing group.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -815,12 +809,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "describe",
               description: "Describe a membership in a group.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -971,12 +963,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
               description: "List memberships in an existing group.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1177,13 +1167,11 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "modify-membership-roles",
               description:
                 "Add/remove/modify membership roles of a membership in a group.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1354,7 +1342,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1485,12 +1472,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "search",
           description: "Searches for Groups matching a specified query.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1680,12 +1665,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a group.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1980,7 +1963,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2104,5 +2086,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

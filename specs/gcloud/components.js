@@ -5,7 +5,6 @@ var completionSpec = {
     {
       name: "copy-bundled-python",
       description: "Make a temporary copy of bundled Python installation.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -134,12 +133,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "install",
       description: "Install one or more Cloud SDK components.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -279,7 +276,6 @@ var completionSpec = {
     {
       name: "list",
       description: "List the status of all Cloud SDK components.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -447,12 +443,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "post-process",
       description: "Performs any necessary post installation steps.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -581,13 +575,11 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "reinstall",
       description:
         "Reinstall the Cloud SDK with the same components you have now.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -716,12 +708,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove",
       description: "Remove one or more installed components.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -866,7 +856,6 @@ var completionSpec = {
         {
           name: "add",
           description: "Add a new Trusted Tester component repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1008,7 +997,6 @@ var completionSpec = {
           name: "list",
           description:
             "List any Trusted Tester component repositories you have registered.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1167,12 +1155,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove",
           description: "Remove a registered Trusted Test component repository.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1443,12 +1429,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "restore",
       description: "Restore the Cloud SDK installation to its previous state.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1577,13 +1561,11 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "update",
       description:
         "Update all of your installed components to the latest version.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1842,5 +1824,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

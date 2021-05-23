@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a backup of a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -173,12 +173,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a backup of a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -334,7 +333,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Retrieves information about a backup.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -484,7 +483,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all backups associated with a given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -668,12 +667,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "restore",
           description: "Restores a backup of a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -964,12 +962,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "connect",
       description: "Connects to a Cloud SQL instance.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1132,7 +1129,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a database for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1307,7 +1304,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes a Cloud SQL database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1458,7 +1455,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Displays configuration and metadata about a Cloud SQL database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1608,7 +1605,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists databases for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1792,12 +1789,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "patch",
           description: "Patches the settings of a Cloud SQL database.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2097,7 +2093,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
@@ -2106,7 +2101,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "bak",
           description: "Export data from a Cloud SQL instance to a BAK file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2267,7 +2262,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "csv",
           description: "Exports data from a Cloud SQL instance to a CSV file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2444,7 +2439,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "sql",
           description: "Exports data from a Cloud SQL instance to a SQL file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2746,7 +2741,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "flags",
@@ -2756,7 +2750,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List customizable flags for Google Cloud SQL instances.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2953,7 +2947,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3084,7 +3077,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "import",
@@ -3093,7 +3085,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "bak",
           description: "Import data into a Cloud SQL instance from a BAK file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3292,7 +3284,7 @@ export const completionSpec: Fig.Spec = {
           name: "csv",
           description:
             "Imports data into a Cloud SQL instance from a CSV file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3484,7 +3476,7 @@ export const completionSpec: Fig.Spec = {
           name: "sql",
           description:
             "Imports data into a Cloud SQL instance from a SQL dump file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3780,7 +3772,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "instances",
@@ -3789,7 +3780,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "clone",
           description: "Clones a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3971,7 +3962,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a new Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4513,7 +4504,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4659,7 +4650,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Displays configuration and metadata about a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4800,7 +4791,7 @@ export const completionSpec: Fig.Spec = {
           name: "export",
           description:
             "*(DEPRECATED)*  Exports data from a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4972,7 +4963,7 @@ export const completionSpec: Fig.Spec = {
           name: "failover",
           description:
             "Causes a high-availability Cloud SQL instance to failover.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5118,7 +5109,7 @@ export const completionSpec: Fig.Spec = {
           name: "import",
           description:
             "*(DEPRECATED)*  Imports data into a Cloud SQL instance from Google Cloud Storage.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5279,7 +5270,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists Cloud SQL instances in a given project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5453,12 +5444,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "patch",
           description: "Updates the settings of a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5933,7 +5923,7 @@ export const completionSpec: Fig.Spec = {
           name: "promote-replica",
           description:
             "Promotes Cloud SQL read replica to a stand-alone instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6079,7 +6069,7 @@ export const completionSpec: Fig.Spec = {
           name: "reset-ssl-config",
           description:
             "Deletes all client certificates and generates a new server certificate.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6224,7 +6214,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "restart",
           description: "Restarts a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6369,7 +6359,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "restore-backup",
           description: "Restores a backup of a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6659,7 +6649,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -6670,7 +6659,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Retrieves information about a Cloud SQL instance operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6811,7 +6800,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Lists all instance operations for the given Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6995,12 +6984,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description: "Waits for one or more operations to complete.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7277,12 +7265,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "reschedule-maintenance",
       description: "Reschedule a Cloud SQL instance's maintenance.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -7458,7 +7445,7 @@ export const completionSpec: Fig.Spec = {
               name: "create",
               description:
                 "Create a client certificate for a Cloud SQL instance.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7616,7 +7603,7 @@ export const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Delete a client certificate for a Cloud SQL instance.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7773,7 +7760,7 @@ export const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Retrieve information about a client cert for a Cloud SQL instance.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7924,7 +7911,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all client certs for a Cloud SQL instance.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8108,7 +8095,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -8239,7 +8225,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -8370,7 +8355,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "ssl-certs",
@@ -8381,7 +8365,7 @@ export const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "*(DEPRECATED)*  Creates an SSL certificate for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8539,7 +8523,7 @@ export const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "*(DEPRECATED)*  Deletes an SSL certificate for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8696,7 +8680,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "*(DEPRECATED)*  Retrieves information about an SSL cert for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -8848,7 +8832,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "*(DEPRECATED)*  Lists all SSL certs for a Cloud SQL instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9032,7 +9016,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -9163,7 +9146,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "tiers",
@@ -9173,7 +9155,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Lists all available service tiers for Google Cloud SQL.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9347,7 +9329,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -9478,7 +9459,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "users",
@@ -9487,7 +9467,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a user in a given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9661,7 +9641,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes a Cloud SQL user in a given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9826,7 +9806,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists Cloud SQL users in a given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10010,12 +9990,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-password",
           description: "Changes a user's password in a given instance.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -10320,7 +10299,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -10444,5 +10422,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };
