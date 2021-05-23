@@ -5,7 +5,6 @@ var completionSpec = {
     {
       name: "disable",
       description: "Disable a service for consumption for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -155,7 +154,6 @@ var completionSpec = {
     {
       name: "enable",
       description: "Enables a service for consumption for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -300,7 +298,6 @@ var completionSpec = {
     {
       name: "list",
       description: "List services for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -479,7 +476,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -489,7 +485,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Describes an operation resource for a given operation name.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -640,7 +635,6 @@ var completionSpec = {
           name: "wait",
           description:
             "Waits for an operation to complete for a given operation name.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -906,13 +900,11 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "peered-dns-domains",
       description:
         "Peered DNS domains for various private service connections.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1041,7 +1033,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "vpc-peerings",
@@ -1051,7 +1042,6 @@ var completionSpec = {
           name: "connect",
           description:
             "Connect to a service via VPC peering for a project network.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1215,13 +1205,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description:
             "List connections to a service via VPC peering for a project network.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1370,7 +1358,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "operations",
@@ -1380,7 +1367,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Describes an operation resource for a given operation name.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1519,13 +1505,11 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "wait",
               description:
                 "Waits for an operation to complete  for a given operation name.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1664,7 +1648,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1795,13 +1778,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description:
             "Update a private service connection to a service for a project network.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1969,7 +1950,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2100,7 +2080,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2224,5 +2203,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

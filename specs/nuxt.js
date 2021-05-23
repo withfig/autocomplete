@@ -41,7 +41,6 @@ var completionSpec = {
       ],
     },
   ],
-  options: [],
   // Only uncomment if nuxt takes an argument
   // args: {}
 };

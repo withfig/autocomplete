@@ -286,7 +286,6 @@ var otherCommands = [
   {
     name: "state",
     description: "Advanced state management",
-    options: [],
   },
   {
     name: "taint",

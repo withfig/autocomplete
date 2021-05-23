@@ -1,7 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "help",
   description: "Search gcloud help text.",
-  subcommands: [],
+
   options: [
     {
       name: "--account",

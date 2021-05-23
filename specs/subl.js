@@ -5,5 +5,4 @@ var completionSpec = {
     variadic: true,
     template: ["folders", "filepaths"],
   },
-  subcommands: [],
 };

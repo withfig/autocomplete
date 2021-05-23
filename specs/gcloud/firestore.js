@@ -10,7 +10,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a Google Cloud Firestore Native database.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -149,7 +148,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -280,12 +278,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
       description: "export Cloud Firestore documents to Google Cloud Storage.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -442,7 +438,6 @@ var completionSpec = {
       name: "import",
       description:
         "import Cloud Firestore documents from Google Cloud Storage.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -606,7 +601,6 @@ var completionSpec = {
             {
               name: "create",
               description: "Create a new composite index.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -763,12 +757,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "delete",
               description: "Delete the given composite index.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -909,7 +901,6 @@ var completionSpec = {
             {
               name: "describe",
               description: "Describe the given composite index.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1050,7 +1041,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List composite indexes.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1224,7 +1214,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1355,7 +1344,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "fields",
@@ -1365,7 +1353,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Describe the index configuration of the given field.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1515,7 +1502,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List fields with non-default index settings.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1699,12 +1685,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description: "Update the index configuration of the given field.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -2005,7 +1989,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2136,7 +2119,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -2146,7 +2128,6 @@ var completionSpec = {
           name: "cancel",
           description:
             "Cancel a currently-running Cloud Firestore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2287,7 +2268,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a completed Cloud Firestore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2429,7 +2409,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Retrieves information about a Cloud Firestore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2571,7 +2550,6 @@ var completionSpec = {
           name: "list",
           description:
             "List pending Cloud Firestore admin operations and their status.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2745,7 +2723,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2876,7 +2853,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3000,5 +2976,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "cancel-preview",
           description: "Cancel a pending or running deployment preview.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -164,7 +163,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a deployment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -378,7 +376,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a deployment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -533,7 +530,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Provide information about a deployment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -673,7 +669,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List deployments in a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -852,13 +847,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "stop",
           description:
             "Stop a pending or running deployment update or creation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1013,7 +1006,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a deployment based on a provided config file.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1388,7 +1380,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "manifests",
@@ -1397,7 +1388,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Provide information about a manifest.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1547,7 +1537,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List manifests in a deployment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1736,7 +1725,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1867,7 +1855,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1876,7 +1863,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Provide information about an operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2016,7 +2002,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List operations in a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2195,13 +2180,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description:
             "Wait for all operations specified to complete before returning.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2467,7 +2450,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "resources",
@@ -2476,7 +2458,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Provide information about a resource.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2625,7 +2606,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List resources in a deployment.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2813,7 +2793,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2953,7 +2932,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "types",
@@ -2962,7 +2940,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List types in a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3121,7 +3098,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3252,7 +3228,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3376,5 +3351,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

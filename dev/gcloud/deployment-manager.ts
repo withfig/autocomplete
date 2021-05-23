@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "cancel-preview",
           description: "Cancel a pending or running deployment preview.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -164,7 +164,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a deployment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -378,7 +378,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a deployment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -533,7 +533,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a deployment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -673,7 +673,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List deployments in a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -852,13 +852,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "stop",
           description:
             "Stop a pending or running deployment update or creation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1013,7 +1012,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a deployment based on a provided config file.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1388,7 +1387,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "manifests",
@@ -1397,7 +1395,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a manifest.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1547,7 +1545,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List manifests in a deployment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1736,7 +1734,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1867,7 +1864,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1876,7 +1872,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about an operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2016,7 +2012,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List operations in a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2195,13 +2191,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description:
             "Wait for all operations specified to complete before returning.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2467,7 +2462,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "resources",
@@ -2476,7 +2470,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Provide information about a resource.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2625,7 +2619,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List resources in a deployment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2813,7 +2807,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2953,7 +2946,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "types",
@@ -2962,7 +2954,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List types in a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3121,7 +3113,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -3252,7 +3243,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -3376,5 +3366,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

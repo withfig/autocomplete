@@ -5,5 +5,4 @@ export const completionSpec: Fig.Spec = {
     variadic: true,
     template: ["folders", "filepaths"],
   },
-  subcommands: [],
 };

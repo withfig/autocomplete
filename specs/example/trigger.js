@@ -132,7 +132,6 @@ var completionSpec = {
       args: customArgument,
     },
   ],
-  options: [],
   // Only uncomment if abc takes an argument
   // args: {}
 };

@@ -10,7 +10,6 @@ var completionSpec = {
           name: "create",
           description:
             "Add debug logpoints to a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -198,7 +197,6 @@ var completionSpec = {
           name: "delete",
           description:
             "Delete debug logpoints for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -370,7 +368,6 @@ var completionSpec = {
           name: "list",
           description:
             "List the debug logpoints for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -712,7 +709,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "snapshots",
@@ -722,7 +718,6 @@ var completionSpec = {
           name: "create",
           description:
             "Create debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -904,7 +899,6 @@ var completionSpec = {
           name: "delete",
           description:
             "Delete debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1076,7 +1070,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Describe the debug snapshots for a Cloud Debugger debug target         (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1238,7 +1231,6 @@ var completionSpec = {
           name: "list",
           description:
             "List the debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1445,7 +1437,6 @@ var completionSpec = {
           name: "wait",
           description:
             "Wait for debug snapshots on a Cloud Debugger debug target (debuggee) to         complete.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1792,7 +1783,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "source",
@@ -1802,7 +1792,6 @@ var completionSpec = {
           name: "gen-repo-info-file",
           description:
             "Generates repository information files for the Cloud Debugger.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1951,7 +1940,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2082,7 +2070,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "targets",
@@ -2093,7 +2080,6 @@ var completionSpec = {
           name: "list",
           description:
             "List the debug targets (debuggees) registered with the Cloud Debugger.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2272,7 +2258,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2403,7 +2388,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2527,5 +2511,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

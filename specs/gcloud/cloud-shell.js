@@ -6,7 +6,6 @@ var completionSpec = {
       name: "get-mount-command",
       description:
         "Prints a command to mount the Cloud Shell home directory via sshfs.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -157,7 +156,6 @@ var completionSpec = {
     {
       name: "scp",
       description: "Copies files between Cloud Shell and the local machine.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -332,7 +330,6 @@ var completionSpec = {
       name: "ssh",
       description:
         "Allows you to establish an interactive SSH session with Cloud Shell.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -500,7 +497,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -624,5 +620,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

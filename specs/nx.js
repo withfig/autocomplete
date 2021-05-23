@@ -9,8 +9,12 @@ var processWorkspaceJson = function (filterFn) {
   return function (out) {
     try {
       var workspace = JSON.parse(out);
-      return Object.keys(workspace.projects)
+      return Object.entries(workspace.projects)
         .filter(filterFn)
+        .map(function (_a) {
+          var projectName = _a[0];
+          return projectName;
+        })
         .map(function (suggestion) {
           return {
             name: suggestion,
@@ -18,6 +22,7 @@ var processWorkspaceJson = function (filterFn) {
           };
         });
     } catch (err) {
+      console.log(err);
       return [];
     }
   };
@@ -41,19 +46,21 @@ var oneDayCache = {
 var nxGenerators = {
   apps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(function (projectName, _, projects) {
+    postProcess: processWorkspaceJson(function (_a, _, projects) {
+      var projectName = _a[0],
+        project = _a[1];
       return (
-        projects[projectName].projectType === "application" &&
-        !projectName.endsWith("-e2e")
+        project.projectType === "application" && !projectName.endsWith("-e2e")
       );
     }),
   },
   e2eApps: {
     script: "cat workspace.json",
-    postProcess: processWorkspaceJson(function (projectName, _, projects) {
+    postProcess: processWorkspaceJson(function (_a, _, projects) {
+      var projectName = _a[0],
+        project = _a[1];
       return (
-        projects[projectName].projectType === "application" &&
-        projectName.endsWith("-e2e")
+        project.projectType === "application" && projectName.endsWith("-e2e")
       );
     }),
   },

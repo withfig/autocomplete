@@ -1300,7 +1300,6 @@ var completionSpec = {
     {
       name: "dashboard",
       description: "display information about favorite apps",
-      options: [],
     },
     {
       name: "drains:add",
@@ -1461,7 +1460,6 @@ var completionSpec = {
     {
       name: "keys:clear",
       description: "remove all SSH keys for current user",
-      options: [],
     },
     {
       name: "keys",
@@ -1480,7 +1478,6 @@ var completionSpec = {
     {
       name: "keys:remove",
       description: "remove an SSH key from the user",
-      options: [],
       args: [
         {
           name: "key",
@@ -2920,7 +2917,6 @@ var completionSpec = {
       name: "ci:migrate-manifest",
       description:
         "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key.",
-      options: [],
     },
     {
       name: "ci:open",
@@ -3409,7 +3405,6 @@ var completionSpec = {
     {
       name: "authorizations:revoke",
       description: "revoke OAuth authorization",
-      options: [],
       args: [
         {
           name: "id",
@@ -3419,7 +3414,6 @@ var completionSpec = {
     {
       name: "authorizations:rotate",
       description: "updates an OAuth authorization token",
-      options: [],
       args: [
         {
           name: "id",
@@ -3477,7 +3471,6 @@ var completionSpec = {
     {
       name: "clients:destroy",
       description: "delete client by ID",
-      options: [],
       args: [
         {
           name: "id",
@@ -3556,7 +3549,6 @@ var completionSpec = {
     {
       name: "sessions:destroy",
       description: "delete (logout) OAuth session by ID",
-      options: [],
       args: [
         {
           name: "id",
@@ -3603,7 +3595,6 @@ var completionSpec = {
     },
     {
       name: "sharing:add",
-      options: [],
       args: [
         {
           name: "sharin",
@@ -3631,7 +3622,6 @@ var completionSpec = {
     },
     {
       name: "sharing:access",
-      options: [],
       args: [
         {
           name: "sharin",
@@ -3660,7 +3650,6 @@ var completionSpec = {
     },
     {
       name: "sharing:remove",
-      options: [],
       args: [
         {
           name: "sharin",
@@ -3811,7 +3800,6 @@ var completionSpec = {
     },
     {
       name: "sharing:transfer",
-      options: [],
       args: [
         {
           name: "sharin",
@@ -3889,7 +3877,6 @@ var completionSpec = {
     },
     {
       name: "orgs:default",
-      options: [],
     },
     {
       name: "orgs",
@@ -6566,7 +6553,6 @@ var completionSpec = {
           args: {},
         },
       ],
-      args: [],
     },
     {
       name: "outbound-rules",

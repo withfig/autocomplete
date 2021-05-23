@@ -105,7 +105,6 @@ export const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "build",
@@ -328,7 +327,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-p", "--pause"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "cp",
@@ -348,7 +346,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-L", "--follow-link"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "create",
@@ -996,15 +993,12 @@ export const completionSpec: Fig.Spec = {
           name: ["-w", "--workdir"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "diff",
       description:
         "Inspect changes to files or directories on a container's filesystem",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "events",
@@ -1040,7 +1034,6 @@ export const completionSpec: Fig.Spec = {
           name: ["--until"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "exec",
@@ -1105,7 +1098,6 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       args: containerAndCommandArgs,
-      subcommands: [],
     },
     {
       name: "export",
@@ -1120,7 +1112,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "history",
@@ -1148,7 +1139,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "images",
@@ -1219,7 +1209,6 @@ export const completionSpec: Fig.Spec = {
           name: ["--platform"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "info",
@@ -1234,7 +1223,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-f", "--format"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "inspect",
@@ -1313,8 +1301,6 @@ export const completionSpec: Fig.Spec = {
       name: "kill",
       description: "Kill one or more running containers",
       args: { ...containersArg, variadic: true },
-      options: [],
-      subcommands: [],
     },
     {
       name: "load",
@@ -1329,7 +1315,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "login",
@@ -1357,7 +1342,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "logout",
@@ -1365,8 +1349,6 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "server",
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "logs",
@@ -1410,14 +1392,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "pause",
       description: "Pause all processes within one or more containers",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "port",
@@ -1428,8 +1407,6 @@ export const completionSpec: Fig.Spec = {
           name: "[PRIVATE_PORT[/PROTO]]",
         },
       ],
-      options: [],
-      subcommands: [],
     },
     {
       name: "ps",
@@ -1480,7 +1457,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-s", "--size"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "pull",
@@ -1511,7 +1487,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "push",
@@ -1534,7 +1509,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "rename",
@@ -1545,8 +1519,6 @@ export const completionSpec: Fig.Spec = {
           name: "NEW_NAME",
         },
       ],
-      options: [],
-      subcommands: [],
     },
     {
       name: "restart",
@@ -1562,7 +1534,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "rm",
@@ -1710,7 +1681,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "search",
@@ -1748,7 +1718,6 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-trunc"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "start",
@@ -1774,7 +1743,6 @@ export const completionSpec: Fig.Spec = {
           name: ["-i", "--interactive"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "stats",
@@ -1802,7 +1770,6 @@ export const completionSpec: Fig.Spec = {
           name: ["--no-trunc"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "stop",
@@ -1825,16 +1792,12 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "top",
       description: "Display the running processes of a container",
       // TODO: You can pass in psOptions?
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "unpause",
@@ -1843,8 +1806,6 @@ export const completionSpec: Fig.Spec = {
         name: "container",
         generators: [dockerGenerators.pausedDockerContainers],
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "update",
@@ -1961,7 +1922,6 @@ export const completionSpec: Fig.Spec = {
           name: ["--restart"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "version",
@@ -1984,101 +1944,74 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "wait",
       description:
         "Block until one or more containers stop, then print their exit codes",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "builder",
       description: "Manage builds",
       // TODO Subcommands
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "config",
       description: "Manage Docker configs",
       // TODO Subcommands
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "container",
       description: "Manage containers",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "context",
       description: "Manage contexts",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "image",
       description: "Manage images",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "network",
       description: "Manage networks",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "node",
       description: "Manage Swarm nodes",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "plugin",
       description: "Manage plugins",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "secret",
       description: "Manage Docker secrets",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "service",
       description: "Manage services",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "stack",
       description: "Manage Docker stacks",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "swarm",
       description: "Manage Swarm",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "system",
@@ -2115,15 +2048,11 @@ export const completionSpec: Fig.Spec = {
       name: "trust",
       description: "Manage trust on Docker images",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "volume",
       description: "Manage volumes",
       args: {},
-      options: [],
-      subcommands: [],
     },
   ],
 };

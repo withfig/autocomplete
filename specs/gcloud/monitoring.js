@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new Cloud Monitoring dashboard.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -158,12 +157,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a Cloud Monitoring dashboard.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -304,7 +301,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe a Cloud Monitoring dashboard.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -445,7 +441,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List Cloud Monitoring dashboards.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -619,12 +614,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a Cloud Monitoring dashboard.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -911,7 +904,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1035,5 +1027,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

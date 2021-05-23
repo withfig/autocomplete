@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "iam",
       description: "Troubleshoot the IAM Policy.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -287,5 +287,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

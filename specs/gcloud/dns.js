@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about a DNS key resource.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -159,7 +158,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List DNS key resources.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -328,7 +326,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -459,7 +456,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "managed-zones",
@@ -468,7 +464,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a Cloud DNS managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -778,7 +773,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete an empty Cloud DNS managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -918,7 +912,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "View the details of a Cloud DNS managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1059,7 +1052,6 @@ var completionSpec = {
         {
           name: "list",
           description: "View the list of all your managed-zones.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1233,12 +1225,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update an existing Cloud DNS managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1673,7 +1663,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1682,7 +1671,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describe an operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1832,7 +1820,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List Cloud DNS operations.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2002,7 +1989,6 @@ var completionSpec = {
               priority: 100,
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2133,7 +2119,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "policies",
@@ -2142,7 +2127,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Creates a new Cloud DNS policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2334,7 +2318,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Deletes a Cloud DNS policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2475,7 +2458,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describes a Cloud DNS policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2616,7 +2598,6 @@ var completionSpec = {
         {
           name: "list",
           description: "View the list of all your Cloud DNS policies.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2790,12 +2771,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update an existing Cloud DNS policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3111,7 +3090,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "project-info",
@@ -3120,7 +3098,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "View Cloud DNS related information for a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3387,7 +3364,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "record-sets",
@@ -3401,7 +3377,6 @@ var completionSpec = {
             {
               name: "describe",
               description: "View the details of a change.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3553,7 +3528,6 @@ var completionSpec = {
               name: "list",
               description:
                 "View the list of changes that have been made to your record-sets.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3748,7 +3722,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3879,12 +3852,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "export",
           description: "Export your record-sets into a file.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4040,7 +4011,6 @@ var completionSpec = {
         {
           name: "import",
           description: "Import record-sets into your managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4207,7 +4177,6 @@ var completionSpec = {
         {
           name: "list",
           description: "View the list of record-sets in a managed-zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4412,7 +4381,6 @@ var completionSpec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "transaction",
@@ -4422,7 +4390,6 @@ var completionSpec = {
             {
               name: "abort",
               description: "Abort transaction.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4572,12 +4539,10 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "add",
               description: "Append a record-set addition to the transaction.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4769,7 +4734,6 @@ var completionSpec = {
             {
               name: "describe",
               description: "Describe the transaction.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4919,12 +4883,10 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "execute",
               description: "Execute the transaction on Cloud DNS.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -5119,12 +5081,10 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
             {
               name: "remove",
               description: "Append a record-set deletion to the transaction.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -5315,7 +5275,6 @@ var completionSpec = {
             {
               name: "start",
               description: "Start a transaction.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -5465,7 +5424,6 @@ var completionSpec = {
                   priority: 100,
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -5605,7 +5563,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -5736,7 +5693,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -5860,5 +5816,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

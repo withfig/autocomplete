@@ -5,7 +5,6 @@ var completionSpec = {
     {
       name: "add-iam-policy-binding",
       description: "Add IAM policy binding for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -187,7 +186,6 @@ var completionSpec = {
     {
       name: "create",
       description: "Create a new project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -375,7 +373,6 @@ var completionSpec = {
     {
       name: "delete",
       description: "Delete a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -515,7 +512,6 @@ var completionSpec = {
     {
       name: "describe",
       description: "Show metadata for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -655,7 +651,6 @@ var completionSpec = {
     {
       name: "get-ancestors",
       description: "Get the ancestors for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -796,7 +791,6 @@ var completionSpec = {
     {
       name: "get-ancestors-iam-policy",
       description: "Get IAM policies for a project and its ancestors.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -977,7 +971,6 @@ var completionSpec = {
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1158,7 +1151,6 @@ var completionSpec = {
     {
       name: "list",
       description: "List projects accessible by the active account.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1332,12 +1324,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
       description: "Remove IAM policy binding for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1524,7 +1514,6 @@ var completionSpec = {
     {
       name: "set-iam-policy",
       description: "Set IAM policy for a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1671,7 +1660,6 @@ var completionSpec = {
     {
       name: "undelete",
       description: "Undelete a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1811,7 +1799,6 @@ var completionSpec = {
     {
       name: "update",
       description: "Update the name of a project.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -2080,5 +2067,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

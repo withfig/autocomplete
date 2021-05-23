@@ -10,32 +10,22 @@ var completionSpec = {
     {
       name: "help",
       description: "Show help.",
-      subcommands: [],
-      options: [],
     },
     {
       name: "configure",
       description: "Configure the Fastly CLI",
-      subcommands: [],
-      options: [],
     },
     {
       name: "whoami",
       description: "Get information about the currently authenticated account",
-      subcommands: [],
-      options: [],
     },
     {
       name: "version",
       description: "Display version information for the Fastly CLI",
-      subcommands: [],
-      options: [],
     },
     {
       name: "update",
       description: "Update the CLI to the latest version",
-      subcommands: [],
-      options: [],
     },
     {
       name: "service",
@@ -44,7 +34,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -79,13 +68,10 @@ var completionSpec = {
         {
           name: "list",
           description: "List Fastly services",
-          subcommands: [],
-          options: [],
         },
         {
           name: "describe",
           description: "Show detailed information about a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -101,7 +87,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -135,7 +120,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -149,14 +133,12 @@ var completionSpec = {
             {
               name: "--force",
               description: "Force deletion of an active service",
-              args: [],
             },
           ],
         },
         {
           name: "search",
           description: "Search for a Fastly service by name",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -170,7 +152,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "service-version",
@@ -179,7 +160,6 @@ var completionSpec = {
         {
           name: "clone",
           description: "Clone a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -204,7 +184,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List Fastly service versions",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -220,7 +199,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -254,7 +232,6 @@ var completionSpec = {
         {
           name: "activate",
           description: "Activate a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -279,7 +256,6 @@ var completionSpec = {
         {
           name: "deactivate",
           description: "Deactivate a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -304,7 +280,6 @@ var completionSpec = {
         {
           name: "lock",
           description: "Lock a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -327,7 +302,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "compute",
@@ -336,7 +310,6 @@ var completionSpec = {
         {
           name: "init",
           description: "Initialize a new Compute@Edge package locally",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -418,14 +391,12 @@ var completionSpec = {
               name: "--force",
               description:
                 "Skip non-empty directory verification step and force new project creation",
-              args: [],
             },
           ],
         },
         {
           name: "build",
           description: "Build a Compute@Edge package locally",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -448,19 +419,16 @@ var completionSpec = {
             {
               name: "--include-source",
               description: "Include source code in built package",
-              args: [],
             },
             {
               name: "--force",
               description: "Skip verification steps and force build",
-              args: [],
             },
           ],
         },
         {
           name: "deploy",
           description: "Deploy a package to a Fastly Compute@Edge service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -523,7 +491,6 @@ var completionSpec = {
           name: "publish",
           description:
             "Build and deploy a Compute@Edge package to a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -546,12 +513,10 @@ var completionSpec = {
             {
               name: "--include-source",
               description: "Include source code in built package",
-              args: [],
             },
             {
               name: "--force",
               description: "Skip verification steps and force build",
-              args: [],
             },
             {
               name: "--service-id",
@@ -614,7 +579,6 @@ var completionSpec = {
           name: "update",
           description:
             "Update a package on a Fastly Compute@Edge service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -648,7 +612,6 @@ var completionSpec = {
         {
           name: "validate",
           description: "Validate a Compute@Edge package",
-          subcommands: [],
           options: [
             {
               name: "--path",
@@ -662,7 +625,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "domain",
@@ -671,7 +633,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a domain on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -714,7 +675,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List domains on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -740,7 +700,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Show detailed information about a domain on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -774,7 +733,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a domain on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -826,7 +784,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a domain on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--name",
@@ -858,7 +815,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "backend",
@@ -867,7 +823,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a backend on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -973,7 +928,6 @@ var completionSpec = {
               name: "--auto-loadbalance",
               description:
                 "Whether or not this backend should be automatically load balanced",
-              args: [],
             },
             {
               name: "--weight",
@@ -1018,12 +972,10 @@ var completionSpec = {
             {
               name: "--use-ssl",
               description: "Whether or not to use SSL to reach the backend",
-              args: [],
             },
             {
               name: "--ssl-check-cert",
               description: "Be strict on checking SSL certs",
-              args: [],
             },
             {
               name: "--ssl-ca-cert",
@@ -1107,7 +1059,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List backends on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1133,7 +1084,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Show detailed information about a backend on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1167,7 +1117,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a backend on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1282,7 +1231,6 @@ var completionSpec = {
               name: "--auto-loadbalance",
               description:
                 "Whether or not this backend should be automatically load balanced",
-              args: [],
             },
             {
               name: "--weight",
@@ -1327,12 +1275,10 @@ var completionSpec = {
             {
               name: "--use-ssl",
               description: "Whether or not to use SSL to reach the backend",
-              args: [],
             },
             {
               name: "--ssl-check-cert",
               description: "Be strict on checking SSL certs",
-              args: [],
             },
             {
               name: "--ssl-ca-cert",
@@ -1416,7 +1362,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a backend on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1448,7 +1393,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "healthcheck",
@@ -1457,7 +1401,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a healthcheck on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1593,7 +1536,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List healthchecks on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1619,7 +1561,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Show detailed information about a healthcheck on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1653,7 +1594,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update a healthcheck on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1798,7 +1738,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a healthcheck on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1830,7 +1769,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "dictionary",
@@ -1840,7 +1778,6 @@ var completionSpec = {
           name: "create",
           description:
             "Create a Fastly edge dictionary on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1885,7 +1822,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Show detailed information about a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1920,7 +1856,6 @@ var completionSpec = {
           name: "delete",
           description:
             "Delete a Fastly edge dictionary from a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1954,7 +1889,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List all dictionaries on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -1979,7 +1913,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update name of dictionary on a Fastly service version",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2030,7 +1963,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "dictionaryitem",
@@ -2039,7 +1971,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List items in a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2065,7 +1996,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Show detailed information about a Fastly edge dictionary item",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2099,7 +2029,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new item on a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2142,7 +2071,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update or insert an item on a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2185,7 +2113,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete an item from a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2219,7 +2146,6 @@ var completionSpec = {
         {
           name: "batchmodify",
           description: "Update multiple items in a Fastly edge dictionary",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -2251,7 +2177,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "logging",
@@ -2266,7 +2191,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a BigQuery logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -2398,7 +2322,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List BigQuery endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -2424,7 +2347,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a BigQuery logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -2459,7 +2381,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a BigQuery logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -2599,7 +2520,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a BigQuery logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -2631,7 +2551,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "s3",
@@ -2641,7 +2560,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an Amazon S3 logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -2859,7 +2777,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List S3 endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -2885,7 +2802,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a S3 logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -2920,7 +2836,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a S3 logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3147,7 +3062,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a S3 logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3179,7 +3093,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "kinesis",
@@ -3190,7 +3103,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an Amazon Kinesis logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -3311,7 +3223,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Kinesis endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -3337,7 +3248,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Kinesis logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -3372,7 +3282,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Kinesis logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3500,7 +3409,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Kinesis logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3532,7 +3440,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "syslog",
@@ -3543,7 +3450,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Syslog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -3595,7 +3501,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -3701,7 +3606,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Syslog endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -3727,7 +3631,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Syslog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -3762,7 +3665,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Syslog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3822,7 +3724,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -3929,7 +3830,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Syslog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -3961,7 +3861,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "logentries",
@@ -3972,7 +3871,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Logentries logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -4015,7 +3913,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--auth-token",
@@ -4072,7 +3969,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Logentries endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4098,7 +3994,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Logentries logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4133,7 +4028,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Logentries logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4184,7 +4078,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--auth-token",
@@ -4241,7 +4134,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Logentries logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4273,7 +4165,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "papertrail",
@@ -4284,7 +4175,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Papertrail logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -4377,7 +4267,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Papertrail endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4403,7 +4292,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Papertrail logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4438,7 +4326,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Papertrail logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4539,7 +4426,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Papertrail logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4571,7 +4457,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "sumologic",
@@ -4582,7 +4467,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Sumologic logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -4676,7 +4560,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Sumologic endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4702,7 +4585,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Sumologic logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -4737,7 +4619,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Sumologic logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4839,7 +4720,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Sumologic logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -4871,7 +4751,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "gcs",
@@ -4882,7 +4761,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a GCS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -5044,7 +4922,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List GCS endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5070,7 +4947,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a GCS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5105,7 +4981,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a GCS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -5276,7 +5151,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a GCS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -5308,7 +5182,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "ftp",
@@ -5319,7 +5192,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an FTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -5480,7 +5352,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List FTP endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5506,7 +5377,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an FTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5541,7 +5411,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an FTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -5721,7 +5590,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an FTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -5753,7 +5621,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "splunk",
@@ -5764,7 +5631,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Splunk logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -5897,7 +5763,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Splunk endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5923,7 +5788,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Splunk logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -5958,7 +5822,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Splunk logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6099,7 +5962,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Splunk logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6131,7 +5993,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "scalyr",
@@ -6142,7 +6003,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Scalyr logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -6236,7 +6096,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Scalyr endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6262,7 +6121,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Scalyr logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6297,7 +6155,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Scalyr logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6400,7 +6257,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Scalyr logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6432,7 +6288,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "loggly",
@@ -6443,7 +6298,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Loggly logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -6527,7 +6381,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Loggly endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6553,7 +6406,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Loggly logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6588,7 +6440,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Loggly logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6681,7 +6532,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Loggly logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6713,7 +6563,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "honeycomb",
@@ -6724,7 +6573,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Honeycomb logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -6819,7 +6667,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Honeycomb endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6845,7 +6692,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Honeycomb logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -6880,7 +6726,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Honeycomb logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -6983,7 +6828,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Honeycomb logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -7015,7 +6859,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "heroku",
@@ -7026,7 +6869,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Heroku logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -7119,7 +6961,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Heroku endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7145,7 +6986,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Heroku logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7180,7 +7020,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Heroku logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -7282,7 +7121,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Heroku logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -7314,7 +7152,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "sftp",
@@ -7325,7 +7162,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an SFTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -7526,7 +7362,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List SFTP endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7552,7 +7387,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an SFTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7587,7 +7421,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an SFTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -7797,7 +7630,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an SFTP logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -7829,7 +7661,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "logshuttle",
@@ -7840,7 +7671,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Logshuttle logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -7934,7 +7764,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Logshuttle endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7960,7 +7789,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Logshuttle logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -7995,7 +7823,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Logshuttle logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -8097,7 +7924,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Logshuttle logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -8129,7 +7955,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "cloudfiles",
@@ -8140,7 +7965,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Cloudfiles logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -8321,7 +8145,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Cloudfiles endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -8347,7 +8170,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Cloudfiles logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -8382,7 +8204,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Cloudfiles logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -8571,7 +8392,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Cloudfiles logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -8603,7 +8423,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "digitalocean",
@@ -8614,7 +8433,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a DigitalOcean Spaces logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -8795,7 +8613,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List DigitalOcean Spaces logging endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -8821,7 +8638,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a DigitalOcean Spaces logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -8857,7 +8673,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a DigitalOcean Spaces logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -9048,7 +8863,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a DigitalOcean Spaces logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -9081,7 +8895,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "elasticsearch",
@@ -9092,7 +8905,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an Elasticsearch logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -9257,7 +9069,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Elasticsearch endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -9283,7 +9094,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an Elasticsearch logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -9318,7 +9128,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an Elasticsearch logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -9491,7 +9300,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an Elasticsearch logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -9523,7 +9331,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "azureblob",
@@ -9534,7 +9341,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an Azure Blob Storage logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -9717,7 +9523,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Azure Blob Storage logging endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -9743,7 +9548,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an Azure Blob Storage logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -9779,7 +9583,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an Azure Blob Storage logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -9972,7 +9775,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an Azure Blob Storage logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -10005,7 +9807,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "datadog",
@@ -10016,7 +9817,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Datadog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -10110,7 +9910,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Datadog endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -10136,7 +9935,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Datadog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -10171,7 +9969,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Datadog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -10274,7 +10071,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Datadog logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -10306,7 +10102,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "https",
@@ -10317,7 +10112,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an HTTPS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -10522,7 +10316,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List HTTPS endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -10548,7 +10341,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an HTTPS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -10583,7 +10375,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an HTTPS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -10797,7 +10588,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an HTTPS logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -10829,7 +10619,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "kafka",
@@ -10840,7 +10629,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Kafka logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -10913,7 +10701,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -10998,7 +10785,6 @@ var completionSpec = {
                 {
                   name: "--parse-log-keyvals",
                   description: "Parse key-value pairs within the log format",
-                  args: [],
                 },
                 {
                   name: "--max-batch-size",
@@ -11013,7 +10799,6 @@ var completionSpec = {
                   name: "--use-sasl",
                   description:
                     "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                  args: [],
                 },
                 {
                   name: "--auth-method",
@@ -11050,7 +10835,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List Kafka endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11076,7 +10860,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Kafka logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11111,7 +10894,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Kafka logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -11192,7 +10974,6 @@ var completionSpec = {
                   name: "--use-tls",
                   description:
                     "Whether to use TLS for secure logging. Can be either true or false",
-                  args: [],
                 },
                 {
                   name: "--tls-ca-cert",
@@ -11277,7 +11058,6 @@ var completionSpec = {
                 {
                   name: "--parse-log-keyvals",
                   description: "Parse key-value pairs within the log format",
-                  args: [],
                 },
                 {
                   name: "--max-batch-size",
@@ -11292,7 +11072,6 @@ var completionSpec = {
                   name: "--use-sasl",
                   description:
                     "Enable SASL authentication. Requires --auth-method, --username, and --password to be specified",
-                  args: [],
                 },
                 {
                   name: "--auth-method",
@@ -11330,7 +11109,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Kafka logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -11362,7 +11140,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "googlepubsub",
@@ -11373,7 +11150,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -11487,7 +11263,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List Google Cloud Pub/Sub endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11513,7 +11288,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11549,7 +11323,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -11673,7 +11446,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete a Google Cloud Pub/Sub logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -11706,7 +11478,6 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
         {
           name: "openstack",
@@ -11717,7 +11488,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create an OpenStack logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--name",
@@ -11897,7 +11667,6 @@ var completionSpec = {
               name: "list",
               description:
                 "List OpenStack logging endpoints on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11923,7 +11692,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Show detailed information about an OpenStack logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--service-id",
@@ -11958,7 +11726,6 @@ var completionSpec = {
               name: "update",
               description:
                 "Update an OpenStack logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -12146,7 +11913,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Delete an OpenStack logging endpoint on a Fastly service version",
-              subcommands: [],
               options: [
                 {
                   name: "--version",
@@ -12178,10 +11944,8 @@ var completionSpec = {
               ],
             },
           ],
-          options: [],
         },
       ],
-      options: [],
     },
     {
       name: "logs",
@@ -12190,7 +11954,6 @@ var completionSpec = {
         {
           name: "tail",
           description: "Tail Compute@Edge logs",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -12252,7 +12015,6 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
     {
       name: "stats",
@@ -12262,13 +12024,10 @@ var completionSpec = {
         {
           name: "regions",
           description: "List stats regions",
-          subcommands: [],
-          options: [],
         },
         {
           name: "historical",
           description: "View historical stats for a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -12330,7 +12089,6 @@ var completionSpec = {
         {
           name: "realtime",
           description: "View realtime stats for a Fastly service",
-          subcommands: [],
           options: [
             {
               name: "--service-id",
@@ -12353,14 +12111,12 @@ var completionSpec = {
           ],
         },
       ],
-      options: [],
     },
   ],
   options: [
     {
       name: "--help",
       description: "Show context-sensitive help.",
-      args: [],
     },
     {
       name: "--token",
@@ -12374,7 +12130,6 @@ var completionSpec = {
     {
       name: "--verbose",
       description: "Verbose logging",
-      args: [],
     },
   ],
 };

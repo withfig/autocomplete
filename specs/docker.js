@@ -119,7 +119,6 @@ var completionSpec = {
           args: {},
         },
       ],
-      subcommands: [],
     },
     {
       name: "build",
@@ -347,7 +346,6 @@ var completionSpec = {
           name: ["-p", "--pause"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "cp",
@@ -367,7 +365,6 @@ var completionSpec = {
           name: ["-L", "--follow-link"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "create",
@@ -1015,15 +1012,12 @@ var completionSpec = {
           name: ["-w", "--workdir"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "diff",
       description:
         "Inspect changes to files or directories on a container's filesystem",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "events",
@@ -1059,7 +1053,6 @@ var completionSpec = {
           name: ["--until"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "exec",
@@ -1124,7 +1117,6 @@ var completionSpec = {
         },
       ],
       args: containerAndCommandArgs,
-      subcommands: [],
     },
     {
       name: "export",
@@ -1139,7 +1131,6 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "history",
@@ -1167,7 +1158,6 @@ var completionSpec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "images",
@@ -1238,7 +1228,6 @@ var completionSpec = {
           name: ["--platform"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "info",
@@ -1253,7 +1242,6 @@ var completionSpec = {
           name: ["-f", "--format"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "inspect",
@@ -1341,8 +1329,6 @@ var completionSpec = {
       name: "kill",
       description: "Kill one or more running containers",
       args: __assign(__assign({}, containersArg), { variadic: true }),
-      options: [],
-      subcommands: [],
     },
     {
       name: "load",
@@ -1357,7 +1343,6 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "login",
@@ -1385,7 +1370,6 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "logout",
@@ -1393,8 +1377,6 @@ var completionSpec = {
       args: {
         name: "server",
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "logs",
@@ -1438,14 +1420,11 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "pause",
       description: "Pause all processes within one or more containers",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "port",
@@ -1456,8 +1435,6 @@ var completionSpec = {
           name: "[PRIVATE_PORT[/PROTO]]",
         },
       ],
-      options: [],
-      subcommands: [],
     },
     {
       name: "ps",
@@ -1508,7 +1485,6 @@ var completionSpec = {
           name: ["-s", "--size"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "pull",
@@ -1539,7 +1515,6 @@ var completionSpec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "push",
@@ -1562,7 +1537,6 @@ var completionSpec = {
           name: ["-q", "--quiet"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "rename",
@@ -1573,8 +1547,6 @@ var completionSpec = {
           name: "NEW_NAME",
         },
       ],
-      options: [],
-      subcommands: [],
     },
     {
       name: "restart",
@@ -1590,7 +1562,6 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "rm",
@@ -1743,7 +1714,6 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "search",
@@ -1781,7 +1751,6 @@ var completionSpec = {
           name: ["--no-trunc"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "start",
@@ -1807,7 +1776,6 @@ var completionSpec = {
           name: ["-i", "--interactive"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "stats",
@@ -1835,7 +1803,6 @@ var completionSpec = {
           name: ["--no-trunc"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "stop",
@@ -1858,16 +1825,12 @@ var completionSpec = {
       args: {
         name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "top",
       description: "Display the running processes of a container",
       // TODO: You can pass in psOptions?
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "unpause",
@@ -1876,8 +1839,6 @@ var completionSpec = {
         name: "container",
         generators: [dockerGenerators.pausedDockerContainers],
       },
-      options: [],
-      subcommands: [],
     },
     {
       name: "update",
@@ -1994,7 +1955,6 @@ var completionSpec = {
           name: ["--restart"],
         },
       ],
-      subcommands: [],
     },
     {
       name: "version",
@@ -2017,101 +1977,74 @@ var completionSpec = {
           },
         },
       ],
-      subcommands: [],
     },
     {
       name: "wait",
       description:
         "Block until one or more containers stop, then print their exit codes",
       args: containersArg,
-      options: [],
-      subcommands: [],
     },
     {
       name: "builder",
       description: "Manage builds",
       // TODO Subcommands
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "config",
       description: "Manage Docker configs",
       // TODO Subcommands
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "container",
       description: "Manage containers",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "context",
       description: "Manage contexts",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "image",
       description: "Manage images",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "network",
       description: "Manage networks",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "node",
       description: "Manage Swarm nodes",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "plugin",
       description: "Manage plugins",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "secret",
       description: "Manage Docker secrets",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "service",
       description: "Manage services",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "stack",
       description: "Manage Docker stacks",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "swarm",
       description: "Manage Swarm",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "system",
@@ -2148,15 +2081,11 @@ var completionSpec = {
       name: "trust",
       description: "Manage trust on Docker images",
       args: {},
-      options: [],
-      subcommands: [],
     },
     {
       name: "volume",
       description: "Manage volumes",
       args: {},
-      options: [],
-      subcommands: [],
     },
   ],
 };

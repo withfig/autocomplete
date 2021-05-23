@@ -1,7 +1,6 @@
 var completionSpec = {
   name: "http.server",
   description: "",
-  subcommands: [],
   options: [
     {
       name: ["-d", "--directory"],

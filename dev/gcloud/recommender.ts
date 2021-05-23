@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe an insight.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -168,7 +168,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List insights for a Cloud project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -357,12 +357,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-accepted",
           description: "Mark an insight's state as ACCEPTED.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -668,7 +667,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "recommendations",
@@ -677,7 +675,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a recommendation for a Cloud project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -836,7 +834,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists recommendations for a Cloud project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1030,12 +1028,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "mark-claimed",
           description: "Mark a recommendation's state as CLAIMED.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1215,7 +1212,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "mark-failed",
           description: "Mark a recommendation's state as FAILED.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1395,7 +1392,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "mark-succeeded",
           description: "Mark a recommendation's state as SUCCEEDED.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1701,7 +1698,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1825,5 +1821,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

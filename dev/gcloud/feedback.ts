@@ -1,7 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "feedback",
   description: "Provide feedback to the Google Cloud SDK team.",
-  subcommands: [],
+
   options: [
     {
       name: "--account",
@@ -132,5 +132,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -1,7 +1,6 @@
 var completionSpec = {
   name: "info",
   description: "Display information about the current gcloud environment.",
-  subcommands: [],
   options: [
     {
       name: "--account",
@@ -136,5 +135,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };
