@@ -6,57 +6,48 @@ export const completionSpec: Fig.Spec = {
       name: "init",
       description: "Create a fresh knexfile.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:make",
       description: "Create a named migration file.",
       args: { name: "migration name" },
-      options: [],
     },
     {
       name: "migrate:latest",
       description: "Run all migrations that have not yet been run.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:up",
       description:
         "Run the next or the specified migration that has not yet been run.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:rollback",
       description: "Rollback the last batch of migrations performed.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:down",
       description:
         "Undo the last or the specified migration that was already run.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:currentVersion",
       description: "View the current version for the  migration.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:list|migrate:status",
       description: "List all migrations files with status.",
       args: {},
-      options: [],
     },
     {
       name: "migrate:unlock",
       description: "Forcibly unlocks the migrations lock table.",
       args: {},
-      options: [],
     },
     {
       name: "seed:make",
@@ -64,19 +55,16 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "seed name",
       },
-      options: [],
     },
     {
       name: "seed:run",
       description: "Run seed files.",
       args: {},
-      options: [],
     },
     {
       name: "help",
       description: "display help for command",
       args: {},
-      options: [],
     },
   ],
   options: [

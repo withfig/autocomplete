@@ -1,7 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "cheat-sheet",
   description: "Display gcloud cheat sheet.",
-  subcommands: [],
+
   options: [
     {
       name: "--account",
@@ -123,5 +123,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

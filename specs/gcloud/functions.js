@@ -5,7 +5,6 @@ var completionSpec = {
     {
       name: "add-iam-policy-binding",
       description: "Add an IAM policy binding for a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -177,7 +176,6 @@ var completionSpec = {
     {
       name: "call",
       description: "Trigger execution of a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -338,7 +336,6 @@ var completionSpec = {
     {
       name: "delete",
       description: "Delete a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -489,7 +486,6 @@ var completionSpec = {
     {
       name: "deploy",
       description: "Create or update a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -942,7 +938,6 @@ var completionSpec = {
     {
       name: "describe",
       description: "Display details of a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1099,7 +1094,6 @@ var completionSpec = {
           name: "list",
           description:
             "List types of events that can be a trigger for a Google Cloud Function.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1228,7 +1222,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1359,12 +1352,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "get-iam-policy",
       description: "Get IAM policy for a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1560,7 +1551,6 @@ var completionSpec = {
     {
       name: "list",
       description: "List Google Cloud Functions.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -1744,7 +1734,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "logs",
@@ -1754,7 +1743,6 @@ var completionSpec = {
           name: "read",
           description:
             "Display log entries produced by Google Cloud Functions.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2115,7 +2103,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "regions",
@@ -2124,7 +2111,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List regions available to Google Cloud Functions.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2298,7 +2284,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2429,13 +2414,11 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "remove-iam-policy-binding",
       description:
         "Removes an IAM policy binding from a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -2607,7 +2590,6 @@ var completionSpec = {
     {
       name: "set-iam-policy",
       description: "Sets IAM policy for a Google Cloud Function.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -2883,5 +2865,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

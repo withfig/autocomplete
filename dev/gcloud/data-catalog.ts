@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Data Catalog entry.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -289,7 +289,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Data Catalog entry.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -448,7 +448,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Data Catalog entry.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -607,7 +607,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List all entries in a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -801,12 +801,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "lookup",
           description: "Lookup a Cloud Data Catalog entry by its target name.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -947,7 +946,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Data Catalog entry.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1336,7 +1335,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "entry-groups",
@@ -1346,7 +1344,7 @@ export const completionSpec: Fig.Spec = {
           name: "add-iam-policy-binding",
           description:
             "Add an IAM policy binding to a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1517,7 +1515,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1685,7 +1683,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1835,7 +1833,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1986,7 +1984,7 @@ export const completionSpec: Fig.Spec = {
           name: "get-iam-policy",
           description:
             "Get the IAM policy for a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2177,7 +2175,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List all entry groups in a Cloud Data Catalog location.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2362,13 +2360,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2540,7 +2537,7 @@ export const completionSpec: Fig.Spec = {
           name: "set-iam-policy",
           description:
             "Set the IAM policy for a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2696,7 +2693,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Data Catalog entry group.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2990,13 +2987,12 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "search",
       description:
         "Search Cloud Data Catalog for resources that match a query.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -3205,7 +3201,7 @@ export const completionSpec: Fig.Spec = {
           name: "add-iam-policy-binding",
           description:
             "Add IAM policy binding to a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3376,7 +3372,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3547,7 +3543,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3702,7 +3698,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3856,7 +3852,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "create",
               description: "Create a Cloud Data Catalog tag template field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4035,7 +4031,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Delete a Cloud Data Catalog tag template field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4205,7 +4201,7 @@ export const completionSpec: Fig.Spec = {
                   name: "rename",
                   description:
                     "Rename an enum value in Data Catalog tag template enum field.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -4510,12 +4506,11 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "rename",
               description: "Rename a Cloud Data Catalog tag template field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4684,7 +4679,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Update a Cloud Data Catalog tag template field.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -4993,13 +4988,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "get-iam-policy",
           description:
             "Get the IAM policy for a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5190,7 +5184,7 @@ export const completionSpec: Fig.Spec = {
           name: "remove-iam-policy-binding",
           description:
             "Remove IAM policy binding from a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5362,7 +5356,7 @@ export const completionSpec: Fig.Spec = {
           name: "set-iam-policy",
           description:
             "Set the IAM policy for a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5518,7 +5512,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Cloud Data Catalog tag template.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5803,7 +5797,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "tags",
@@ -5812,7 +5805,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Cloud Data Catalog entry tag.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6020,12 +6013,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a Cloud Data Catalog entry tag.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6193,7 +6185,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Data Catalog entry tags.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6396,12 +6388,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a Cloud Data Catalog entry tag.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6735,7 +6726,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "taxonomies",
@@ -6744,7 +6734,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to a Policy Tag Taxonomy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6915,7 +6905,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Policy Tag Taxonomy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7065,7 +7055,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Export a list of taxonomies from a certain project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7216,7 +7206,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Policy Tag Taxonomy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7407,7 +7397,7 @@ export const completionSpec: Fig.Spec = {
           name: "import",
           description:
             "Export a file with serialized taxonomies to a certain project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7558,7 +7548,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Policy Tag Taxonomies.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7743,7 +7733,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "policy-tags",
@@ -7753,7 +7742,7 @@ export const completionSpec: Fig.Spec = {
               name: "add-iam-policy-binding",
               description:
                 "Add an IAM policy binding to a Cloud Data Catalog policy tag.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -7933,7 +7922,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "describe",
               description: "Describe a Policy Tag Manager Policy tag.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8093,7 +8082,7 @@ export const completionSpec: Fig.Spec = {
               name: "get-iam-policy",
               description:
                 "Get the IAM policy for a Cloud Data Catalog Policy Tag.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8292,7 +8281,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List Cloud Policy Tag Manager policy tags.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8486,13 +8475,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "remove-iam-policy-binding",
               description:
                 "Remove an IAM policy binding from a Cloud Data Catalog policy tag.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8673,7 +8661,7 @@ export const completionSpec: Fig.Spec = {
               name: "set-iam-policy",
               description:
                 "Set the IAM policy for a Cloud Data Catalog Policy Tag.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -8964,13 +8952,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description:
             "Remove an IAM policy binding from a policy tag taxonomy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9141,7 +9128,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set the IAM policy for a Policy Tag taxonomy.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -9423,7 +9410,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -9547,5 +9533,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

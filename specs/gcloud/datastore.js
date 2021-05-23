@@ -11,7 +11,6 @@ var completionSpec = {
           name: "create",
           description:
             "Create a Google Cloud Firestore in Datastore Mode database.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -150,7 +149,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -281,12 +279,10 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "export",
       description: "Export Cloud Datastore entities to Google Cloud Storage.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -462,7 +458,6 @@ var completionSpec = {
     {
       name: "import",
       description: "Import Cloud Datastore entities from Google Cloud Storage.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -643,7 +638,6 @@ var completionSpec = {
           name: "cleanup",
           description:
             "Remove unused datastore indexes based on your local index configuration.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -785,7 +779,6 @@ var completionSpec = {
           name: "create",
           description:
             "Create new datastore indexes based on your local index configuration.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -926,7 +919,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about an Cloud Datastore index.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1067,7 +1059,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List Cloud Datastore indexes.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1241,7 +1232,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -1372,7 +1362,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -1382,7 +1371,6 @@ var completionSpec = {
           name: "cancel",
           description:
             "Cancel a currently-running Cloud Datastore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1523,7 +1511,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a completed Cloud Datastore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1665,7 +1652,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Retrieves information about a Cloud Datastore admin operation.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1807,7 +1793,6 @@ var completionSpec = {
           name: "list",
           description:
             "List pending Cloud Datastore admin operations and their status.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1981,7 +1966,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2112,7 +2096,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2236,5 +2219,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

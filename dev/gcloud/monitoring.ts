@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new Cloud Monitoring dashboard.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -158,12 +158,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a Cloud Monitoring dashboard.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -304,7 +303,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Cloud Monitoring dashboard.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -445,7 +444,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Cloud Monitoring dashboards.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -619,12 +618,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a Cloud Monitoring dashboard.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -911,7 +909,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -1035,5 +1032,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

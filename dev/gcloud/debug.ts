@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Add debug logpoints to a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -198,7 +198,7 @@ export const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete debug logpoints for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -370,7 +370,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the debug logpoints for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -712,7 +712,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "snapshots",
@@ -722,7 +721,7 @@ export const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -904,7 +903,7 @@ export const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1076,7 +1075,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Describe the debug snapshots for a Cloud Debugger debug target         (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1238,7 +1237,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the debug snapshots for a Cloud Debugger debug target (debuggee).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1445,7 +1444,7 @@ export const completionSpec: Fig.Spec = {
           name: "wait",
           description:
             "Wait for debug snapshots on a Cloud Debugger debug target (debuggee) to         complete.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1792,7 +1791,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "source",
@@ -1802,7 +1800,7 @@ export const completionSpec: Fig.Spec = {
           name: "gen-repo-info-file",
           description:
             "Generates repository information files for the Cloud Debugger.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1951,7 +1949,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2082,7 +2079,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "targets",
@@ -2093,7 +2089,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the debug targets (debuggees) registered with the Cloud Debugger.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2272,7 +2268,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2403,7 +2398,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2527,5 +2521,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

@@ -147,7 +147,6 @@ export const completion: Fig.Spec = {
     },
   ],
 
-  options: [],
   // Only uncomment if abc takes an argument
   // args: {}
 };

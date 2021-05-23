@@ -9,7 +9,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new cloud access binding.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -179,12 +178,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete a cloud access binding.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -333,12 +330,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "describe",
           description: "Show details about a cloud access binding.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -487,12 +482,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description: "List cloud access bindings under an organization.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -671,12 +664,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update an existing cloud access binding.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -845,7 +836,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -976,7 +966,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "levels",
@@ -989,7 +978,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List conditions for an access level.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -1138,7 +1126,6 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1269,12 +1256,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
           description: "Create a new access level.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1480,7 +1465,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete an access level.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1635,7 +1619,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about an access level.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1785,7 +1768,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List access levels.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1964,12 +1946,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "replace-all",
           description: "Replace all existing access levels.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2131,7 +2111,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update an existing access level.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2457,7 +2436,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "perimeters",
@@ -2466,7 +2444,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new service perimeter.",
-          subcommands: [],
           options: [
             {
               name: "--access-levels",
@@ -2697,7 +2674,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a service perimeter.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2852,7 +2828,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about a service perimeter.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3008,7 +2983,6 @@ var completionSpec = {
               name: "create",
               description:
                 "Create a dry-run mode configuration for a new or existing Service         Perimeter.",
-              subcommands: [],
               options: [
                 {
                   name: "--access-levels",
@@ -3285,7 +3259,6 @@ var completionSpec = {
               name: "delete",
               description:
                 "Mark the Service Perimeter as deleted in the dry-run mode.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3441,7 +3414,6 @@ var completionSpec = {
               name: "describe",
               description:
                 "Display the dry-run mode configuration for a Service Perimeter.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3592,7 +3564,6 @@ var completionSpec = {
               name: "drop",
               description:
                 "Reset the dry-run mode configuration of a Service Perimeter.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3748,7 +3719,6 @@ var completionSpec = {
               name: "enforce",
               description:
                 "Enforces a Service Perimeter's dry-run configuration.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3904,7 +3874,6 @@ var completionSpec = {
               name: "enforce-all",
               description:
                 "Enforces the dry-run mode configuration for all Service Perimeters.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4053,13 +4022,11 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "list",
               description:
                 "List the effective dry-run configuration across all Service Perimeters.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4238,13 +4205,11 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "update",
               description:
                 "Update the dry-run mode configuration for a Service Perimeter.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -4626,12 +4591,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description: "List service perimeters.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4810,12 +4773,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "replace-all",
           description: "Replace all existing service perimeters.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4977,7 +4938,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update an existing access zone.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -5412,7 +5372,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "policies",
@@ -5421,7 +5380,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a new access policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -5576,12 +5534,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "delete",
           description: "Delete an access policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -5722,7 +5678,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show details about an access policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -5863,7 +5818,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List access policies.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -6043,12 +5997,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update an existing access policy.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -6324,7 +6276,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -6448,5 +6399,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

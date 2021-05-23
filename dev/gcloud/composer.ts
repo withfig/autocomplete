@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create and initialize a Cloud Composer environment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -402,7 +402,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete one or more Cloud Composer environments.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -558,7 +558,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get details about a Cloud Composer environment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -710,7 +710,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "List the Cloud Composer environments under a project and location.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -895,13 +895,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "run",
           description:
             "Run an Airflow sub-command remotely in a Cloud Composer environment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1074,7 +1073,7 @@ export const completionSpec: Fig.Spec = {
                   name: "delete",
                   description:
                     "Delete DAG files from an Cloud Composer environment's Cloud Storage bucket.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1237,7 +1236,7 @@ export const completionSpec: Fig.Spec = {
                   name: "export",
                   description:
                     "Export DAGs from an environment into local storage or Cloud Storage.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1408,13 +1407,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
                   description:
                     "Import DAGs from local storage or Cloud Storage into an environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1585,13 +1583,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
                   description:
                     "List the DAG files for a Cloud Composer environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -1741,7 +1738,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -1872,7 +1868,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "data",
@@ -1882,7 +1877,7 @@ export const completionSpec: Fig.Spec = {
                   name: "delete",
                   description:
                     "Delete data from an Cloud Composer environment's Cloud Storage bucket.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2045,7 +2040,7 @@ export const completionSpec: Fig.Spec = {
                   name: "export",
                   description:
                     "Export data from an environment into local storage or Cloud Storage.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2216,13 +2211,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
                   description:
                     "Import data from local storage or Cloud Storage into an environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2393,13 +2387,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
                   description:
                     "List the data for a Cloud Composer environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2549,7 +2542,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -2680,7 +2672,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "plugins",
@@ -2690,7 +2681,7 @@ export const completionSpec: Fig.Spec = {
                   name: "delete",
                   description:
                     "Delete plugins from an Cloud Composer environment's Cloud Storage bucket.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -2853,7 +2844,7 @@ export const completionSpec: Fig.Spec = {
                   name: "export",
                   description:
                     "Export plugins from an environment into local storage or Cloud Storage.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -3024,13 +3015,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "import",
                   description:
                     "Import plugins from local storage or Cloud Storage into an environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -3201,13 +3191,12 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
                 {
                   name: "list",
                   description:
                     "List the plugins for a Cloud Composer environment.",
-                  subcommands: [],
+
                   options: [
                     {
                       name: "--account",
@@ -3357,7 +3346,6 @@ export const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [],
                 },
               ],
               options: [
@@ -3488,7 +3476,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -3619,12 +3606,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update properties of a Cloud Composer environment.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4025,7 +4011,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -4035,7 +4020,7 @@ export const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Delete one or more completed Cloud Composer operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4186,7 +4171,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Get details about an asynchronous operation.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4337,7 +4322,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists environment operations.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4522,12 +4507,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description: "Wait for asynchronous operation to complete.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4804,7 +4788,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4928,5 +4911,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

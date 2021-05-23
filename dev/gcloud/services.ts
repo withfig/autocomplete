@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "disable",
       description: "Disable a service for consumption for a project.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -155,7 +155,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "enable",
       description: "Enables a service for consumption for a project.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -300,7 +300,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List services for a project.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -479,7 +479,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -489,7 +488,7 @@ export const completionSpec: Fig.Spec = {
           name: "describe",
           description:
             "Describes an operation resource for a given operation name.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -640,7 +639,7 @@ export const completionSpec: Fig.Spec = {
           name: "wait",
           description:
             "Waits for an operation to complete for a given operation name.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -906,13 +905,12 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "peered-dns-domains",
       description:
         "Peered DNS domains for various private service connections.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1041,7 +1039,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "vpc-peerings",
@@ -1051,7 +1048,7 @@ export const completionSpec: Fig.Spec = {
           name: "connect",
           description:
             "Connect to a service via VPC peering for a project network.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1215,13 +1212,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description:
             "List connections to a service via VPC peering for a project network.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1370,7 +1366,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "operations",
@@ -1380,7 +1375,7 @@ export const completionSpec: Fig.Spec = {
               name: "describe",
               description:
                 "Describes an operation resource for a given operation name.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1519,13 +1514,12 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "wait",
               description:
                 "Waits for an operation to complete  for a given operation name.",
-              subcommands: [],
+
               options: [
                 {
                   name: "--account",
@@ -1664,7 +1658,6 @@ export const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [],
             },
           ],
           options: [
@@ -1795,13 +1788,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description:
             "Update a private service connection to a service for a project network.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1969,7 +1961,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2100,7 +2091,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2224,5 +2214,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

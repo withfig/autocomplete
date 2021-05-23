@@ -11,7 +11,6 @@ var completionSpec = {
           name: "build",
           description:
             "Builds a flex template file from the specified parameters.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -232,7 +231,6 @@ var completionSpec = {
         {
           name: "run",
           description: "Runs a job from the specified path.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -650,7 +648,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "jobs",
@@ -660,7 +657,6 @@ var completionSpec = {
           name: "cancel",
           description:
             "Cancels all jobs that match the command line arguments.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -810,7 +806,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Outputs the Job object resulting from the Get API.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -964,7 +959,6 @@ var completionSpec = {
         {
           name: "drain",
           description: "Drains all jobs that match the command line arguments.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1115,7 +1109,6 @@ var completionSpec = {
           name: "list",
           description:
             "Lists all jobs in a particular project, optionally filtered by region.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1329,12 +1322,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "run",
           description: "Runs a job from the specified path.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1613,7 +1604,6 @@ var completionSpec = {
         {
           name: "show",
           description: "Shows a short description of the given job.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1897,7 +1887,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sql",
@@ -1906,7 +1895,6 @@ var completionSpec = {
         {
           name: "query",
           description: "Execute the user-specified SQL query on Dataflow.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2387,7 +2375,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2511,5 +2498,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

@@ -1,7 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "survey",
   description: "Invoke a customer satisfaction survey for Cloud SDK.",
-  subcommands: [],
+
   options: [
     {
       name: "--account",
@@ -123,5 +123,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

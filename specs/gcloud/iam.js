@@ -5,7 +5,6 @@ var completionSpec = {
     {
       name: "list-grantable-roles",
       description: "List IAM grantable roles for a resource.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -166,7 +165,6 @@ var completionSpec = {
     {
       name: "list-testable-permissions",
       description: "List IAM testable permissions for a resource.",
-      subcommands: [],
       options: [
         {
           name: "--account",
@@ -321,7 +319,6 @@ var completionSpec = {
         {
           name: "copy",
           description: "Create a role from an existing role.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -508,12 +505,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "create",
           description: "Create a custom role for a project or an organization.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -702,7 +697,6 @@ var completionSpec = {
           name: "delete",
           description:
             "Delete a custom role from an organization or a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -842,7 +836,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show metadata for a role.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -983,7 +976,6 @@ var completionSpec = {
           name: "list",
           description:
             "List the roles defined at a parent organization or a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1145,13 +1137,11 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "undelete",
           description:
             "Undelete a custom role from an organization or a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1291,7 +1281,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update an IAM custom role.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1624,7 +1613,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "service-accounts",
@@ -1633,7 +1621,6 @@ var completionSpec = {
         {
           name: "add-iam-policy-binding",
           description: "Add an IAM policy binding to an IAM service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1815,7 +1802,6 @@ var completionSpec = {
         {
           name: "create",
           description: "Create a service account for a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1974,7 +1960,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Delete a service account from a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2115,7 +2100,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Show metadata for a service account from a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2256,7 +2240,6 @@ var completionSpec = {
         {
           name: "disable",
           description: "Disable an IAM service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2397,7 +2380,6 @@ var completionSpec = {
         {
           name: "enable",
           description: "Enable an IAM service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2538,7 +2520,6 @@ var completionSpec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2723,7 +2704,6 @@ var completionSpec = {
             {
               name: "create",
               description: "Create a private key for a service account.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -2885,7 +2865,6 @@ var completionSpec = {
             {
               name: "delete",
               description: "Delete a user-managed key from a service account.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3036,7 +3015,6 @@ var completionSpec = {
             {
               name: "list",
               description: "List the keys for a service account.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3235,12 +3213,10 @@ var completionSpec = {
                   },
                 },
               ],
-              args: [],
             },
             {
               name: "upload",
               description: "Upload a public key for an IAM service account.",
-              subcommands: [],
               options: [
                 {
                   name: "--account",
@@ -3518,12 +3494,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list",
           description: "List all of a project's service accounts.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3687,12 +3661,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from a service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -3879,7 +3851,6 @@ var completionSpec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4026,7 +3997,6 @@ var completionSpec = {
         {
           name: "sign-blob",
           description: "Sign a blob with a managed service account key.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4182,7 +4152,6 @@ var completionSpec = {
         {
           name: "update",
           description: "Update an IAM service account.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -4467,7 +4436,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -4591,5 +4559,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };

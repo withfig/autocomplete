@@ -10,7 +10,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Describes the configuration for a given version of a service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -160,7 +159,6 @@ var completionSpec = {
         {
           name: "list",
           description: "Lists the configurations for a given service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -345,7 +343,6 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -476,7 +473,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "operations",
@@ -486,7 +482,6 @@ var completionSpec = {
           name: "describe",
           description:
             "Describes an operation resource for a given operation name.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -626,7 +621,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List operations for a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -810,12 +804,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "wait",
           description: "Waits for an operation to complete.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1081,7 +1073,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "services",
@@ -1090,7 +1081,6 @@ var completionSpec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1253,7 +1243,6 @@ var completionSpec = {
           name: "check-iam-policy",
           description:
             "Returns information about a member's permissions on a service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1394,7 +1383,6 @@ var completionSpec = {
         {
           name: "delete",
           description: "Deletes a service from Google Service Management.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1540,7 +1528,6 @@ var completionSpec = {
           name: "deploy",
           description:
             "Deploys a service configuration for the given service name.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1696,7 +1683,6 @@ var completionSpec = {
         {
           name: "describe",
           description: "Describes a service given a service name.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -1836,7 +1822,6 @@ var completionSpec = {
         {
           name: "get-iam-policy",
           description: "Describes the IAM policy for a service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2017,7 +2002,6 @@ var completionSpec = {
         {
           name: "list",
           description: "List services for a project.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2186,12 +2170,10 @@ var completionSpec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding from a service.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2354,7 +2336,6 @@ var completionSpec = {
           name: "undelete",
           description:
             "Undeletes a service configuration that was previously deleted.",
-          subcommands: [],
           options: [
             {
               name: "--account",
@@ -2625,7 +2606,6 @@ var completionSpec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2749,5 +2729,4 @@ var completionSpec = {
       },
     },
   ],
-  args: [],
 };
