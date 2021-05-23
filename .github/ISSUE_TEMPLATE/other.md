@@ -4,9 +4,9 @@ about: You want to tell us something which doesn't fit into the other categories
 labels: "Other"
 ---
 
-### Question
+### Need Help
 
-Do you have a Question? Make sure to check out our forum [here](https://forum.withfig.com/)
+Do you need help? Check out [fig.io/support](fig.io/support)
 
 ### Community
 
