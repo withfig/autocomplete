@@ -4,7 +4,6 @@
   "description": "Fig Autocomplete Spec Linter",
   "scripts": {
     "dev": "\"$npm_execpath\" run build && source scripts/dev.sh",
-    "postinstall" : "\"$npm_execpath\" run build",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
     "copy": "func() { mkdir -p ~/.fig/autocomplete/$(dirname ${1}.js); cp \"$(pwd)\"/specs/${1}.js ~/.fig/autocomplete/${1}.js; }; func",
     "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
