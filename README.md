@@ -21,7 +21,7 @@ As you type, Fig pops up subcommands, options, and contextually relevant argumen
 
 ## 👋 Add a completion spec for a CLI tool
 
-Want to add autocomplete to a CLI tool (or make changes to an existing autocomplete spec)? We welcome contributions for new specs!
+Want to add autocomplete to a CLI tool (or make changes to an existing autocomplete spec)? We welcome contributions!
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
 
