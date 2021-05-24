@@ -11,7 +11,7 @@
 ![Discord](https://img.shields.io/discord/837809111248535583?color=768ad4&label=discord)
 [![Twitter](https://img.shields.io/twitter/follow/fig.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=fig)
 
-**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.** 
+**[Fig](https://fig.io?ref=github_autocomplete) adds autocomplete to your terminal.**
 
 As you type, Fig pops up subcommands, options, and contextually relevant arguments in your existing terminal on macOS.
 
@@ -31,18 +31,17 @@ Completion specs are defined in a _declarative_ schema that specifies `subcomman
 
 <br/>
 
-
 ## 😎 Get Started
 
 Build your first spec in < 3 min: [fig.io/docs/getting-started](fig.io/docs/getting-started)
 
-
 1. Fork this repo
-[![GitHub forks](https://img.shields.io/github/forks/withfig/autocomplete.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/withfig/autocomplete/fork/)
+   [![GitHub forks](https://img.shields.io/github/forks/withfig/autocomplete.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/withfig/autocomplete/fork/)
 
 2. Clone your forked repo and create an example spec
+
 ```bash
-# Replace `YOUR_GITHUB_USERNAME` with your own github username 
+# Replace `YOUR_GITHUB_USERNAME` with your own github username
 git clone https://github.com/YOUR_GITHUB_USERNAME/autocomplete.git fig-autocomplete
 cd fig-autocomplete
 
@@ -58,12 +57,14 @@ npm run create-example
 # Turn on "dev mode"
 npm run dev
 ```
-3. Now go to your terminal and type `abc[space]`. Your example spec will appear 😊 
+
+3. Now go to your terminal and type `abc[space]`. Your example spec will appear 😊
 
 #### Other things to know
-* Edit your spec in typescript in the `dev/` folder
-* On save, specs are compiled to the `specs/` folder
-* In **dev mode** specs are read from the `specs` folders. Otherwise they are read from `~/.fig/autocomplete`
+
+- Edit your spec in typescript in the `dev/` folder
+- On save, specs are compiled to the `specs/` folder
+- In **dev mode** specs are read from the `specs` folders. Otherwise they are read from `~/.fig/autocomplete`
 
 <br/>
 
@@ -97,7 +98,6 @@ npm run copy <spec-name>
 </a>
 </p>
 
-
 ## 🙋‍♀️ FAQ
 
 #### What terminals does Fig work with?
@@ -126,8 +126,7 @@ Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/communi
 
 <br/>
 
-## ✨ Contributors 
-
+## ✨ Contributors
 
 <a href="https://github.com/withfig/autocomplete/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=withfig/autocomplete" />

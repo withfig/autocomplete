@@ -116,12 +116,11 @@ var gitGenerators = {
   // Files for staging
   files_for_staging: {
     script: "git status --short",
-    postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+    postProcess: function (output, context) {
+      if (output.startsWith("fatal:")) {
         return [];
       }
-      // out = out + " "
-      var items = out.split("\n").map(function (file) {
+      var items = output.split("\n").map(function (file) {
         file = file.trim();
         var arr = file.split(" ");
         return { working: arr[0], file: arr.slice(1).join(" ") };
@@ -140,7 +139,13 @@ var gitGenerators = {
           icon:
             "fig://icon?type=" + ext + "&color=ff0000&badge=" + item.working,
           description: "Changed file",
-          priority: 100,
+          // If the current file already is already added
+          // we want to lower the priority
+          priority: context.some(function (ctx) {
+            return ctx.includes(file);
+          })
+            ? 50
+            : 100,
         };
       });
     },
