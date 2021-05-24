@@ -1,7 +1,7 @@
-const sessionsArg: Fig.Arg = {
-  name: "target-session",
+const lsArg = (name: string, command: string): Fig.Arg => ({
+  name,
   generators: {
-    script: "tmux ls",
+    script: `tmux ${command}`,
     postProcess: (out) => {
       return out.split("\n").map((line) => {
         const content = line.split(":");
@@ -13,24 +13,13 @@ const sessionsArg: Fig.Arg = {
       });
     },
   },
-};
+});
 
-const clientsArg: Fig.Arg = {
-  name: "target-client",
-  generators: {
-    script: "tmux lsc",
-    postProcess: (out) => {
-      return out.split("\n").map((line) => {
-        const content = line.split(":");
-
-        return {
-          name: content[0],
-          description: content[1],
-        };
-      });
-    },
-  },
-};
+const sessionsArg = lsArg("target-session", "ls");
+const clientsArg = lsArg("target-client", "lsc");
+const panesArg = lsArg("src-pane", "lsp");
+const windowsArg = lsArg("window-name", "lsw");
+const buffersArg = lsArg("buffer-name", "lsb");
 
 const formatOption: Fig.Option = {
   name: "-F",
@@ -101,12 +90,106 @@ export const completion: Fig.Spec = {
       description: "Bind a key to a command",
     },
     {
-      name: "break-pane",
+      name: ["breakp", "break-pane"],
       description: "Break a pane from an exiting into a new window",
+      options: [
+        {
+          name: "-a",
+          description: "Move the window to the next index after",
+        },
+        {
+          name: "-b",
+          description: "Move the window to the next index before",
+        },
+        {
+          name: "-d",
+          description: "The new windows does not become the current window",
+        },
+        {
+          name: "-P",
+          description: "Print information about the new window",
+        },
+        formatOption,
+        {
+          name: "-n",
+          description: "The target window",
+          args: windowsArg,
+        },
+        {
+          name: "-s",
+          description: "The source pane",
+          args: panesArg,
+        },
+        {
+          name: "-t",
+          description: "The destination window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["capturep", "capture-pane"],
       description: "Capture the contents of a pane to a buffer",
+      options: [
+        {
+          name: "-a",
+          description: "Use the alternate screen and history is not accessible",
+        },
+        {
+          name: "-e",
+          description:
+            "Include escape sequences for text and background attributes",
+        },
+        {
+          name: "-p",
+          description: "Redirect output to stdout",
+        },
+        {
+          name: "-P",
+          description:
+            "Capture only outputs that is the beginning of an as-yet incomplete escape sequence",
+        },
+        {
+          name: "-q",
+          description: "Do not throw an error if not alternate screen is found",
+        },
+        {
+          name: "-C",
+          description: "Escape non-printable characters as octal",
+        },
+        {
+          name: "-J",
+          description: "Preserve trailing spaces and join any wrapped lines",
+        },
+        {
+          name: "-N",
+          description: "Preserve trailing spaces at each line's end",
+        },
+        {
+          name: "-b",
+          description: "The buffer name",
+          args: buffersArg,
+        },
+        {
+          name: "-E",
+          description: "Ending line number",
+          args: {
+            name: "end-line",
+          },
+        },
+        {
+          name: "-S",
+          description: "Starting line number",
+          args: {
+            name: "start-line",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: "choose-buffer",
@@ -115,6 +198,46 @@ export const completion: Fig.Spec = {
     {
       name: "choose-client",
       description: "Put a pane into buffer client mode",
+      args: {
+        name: "template",
+        isOptional: true,
+        default: "detach-client -t '%%'",
+      },
+      options: [
+        {
+          name: "-N",
+          description: "Start without the preview",
+        },
+        {
+          name: "-r",
+          description: "Reserve the sort order",
+        },
+        {
+          name: "-Z",
+          description: "Zoom the pane",
+        },
+        formatOption,
+        {
+          name: "-f",
+          description: "Specify an initial filter",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "-O",
+          description: "Specify the initial sort field",
+          args: {
+            name: "sort",
+            suggestions: ["name", "size", "creation", "activity"],
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: "choose-tree",
@@ -165,7 +288,39 @@ export const completion: Fig.Spec = {
     },
     {
       name: "copy-mode",
-      description: "Ennter copy mode",
+      description: "Enter copy mode",
+      options: [
+        {
+          name: "-e",
+          description: "Scrolling to the bottom should exit copy mode",
+        },
+        {
+          name: "-H",
+          description: "Hide the position indicator",
+        },
+        {
+          name: "-M",
+          description: "Begin a mouse drag",
+        },
+        {
+          name: "-q",
+          description: "Cancel copy mode and any other modes",
+        },
+        {
+          name: "-u",
+          description: "Scroll one page up",
+        },
+        {
+          name: "-s",
+          description: "The source pane",
+          args: panesArg,
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["deleteb", "delete-buffer"],
