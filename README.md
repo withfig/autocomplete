@@ -58,7 +58,7 @@ npm run create-example
 npm run dev
 ```
 
-3. Now go to your terminal and type `abc[space]`. Your example spec will appear 😊
+3. Now go to your terminal and type `abc[space]`. Your example spec will appear. 😊
 
 #### Other things to know
 
@@ -122,7 +122,7 @@ Yes! Check out our guide on how to [get started building autocomplete specs](htt
 
 #### Did we miss something?
 
-Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community)
+Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community).
 
 <br/>
 
