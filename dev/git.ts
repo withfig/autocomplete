@@ -131,13 +131,11 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // Files for staging
   files_for_staging: {
     script: "git status --short",
-    postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+    postProcess: (output, context) => {
+      if (output.startsWith("fatal:")) {
         return [];
       }
-
-      // out = out + " "
-      const items = out.split("\n").map((file) => {
+      const items = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
@@ -160,7 +158,9 @@ const gitGenerators: Record<string, Fig.Generator> = {
           name: file,
           icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
           description: "Changed file",
-          priority: 100,
+          // If the current file already is already added
+          // we want to lower the priority
+          priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
         };
       });
     },
