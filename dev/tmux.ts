@@ -242,6 +242,58 @@ export const completion: Fig.Spec = {
     {
       name: "choose-tree",
       description: "Put a pane into buffer tree mode",
+      args: {
+        name: "template",
+        isOptional: true,
+        default: "switch-client -t '%%'",
+      },
+      options: [
+        {
+          name: "-G",
+          description: "Include all sessions in any session group in the tree",
+        },
+        {
+          name: "-N",
+          description: "start without the preview",
+        },
+        {
+          name: "-r",
+          description: "Reserve the sort order",
+        },
+        {
+          name: "-s",
+          description: "Start with sessions collapsed",
+        },
+        {
+          name: "-w",
+          description: "Start with windows collapsed",
+        },
+        {
+          name: "-Z",
+          description: "Zoom the pane",
+        },
+        formatOption,
+        {
+          name: "-f",
+          description: "Specify an initial filter",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "-O",
+          description: "Specify the initial sort field",
+          args: {
+            name: "sort",
+            suggestions: ["name", "size", "creation", "activity"],
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["clearhist", "clear-history"],
@@ -344,7 +396,6 @@ export const completion: Fig.Spec = {
           args: {
             name: "shell-command",
             description: "The shell-command to run",
-            variadic: true,
           },
         },
         {
@@ -420,6 +471,41 @@ export const completion: Fig.Spec = {
     {
       name: ["findw", "find-window"],
       description: "Search for a pattern in windows",
+      args: {
+        name: "match-string",
+        description: "A string to search for",
+      },
+      options: [
+        {
+          name: "-i",
+          description: "Make the search ignore cases",
+        },
+        {
+          name: "-C",
+          description: "Match only visible window contents",
+        },
+        {
+          name: "-N",
+          description: "Match only the window name",
+        },
+        {
+          name: "-r",
+          description: "Search a regular expression",
+        },
+        {
+          name: "-T",
+          description: "Match only the window's title",
+        },
+        {
+          name: "-Z",
+          description: "Zoom the pane",
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["has", "has-session"],
@@ -437,12 +523,49 @@ export const completion: Fig.Spec = {
       description: "Execute a tmux command if a shell-command succeeded",
     },
     {
-      name: ["joinp", "join-pane"],
-      description: "Split a pae and move an existing one into the new space",
+      name: ["joinp", "join-pane", "movep", "move-pane"],
+      description: "Split a pane and move an existing one into the new space",
+      // TODO other options
+      options: [
+        {
+          name: "-b",
+          description: "src-pane will be joined to left of or above dst-pane",
+          args: panesArg,
+        },
+        {
+          name: "-l",
+          description: "Set the size of the new space",
+          args: {
+            name: "size",
+            description: "The size of the new space",
+          },
+        },
+        {
+          name: "-s",
+          description: "The source pane",
+          args: panesArg,
+        },
+        {
+          name: "-t",
+          description: "The destination pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["killp", "kill-pane"],
       description: "Destroy a given pane",
+      options: [
+        {
+          name: "-t",
+          description: "Kill all but the target-pane",
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: "kill-server",
@@ -471,10 +594,40 @@ export const completion: Fig.Spec = {
     {
       name: ["killw", "kill-window"],
       description: "Destroy a given window",
+      options: [
+        {
+          name: "-t",
+          description: "Kill all but the target-window",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["lastp", "last-pane"],
       description: "Select the previously selected pane",
+      options: [
+        {
+          name: "-d",
+          description: "Disable input to the pane",
+        },
+        {
+          name: "-e",
+          description: "Enable input to the pane",
+        },
+        {
+          name: "-Z",
+          description: "Keep the window zoomed if it was zoomed",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["last", "last-window"],
@@ -491,10 +644,34 @@ export const completion: Fig.Spec = {
     {
       name: ["linkw", "link-window"],
       description: "Link a window to another",
-    },
-    {
-      name: ["linkw", "link-window"],
-      description: "Link a window to another",
+      options: [
+        {
+          name: "-a",
+          description: "Move the window to the next index after dst-window",
+        },
+        {
+          name: "-b",
+          description: "Move the window to the next index before dst-window",
+        },
+        {
+          name: "-d",
+          description: "Do not select the newly linked window",
+        },
+        {
+          name: "-k",
+          description: "Kill dst-window if exist",
+        },
+        {
+          name: "-s",
+          description: "The source window",
+          args: windowsArg,
+        },
+        {
+          name: "-t",
+          description: "The destination window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["lsb", "list-buffers"],
@@ -529,6 +706,29 @@ export const completion: Fig.Spec = {
     {
       name: ["lsp", "list-panes"],
       description: "List panes of a window",
+      options: [
+        {
+          name: "-a",
+          description: "Ignore target-window and list all panes",
+        },
+        {
+          name: "-s",
+          description: "target-window becomes a session",
+        },
+        formatOption,
+        {
+          name: "-f",
+          description: "Specify a filter",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["ls", "list-sessions"],
@@ -549,8 +749,20 @@ export const completion: Fig.Spec = {
       description: "List windows of a session",
       options: [
         {
+          name: "-a",
+          description: "Ignore target-session and list all windows",
+        },
+        formatOption,
+        {
+          name: "-f",
+          description: "Specify a filter",
+          args: {
+            name: "filter",
+          },
+        },
+        {
           name: "-t",
-          description: "List windows of the target-session",
+          description: "The target session",
           args: sessionsArg,
         },
       ],
@@ -594,12 +806,41 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: ["movep", "move-pane"],
-      description: "Move a pane into a new space",
-    },
-    {
       name: ["movew", "move-window"],
       description: "Move a window to another",
+      options: [
+        {
+          name: "-a",
+          description: "Move the window to the next index after dst-window",
+        },
+        {
+          name: "-b",
+          description: "Move the window to the next index before dst-window",
+        },
+        {
+          name: "-r",
+          description:
+            "Renumber all windows in the session in sequential order",
+        },
+        {
+          name: "-d",
+          description: "Do not select the newly linked window",
+        },
+        {
+          name: "-k",
+          description: "Kill dst-window if exist",
+        },
+        {
+          name: "-s",
+          description: "The source window",
+          args: windowsArg,
+        },
+        {
+          name: "-t",
+          description: "The destination window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["new", "new-session"],
@@ -687,15 +928,89 @@ export const completion: Fig.Spec = {
     {
       name: ["neww", "new-window"],
       description: "Create a new window",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the window",
+      },
+      options: [
+        {
+          name: "-a",
+          description:
+            "Insert the new window at the next index after target-window",
+        },
+        {
+          name: "-b",
+          description:
+            "Insert the new window at the next index before target-window",
+        },
+        {
+          name: "-d",
+          description:
+            "The session does not make the new window the current window",
+        },
+        {
+          name: "-k",
+          description: "Kill the target-window if exist",
+        },
+        {
+          name: "-P",
+          description: "Print information about the new window",
+        },
+        {
+          name: "-S",
+          description: "Select window-name if exist",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the window",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        formatOption,
+        {
+          name: "-n",
+          description: "Start a new window with the given name",
+          args: {
+            name: "window-name",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["nextl", "next-layout"],
       description: "Move a window to the next layout",
+      options: [
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["next", "next-window"],
       description: "Move to the next window in a session",
       options: [
+        {
+          name: "-a",
+          description: "Move to the next window with an alert",
+        },
         {
           name: "-t",
           description: "Move to the next window of the target-session",
@@ -710,15 +1025,50 @@ export const completion: Fig.Spec = {
     {
       name: ["pipep", "pipe-pane"],
       description: "Pipe output from a pane to a shell command",
+      args: {
+        name: "shell-command",
+        description: "The shell-command to run",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-I",
+          description: "Connect stdout to shell-command",
+        },
+        {
+          name: "-O",
+          description: "Connect stdin to shell-command",
+        },
+        {
+          name: "-o",
+          description: "Only open a new pipe if no previous pipe exists",
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["prevl", "previous-layout"],
       description: "Move a window to the previous layout",
+      options: [
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["prev", "previous-window"],
       description: "Move to the previous window in a session",
       options: [
+        {
+          name: "-a",
+          description: "Move with an alert",
+        },
         {
           name: "-t",
           description: "Move to the previous window of the target-session",
@@ -756,26 +1106,226 @@ export const completion: Fig.Spec = {
     {
       name: ["renamew", "rename-window"],
       description: "Rename a window",
+      args: {
+        name: "new-name",
+        description: "The new name of the window",
+      },
+      options: [
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["resizep", "resize-pane"],
       description: "Resize a pane",
+      args: {
+        name: "adjustment",
+        description: "Adjustment used with -ULDR",
+      },
+      options: [
+        {
+          name: "-D",
+          description: "Resize down by adjustment",
+        },
+        {
+          name: "-L",
+          description: "Resize left by adjustment",
+        },
+        {
+          name: "-M",
+          description: "Begin mouse resizing",
+        },
+        {
+          name: "-R",
+          description: "Resize right by adjustment",
+        },
+        {
+          name: "-T",
+          description: "Trim all lines below the current cursor position",
+        },
+        {
+          name: "-U",
+          description: "Resize up by adjustment",
+        },
+        {
+          name: "-Z",
+          description: "Toggle the active pane between zoomed and unzoomed",
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+        {
+          name: "-x",
+          description: "The width of the pane",
+          args: {
+            name: "width",
+          },
+        },
+        {
+          name: "-y",
+          description: "The height of the pane",
+          args: {
+            name: "height",
+          },
+        },
+      ],
     },
     {
       name: ["resizew", "resize-window"],
       description: "Resize a window",
+      args: {
+        name: "adjustment",
+        description: "Adjustment used with -ULDR",
+      },
+      options: [
+        {
+          name: "-a",
+          description:
+            "Set the size of the smallest session containing the window",
+        },
+        {
+          name: "-A",
+          description:
+            "Set the size of the largest session containing the window",
+        },
+        {
+          name: "-D",
+          description: "Resize down by adjustment",
+        },
+        {
+          name: "-L",
+          description: "Resize left by adjustment",
+        },
+        {
+          name: "-R",
+          description: "Resize right by adjustment",
+        },
+        {
+          name: "-U",
+          description: "Resize up by adjustment",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+        {
+          name: "-x",
+          description: "The width of the pane",
+          args: {
+            name: "width",
+          },
+        },
+        {
+          name: "-y",
+          description: "The height of the pane",
+          args: {
+            name: "height",
+          },
+        },
+      ],
     },
     {
       name: ["respawnp", "respawn-pane"],
       description: "Resue a pane in which a command has exited",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the pane",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-k",
+          description: "Kill the target-pane if exist",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the pane",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["respawnw", "respawn-window"],
       description: "Resue a window in which a command has exited",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the window",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-k",
+          description: "Kill the target-window if exist",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the window",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["rotatew", "rotate-window"],
       description: "Rotate positions of panes in a window",
+      options: [
+        {
+          name: "-D",
+          description: "Rotate upward",
+        },
+        {
+          name: "-U",
+          description: "Rotate downward",
+        },
+        {
+          name: "-Z",
+          description: "Keep the window zoomed if it was zoomed",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["run", "run-shell"],
@@ -788,14 +1338,121 @@ export const completion: Fig.Spec = {
     {
       name: ["selectl", "select-layout"],
       description: "Choose a layout for a pane",
+      args: {
+        name: "layout-name",
+        description: "Use the last preset layout used if not specified",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-E",
+          description:
+            "Spread the current pane and any panes next to it evenly",
+        },
+        {
+          name: "-n",
+          description: "Equivalent to next-layout",
+        },
+        {
+          name: "-o",
+          description: "Apply the last set layout if possible",
+        },
+        {
+          name: "-p",
+          description: "Equivalent to previous-layout",
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["selectp", "select-pane"],
       description: "Make a pane the active one in the window",
+      options: [
+        {
+          name: "-D",
+          description: "Use the down pane",
+        },
+        {
+          name: "-d",
+          description: "Disable input to the pane",
+        },
+        {
+          name: "-e",
+          description: "Enable input to the pane",
+        },
+        {
+          name: "-L",
+          description: "Use the left pane",
+        },
+        {
+          name: "-l",
+          description: "Same as last-pane command",
+        },
+        {
+          name: "-M",
+          description: "Clear the marked pane",
+        },
+        {
+          name: "-m",
+          description: "Set the market pane",
+        },
+        {
+          name: "-R",
+          description: "Use the right pane",
+        },
+        {
+          name: "-U",
+          description: "Use the up pane",
+        },
+        {
+          name: "-Z",
+          description: "Set the pane's title",
+        },
+        {
+          name: "-T",
+          description: "Set the pane title",
+          args: {
+            name: "title",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["selectw", "select-window"],
       description: "Select a window",
+      options: [
+        {
+          name: "-l",
+          description: "Same as last-window",
+        },
+        {
+          name: "-n",
+          description: "Same as next-window",
+        },
+        {
+          name: "-p",
+          description: "Same as previous-window",
+        },
+        {
+          name: "-T",
+          description:
+            "Same as last-window if the selected window is already the current window",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["send", "send-keys"],
@@ -912,6 +1569,130 @@ export const completion: Fig.Spec = {
     {
       name: ["splitw", "split-window"],
       description: "Splits a pane into two",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the pane",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-b",
+          description:
+            "Create the new pane to the left of or above target-pane",
+        },
+        {
+          name: "-f",
+          description:
+            "Create a new pane spanning the full window height with -h or width with -v",
+        },
+        {
+          name: "-h",
+          description: "Set the pane take full height",
+        },
+        {
+          name: "-I",
+          description: "Create an empty pane and forward stdin to it",
+        },
+        {
+          name: "-v",
+          description: "Set the pane take full width",
+        },
+        {
+          name: "-Z",
+          description: "Zoom if the window is not zoomed",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the pane",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        {
+          name: "-l",
+          description:
+            "Set the size in columns (horizontal split) or rows (vertical split)",
+          args: {
+            name: "size",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+        formatOption,
+      ],
+    },
+    {
+      name: ["respawnw", "respawn-window"],
+      description: "Resue a window in which a command has exited",
+      args: {
+        name: "shell-command",
+        description: "A shell command to run when creating the window",
+        isOptional: true,
+      },
+      options: [
+        {
+          name: "-k",
+          description: "Kill the target-window if exist",
+        },
+        {
+          name: "-c",
+          description: "Specify a start directory for the window",
+          args: {
+            name: "start-directory",
+            description: "The start directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "-e",
+          description: "Set environment variables",
+          args: {
+            name: "environment",
+            description: "Environment variables with the form VARIABLE=VALUE",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
+    },
+    {
+      name: ["rotatew", "rotate-window"],
+      description: "Rotate positions of panes in a window",
+      options: [
+        {
+          name: "-D",
+          description: "Rotate upward",
+        },
+        {
+          name: "-U",
+          description: "Rotate downward",
+        },
+        {
+          name: "-Z",
+          description: "Keep the window zoomed if it was zoomed",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["start", "start-server"],
@@ -931,10 +1712,54 @@ export const completion: Fig.Spec = {
     {
       name: ["swapp", "swap-pane"],
       description: "Swap two panes",
+      options: [
+        {
+          name: "-d",
+          description: "Do not change the active pane",
+        },
+        {
+          name: "-D",
+          description: "Swap with the next pane",
+        },
+        {
+          name: "-U",
+          description: "Swap dst-pane with the previous pane",
+        },
+        {
+          name: "-Z",
+          description: "Keep the window zoomed if it was zoomed",
+        },
+        {
+          name: "-s",
+          description: "The source pane",
+          args: panesArg,
+        },
+        {
+          name: "-t",
+          description: "The destination pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: ["swapw", "swap-window"],
       description: "Swap two windows",
+      options: [
+        {
+          name: "-d",
+          description: "The new window does not become the current window",
+        },
+        {
+          name: "-s",
+          description: "The source window",
+          args: windowsArg,
+        },
+        {
+          name: "-t",
+          description: "The destination window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["switchc", "switch-client"],
@@ -990,6 +1815,17 @@ export const completion: Fig.Spec = {
     {
       name: ["unlinkw", "unlink-window"],
       description: "Unlink a window",
+      options: [
+        {
+          name: "-k",
+          description: "Destroy the window",
+        },
+        {
+          name: "-t",
+          description: "The target window",
+          args: windowsArg,
+        },
+      ],
     },
     {
       name: ["wait", "wait-for"],
