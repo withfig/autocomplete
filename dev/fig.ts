@@ -296,7 +296,7 @@ export const completionSpec: Fig.Spec = {
               { name: "false", icon: "fig://icon?type=string" },
             ],
           },
-          priority: 0,
+          priority: 1,
         },
         {
           name: "app.hideMenubarIcon",

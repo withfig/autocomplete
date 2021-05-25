@@ -24,7 +24,7 @@
       "description": "Create a new completion spec"
     },
     "create-example": {
-      "description": "Create a dummy git completion spec"
+      "description": "Create an example completion spec"
     },
     "test": {
       "description": "Typecheck all .ts files in /dev"
