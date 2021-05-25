@@ -14,7 +14,7 @@ jobs:
       UPDATE_SITE_TOKEN: ${{ secrets.UPDATE_PRIVATE_DOCS_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - name: update submodules
+      - name: update docs
         run: |
           git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/public-site-nextjs.git
           cd public-site-nextjs
@@ -31,4 +31,20 @@ jobs:
           git add docs/reference/
 
           git commit -m "added updates to docs" --allow-empty
+          git push origin main --force
+      - uses: actions/checkout@v2
+      - name: update boilerplate
+        run: |
+          git clone https://withfig-bot:$UPDATE_SITE_TOKEN@github.com/withfig/autocomplete-boilerplate.git
+
+          cp schemas/fig.d.ts autocomplete-boilerplate/schemas/fig.d.ts
+
+          cd autocomplete-boilerplate
+
+          git config user.email "tim@withfig.com"
+          git config user.name "Figbot"
+
+          git add schemas/fig.d.ts
+
+          git commit -m "chore: sync schema changes" --allow-empty
           git push origin main --force
