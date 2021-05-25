@@ -6,11 +6,17 @@ module.exports = {
   create: function (context) {
     return {
       Property(node) {
-        if (
-          node.key.name === "options" ||
-          node.key.name === "subcommands" ||
-          node.key.name === "args"
-        ) {
+        const keyName = node.key.name;
+        if (["options", "subcommands", "args"].includes(keyName)) {
+          // This rule should not be applied to subcommands and
+          // options on the root object
+          if (
+            node.parent.parent.parent.parent.type ===
+              "ExportNamedDeclaration" &&
+            keyName !== "args"
+          )
+            return;
+
           if (node.value && node.value.type === "ArrayExpression") {
             if (node.value.elements.length === 0) {
               context.report({
