@@ -23,6 +23,8 @@ const awsRegions = [
   "us-west-2",
 ];
 
+const ttl = 30000;
+
 const appendFolderPath = (
   whatHasUserTyped: string,
   baseLSCommand: string
@@ -291,7 +293,7 @@ const generators: Record<string, Fig.Generator> = {
       return token.slice(token.lastIndexOf("/") + 1);
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -316,7 +318,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -336,7 +338,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 };

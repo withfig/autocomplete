@@ -27,6 +27,7 @@ var awsRegions = [
     "us-west-1",
     "us-west-2",
 ];
+var ttl = 30000;
 var appendFolderPath = function (whatHasUserTyped, baseLSCommand) {
     var folderPath = "";
     var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
@@ -247,7 +248,7 @@ var generators = {
             return token.slice(token.lastIndexOf("/") + 1);
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     // just bucket names
@@ -272,7 +273,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     kmsKeyIdGenerator: {
@@ -292,7 +293,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
 };
