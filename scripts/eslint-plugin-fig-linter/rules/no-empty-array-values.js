@@ -11,6 +11,10 @@ module.exports = {
           // This rule should not be applied to subcommands and
           // options on the root object
           if (
+            node.parent &&
+            node.parent.parent &&
+            node.parent.parent.parent &&
+            node.parent.parent.parent.parent &&
             node.parent.parent.parent.parent.type ===
               "ExportNamedDeclaration" &&
             keyName !== "args"
