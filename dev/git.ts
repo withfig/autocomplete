@@ -165,6 +165,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
       });
     },
   },
+  getUnstagedFiles: {
+    script: "git diff --name-only",
+    splitOn: "\n",
+  },
 };
 
 const head = {
@@ -1268,7 +1272,7 @@ export const completionSpec: Fig.Spec = {
         name: "commit",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: gitGenerators.commits,
+        generators: [gitGenerators.commits, gitGenerators.getUnstagedFiles],
       },
     },
     {
