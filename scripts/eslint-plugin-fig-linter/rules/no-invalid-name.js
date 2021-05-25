@@ -18,8 +18,10 @@ module.exports = {
 
               // Look for the name property in the options object
               const nameProp = element.properties.find(
-                (prop) => prop.key.name === "name"
+                (prop) => prop.key && prop.key.name === "name"
               );
+
+              if (!nameProp) return;
 
               // Case: The name value is a string (single value)
               if (nameProp.value.type === "Literal") {

@@ -5,7 +5,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "activate-refresh-token",
       description: "Get credentials via an existing refresh token.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -151,7 +151,7 @@ export const completionSpec: Fig.Spec = {
       name: "activate-service-account",
       description:
         "Authorize access to Google Cloud Platform with a service account.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -321,7 +321,7 @@ export const completionSpec: Fig.Spec = {
           name: "login",
           description:
             "Acquire new user credentials to use for Application Default Credentials.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -485,13 +485,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "print-access-token",
           description:
             "Print an access token for your current Application Default Credentials.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -620,13 +619,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "revoke",
           description:
             "Revoke previously generated Application Default Credentials.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -755,13 +753,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "set-quota-project",
           description:
             "Update or add a quota project in application default credentials (ADC).",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1028,12 +1025,11 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "configure-docker",
       description: "Register `gcloud` as a Docker credential helper.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1174,7 +1170,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "describe",
       description: "Describes credentials.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1315,7 +1311,7 @@ export const completionSpec: Fig.Spec = {
       name: "docker-helper",
       description:
         "A Docker credential helper to provide access to GCR repositories.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1456,7 +1452,7 @@ export const completionSpec: Fig.Spec = {
       name: "git-helper",
       description:
         "A git credential helper to provide access to Google git repositories.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1601,7 +1597,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "Lists credentialed accounts.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1780,13 +1776,12 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "login",
       description:
         "Authorize gcloud to access the Cloud Platform with Google user credentials.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -1954,7 +1949,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "print-access-token",
       description: "Print an access token for the specified account.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -2095,7 +2090,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "print-identity-token",
       description: "Print an identity token for the specified account.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -2267,7 +2262,7 @@ export const completionSpec: Fig.Spec = {
       name: "print-refresh-token",
       description:
         "A command that prints the refresh token for the current account.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -2408,7 +2403,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "revoke",
       description: "Revoke access credentials for an account.",
-      subcommands: [],
+
       options: [
         {
           name: "--account",
@@ -2671,5 +2666,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

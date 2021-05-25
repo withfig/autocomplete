@@ -9,7 +9,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Pub/Sub Lite subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -181,7 +181,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Pub/Sub Lite subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -331,7 +331,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Pub/Sub Lite subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -481,7 +481,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Pub/Sub Lite subscriptions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -661,12 +661,11 @@ export const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "update",
           description: "Update a Pub/Sub Lite subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -953,7 +952,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "lite-topics",
@@ -962,7 +960,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a Pub/Sub Lite topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1165,7 +1163,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a Pub/Sub Lite topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1315,7 +1313,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describe a Pub/Sub Lite topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1465,7 +1463,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "List Pub/Sub Lite topics.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1645,13 +1643,12 @@ export const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [],
         },
         {
           name: "list-subscriptions",
           description:
             "List Pub/Sub Lite subscriptions for a given Lite topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1841,7 +1838,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Update a Pub/Sub Lite topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2158,7 +2155,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "snapshots",
@@ -2167,7 +2163,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates one or more Cloud Pub/Sub snapshots.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2338,7 +2334,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more Cloud Pub/Sub snapshots.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2478,7 +2474,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describes a Cloud Pub/Sub snapshot.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2618,7 +2614,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all the snapshots in a given project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2792,7 +2788,6 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
       ],
       options: [
@@ -2923,7 +2918,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "subscriptions",
@@ -2933,7 +2927,7 @@ export const completionSpec: Fig.Spec = {
           name: "ack",
           description:
             "Acknowledges one or more messages on the specified subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3085,7 +3079,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3247,7 +3241,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates one or more Cloud Pub/Sub subscriptions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3554,7 +3548,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more Cloud Pub/Sub subscriptions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3695,7 +3689,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describes a Cloud Pub/Sub subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -3836,7 +3830,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Pub/Sub Subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4017,7 +4011,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists Cloud Pub/Sub subscriptions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4191,13 +4185,12 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "modify-message-ack-deadline",
           description:
             "Modifies the ACK deadline for a specific Cloud Pub/Sub message.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4361,7 +4354,7 @@ export const completionSpec: Fig.Spec = {
           name: "modify-push-config",
           description:
             "Modifies the push configuration of a Cloud Pub/Sub subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4534,7 +4527,7 @@ export const completionSpec: Fig.Spec = {
           name: "pull",
           description:
             "Pulls one or more Cloud Pub/Sub messages from a subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4725,7 +4718,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -4888,7 +4881,7 @@ export const completionSpec: Fig.Spec = {
           name: "seek",
           description:
             "Resets a subscription's backlog to a point in time or to a given snapshot.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5059,7 +5052,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5205,7 +5198,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates an existing Cloud Pub/Sub subscription.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5627,7 +5620,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "topics",
@@ -5636,7 +5628,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "add-iam-policy-binding",
           description: "Add IAM policy binding to a topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5798,7 +5790,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates one or more Cloud Pub/Sub topics.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -5997,7 +5989,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more Cloud Pub/Sub topics.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6138,7 +6130,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Describes a Cloud Pub/Sub topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6279,7 +6271,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "detach-subscription",
           description: "Detaches one or more Cloud Pub/Sub subscriptions.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6420,7 +6412,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "get-iam-policy",
           description: "Get the IAM policy for a Cloud Pub/Sub Topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6601,7 +6593,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists Cloud Pub/Sub topics within a project.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6775,12 +6767,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "list-subscriptions",
           description: "Lists Cloud Pub/Sub subscriptions from a given topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -6966,7 +6957,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "publish",
           description: "Publishes a message to the specified topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7137,7 +7128,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "remove-iam-policy-binding",
           description: "Remove IAM policy binding of a topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7299,7 +7290,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "set-iam-policy",
           description: "Set IAM policy for a topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7445,7 +7436,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates an existing Cloud Pub/Sub topic.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -7790,7 +7781,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -7914,5 +7904,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };

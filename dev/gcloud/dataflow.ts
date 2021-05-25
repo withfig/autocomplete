@@ -11,7 +11,7 @@ export const completionSpec: Fig.Spec = {
           name: "build",
           description:
             "Builds a flex template file from the specified parameters.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -232,7 +232,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "run",
           description: "Runs a job from the specified path.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -650,7 +650,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "jobs",
@@ -660,7 +659,7 @@ export const completionSpec: Fig.Spec = {
           name: "cancel",
           description:
             "Cancels all jobs that match the command line arguments.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -810,7 +809,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description: "Outputs the Job object resulting from the Get API.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -964,7 +963,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "drain",
           description: "Drains all jobs that match the command line arguments.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1115,7 +1114,7 @@ export const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Lists all jobs in a particular project, optionally filtered by region.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1329,12 +1328,11 @@ export const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [],
         },
         {
           name: "run",
           description: "Runs a job from the specified path.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1613,7 +1611,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "show",
           description: "Shows a short description of the given job.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -1897,7 +1895,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
     {
       name: "sql",
@@ -1906,7 +1903,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "query",
           description: "Execute the user-specified SQL query on Dataflow.",
-          subcommands: [],
+
           options: [
             {
               name: "--account",
@@ -2387,7 +2384,6 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [],
     },
   ],
   options: [
@@ -2511,5 +2507,4 @@ export const completionSpec: Fig.Spec = {
       },
     },
   ],
-  args: [],
 };
