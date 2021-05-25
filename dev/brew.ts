@@ -84,7 +84,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "Install <formula>",
-      insertValue: "install ",
+
       args: {
         variadic: true,
         name: "formula",
@@ -130,13 +130,13 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "cask",
-      insertValue: "cask ",
+
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
       subcommands: [
         {
           name: "install",
-          insertValue: "install ",
+
           description: "Installs the given cask",
           args: {
             name: "cask",
@@ -145,7 +145,7 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "uninstall",
-          insertValue: "uninstall ",
+
           description: "Uninstalls the given cask",
           args: {
             variadic: true,
@@ -190,23 +190,23 @@ export const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "cleanup",
-          insertValue: "cleanup",
+
           description: "Remove all unused services.",
         },
         {
           name: "list",
-          insertValue: "list",
+
           description: "List all services.",
         },
         {
           name: "run",
-          insertValue: "run ",
+
           description:
             "Run the service formula without registering to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -217,13 +217,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "start",
-          insertValue: "start ",
+
           description:
             "Start the service formula immediately and register it to launch at login",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -234,13 +234,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "stop",
-          insertValue: "stop ",
+
           description:
             "Stop the service formula immediately and unregister it from launching at",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -251,13 +251,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "restart",
-          insertValue: "restart ",
+
           description:
             "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],

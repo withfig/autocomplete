@@ -191,7 +191,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "-C",
-      insertValue: "-C ",
+
       args: {
         name: "path",
         template: "folders",
@@ -769,7 +769,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "rebase",
       description: "Reapply commits on top of another base tip",
-      insertValue: "rebase",
+
       options: [
         {
           name: ["--continue"],
@@ -1259,7 +1259,7 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--staged",
-          insertValue: "--staged",
+
           description:
             "Show difference between the files in the staging area and the latest version",
         },
@@ -1357,7 +1357,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "log",
       description: "Show commit logs",
-      insertValue: "log",
+
       options: [
         {
           name: "--follow",
@@ -1441,12 +1441,12 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "set-head",
-          insertValue: "set-head",
+
           description: "Sets or deletes the default branch",
         },
         {
           name: "rm",
-          insertValue: "rm",
+
           description: "Removes given remote [name]",
           args: {
             name: "remote",
@@ -1455,7 +1455,7 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "get-url",
-          insertValue: "get-url",
+
           description: "Retrieves the URLs for a remote",
         },
         {
@@ -1476,12 +1476,12 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: "-f",
-          insertValue: "-f",
+
           description: "Fetch after remote info is added",
         },
         {
           name: "--tags",
-          insertValue: "--tags",
+
           description: "Import tags from remote",
         },
       ],
@@ -1508,7 +1508,7 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--all",
-          insertValue: "--all",
+
           description: "Fetch all remotes",
         },
         {
@@ -1911,7 +1911,6 @@ export const completionSpec: Fig.Spec = {
         {
           name: "clear",
           description: " Remove all the stash entries.",
-          insertValue: "clear",
         },
         {
           name: "apply",
@@ -1964,7 +1963,7 @@ export const completionSpec: Fig.Spec = {
           name: "store",
           description:
             "Store a given stash in the stash ref., updating the staft reflog.",
-          insertValue: "store",
+
           options: [
             {
               name: ["-m", "--message"],
@@ -2297,7 +2296,7 @@ export const completionSpec: Fig.Spec = {
           {
             name: ".",
             description: "current directory",
-            insertValue: ".",
+
             icon: "fig://icon?type=folder",
           },
         ],
