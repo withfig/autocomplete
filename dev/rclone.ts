@@ -35,7 +35,6 @@ export const completion: Fig.Spec = {
     {
       name: "config",
       description: "Enter an interactive configuration session.",
-      args: {},
     },
     {
       name: "copy",
@@ -106,7 +105,6 @@ export const completion: Fig.Spec = {
     {
       name: "listremotes",
       description: "List all the remotes in the config file.",
-      args: {},
     },
     {
       name: "ls",
@@ -203,7 +201,6 @@ export const completion: Fig.Spec = {
     {
       name: "selfupdate",
       description: "Update the rclone binary.",
-      args: {},
     },
     {
       name: "serve",
@@ -250,7 +247,6 @@ export const completion: Fig.Spec = {
     {
       name: "version",
       description: "Show the version number.",
-      args: {},
     },
   ],
   options: [
