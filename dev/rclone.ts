@@ -225,13 +225,71 @@ export const completion: Fig.Spec = {
     {
       name: "cryptdecode",
       description: "Cryptdecode returns unencrypted file names.",
-      args: [{}, { variadic: true }],
+      args: [
+        {
+          name: "encryptedremote:",
+        },
+        {
+          name: "encryptedfilename",
+          variadic: true,
+        },
+      ],
+      options: [
+        {
+          name: "--reverse",
+          description: "Reverse cryptdecode, encrypts filenames",
+        },
+      ],
     },
     {
       name: "dedupe",
       description:
         "Interactively find duplicate filenames and delete/rename them.",
-      args: {},
+      args: [
+        {
+          name: "remote:path",
+        },
+      ],
+      options: [
+        {
+          name: "--by-hash",
+          description: "Find indentical hashes rather than names",
+        },
+        {
+          name: "--dedupe-mode",
+          description: "Dedupe mode",
+          args: {
+            name: "mode",
+            suggestions: [
+              {
+                name: "interactive",
+                description: "interactive ",
+              },
+              {
+                name: "skip",
+                description:
+                  "removes identical files then skips anything left.",
+              },
+              {
+                name: "rename",
+                description:
+                  "removes identical files then renames the rest to be different.",
+              },
+              {
+                name: "list",
+                description:
+                  "lists duplicate dirs and files only and changes nothing.",
+              },
+              ...["first", "newest", "oldest", "largest", "smallest"].map(
+                (_) => ({
+                  name: _,
+                  description: `removes identical files then keeps the ${_} one.`,
+                })
+              ),
+            ],
+          },
+        },
+      ],
     },
     {
       name: "delete",
