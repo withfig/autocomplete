@@ -6,16 +6,30 @@ export const completion: Fig.Spec = {
       name: "about",
       description: "Get quota information from the remote.",
       args: {},
+      options: [
+        {
+          name: "--full",
+          description: "Full numbers instead of SI units",
+        },
+        {
+          name: "--json",
+          description: "Format output as JSON",
+        },
+      ],
     },
     {
       name: "authorize",
       description: "Remote authorization.",
-      args: {},
+      options: [
+        {
+          name: "--auth-no-open-browser",
+          description: "Do not automatically open auth link in default browser",
+        },
+      ],
     },
     {
       name: "backend",
       description: "Run a backend specific command.",
-      args: {},
     },
     {
       name: "cat",
@@ -25,7 +39,7 @@ export const completion: Fig.Spec = {
     {
       name: "check",
       description: "Checks the files in the source and destination match.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "cleanup",
@@ -39,27 +53,27 @@ export const completion: Fig.Spec = {
     {
       name: "copy",
       description: "Copy files from source to dest, skipping already copied.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "copyto",
       description: "Copy files from source to dest, skipping already copied.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "copyurl",
       description: "Copy url content to dest.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "cryptcheck",
       description: "Cryptcheck checks the integrity of a crypted remote.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "cryptdecode",
       description: "Cryptdecode returns unencrypted file names.",
-      args: {},
+      args: [{}, { variadic: true }],
     },
     {
       name: "dedupe",
@@ -85,12 +99,15 @@ export const completion: Fig.Spec = {
     {
       name: "gendocs",
       description: "Output markdown docs for rclone to the directory supplied.",
-      args: {},
+      args: { template: "folders" },
     },
     {
       name: "hashsum",
       description: "Produces a hashsum file for all the objects in the path.",
-      args: {},
+      args: [
+        { suggestions: ["MD5", "SHA-1", "DropboxHash", "QuickXorHash"] },
+        {},
+      ],
     },
     {
       name: "help",
@@ -105,6 +122,12 @@ export const completion: Fig.Spec = {
     {
       name: "listremotes",
       description: "List all the remotes in the config file.",
+      options: [
+        {
+          name: "--long",
+          description: "Show the type as well as names.",
+        },
+      ],
     },
     {
       name: "ls",
@@ -146,7 +169,7 @@ export const completion: Fig.Spec = {
     {
       name: "mount",
       description: "Mount the remote as file system on a mountpoint.",
-      args: {},
+      args: [{}, { template: "folders" }],
     },
     {
       name: "move",
@@ -210,7 +233,7 @@ export const completion: Fig.Spec = {
     {
       name: "settier",
       description: "Changes storage class/tier of objects in remote.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "sha1sum",
@@ -227,7 +250,7 @@ export const completion: Fig.Spec = {
       name: "sync",
       description:
         "Make source and dest identical, modifying destination only.",
-      args: {},
+      args: [{}, {}],
     },
     {
       name: "test",
