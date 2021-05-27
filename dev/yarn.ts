@@ -961,6 +961,12 @@ export const completionSpec: Fig.Spec = {
     {
       name: "upgrade-interactive",
       description: "Upgrades packages in interactive mode",
+      options: [
+        {
+          name: ["--latest"],
+          description: "Use the version tagged latest in the registry",
+        },
+      ],
     },
     {
       name: "version",
