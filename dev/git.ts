@@ -1204,7 +1204,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: "-force-with-lease",
+          name: "--force-with-lease",
           description:
             "protect the named ref (alone), if it is going to be updated, by requiring its current value to be the same as the specified value <expect> (which is allowed to be different from the remote-tracking branch we have for the refname, or we do not even have to have such a remote-tracking branch when this form is used). If <expect> is the empty string, then the named ref must not already exist.",
           args: {
