@@ -1,15 +1,25 @@
-// TODO: dynamicaly suggest remotes from `listremotes`
+// TODO: dynamically suggest paths
 const remote: Fig.Arg = {
   name: "remote:",
+  generators: [
+    {
+      script: "rclone listremotes",
+      postProcess: (list) =>
+        list.split("\n").map((remote) => ({ name: remote })),
+    },
+  ],
 };
 const remotePath: Fig.Arg = {
   name: "remote:path",
+  generators: remote.generators,
 };
 const sourcePath: Fig.Arg = {
   name: "source:path",
+  generators: remote.generators,
 };
 const destPath: Fig.Arg = {
   name: "dest:path",
+  generators: remote.generators,
 };
 
 const checkFlags: Array<Fig.Option> = [
@@ -176,14 +186,7 @@ export const completion: Fig.Spec = {
     {
       name: "copy",
       description: "Copy files from source to dest, skipping already copied.",
-      args: [
-        {
-          name: "source:path",
-        },
-        {
-          name: "dest:path",
-        },
-      ],
+      args: [sourcePath, destPath],
     },
     {
       name: "copyto",
@@ -213,9 +216,7 @@ export const completion: Fig.Spec = {
       name: "cryptcheck",
       description: "Cryptcheck checks the integrity of a crypted remote.",
       args: [
-        {
-          name: "remote:path",
-        },
+        remotePath,
         {
           name: "cryptedremote:path",
         },
@@ -245,11 +246,7 @@ export const completion: Fig.Spec = {
       name: "dedupe",
       description:
         "Interactively find duplicate filenames and delete/rename them.",
-      args: [
-        {
-          name: "remote:path",
-        },
-      ],
+      args: [remotePath],
       options: [
         {
           name: "--by-hash",
@@ -294,6 +291,7 @@ export const completion: Fig.Spec = {
     {
       name: "delete",
       description: "Remove the files in path.",
+      isDangerous: true,
       args: [remotePath],
       options: [
         {
@@ -305,6 +303,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "deletefile",
+      isDangerous: true,
       description: "Remove a single file from remote.",
       args: [remotePath],
     },
@@ -349,9 +348,7 @@ export const completion: Fig.Spec = {
             "MailruHash",
           ],
         },
-        {
-          name: "remote:path",
-        },
+        remotePath,
       ],
       options: [
         {
@@ -385,10 +382,7 @@ export const completion: Fig.Spec = {
     {
       name: "link",
       description: "Generate public link to file/folder.",
-      args: {
-        name: "remote:path",
-        isOptional: false,
-      },
+      args: remotePath,
       options: [
         {
           name: "--expire",
@@ -481,6 +475,7 @@ export const completion: Fig.Spec = {
     {
       name: "purge",
       description: "Remove the path and all of its contents.",
+      isDangerous: true,
       args: {},
     },
     {
