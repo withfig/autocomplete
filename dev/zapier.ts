@@ -1,6 +1,7 @@
 export const completionSpec: Fig.Spec = {
   name: "zapier-platform-cli",
-  description: "",
+  description:
+    "The Zapier CLI is a developer-focused way to create and maintain Zapier integrations. See more at https://github.com/zapier/zapier-platform.",
   subcommands: [
     {
       name: "analytics",
