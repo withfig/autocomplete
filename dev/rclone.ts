@@ -1,3 +1,17 @@
+// TODO: dynamicaly suggest remotes from `listremotes`
+const remote: Fig.Arg = {
+  name: "remote:",
+};
+const remotePath: Fig.Arg = {
+  name: "remote:path",
+};
+const sourcePath: Fig.Arg = {
+  name: "source:path",
+};
+const destPath: Fig.Arg = {
+  name: "dest:path",
+};
+
 const checkFlags: Array<Fig.Option> = [
   {
     name: "--combined",
@@ -35,6 +49,7 @@ const checkFlags: Array<Fig.Option> = [
     description: "Check one way only, source files must exist on remote",
   },
 ];
+
 export const completion: Fig.Spec = {
   name: "rclone",
   description: "The Swiss army knife of cloud storage",
@@ -42,11 +57,7 @@ export const completion: Fig.Spec = {
     {
       name: "about",
       description: "Get quota information from the remote.",
-      args: [
-        {
-          name: "remote:",
-        },
-      ],
+      args: [remote],
       options: [
         {
           name: "--full",
@@ -81,9 +92,7 @@ export const completion: Fig.Spec = {
     {
       name: "cat",
       description: "Concatenates any files and sends them to stdout.",
-      args: {
-        name: "remote:path",
-      },
+      args: [remotePath],
       options: [
         {
           name: "--discard",
@@ -130,14 +139,7 @@ export const completion: Fig.Spec = {
     {
       name: "check",
       description: "Checks the files in the source and destination match.",
-      args: [
-        {
-          name: "source:path",
-        },
-        {
-          name: "remote:path",
-        },
-      ],
+      args: [sourcePath, remotePath],
       options: [
         {
           name: "--download",
@@ -149,9 +151,7 @@ export const completion: Fig.Spec = {
     {
       name: "cleanup",
       description: "Clean up the remote if possible.",
-      args: {
-        name: "remote:path",
-      },
+      args: [remotePath],
     },
     {
       name: "config",
@@ -263,7 +263,7 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "interactive",
-                description: "interactive ",
+                description: "interactive",
               },
               {
                 name: "skip",
@@ -294,40 +294,117 @@ export const completion: Fig.Spec = {
     {
       name: "delete",
       description: "Remove the files in path.",
-      args: {},
+      args: [remotePath],
+      options: [
+        {
+          name: "--rmdirs",
+          description:
+            "rmdirs removes empty directories but leaves root intact",
+        },
+      ],
     },
     {
       name: "deletefile",
       description: "Remove a single file from remote.",
-      args: {},
+      args: [remotePath],
     },
     {
       name: "genautocomplete",
       description: "Output completion script for a given shell.",
-      args: {},
+      subcommands: [
+        ...["bash", "fish", "zsh"].map((_) => ({
+          name: _,
+          description: `Output ${_} completion script for rclone.`,
+          args: {
+            name: "output_file",
+            isOptional: true,
+            description:
+              'If output_file is "-", then the output will be written to stdout.',
+          },
+        })),
+      ],
     },
     {
       name: "gendocs",
       description: "Output markdown docs for rclone to the directory supplied.",
-      args: { template: "folders" },
+      args: {
+        name: "output_directory",
+        template: "folders",
+      },
     },
     {
       name: "hashsum",
       description: "Produces a hashsum file for all the objects in the path.",
       args: [
-        { suggestions: ["MD5", "SHA-1", "DropboxHash", "QuickXorHash"] },
-        {},
+        {
+          name: "hash",
+          isOptional: false,
+          suggestions: [
+            "MD5",
+            "SHA-1",
+            "DropboxHash",
+            "QuickXorHash",
+            "Whirlpool",
+            "CRC-32",
+            "MailruHash",
+          ],
+        },
+        {
+          name: "remote:path",
+        },
+      ],
+      options: [
+        {
+          name: "--base64",
+          description: "Output base64 encoded hashsum",
+        },
+        {
+          name: "--download",
+          description:
+            "Download the file and hash it locally; if this flag is not specified, the hash is requested from the remote",
+        },
+        {
+          name: "--output-file",
+          description: "Output hashsums to a file rather than the terminal",
+          args: {
+            template: "filepaths",
+          },
+        },
       ],
     },
     {
       name: "help",
       description: "Show help for rclone commands, flags and backends.",
-      args: {},
+      subcommands: [
+        {
+          name: "flags",
+          description: "List of global flags",
+        },
+      ],
     },
     {
       name: "link",
       description: "Generate public link to file/folder.",
-      args: {},
+      args: {
+        name: "remote:path",
+        isOptional: false,
+      },
+      options: [
+        {
+          name: "--expire",
+          description:
+            "The amount of time that the link will be valid (default 100y)",
+          args: [
+            {
+              name: "duration",
+            },
+          ],
+        },
+        {
+          name: "--unlink",
+          description: "Remove existing public link to file/folder",
+        },
+      ],
     },
     {
       name: "listremotes",
