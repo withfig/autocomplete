@@ -5,7 +5,11 @@ export const completion: Fig.Spec = {
     {
       name: "about",
       description: "Get quota information from the remote.",
-      args: {},
+      args: [
+        {
+          name: "remote:",
+        },
+      ],
       options: [
         {
           name: "--full",
@@ -30,16 +34,115 @@ export const completion: Fig.Spec = {
     {
       name: "backend",
       description: "Run a backend specific command.",
+      options: [
+        {
+          name: "--json",
+          description: "Format output as JSON",
+        },
+      ],
     },
     {
       name: "cat",
       description: "Concatenates any files and sends them to stdout.",
-      args: {},
+      args: {
+        name: "remote:path",
+      },
+      options: [
+        {
+          name: "--discard",
+          description: "Discard the output instead of printing.",
+        },
+        {
+          name: "--count",
+          description: "Only print N characters. (default -1)",
+          args: [
+            {
+              name: "int",
+            },
+          ],
+        },
+        {
+          name: "--head",
+          description: "Only print the first N characters.",
+          args: [
+            {
+              name: "int",
+            },
+          ],
+        },
+        {
+          name: "--offset",
+          description: "Start printing at offset N (or from end if -ve)",
+          args: [
+            {
+              name: "int",
+            },
+          ],
+        },
+        {
+          name: "--tail",
+          description: "Only print the last N characters.",
+          args: [
+            {
+              name: "int",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "check",
       description: "Checks the files in the source and destination match.",
-      args: [{}, {}],
+      args: [
+        {
+          name: "source:path",
+        },
+        {
+          name: "remote:path",
+        },
+      ],
+      options: [
+        {
+          name: "--combined",
+          description: "Make a combined report of changes to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--differ",
+          description: "Report all non-matching files to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--download",
+          description: "Check by downloading rather than with hash.",
+        },
+        {
+          name: "--error",
+          description:
+            "Report all files with errors (hashing or reading) to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--match",
+          description: "Report all matching files to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--missing-on-dst",
+          description:
+            "Report all files missing from the destination to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--missing-on-src",
+          description: "Report all files missing from the source to this file",
+          args: { template: "filepaths" },
+        },
+        {
+          name: "--one-way",
+          description: "Check one way only, source files must exist on remote",
+        },
+      ],
     },
     {
       name: "cleanup",
