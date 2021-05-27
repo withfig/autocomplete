@@ -1,3 +1,40 @@
+const checkFlags: Array<Fig.Option> = [
+  {
+    name: "--combined",
+    description: "Make a combined report of changes to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--differ",
+    description: "Report all non-matching files to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--error",
+    description:
+      "Report all files with errors (hashing or reading) to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--match",
+    description: "Report all matching files to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--missing-on-dst",
+    description: "Report all files missing from the destination to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--missing-on-src",
+    description: "Report all files missing from the source to this file",
+    args: { template: "filepaths" },
+  },
+  {
+    name: "--one-way",
+    description: "Check one way only, source files must exist on remote",
+  },
+];
 export const completion: Fig.Spec = {
   name: "rclone",
   description: "The Swiss army knife of cloud storage",
@@ -103,75 +140,87 @@ export const completion: Fig.Spec = {
       ],
       options: [
         {
-          name: "--combined",
-          description: "Make a combined report of changes to this file",
-          args: { template: "filepaths" },
-        },
-        {
-          name: "--differ",
-          description: "Report all non-matching files to this file",
-          args: { template: "filepaths" },
-        },
-        {
           name: "--download",
           description: "Check by downloading rather than with hash.",
         },
-        {
-          name: "--error",
-          description:
-            "Report all files with errors (hashing or reading) to this file",
-          args: { template: "filepaths" },
-        },
-        {
-          name: "--match",
-          description: "Report all matching files to this file",
-          args: { template: "filepaths" },
-        },
-        {
-          name: "--missing-on-dst",
-          description:
-            "Report all files missing from the destination to this file",
-          args: { template: "filepaths" },
-        },
-        {
-          name: "--missing-on-src",
-          description: "Report all files missing from the source to this file",
-          args: { template: "filepaths" },
-        },
-        {
-          name: "--one-way",
-          description: "Check one way only, source files must exist on remote",
-        },
+        ...checkFlags,
       ],
     },
     {
       name: "cleanup",
       description: "Clean up the remote if possible.",
-      args: {},
+      args: {
+        name: "remote:path",
+      },
     },
     {
       name: "config",
       description: "Enter an interactive configuration session.",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a new remote with name, type and options.",
+          args: [
+            {
+              name: "name",
+              isOptional: false,
+            },
+            {
+              name: "type",
+              isOptional: false,
+            },
+          ],
+        },
+      ],
     },
     {
       name: "copy",
       description: "Copy files from source to dest, skipping already copied.",
-      args: [{}, {}],
+      args: [
+        {
+          name: "source:path",
+        },
+        {
+          name: "dest:path",
+        },
+      ],
     },
     {
       name: "copyto",
       description: "Copy files from source to dest, skipping already copied.",
-      args: [{}, {}],
+      args: [
+        {
+          name: "source:path",
+        },
+        {
+          name: "dest:path",
+        },
+      ],
     },
     {
       name: "copyurl",
       description: "Copy url content to dest.",
-      args: [{}, {}],
+      args: [
+        {
+          name: "url",
+        },
+        {
+          name: "dest:path",
+        },
+      ],
     },
     {
       name: "cryptcheck",
       description: "Cryptcheck checks the integrity of a crypted remote.",
-      args: [{}, {}],
+      args: [
+        {
+          name: "remote:path",
+        },
+        {
+          name: "cryptedremote:path",
+        },
+      ],
+      options: checkFlags,
     },
     {
       name: "cryptdecode",
@@ -381,7 +430,7 @@ export const completion: Fig.Spec = {
       description: "View your current rclone version",
     },
     {
-      name: "--help",
+      name: ["--help", "-h"],
       description: "Show help for rclone commands, flags and backends.",
     },
   ],
