@@ -1,10 +1,6 @@
 const bodyTempalates: Fig.Generator = {
   script: "quickmail template listall",
   postProcess: (output) => {
-    // This will never occur tho
-    if (output.startsWith("fatal:")) {
-      return [];
-    }
     const items = output.split("\n");
     return items.map((item) => {
       return {
