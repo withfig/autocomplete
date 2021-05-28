@@ -306,8 +306,53 @@ export const completion: Fig.Spec = {
     {
       name: "command-prompt",
       description: "Open the tmux command prompt in a client",
-      // TODO add other options
+      args: {
+        name: "template",
+        description: "If specified, used as a command",
+        isOptional: true,
+      },
       options: [
+        {
+          name: "-l",
+          description: "The prompt only accept one key press",
+        },
+        {
+          name: "-i",
+          description:
+            "Execute the command every time the prompt input changes",
+        },
+        {
+          name: "-k",
+          description: "Like -l but the key press is translated to a key name",
+        },
+        {
+          name: "-N",
+          description: "The prompt only accept numeric key press",
+        },
+        {
+          name: "-T",
+          description: "Tell that the prompt is for a target",
+        },
+        {
+          name: "-W",
+          description: "Tell that the prompt is for a window",
+        },
+        {
+          name: "-I",
+          description:
+            "Comma-separated list of the initial text for each prompt",
+          args: {
+            name: "inputs",
+          },
+        },
+        {
+          name: "-p",
+          description:
+            "Comma-separated list of prompts which are displayed in order",
+          args: {
+            name: "prompts",
+          },
+        },
         {
           name: "-t",
           description: "The target client",
@@ -413,24 +458,98 @@ export const completion: Fig.Spec = {
     {
       name: ["menu", "display-menu"],
       description: "Display menu on target-client",
-      // TODO add other options
+      args: [
+        {
+          name: "name",
+          description: "The name of the menu",
+        },
+        {
+          name: "key",
+          description: "The key to press to open the menu",
+        },
+        {
+          name: "command",
+          description: "Commands to execute",
+          variadic: true,
+        },
+      ],
       options: [
+        {
+          name: "-O",
+          description:
+            "Do not close the menu when the mouse button is released",
+        },
         {
           name: "-c",
           description: "The target client",
           args: clientsArg,
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+        {
+          name: "-T",
+          description: "Specify a title",
+          args: {
+            name: "title",
+          },
+        },
+        {
+          name: "-x",
+          description: "Give the x position of the menu",
+          args: {
+            name: "position",
+          },
+        },
+        {
+          name: "-y",
+          description: "Give the y position of the menu",
+          args: {
+            name: "position",
+          },
         },
       ],
     },
     {
       name: ["display", "display-message"],
       description: "Display a message in the status line",
-      // TODO add other options
+      args: {
+        name: "message",
+        description: "The message to display",
+        isOptional: true,
+      },
       options: [
         {
-          name: "-c",
-          description: "The target client",
+          name: "-a",
+          description: "List the format variables and their values",
+        },
+        {
+          name: "-I",
+          description:
+            "Forward any input read from stdin to the empty pane target-pane",
+        },
+        {
+          name: "-p",
+          description: "Print output to stdout",
+        },
+        {
+          name: "-v",
+          description: "Print verbose logging as the format is parsed",
           args: clientsArg,
+        },
+        {
+          name: "-d",
+          description: "A delay for the message",
+          args: {
+            name: "delay",
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
         },
       ],
     },
@@ -525,7 +644,6 @@ export const completion: Fig.Spec = {
     {
       name: ["joinp", "join-pane", "movep", "move-pane"],
       description: "Split a pane and move an existing one into the new space",
-      // TODO other options
       options: [
         {
           name: "-b",
@@ -769,9 +887,21 @@ export const completion: Fig.Spec = {
     },
     {
       name: ["loadb", "load-buffer"],
-      description: "Load a file intoa paste buffer",
-      // TODO add other options
+      description: "Load a file into a paste buffer",
+      args: {
+        name: "path",
+        description: "Load from this path",
+      },
       options: [
+        {
+          name: "-w",
+          description: "Send the buffer to the clipboard",
+        },
+        {
+          name: "-b",
+          description: "The target buffer",
+          args: buffersArg,
+        },
         {
           name: "-t",
           description: "The target client",
@@ -908,7 +1038,13 @@ export const completion: Fig.Spec = {
             name: "session-name",
           },
         },
-        // TODO group-name
+        {
+          name: "-t",
+          description: "The name of the group",
+          args: {
+            name: "group-name",
+          },
+        },
         {
           name: "-x",
           description: "The width of the session",
@@ -1079,8 +1215,60 @@ export const completion: Fig.Spec = {
     {
       name: ["refresh", "refresh-client"],
       description: "Refresh a client",
-      // TODO add other options
+      args: {
+        name: "adjustment",
+        description: "An adjustment value to use",
+        isOptional: true,
+      },
       options: [
+        {
+          name: "-c",
+          description: "Return the tracking cursor",
+        },
+        {
+          name: "-D",
+          description: "Allow the visible portion of a window to be changed",
+        },
+        {
+          name: "-l",
+          description: "Request the clipboard from the client",
+        },
+        {
+          name: "-L",
+          description: "Allow the visible portion of a window to be changed",
+        },
+        {
+          name: "-R",
+          description: "Allow the visible portion of a window to be changed",
+        },
+        {
+          name: "-S",
+          description: "Only update the client's status line",
+        },
+        {
+          name: "-U",
+          description: "Allow the visible portion of a window to be changed",
+        },
+        {
+          name: "-A",
+          description: "The target pane",
+          args: panesArg,
+        },
+        {
+          name: "-B",
+          description: "A subscription to a format for a control mode",
+          args: {
+            name: "subscription",
+          },
+        },
+        {
+          name: "-C",
+          description: "Set the width and height",
+          args: {
+            name: "XxY",
+          },
+        },
+        flagsOption,
         {
           name: "-t",
           description: "The target client",
@@ -1469,12 +1657,35 @@ export const completion: Fig.Spec = {
     {
       name: ["setb", "set-buffer"],
       description: "Set content of a paste buffer",
-      // TODO add other options
+      args: {
+        name: "data",
+        description: "The data to set in the buffer",
+      },
       options: [
+        {
+          name: "-a",
+          description: "Append to rather than overwriting the buffer",
+        },
+        {
+          name: "-w",
+          description: "Send the buffer to the clipboard",
+        },
+        {
+          name: "-b",
+          description: "The name of the buffer",
+          args: buffersArg,
+        },
         {
           name: "-t",
           description: "The target client",
           args: clientsArg,
+        },
+        {
+          name: "-n",
+          description: "The new name of the buffer",
+          args: {
+            name: "new-buffer-name",
+          },
         },
       ],
     },
