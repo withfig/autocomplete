@@ -9,6 +9,12 @@ const remote: Fig.Arg = {
     },
   ],
 };
+const cryptedremote: Fig.Arg = {
+  name: "cryptedremote",
+  generators: remote.generators,
+  // TODO filter by crypted type
+};
+// TODO dynamically sugest path
 const remotePath: Fig.Arg = {
   name: "remote:path",
   generators: remote.generators,
@@ -21,7 +27,6 @@ const destPath: Fig.Arg = {
   name: "dest:path",
   generators: remote.generators,
 };
-
 const checkFlags: Array<Fig.Option> = [
   {
     name: "--combined",
@@ -191,14 +196,7 @@ export const completion: Fig.Spec = {
     {
       name: "copyto",
       description: "Copy files from source to dest, skipping already copied.",
-      args: [
-        {
-          name: "source:path",
-        },
-        {
-          name: "dest:path",
-        },
-      ],
+      args: [sourcePath, destPath],
     },
     {
       name: "copyurl",
@@ -207,29 +205,20 @@ export const completion: Fig.Spec = {
         {
           name: "url",
         },
-        {
-          name: "dest:path",
-        },
+        destPath,
       ],
     },
     {
       name: "cryptcheck",
       description: "Cryptcheck checks the integrity of a crypted remote.",
-      args: [
-        remotePath,
-        {
-          name: "cryptedremote:path",
-        },
-      ],
+      args: [remotePath, cryptedremote],
       options: checkFlags,
     },
     {
       name: "cryptdecode",
       description: "Cryptdecode returns unencrypted file names.",
       args: [
-        {
-          name: "encryptedremote:",
-        },
+        cryptedremote,
         {
           name: "encryptedfilename",
           variadic: true,
@@ -413,18 +402,50 @@ export const completion: Fig.Spec = {
     {
       name: "ls",
       description: "List the objects in the path with size and path.",
-      args: {},
+      args: remotePath,
     },
     {
       name: "lsd",
       description: "List all directories/containers/buckets in the path.",
-      args: {},
+      args: remotePath,
+      options: [
+        {
+          name: ["-R", "--recursive"],
+        },
+      ],
     },
     {
       name: "lsf",
       description:
         "List directories and objects in remote:path formatted for parsing.",
-      args: {},
+      args: remotePath,
+      options: [
+        {
+          name: "--absolute",
+          description: "Put a leading / in front of path names.",
+        },
+        {
+          name: "--csv",
+          description: "Output in CSV format.",
+        },
+        {
+          name: ["-d", "--dir-slash"],
+          description: "Append a slash to directory names. (default true)",
+        },
+        {
+          name: "--dirs-only",
+          description: "Only list directories.",
+        },
+        {
+          name: "--files-only",
+          description: "Only list files.",
+        },
+        {
+          name: ["-F", "--format"],
+          args: {},
+          description: 'Output format - see  help for details (default "p")',
+        },
+      ],
     },
     {
       name: "lsjson",
@@ -532,7 +553,7 @@ export const completion: Fig.Spec = {
       name: "sync",
       description:
         "Make source and dest identical, modifying destination only.",
-      args: [{}, {}],
+      args: [sourcePath, destPath],
     },
     {
       name: "test",
