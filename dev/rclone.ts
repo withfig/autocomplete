@@ -9,6 +9,29 @@ const remote: Fig.Arg = {
     },
   ],
 };
+const hashes = [
+  "MD5",
+  "SHA-1",
+  "DropboxHash",
+  "QuickXorHash",
+  "Whirlpool",
+  "CRC-32",
+  "MailruHash",
+];
+const listOptions = [
+  {
+    name: "--dirs-only",
+    description: "Only list directories.",
+  },
+  {
+    name: "--files-only",
+    description: "Only list files.",
+  },
+  {
+    name: ["--recursive", "-R"],
+    description: "Recurse into the listing.",
+  },
+];
 const cryptedremote: Fig.Arg = {
   name: "cryptedremote",
   generators: remote.generators,
@@ -327,15 +350,7 @@ export const completion: Fig.Spec = {
         {
           name: "hash",
           isOptional: false,
-          suggestions: [
-            "MD5",
-            "SHA-1",
-            "DropboxHash",
-            "QuickXorHash",
-            "Whirlpool",
-            "CRC-32",
-            "MailruHash",
-          ],
+          suggestions: hashes,
         },
         remotePath,
       ],
@@ -418,8 +433,12 @@ export const completion: Fig.Spec = {
       name: "lsf",
       description:
         "List directories and objects in remote:path formatted for parsing.",
-      args: remotePath,
+      args: {
+        ...remotePath,
+        isOptional: false,
+      },
       options: [
+        ...listOptions,
         {
           name: "--absolute",
           description: "Put a leading / in front of path names.",
@@ -433,45 +452,135 @@ export const completion: Fig.Spec = {
           description: "Append a slash to directory names. (default true)",
         },
         {
-          name: "--dirs-only",
-          description: "Only list directories.",
-        },
-        {
-          name: "--files-only",
-          description: "Only list files.",
-        },
-        {
-          name: ["-F", "--format"],
-          args: {},
+          name: ["--format", "-F"],
           description: 'Output format - see  help for details (default "p")',
+          args: {
+            name: "format",
+            suggestions: [
+              ...[
+                ["p", "path"],
+                ["s", "size"],
+                ["t", "modification time"],
+                ["h", "hash"],
+                ["i", "ID of object"],
+                ["o", "Original ID of underlying object"],
+                ["m", "MimeType of object if known"],
+              ].map((_) => ({
+                name: _[0],
+                description: _[1],
+              })),
+            ],
+          },
+        },
+        {
+          name: "--hash",
+          description:
+            'Use this hash when h is used in the format (default "MD5")',
+          args: [
+            {
+              name: "hash",
+              suggestions: hashes,
+            },
+          ],
+        },
+
+        {
+          name: ["--seperator", "-s"],
+          description: 'Separator for the items in the format. (default ";")',
+          args: [
+            {
+              name: "separator",
+              isOptional: false,
+            },
+          ],
         },
       ],
     },
     {
       name: "lsjson",
       description: "List directories and objects in the path in JSON format.",
-      args: {},
+      args: [remotePath],
+      options: [
+        ...listOptions,
+        {
+          name: ["--encrypted", "-M"],
+          description: "Show the encrypted names.",
+        },
+        {
+          name: "--hash",
+          description: "Include hashes in the output (may take longer).",
+        },
+        {
+          name: "--hash-type",
+          description: "Show only this hash type (may be repeated).",
+          args: {
+            name: "hashes",
+            isOptional: false,
+            suggestions: hashes,
+          },
+        },
+        {
+          name: "--no-mimetype",
+          description: "Don't read the mime type (can speed things up).",
+        },
+        {
+          name: "--no-modtime",
+          description:
+            " Don't read the modification time (can speed things up).",
+        },
+        {
+          name: "--original",
+          description: "Show the ID of the underlying Object.",
+        },
+      ],
     },
     {
       name: "lsl",
       description:
         "List the objects in path with modification time, size and path.",
-      args: {},
+      args: remotePath,
     },
     {
       name: "md5sum",
       description: "Produces an md5sum file for all the objects in the path.",
-      args: {},
+      args: remotePath,
+      options: [
+        {
+          name: "--base64",
+          description: "Output base64 encoded hashsum",
+        },
+        {
+          name: "--download",
+          description:
+            "Download the file and hash it locally; if this flag is not specified, the hash is requested from the remote",
+        },
+        {
+          name: "--output-file",
+          description: "Output hashsums to a file rather than the terminal",
+          args: {
+            name: "file",
+            isOptional: false,
+            template: "filepaths",
+          },
+        },
+      ],
     },
     {
       name: "mkdir",
       description: "Make the path if it doesn't already exist.",
-      args: {},
+      args: remotePath,
     },
     {
       name: "mount",
       description: "Mount the remote as file system on a mountpoint.",
-      args: [{}, { template: "folders" }],
+      args: [
+        remotePath,
+        {
+          // TODO: suggest only empty directories
+          name: "mountpoint",
+          template: "folders",
+        },
+      ],
     },
     {
       name: "move",
