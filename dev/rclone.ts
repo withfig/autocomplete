@@ -18,7 +18,7 @@ const hashes = [
   "CRC-32",
   "MailruHash",
 ];
-const listOptions = [
+const listOptions: Fig.Option[] = [
   {
     name: "--dirs-only",
     description: "Only list directories.",
