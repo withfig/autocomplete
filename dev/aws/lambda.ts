@@ -1,3 +1,234 @@
+const ttl = 30000;
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const listCustomGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<any> => {
+  try {
+    let cmd = `aws lambda ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        return [];
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const policies = JSON.parse(out)[parentKey];
+    return policies.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("~/"))
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) folderPath = "/";
+      else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
+  // In case the JSON is passed as a file, the filepath must be prefixed by file://
+  // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listLayerArns: {
+    script: "aws lambda list-layers",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Layers", "LayerArn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listLayerVersionNumber: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-layer-versions",
+        ["--layer-name"],
+        "LayerVersions",
+        "Version"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  getPrincipal: {
+    script: "aws sts get-caller-identity",
+    postProcess: function (out, context) {
+      try {
+        const accountId = JSON.parse(out)["Account"];
+        return [{ name: accountId }, { name: "*" }];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  getLayerVersionPolicyRevison: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-layer-version-policy",
+        ["--layer-name", "--version-number"],
+        "RevisionId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "lambda",
   description:
@@ -13,6 +244,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name or Amazon Resource Name (ARN) of the layer.",
           args: {
             name: "string",
+            generators: generators.listLayerArns,
           },
         },
         {
@@ -20,6 +252,7 @@ export const completionSpec: Fig.Spec = {
           description: "The version number.",
           args: {
             name: "long",
+            generators: generators.listLayerVersionNumber,
           },
         },
         {
@@ -44,6 +277,7 @@ export const completionSpec: Fig.Spec = {
             "An account ID, or * to grant permission to all AWS accounts.",
           args: {
             name: "string",
+            generators: generators.getPrincipal,
           },
         },
         {
@@ -52,6 +286,7 @@ export const completionSpec: Fig.Spec = {
             "With the principal set to *, grant permission to all accounts in the specified organization.",
           args: {
             name: "string",
+            suggestions: ["*"],
           },
         },
         {
@@ -60,6 +295,7 @@ export const completionSpec: Fig.Spec = {
             "Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.",
           args: {
             name: "string",
+            generators: generators.getLayerVersionPolicyRevison,
           },
         },
         {
@@ -68,6 +304,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
