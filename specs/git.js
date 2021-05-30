@@ -147,6 +147,107 @@ var gitGenerators = {
     },
   },
 };
+var addOptions = [
+  {
+    name: ["-n", "--dry-run"],
+    description:
+      "Don’t actually add the file(s), just show if they exist and/or will be ignored.",
+  },
+  { name: ["-v", "--verbose"], description: "Be verbose." },
+  {
+    name: ["-f", "--force"],
+    description: "Allow adding otherwise ignored files.",
+  },
+  {
+    name: ["-i", "--interactive"],
+    description:
+      "Add modified contents in the working tree interactively to the index. Optional path arguments may be supplied to limit operation to a subset of the working tree. See “Interactive mode” for details.",
+  },
+  {
+    name: ["-p", "--patch"],
+    description:
+      "Interactively choose hunks of patch between the index and the work tree and add them to the index. This gives the user a chance to review the difference before adding modified contents to the index.",
+  },
+  {
+    name: ["-e", "--edit"],
+    description:
+      "Open the diff vs. the index in an editor and let the user edit it. After the editor was closed, adjust the hunk headers and apply the patch to the index.",
+  },
+  {
+    name: ["-u", "--update"],
+    description:
+      "Update the index just where it already has an entry matching <pathspec>. This removes as well as modifies index entries to match the working tree, but adds no new files.",
+  },
+  {
+    name: ["-A", "--all", "--no-ignore-removal"],
+    description:
+      "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry. This adds, modifies, and removes index entries to match the working tree.",
+  },
+  {
+    name: ["--no-all", "--ignore-removal"],
+    description:
+      "Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree. This option is a no-op when no <pathspec> is used.",
+  },
+  {
+    name: ["-N", "--intent-to-add"],
+    description:
+      "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a.",
+  },
+  {
+    name: ["--refresh"],
+    description:
+      "Don’t add the file(s), but only refresh their stat() information in the index.",
+  },
+  {
+    name: ["--ignore-errors"],
+    description:
+      "If some files could not be added because of errors indexing them, do not abort the operation, but continue adding the others. The command shall still exit with non-zero status. The configuration variable add.ignoreErrors can be set to true to make this the default behaviour.",
+  },
+  {
+    name: ["--ignore-missing"],
+    description:
+      "This option can only be used together with --dry-run. By using this option the user can check if any of the given files would be ignored, no matter if they are already present in the work tree or not.",
+  },
+  {
+    name: ["--no-warn-embedded-repo"],
+    description:
+      "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules. This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
+  },
+  {
+    name: ["--renormalize"],
+    description:
+      "Apply the 'clean' process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u.",
+  },
+  {
+    name: ["--chmod"],
+    description:
+      "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged.",
+    insertValue: "--chmod=",
+    args: {
+      suggestions: ["+x", "-x"],
+    },
+  },
+  {
+    name: ["--pathspec-from-file"],
+    description:
+      "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config[1]). See also --pathspec-file-nul and global --literal-pathspecs.",
+    args: {
+      name: "File",
+      description: "File with pathspec",
+      template: "filepaths",
+    },
+  },
+  {
+    name: ["--pathspec-file-nul"],
+    description:
+      "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
+  },
+  {
+    name: "--",
+    description:
+      "This option can be used to separate command-line options from the list of files.",
+  },
+];
 var head = {
   name: "HEAD",
   icon: "🔻",
@@ -988,6 +1089,7 @@ var completionSpec = {
         },
         {
           name: ["-x", "--exec"],
+          insertValue: "-x '{cursor}'",
           description:
             "Append 'exec <cmd>' after each line creating a commit in the final history. <cmd> will be interpreted as one or more shell commands. Any command that fails will interrupt the rebase, with exit code 1. You may execute several commands by either using one instance of --exec with several commands: git rebase -i --exec 'cmd1 && cmd2 && ...' or by giving more than one --exec: git rebase -i --exec 'cmd1' --exec 'cmd2' --exec ... If --autosquash is used, 'exec' lines will not be appended for the intermediate commits, and will only appear at the end of each squash/fixup series. This uses the --interactive machinery internally, but it can be run without an explicit --interactive.",
           args: {
@@ -1046,107 +1148,7 @@ var completionSpec = {
     {
       name: "add",
       description: "Add file contents to the index",
-      options: [
-        {
-          name: ["-n", "--dry-run"],
-          description:
-            "Don’t actually add the file(s), just show if they exist and/or will be ignored.",
-        },
-        { name: ["-v", "--verbose"], description: "Be verbose." },
-        {
-          name: ["-f", "--force"],
-          description: "Allow adding otherwise ignored files.",
-        },
-        {
-          name: ["-i", "--interactive"],
-          description:
-            "Add modified contents in the working tree interactively to the index. Optional path arguments may be supplied to limit operation to a subset of the working tree. See “Interactive mode” for details.",
-        },
-        {
-          name: ["-p", "--patch"],
-          description:
-            "Interactively choose hunks of patch between the index and the work tree and add them to the index. This gives the user a chance to review the difference before adding modified contents to the index.",
-        },
-        {
-          name: ["-e", "--edit"],
-          description:
-            "Open the diff vs. the index in an editor and let the user edit it. After the editor was closed, adjust the hunk headers and apply the patch to the index.",
-        },
-        {
-          name: ["-u", "--update"],
-          description:
-            "Update the index just where it already has an entry matching <pathspec>. This removes as well as modifies index entries to match the working tree, but adds no new files.",
-        },
-        {
-          name: ["-A", "--all", "--no-ignore-removal"],
-          description:
-            "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry. This adds, modifies, and removes index entries to match the working tree.",
-        },
-        {
-          name: ["--no-all", "--ignore-removal"],
-          description:
-            "Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree. This option is a no-op when no <pathspec> is used.",
-        },
-        {
-          name: ["-N", "--intent-to-add"],
-          description:
-            "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a.",
-        },
-        {
-          name: ["--refresh"],
-          description:
-            "Don’t add the file(s), but only refresh their stat() information in the index.",
-        },
-        {
-          name: ["--ignore-errors"],
-          description:
-            "If some files could not be added because of errors indexing them, do not abort the operation, but continue adding the others. The command shall still exit with non-zero status. The configuration variable add.ignoreErrors can be set to true to make this the default behaviour.",
-        },
-        {
-          name: ["--ignore-missing"],
-          description:
-            "This option can only be used together with --dry-run. By using this option the user can check if any of the given files would be ignored, no matter if they are already present in the work tree or not.",
-        },
-        {
-          name: ["--no-warn-embedded-repo"],
-          description:
-            "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules. This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
-        },
-        {
-          name: ["--renormalize"],
-          description:
-            "Apply the 'clean' process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u.",
-        },
-        {
-          name: ["--chmod"],
-          description:
-            "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged.",
-          insertValue: "--chmod=",
-          args: {
-            suggestions: ["+x", "-x"],
-          },
-        },
-        {
-          name: ["--pathspec-from-file"],
-          description:
-            "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config[1]). See also --pathspec-file-nul and global --literal-pathspecs.",
-          args: {
-            name: "File",
-            description: "File with pathspec",
-            template: "filepaths",
-          },
-        },
-        {
-          name: ["--pathspec-file-nul"],
-          description:
-            "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
-        },
-        {
-          name: "--",
-          description:
-            "This option can be used to separate command-line options from the list of files.",
-        },
-      ],
+      options: addOptions,
       args: {
         name: "pathspec",
         variadic: true,
@@ -1166,107 +1168,7 @@ var completionSpec = {
     {
       name: "stage",
       description: "Add file contents to the staging area",
-      options: [
-        {
-          name: ["-n", "--dry-run"],
-          description:
-            "Don’t actually add the file(s), just show if they exist and/or will be ignored.",
-        },
-        { name: ["-v", "--verbose"], description: "Be verbose." },
-        {
-          name: ["-f", "--force"],
-          description: "Allow adding otherwise ignored files.",
-        },
-        {
-          name: ["-i", "--interactive"],
-          description:
-            "Add modified contents in the working tree interactively to the index. Optional path arguments may be supplied to limit operation to a subset of the working tree. See “Interactive mode” for details.",
-        },
-        {
-          name: ["-p", "--patch"],
-          description:
-            "Interactively choose hunks of patch between the index and the work tree and add them to the index. This gives the user a chance to review the difference before adding modified contents to the index.",
-        },
-        {
-          name: ["-e", "--edit"],
-          description:
-            "Open the diff vs. the index in an editor and let the user edit it. After the editor was closed, adjust the hunk headers and apply the patch to the index.",
-        },
-        {
-          name: ["-u", "--update"],
-          description:
-            "Update the index just where it already has an entry matching <pathspec>. This removes as well as modifies index entries to match the working tree, but adds no new files.",
-        },
-        {
-          name: ["-A", "--all", "--no-ignore-removal"],
-          description:
-            "Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry. This adds, modifies, and removes index entries to match the working tree.",
-        },
-        {
-          name: ["--no-all", "--ignore-removal"],
-          description:
-            "Update the index by adding new files that are unknown to the index and files modified in the working tree, but ignore files that have been removed from the working tree. This option is a no-op when no <pathspec> is used.",
-        },
-        {
-          name: ["-N", "--intent-to-add"],
-          description:
-            "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a.",
-        },
-        {
-          name: ["--refresh"],
-          description:
-            "Don’t add the file(s), but only refresh their stat() information in the index.",
-        },
-        {
-          name: ["--ignore-errors"],
-          description:
-            "If some files could not be added because of errors indexing them, do not abort the operation, but continue adding the others. The command shall still exit with non-zero status. The configuration variable add.ignoreErrors can be set to true to make this the default behaviour.",
-        },
-        {
-          name: ["--ignore-missing"],
-          description:
-            "This option can only be used together with --dry-run. By using this option the user can check if any of the given files would be ignored, no matter if they are already present in the work tree or not.",
-        },
-        {
-          name: ["--no-warn-embedded-repo"],
-          description:
-            "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules. This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
-        },
-        {
-          name: ["--renormalize"],
-          description:
-            "Apply the 'clean' process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u.",
-        },
-        {
-          name: ["--chmod"],
-          description:
-            "Override the executable bit of the added files. The executable bit is only changed in the index, the files on disk are left unchanged.",
-          insertValue: "--chmod=",
-          args: {
-            suggestions: ["+x", "-x"],
-          },
-        },
-        {
-          name: ["--pathspec-from-file"],
-          description:
-            "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config[1]). See also --pathspec-file-nul and global --literal-pathspecs.",
-          args: {
-            name: "File",
-            description: "File with pathspec",
-            template: "filepaths",
-          },
-        },
-        {
-          name: ["--pathspec-file-nul"],
-          description:
-            "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
-        },
-        {
-          name: "--",
-          description:
-            "This option can be used to separate command-line options from the list of files.",
-        },
-      ],
+      options: addOptions,
       args: {
         name: "pathspec",
         variadic: true,
@@ -2231,21 +2133,100 @@ var completionSpec = {
     {
       name: "remote",
       description: "Manage remote repository",
-      insertValue: "remote {cursor}",
       subcommands: [
         {
           name: "add",
-          insertValue: "add {cursor}",
-          description: "add repo ",
+          description: "Add a remote named <name> for the repository at <url>",
+          args: [{ name: "name" }, { name: "repository url" }],
+          options: [
+            {
+              name: "-t",
+              description: "A refspec to track only <branch> is created.",
+              args: {
+                name: "branch",
+              },
+            },
+            {
+              name: "-m",
+              description:
+                "A symbolic-ref refs/remotes/<name>/HEAD is set up to point at remote’s <master> branch.",
+              args: {
+                name: "master",
+              },
+            },
+            {
+              name: "-f",
+              description:
+                "git fetch <name> is run immediately after the remote information is set up",
+            },
+            {
+              name: "--tags",
+              description:
+                "git fetch <name> imports every tag from the remote repository",
+            },
+            {
+              name: "--no-tags",
+              description:
+                "git fetch <name> does not import tags from the remote repository",
+            },
+            {
+              name: "--mirror",
+              insertValue: "--mirror=",
+              description: "Create fetch or push mirror",
+              args: {
+                suggestions: ["fetch", "push"],
+              },
+            },
+          ],
         },
         {
           name: "set-head",
-          insertValue: "set-head",
           description: "Sets or deletes the default branch",
+          args: [
+            {
+              name: "name",
+            },
+            {
+              name: "branch",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: ["--auto", "-a"],
+              description:
+                "the remote is queried to determine its HEAD, then the symbolic-ref refs/remotes/<name>/HEAD is set to the same branch.",
+            },
+            {
+              name: ["--delete", "-d"],
+              description:
+                "the symbolic ref refs/remotes/<name>/HEAD is deleted.",
+            },
+          ],
         },
         {
-          name: "rm",
-          insertValue: "rm",
+          name: "set-branches",
+          description:
+            "Changes the list of branches tracked by the named remote. This can be used to track a subset of the available remote branches after the initial setup for a remote.",
+          options: [
+            {
+              name: "--add",
+              description:
+                "instead of replacing the list of currently tracked branches, adds to that list",
+            },
+          ],
+          args: [
+            {
+              name: "name",
+            },
+            {
+              name: "branch",
+              variadic: true,
+            },
+          ],
+        },
+        {
+          name: ["rm", "remove"],
           description: "Removes given remote [name]",
           args: {
             name: "remote",
@@ -2253,35 +2234,130 @@ var completionSpec = {
           },
         },
         {
+          name: "rename",
+          description: "Removes given remote [name]",
+          args: [
+            {
+              name: "old remote",
+              generators: gitGenerators.remotes,
+            },
+            {
+              name: "new remote name",
+            },
+          ],
+        },
+        {
           name: "get-url",
-          insertValue: "get-url",
           description: "Retrieves the URLs for a remote",
+          options: [
+            {
+              name: "--push",
+              description: "push URLs are queried rather than fetch URLs.",
+            },
+            {
+              name: "--all",
+              description: "all URLs for the remote will be listed",
+            },
+          ],
+          args: {
+            name: "name",
+          },
         },
         {
           name: "set-url",
-          insertValue: "set-url {cursor}",
           description: "Changes the URLs for the remote",
+          args: [
+            {
+              name: "name",
+            },
+            {
+              name: "newurl",
+            },
+            {
+              name: "oldurl",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: "--push",
+              description: "push URLs are manipulated instead of fetch URLs.",
+            },
+            {
+              name: "--add",
+              description:
+                "instead of changing existing URLs, new URL is added.",
+            },
+            {
+              name: "--delete",
+              description:
+                "instead of changing existing URLs, all URLs matching regex <url> are deleted for remote <name>. ",
+            },
+          ],
         },
         {
           name: "show",
           description: "Gives some information about the remote [name]",
+          args: {
+            name: "name",
+            variadic: true,
+          },
+          options: [
+            {
+              name: "-n",
+              description:
+                "the remote heads are not queried first with git ls-remote <name>; cached information is used instead.",
+            },
+          ],
         },
         {
           name: "prune",
           description:
             "Equivalent to git fetch --prune [name], except that no new references will be fetched",
+          args: {
+            name: "name",
+            variadic: true,
+          },
+          options: [
+            {
+              name: "-n",
+            },
+            {
+              name: "--dry-run",
+              description:
+                "report what branches would be pruned, but do not actually prune them.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description:
+            "Fetch updates for remotes or remote groups in the repository as defined by remotes.<group>.",
+          options: [
+            {
+              name: ["-p", "--prune"],
+              description: "",
+            },
+          ],
+          args: [
+            {
+              name: "group",
+              isOptional: true,
+              variadic: true,
+            },
+            {
+              name: "remote",
+              isOptional: true,
+              variadic: true,
+            },
+          ],
         },
       ],
       options: [
         {
-          name: "-f",
-          insertValue: "-f",
-          description: "Fetch after remote info is added",
-        },
-        {
-          name: "--tags",
-          insertValue: "--tags",
-          description: "Import tags from remote",
+          name: ["-v", "--verbose"],
+          description:
+            "Be a little more verbose and show remote url after name. NOTE: This must be placed between remote and subcommand",
         },
       ],
     },
@@ -3050,15 +3126,26 @@ var completionSpec = {
           description: "Create a bare repository",
         },
         {
-          name: ["--object-format="],
+          name: ["--object-format"],
           description: "Specify the given object format",
           args: {
             name: "format",
+            suggestions: ["sha1", "sha256"],
           },
         },
         {
-          name: "separate-git-dir",
-          description: "C",
+          name: "--template",
+          description:
+            "Specify the directory from which templates will be used.",
+          args: {
+            name: "template_directory",
+            template: "folders",
+          },
+        },
+        {
+          name: "--separate-git-dir",
+          description:
+            "Instead of initializing the repository as a directory to either $GIT_DIR or ./.git/, create a text file there containing the path to the actual repository. This file acts as filesystem-agnostic Git symbolic link to the repository.",
           args: {
             name: "git dir",
           },
@@ -3067,36 +3154,52 @@ var completionSpec = {
           name: ["-b", "--initial-branch"],
           description: "initial branch for new repo",
           args: {
-            name: "branch",
+            isOptional: true,
+            name: "branch-name",
           },
         },
         {
           name: ["--shared"],
+          description:
+            "Specify that the Git repository is to be shared amongst several users. This allows users belonging to the same group to push into that repository.",
           args: {
+            isOptional: true,
             suggestions: [
               {
                 name: "false",
+                description: "Use permissions reported by umask(2)",
               },
               {
                 name: "true",
+                description: "Make the repository group-writable",
               },
               {
                 name: "umask",
+                description: "Use permissions reported by umask(2)",
               },
               {
                 name: "group",
+                description: "Make the repository group-writable",
               },
               {
                 name: "all",
+                description:
+                  "Same as group, but make the repository readable by all users.",
               },
               {
                 name: "world",
+                description:
+                  "Same as group, but make the repository readable by all users.",
               },
               {
                 name: "everybody",
+                description:
+                  "Same as group, but make the repository readable by all users.",
               },
               {
                 name: "0xxx",
+                description:
+                  "0xxx is an octal number and each file will have mode 0xxx. 0xxx will override users' umask(2) value (and not only loosen permissions as group and all does).",
               },
             ],
           },
@@ -3448,6 +3551,383 @@ var completionSpec = {
           isOptional: true,
           variadic: true,
           template: "filepaths",
+        },
+      ],
+    },
+    {
+      name: "submodule",
+      description: " Initialize, update or inspect submodules",
+      subcommands: [
+        {
+          name: "add",
+          description:
+            "Add the given repository as a submodule at the given path to the changeset to be committed next to the current project",
+          options: [
+            {
+              name: "-b",
+              description: "Branch of repository to add as submodule.",
+              args: {
+                name: "branch",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "allow adding an otherwise ignored submodule path",
+            },
+            {
+              name: "--name",
+              description:
+                "It sets the submodule’s name to the given string instead of defaulting to its path",
+              insertValue: "--name '{cursor}'",
+              args: {
+                name: "name",
+                description: "directory name",
+              },
+            },
+            {
+              name: "--reference",
+              description: "remote repository to be cloned",
+              args: {
+                name: "repository",
+                description: "remote repository to be cloned",
+              },
+            },
+            {
+              name: "--depth",
+              description:
+                "Create a shallow clone with a history truncated to the specified number of revisions.",
+              args: {
+                name: "depth",
+                description: "specified number of revisions",
+              },
+            },
+            {
+              name: "--",
+              description: "end of subcommand options",
+            },
+          ],
+          args: [
+            {
+              name: "repository",
+            },
+            {
+              name: "path",
+              isOptional: true,
+              template: "filepaths",
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "Show the status of the submodules",
+          options: [
+            {
+              name: "--cached",
+              description:
+                "will instead print the SHA-1 recorded in the superproject for each submodule.",
+            },
+            {
+              name: "--recursive",
+              description:
+                "will recurse into nested submodules, and show their status as well.",
+            },
+            {
+              name: "--",
+              description: "end of subcommand options",
+            },
+          ],
+          args: {
+            name: "path",
+            isOptional: true,
+            variadic: true,
+            template: "filepaths",
+          },
+        },
+        {
+          name: "init",
+          description: "Initialize the submodules recorded in the index",
+          options: [
+            {
+              name: "--",
+              description: "end of subcommand options",
+            },
+          ],
+          args: {
+            name: "path",
+            isOptional: true,
+            variadic: true,
+            template: "filepaths",
+          },
+        },
+        {
+          name: "deinit",
+          description: "Unregister the given submodules",
+          options: [
+            {
+              name: ["-f", "--force"],
+              description:
+                "the submodule’s working tree will be removed even if it contains local modifications.",
+            },
+            {
+              name: "--all",
+              description: "Unregister all submodules in the working tree.",
+            },
+            {
+              name: "--",
+              description: "end of subcommand options",
+            },
+          ],
+          args: {
+            name: "path",
+            isOptional: true,
+            variadic: true,
+            template: "filepaths",
+          },
+        },
+        {
+          name: "update",
+          description:
+            "Update the registered submodules to match what the superproject expects by cloning missing submodules, fetching missing commits in submodules and updating the working tree of the submodules.",
+          options: [
+            {
+              name: "--init",
+              description:
+                "Initialize all submodules for which 'git submodule init' has not been called so far before updating",
+            },
+            {
+              name: "--remote",
+              description:
+                "Instead of using the superproject’s recorded SHA-1 to update the submodule, use the status of the submodule’s remote-tracking branch.",
+            },
+            {
+              name: ["-N", "--no-fetch"],
+              description: "Don’t fetch new objects from the remote site.",
+            },
+            {
+              name: "--no-recommend-shallow",
+              description: "ignore the suggestions",
+            },
+            {
+              name: "--recommend-shallow",
+              description:
+                "The initial clone of a submodule will use the recommended submodule.<name>.shallow as provided by the .gitmodules file",
+            },
+            {
+              name: ["-f", "--force"],
+              description:
+                "throw away local changes in submodules when switching to a different commit; and always run a checkout operation in the submodule, even if the commit listed in the index of the containing repository matches the commit checked out in the submodule.",
+            },
+            {
+              name: "--checkout",
+              description:
+                "the commit recorded in the superproject will be checked out in the submodule on a detached HEAD.",
+            },
+            {
+              name: "--rebase",
+              description:
+                "the current branch of the submodule will be rebased onto the commit recorded in the superproject.",
+            },
+            {
+              name: "--merge",
+              description:
+                "the commit recorded in the superproject will be merged into the current branch in the submodule.",
+            },
+            {
+              name: "--reference",
+              description: "remote repository",
+              args: {
+                name: "repository",
+              },
+            },
+            {
+              name: "--depth",
+              description:
+                "Create a shallow clone with a history truncated to the specified number of revisions.",
+              args: {
+                name: "depth",
+              },
+            },
+            {
+              name: "--recursive",
+              description: "Traverse submodules recursively",
+            },
+            {
+              name: "--jobs",
+              description:
+                "Clone new submodules in parallel with as many jobs.",
+              args: {
+                name: "n",
+              },
+            },
+            {
+              name: "--single-branch",
+              description:
+                "Clone only one branch during update: HEAD or one specified by --branch.",
+            },
+            {
+              name: "--no-single-branch",
+              description:
+                "Don't clone only one branch during update: HEAD or one specified by --branch.",
+            },
+            { name: "--", description: "end of subcommand options" },
+          ],
+          args: {
+            name: "path",
+            isOptional: true,
+            variadic: true,
+            template: "filepaths",
+          },
+        },
+        {
+          name: "set-branch",
+          description:
+            "Sets the default remote tracking branch for the submodule",
+          options: [
+            {
+              name: ["-b", "--branch"],
+              description: "Branch of repository to add as submodule",
+              args: {
+                name: "branch",
+                description: "remote branch to be specified",
+              },
+            },
+            {
+              name: ["-d", "--default"],
+              description:
+                "removes the submodule.<name>.branch configuration key, which causes the tracking branch to default to the remote HEAD.",
+            },
+            {
+              name: "--",
+              description: "End of subcommand options",
+            },
+          ],
+          args: {
+            name: "path",
+            description: "path to submodule",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "set-url",
+          description: "Sets the URL of the specified submodule to <newurl>.",
+          options: [
+            {
+              name: "--",
+              description: "end of command options",
+            },
+          ],
+          args: [
+            {
+              name: "path",
+              description: "Path to specified submodule",
+              template: "filepaths",
+            },
+            {
+              name: "newurl",
+              description: "new url of submodule",
+            },
+          ],
+        },
+        {
+          name: "summary",
+          description:
+            "Show commit summary between the given commit (defaults to HEAD) and working tree/index.",
+          options: [
+            {
+              name: "--cached",
+              description:
+                "this command will recurse into the registered submodules, and sync any nested submodules within.",
+            },
+            {
+              name: "--files",
+              description:
+                "show the series of commits in the submodule between the index of the super project and the working tree of the submodule",
+            },
+            {
+              name: "-n",
+              description:
+                " Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules.",
+              args: {
+                name: "n",
+              },
+            },
+            {
+              name: "--summary-limit",
+              description:
+                " Limit the summary size (number of commits shown in total). Giving 0 will disable the summary; a negative number means unlimited (the default). This limit only applies to modified submodules. The size is always limited to 1 for added/deleted/typechanged submodules.",
+              args: {
+                name: "n",
+              },
+            },
+            {
+              name: "--",
+              description: "everything after this is an argument",
+            },
+          ],
+          args: [
+            {
+              name: "commit",
+              isOptional: true,
+            },
+            {
+              name: "path",
+              isOptional: true,
+              variadic: true,
+              template: "filepaths",
+            },
+          ],
+        },
+        {
+          name: "foreach",
+          description:
+            "Evaluates an arbitrary shell command in each checked out submodule",
+          options: [
+            {
+              name: "--recursive",
+              description:
+                "this command will recurse into the registered submodules, and sync any nested submodules within.",
+            },
+          ],
+          args: {
+            name: "command",
+          },
+        },
+        {
+          name: "sync",
+          description:
+            "Synchronizes submodules' remote URL configuration setting to the value specified in .gitmodules.",
+          options: [
+            {
+              name: "--recursive",
+              description:
+                "this command will recurse into the registered submodules, and sync any nested submodules within.",
+            },
+            {
+              name: "--",
+              description: "everything after this is an argument",
+            },
+          ],
+          args: {
+            name: "path",
+            isOptional: true,
+            variadic: true,
+            template: "filepaths",
+          },
+        },
+        {
+          name: "absorbgitdirs",
+          description:
+            "If a git directory of a submodule is inside the submodule, move the git directory of the submodule into its superproject’s $GIT_DIR/modules path and then connect the git directory and its working directory by setting the core.worktree and adding a .git file pointing to the git directory embedded in the superprojects git directory.",
+        },
+      ],
+      options: [
+        {
+          name: ["-q", "--quiet"],
+          description: "Only print error messages.",
+        },
+        {
+          name: ["--cached"],
+          description: " the commit stored in the index is used instead.",
         },
       ],
     },
