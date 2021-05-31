@@ -1,5 +1,3 @@
-import { formatDiagnostic, getNameOfDeclaration } from "typescript";
-
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",
