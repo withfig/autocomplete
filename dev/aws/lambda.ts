@@ -1,4 +1,187 @@
-const ttl = 30000;
+import { formatDiagnostic, getNameOfDeclaration } from "typescript";
+
+const awsPrincipals = [
+  "a4b.amazonaws.com",
+  "acm-pca.amazonaws.com",
+  "acm.amazonaws.com",
+  "alexa-appkit.amazon.com",
+  "alexa-connectedhome.amazon.com",
+  "amazonmq.amazonaws.com",
+  "apigateway.amazonaws.com",
+  "appflow.amazonaws.com",
+  "application-autoscaling.amazonaws.com",
+  "appstream.application-autoscaling.amazonaws.com",
+  "appsync.amazonaws.com",
+  "athena.amazonaws.com",
+  "autoscaling.amazonaws.com",
+  "aws-artifact-account-sync.amazonaws.com",
+  "backup.amazonaws.com",
+  "batch.amazonaws.com",
+  "billingconsole.amazonaws.com",
+  "budgets.amazonaws.com",
+  "ce.amazonaws.com",
+  "channels.lex.amazonaws.com",
+  "chime.amazonaws.com",
+  "cloud9.amazonaws.com",
+  "clouddirectory.amazonaws.com",
+  "cloudformation.amazonaws.com",
+  "cloudfront.amazonaws.com",
+  "cloudhsm.amazonaws.com",
+  "cloudsearch.amazonaws.com",
+  "cloudtrail.amazonaws.com",
+  "cloudwatch-crossaccount.amazonaws.com",
+  "codebuild.amazonaws.com",
+  "codecommit.amazonaws.com",
+  "codedeploy.${AWS::Region}.amazonaws.com",
+  "codedeploy.amazonaws.com",
+  "codepipeline.amazonaws.com",
+  "codestar.amazonaws.com",
+  "cognito-identity.amazonaws.com",
+  "cognito-idp.amazonaws.com",
+  "cognito-sync.amazonaws.com",
+  "config-conforms.amazonaws.com",
+  "config-multiaccountsetup.amazonaws.com",
+  "config.amazonaws.com",
+  "connect.amazonaws.com",
+  "continuousexport.discovery.amazonaws.com",
+  "custom-resource.application-autoscaling.amazonaws.com",
+  "databrew.amazonaws.com",
+  "datapipeline.amazonaws.com",
+  "dax.amazonaws.com",
+  "deeplens.amazonaws.com",
+  "delivery.logs.amazonaws.com",
+  "diode.amazonaws.com",
+  "directconnect.amazonaws.com",
+  "discovery.amazonaws.com",
+  "dlm.amazonaws.com",
+  "dms.amazonaws.com",
+  "ds.amazonaws.com",
+  "dynamodb.amazonaws.com",
+  "dynamodb.application-autoscaling.amazonaws.com",
+  "ec.amazonaws.com",
+  "ec2.amazonaws.com",
+  "ec2.application-autoscaling.amazonaws.com",
+  "ec2fleet.amazonaws.com",
+  "ec2scheduled.amazonaws.com",
+  "ecr.amazonaws.com",
+  "ecs-tasks.amazonaws.com",
+  "ecs.amazonaws.com",
+  "ecs.application-autoscaling.amazonaws.com",
+  "edgelambda.amazonaws.com",
+  "eks.amazonaws.com",
+  "elasticache.amazonaws.com",
+  "elasticbeanstalk.amazonaws.com",
+  "elasticfilesystem.amazonaws.com",
+  "elasticloadbalancing.amazonaws.com",
+  "elasticmapreduce.amazonaws.com",
+  "elastictranscoder.amazonaws.com",
+  "email.cognito-idp.amazonaws.com",
+  "es.amazonaws.com",
+  "events.amazonaws.com",
+  "firehose.amazonaws.com",
+  "fms.amazonaws.com",
+  "freertos.amazonaws.com",
+  "fsx.amazonaws.com",
+  "gamelift.amazonaws.com",
+  "glacier.amazonaws.com",
+  "globalaccelerator.amazonaws.com",
+  "glue.amazonaws.com",
+  "greengrass.amazonaws.com",
+  "guardduty.amazonaws.com",
+  "health.amazonaws.com",
+  "iam.amazonaws.com",
+  "importexport.amazonaws.com",
+  "inspector.amazonaws.com",
+  "iot.amazonaws.com",
+  "iotanalytics.amazonaws.com",
+  "iotevents.amazonaws.com",
+  "iotsitewise.amazonaws.com",
+  "iotthingsgraph.amazonaws.com",
+  "jellyfish.amazonaws.com",
+  "kafka.amazonaws.com",
+  "kinesis.amazonaws.com",
+  "kinesisanalytics.amazonaws.com",
+  "kms.amazonaws.com",
+  "lakeformation.amazonaws.com",
+  "lambda.amazonaws.com",
+  "lex.amazonaws.com",
+  "license-manager.amazonaws.com",
+  "lightsail.amazonaws.com",
+  "logger.cloudfront.amazonaws.com",
+  "logs.amazonaws.com",
+  "machinelearning.amazonaws.com",
+  "macie.amazonaws.com",
+  "managedservices.amazonaws.com",
+  "mediaconnect.amazonaws.com",
+  "mediaconvert.amazonaws.com",
+  "mediapackage.amazonaws.com",
+  "mediastore.amazonaws.com",
+  "mediatailor.amazonaws.com",
+  "member.org.stacksets.cloudformation.amazonaws.com",
+  "metering-marketplace.amazonaws.com",
+  "migrationhub.amazonaws.com",
+  "mobilehub.amazonaws.com",
+  "monitoring.amazonaws.com",
+  "monitoring.rds.amazonaws.com",
+  "ops.apigateway.amazonaws.com",
+  "opsworks-cm.amazonaws.com",
+  "opsworks.amazonaws.com",
+  "organizations.amazonaws.com",
+  "pinpoint.amazonaws.com",
+  "polly.amazonaws.com",
+  "qldb.amazonaws.com",
+  "quicksight.amazonaws.com",
+  "ram.amazonaws.com",
+  "rds.amazonaws.com",
+  "redshift.amazonaws.com",
+  "rekognition.amazonaws.com",
+  "replication.dynamodb.amazonaws.com",
+  "replicator.lambda.amazonaws.com",
+  "resource-groups.amazonaws.com",
+  "robomaker.amazonaws.com",
+  "route53.amazonaws.com",
+  "route53domains.amazonaws.com",
+  "route53resolver.amazonaws.com",
+  "s3.amazonaws.com",
+  "sagemaker.amazonaws.com",
+  "secretsmanager.amazonaws.com",
+  "securityhub.amazonaws.com",
+  "serverlessrepo.amazonaws.com",
+  "servicecatalog.amazonaws.com",
+  "servicediscovery.amazonaws.com",
+  "ses.amazonaws.com",
+  "shield.amazonaws.com",
+  "signer.amazonaws.com",
+  "signin.amazonaws.com",
+  "sms.amazonaws.com",
+  "sns.amazonaws.com",
+  "spotfleet.amazonaws.com",
+  "sqs.amazonaws.com",
+  "ssm.amazonaws.com",
+  "sso.amazonaws.com",
+  "states.amazonaws.com",
+  "storagegateway.amazonaws.com",
+  "sts.amazonaws.com",
+  "support.amazonaws.com",
+  "swf.amazonaws.com",
+  "tagging.amazonaws.com",
+  "tagpolicies.tag.amazonaws.com",
+  "transcribe.amazonaws.com",
+  "transfer.amazonaws.com",
+  "translate.amazonaws.com",
+  "trustedadvisor.amazonaws.com",
+  "tts.amazonaws.com",
+  "vmie.amazonaws.com",
+  "waf-regional.amazonaws.com",
+  "waf.amazonaws.com",
+  "workdocs.amazonaws.com",
+  "worklink.amazonaws.com",
+  "workmail.amazonaws.com",
+  "workspaces.amazonaws.com",
+  "xray.amazonaws.com",
+];
+
+const ttl = 15000;
 
 const postPrecessGenerator = (
   out: string,
@@ -44,6 +227,16 @@ const listCustomGenerator = async (
     const out = await executeShellCommand(cmd);
 
     const policies = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(policies)) {
+      return [
+        {
+          name: policies,
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
     return policies.map((elm) => {
       const name = (childKey ? elm[childKey] : elm) as string;
       return {
@@ -51,6 +244,69 @@ const listCustomGenerator = async (
         icon: "fig://icon?type=aws",
       };
     });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const listCustomSIDGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[]
+): Promise<any> => {
+  try {
+    let cmd = `aws lambda ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        return [];
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const policies = JSON.parse(out)["Policy"];
+    const statement = JSON.parse(policies)["Statement"];
+    return statement.map((elm) => {
+      return {
+        name: elm["Sid"],
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const MultiSuggestionsGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  enabled: any[]
+) => {
+  try {
+    const list: Fig.Suggestion[][] = [];
+    const promises: Promise<string>[] = [];
+    for (let i = 0; i < enabled.length; i++) {
+      promises[i] = executeShellCommand(enabled[i]["command"]);
+    }
+    const result = await Promise.all(promises);
+
+    for (let i = 0; i < enabled.length; i++) {
+      list[i] = postPrecessGenerator(
+        result[i],
+        enabled[i]["parentKey"],
+        enabled[i]["childKey"]
+      );
+    }
+
+    return list.flat();
   } catch (e) {
     console.log(e);
   }
@@ -227,6 +483,117 @@ const generators: Record<string, Fig.Generator> = {
       ttl: ttl,
     },
   },
+
+  getFunctionPolicyRevisionId: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-policy",
+        ["--function-name"],
+        "RevisionId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listLambdaFunctions: {
+    script: "aws lambda list-functions",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Functions", "FunctionArn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  awsPrincipals: {
+    custom: async () => {
+      return awsPrincipals.map((elm) => ({ name: elm }));
+    },
+  },
+
+  listAliases: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-aliases",
+        ["--function-name"],
+        "Aliases",
+        "Name"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listVersions: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-versions-by-function",
+        ["--function-name"],
+        "Versions",
+        "Version"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSIDs: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomSIDGenerator(
+        context,
+        executeShellCommand,
+        "get-policy",
+        ["--function-name"]
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listLayerVersionSIDs: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomSIDGenerator(
+        context,
+        executeShellCommand,
+        "get-layer-version-policy",
+        ["--layer-name", "--version-number"]
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listEventSourceArns: {
+    custom: async function (context, executeShellCommand) {
+      return MultiSuggestionsGenerator(context, executeShellCommand, [
+        {
+          command: "aws dynamodbstreams list-streams",
+          parentKey: "Streams",
+          childKey: "StreamArn",
+        },
+        {
+          command: "aws kafka list-clusters",
+          parentKey: "ClusterInfoList",
+          childKey: "ClusterArn",
+        },
+      ]);
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -261,6 +628,7 @@ export const completionSpec: Fig.Spec = {
             "An identifier that distinguishes the policy from others on the same layer version.",
           args: {
             name: "string",
+            generators: generators.listLayerVersionSIDs,
           },
         },
         {
@@ -329,6 +697,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
           args: {
             name: "string",
+            generators: generators.listLambdaFunctions,
           },
         },
         {
@@ -337,6 +706,7 @@ export const completionSpec: Fig.Spec = {
             "A statement identifier that differentiates the statement from others in the same policy.",
           args: {
             name: "string",
+            generators: generators.listSIDs,
           },
         },
         {
@@ -353,6 +723,7 @@ export const completionSpec: Fig.Spec = {
             "The AWS service or account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service.",
           args: {
             name: "string",
+            generators: [generators.getPrincipal, generators.awsPrincipals],
           },
         },
         {
@@ -369,6 +740,7 @@ export const completionSpec: Fig.Spec = {
             "For Amazon S3, the ID of the account that owns the resource. Use this together with SourceArn to ensure that the resource is owned by the specified account. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.",
           args: {
             name: "string",
+            generators: generators.getPrincipal,
           },
         },
         {
@@ -385,6 +757,7 @@ export const completionSpec: Fig.Spec = {
             "Specify a version or alias to add permissions to a published version of the function.",
           args: {
             name: "string",
+            generators: [generators.listVersions, generators.listAliases],
           },
         },
         {
@@ -393,6 +766,7 @@ export const completionSpec: Fig.Spec = {
             "Only update the policy if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.",
           args: {
             name: "string",
+            generators: generators.getFunctionPolicyRevisionId,
           },
         },
         {
@@ -401,6 +775,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -425,6 +800,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
           args: {
             name: "string",
+            generators: generators.listLambdaFunctions,
           },
         },
         {
@@ -439,6 +815,7 @@ export const completionSpec: Fig.Spec = {
           description: "The function version that the alias invokes.",
           args: {
             name: "string",
+            generators: generators.listVersions,
           },
         },
         {
@@ -453,6 +830,7 @@ export const completionSpec: Fig.Spec = {
           description: "The routing configuration of the alias.",
           args: {
             name: "structure",
+            description: "AdditionalVersionWeights={Key1=double,Key2=double}",
           },
         },
         {
@@ -461,6 +839,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -491,6 +870,7 @@ export const completionSpec: Fig.Spec = {
           description: "Signing profiles for this code signing configuration.",
           args: {
             name: "structure",
+            description: "SigningProfileVersionArns=string,string",
           },
         },
         {
@@ -499,6 +879,10 @@ export const completionSpec: Fig.Spec = {
             "The code signing policies define the actions to take if the validation checks fail.",
           args: {
             name: "structure",
+            suggestions: [
+              "UntrustedArtifactOnDeployment=Warn",
+              "UntrustedArtifactOnDeployment=Enforce",
+            ],
           },
         },
         {
@@ -507,6 +891,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -531,6 +916,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis - The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams - The ARN of the stream.    Amazon Simple Queue Service - The ARN of the queue.    Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.",
           args: {
             name: "string",
+            generators: generators.listEventSourceArns,
           },
         },
         {
