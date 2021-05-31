@@ -260,10 +260,12 @@ var listCustomGenerator = function (context, executeShellCommand, command, optio
                     out = _a.sent();
                     policies = JSON.parse(out)[parentKey];
                     if (!Array.isArray(policies)) {
-                        return [2 /*return*/, [{
+                        return [2 /*return*/, [
+                                {
                                     name: policies,
                                     icon: "fig://icon?type=aws",
-                                }]];
+                                },
+                            ]];
                     }
                     return [2 /*return*/, policies.map(function (elm) {
                             var name = (childKey ? elm[childKey] : elm);
@@ -513,7 +515,7 @@ var generators = {
             return __generator(this, function (_a) {
                 return [2 /*return*/, awsPrincipals.map(function (elm) { return ({ name: elm }); })];
             });
-        }); }
+        }); },
     },
     listAliases: {
         custom: function (context, executeShellCommand) {
@@ -568,8 +570,16 @@ var generators = {
             return __awaiter(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     return [2 /*return*/, MultiSuggestionsGenerator(context, executeShellCommand, [
-                            { command: "aws dynamodbstreams list-streams", parentKey: "Streams", childKey: "StreamArn" },
-                            { command: "aws kafka list-clusters", parentKey: "ClusterInfoList", childKey: "ClusterArn" },
+                            {
+                                command: "aws dynamodbstreams list-streams",
+                                parentKey: "Streams",
+                                childKey: "StreamArn",
+                            },
+                            {
+                                command: "aws kafka list-clusters",
+                                parentKey: "ClusterInfoList",
+                                childKey: "ClusterArn",
+                            },
                         ])];
                 });
             });
@@ -692,7 +702,7 @@ var completionSpec = {
                     description: "The AWS service or account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service.",
                     args: {
                         name: "string",
-                        generators: [generators.getPrincipal, generators.awsPrincipals]
+                        generators: [generators.getPrincipal, generators.awsPrincipals],
                     },
                 },
                 {
@@ -790,7 +800,7 @@ var completionSpec = {
                     description: "The routing configuration of the alias.",
                     args: {
                         name: "structure",
-                        description: "AdditionalVersionWeights={Key1=double,Key2=double}"
+                        description: "AdditionalVersionWeights={Key1=double,Key2=double}",
                     },
                 },
                 {
@@ -827,7 +837,7 @@ var completionSpec = {
                     description: "Signing profiles for this code signing configuration.",
                     args: {
                         name: "structure",
-                        description: "SigningProfileVersionArns=string,string"
+                        description: "SigningProfileVersionArns=string,string",
                     },
                 },
                 {
@@ -838,7 +848,7 @@ var completionSpec = {
                         suggestions: [
                             "UntrustedArtifactOnDeployment=Warn",
                             "UntrustedArtifactOnDeployment=Enforce",
-                        ]
+                        ],
                     },
                 },
                 {
