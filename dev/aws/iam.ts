@@ -1,3 +1,5 @@
+const ttl = 30000;
+
 const awsPrincipals = [
   "a4b.amazonaws.com",
   "acm-pca.amazonaws.com",
@@ -191,11 +193,10 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
   const baseLSCommand = "\\ls -1ApL ";
   let whatHasUserTyped = tokens[tokens.length - 1];
 
-  if (whatHasUserTyped.startsWith(prefix)) {
-    whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
-  } else {
+  if (!whatHasUserTyped.startsWith(prefix)) {
     return `echo '${prefix}'`;
   }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
 
   let folderPath = "";
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
@@ -226,31 +227,31 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
   };
 
   const alphabeticalSortFilesAndFolders = (arr) => {
-    const dots_arr = [];
-    const other_arr = [];
+    const dotsArray = [];
+    const otherArray = [];
 
     arr.map((elm) => {
       if (elm.toLowerCase() == ".ds_store") return;
-      if (elm.slice(0, 1) === ".") dots_arr.push(elm);
-      else other_arr.push(elm);
+      if (elm.slice(0, 1) === ".") dotsArray.push(elm);
+      else otherArray.push(elm);
     });
 
     return [
-      ...other_arr.sort(sortFnStrings),
+      ...otherArray.sort(sortFnStrings),
       "../",
-      ...dots_arr.sort(sortFnStrings),
+      ...dotsArray.sort(sortFnStrings),
     ];
   };
 
-  const temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
+  const tempArray = alphabeticalSortFilesAndFolders(out.split("\n"));
 
-  const final_array = [];
+  const finalArray = [];
 
-  temp_array.forEach((item) => {
+  tempArray.forEach((item) => {
     if (!(item === "" || item === null || item === undefined)) {
       const outputType = item.slice(-1) === "/" ? "folder" : "file";
 
-      final_array.push({
+      finalArray.push({
         type: outputType,
         name: item,
         insertValue: item,
@@ -258,7 +259,7 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
     }
   });
 
-  return final_array;
+  return finalArray;
 };
 
 const triggerPrefix = (
@@ -299,17 +300,7 @@ const listCustomGenerator = async (
     );
 
     const policies = JSON.parse(out)[parentKey];
-    return policies.map((elm) => {
-      if (childKey) {
-        return {
-          name: elm[childKey],
-        };
-      }
-
-      return {
-        name: elm,
-      };
-    });
+    return policies.map((elm) => (childKey ? elm[childKey] : elm));
   } catch (e) {
     console.log(e);
   }
@@ -323,17 +314,7 @@ const postPrecessGenerator = (
 ): Fig.Suggestion[] => {
   try {
     const list = JSON.parse(out)[parentKey];
-    return list.map((item) => {
-      if (childKey) {
-        return {
-          name: item[childKey],
-        };
-      }
-
-      return {
-        name: item,
-      };
-    });
+    return list.map((elm) => (childKey ? elm[childKey] : elm));
   } catch (error) {
     console.error(error);
   }
@@ -347,10 +328,16 @@ const MultiSuggestionsGenerator = async (
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
+    const promises: Promise<string>[] = [];
     for (let i = 0; i < enabled.length; i++) {
-      const out = await executeShellCommand(enabled[i]["command"]);
+      promises[i] = executeShellCommand(enabled[i]["command"]);
+    }
+
+    const result = await Promise.all(promises);
+
+    for (let i = 0; i < enabled.length; i++) {
       list[i] = postPrecessGenerator(
-        out,
+        result[i],
         enabled[i]["parentKey"],
         enabled[i]["childKey"]
       );
@@ -376,7 +363,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -386,7 +373,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "OpenIDConnectProviderList", "Arn");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -401,7 +388,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -416,7 +403,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -430,7 +417,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -458,7 +445,7 @@ const generators: Record<string, Fig.Generator> = {
       return [];
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -468,7 +455,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Users", "UserName");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -478,7 +465,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Users", "Arn");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -493,7 +480,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -503,7 +490,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Groups", "GroupName");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -519,7 +506,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -529,7 +516,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Policies", "Arn");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -545,7 +532,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -560,7 +547,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -576,7 +563,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -592,7 +579,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -608,7 +595,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -624,7 +611,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -634,7 +621,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Roles", "RoleName");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -649,7 +636,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -679,7 +666,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "MFADevices", "SerialNumber");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -689,7 +676,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "VirtualMFADevices", "SerialNumber");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -699,7 +686,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -709,7 +696,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "AccountAliases");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -719,7 +706,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "SAMLProviderList", "Arn");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -729,7 +716,7 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "SSHPublicKeys", "SSHPublicKeyId");
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -745,7 +732,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -759,7 +746,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -775,7 +762,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -791,7 +778,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -807,7 +794,7 @@ const generators: Record<string, Fig.Generator> = {
       ]);
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -820,7 +807,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -836,7 +823,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -852,7 +839,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -868,7 +855,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -884,7 +871,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -900,7 +887,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -916,7 +903,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -932,7 +919,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 
@@ -948,7 +935,7 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
     cache: {
-      ttl: 30000,
+      ttl: ttl,
     },
   },
 };

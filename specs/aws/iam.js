@@ -39,6 +39,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+var ttl = 30000;
 var awsPrincipals = [
     "a4b.amazonaws.com",
     "acm-pca.amazonaws.com",
@@ -228,12 +229,10 @@ var _prefixFile = "file://";
 var appendFolderPath = function (tokens, prefix) {
     var baseLSCommand = "\\ls -1ApL ";
     var whatHasUserTyped = tokens[tokens.length - 1];
-    if (whatHasUserTyped.startsWith(prefix)) {
-        whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
-    }
-    else {
+    if (!whatHasUserTyped.startsWith(prefix)) {
         return "echo '" + prefix + "'";
     }
+    whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
     var folderPath = "";
     var lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
     if (lastSlashIndex > -1) {
@@ -263,33 +262,33 @@ var postProcessFiles = function (out, prefix) {
         return a.localeCompare(b);
     };
     var alphabeticalSortFilesAndFolders = function (arr) {
-        var dots_arr = [];
-        var other_arr = [];
+        var dotsArray = [];
+        var otherArray = [];
         arr.map(function (elm) {
             if (elm.toLowerCase() == ".ds_store")
                 return;
             if (elm.slice(0, 1) === ".")
-                dots_arr.push(elm);
+                dotsArray.push(elm);
             else
-                other_arr.push(elm);
+                otherArray.push(elm);
         });
-        return __spreadArray(__spreadArray(__spreadArray([], other_arr.sort(sortFnStrings)), [
+        return __spreadArray(__spreadArray(__spreadArray([], otherArray.sort(sortFnStrings)), [
             "../"
-        ]), dots_arr.sort(sortFnStrings));
+        ]), dotsArray.sort(sortFnStrings));
     };
-    var temp_array = alphabeticalSortFilesAndFolders(out.split("\n"));
-    var final_array = [];
-    temp_array.forEach(function (item) {
+    var tempArray = alphabeticalSortFilesAndFolders(out.split("\n"));
+    var finalArray = [];
+    tempArray.forEach(function (item) {
         if (!(item === "" || item === null || item === undefined)) {
             var outputType = item.slice(-1) === "/" ? "folder" : "file";
-            final_array.push({
+            finalArray.push({
                 type: outputType,
                 name: item,
                 insertValue: item,
             });
         }
     });
-    return final_array;
+    return finalArray;
 };
 var triggerPrefix = function (newToken, oldToken, prefix) {
     if (!newToken.startsWith(prefix)) {
@@ -321,16 +320,7 @@ var listCustomGenerator = function (context, executeShellCommand, command, optio
                 case 1:
                     out = _a.sent();
                     policies = JSON.parse(out)[parentKey];
-                    return [2 /*return*/, policies.map(function (elm) {
-                            if (childKey) {
-                                return {
-                                    name: elm[childKey],
-                                };
-                            }
-                            return {
-                                name: elm,
-                            };
-                        })];
+                    return [2 /*return*/, policies.map(function (elm) { return childKey ? elm[childKey] : elm; })];
                 case 2:
                     e_1 = _a.sent();
                     console.log(e_1);
@@ -344,16 +334,7 @@ var postPrecessGenerator = function (out, parentKey, childKey) {
     if (childKey === void 0) { childKey = ""; }
     try {
         var list = JSON.parse(out)[parentKey];
-        return list.map(function (item) {
-            if (childKey) {
-                return {
-                    name: item[childKey],
-                };
-            }
-            return {
-                name: item,
-            };
-        });
+        return list.map(function (elm) { return childKey ? elm[childKey] : elm; });
     }
     catch (error) {
         console.error(error);
@@ -361,30 +342,28 @@ var postPrecessGenerator = function (out, parentKey, childKey) {
     return [];
 };
 var MultiSuggestionsGenerator = function (context, executeShellCommand, enabled) { return __awaiter(void 0, void 0, void 0, function () {
-    var list, i, out, e_2;
+    var list, promises, i, result, i, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 5, , 6]);
+                _a.trys.push([0, 2, , 3]);
                 list = [];
-                i = 0;
-                _a.label = 1;
+                promises = [];
+                for (i = 0; i < enabled.length; i++) {
+                    promises[i] = executeShellCommand(enabled[i]["command"]);
+                }
+                return [4 /*yield*/, Promise.all(promises)];
             case 1:
-                if (!(i < enabled.length)) return [3 /*break*/, 4];
-                return [4 /*yield*/, executeShellCommand(enabled[i]["command"])];
+                result = _a.sent();
+                for (i = 0; i < enabled.length; i++) {
+                    list[i] = postPrecessGenerator(result[i], enabled[i]["parentKey"], enabled[i]["childKey"]);
+                }
+                return [2 /*return*/, list.flat()];
             case 2:
-                out = _a.sent();
-                list[i] = postPrecessGenerator(out, enabled[i]["parentKey"], enabled[i]["childKey"]);
-                _a.label = 3;
-            case 3:
-                i++;
-                return [3 /*break*/, 1];
-            case 4: return [2 /*return*/, list.flat()];
-            case 5:
                 e_2 = _a.sent();
                 console.log(e_2);
-                return [3 /*break*/, 6];
-            case 6: return [2 /*return*/, []];
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/, []];
         }
     });
 }); };
@@ -402,7 +381,7 @@ var generators = {
             return [];
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listOpenIdProviders: {
@@ -411,7 +390,7 @@ var generators = {
             return postPrecessGenerator(out, "OpenIDConnectProviderList", "Arn");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listOpenIdClientsForProvider: {
@@ -423,7 +402,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listOpenIdThumbprintsForProvider: {
@@ -435,7 +414,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listInstanceProfiles: {
@@ -444,7 +423,7 @@ var generators = {
             return postPrecessGenerator(out, "InstanceProfiles", "InstanceProfileName");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listInstancePorfileRoles: {
@@ -479,7 +458,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listUsers: {
@@ -488,7 +467,7 @@ var generators = {
             return postPrecessGenerator(out, "Users", "UserName");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listUserArns: {
@@ -497,7 +476,7 @@ var generators = {
             return postPrecessGenerator(out, "Users", "Arn");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listPoliciesForUser: {
@@ -509,7 +488,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listGroups: {
@@ -518,7 +497,7 @@ var generators = {
             return postPrecessGenerator(out, "Groups", "GroupName");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listUsersInGroup: {
@@ -530,7 +509,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listIamPoliciesArn: {
@@ -539,7 +518,7 @@ var generators = {
             return postPrecessGenerator(out, "Policies", "Arn");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listVersionsForPolicy: {
@@ -551,7 +530,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listPoliciesForGroup: {
@@ -563,7 +542,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAttachedPolicyArnsForGroup: {
@@ -575,7 +554,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAttachedPolicyNamesForGroup: {
@@ -587,7 +566,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAttachedPolicyArnsForRole: {
@@ -599,7 +578,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAttachedPolicyArnsUser: {
@@ -611,7 +590,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listRoles: {
@@ -620,7 +599,7 @@ var generators = {
             return postPrecessGenerator(out, "Roles", "RoleName");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listPoliciesForRole: {
@@ -632,7 +611,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
@@ -658,7 +637,7 @@ var generators = {
             return postPrecessGenerator(out, "MFADevices", "SerialNumber");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listVirtualMfaDevices: {
@@ -667,7 +646,7 @@ var generators = {
             return postPrecessGenerator(out, "VirtualMFADevices", "SerialNumber");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAcessKeyIds: {
@@ -676,7 +655,7 @@ var generators = {
             return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAccountAliases: {
@@ -685,7 +664,7 @@ var generators = {
             return postPrecessGenerator(out, "AccountAliases");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listSamlProviders: {
@@ -694,7 +673,7 @@ var generators = {
             return postPrecessGenerator(out, "SAMLProviderList", "Arn");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listSSHPublicKeys: {
@@ -703,7 +682,7 @@ var generators = {
             return postPrecessGenerator(out, "SSHPublicKeys", "SSHPublicKeyId");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listSSHPublicKeysForUser: {
@@ -715,7 +694,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listServerCerts: {
@@ -724,7 +703,7 @@ var generators = {
             return postPrecessGenerator(out, "ServerCertificateMetadataList", "ServerCertificateName");
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listServiceSpecificCredentialsForUser: {
@@ -736,7 +715,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listSigningCertificatesForUser: {
@@ -748,7 +727,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listAllArns: {
@@ -766,7 +745,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listIdentityArns: {
@@ -778,7 +757,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listInstanceProfileTags: {
@@ -790,7 +769,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listMfaDeviceTags: {
@@ -802,7 +781,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listOpenIdProviderTags: {
@@ -814,7 +793,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listIamPolicyTags: {
@@ -826,7 +805,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listRoleTags: {
@@ -838,7 +817,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listSamlProviderTags: {
@@ -850,7 +829,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listServerCertsKeys: {
@@ -862,7 +841,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
     listUserTags: {
@@ -874,7 +853,7 @@ var generators = {
             });
         },
         cache: {
-            ttl: 30000,
+            ttl: ttl,
         },
     },
 };
