@@ -88,6 +88,46 @@ export const completion: Fig.Spec = {
     {
       name: ["bind", "bind-key"],
       description: "Bind a key to a command",
+      args: [
+        {
+          name: "key",
+          description: "The key to bind",
+        },
+        {
+          name: "command",
+          description: "The command to bind to the key",
+        },
+        {
+          name: "arguments",
+          description: "Arguments for the command",
+          variadic: true,
+          isOptional: true,
+        },
+      ],
+      options: [
+        {
+          name: "-n",
+          description: "Alias for -T root",
+        },
+        {
+          name: "-r",
+          description: "Indicate that this key may repeat",
+        },
+        {
+          name: "-N",
+          description: "Attach a note to the key",
+          args: {
+            name: "note",
+          },
+        },
+        {
+          name: "-T",
+          description: "THe key table to use",
+          args: {
+            name: "key-table",
+          },
+        },
+      ],
     },
     {
       name: ["breakp", "break-pane"],
@@ -194,6 +234,46 @@ export const completion: Fig.Spec = {
     {
       name: "choose-buffer",
       description: "Put a pane into buffer choice mode",
+      args: {
+        name: "template",
+        isOptional: true,
+        default: "paste-buffer -b '%%'",
+      },
+      options: [
+        {
+          name: "-N",
+          description: "Start without the preview",
+        },
+        {
+          name: "-Z",
+          description: "Zoom the pane",
+        },
+        {
+          name: "-r",
+          description: "Reverse the sort order",
+        },
+        formatOption,
+        {
+          name: "-f",
+          description: "Specify an initial filter",
+          args: {
+            name: "filter",
+          },
+        },
+        {
+          name: "-O",
+          description: "Specify the sort order",
+          args: {
+            name: "sort-order",
+            suggestions: ["time", "name", "size"],
+          },
+        },
+        {
+          name: "-t",
+          description: "The target pane",
+          args: panesArg,
+        },
+      ],
     },
     {
       name: "choose-client",
@@ -422,6 +502,13 @@ export const completion: Fig.Spec = {
     {
       name: ["deleteb", "delete-buffer"],
       description: "Delete a paste buffer",
+      options: [
+        {
+          name: "-b",
+          description: "The target buffer",
+          args: buffersArg,
+        },
+      ],
     },
     {
       name: ["detach", "detach-client"],
@@ -1715,7 +1802,7 @@ export const completion: Fig.Spec = {
       options: [
         {
           name: "-t",
-          description: "Displat the environment of the target-session",
+          description: "Display the environment of the target-session",
           args: sessionsArg,
         },
       ],
