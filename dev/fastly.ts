@@ -594,7 +594,7 @@ export const completionSpec: Fig.Spec = {
           name: "pack",
           description:
             "Package a pre-compiled Wasm binary for a Fastly Compute@Edge service",
-          subcommands: [],
+
           options: [
             {
               name: "--path",
