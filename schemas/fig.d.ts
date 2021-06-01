@@ -174,7 +174,7 @@ declare namespace Fig {
      *
      * If your CLI tool takes another CLI command (e.g. time , builtin... ) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in {@link {https://fig.io/docs/autocomplete/api#arg-object | Arg}.
+     * script, see `isCommand` and `isScript` in {@link https://fig.io/docs/reference/arg | Arg}.
      */
     loadSpec?: string;
     /**
@@ -342,7 +342,7 @@ declare namespace Fig {
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
-     * See our docs for more on this {@link https://fig.io/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
+     * See our docs for more on this {@link https://fig.io/docs/tutorials/building-internal-clis | Fig for Teams}
      */
     isScript?: boolean;
 
