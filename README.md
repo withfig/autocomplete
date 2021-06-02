@@ -25,7 +25,7 @@ Want to add autocomplete to a CLI tool (or make changes to an existing autocompl
 
 Completion specs are defined in a _declarative_ schema that specifies `subcommands`, `options` and `arguments`. Suggestions are generated from information in the spec or can be generated dynamically by running shell commands or reading local files.
 
-**For documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs/autocomplete/getting-started)
+**For documentation and tutorials**, visit [fig.io/docs](https://fig.io/docs)
 
 **To request autocomplete for a CLI tool**, open an [issue](https://github.com/withfig/autocomplete/issues/new/choose).
 
@@ -33,10 +33,18 @@ Completion specs are defined in a _declarative_ schema that specifies `subcomman
 
 ## 😎 Get Started
 
-Build your first spec in < 3 min: [fig.io/docs/getting-started](fig.io/docs/getting-started)
+Build your first spec in 3 or less min: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
 
-1. Fork this repo
-   [![GitHub forks](https://img.shields.io/github/forks/withfig/autocomplete.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/withfig/autocomplete/fork/)
+**Prerequisites:**
+- Early access to the Fig macOS app. 
+> If you don't have access yet, sign up for the [waitlist](https://fig.io) and say you're interested in building completions!
+- Node and NPM (or Yarn).
+
+<br/>
+
+**Setup:**
+
+1. Click [here](https://GitHub.com/withfig/autocomplete/fork/) to fork this repo. 
 
 2. Clone your forked repo and create an example spec
 
@@ -118,7 +126,7 @@ Sign up for the waitlist at [fig.io](https://fig.io?ref=github-autocomplete). Fi
 
 #### Can I use Fig to build autocomplete for my team's internal scripts and CLI tools?
 
-Yes! Check out our guide on how to [get started building autocomplete specs](https://fig.io/docs/autocomplete/getting-started).
+Yes! Check out our guide on how to [get started building autocomplete specs](https://fig.io/docs/getting-started).
 
 #### Did we miss something?
 

@@ -115,6 +115,10 @@ const packageList: Array<Fig.Suggestion> = [
     icon: "📦",
   },
   {
+    name: "quick-mail",
+    icon: "📦",
+  },
+  {
     name: "jinja2",
     icon: "📦",
   },
