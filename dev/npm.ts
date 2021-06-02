@@ -33,6 +33,7 @@ export const completionSpec: Fig.Spec = {
       description: "Install a package and its dependencies",
       args: {
         name: "package",
+        isOptional: true,
         generators: searchGenerator,
         debounce: true,
         variadic: true,
