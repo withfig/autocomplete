@@ -1,7 +1,76 @@
+const runOptions: Fig.Option[] = [
+  {
+    name: "--no-bundler",
+    description: "Skip starting the Metro bundler",
+  },
+  {
+    name: ["-d", "--device"],
+    description: "Device name to build the app on",
+    args: {
+      name: "device",
+    },
+  },
+  {
+    name: ["-p", "--port"],
+    description: "Port to start the Metro bundler on",
+    args: {
+      name: "port",
+    },
+  },
+  {
+    name: "--config",
+    description: "Use app.config.js to switch config files instead",
+    icon: "fig://icon?type=alert",
+    args: {
+      name: "config",
+      template: "filepaths",
+    },
+  },
+];
+
 export const completionSpec: Fig.Spec = {
   name: "expo",
   description: "",
   subcommands: [
+    {
+      name: "run:android",
+      description: "Run the android app binary locally",
+      icon: "fig://icon?type=android",
+      options: [
+        ...runOptions,
+        {
+          name: "--variant",
+          description: "(Android) build variant",
+          args: {
+            name: "variant",
+          },
+        },
+      ],
+    },
+    {
+      name: "run:ios",
+      description: "Run the ios app binary locally",
+      icon: "fig://icon?type=apple",
+      options: [
+        ...runOptions,
+        {
+          name: "--scheme",
+          description: "Scheme to build",
+          args: {
+            name: "scheme",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--configuration",
+          description: "Xcode configuration to use",
+          args: {
+            name: "configuration",
+            suggestions: ["Debug", "Release"],
+          },
+        },
+      ],
+    },
     {
       name: "build:android",
       description: "",
