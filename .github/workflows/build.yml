@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: 'withfig/versions'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CACHE_SPECS_TOKEN }}
           ref: main
           path: versions
       - name: Add @latest to cache
