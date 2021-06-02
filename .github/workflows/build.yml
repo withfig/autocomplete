@@ -51,6 +51,8 @@ jobs:
         run: |
           cp ./specs.zip ./versions/specs.zip
           cd versions
+          git config user.name "Build Action"
+          git config user.email "noreply@fig.io"
           git add .
           git commit -m "Updates specs to latest"
           git push origin main
