@@ -1,14 +1,18 @@
+const filter = (out: string): string => {
+  return out.startsWith("warning:") || out.startsWith("error:")
+    ? out.split("\n").slice(1).join("\n")
+    : out;
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
     script: "git log --oneline",
     postProcess: function (out) {
+      out = filter(out);
+
       if (out.startsWith("fatal:")) {
         return [];
-      }
-
-      if (out.startsWith("warning:") || out.startsWith("error:")) {
-        out = out.split("\n").slice(1).join("\n");
       }
 
       return out.split("\n").map((line) => {
@@ -26,12 +30,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
   stashes: {
     script: "git stash list",
     postProcess: function (out) {
+      out = filter(out);
+
       if (out.startsWith("fatal:")) {
         return [];
-      }
-
-      if (out.startsWith("warning:") || out.startsWith("error:")) {
-        out = out.split("\n").slice(1).join("\n");
       }
 
       return out.split("\n").map((file) => {
@@ -53,12 +55,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
   treeish: {
     script: "git diff --cached --name-only",
     postProcess: function (out) {
+      out = filter(out);
+
       if (out.startsWith("fatal:")) {
         return [];
-      }
-
-      if (out.startsWith("warning:") || out.startsWith("error:")) {
-        out = out.split("\n").slice(1).join("\n");
       }
 
       return out.split("\n").map((file) => {
@@ -76,12 +76,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
   branches: {
     script: "git branch --no-color",
     postProcess: function (out) {
+      out = filter(out);
+
       if (out.startsWith("fatal:")) {
         return [];
-      }
-
-      if (out.startsWith("warning:") || out.startsWith("error:")) {
-        out = out.split("\n").slice(1).join("\n");
       }
 
       return out.split("\n").map((elm) => {
@@ -149,12 +147,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
   files_for_staging: {
     script: "git status --short",
     postProcess: (output, context) => {
+      output = filter(output);
+
       if (output.startsWith("fatal:")) {
         return [];
-      }
-
-      if (output.startsWith("warning:") || output.startsWith("error:")) {
-        output = output.split("\n").slice(1).join("\n");
       }
 
       const items = output.split("\n").map((file) => {
