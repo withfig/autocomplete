@@ -45,6 +45,8 @@ jobs:
         with:
           repository: 'withfig/versions'
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+          path: versions
       - name: Add @latest to cache
         run: |
           cp ./specs.zip ./versions/specs.zip
