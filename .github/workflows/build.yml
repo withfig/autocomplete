@@ -40,3 +40,16 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout Cache
+        uses: actions/checkout@v2
+        with:
+          repository: 'withfig/versions'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add @latest to cache
+        run: |
+          cp ./specs.zip ./versions/specs.zip
+          cd versions
+          git add .
+          git commit -m "Updates specs to latest"
+          git push origin main
+
