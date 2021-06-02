@@ -45,7 +45,7 @@ jobs:
         with:
           repository: 'withfig/core-backend'
           token: ${{ secrets.CACHE_SPECS_TOKEN }}
-          ref: main
+          ref: master
           path: backend
       - name: Add @latest to cache
         run: |
