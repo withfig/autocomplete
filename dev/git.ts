@@ -7,6 +7,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
+      if (out.startsWith("warning:")) {
+        out = out.split("\n").slice(1).join("\n");
+      }
+
       return out.split("\n").map((line) => {
         return {
           name: line.substring(0, 7),
@@ -24,6 +28,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
     postProcess: function (out) {
       if (out.startsWith("fatal:")) {
         return [];
+      }
+
+      if (out.startsWith("warning:")) {
+        out = out.split("\n").slice(1).join("\n");
       }
 
       return out.split("\n").map((file) => {
@@ -49,6 +57,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
+      if (out.startsWith("warning:")) {
+        out = out.split("\n").slice(1).join("\n");
+      }
+
       return out.split("\n").map((file) => {
         return {
           name: file,
@@ -67,6 +79,11 @@ const gitGenerators: Record<string, Fig.Generator> = {
       if (out.startsWith("fatal:")) {
         return [];
       }
+
+      if (out.startsWith("warning:")) {
+        out = out.split("\n").slice(1).join("\n");
+      }
+
       return out.split("\n").map((elm) => {
         // current branch
         if (elm.includes("*")) {
@@ -135,6 +152,11 @@ const gitGenerators: Record<string, Fig.Generator> = {
       if (output.startsWith("fatal:")) {
         return [];
       }
+
+      if (output.startsWith("warning:")) {
+        output = output.split("\n").slice(1).join("\n");
+      }
+
       const items = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
