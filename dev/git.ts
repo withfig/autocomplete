@@ -7,7 +7,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (out.startsWith("warning:")) {
+      if (out.startsWith("warning:") || out.startsWith("error:")) {
         out = out.split("\n").slice(1).join("\n");
       }
 
@@ -30,7 +30,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (out.startsWith("warning:")) {
+      if (out.startsWith("warning:") || out.startsWith("error:")) {
         out = out.split("\n").slice(1).join("\n");
       }
 
@@ -57,7 +57,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (out.startsWith("warning:")) {
+      if (out.startsWith("warning:") || out.startsWith("error:")) {
         out = out.split("\n").slice(1).join("\n");
       }
 
@@ -80,7 +80,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (out.startsWith("warning:")) {
+      if (out.startsWith("warning:") || out.startsWith("error:")) {
         out = out.split("\n").slice(1).join("\n");
       }
 
@@ -153,7 +153,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      if (output.startsWith("warning:")) {
+      if (output.startsWith("warning:") || output.startsWith("error:")) {
         output = output.split("\n").slice(1).join("\n");
       }
 
