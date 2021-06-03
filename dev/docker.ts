@@ -1812,7 +1812,85 @@ export const completionSpec: Fig.Spec = {
     {
       name: "config",
       description: "Manage Docker configs",
-      // TODO Subcommands
+      subcommands: [
+        {
+          name: "create",
+          description: "Create a config from a file or STDIN",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+          options: [
+            {
+              name: "-l,",
+              description: " Config labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--template-driver",
+              description: " Template driver",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "inspect",
+          description: " Display detailed information on one or more configs",
+          args: {
+            name: "CONFIG",
+            variadic: true,
+          },
+          options: [
+            {
+              name: "-f,",
+              description: " Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pretty",
+              description: "Print the information in a human friendly format",
+            },
+          ],
+        },
+        {
+          name: "ls",
+          description: "List configs",
+          options: [
+            {
+              name: "-f,",
+              description: " Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: " Pretty-print configs using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "-q, --quiet",
+              description: " Only display IDs",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more configs",
+          args: {
+            name: "CONFIG",
+            variadic: true,
+          },
+        },
+      ],
     },
     {
       name: "container",
