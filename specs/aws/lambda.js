@@ -219,6 +219,55 @@ var awsPrincipals = [
     "workspaces.amazonaws.com",
     "xray.amazonaws.com",
 ];
+var awsRegions = [
+    "af-south-1",
+    "eu-north-1",
+    "ap-south-1",
+    "eu-west-3",
+    "eu-west-2",
+    "eu-south-1",
+    "eu-west-1",
+    "ap-northeast-3",
+    "ap-northeast-2",
+    "me-south-1",
+    "ap-northeast-1",
+    "sa-east-1",
+    "ca-central-1",
+    "ap-east-1",
+    "ap-southeast-1",
+    "ap-southeast-2",
+    "eu-central-1",
+    "us-east-1",
+    "us-east-2",
+    "us-west-1",
+    "us-west-2"
+];
+var runtimes = [
+    "nodejs",
+    "nodejs4.3",
+    "nodejs6.10",
+    "nodejs8.10",
+    "nodejs10.x",
+    "nodejs12.x",
+    "nodejs14.x",
+    "java8",
+    "java8.al2",
+    "java11",
+    "python2.7",
+    "python3.6",
+    "python3.7",
+    "python3.8",
+    "dotnetcore1.0",
+    "dotnetcore2.0",
+    "dotnetcore2.1",
+    "dotnetcore3.1",
+    "nodejs4.3-edge",
+    "go1.x",
+    "ruby2.5",
+    "ruby2.7",
+    "provided",
+    "provided.al2",
+];
 var ttl = 15000;
 var postPrecessGenerator = function (out, parentKey, childKey) {
     if (childKey === void 0) { childKey = ""; }
@@ -240,7 +289,7 @@ var postPrecessGenerator = function (out, parentKey, childKey) {
 var listCustomGenerator = function (context, executeShellCommand, command, options, parentKey, childKey) {
     if (childKey === void 0) { childKey = ""; }
     return __awaiter(void 0, void 0, Promise, function () {
-        var cmd, i, option, idx, param, out, policies, e_1;
+        var cmd, i, option, idx, param, out, list, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -258,16 +307,16 @@ var listCustomGenerator = function (context, executeShellCommand, command, optio
                     return [4 /*yield*/, executeShellCommand(cmd)];
                 case 1:
                     out = _a.sent();
-                    policies = JSON.parse(out)[parentKey];
-                    if (!Array.isArray(policies)) {
+                    list = JSON.parse(out)[parentKey];
+                    if (!Array.isArray(list)) {
                         return [2 /*return*/, [
                                 {
-                                    name: policies,
+                                    name: list[childKey],
                                     icon: "fig://icon?type=aws",
                                 },
                             ]];
                     }
-                    return [2 /*return*/, policies.map(function (elm) {
+                    return [2 /*return*/, list.map(function (elm) {
                             var name = (childKey ? elm[childKey] : elm);
                             return {
                                 name: name,
@@ -516,6 +565,18 @@ var generators = {
             ttl: ttl,
         },
     },
+    getFunctionRevisionId: {
+        custom: function (context, executeShellCommand) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "get-function", ["--function-name"], "Configuration", "RevisionId")];
+                });
+            });
+        },
+        cache: {
+            ttl: ttl,
+        },
+    },
     listLambdaFunctions: {
         script: "aws lambda list-functions",
         postProcess: function (out) {
@@ -547,8 +608,29 @@ var generators = {
     listVersions: {
         custom: function (context, executeShellCommand) {
             return __awaiter(this, void 0, void 0, function () {
+                var idx, cmd, out, list, e_4;
                 return __generator(this, function (_a) {
-                    return [2 /*return*/, listCustomGenerator(context, executeShellCommand, "list-versions-by-function", ["--function-name"], "Versions", "Version")];
+                    switch (_a.label) {
+                        case 0:
+                            _a.trys.push([0, 2, , 3]);
+                            idx = context.indexOf("--function-name");
+                            cmd = "aws lambda list-versions-by-function --function-name " + context[idx + 1];
+                            return [4 /*yield*/, executeShellCommand(cmd)];
+                        case 1:
+                            out = _a.sent();
+                            list = JSON.parse(out)["Versions"];
+                            return [2 /*return*/, list.filter(function (elm) { return elm.Version !== "$LATEST"; }).map(function (elm) {
+                                    return {
+                                        name: elm["Version"],
+                                        icon: "fig://icon?type=aws",
+                                    };
+                                })];
+                        case 2:
+                            e_4 = _a.sent();
+                            console.log(e_4);
+                            return [3 /*break*/, 3];
+                        case 3: return [2 /*return*/, []];
+                    }
                 });
             });
         },
@@ -630,6 +712,27 @@ var generators = {
             ttl: ttl,
         },
     },
+    listLayerArnsWithVersion: {
+        script: "aws lambda list-layers",
+        postProcess: function (out) {
+            try {
+                var list = JSON.parse(out)["Layers"];
+                return list.map(function (elm) {
+                    return {
+                        name: elm["LatestMatchingVersion"]["LayerVersionArn"],
+                        icon: "fig://icon?type=aws",
+                    };
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
+            return [];
+        },
+        cache: {
+            ttl: ttl,
+        },
+    },
     listFilesystemConfigs: {
         script: "aws efs describe-file-systems",
         postProcess: function (out) {
@@ -669,6 +772,15 @@ var generators = {
         cache: {
             ttl: ttl,
         },
+    },
+    listCodeSHA: {
+        script: "aws lambda list-functions",
+        postProcess: function (out) {
+            return postPrecessGenerator(out, "Functions", "CodeSha256");
+        },
+        cache: {
+            ttl: ttl,
+        }
     },
 };
 var completionSpec = {
@@ -1006,11 +1118,7 @@ var completionSpec = {
                     description: "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is only supported for Amazon Kinesis streams.",
                     args: {
                         name: "string",
-                        suggestions: [
-                            "TRIM_HORIZON",
-                            "LATEST",
-                            "AT_TIMESTAMP"
-                        ],
+                        suggestions: ["TRIM_HORIZON", "LATEST", "AT_TIMESTAMP"],
                     },
                 },
                 {
@@ -1025,7 +1133,7 @@ var completionSpec = {
                     description: "(Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded records.",
                     args: {
                         name: "structure",
-                        description: "OnSuccess={Destination=string},OnFailure={Destination=string"
+                        description: "OnSuccess={Destination=string},OnFailure={Destination=string",
                     },
                 },
                 {
@@ -1086,7 +1194,7 @@ var completionSpec = {
                     description: "The Self-Managed Apache Kafka cluster to send records.",
                     args: {
                         name: "structure",
-                        description: "Endpoints={Key1=string,string,Key2=string,string}"
+                        description: "Endpoints={Key1=string,string,Key2=string,string}",
                     },
                 },
                 {
@@ -1131,32 +1239,7 @@ var completionSpec = {
                     description: "The identifier of the function's runtime.",
                     args: {
                         name: "string",
-                        suggestions: [
-                            "nodejs",
-                            "nodejs4.3",
-                            "nodejs6.10",
-                            "nodejs8.10",
-                            "nodejs10.x",
-                            "nodejs12.x",
-                            "nodejs14.x",
-                            "java8",
-                            "java8.al2",
-                            "java11",
-                            "python2.7",
-                            "python3.6",
-                            "python3.7",
-                            "python3.8",
-                            "dotnetcore1.0",
-                            "dotnetcore2.0",
-                            "dotnetcore2.1",
-                            "dotnetcore3.1",
-                            "nodejs4.3-edge",
-                            "go1.x",
-                            "ruby2.5",
-                            "ruby2.7",
-                            "provided",
-                            "provided.al2",
-                        ],
+                        suggestions: runtimes,
                     },
                 },
                 {
@@ -1224,10 +1307,7 @@ var completionSpec = {
                     description: "The type of deployment package. Set to Image for container image and set Zip for ZIP archive.",
                     args: {
                         name: "string",
-                        suggestions: [
-                            "Zip",
-                            "Image"
-                        ],
+                        suggestions: ["Zip", "Image"],
                     },
                 },
                 {
@@ -1242,7 +1322,7 @@ var completionSpec = {
                     description: "Environment variables that are accessible from function code during execution.",
                     args: {
                         name: "structure",
-                        description: "Variables={Key1=string,Key2=string}"
+                        description: "Variables={Key1=string,Key2=string}",
                     },
                 },
                 {
@@ -1258,10 +1338,7 @@ var completionSpec = {
                     description: "Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray.",
                     args: {
                         name: "structure",
-                        suggestions: [
-                            "Mode=Active",
-                            "Mode=PassThrough",
-                        ]
+                        suggestions: ["Mode=Active", "Mode=PassThrough"],
                     },
                 },
                 {
@@ -1269,7 +1346,7 @@ var completionSpec = {
                     description: "A list of tags to apply to the function.",
                     args: {
                         name: "map",
-                        description: "Key1=string,Key2=string"
+                        description: "Key1=string,Key2=string",
                     },
                 },
                 {
@@ -1278,7 +1355,7 @@ var completionSpec = {
                     args: {
                         name: "list",
                         variadic: true,
-                        generators: generators.listLayers,
+                        generators: generators.listLayerArnsWithVersion,
                     },
                 },
                 {
@@ -1984,6 +2061,7 @@ var completionSpec = {
                     description: "The ARN of the layer version.",
                     args: {
                         name: "string",
+                        generators: generators.listLayerArnsWithVersion,
                     },
                 },
                 {
@@ -1991,6 +2069,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2012,6 +2091,7 @@ var completionSpec = {
                     description: "The name or Amazon Resource Name (ARN) of the layer.",
                     args: {
                         name: "string",
+                        generators: generators.listLayerArns,
                     },
                 },
                 {
@@ -2019,6 +2099,7 @@ var completionSpec = {
                     description: "The version number.",
                     args: {
                         name: "long",
+                        generators: generators.listLayerVersionNumber,
                     },
                 },
                 {
@@ -2026,6 +2107,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2047,6 +2129,7 @@ var completionSpec = {
                     description: "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2054,6 +2137,7 @@ var completionSpec = {
                     description: "Specify a version or alias to get the policy for that resource.",
                     args: {
                         name: "string",
+                        generators: [generators.listVersions, generators.listAliases],
                     },
                 },
                 {
@@ -2061,6 +2145,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2082,6 +2167,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2089,6 +2175,7 @@ var completionSpec = {
                     description: "The version number or alias name.",
                     args: {
                         name: "string",
+                        generators: [generators.listVersions, generators.listAliases],
                     },
                 },
                 {
@@ -2096,6 +2183,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2117,6 +2205,7 @@ var completionSpec = {
                     description: "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2124,6 +2213,11 @@ var completionSpec = {
                     description: "Choose from the following options.    RequestResponse (default) - Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API response includes the function response and additional data.    Event - Invoke the function asynchronously. Send events that fail multiple times to the function's dead-letter queue (if it's configured). The API response only includes a status code.    DryRun - Validate parameter values and verify that the user or role has permission to invoke the function.",
                     args: {
                         name: "string",
+                        suggestions: [
+                            "Event",
+                            "RequestResponse",
+                            "DryRun"
+                        ],
                     },
                 },
                 {
@@ -2131,6 +2225,10 @@ var completionSpec = {
                     description: "Set to Tail to include the execution log in the response.",
                     args: {
                         name: "string",
+                        suggestions: [
+                            "None",
+                            "Tail"
+                        ],
                     },
                 },
                 {
@@ -2145,6 +2243,7 @@ var completionSpec = {
                     description: "The JSON that you want to provide to your Lambda function as input.",
                     args: {
                         name: "blob",
+                        generators: generators.listBlobs,
                     },
                 },
                 {
@@ -2152,6 +2251,7 @@ var completionSpec = {
                     description: "Specify a version or alias to invoke a published version of the function.",
                     args: {
                         name: "string",
+                        generators: [generators.listVersions, generators.listAliases],
                     },
                 },
                 {
@@ -2172,6 +2272,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2179,6 +2280,7 @@ var completionSpec = {
                     description: "The JSON that you want to provide to your Lambda function as input.",
                     args: {
                         name: "blob",
+                        generators: generators.listBlobs,
                     },
                 },
                 {
@@ -2186,6 +2288,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2207,6 +2310,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2214,6 +2318,7 @@ var completionSpec = {
                     description: "Specify a function version to only list aliases that invoke that version.",
                     args: {
                         name: "string",
+                        generators: generators.listVersions,
                     },
                 },
                 {
@@ -2235,6 +2340,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2284,6 +2390,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2319,6 +2426,7 @@ var completionSpec = {
                     description: "The Amazon Resource Name (ARN) of the event source.    Amazon Kinesis - The ARN of the data stream or a stream consumer.    Amazon DynamoDB Streams - The ARN of the stream.    Amazon Simple Queue Service - The ARN of the queue.    Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.",
                     args: {
                         name: "string",
+                        generators: generators.listEventSourceArns,
                     },
                 },
                 {
@@ -2326,6 +2434,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Version or Alias ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2347,6 +2456,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2382,6 +2492,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2403,6 +2514,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2438,6 +2550,7 @@ var completionSpec = {
                     description: "For Lambda@Edge functions, the AWS Region of the master function. For example, us-east-1 filters the list of functions to only include Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set FunctionVersion to ALL.",
                     args: {
                         name: "string",
+                        suggestions: awsRegions,
                     },
                 },
                 {
@@ -2445,6 +2558,7 @@ var completionSpec = {
                     description: "Set to ALL to include entries for all published versions of each function.",
                     args: {
                         name: "string",
+                        suggestions: ["ALL"],
                     },
                 },
                 {
@@ -2466,6 +2580,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2501,6 +2616,7 @@ var completionSpec = {
                     description: "The The Amazon Resource Name (ARN) of the code signing configuration.",
                     args: {
                         name: "string",
+                        generators: generators.listCodeSigningConfigs,
                     },
                 },
                 {
@@ -2522,6 +2638,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2557,6 +2674,7 @@ var completionSpec = {
                     description: "A runtime identifier. For example, go1.x.",
                     args: {
                         name: "string",
+                        suggestions: runtimes,
                     },
                 },
                 {
@@ -2564,6 +2682,7 @@ var completionSpec = {
                     description: "The name or Amazon Resource Name (ARN) of the layer.",
                     args: {
                         name: "string",
+                        generators: generators.listLayerArns,
                     },
                 },
                 {
@@ -2585,6 +2704,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2620,6 +2740,7 @@ var completionSpec = {
                     description: "A runtime identifier. For example, go1.x.",
                     args: {
                         name: "string",
+                        suggestions: runtimes,
                     },
                 },
                 {
@@ -2641,6 +2762,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2676,6 +2798,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2697,6 +2820,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2732,6 +2856,7 @@ var completionSpec = {
                     description: "The function's Amazon Resource Name (ARN).",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2739,6 +2864,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2760,6 +2886,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2781,6 +2908,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2816,6 +2944,7 @@ var completionSpec = {
                     description: "The name or Amazon Resource Name (ARN) of the layer.",
                     args: {
                         name: "string",
+                        generators: generators.listLayerArns,
                     },
                 },
                 {
@@ -2830,6 +2959,7 @@ var completionSpec = {
                     description: "The function layer archive.",
                     args: {
                         name: "structure",
+                        description: "S3Bucket=string,S3Key=string,S3ObjectVersion=string",
                     },
                 },
                 {
@@ -2837,6 +2967,8 @@ var completionSpec = {
                     description: "A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions.",
                     args: {
                         name: "list",
+                        variadic: true,
+                        suggestions: runtimes,
                     },
                 },
                 {
@@ -2851,6 +2983,7 @@ var completionSpec = {
                     description: "The path to the zip file of the content you are uploading. Specify --zip-file or --content, but not both. Example: fileb://content.zip",
                     args: {
                         name: "blob",
+                        generators: generators.listBlobs,
                     },
                 },
                 {
@@ -2858,6 +2991,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2879,6 +3013,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2886,6 +3021,7 @@ var completionSpec = {
                     description: "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode.",
                     args: {
                         name: "string",
+                        generators: generators.listCodeSHA,
                     },
                 },
                 {
@@ -2900,13 +3036,7 @@ var completionSpec = {
                     description: "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.",
                     args: {
                         name: "string",
-                    },
-                },
-                {
-                    name: "--code-sha-256",
-                    description: "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of UpdateFunctionCode.",
-                    args: {
-                        name: "string",
+                        generators: generators.getFunctionRevisionId,
                     },
                 },
                 {
@@ -2914,6 +3044,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2935,6 +3066,7 @@ var completionSpec = {
                     description: "The The Amazon Resource Name (ARN) of the code signing configuration.",
                     args: {
                         name: "string",
+                        generators: generators.listCodeSigningConfigs,
                     },
                 },
                 {
@@ -2942,6 +3074,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - MyFunction.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.    Partial ARN - 123456789012:function:MyFunction.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2949,6 +3082,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -2970,6 +3104,7 @@ var completionSpec = {
                     description: "The name of the Lambda function.  Name formats     Function name - my-function.    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -2984,6 +3119,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
@@ -3005,6 +3141,7 @@ var completionSpec = {
                     description: "The name of the Lambda function, version, or alias.  Name formats     Function name - my-function (name-only), my-function:v1 (with alias).    Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function.    Partial ARN - 123456789012:function:my-function.   You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
                     args: {
                         name: "string",
+                        generators: generators.listLambdaFunctions,
                     },
                 },
                 {
@@ -3012,6 +3149,7 @@ var completionSpec = {
                     description: "A version number or alias name.",
                     args: {
                         name: "string",
+                        generators: [generators.listVersions, generators.listAliases],
                     },
                 },
                 {
@@ -3033,6 +3171,7 @@ var completionSpec = {
                     description: "A destination for events after they have been sent to a function for processing.  Destinations     Function - The Amazon Resource Name (ARN) of a Lambda function.    Queue - The ARN of an SQS queue.    Topic - The ARN of an SNS topic.    Event Bus - The ARN of an Amazon EventBridge event bus.",
                     args: {
                         name: "structure",
+                        // TODO
                     },
                 },
                 {
@@ -3040,6 +3179,7 @@ var completionSpec = {
                     description: "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
                     args: {
                         name: "string",
+                        generators: generators.listFiles,
                     },
                 },
                 {
