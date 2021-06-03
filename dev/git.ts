@@ -1,4 +1,4 @@
-const filter = (out: string): string => {
+const filterWarnings = (out: string): string => {
   return out.startsWith("warning:") || out.startsWith("error:")
     ? out.split("\n").slice(1).join("\n")
     : out;
@@ -9,7 +9,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   commits: {
     script: "git log --oneline",
     postProcess: function (out) {
-      out = filter(out);
+      out = filterWarnings(out);
 
       if (out.startsWith("fatal:")) {
         return [];
@@ -30,7 +30,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   stashes: {
     script: "git stash list",
     postProcess: function (out) {
-      out = filter(out);
+      out = filterWarnings(out);
 
       if (out.startsWith("fatal:")) {
         return [];
@@ -55,7 +55,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   treeish: {
     script: "git diff --cached --name-only",
     postProcess: function (out) {
-      out = filter(out);
+      out = filterWarnings(out);
 
       if (out.startsWith("fatal:")) {
         return [];
@@ -76,7 +76,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   branches: {
     script: "git branch --no-color",
     postProcess: function (out) {
-      out = filter(out);
+      out = filterWarnings(out);
 
       if (out.startsWith("fatal:")) {
         return [];
@@ -147,7 +147,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   files_for_staging: {
     script: "git status --short",
     postProcess: (output, context) => {
-      output = filter(output);
+      output = filterWarnings(output);
 
       if (output.startsWith("fatal:")) {
         return [];
