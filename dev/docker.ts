@@ -56,6 +56,18 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       return true;
     },
   },
+  allDockerContexts: {
+    script: `docker context list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+        description: i.Description,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -75,6 +87,11 @@ const containerAndCommandArgs = [
     isCommand: true,
   },
 ];
+
+const contextsArg = {
+  name: "CONTEXT",
+  generators: [dockerGenerators.allDockerContexts],
+};
 
 const sharedCommands: Record<string, Fig.Subcommand> = {
   build: {
@@ -1640,7 +1657,6 @@ export const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Display system-wide information",
-
       options: [
         {
           args: {
@@ -1971,7 +1987,7 @@ export const completionSpec: Fig.Spec = {
         sharedCommands.build,
         {
           name: "prune",
-          description: " Amount of disk space to keep for cache",
+          description: "Amount of disk space to keep for cache",
           options: [
             {
               name: "-a, --all",
@@ -1991,7 +2007,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               name: "--keep-storage",
-              description: " Amount of disk space to keep for cache",
+              description: "Amount of disk space to keep for cache",
               args: {
                 name: "bytes",
               },
@@ -2021,7 +2037,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               name: "--template-driver",
-              description: " Template driver",
+              description: "Template driver",
               args: {
                 name: "string",
               },
@@ -2030,7 +2046,7 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more configs",
+          description: "Display detailed information on one or more configs",
           args: {
             name: "CONFIG",
             variadic: true,
@@ -2122,7 +2138,7 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--filter",
-              description: " Provide filter values (e.g. 'until=<timestamp>')",
+              description: "Provide filter values (e.g. 'until=<timestamp>')",
               args: {
                 name: "filter",
               },
@@ -2149,6 +2165,303 @@ export const completionSpec: Fig.Spec = {
     {
       name: "context",
       description: "Manage contexts",
+      subcommands: [
+        {
+          name: "create",
+          description: "Create new context",
+          subcommands: [
+            {
+              name: "aci",
+              description: "Create a context for Azure Container Instances",
+              args: {
+                name: "CONTEXT",
+              },
+              options: [
+                {
+                  name: "--description",
+                  description: "Description of the context",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: ["-h", "--help"],
+                  description: "Help for aci",
+                },
+                {
+                  name: "--location",
+                  description: 'Location (default "eastus")',
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--resource-group",
+                  description: "Resource group",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--subscription-id",
+                  description: "Location",
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+            {
+              name: "ecs",
+              description: "Create a context for Amazon ECS",
+              args: {
+                name: "CONTEXT",
+              },
+              options: [
+                {
+                  name: "--access-keys",
+                  description: " Use AWS access keys from file",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--description",
+                  description: " Description of the context",
+                  args: {
+                    name: "string",
+                  },
+                },
+                {
+                  name: "--from-env",
+                  description:
+                    " Use AWS environment variables for profile, or credentials and region",
+                },
+                {
+                  name: "-h, --help",
+                  description: " Help for ecs",
+                },
+                {
+                  name: "--local-simulation",
+                  description:
+                    " Create context for ECS local simulation endpoints",
+                },
+                {
+                  name: "--profile",
+                  description: " Use an existing AWS profile",
+                  args: {
+                    name: "string",
+                  },
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: "--default-stack-orchestrator",
+              description:
+                "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--description",
+              description: "Description of the context",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--docker",
+              description: "Set the docker endpoint (default [])",
+              args: {
+                name: "stringToString",
+              },
+            },
+            {
+              name: "--from",
+              description: "Create context from a named context",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for create",
+            },
+            {
+              name: "--kubernetes",
+              description: "Set the kubernetes endpoint (default [])",
+              args: {
+                name: "stringToString",
+              },
+            },
+          ],
+        },
+        {
+          name: "export",
+          description: "Export a context to a tar or kubeconfig file",
+          args: [
+            contextsArg,
+            {
+              name: "FILE",
+              template: "filepaths",
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: " Help for export",
+            },
+            {
+              name: "--kubeconfig",
+              description: " Export as a kubeconfig file",
+            },
+          ],
+        },
+        {
+          name: "import",
+          description: "Import a context from a tar or zip file",
+          args: [
+            {
+              name: "CONTEXT",
+            },
+            {
+              name: "FILE",
+              template: "filepaths",
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: " Help for export",
+            },
+          ],
+        },
+        {
+          name: "inspect",
+          description: "Display detailed information on one or more contexts",
+          args: { ...contextsArg, variadic: true },
+          options: [
+            {
+              name: "-f",
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for inspect",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "List available contexts",
+          options: [
+            {
+              name: "--format",
+              description:
+                " Format the output. Values: [pretty | json]. (Default: pretty)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for list",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: " Only show context names",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more contexts",
+          args: { ...contextsArg, variadic: true },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: " Force removing current context",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for rm",
+            },
+          ],
+        },
+        {
+          name: "show",
+          description: "Print the current context",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: " Help for show",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update a context",
+          args: contextsArg,
+          options: [
+            {
+              name: "--default-stack-orchestrator",
+              description:
+                "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--description",
+              description: "Description of the context",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--docker",
+              description: "Set the docker endpoint (default [])",
+              args: {
+                name: "stringToString",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "Help for update",
+            },
+            {
+              name: "--kubernetes",
+              description: "Set the kubernetes endpoint (default [])",
+              args: {
+                name: "stringToString",
+              },
+            },
+          ],
+        },
+        {
+          name: "use",
+          description: "Set the default context",
+          args: contextsArg,
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: " Help for use",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "Help for context",
+        },
+      ],
     },
     {
       name: "image",
