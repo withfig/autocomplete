@@ -1,13 +1,21 @@
+const filterMessages = (out: string): string => {
+  return out.startsWith("warning:") || out.startsWith("error:")
+    ? out.split("\n").slice(1).join("\n")
+    : out;
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
     script: "git log --oneline",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((line) => {
+      return output.split("\n").map((line) => {
         return {
           name: line.substring(0, 7),
           icon: "fig://icon?type=node",
@@ -22,11 +30,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   stashes: {
     script: "git stash list",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((file) => {
+      return output.split("\n").map((file) => {
         return {
           name: file.split(":")[2],
           insertValue: file.split(":")[0],
@@ -45,11 +55,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   treeish: {
     script: "git diff --cached --name-only",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((file) => {
+      return output.split("\n").map((file) => {
         return {
           name: file,
           insertValue: "-- " + file,
@@ -64,10 +76,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   branches: {
     script: "git branch --no-color",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
-      return out.split("\n").map((elm) => {
+
+      return output.split("\n").map((elm) => {
         // current branch
         if (elm.includes("*")) {
           return {
@@ -131,10 +146,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // Files for staging
   files_for_staging: {
     script: "git status --short",
-    postProcess: (output, context) => {
+    postProcess: (out, context) => {
+      const output = filterMessages(out);
+
       if (output.startsWith("fatal:")) {
         return [];
       }
+
       const items = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
@@ -1276,10 +1294,7 @@ export const completionSpec: Fig.Spec = {
         name: "file|commit",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: [
-          gitGenerators.files_for_staging,
-          gitGenerators.commits
-        ],
+        generators: [gitGenerators.files_for_staging, gitGenerators.commits],
       },
     },
     {
