@@ -1697,6 +1697,21 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
     ],
   },
+  removeImage: {
+    name: "rmi",
+    description: "Remove one or more images",
+    args: { ...imagesArg, variadic: true },
+    options: [
+      {
+        name: ["-f", "--force"],
+        description: "Force removal of the image",
+      },
+      {
+        name: "--no-prune",
+        description: "Do not delete untagged parents",
+      },
+    ],
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -1879,60 +1894,7 @@ export const completionSpec: Fig.Spec = {
     sharedCommands.rename,
     sharedCommands.restart,
     sharedCommands.rm,
-    {
-      name: "rmi",
-      description: "Remove one or more images",
-      args: {
-        variadic: true,
-        name: "image",
-        suggestions: [
-          {
-            name: "$(docker images -aq)",
-            insertValue: "$(docker images -aq)",
-            description: "All images (including intermediate images)",
-          },
-          {
-            name: "$(docker images -q)",
-            insertValue: "$(docker images -q)",
-            description: "All non-intermediate images",
-          },
-        ],
-        generators: [
-          {
-            script: `docker images -aq --format '{{ json . }}'`,
-            postProcess: function (out) {
-              const allLines = out.split("\n").map((line) => JSON.parse(line));
-              return allLines.map((i) => {
-                let displayName;
-                if (i.Repository === "\u003cnone\u003e") {
-                  displayName = i.ID;
-                } else {
-                  displayName = i.Repository;
-                  if (i.Tag !== "\u003cnone\u003e") {
-                    displayName += `:${i.Tag}`;
-                  }
-                }
-
-                return {
-                  name: i.ID,
-                  displayName: `${displayName} (${i.Size})`,
-                };
-              });
-            },
-          },
-        ],
-      },
-      options: [
-        {
-          name: ["-f", "--force"],
-          description: "Force removal of the image",
-        },
-        {
-          name: "--no-prune",
-          description: "Do not delete untagged parents",
-        },
-      ],
-    },
+    sharedCommands.removeImage,
     sharedCommands.run,
     sharedCommands.imageSave,
     {
@@ -2530,21 +2492,7 @@ export const completionSpec: Fig.Spec = {
         },
         sharedCommands.pull,
         sharedCommands.push,
-        {
-          name: "rm",
-          description: "Remove one or more images",
-          args: { ...imagesArg, variadic: true },
-          options: [
-            {
-              name: ["-f", "--force"],
-              description: "Force removal of the image",
-            },
-            {
-              name: "--no-prune",
-              description: "Do not delete untagged parents",
-            },
-          ],
-        },
+        { ...sharedCommands.removeImage, name: "rm" },
         sharedCommands.imageSave,
         sharedCommands.tag,
       ],
@@ -2552,6 +2500,57 @@ export const completionSpec: Fig.Spec = {
     {
       name: "network",
       description: "Manage networks",
+      subcommands: [
+        {
+          name: "connect",
+          description: " Connect a container to a network",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "create",
+          description: "Create a network",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "disconnect",
+          description: "Disconnect a container from a network",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "inspect",
+          description: " Display detailed information on one or more networks",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "ls",
+          description: "List networks",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "prune",
+          description: " Remove all unused networks",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more networks",
+          subcommands: [],
+          args: [],
+          options: [],
+        },
+      ],
     },
     {
       name: "node",
