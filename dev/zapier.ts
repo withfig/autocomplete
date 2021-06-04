@@ -1,4 +1,4 @@
-const formatFlag = {
+const formatFlag: Fig.Option = {
   name: ["-f", "--format"],
   description:
     'Change the way structured data is presented. If "json" or "raw", you can pipe the output of the command into other tools, such as jq.',
@@ -7,7 +7,7 @@ const formatFlag = {
     suggestions: ["plain", "json", "raw", "row", "table"],
   },
 };
-const debugFlag = {
+const debugFlag: Fig.Option = {
   name: ["-d", "--debug"],
   description: "Show extra debugging output.",
 };
