@@ -1509,6 +1509,194 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       },
     ],
   },
+  history: {
+    name: "history",
+    description: "Show the history of an image",
+    args: imagesArg,
+    options: [
+      {
+        description: "Pretty-print images using a Go template",
+        name: ["--format"],
+        args: {
+          name: "string",
+        },
+      },
+      {
+        description:
+          "Print sizes and dates in human readable format (default true)",
+        name: ["-H", "--human"],
+      },
+      {
+        description: "Don't truncate output",
+        name: ["--no-trunc"],
+      },
+      {
+        description: "Only show image IDs",
+        name: ["-q", "--quiet"],
+      },
+    ],
+  },
+  imageImport: {
+    name: "import",
+    description:
+      "Import the contents from a tarball to create a filesystem image",
+    args: {
+      name: "file|URL|- [REPOSITORY[:TAG]]",
+    },
+    options: [
+      {
+        args: {
+          name: "list",
+        },
+        description: "Apply Dockerfile instruction to the created image",
+        name: ["-c", "--change"],
+      },
+      {
+        args: {
+          name: "string",
+        },
+        description: "Set commit message for imported image",
+        name: ["-m", "--message"],
+      },
+      {
+        args: {
+          name: "string",
+        },
+        description: "Set platform if server is multi-platform capable",
+        name: ["--platform"],
+      },
+    ],
+  },
+  imageList: {
+    name: "images",
+    description: "List images",
+    args: {
+      name: "[REPOSITORY[:TAG]]",
+    },
+    options: [
+      {
+        name: ["-a", "--all"],
+        description: "Show all images (default hides intermediate images)",
+      },
+      {
+        name: "--digests",
+        description: "Show digests",
+      },
+      {
+        name: ["-f", "--filter"],
+        description: "Filter output based on conditions provided",
+        args: {
+          name: "filter",
+        },
+      },
+      {
+        name: "--format",
+        description: "Pretty-print images using a Go template",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: "--no-trunc",
+        description: "Don't truncate output",
+      },
+      {
+        name: ["-q", "--quiet"],
+        description: "Only show image IDs",
+      },
+    ],
+  },
+  load: {
+    name: "load",
+    description: "Load an image from a tar archive or STDIN",
+    options: [
+      {
+        name: "-i",
+        description: "Read from tar archive file, instead of STDIN",
+        args: {
+          name: "string",
+        },
+      },
+      {
+        name: ["-q", "--quiet"],
+        description: "Suppress the load output",
+      },
+    ],
+  },
+  pull: {
+    name: "pull",
+    description: "Pull an image or a repository from a registry",
+    args: {
+      name: "NAME[:TAG|@DIGEST]",
+      generators: dockerGenerators.dockerHubSearch,
+      debounce: true,
+    },
+    options: [
+      {
+        description: "Download all tagged images in the repository",
+        name: ["-a", "--all-tags"],
+      },
+      {
+        description: "Skip image verification (default true)",
+        name: ["--disable-content-trust"],
+      },
+      {
+        description: "Set platform if server is multi-platform capable",
+        name: ["--platform"],
+        args: {
+          name: "string",
+        },
+      },
+      {
+        description: "Suppress verbose output",
+        name: ["-q", "--quiet"],
+      },
+    ],
+  },
+  push: {
+    name: "push",
+    description: "Push an image or a repository to a registry",
+    // TODO: Autocomplete images
+    args: {
+      name: "NAME[:TAG]",
+    },
+    options: [
+      {
+        description: "Push all tagged images in the repository",
+        name: ["-a", "--all-tags"],
+      },
+      {
+        description: "Skip image signing (default true)",
+        name: ["--disable-content-trust"],
+      },
+      {
+        description: "Suppress verbose output",
+        name: ["-q", "--quiet"],
+      },
+    ],
+  },
+  tag: {
+    name: "tag",
+    description: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
+    args: {
+      name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
+    },
+  },
+  imageSave: {
+    name: "save",
+    description:
+      "Save one or more images to a tar archive (streamed to STDOUT by default)",
+    args: imagesArg,
+    options: [
+      {
+        description: "Write to a file, instead of STDOUT",
+        name: ["-o", "--output"],
+        args: {
+          name: "string",
+        },
+      },
+    ],
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -1557,103 +1745,9 @@ export const completionSpec: Fig.Spec = {
     },
     sharedCommands.exec,
     sharedCommands.export,
-    {
-      name: "history",
-      description: "Show the history of an image",
-      args: imagesArg,
-      options: [
-        {
-          description: "Pretty-print images using a Go template",
-          name: ["--format"],
-          args: {
-            name: "string",
-          },
-        },
-        {
-          description:
-            "Print sizes and dates in human readable format (default true)",
-          name: ["-H", "--human"],
-        },
-        {
-          description: "Don't truncate output",
-          name: ["--no-trunc"],
-        },
-        {
-          description: "Only show image IDs",
-          name: ["-q", "--quiet"],
-        },
-      ],
-    },
-    {
-      name: "images",
-      description: "List images",
-      args: {
-        name: "[REPOSITORY[:TAG]]",
-      },
-      options: [
-        {
-          name: ["-a", "--all"],
-          description: "Show all images (default hides intermediate images)",
-        },
-        {
-          name: "--digests",
-          description: "Show digests",
-        },
-        {
-          name: ["-f", "--filter"],
-          description: "Filter output based on conditions provided",
-          args: {
-            name: "filter",
-          },
-        },
-        {
-          name: "--format",
-          description: "Pretty-print images using a Go template",
-          args: {
-            name: "string",
-          },
-        },
-        {
-          name: "--no-trunc",
-          description: "Don't truncate output",
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Only show image IDs",
-        },
-      ],
-    },
-    {
-      name: "import",
-      description:
-        "Import the contents from a tarball to create a filesystem image",
-      args: {
-        name: "file|URL|- [REPOSITORY[:TAG]]",
-      },
-      options: [
-        {
-          args: {
-            name: "list",
-          },
-          description: "Apply Dockerfile instruction to the created image",
-          name: ["-c", "--change"],
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Set commit message for imported image",
-          name: ["-m", "--message"],
-        },
-        {
-          args: {
-            name: "string",
-          },
-          description: "Set platform if server is multi-platform capable",
-          name: ["--platform"],
-        },
-      ],
-    },
+    sharedCommands.history,
+    sharedCommands.imageList,
+    sharedCommands.imageImport,
     {
       name: "info",
       description: "Display system-wide information",
@@ -1741,10 +1835,7 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     sharedCommands.kill,
-    {
-      name: "load",
-      description: "Load an image from a tar archive or STDIN",
-    },
+    sharedCommands.load,
     {
       name: "login",
       description: "Log in to a Docker registry",
@@ -1783,58 +1874,8 @@ export const completionSpec: Fig.Spec = {
     sharedCommands.pause,
     sharedCommands.port,
     sharedCommands.ps,
-    {
-      name: "pull",
-      description: "Pull an image or a repository from a registry",
-      args: {
-        name: "NAME[:TAG|@DIGEST]",
-        generators: dockerGenerators.dockerHubSearch,
-        debounce: true,
-      },
-      options: [
-        {
-          description: "Download all tagged images in the repository",
-          name: ["-a", "--all-tags"],
-        },
-        {
-          description: "Skip image verification (default true)",
-          name: ["--disable-content-trust"],
-        },
-        {
-          description: "Set platform if server is multi-platform capable",
-          name: ["--platform"],
-          args: {
-            name: "string",
-          },
-        },
-        {
-          description: "Suppress verbose output",
-          name: ["-q", "--quiet"],
-        },
-      ],
-    },
-    {
-      name: "push",
-      description: "Push an image or a repository to a registry",
-      // TODO: Autocomplete images
-      args: {
-        name: "NAME[:TAG]",
-      },
-      options: [
-        {
-          description: "Push all tagged images in the repository",
-          name: ["-a", "--all-tags"],
-        },
-        {
-          description: "Skip image signing (default true)",
-          name: ["--disable-content-trust"],
-        },
-        {
-          description: "Suppress verbose output",
-          name: ["-q", "--quiet"],
-        },
-      ],
-    },
+    sharedCommands.pull,
+    sharedCommands.push,
     sharedCommands.rename,
     sharedCommands.restart,
     sharedCommands.rm,
@@ -1893,21 +1934,7 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     sharedCommands.run,
-    {
-      name: "save",
-      description:
-        "Save one or more images to a tar archive (streamed to STDOUT by default)",
-      args: imagesArg,
-      options: [
-        {
-          description: "Write to a file, instead of STDOUT",
-          name: ["-o", "--output"],
-          args: {
-            name: "string",
-          },
-        },
-      ],
-    },
+    sharedCommands.imageSave,
     {
       name: "search",
       description: "Search the Docker Hub for images",
@@ -1948,13 +1975,7 @@ export const completionSpec: Fig.Spec = {
     sharedCommands.start,
     sharedCommands.stats,
     sharedCommands.stop,
-    {
-      name: "tag",
-      description: "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
-      args: {
-        name: "SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]",
-      },
-    },
+    sharedCommands.tag,
     sharedCommands.top,
     sharedCommands.unpause,
     sharedCommands.update,
@@ -2220,14 +2241,14 @@ export const completionSpec: Fig.Spec = {
               options: [
                 {
                   name: "--access-keys",
-                  description: " Use AWS access keys from file",
+                  description: "Use AWS access keys from file",
                   args: {
                     name: "string",
                   },
                 },
                 {
                   name: "--description",
-                  description: " Description of the context",
+                  description: "Description of the context",
                   args: {
                     name: "string",
                   },
@@ -2239,7 +2260,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "-h, --help",
-                  description: " Help for ecs",
+                  description: "Help for ecs",
                 },
                 {
                   name: "--local-simulation",
@@ -2248,7 +2269,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--profile",
-                  description: " Use an existing AWS profile",
+                  description: "Use an existing AWS profile",
                   args: {
                     name: "string",
                   },
@@ -2312,11 +2333,11 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h", "--help"],
-              description: " Help for export",
+              description: "Help for export",
             },
             {
               name: "--kubeconfig",
-              description: " Export as a kubeconfig file",
+              description: "Export as a kubeconfig file",
             },
           ],
         },
@@ -2335,7 +2356,7 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h", "--help"],
-              description: " Help for export",
+              description: "Help for export",
             },
           ],
         },
@@ -2375,7 +2396,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               name: ["-q", "--quiet"],
-              description: " Only show context names",
+              description: "Only show context names",
             },
           ],
         },
@@ -2386,7 +2407,7 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-f", "--force"],
-              description: " Force removing current context",
+              description: "Force removing current context",
             },
             {
               name: ["-h", "--help"],
@@ -2400,7 +2421,7 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h", "--help"],
-              description: " Help for show",
+              description: "Help for show",
             },
           ],
         },
@@ -2451,7 +2472,7 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-h", "--help"],
-              description: " Help for use",
+              description: "Help for use",
             },
           ],
         },
@@ -2466,6 +2487,67 @@ export const completionSpec: Fig.Spec = {
     {
       name: "image",
       description: "Manage images",
+      subcommands: [
+        sharedCommands.build,
+        sharedCommands.history,
+        sharedCommands.imageImport,
+        {
+          name: "inspect",
+          description: "Display detailed information on one or more images",
+          args: { ...imagesArg, variadic: true },
+          options: [
+            {
+              name: "-f",
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        sharedCommands.load,
+        { ...sharedCommands.imageList, name: "ls" },
+        {
+          name: "prune",
+          description: "Remove unused images",
+          options: [
+            {
+              name: ["-a", "--all"],
+              description: "Remove all unused images, not just dangling ones",
+            },
+            {
+              name: "--filter",
+              description: "Provide filter values (e.g. 'until=<timestamp>')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Do not prompt for confirmation",
+            },
+          ],
+        },
+        sharedCommands.pull,
+        sharedCommands.push,
+        {
+          name: "rm",
+          description: "Remove one or more images",
+          args: { ...imagesArg, variadic: true },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force removal of the image",
+            },
+            {
+              name: "--no-prune",
+              description: "Do not delete untagged parents",
+            },
+          ],
+        },
+        sharedCommands.imageSave,
+        sharedCommands.tag,
+      ],
     },
     {
       name: "network",
