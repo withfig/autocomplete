@@ -1294,10 +1294,7 @@ export const completionSpec: Fig.Spec = {
         name: "file|commit",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: [
-          gitGenerators.files_for_staging,
-          gitGenerators.commits
-        ],
+        generators: [gitGenerators.files_for_staging, gitGenerators.commits],
       },
     },
     {
