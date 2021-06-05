@@ -26,6 +26,16 @@ export const completionSpec: Fig.Spec = {
     {
       name: "doctor",
       description: "Check your system for potential problems",
+      options: [
+        {
+          name: "--list-checks",
+          description: "List all audit methods.",
+        },
+        {
+          name: ["-D", "--audit-debug"],
+          description: "Enable debugging and profiling of audit methods.",
+        },
+      ],
     },
     {
       name: "info",
