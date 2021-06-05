@@ -166,6 +166,36 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "cleanup",
+      description:
+        "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
+      options: [
+        {
+          name: ["--prune", "--prune=all"],
+          description: "Remove all cache files older than specified days.",
+        },
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "Show what would be removed, but do not actually remove anything.",
+        },
+        {
+          name: "-s",
+          description:
+            "Scrub the cache, including downloads for even the latest versions.",
+        },
+        {
+          name: "--prune-prefix",
+          description:
+            "Only prune the symlinks and directories from the prefix and remove no other files.",
+        },
+      ],
+      args: {
+        variadic: true,
+        generators: generators.servicesGenerator,
+      },
+    },
+    {
       name: "services",
       description:
         "Manage background services with macOS' launchctl(1) daemon manager.",
