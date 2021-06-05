@@ -280,6 +280,10 @@ export const completionSpec: Fig.Spec = {
           name: "off",
           description: "Turns off analytics",
         },
+        {
+          name: "regenerate-uuid",
+          description: "Regenerate the UUID used for analytics",
+        },
       ],
     },
   ],
