@@ -3,7 +3,7 @@ export const completionSpec: Fig.Spec = {
   description: "opposite of less",
   options: [
     {
-      name: ["-d, --slient"],
+      name: ["-d, --silent"],
       description:
         "Prompt with '[Press space to continue, 'q' to quit.]', and display '[Press 'h' for instructions.]' instead of ringing the bell when an illegal key is pressed.",
     },
