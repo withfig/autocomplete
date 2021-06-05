@@ -3,6 +3,6 @@
 export const completionSpec: Fig.Spec = {
   name: "dotslash",
   args: {
-    template: "filepaths",
+    template: ["filepaths", "folders"],
   },
 };
