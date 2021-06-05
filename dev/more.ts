@@ -35,6 +35,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-n", "--lines"],
       description: "Specify the number of lines per screenful.",
+      args: { name: "n" },
     },
     {
       name: "--help",
