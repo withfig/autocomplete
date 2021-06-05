@@ -22,10 +22,30 @@ export const completionSpec: Fig.Spec = {
       name: "leaves",
       description:
         "List installed formulae that are not dependencies of another installed formula",
+      options: [
+        {
+          name: ["-r", "--installed-on-request"],
+          description: "Show manually installed formula.",
+        },
+        {
+          name: ["-p", "--installed-as-dependency"],
+          description: "Show installed formula as dependencies.",
+        },
+      ],
     },
     {
       name: "doctor",
       description: "Check your system for potential problems",
+      options: [
+        {
+          name: "--list-checks",
+          description: "List all audit methods.",
+        },
+        {
+          name: ["-D", "--audit-debug"],
+          description: "Enable debugging and profiling of audit methods.",
+        },
+      ],
     },
     {
       name: "info",
@@ -164,6 +184,37 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "cleanup",
+      insertValue: "cleanup ",
+      description:
+        "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
+      options: [
+        {
+          name: ["--prune", "--prune=all"],
+          description: "Remove all cache files older than specified days.",
+        },
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "Show what would be removed, but do not actually remove anything.",
+        },
+        {
+          name: "-s",
+          description:
+            "Scrub the cache, including downloads for even the latest versions.",
+        },
+        {
+          name: "--prune-prefix",
+          description:
+            "Only prune the symlinks and directories from the prefix and remove no other files.",
+        },
+      ],
+      args: {
+        variadic: true,
+        generators: generators.servicesGenerator,
+      },
     },
     {
       name: "services",
