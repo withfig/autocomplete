@@ -22,6 +22,16 @@ export const completionSpec: Fig.Spec = {
       name: "leaves",
       description:
         "List installed formulae that are not dependencies of another installed formula",
+      options: [
+        {
+          name: ["-r", "--installed-on-request"],
+          description: "Show manually installed formula.",
+        },
+        {
+          name: ["-p", "--installed-as-dependency"],
+          description: "Show installed formula as dependencies.",
+        },
+      ],
     },
     {
       name: "doctor",
