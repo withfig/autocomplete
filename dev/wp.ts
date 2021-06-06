@@ -143,9 +143,7 @@ export const completion: Fig.Spec = {
         "Adds, removes, fetches, and flushes the WP Object Cache object.",
       subcommands: [
         {
-          variadic: true,
           name: "add",
-          // variadic: false,
           description: "Adds a value to the object cache.",
           args: {
             variadic: true,
@@ -153,25 +151,21 @@ export const completion: Fig.Spec = {
               {
                 name: "key",
                 insertValue: "key",
-                // isOptional: true,
                 // description: "Cache key."
               },
               {
                 name: "value",
                 insertValue: "value",
-                // isOptional: true,
                 // description: "Value to add to the key."
               },
               {
                 name: "[group]",
                 insertValue: "[group]",
-                // isOptional: true,
                 // description: "Method for grouping data within the cache which allows the same key to be used across groups."
               },
               {
                 name: "[expiration]",
                 insertValue: "[expiration]",
-                // isOptional: true,
                 // description: "Define how long to keep the value, in seconds. 0 means as long as possible."
               },
             ],
@@ -180,6 +174,24 @@ export const completion: Fig.Spec = {
         {
           name: "decr",
           description: "Decrements a value in the object cache.",
+          args: {
+            variadic: true,
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+              {
+                name: "offset",
+                insertValue: "offset",
+              },
+              {
+                name: "[group]",
+                insertValue: "[group]",
+              },
+            ],
+          },
         },
         {
           name: "delete",
