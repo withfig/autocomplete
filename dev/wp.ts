@@ -126,10 +126,94 @@ const global_options = [
 export const completion: Fig.Spec = {
   name: "wp",
   description: "The stupid content tracker",
+  // options: global_options,
   subcommands: [
     {
       name: "admin",
       description: "Open /wp-admin/ in a browser.",
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_options,
+    },
+    {
+      name: "cache",
+      description:
+        "Adds, removes, fetches, and flushes the WP Object Cache object.",
+      subcommands: [
+        {
+          variadic: true,
+          name: "add",
+          // variadic: false,
+          description: "Adds a value to the object cache.",
+          args: {
+            variadic: true,
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                // isOptional: true,
+                // description: "Cache key."
+              },
+              {
+                name: "value",
+                insertValue: "value",
+                // isOptional: true,
+                // description: "Value to add to the key."
+              },
+              {
+                name: "[group]",
+                insertValue: "[group]",
+                // isOptional: true,
+                // description: "Method for grouping data within the cache which allows the same key to be used across groups."
+              },
+              {
+                name: "[expiration]",
+                insertValue: "[expiration]",
+                // isOptional: true,
+                // description: "Define how long to keep the value, in seconds. 0 means as long as possible."
+              },
+            ],
+          },
+        },
+        {
+          name: "decr",
+          description: "Decrements a value in the object cache.",
+        },
+        {
+          name: "delete",
+          // variadic: true,
+          description: "Removes a value from the object cache.",
+        },
+        {
+          name: "flush",
+          description: "Flushes the object cache.",
+        },
+        {
+          name: "get",
+          description: "Gets a value from the object cache.",
+        },
+        {
+          name: "incr",
+          description: "Increments a value in the object cache.",
+        },
+        {
+          name: "replace",
+          description:
+            "Replaces a value in the object cache, if the value already exists.",
+        },
+        {
+          name: "set",
+          description:
+            "Sets a value to the object cache, regardless of whether it already exists.",
+        },
+        {
+          name: "type",
+          description:
+            "Attempts to determine which object cache is being used.",
+        },
+      ],
 
       // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
       // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
