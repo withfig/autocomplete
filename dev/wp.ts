@@ -4,7 +4,7 @@ const global_options = [
     name: ["--path="],
     description: "Path to the WordPress files.",
     args: {
-      name: "<path>",
+      name: "path",
     },
   },
   {
@@ -12,19 +12,28 @@ const global_options = [
     description:
       "Pretend request came from given URL. In multisite, this argument is how the target site is specified.",
     args: {
-      name: "<url>",
+      name: "url",
     },
   },
   {
-    name: ["--ssh=[<scheme>:][<user>@]<host|container>[:<port>][<path>]"],
+    name: ["--ssh="],
     description:
       "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”).",
     args: [
       {
-        name: "<scheme>:",
+        name: "scheme:",
       },
       {
-        name: "<user@>",
+        name: "user@",
+      },
+      {
+        name: "host|container",
+      },
+      {
+        name: ":port",
+      },
+      {
+        name: "path",
       },
     ],
   },
@@ -33,22 +42,30 @@ const global_options = [
     description:
       "Perform operation against a remote WordPress installation over HTTP.",
     args: {
-      name: "<http>",
+      name: "http",
     },
   },
   {
-    name: ["--user=<id|login|email>"],
+    name: ["--user="],
     description: "Set the WordPress user.",
-    args: {
-      name: "<path>",
-    },
+    args: [
+      {
+        name: "id",
+      },
+      {
+        name: "login",
+      },
+      {
+        name: "email",
+      },
+    ],
   },
   {
     name: ["--skip-plugins[=]"],
     description:
       "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
     args: {
-      name: "<plugins>",
+      name: "plugins",
     },
   },
   {
@@ -56,7 +73,7 @@ const global_options = [
     description:
       "Skip loading all themes, or a comma-separated list of themes.",
     args: {
-      name: "<themes>",
+      name: "themes",
     },
   },
   {
@@ -68,7 +85,7 @@ const global_options = [
     description:
       "Load PHP file before running the command (may be used more than once).",
     args: {
-      name: "<path>",
+      name: "path",
     },
   },
   {
@@ -76,7 +93,7 @@ const global_options = [
     description:
       "Execute PHP code before running the command (may be used more than once).",
     args: {
-      name: "<php-code>",
+      name: "php-code",
     },
   },
   {
@@ -88,7 +105,7 @@ const global_options = [
     description:
       "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
     args: {
-      name: "<group>",
+      name: "group",
     },
   },
   {
@@ -96,7 +113,7 @@ const global_options = [
     description:
       "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
     args: {
-      name: "<assoc>",
+      name: "assoc",
     },
   },
   {
