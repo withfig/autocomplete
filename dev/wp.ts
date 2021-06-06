@@ -151,22 +151,24 @@ export const completion: Fig.Spec = {
               {
                 name: "key",
                 insertValue: "key",
-                // description: "Cache key."
+                description: "Cache key.",
               },
               {
                 name: "value",
                 insertValue: "value",
-                // description: "Value to add to the key."
+                description: "Value to add to the key.",
               },
               {
                 name: "[group]",
                 insertValue: "[group]",
-                // description: "Method for grouping data within the cache which allows the same key to be used across groups."
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
               {
                 name: "[expiration]",
                 insertValue: "[expiration]",
-                // description: "Define how long to keep the value, in seconds. 0 means as long as possible."
+                description:
+                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
               },
             ],
           },
@@ -175,7 +177,6 @@ export const completion: Fig.Spec = {
           name: "decr",
           description: "Decrements a value in the object cache.",
           args: {
-            variadic: true,
             suggestions: [
               {
                 name: "key",
@@ -185,18 +186,37 @@ export const completion: Fig.Spec = {
               {
                 name: "offset",
                 insertValue: "offset",
+                description:
+                  "The amount by which to decrement the item’s value.",
               },
               {
-                name: "[group]",
+                name: "group",
                 insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
             ],
           },
         },
         {
           name: "delete",
-          // variadic: true,
           description: "Removes a value from the object cache.",
+          args: {
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+
+              {
+                name: "group",
+                insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
+              },
+            ],
+          },
         },
         {
           name: "flush",
@@ -205,20 +225,109 @@ export const completion: Fig.Spec = {
         {
           name: "get",
           description: "Gets a value from the object cache.",
+          args: {
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+
+              {
+                name: "group",
+                insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
+              },
+            ],
+          },
         },
         {
           name: "incr",
           description: "Increments a value in the object cache.",
+          args: {
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+              {
+                name: "offset",
+                insertValue: "offset",
+                description:
+                  "The amount by which to decrement the item’s value.",
+              },
+              {
+                name: "group",
+                insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
+              },
+            ],
+          },
         },
         {
           name: "replace",
           description:
             "Replaces a value in the object cache, if the value already exists.",
+          args: {
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+              {
+                name: "value",
+                insertValue: "value",
+                description: "Value to add to the key.",
+              },
+              {
+                name: "group",
+                insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
+              },
+              {
+                name: "expiration",
+                insertValue: "[expiration]",
+                description:
+                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
+              },
+            ],
+          },
         },
         {
           name: "set",
           description:
             "Sets a value to the object cache, regardless of whether it already exists.",
+          args: {
+            suggestions: [
+              {
+                name: "key",
+                insertValue: "key",
+                description: "Cache key.",
+              },
+              {
+                name: "value",
+                insertValue: "value",
+                description: "Value to add to the key.",
+              },
+              {
+                name: "group",
+                insertValue: "[group]",
+                description:
+                  "Method for grouping data within the cache which allows the same key to be used across groups.",
+              },
+              {
+                name: "expiration",
+                insertValue: "[expiration]",
+                description:
+                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
+              },
+            ],
+          },
         },
         {
           name: "type",
@@ -233,5 +342,5 @@ export const completion: Fig.Spec = {
       options: global_options,
     },
   ],
-  options: [{}],
+  // options: global_options,
 };
