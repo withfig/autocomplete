@@ -1,3 +1,18 @@
+const defaultOptions = [
+  {
+    name: "--verbose",
+    description: "Enables verbose diagnostics",
+  },
+  {
+    name: "--quiet",
+    description: "Prevents unnecesary output",
+  },
+  {
+    name: ["-h", "--help"],
+    description: "Prints help information",
+  },
+];
+
 export const completion: Fig.Spec = {
   name: "volta",
   description: "The JavaScript Launcher",
@@ -10,20 +25,7 @@ export const completion: Fig.Spec = {
         variadic: true,
         name: "tool | tool@version",
       },
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "install",
@@ -32,20 +34,7 @@ export const completion: Fig.Spec = {
         variadic: true,
         name: "tool@version",
       },
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "uninstall",
@@ -53,20 +42,7 @@ export const completion: Fig.Spec = {
       args: {
         name: "tool",
       },
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "pin",
@@ -75,20 +51,7 @@ export const completion: Fig.Spec = {
         variadic: true,
         name: "tool@version",
       },
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "list",
@@ -105,18 +68,7 @@ export const completion: Fig.Spec = {
           name: ["-d", "--default"],
           description: "Show your default tool(s)",
         },
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
+        ...defaultOptions,
         {
           name: "--format",
           description: "Specify output format",
@@ -140,18 +92,7 @@ export const completion: Fig.Spec = {
           name: ["-f", "--force"],
           description: "Write over an existing file, if any.",
         },
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
+        ...defaultOptions,
         {
           name: ["-o", "--output"],
           description: "File to write generated completions to",
@@ -168,38 +109,12 @@ export const completion: Fig.Spec = {
         variadic: true,
         name: "binary",
       },
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "setup",
       description: "Enables Volta for the current user",
-      options: [
-        {
-          name: "--verbose",
-          description: "Enables verbose diagnostics",
-        },
-        {
-          name: "--quiet",
-          description: "Prevents unnecesary output",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "Prints help information",
-        },
-      ],
+      options: [...defaultOptions],
     },
     {
       name: "run",
@@ -264,21 +179,10 @@ export const completion: Fig.Spec = {
     },
   ],
   options: [
-    {
-      name: ["--verbose"],
-      description: "Enables verbose diagnostics",
-    },
-    {
-      name: ["--quiet"],
-      description: "Prevents unnecessary output",
-    },
+    ...defaultOptions,
     {
       name: ["-v", "--version"],
       description: "Prints the current version of Volta",
-    },
-    {
-      name: ["-h", "--help"],
-      description: "Prints help information",
     },
   ],
 };
