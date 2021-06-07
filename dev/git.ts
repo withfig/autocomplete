@@ -25,6 +25,17 @@ const gitGenerators: Record<string, Fig.Generator> = {
     },
   },
 
+  // user aliases
+  aliases: {
+    script: "git config --get-regexp '^alias' |cut -d. -f2",
+    postProcess: function (out) {
+      return out.split("\n").map((aliasLine) => {
+        const splitted = aliasLine.match(/^(\S+)\s(.*)/);
+        return { name: splitted[1], description: splitted[2] };
+      });
+    },
+  },
+
   // Saved stashes
   // TODO: maybe only print names of stashes
   stashes: {
@@ -202,6 +213,9 @@ const head = {
 export const completionSpec: Fig.Spec = {
   name: "git",
   description: "the stupid content tracker",
+  args: {
+    generators: gitGenerators.aliases,
+  },
   options: [
     {
       name: "--version",
