@@ -11,103 +11,17 @@ const getServices: Fig.Generator = {
 
 export const completionSpec: Fig.Spec = {
   name: "docker-compose",
-  description: "",
+  description: "Define and run multi-container applications with Docker.",
   subcommands: [
     {
       name: "build",
       description: "Build or rebuild services.",
-      args: [getServices],
-      options: [
-        {
-          name: ["--build-arg"],
-          description: "Set build-time variables for services.",
-          args: {},
-        },
-        {
-          name: ["--compress"],
-          description: "Compress the build context using gzip.",
-          args: {},
-        },
-        {
-          name: ["--force-rm"],
-          description: "Always remove intermediate containers.",
-          args: {},
-        },
-        {
-          name: ["-m", "--memory"],
-          description: "Set memory limit for the build container.",
-          args: {},
-        },
-        {
-          name: ["--no-cache"],
-          description: "Do not use cache when building the image.",
-          args: {},
-        },
-        {
-          name: ["--no-rm"],
-          description:
-            "Do not remove intermediate containers after a successful build.",
-          args: {},
-        },
-        {
-          name: ["--parallel"],
-          description: "Build images in parallel.",
-          args: {},
-        },
-        {
-          name: ["--progress"],
-          description:
-            "Set type of progress output (auto, plain, tty). EXPERIMENTAL flag for native builder. To enable, run with COMPOSE_DOCKER_CLI_BUILD=1)",
-          args: {},
-        },
-        {
-          name: ["--pull"],
-          description: "Always attempt to pull a newer version of the image.",
-          args: {},
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Don't print anything to STDOUT",
-          args: {},
-        },
-      ],
+      loadSpec: "docker/compose-build",
     },
     {
       name: "config",
       description: "Validate and view the Compose file.",
-      options: [
-        {
-          name: ["--resolve-image-digests"],
-          description: "Pin image tags to digests.",
-          args: {},
-        },
-        {
-          name: ["--no-interpolate"],
-          description: "Don't interpolate environment variables.",
-          args: {},
-        },
-        {
-          name: ["-q", "--quiet"],
-          description: "Only validate the configuration, don't print anything.",
-          args: {},
-        },
-        {
-          name: ["--services"],
-          description: "Print the service names, one per line.",
-          args: {},
-        },
-        {
-          name: ["--volumes"],
-          description: "Print the volume names, one per line.",
-          args: {},
-        },
-        {
-          name: ["--hash"],
-          description:
-            'Print the service config hash, one per line. Set "service1,service2" for a list of specified services or use the wildcard symbol to display all services.',
-          args: {},
-        },
-      ],
+      loadSpec: "docker/compose-config",
     },
     {
       name: "create",

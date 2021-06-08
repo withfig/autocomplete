@@ -5366,5 +5366,21 @@ export const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "compose",
+      description: "Define and run multi-container applications with Docker.",
+      subcommands: [
+        {
+          name: "build",
+          description: "Build or rebuild services.",
+          loadSpec: "docker/compose-build",
+        },
+        {
+          name: "config",
+          description: "Validate and view the Compose file.",
+          loadSpec: "docker/compose-config",
+        },
+      ],
+    },
   ],
 };
