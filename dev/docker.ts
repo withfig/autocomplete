@@ -33,7 +33,8 @@ const dockerGenerators: Record<string, Fig.Generator> = {
         .split("\n")
         .map((line) => JSON.parse(line));
       return allLines.map((i) => ({
-        name: `${i.Repository}`,
+        name: `${i.ID}`,
+        displayName: `${i.Repository} - ${i.ID}`,
       }));
     },
   },
@@ -114,6 +115,30 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       return allLines.map((i) => ({
         name: i.Name,
         description: i.ID,
+      }));
+    },
+  },
+  listDockerServices: {
+    script: `docker service list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+        description: i.Image,
+      }));
+    },
+  },
+  listDockerServicesReplicas: {
+    script: `docker service list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: `${i.Name}=`,
+        description: i.Image,
       }));
     },
   },
@@ -3262,38 +3287,1321 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new service",
+          args: [
+            imagesArg,
+            {
+              name: "COMMAND",
+              isOptional: true,
+              isCommand: true,
+            },
+          ],
+          options: [
+            {
+              name: "--cap-add",
+              description: "Add Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-drop",
+              description: "Drop Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--config",
+              description: "Specify configurations to expose to the service",
+              args: {
+                name: "config",
+              },
+            },
+            {
+              name: "--constraint",
+              description: "Placement constraints",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--container-label",
+              description: "Container labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--credential-spec credential-spec",
+              description:
+                "Credential spec for managed service account (Windows only)",
+            },
+            {
+              name: ["-d", "--detach"],
+              description:
+                "Exit immediately instead of waiting for the service to converge",
+            },
+            {
+              name: "--dns",
+              description: "Set custom DNS servers",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-option",
+              description: "Set DNS options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-search",
+              description: "Set custom DNS search domains",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--endpoint-mode",
+              description: 'Endpoint mode (vip or dnsrr) (default "vip")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--entrypoint",
+              description: "Overwrite the default ENTRYPOINT of the image",
+              args: {
+                name: "command",
+              },
+            },
+            {
+              name: ["-e", "--env"],
+              description: "Set environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--env-file",
+              description: "Read in a file of environment variables",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--generic-resource",
+              description: "User defined resources",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--group",
+              description:
+                "Set one or more supplementary user groups for the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--health-cmd",
+              description: "Command to run to check health",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--health-interval",
+              description: "Time between running the check (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-retries",
+              description: "Consecutive failures needed to report unhealthy",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--health-start-period",
+              description:
+                "Start period for the container to initialize before counting retries towards unstable (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-timeout",
+              description: "Maximum time to allow one check to run (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--host",
+              description:
+                "Set one or more custom host-to-IP mappings (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--hostname",
+              description: "Container hostname",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--init",
+              description:
+                "Use an init inside each service container to forward signals and reap processes",
+            },
+            {
+              name: "--isolation",
+              description: "Service container isolation mode",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-l", "--label"],
+              description: "Service labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--limit-cpu",
+              description: "Limit CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--limit-memory",
+              description: "Limit Memory",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--limit-pids",
+              description:
+                "Limit maximum number of processes (default 0 = unlimited)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--log-driver",
+              description: "Logging driver for service",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--log-opt",
+              description: "Logging driver options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--max-concurrent",
+              description:
+                "Number of job tasks to run concurrently (default equal to --replicas)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--mode",
+              description:
+                'Service mode (replicated, global, replicated-job, or global-job) (default "replicated")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--mount",
+              description: "Attach a filesystem mount to the service",
+              args: {
+                name: "mount",
+              },
+            },
+            {
+              name: "--name",
+              description: "Service name",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--network",
+              description: "Network attachments",
+              args: {
+                name: "network",
+              },
+            },
+            {
+              name: "--no-healthcheck",
+              description: "Disable any container-specified HEALTHCHECK",
+            },
+            {
+              name: "--no-resolve-image",
+              description:
+                "Do not query the registry to resolve image digest and supported platforms",
+            },
+            {
+              name: "--placement-pref",
+              description: "Add a placement preference",
+              args: {
+                name: "pref",
+              },
+            },
+            {
+              name: ["-p", "--publish"],
+              description: "Publish a port as a node port",
+              args: {
+                name: "port",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress progress output",
+            },
+            {
+              name: "--read-only",
+              description: "Mount the container's root filesystem as read only",
+            },
+            {
+              name: "--replicas",
+              description: "Number of tasks",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--replicas-max-per-node",
+              description:
+                "Maximum number of tasks per node (default 0 = unlimited)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--reserve-cpu",
+              description: "Reserve CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--reserve-memory",
+              description: "Reserve Memory",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--restart-condition",
+              description:
+                'Restart when condition is met ("none"|"on-failure"|"any") (default "any")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--restart-delay",
+              description:
+                "Delay between restart attempts (ns|us|ms|s|m|h) (default 5s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--restart-max-attempts",
+              description: "Maximum number of restarts before giving up",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--restart-window",
+              description:
+                "Window used to evaluate the restart policy (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback-delay",
+              description:
+                "Delay between task rollbacks (ns|us|ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback-failure-action",
+              description:
+                'Action on rollback failure ("pause"|"continue") (default "pause")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rollback-max-failure-ratio",
+              description:
+                "Failure rate to tolerate during a rollback (default 0)",
+              args: {
+                name: "float",
+              },
+            },
+            {
+              name: "--rollback-monitor",
+              description:
+                "Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h) (default 5s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback-order",
+              description:
+                'Rollback order ("start-first"|"stop-first") (default "stop-first")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rollback-parallelism",
+              description:
+                "Maximum number of tasks rolled back simultaneously (0 to roll back all at once) (default 1)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--secret",
+              description: "Specify secrets to expose to the service",
+              args: {
+                name: "secret",
+              },
+            },
+            {
+              name: "--stop-grace-period",
+              description:
+                "Time to wait before force killing a container (ns|us|ms|s|m|h) (default 10s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--stop-signal",
+              description: "Signal to stop the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--sysctl",
+              description: "Sysctl options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-t", "--tty"],
+              description: "Allocate a pseudo-TTY",
+            },
+            {
+              name: "--ulimit",
+              description: "Ulimit options (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: "--update-delay",
+              description:
+                "Delay between updates (ns|us|ms|s|m|h) (default 0s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--update-failure-action",
+              description:
+                'Action on update failure ("pause"|"continue"|"rollback") (default "pause")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--update-max-failure-ratio",
+              description:
+                "Failure rate to tolerate during an update (default 0)",
+              args: {
+                name: "float",
+              },
+            },
+            {
+              name: "--update-monitor",
+              description:
+                "Duration after each task update to monitor for failure (ns|us|ms|s|m|h) (default 5s)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--update-order",
+              description:
+                'Update order ("start-first"|"stop-first") (default "stop-first")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--update-parallelism",
+              description:
+                "Maximum number of tasks updated simultaneously (0 to update all at once) (default 1)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Username or UID (format: <name|uid>[:<group|gid>])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--with-registry-auth",
+              description:
+                "Send registry authentication details to swarm agents",
+            },
+            {
+              name: ["-w", "--workdir"],
+              description: "Working directory inside the container",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more services",
+          args: {
+            name: "SERVICE",
+            generators: [dockerGenerators.listDockerServices],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pretty",
+              description: "Print the information in a human friendly format",
+            },
+          ],
         },
         {
           name: "logs",
           description: "Fetch the logs of a service or task",
+          args: {
+            name: "SERVICE OR TASK",
+            generators: [dockerGenerators.listDockerServices],
+          },
+          options: [
+            {
+              name: "--details",
+              description: "Show extra details provided to logs",
+            },
+            {
+              name: ["-f", "--follow"],
+              description: "Follow log output",
+            },
+            {
+              name: "--no-resolve",
+              description: "Do not map IDs to Names in output",
+            },
+            {
+              name: "--no-task-ids",
+              description: "Do not include task IDs in output",
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate output",
+            },
+            {
+              name: "--raw",
+              description: "Do not neatly format logs",
+            },
+            {
+              name: "--since",
+              description:
+                "Show logs since timestamp (e.g. 2013-01-02T13:23:37Z) or relative (e.g. 42m for 42 minutes)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-n", "--tail"],
+              description:
+                'Number of lines to show from the end of the logs (default "all")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-t", "--timestamps"],
+              description: "Show timestamps",
+            },
+          ],
         },
         {
           name: "ls",
           description: "List services",
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print services using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display IDs",
+            },
+          ],
         },
         {
           name: "ps",
           description: "List the tasks of one or more services",
+          args: {
+            name: "SERVICE",
+            generators: [dockerGenerators.listDockerServices],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print tasks using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-resolve",
+              description: "Do not map IDs to Names",
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display task IDs",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more services",
+          args: {
+            name: "SERVICE",
+            generators: [dockerGenerators.listDockerServices],
+            variadic: true,
+          },
         },
         {
           name: "rollback",
           description: "Revert changes to a service's configuration",
+          args: {
+            name: "SERVICE",
+            generators: [dockerGenerators.listDockerServices],
+          },
+          options: [
+            {
+              name: ["-d", "--detach"],
+              description:
+                "Exit immediately instead of waiting for the service to converge",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress progress output",
+            },
+          ],
         },
         {
           name: "scale",
           description: "Scale one or multiple replicated services",
+          args: {
+            name: "SERVICE=REPLICAS",
+            generators: [dockerGenerators.listDockerServicesReplicas],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-d", "--detach"],
+              description:
+                "Exit immediately instead of waiting for the service to converge",
+            },
+          ],
         },
         {
           name: "update",
           description: "Update a service",
+          args: {
+            name: "SERVICE",
+            generators: [dockerGenerators.listDockerServices],
+          },
+          options: [
+            {
+              name: "--args",
+              description: "Service command args",
+              args: {
+                name: "command",
+              },
+            },
+            {
+              name: "--cap-add",
+              description: "Add Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--cap-drop",
+              description: "Drop Linux capabilities",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--config-add",
+              description: "Add or update a config file on a service",
+              args: {
+                name: "config",
+              },
+            },
+            {
+              name: "--config-rm",
+              description: "Remove a configuration file",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--constraint-add",
+              description: "Add or update a placement constraint",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--constraint-rm",
+              description: "Remove a constraint",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--container-label-add",
+              description: "Add or update a container label",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--container-label-rm",
+              description: "Remove a container label by its key",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--credential-spec credential-spec",
+              description:
+                "Credential spec for managed service account (Windows only)",
+            },
+            {
+              name: ["-d", "--detach"],
+              description:
+                "Exit immediately instead of waiting for the service to converge",
+            },
+            {
+              name: "--dns-add",
+              description: "Add or update a custom DNS server",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-option-add",
+              description: "Add or update a DNS option",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-option-rm",
+              description: "Remove a DNS option",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-rm",
+              description: "Remove a custom DNS server",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-search-add",
+              description: "Add or update a custom DNS search domain",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--dns-search-rm",
+              description: "Remove a DNS search domain",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--endpoint-mode",
+              description: "Endpoint mode (vip or dnsrr)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--entrypoint",
+              description: "Overwrite the default ENTRYPOINT of the image",
+              args: {
+                name: "command",
+              },
+            },
+            {
+              name: "--env-add",
+              description: "Add or update an environment variable",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--env-rm",
+              description: "Remove an environment variable",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--force",
+              description: "Force update even if no changes require it",
+            },
+            {
+              name: "--generic-resource-add",
+              description: "Add a Generic resource",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--generic-resource-rm",
+              description: "Remove a Generic resource",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--group-add",
+              description:
+                "Add an additional supplementary user group to the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--group-rm",
+              description:
+                "Remove a previously added supplementary user group from the container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--health-cmd",
+              description: "Command to run to check health",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--health-interval",
+              description: "Time between running the check (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-retries",
+              description: "Consecutive failures needed to report unhealthy",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--health-start-period",
+              description:
+                "Start period for the container to initialize before counting retries towards unstable (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--health-timeout",
+              description: "Maximum time to allow one check to run (ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--host-add",
+              description: "Add a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--host-rm",
+              description: "Remove a custom host-to-IP mapping (host:ip)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--hostname",
+              description: "Container hostname",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--image",
+              description: "Service image tag",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--init",
+              description:
+                "Use an init inside each service container to forward signals and reap processes",
+            },
+            {
+              name: "--isolation",
+              description: "Service container isolation mode",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label-add",
+              description: "Add or update a service label",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--label-rm",
+              description: "Remove a label by its key",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--limit-cpu",
+              description: "Limit CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--limit-memory",
+              description: "Limit Memory",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--limit-pids",
+              description:
+                "Limit maximum number of processes (default 0 = unlimited)",
+              args: {
+                name: "int",
+              },
+            },
+            {
+              name: "--log-driver",
+              description: "Logging driver for service",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--log-opt",
+              description: "Logging driver options",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--max-concurrent",
+              description:
+                "Number of job tasks to run concurrently (default equal to --replicas)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--mount-add",
+              description: "Add or update a mount on a service",
+              args: {
+                name: "mount",
+              },
+            },
+            {
+              name: "--mount-rm",
+              description: "Remove a mount by its target path",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--network-add",
+              description: "Add a network",
+              args: {
+                name: "network",
+              },
+            },
+            {
+              name: "--network-rm",
+              description: "Remove a network",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--no-healthcheck",
+              description: "Disable any container-specified HEALTHCHECK",
+            },
+            {
+              name: "--no-resolve-image",
+              description:
+                "Do not query the registry to resolve image digest and supported platforms",
+            },
+            {
+              name: "--placement-pref-add",
+              description: "Add a placement preference",
+              args: {
+                name: "pref",
+              },
+            },
+            {
+              name: "--placement-pref-rm",
+              description: "Remove a placement preference",
+              args: {
+                name: "pref",
+              },
+            },
+            {
+              name: "--publish-add",
+              description: "Add or update a published port",
+              args: {
+                name: "port",
+              },
+            },
+            {
+              name: "--publish-rm",
+              description: "Remove a published port by its target port",
+              args: {
+                name: "port",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Suppress progress output",
+            },
+            {
+              name: "--read-only",
+              description: "Mount the container's root filesystem as read only",
+            },
+            {
+              name: "--replicas",
+              description: "Number of tasks",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--replicas-max-per-node",
+              description:
+                "Maximum number of tasks per node (default 0 = unlimited)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--reserve-cpu",
+              description: "Reserve CPUs",
+              args: {
+                name: "decimal",
+              },
+            },
+            {
+              name: "--reserve-memory",
+              description: "Reserve Memory",
+              args: {
+                name: "bytes",
+              },
+            },
+            {
+              name: "--restart-condition",
+              description:
+                'Restart when condition is met ("none"|"on-failure"|"any")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--restart-delay",
+              description: "Delay between restart attempts (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--restart-max-attempts",
+              description: "Maximum number of restarts before giving up",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--restart-window",
+              description:
+                "Window used to evaluate the restart policy (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback",
+              description: "Rollback to previous specification",
+            },
+            {
+              name: "--rollback-delay",
+              description: "Delay between task rollbacks (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback-failure-action",
+              description: 'Action on rollback failure ("pause"|"continue")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rollback-max-failure-ratio",
+              description: "Failure rate to tolerate during a rollback",
+              args: {
+                name: "float",
+              },
+            },
+            {
+              name: "--rollback-monitor",
+              description:
+                "Duration after each task rollback to monitor for failure (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--rollback-order",
+              description: 'Rollback order ("start-first"|"stop-first")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--rollback-parallelism",
+              description:
+                "Maximum number of tasks rolled back simultaneously (0 to roll back all at once)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: "--secret-add",
+              description: "Add or update a secret on a service",
+              args: {
+                name: "secret",
+              },
+            },
+            {
+              name: "--secret-rm",
+              description: "Remove a secret",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--stop-grace-period",
+              description:
+                "Time to wait before force killing a container (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--stop-signal",
+              description: "Signal to stop the container",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--sysctl-add",
+              description: "Add or update a Sysctl option",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--sysctl-rm",
+              description: "Remove a Sysctl option",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-t", "--tty"],
+              description: "Allocate a pseudo-TTY",
+            },
+            {
+              name: "--ulimit-add",
+              description: "Add or update a ulimit option (default [])",
+              args: {
+                name: "ulimit",
+              },
+            },
+            {
+              name: "--ulimit-rm",
+              description: "Remove a ulimit option",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--update-delay",
+              description: "Delay between updates (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--update-failure-action",
+              description:
+                'Action on update failure ("pause"|"continue"|"rollback")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--update-max-failure-ratio",
+              description: "Failure rate to tolerate during an update",
+              args: {
+                name: "float",
+              },
+            },
+            {
+              name: "--update-monitor",
+              description:
+                "Duration after each task update to monitor for failure (ns|us|ms|s|m|h)",
+              args: {
+                name: "duration",
+              },
+            },
+            {
+              name: "--update-order",
+              description: 'Update order ("start-first"|"stop-first")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--update-parallelism",
+              description:
+                "Maximum number of tasks updated simultaneously (0 to update all at once)",
+              args: {
+                name: "uint",
+              },
+            },
+            {
+              name: ["-u", "--user"],
+              description: "Username or UID (format: <name|uid>[:<group|gid>])",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--with-registry-auth",
+              description:
+                "Send registry authentication details to swarm agents",
+            },
+            {
+              name: ["-w", "--workdir"],
+              description: "Working directory inside the container",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
       ],
     },
