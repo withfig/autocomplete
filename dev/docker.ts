@@ -153,6 +153,17 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerVolumes: {
+    script: `docker volume list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -5137,6 +5148,70 @@ export const completionSpec: Fig.Spec = {
             },
           ],
         },
+        {
+          name: "df",
+          description: "Show docker disk usage",
+          options: [
+            {
+              name: "--format",
+              description: " Pretty-print images using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: " Show detailed information on space usage",
+            },
+          ],
+        },
+        {
+          name: "events",
+          description: "Get real time events from the server",
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: " Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: " Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--since",
+              description: "Show all events created since timestamp",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--until",
+              description: "Stream events until this timestamp",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+        {
+          name: "info",
+          description: "Display system-wide information",
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: " Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
       ],
     },
     {
@@ -5146,14 +5221,38 @@ export const completionSpec: Fig.Spec = {
         {
           name: "inspect",
           description: "Return low-level information about keys and signatures",
+          args: {
+            name: "IMAGE[:TAG]",
+            variadic: true,
+          },
+          options: [
+            {
+              name: "--pretty",
+              description: " Print the information in a human friendly format",
+            },
+          ],
         },
         {
           name: "revoke",
           description: "Remove trust for an image",
+          args: imagesArg,
+          options: [
+            {
+              name: ["-y", "--yes"],
+              description: " Do not prompt for confirmation",
+            },
+          ],
         },
         {
           name: "sign",
           description: "Sign an image",
+          args: imagesArg,
+          options: [
+            {
+              name: "--local",
+              description: " Sign a locally tagged image",
+            },
+          ],
         },
       ],
     },
@@ -5164,22 +5263,106 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a volume",
+          args: {
+            name: "VOLUME",
+          },
+          options: [
+            {
+              name: ["-d", "--driver"],
+              description: ' Specify volume driver name (default "local")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label",
+              description: "Set metadata for a volume",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-o", "--opt"],
+              description: " Set driver specific options (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+          ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more volumes",
+          args: {
+            name: "VOLUME",
+            generators: [dockerGenerators.listDockerVolumes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: " Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "ls",
           description: "List volumes",
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: " Provide filter values (e.g. 'dangling=true')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: " Pretty-print volumes using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: " Only display volume names",
+            },
+          ],
         },
         {
           name: "prune",
           description: "Remove all unused local volumes",
+          options: [
+            {
+              name: "--filter",
+              description: " Provide filter values (e.g. 'label=<label>')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: " Do not prompt for confirmation",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more volumes",
+          args: {
+            name: "VOLUME",
+            generators: [dockerGenerators.listDockerVolumes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: "-f, --force",
+              description: " Force the removal of one or more volumes",
+            },
+          ],
         },
       ],
     },
