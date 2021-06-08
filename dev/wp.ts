@@ -125,7 +125,7 @@ const global_options = [
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "wp",
-  description: "The stupid content tracker",
+  description: "WP-CLI is the command-line interface for WordPress.",
   // options: global_options,
   subcommands: [
     {
@@ -668,6 +668,469 @@ export const completion: Fig.Spec = {
         {
           name: "version",
           description: "Prints WP-CLI version.",
+        },
+      ],
+    },
+
+    {
+      name: "comment",
+      description: "Creates, updates, deletes, and moderates comments.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "config",
+      description: "Generates and reads the wp-config.php file.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "core",
+      description:
+        "Downloads, installs, updates, and manages a WordPress installation.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "cron",
+      description:
+        "Tests, runs, and deletes WP-Cron events; manages WP-Cron schedules.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "db",
+      Pdescription:
+        "Performs basic database operations using credentials stored in wp-config.php.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "dist-archive",
+      description:
+        "Create a distribution archive based on a project’s .distignore file.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "embed",
+      description: "Inspects oEmbed providers, clears embed cache, and more.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "eval",
+      description: "Executes arbitrary PHP code.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "eval-file",
+      description: "Loads and executes a PHP file.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "export",
+      description: "Exports WordPress content to a WXR file.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "find",
+      description: "Find WordPress installations on the filesystem.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "Gets help on WP-CLI, or on a specific command.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "i18n",
+      description:
+        "Provides internationalization tools for WordPress projects.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "import",
+      description: "Imports content from a given WXR file.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "language",
+      description: "Installs, activates, and manages language packs.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "maintenance-mode",
+      description:
+        "Activates, deactivates or checks the status of the maintenance mode of a site.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "media",
+      description:
+        "Imports files as attachments, regenerates thumbnails, or lists registered image sizes.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "menu",
+      description:
+        "Lists, creates, assigns, and deletes the active theme’s navigation menus.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "network",
+      description: "Perform network-wide operations.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "option",
+      description:
+        "Retrieves and sets site options, including plugin and WordPress settings.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "package",
+      description: "Lists, installs, and removes WP-CLI packages.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "plugin",
+      description:
+        "Manages plugins, including installs, activations, and updates.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "post",
+      description: "Manages posts, content, and meta.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "post-type",
+      description: "Retrieves details on the site’s registered post types.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "profile",
+      description: "",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "rewrite",
+      description:
+        "Lists or flushes the site’s rewrite rules, updates the permalink structure.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "role",
+      description:
+        "Manages user roles, including creating new roles and resetting to defaults.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "scaffold",
+      description:
+        "Generates code for post types, taxonomies, plugins, child themes, etc.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "search-replace",
+      description: "Searches/replaces strings in the database.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "server",
+      description:
+        "Launches PHP’s built-in web server for a specific WordPress installation.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "shell",
+      description:
+        "Opens an interactive PHP console for running and testing PHP code.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "sidebar",
+      description: "Lists registered sidebars.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "site",
+      description:
+        "Creates, deletes, empties, moderates, and lists one or more sites on a multisite installation.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "super-admin",
+      description:
+        "Lists, adds, or removes super admin users on a multisite installation.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "taxonomy",
+      description: "Retrieves information about registered taxonomies.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "term",
+      description:
+        "Manages taxonomy terms and term meta, with create, delete, and list commands.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "theme",
+      description:
+        "Manages themes, including installs, activations, and updates.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "transient",
+      description:
+        "Adds, gets, and deletes entries in the WordPress Transient Cache.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "user",
+      description:
+        "Manages users, along with their roles, capabilities, and meta.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
+        },
+      ],
+    },
+    {
+      name: "widget",
+      description:
+        "Manages widgets, including adding and moving them within sidebars.",
+      subcommands: [
+        {
+          name: "",
+          description: "",
+          subcommands: [{}],
         },
       ],
     },
