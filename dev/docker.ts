@@ -1961,7 +1961,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "compose",
       description: "Contains most of docker-compose features and flags",
-      // TODO Subcommands
+      loadSpec: "docker-compose",
     },
     {
       name: "container",
