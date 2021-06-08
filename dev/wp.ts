@@ -616,10 +616,54 @@ export const completion: Fig.Spec = {
           name: "param-dump",
           description:
             "Dumps the list of global parameters, as JSON or in var_export format.",
+          options: [
+            {
+              name: "--with-values",
+              description: "Display current values also.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=list|json",
+              description: "Render output in a particular format.",
+            },
+          ],
         },
         {
           name: "update",
           description: "Updates WP-CLI to the latest release.",
+          options: [
+            {
+              name: "--patch",
+              description: "Only perform patch updates.",
+            },
+            {
+              name: "--minor",
+              description: "Only perform minor updates.",
+            },
+            {
+              name: "--major",
+              description: "Only perform major updates.",
+            },
+            {
+              name: "--stable",
+              description:
+                "Update to the latest stable release. Skips update check.",
+            },
+            {
+              name: "--nightly",
+              description:
+                "Update to the latest built version of the master branch. Potentially unstable.",
+            },
+            {
+              name: "--yes",
+              description: "Do not prompt for confirmation.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
         },
         {
           name: "version",
