@@ -122,7 +122,7 @@ export const completion: Fig.Spec = {
         },
         {
           name: "-T",
-          description: "THe key table to use",
+          description: "The key table to use",
           args: {
             name: "key-table",
           },
@@ -2109,6 +2109,33 @@ export const completion: Fig.Spec = {
     {
       name: ["unbind", "unbind-key"],
       description: "Unbind a key",
+      args: [
+        {
+          name: "key",
+          description: "The key to unbind",
+        },
+      ],
+      options: [
+        {
+          name: "-a",
+          description: "Remove all key-bindings",
+        },
+        {
+          name: "-n",
+          description: "Alias for -T root",
+        },
+        {
+          name: "-q",
+          description: "Prevent errors being returned",
+        },
+        {
+          name: "-T",
+          description: "The key table to use",
+          args: {
+            name: "key-table",
+          },
+        },
+      ],
     },
     {
       name: ["unlinkw", "unlink-window"],
@@ -2128,6 +2155,22 @@ export const completion: Fig.Spec = {
     {
       name: ["wait", "wait-for"],
       description: "Wait for an event or trigger it",
+      args: {
+        name: "channel",
+        description: "Wait for this channel",
+      },
+      options: [
+        {
+          name: "-L",
+          description: "Lock the channel",
+          exclusive: ["-U"],
+        },
+        {
+          name: "-U",
+          description: "Unlock the channel",
+          exclusive: ["-L"],
+        },
+      ],
     },
   ],
 };
