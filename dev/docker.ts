@@ -142,6 +142,17 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerStacks: {
+    script: `docker stack list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -4612,22 +4623,159 @@ export const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a new stack or update an existing stack",
+          args: {
+            name: "STACK",
+          },
+          options: [
+            {
+              name: ["-c", "--compose-file"],
+              description: 'Path to a Compose file, or "-" to read from stdin',
+              args: {
+                name: "strings",
+                template: "filepaths",
+              },
+            },
+            {
+              name: "--orchestrator",
+              description: "Orchestrator to use (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--prune",
+              description: "Prune services that are no longer referenced",
+            },
+            {
+              name: "--resolve-image",
+              description:
+                'Query the registry to resolve image digest and supported platforms ("always"|"changed"|"never") (default "always")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--with-registry-auth",
+              description:
+                "Send registry authentication details to Swarm agents",
+            },
+          ],
         },
         {
           name: "ls",
           description: "List stacks",
+          options: [
+            {
+              name: "--format",
+              description: " Pretty-print stacks using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--orchestrator",
+              description: " Orchestrator to use (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "ps",
           description: "List the tasks in the stack",
+          args: {
+            name: "STACK",
+            generators: [dockerGenerators.listDockerStacks],
+          },
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: " Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: " Pretty-print tasks using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-resolve",
+              description: "Do not map IDs to Names",
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate output",
+            },
+            {
+              name: "--orchestrator",
+              description: " Orchestrator to use (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: " Only display task IDs",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more stacks",
+          args: {
+            name: "STACK",
+            generators: [dockerGenerators.listDockerStacks],
+            variadic: true,
+          },
+          options: [
+            {
+              name: "--orchestrator",
+              description: " Orchestrator to use (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "services",
           description: "List the services in the stack",
+          args: {
+            name: "STACK",
+            generators: [dockerGenerators.listDockerStacks],
+          },
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: " Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: " Pretty-print services using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--orchestrator",
+              description: " Orchestrator to use (swarm|kubernetes|all)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: " Only display IDs",
+            },
+          ],
         },
       ],
     },
