@@ -105,6 +105,18 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerSecrets: {
+    script: `docker secret list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+        description: i.ID,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -3153,18 +3165,93 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a secret from a file or STDIN as content",
+          args: [
+            {
+              name: "SECRET NAME",
+            },
+            {
+              name: "SECRET",
+              template: "filepaths",
+            },
+          ],
+          options: [
+            {
+              name: ["-d", "--driver"],
+              description: "Secret driver",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-l", "--label"],
+              description: "Secret labels",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--template-driver",
+              description: "Template driver",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "inspect",
           description: "Display detailed information on one or more secrets",
+          args: {
+            name: "SECRET",
+            generators: [dockerGenerators.listDockerSecrets],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pretty",
+              description: "Print the information in a human friendly format",
+            },
+          ],
         },
         {
           name: "ls",
           description: "List secrets",
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print secrets using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display IDs",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more secrets",
+          args: {
+            name: "SECRET",
+            generators: [dockerGenerators.listDockerSecrets],
+            variadic: true,
+          },
         },
       ],
     },
