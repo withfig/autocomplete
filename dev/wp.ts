@@ -150,23 +150,23 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "my_key",
+                // insertValue: "my_key",
                 description: "Cache key.",
               },
               {
                 name: "value",
-                insertValue: "my_value",
+                // insertValue: "my_value",
                 description: "Value to add to the key.",
               },
               {
                 name: "[group]",
-                insertValue: "my_group",
+                // insertValue: "my_group",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
               {
                 name: "[expiration]",
-                insertValue: "300",
+                // insertValue: "300",
                 description:
                   "Define how long to keep the value, in seconds. 0 means as long as possible.",
               },
@@ -180,18 +180,18 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
               {
                 name: "offset",
-                insertValue: "offset",
+                // insertValue: "offset",
                 description:
                   "The amount by which to decrement the item’s value.",
               },
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
@@ -205,13 +205,13 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
 
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
@@ -229,13 +229,13 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
 
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
@@ -249,18 +249,18 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
               {
                 name: "offset",
-                insertValue: "offset",
+                // insertValue: "offset",
                 description:
                   "The amount by which to decrement the item’s value.",
               },
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
@@ -275,23 +275,23 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
               {
                 name: "value",
-                insertValue: "value",
+                // insertValue: "value",
                 description: "Value to add to the key.",
               },
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
               {
                 name: "expiration",
-                insertValue: "[expiration]",
+                // insertValue: "[expiration]",
                 description:
                   "Define how long to keep the value, in seconds. 0 means as long as possible.",
               },
@@ -306,23 +306,23 @@ export const completion: Fig.Spec = {
             suggestions: [
               {
                 name: "key",
-                insertValue: "key",
+                // insertValue: "key",
                 description: "Cache key.",
               },
               {
                 name: "value",
-                insertValue: "value",
+                // insertValue: "value",
                 description: "Value to add to the key.",
               },
               {
                 name: "group",
-                insertValue: "[group]",
+                // insertValue: "[group]",
                 description:
                   "Method for grouping data within the cache which allows the same key to be used across groups.",
               },
               {
                 name: "expiration",
-                insertValue: "[expiration]",
+                // insertValue: "[expiration]",
                 description:
                   "Define how long to keep the value, in seconds. 0 means as long as possible.",
               },
@@ -425,8 +425,12 @@ export const completion: Fig.Spec = {
                 },
                 {
                   name: "--config",
-                  insertValue: "--config=global|project",
+                  insertValue: "--config=",
                   description: "Config file to be considered for operations.",
+                  args: {
+                    name: "type",
+                    suggestions: [{ name: "global" }, { name: "project" }],
+                  },
                 },
               ],
             },
@@ -442,8 +446,12 @@ export const completion: Fig.Spec = {
               options: [
                 {
                   name: "--config",
-                  insertValue: "--config=global|project",
+                  insertValue: "--config=",
                   description: "Config file to be considered for operations.",
+                  args: {
+                    name: "type",
+                    suggestions: [{ name: "global" }, { name: "project" }],
+                  },
                 },
               ],
             },
@@ -463,8 +471,16 @@ export const completion: Fig.Spec = {
               options: [
                 {
                   name: "--format",
-                  insertValue: "--format=yaml|json|var_export",
+                  insertValue: "--format=",
                   description: "Set user for alias.",
+                  args: {
+                    name: "output type",
+                    suggestions: [
+                      { name: "yaml" },
+                      { name: "json" },
+                      { name: "var_export" },
+                    ],
+                  },
                 },
               ],
             },
@@ -510,8 +526,12 @@ export const completion: Fig.Spec = {
                 },
                 {
                   name: "--config",
-                  insertValue: "--config=global|project",
+                  insertValue: "--config=",
                   description: "Config file to be considered for operations.",
+                  args: {
+                    name: "type",
+                    suggestions: [{ name: "global" }, { name: "project" }],
+                  },
                 },
               ],
             },
@@ -548,25 +568,35 @@ export const completion: Fig.Spec = {
             },
             {
               name: "--major",
-              insertValue: "",
+              // insertValue: "",
               description: "Only list major updates.",
             },
             {
               name: "--field",
-              insertValue: "--field=<field>",
+              insertValue: "--field=",
               description:
                 "Prints the value of a single field for each update.",
             },
             {
               name: "--fields",
-              insertValue: "--fields=<fields>",
+              insertValue: "--fields=",
               description:
                 "Limit the output to specific object fields. Defaults to version,update_type,package_url.",
             },
             {
               name: "--format",
-              insertValue: "--format=table|csv|json|count|yaml",
+              insertValue: "--format=",
               description: "Render output in a particular format.",
+              args: {
+                name: "output type",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
             },
           ],
         },
@@ -580,12 +610,12 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--line",
-              insertValue: "--line=<line>",
+              insertValue: "--line=",
               description: "The current command line to be executed.",
             },
             {
               name: "--point",
-              insertValue: "--point=<point>",
+              insertValue: "--point=",
               description:
                 "The index to the current cursor position relative to the beginning of the command.",
             },
@@ -607,8 +637,12 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--format",
-              insertValue: "--format=list|json",
+              insertValue: "--format=",
               description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [{ name: "list" }, { name: "json" }],
+              },
             },
           ],
         },
@@ -623,8 +657,12 @@ export const completion: Fig.Spec = {
             },
             {
               name: "--format",
-              insertValue: "--format=list|json",
+              insertValue: "--format=",
               description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [{ name: "list" }, { name: "json" }],
+              },
             },
           ],
         },
@@ -677,9 +715,80 @@ export const completion: Fig.Spec = {
       description: "Creates, updates, deletes, and moderates comments.",
       subcommands: [
         {
-          name: "",
-          description: "",
-          subcommands: [{}],
+          name: "approve",
+          description: "Approves a comment.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to approve.",
+            },
+          ],
+        },
+        {
+          name: "count",
+          description: "Counts comments, on whole blog or on a given post.",
+        },
+        {
+          name: "create",
+          description: "Creates a new comment.",
+        },
+        {
+          name: "delete",
+          description: "Deletes a comment.",
+        },
+        {
+          name: "exists",
+          description: "Verifies whether a comment exists.",
+        },
+        {
+          name: "generate",
+          description: "Generates some number of new dummy comments.",
+        },
+        {
+          name: "get",
+          description: "Gets the data of a single comment.",
+        },
+        {
+          name: "list",
+          description: "Gets a list of comments.",
+        },
+        {
+          name: "meta",
+          description:
+            "Adds, updates, deletes, and lists comment custom fields.",
+        },
+        {
+          name: "recount",
+          description:
+            "Recalculates the comment_count value for one or more posts.",
+        },
+        {
+          name: "spam",
+          description: "Marks a comment as spam.",
+        },
+        {
+          name: "status",
+          description: "Gets the status of a comment.",
+        },
+        {
+          name: "trash",
+          description: "Trashes a comment.",
+        },
+        {
+          name: "unapprove",
+          description: "Unapproves a comment.",
+        },
+        {
+          name: "unspam",
+          description: "Unmarks a comment as spam.",
+        },
+        {
+          name: "untrash",
+          description: "Untrashes a comment.",
+        },
+        {
+          name: "update",
+          description: "Updates one or more comments.",
         },
       ],
     },
