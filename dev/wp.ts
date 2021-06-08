@@ -1,14 +1,16 @@
 // To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 const global_options = [
   {
-    name: ["--path="],
+    name: "--path",
+    insertValue: "--path=",
     description: "Path to the WordPress files.",
     args: {
       name: "path",
     },
   },
   {
-    name: ["--url="],
+    name: "--url",
+    insertValue: "--url=",
     description:
       "Pretend request came from given URL. In multisite, this argument is how the target site is specified.",
     args: {
@@ -16,29 +18,25 @@ const global_options = [
     },
   },
   {
-    name: ["--ssh="],
+    name: "--ssh",
+    insertValue: "--ssh=",
     description:
       "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”).",
-    args: [
-      {
-        name: "scheme:",
-      },
-      {
-        name: "user@",
-      },
-      {
-        name: "host|container",
-      },
-      {
-        name: ":port",
-      },
-      {
-        name: "path",
-      },
-    ],
+    args: {
+      name: "type",
+      suggestions: [
+        { name: "scheme:" },
+        { name: "user@" },
+        { name: "<host>" },
+        { name: "<container>" },
+        { name: ":port" },
+        { name: "<path>" },
+      ],
+    },
   },
   {
-    name: ["--http="],
+    name: "--http",
+    insertValue: "--http=",
     description:
       "Perform operation against a remote WordPress installation over HTTP.",
     args: {
@@ -46,42 +44,38 @@ const global_options = [
     },
   },
   {
-    name: ["--user="],
+    name: "--user",
+    insertValue: "--user=",
     description: "Set the WordPress user.",
-    args: [
-      {
-        name: "id",
-      },
-      {
-        name: "login",
-      },
-      {
-        name: "email",
-      },
-    ],
+    args: {
+      name: "type",
+      suggestions: [{ name: "id" }, { name: "login" }, { name: "email" }],
+    },
   },
   {
-    name: ["--skip-plugins[=]"],
+    name: "--skip-plugins",
+    // name: "--skip-plugins[=]",
     description:
       "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
     args: {
-      name: "plugins",
+      name: "=plugins",
     },
   },
   {
-    name: ["--skip-themes[=]"],
+    name: "--skip-themes",
     description:
       "Skip loading all themes, or a comma-separated list of themes.",
     args: {
-      name: "themes",
+      name: "=themes",
     },
   },
   {
-    name: ["--skip-packages"],
+    name: "--skip-packages",
     description: "Skip loading all installed packages.",
   },
   {
-    name: ["--require="],
+    name: "--require",
+    insertValue: "--require=",
     description:
       "Load PHP file before running the command (may be used more than once).",
     args: {
@@ -89,7 +83,8 @@ const global_options = [
     },
   },
   {
-    name: ["--exec="],
+    name: "--exec",
+    insertValue: "--exec=",
     description:
       "Execute PHP code before running the command (may be used more than once).",
     args: {
@@ -97,27 +92,27 @@ const global_options = [
     },
   },
   {
-    name: ["--[no-]color"],
+    name: "--[no-]color",
     description: "Whether to colorize the output.",
   },
   {
-    name: ["--debug[=]"],
+    name: "--debug",
     description:
       "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
     args: {
-      name: "group",
+      name: "=group",
     },
   },
   {
-    name: ["--prompt[=]"],
+    name: "--prompt",
     description:
       "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
     args: {
-      name: "assoc",
+      name: "=assoc",
     },
   },
   {
-    name: ["--quiet"],
+    name: "--quiet",
     description: "Suppress informational messages.",
   },
 ];
@@ -727,18 +722,53 @@ export const completion: Fig.Spec = {
         {
           name: "count",
           description: "Counts comments, on whole blog or on a given post.",
+          args: [
+            {
+              name: "post-id",
+              description: "The ID of the post to count comments in.",
+            },
+          ],
         },
         {
           name: "create",
           description: "Creates a new comment.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Associative args for the new comment. See wp_insert_comment().",
+            },
+            {
+              name: "--porcelain",
+              // insertValue: "--",
+              description: "Output just the new comment id.",
+            },
+          ],
         },
         {
           name: "delete",
           description: "Deletes a comment.",
+          args: {
+            name: "id",
+          },
+          options: [
+            {
+              variadic: false,
+              name: "--force",
+              description: "Skip the trash bin.",
+            },
+          ],
         },
         {
           name: "exists",
           description: "Verifies whether a comment exists.",
+          args: [
+            {
+              name: "id",
+              description: "The ID of the comment to check.",
+            },
+          ],
         },
         {
           name: "generate",
