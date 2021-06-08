@@ -93,6 +93,18 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerPlugins: {
+    script: `docker plugin list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+        description: i.ID,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -2955,72 +2967,182 @@ export const completionSpec: Fig.Spec = {
           name: "create",
           description:
             "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: [
+            { name: "PLUGIN" },
+            { name: "PLUGIN-DATA-DIR", template: "filepaths" },
+          ],
+          options: [
+            {
+              name: "--compress",
+              description: "Compress the context using gzip",
+            },
+          ],
         },
         {
           name: "disable",
-          description: " Disable a plugin",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Disable a plugin",
+          args: {
+            name: "PLUGIN",
+            generators: [dockerGenerators.listDockerPlugins],
+          },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force the disable of an active plugin",
+            },
+          ],
         },
         {
           name: "enable",
           description: "Enable a plugin",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: {
+            name: "PLUGIN",
+            generators: [dockerGenerators.listDockerPlugins],
+          },
+          options: [
+            {
+              name: "--timeout",
+              description: "HTTP client timeout (in seconds) (default 30)",
+              args: {
+                name: "int",
+              },
+            },
+          ],
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more plugins",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Display detailed information on one or more plugins",
+          args: {
+            name: "PLUGIN",
+            generators: [dockerGenerators.listDockerPlugins],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+          ],
         },
         {
           name: "install",
-          description: " Install a plugin",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Install a plugin",
+          args: [{ name: "PLUGIN" }, { name: "KEY=VALUE", variadic: true }],
+          options: [
+            {
+              name: "--alias",
+              description: "Local name for plugin",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--disable",
+              description: "Do not enable the plugin on install",
+            },
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: "--grant-all-permissions",
+              description: "Grant all permissions necessary to run the plugin",
+            },
+          ],
         },
         {
           name: "ls",
           description: "List plugins",
-          subcommands: [],
-          args: [],
-          options: [],
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Provide filter values (e.g. 'enabled=true')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print plugins using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-trunc",
+              description: "Don't truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display plugin IDs",
+            },
+          ],
         },
         {
           name: "push",
           description: "Push a plugin to a registry",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: { name: "PLUGIN:[TAG]" },
+          options: [
+            {
+              name: "--disable-content-trust",
+              description: "Skip image signing (default true)",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more plugins",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: {
+            name: "PLUGIN",
+            generators: [dockerGenerators.listDockerPlugins],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force the removal of an active plugin",
+            },
+          ],
         },
         {
           name: "set",
-          description: " Change settings for a plugin",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Change settings for a plugin",
+          args: [
+            {
+              name: "PLUGIN",
+              generators: [dockerGenerators.listDockerPlugins],
+            },
+            { name: "KEY=VALUE", variadic: true },
+          ],
         },
         {
           name: "upgrade",
-          description: " Upgrade an existing plugin",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Upgrade an existing plugin",
+          args: [
+            {
+              name: "PLUGIN",
+              generators: [dockerGenerators.listDockerPlugins],
+            },
+            { name: "REMOTE" },
+          ],
+          options: [
+            {
+              name: "--disable-content-trust",
+              description: "Skip image verification (default true)",
+            },
+            {
+              name: "--grant-all-permissions",
+              description: "Grant all permissions necessary to run the plugin",
+            },
+            {
+              name: "--skip-remote-check",
+              description:
+                "Do not check if specified remote plugin matches existing plugin image",
+            },
+          ],
         },
       ],
     },
@@ -3031,30 +3153,18 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a secret from a file or STDIN as content",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more secrets",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Display detailed information on one or more secrets",
         },
         {
           name: "ls",
           description: "List secrets",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "rm",
           description: "Remove one or more secrets",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
@@ -3065,65 +3175,38 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a new service",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more services",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Display detailed information on one or more services",
         },
         {
           name: "logs",
           description: "Fetch the logs of a service or task",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "ls",
           description: "List services",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "ps",
           description: "List the tasks of one or more services",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "rm",
           description: "Remove one or more services",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "rollback",
           description: "Revert changes to a service's configuration",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "scale",
-          description: " Scale one or multiple replicated services",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Scale one or multiple replicated services",
         },
         {
           name: "update",
           description: "Update a service",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
@@ -3134,37 +3217,22 @@ export const completionSpec: Fig.Spec = {
         {
           name: "deploy",
           description: "Deploy a new stack or update an existing stack",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "ls",
           description: "List stacks",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "ps",
           description: "List the tasks in the stack",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "rm",
           description: "Remove one or more stacks",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "services",
           description: "List the services in the stack",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
@@ -3175,58 +3243,34 @@ export const completionSpec: Fig.Spec = {
         {
           name: "ca",
           description: "Display and rotate the root CA",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "init",
           description: "Initialize a swarm",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "join",
           description: "Join a swarm as a node and/or manager",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "join-token",
           description: "Manage join tokens",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "leave",
-          description: " Leave the swarm",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Leave the swarm",
         },
         {
           name: "unlock",
           description: "Unlock swarm",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "unlock-key",
           description: "Manage the unlock key",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "update",
           description: "Update the swarm",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
@@ -3267,25 +3311,15 @@ export const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "inspect",
-          description:
-            " Return low-level information about keys and signatures",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Return low-level information about keys and signatures",
         },
         {
           name: "revoke",
           description: "Remove trust for an image",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "sign",
           description: "Sign an image",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
@@ -3296,37 +3330,22 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Create a volume",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more volumes",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Display detailed information on one or more volumes",
         },
         {
           name: "ls",
           description: "List volumes",
-          subcommands: [],
-          args: [],
-          options: [],
         },
         {
           name: "prune",
-          description: " Remove all unused local volumes",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Remove all unused local volumes",
         },
         {
           name: "rm",
           description: "Remove one or more volumes",
-          subcommands: [],
-          args: [],
-          options: [],
         },
       ],
     },
