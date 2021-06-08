@@ -386,11 +386,13 @@ export const completion: Fig.Spec = {
             {
               name: "add",
               description: "Creates an alias.",
-              options: [
+              args: [
                 {
                   name: "key",
                   description: "Key for the alias.",
                 },
+              ],
+              options: [
                 {
                   name: "--set-user",
                   insertValue: "--set-user=",
@@ -431,11 +433,13 @@ export const completion: Fig.Spec = {
             {
               name: "delete",
               description: "Deletes an alias.",
-              options: [
+              args: [
                 {
                   name: "key",
                   description: "Key for the alias.",
                 },
+              ],
+              options: [
                 {
                   name: "--config",
                   insertValue: "--config=global|project",
@@ -446,7 +450,7 @@ export const completion: Fig.Spec = {
             {
               name: "get",
               description: "Gets the value for an alias.",
-              options: [
+              args: [
                 {
                   name: "key",
                   description: "Key for the alias.",
@@ -467,11 +471,13 @@ export const completion: Fig.Spec = {
             {
               name: "update",
               description: "Updates an alias.",
-              options: [
+              args: [
                 {
                   name: "key",
                   description: "Key for the alias.",
                 },
+              ],
+              options: [
                 {
                   name: "--set-user",
                   insertValue: "--set-user=",
@@ -510,84 +516,109 @@ export const completion: Fig.Spec = {
               ],
             },
           ],
-          // options: [
-          //   {
-          //     name: "--grant",
-          //     description:
-          //       "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
-          //   },
-          // ],
-          // args: {
-          //   variadic: true,
-          //   suggestions: [
-          //     {
-          //       name: "role",
-          //       insertValue: "'editor'",
-          //       description: "Key for the role.",
-          //     },
-          //     {
-          //       name: "cap",
-          //       insertValue: "'spectate'",
-          //       description: "One or more capabilities to add.",
-          //     },
-          //   ],
-          // },
         },
         {
           name: "cache",
-          description:
-            "Retrieves, sets and updates aliases for WordPress Installations.",
-          // options: [
-          //   {
-          //     name: "--grant",
-          //     description:
-          //       "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
-          //   },
-          // ],
-          // args: {
-          //   variadic: true,
-          //   suggestions: [
-          //     {
-          //       name: "role",
-          //       insertValue: "'editor'",
-          //       description: "Key for the role.",
-          //     },
-          //     {
-          //       name: "cap",
-          //       insertValue: "'spectate'",
-          //       description: "One or more capabilities to add.",
-          //     },
-          //   ],
-          // },
+          description: "Manages the internal WP-CLI cache,.",
+          subcommands: [
+            {
+              name: "clear",
+              description: "Clears the internal cache.",
+            },
+            {
+              name: "prune",
+              description: "Prunes the internal cache.",
+            },
+          ],
         },
         {
-          name: "check-update ",
+          name: "check-update",
           description:
             "Checks to see if there is a newer version of WP-CLI available.",
+          options: [
+            {
+              name: "--patch",
+              // insertValue: "",
+              description: "Only list patch updates.",
+            },
+            {
+              name: "--minor",
+              // insertValue: "",
+              description: "Only list minor updates.",
+            },
+            {
+              name: "--major",
+              insertValue: "",
+              description: "Only list major updates.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=<field>",
+              description:
+                "Prints the value of a single field for each update.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=<fields>",
+              description:
+                "Limit the output to specific object fields. Defaults to version,update_type,package_url.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=table|csv|json|count|yaml",
+              description: "Render output in a particular format.",
+            },
+          ],
         },
         {
-          name: "cmd-dump ",
+          name: "cmd-dump",
           description: "Dumps the list of installed commands, as JSON.",
         },
         {
           name: "completions",
           description: "Generates tab completion strings.",
+          options: [
+            {
+              name: "--line",
+              insertValue: "--line=<line>",
+              description: "The current command line to be executed.",
+            },
+            {
+              name: "--point",
+              insertValue: "--point=<point>",
+              description:
+                "The index to the current cursor position relative to the beginning of the command.",
+            },
+          ],
         },
         {
           name: "has-command",
           description: "Detects if a command exists",
+          args: [
+            {
+              name: "command_name",
+              description: "The command",
+            },
+          ],
         },
         {
-          name: "info ",
+          name: "info",
           description: "Prints various details about the WP-CLI environment.",
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=list|json",
+              description: "Render output in a particular format.",
+            },
+          ],
         },
         {
-          name: "param-dump ",
+          name: "param-dump",
           description:
             "Dumps the list of global parameters, as JSON or in var_export format.",
         },
         {
-          name: "update ",
+          name: "update",
           description: "Updates WP-CLI to the latest release.",
         },
         {
@@ -597,5 +628,5 @@ export const completion: Fig.Spec = {
       ],
     },
   ],
-  // options: global_options,
+  options: global_options,
 };
