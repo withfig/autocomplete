@@ -80,6 +80,19 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerSwarmNodes: {
+    script: `docker node list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.ID,
+        displayName: `${i.ID} - ${i.Hostname}`,
+        description: i.Status,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -2774,6 +2787,165 @@ export const completionSpec: Fig.Spec = {
     {
       name: "node",
       description: "Manage Swarm nodes",
+      subcommands: [
+        {
+          name: "demote",
+          description: "Demote one or more nodes from manager in the swarm",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+        },
+        {
+          name: "inspect",
+          description: "Display detailed information on one or more nodes",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--pretty",
+              description: "Print the information in a human friendly format",
+            },
+          ],
+        },
+        {
+          name: "ls",
+          description: "List nodes in the swarm",
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print nodes using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display IDs",
+            },
+          ],
+        },
+        {
+          name: "promote",
+          description: "Promote one or more nodes to manager in the swarm",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+        },
+        {
+          name: "ps",
+          description:
+            "List tasks running on one or more nodes, defaults to current node",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Filter output based on conditions provided",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print tasks using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-resolve",
+              description: "Do not map IDs to Names",
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display task IDs",
+            },
+          ],
+        },
+        {
+          name: "rm",
+          description: "Remove one or more nodes from the swarm",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force remove a node from the swarm",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Update a node",
+          args: {
+            name: "NODE",
+            generators: [dockerGenerators.listDockerSwarmNodes],
+            variadic: true,
+          },
+          options: [
+            {
+              name: "--availability",
+              description:
+                'Availability of the node ("active"|"pause"|"drain")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--label-add",
+              description: "Add or update a node label (key=value)",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--label-rm",
+              description: "Remove a node label if exists",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--role",
+              description: 'Role of the node ("worker"|"manager")',
+              args: {
+                name: "string",
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "plugin",
