@@ -68,6 +68,18 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       }));
     },
   },
+  listDockerNetworks: {
+    script: `docker network list --format '{{ json . }}'`,
+    postProcess: function (out) {
+      const allLines: Array<Record<string, string>> = out
+        .split("\n")
+        .map((line) => JSON.parse(line));
+      return allLines.map((i) => ({
+        name: i.Name,
+        description: i.ID,
+      }));
+    },
+  },
 };
 
 const containersArg = {
@@ -2218,7 +2230,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "--from-env",
                   description:
-                    " Use AWS environment variables for profile, or credentials and region",
+                    "Use AWS environment variables for profile, or credentials and region",
                 },
                 {
                   name: "-h, --help",
@@ -2227,7 +2239,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "--local-simulation",
                   description:
-                    " Create context for ECS local simulation endpoints",
+                    "Create context for ECS local simulation endpoints",
                 },
                 {
                   name: "--profile",
@@ -2347,7 +2359,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "--format",
               description:
-                " Format the output. Values: [pretty | json]. (Default: pretty)",
+                "Format the output. Values: [pretty | json]. (Default: pretty)",
               args: {
                 name: "string",
               },
@@ -2503,52 +2515,259 @@ export const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "connect",
-          description: " Connect a container to a network",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Connect a container to a network",
+          args: [
+            {
+              name: "NETWORK",
+              generators: [dockerGenerators.listDockerNetworks],
+            },
+            containersArg,
+          ],
+          options: [
+            {
+              name: "--alias",
+              description: "Add network-scoped alias for the container",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--driver-opt",
+              description: "driver options for the network",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--ip",
+              description: "IPv4 address (e.g., 172.30.100.104)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ip6",
+              description: "IPv6 address (e.g., 2001:db8::33)",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--link",
+              description: "Add link to another container",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: "--link-local-ip",
+              description: "Add a link-local address for the container",
+              args: {
+                name: "strings",
+              },
+            },
+          ],
         },
         {
           name: "create",
           description: "Create a network",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: {
+            name: "NETWORK",
+          },
+          options: [
+            {
+              name: "--attachable",
+              description: "Enable manual container attachment",
+            },
+            {
+              name: "--aux-address",
+              description:
+                "Auxiliary IPv4 or IPv6 addresses used by Network driver (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+            {
+              name: "--config-from",
+              description: "The network from which to copy the configuration",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--config-only",
+              description: "Create a configuration only network",
+            },
+            {
+              name: ["-d", "--driver"],
+              description: 'Driver to manage the Network (default "bridge")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--gateway",
+              description: "IPv4 or IPv6 Gateway for the master subnet",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--ingress",
+              description: "Create swarm routing-mesh network",
+            },
+            {
+              name: "--internal",
+              description: "Restrict external access to the network",
+            },
+            {
+              name: "--ip-range",
+              description: "Allocate container ip from a sub-range",
+              args: {
+                name: "strings",
+              },
+            },
+            {
+              name: "--ipam-driver",
+              description: 'IP Address Management Driver (default "default")',
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--ipam-opt",
+              description: "Set IPAM driver specific options (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+            {
+              name: "--ipv6",
+              description: "Enable IPv6 networking",
+            },
+            {
+              name: "--label",
+              description: "Set metadata on a network",
+              args: {
+                name: "list",
+              },
+            },
+            {
+              name: ["-o", "--opt"],
+              description: "Set driver specific options (default map[])",
+              args: {
+                name: "map",
+              },
+            },
+            {
+              name: "--scope",
+              description: "Control the network's scope",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--subnet",
+              description:
+                "Subnet in CIDR format that represents a network segment",
+              args: {
+                name: "strings",
+              },
+            },
+          ],
         },
         {
           name: "disconnect",
           description: "Disconnect a container from a network",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: [
+            {
+              name: "NETWORK",
+              generators: [dockerGenerators.listDockerNetworks],
+            },
+            containersArg,
+          ],
+          options: [
+            {
+              name: ["-f", "--force"],
+              description: "Force the container to disconnect from a network",
+            },
+          ],
         },
         {
           name: "inspect",
-          description: " Display detailed information on one or more networks",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Display detailed information on one or more networks",
+          args: {
+            name: "NETWORK",
+            generators: [dockerGenerators.listDockerNetworks],
+            variadic: true,
+          },
+          options: [
+            {
+              name: ["-f", "--format"],
+              description: "Format the output using the given Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: ["-v", "--verbose"],
+              description: "Verbose output for diagnostics",
+            },
+          ],
         },
         {
           name: "ls",
           description: "List networks",
-          subcommands: [],
-          args: [],
-          options: [],
+          options: [
+            {
+              name: ["-f", "--filter"],
+              description: "Provide filter values (e.g. 'driver=bridge')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: "--format",
+              description: "Pretty-print networks using a Go template",
+              args: {
+                name: "string",
+              },
+            },
+            {
+              name: "--no-trunc",
+              description: "Do not truncate the output",
+            },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only display network IDs",
+            },
+          ],
         },
         {
           name: "prune",
-          description: " Remove all unused networks",
-          subcommands: [],
-          args: [],
-          options: [],
+          description: "Remove all unused networks",
+          options: [
+            {
+              name: "--filter",
+              description: "Provide filter values (e.g. 'until=<timestamp>')",
+              args: {
+                name: "filter",
+              },
+            },
+            {
+              name: ["-f", "--force"],
+              description: "Do not prompt for confirmation",
+            },
+          ],
         },
         {
           name: "rm",
           description: "Remove one or more networks",
-          subcommands: [],
-          args: [],
-          options: [],
+          args: {
+            name: "NETWORK",
+            generators: [dockerGenerators.listDockerNetworks],
+            variadic: true,
+          },
         },
       ],
     },
