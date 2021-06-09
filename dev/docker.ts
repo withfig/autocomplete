@@ -5383,23 +5383,23 @@ export const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates containers for a service.",
-          loadSpec: "docker/compose-create"
+          loadSpec: "docker/compose-create",
         },
         {
           name: "down",
           description:
             "Stops containers and removes containers, networks, volumes, and images",
-          loadSpec: "docker/compose-down"
+          loadSpec: "docker/compose-down",
         },
         {
           name: "events",
           description: "Receive real time events from containers.",
-          loadSpec: "docker/compose-events"
+          loadSpec: "docker/compose-events",
         },
         {
           name: "exec",
           description: "Execute a command in a running container",
-          loadSpec: "docker/compose-exec"
+          loadSpec: "docker/compose-exec",
         },
         {
           name: "help",
@@ -5408,38 +5408,38 @@ export const completionSpec: Fig.Spec = {
         {
           name: "images",
           description: "List images used by the created containers.",
-          loadSpec: "docker/compose-images"
+          loadSpec: "docker/compose-images",
         },
         {
           name: "kill",
           description: "Force stop service containers.",
-          loadSpec: "docker/compose-kill"
+          loadSpec: "docker/compose-kill",
         },
         {
           name: "logs",
           description: "View output from containers.",
-          loadSpec: "docker/compose-logs"
+          loadSpec: "docker/compose-logs",
         },
         {
           name: "pause",
           description: "Pause services.",
-          loadSpec: "docker/compose-pause"
+          loadSpec: "docker/compose-pause",
         },
         {
           name: "port",
           description: "Print the public port for a port binding.",
-          loadSpec: "docker/compose-port"
+          loadSpec: "docker/compose-port",
         },
         {
           name: "ps",
           description: "List containers.",
-          loadSpec: "docker/compose-ps"
+          loadSpec: "docker/compose-ps",
         },
         {
           name: "pull",
           description:
             "Pulls images for services defined in a Compose file, but does not start the containers.",
-          loadSpec: "docker/compose-pull"
+          loadSpec: "docker/compose-pull",
         },
         {
           name: "push",
@@ -5456,17 +5456,17 @@ export const completionSpec: Fig.Spec = {
         {
           name: "restart",
           description: "Restart running containers.",
-          loadSpec: "docker/compose-restart"
+          loadSpec: "docker/compose-restart",
         },
         {
           name: "rm",
           description: "Removes stopped service containers.",
-          loadSpec: "docker/compose-rm"
+          loadSpec: "docker/compose-rm",
         },
         {
           name: "run",
           description: "Run a one-off command on a service.",
-          loadSpec: "docker/compose-run"
+          loadSpec: "docker/compose-run",
         },
         {
           name: "scale",
@@ -5474,7 +5474,8 @@ export const completionSpec: Fig.Spec = {
           options: [
             {
               name: ["-t", "--timeout"],
-              description: "Specify a shutdown timeout in seconds. (default: 10)",
+              description:
+                "Specify a shutdown timeout in seconds. (default: 10)",
               args: {},
             },
           ],
@@ -5482,12 +5483,12 @@ export const completionSpec: Fig.Spec = {
         {
           name: "start",
           description: "Start existing containers.",
-          loadSpec: "docker/compose-start"
+          loadSpec: "docker/compose-start",
         },
         {
           name: "stop",
           description: "Stop running containers without removing them.",
-          loadSpec: "docker/compose-stop"
+          loadSpec: "docker/compose-stop",
         },
         {
           name: "top",
@@ -5501,7 +5502,7 @@ export const completionSpec: Fig.Spec = {
           name: "up",
           description:
             "Builds, (re)creates, starts, and attaches to containers for a service.",
-          loadSpec: "docker/compose-up"
+          loadSpec: "docker/compose-up",
         },
         {
           name: "version",
