@@ -27,10 +27,10 @@ const global_options = [
       suggestions: [
         { name: "scheme:" },
         { name: "user@" },
-        { name: "<host>" },
-        { name: "<container>" },
+        { name: "host" },
+        { name: "container" },
         { name: ":port" },
-        { name: "<path>" },
+        { name: "path" },
       ],
     },
   },
@@ -54,7 +54,6 @@ const global_options = [
   },
   {
     name: "--skip-plugins",
-    // name: "--skip-plugins[=]",
     description:
       "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
     args: {
@@ -140,78 +139,47 @@ export const completion: Fig.Spec = {
         {
           name: "add",
           description: "Adds a value to the object cache.",
-          args: {
-            variadic: true,
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "my_key",
-                description: "Cache key.",
-              },
-              {
-                name: "value",
-                // insertValue: "my_value",
-                description: "Value to add to the key.",
-              },
-              {
-                name: "[group]",
-                // insertValue: "my_group",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-              {
-                name: "[expiration]",
-                // insertValue: "300",
-                description:
-                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+            {
+              name: "[group]",
+            },
+            {
+              name: "[expiration]",
+            },
+          ],
         },
         {
           name: "decr",
           description: "Decrements a value in the object cache.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-              {
-                name: "offset",
-                // insertValue: "offset",
-                description:
-                  "The amount by which to decrement the item’s value.",
-              },
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "offset",
+            },
+            {
+              name: "group",
+            },
+          ],
         },
         {
           name: "delete",
           description: "Removes a value from the object cache.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "group",
+            },
+          ],
         },
         {
           name: "flush",
@@ -220,109 +188,67 @@ export const completion: Fig.Spec = {
         {
           name: "get",
           description: "Gets a value from the object cache.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "group",
+            },
+          ],
         },
         {
           name: "incr",
           description: "Increments a value in the object cache.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-              {
-                name: "offset",
-                // insertValue: "offset",
-                description:
-                  "The amount by which to decrement the item’s value.",
-              },
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "offset",
+            },
+            {
+              name: "group",
+            },
+          ],
         },
         {
           name: "replace",
           description:
             "Replaces a value in the object cache, if the value already exists.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-              {
-                name: "value",
-                // insertValue: "value",
-                description: "Value to add to the key.",
-              },
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-              {
-                name: "expiration",
-                // insertValue: "[expiration]",
-                description:
-                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+            {
+              name: "group",
+            },
+            {
+              name: "expiration",
+            },
+          ],
         },
         {
           name: "set",
           description:
             "Sets a value to the object cache, regardless of whether it already exists.",
-          args: {
-            suggestions: [
-              {
-                name: "key",
-                // insertValue: "key",
-                description: "Cache key.",
-              },
-              {
-                name: "value",
-                // insertValue: "value",
-                description: "Value to add to the key.",
-              },
-              {
-                name: "group",
-                // insertValue: "[group]",
-                description:
-                  "Method for grouping data within the cache which allows the same key to be used across groups.",
-              },
-              {
-                name: "expiration",
-                // insertValue: "[expiration]",
-                description:
-                  "Define how long to keep the value, in seconds. 0 means as long as possible.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+            {
+              name: "group",
+            },
+            {
+              name: "expiration",
+            },
+          ],
         },
         {
           name: "type",
@@ -350,21 +276,14 @@ export const completion: Fig.Spec = {
                 "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
             },
           ],
-          args: {
-            variadic: true,
-            suggestions: [
-              {
-                name: "role",
-                insertValue: "'editor'",
-                description: "Key for the role.",
-              },
-              {
-                name: "cap",
-                insertValue: "'spectate'",
-                description: "One or more capabilities to add.",
-              },
-            ],
-          },
+          args: [
+            {
+              name: "role",
+            },
+            {
+              name: "cap",
+            },
+          ],
         },
       ],
     },
@@ -384,7 +303,6 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
-                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -435,7 +353,6 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
-                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -456,7 +373,6 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
-                  description: "Key for the alias.",
                 },
               ],
             },
@@ -485,7 +401,6 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
-                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -553,17 +468,14 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--patch",
-              // insertValue: "",
               description: "Only list patch updates.",
             },
             {
               name: "--minor",
-              // insertValue: "",
               description: "Only list minor updates.",
             },
             {
               name: "--major",
-              // insertValue: "",
               description: "Only list major updates.",
             },
             {
@@ -622,7 +534,6 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "command_name",
-              description: "The command",
             },
           ],
         },
@@ -715,7 +626,6 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "id",
-              description: "The IDs of the comments to approve.",
             },
           ],
         },
@@ -725,7 +635,6 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "post-id",
-              description: "The ID of the post to count comments in.",
             },
           ],
         },
@@ -734,14 +643,13 @@ export const completion: Fig.Spec = {
           description: "Creates a new comment.",
           options: [
             {
-              name: "--field=value",
+              name: ["--field=value"],
               insertValue: "--",
               description:
                 "Associative args for the new comment. See wp_insert_comment().",
             },
             {
               name: "--porcelain",
-              // insertValue: "--",
               description: "Output just the new comment id.",
             },
           ],
@@ -754,7 +662,6 @@ export const completion: Fig.Spec = {
           },
           options: [
             {
-              variadic: false,
               name: "--force",
               description: "Skip the trash bin.",
             },
@@ -766,26 +673,177 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "id",
-              description: "The ID of the comment to check.",
             },
           ],
         },
         {
           name: "generate",
           description: "Generates some number of new dummy comments.",
+          options: [
+            {
+              name: "--count",
+              insertValue: "--count=",
+              description: "How many comments to generate?",
+              args: {
+                name: "number",
+              },
+            },
+            {
+              name: "--post_id",
+              insertValue: "--post_id=",
+              description: "Assign comments to a specific post.",
+              args: {
+                name: "post-id",
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "format",
+                suggestions: [{ name: "progress" }, { name: "ids" }],
+              },
+            },
+          ],
         },
         {
           name: "get",
           description: "Gets the data of a single comment.",
+          args: {
+            name: "id",
+          },
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole comment, returns the value of a single field.",
+              args: {
+                name: "field",
+              },
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "format",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
         },
         {
           name: "list",
           description: "Gets a list of comments.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "One or more args to pass to WP_Comment_Query.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Prints the value of a single field for each comment.",
+              args: {
+                name: "field",
+              },
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+              args: {
+                name: "fields",
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "format",
+                suggestions: [
+                  { name: "table" },
+                  { name: "ids" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
         },
         {
           name: "meta",
           description:
             "Adds, updates, deletes, and lists comment custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a meta field.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  args: {
+                    name: "type",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a meta field.",
+            },
+            {
+              name: "get",
+              description: "Get meta field value.",
+            },
+            {
+              name: "list",
+              description: "List all metadata associated with an object.",
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+            },
+            {
+              name: "update",
+              description: "Update a meta field.",
+            },
+          ],
         },
         {
           name: "recount",
