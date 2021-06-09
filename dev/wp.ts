@@ -65,7 +65,7 @@ const global_options = [
     description:
       "Skip loading all themes, or a comma-separated list of themes.",
     args: {
-      name: "=themes",
+      name: "themes",
     },
   },
   {
@@ -91,7 +91,11 @@ const global_options = [
     },
   },
   {
-    name: "--[no-]color",
+    name: "--color",
+    description: "Whether to colorize the output.",
+  },
+  {
+    name: "--no-color",
     description: "Whether to colorize the output.",
   },
   {
@@ -1033,34 +1037,90 @@ export const completion: Fig.Spec = {
           name: "recount",
           description:
             "Recalculates the comment_count value for one or more posts.",
+          args: [
+            {
+              name: "id",
+              description: "IDs for one or more posts to update.",
+            },
+          ],
         },
         {
           name: "spam",
           description: "Marks a comment as spam.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to mark as spam.",
+            },
+          ],
         },
         {
           name: "status",
           description: "Gets the status of a comment.",
+          args: [
+            {
+              name: "id",
+              description: "The ID of the comment to check.",
+            },
+          ],
         },
         {
           name: "trash",
           description: "Trashes a comment.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to trash.",
+            },
+          ],
         },
         {
           name: "unapprove",
           description: "Unapproves a comment.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to unapprove.",
+            },
+          ],
         },
         {
           name: "unspam",
           description: "Unmarks a comment as spam.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to unmark as spam.",
+            },
+          ],
         },
         {
           name: "untrash",
           description: "Untrashes a comment.",
+          args: [
+            {
+              name: "id",
+              description: "The IDs of the comments to untrash.",
+            },
+          ],
         },
         {
           name: "update",
           description: "Updates one or more comments.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of comments to update.",
+            },
+          ],
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "One or more fields to update. See wp_update_comment().",
+            },
+          ],
         },
       ],
     },
@@ -1069,9 +1129,316 @@ export const completion: Fig.Spec = {
       description: "Generates and reads the wp-config.php file.",
       subcommands: [
         {
-          name: "",
-          description: "",
-          subcommands: [{}],
+          name: "create",
+          description: "Generates a wp-config.php file.",
+          options: [
+            {
+              name: "--dbname",
+              insertValue: "--dbname=",
+              description: "Set the database name.",
+            },
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Set the database user.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description: "Set the database password.",
+              args: {
+                name: "type",
+                suggestions: [{ name: "plaintext" }, { name: "json" }],
+              },
+            },
+            {
+              name: "--dbhost",
+              insertValue: "--dbhost=",
+              description: "Set the database host.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "localhost" }],
+              },
+            },
+            {
+              name: "--dbprefix",
+              insertValue: "--dbprefix=",
+              description: "Set the database table prefix.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "wp_" }],
+              },
+            },
+            {
+              name: "--dbcharset",
+              insertValue: "--dbcharset=",
+              description: "Set the database charset.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "utf8" }],
+              },
+            },
+            {
+              name: "--dbcollate",
+              insertValue: "--dbcollate=",
+              description: "Set the database collation.",
+            },
+            {
+              name: "--locale",
+              insertValue: "--locale=",
+              description:
+                "Set the WPLANG constant. Defaults to $wp_local_package variable.",
+            },
+            {
+              name: "--extra-php",
+              description:
+                "If set, the command copies additional PHP code into wp-config.php from STDIN.",
+            },
+            {
+              name: "--skip-salts",
+              description:
+                "If set, keys and salts won’t be generated, but should instead be passed via --extra-php.",
+            },
+            {
+              name: "--skip-check",
+              description: "If set, the database connection is not checked.",
+            },
+            {
+              name: "--force",
+              description: "Overwrites existing files, if present.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry API download without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description:
+            "Deletes a specific constant or variable from the wp-config.php file.",
+          args: [
+            {
+              name: "name",
+              description: "Name of the wp-config.php constant or variable.",
+            },
+          ],
+          options: [
+            {
+              name: "--type",
+              insertValue: "--type=",
+              description:
+                "Type of the config value to delete. Defaults to ‘all’.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "constant" },
+                  { name: "variable" },
+                  { name: "all" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "edit",
+          description: "Launches system editor to edit the wp-config.php file.",
+        },
+        {
+          name: "get",
+          description:
+            "Gets the value of a specific constant or variable defined in wp-config.php file.",
+          args: [
+            {
+              name: "name",
+              description: "Name of the wp-config.php constant or variable.",
+            },
+          ],
+          options: [
+            {
+              name: "--type",
+              insertValue: "--type=",
+              description:
+                "Type of the config value to delete. Defaults to ‘all’.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "constant" },
+                  { name: "variable" },
+                  { name: "all" },
+                ],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Get value in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "var_export" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "has",
+          description:
+            "Checks whether a specific constant or variable exists in the wp-config.php file.",
+          args: [
+            {
+              name: "name",
+              description: "Name of the wp-config.php constant or variable.",
+            },
+          ],
+          options: [
+            {
+              name: "--type",
+              insertValue: "--type=",
+              description:
+                "Type of the config value to delete. Defaults to ‘all’.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "constant" },
+                  { name: "variable" },
+                  { name: "all" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description:
+            "Lists variables, constants, and file includes defined in wp-config.php file.",
+          args: [
+            {
+              name: "filter",
+              description: "Name or partial name to filter the list by.",
+            },
+          ],
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+            {
+              name: "--strict",
+              description: "Enforce strict matching when a filter is provided.",
+            },
+          ],
+        },
+        {
+          name: "path",
+          description: "Gets the path to wp-config.php file.",
+        },
+        {
+          name: "set",
+          description:
+            "Sets the value of a specific constant or variable defined in wp-config.php file.",
+          args: [
+            {
+              name: "name",
+              description: "Name of the wp-config.php constant or variable.",
+            },
+            {
+              name: "value",
+              description:
+                "Value to set the wp-config.php constant or variable to.",
+            },
+          ],
+          options: [
+            {
+              name: "--add",
+              description:
+                "Add the value if it doesn’t exist yet. This is the default behavior, override with –no-add.",
+            },
+            {
+              name: "--raw",
+              description:
+                "Place the value into the wp-config.php file as is, instead of as a quoted string.",
+            },
+            {
+              name: "--anchor",
+              insertValue: "--anchor=",
+              description:
+                "Anchor string where additions of new values are anchored around. Defaults to “/* That’s all, stop editing!”.",
+            },
+            {
+              name: "--placement",
+              insertValue: "--placement=",
+              description:
+                "Where to place the new values in relation to the anchor string.",
+              args: {
+                name: "place",
+                suggestions: [{ name: "before" }, { name: "after" }],
+              },
+            },
+            {
+              name: "--separator",
+              insertValue: "--separator=",
+              description:
+                "Separator string to put between an added value and its anchor string. The following escape sequences will be recognized and properly interpreted: ‘\n’ => newline, ‘\r’ => carriage return, ‘\t’ => tab. Defaults to a single EOL (“\n” on *nix and “\r\n” on Windows).",
+            },
+            {
+              name: "--type",
+              insertValue: "--type=",
+              description:
+                "Type of the config value to set. Defaults to ‘all’.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "constant" },
+                  { name: "variable" },
+                  { name: "all" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "shuffle-salts",
+          description: "Refreshes the salts defined in the wp-config.php file.",
+          args: [
+            {
+              name: "keys",
+              description:
+                "One ore more keys to shuffle. If none are provided, this falls back to the default WordPress Core salt keys.",
+            },
+          ],
+          options: [
+            {
+              name: "--force",
+              description:
+                "If an unknown key is requested to be shuffled, add it instead of throwing a warning.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry API download without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
         },
       ],
     },
@@ -1079,441 +1446,213 @@ export const completion: Fig.Spec = {
       name: "core",
       description:
         "Downloads, installs, updates, and manages a WordPress installation.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "cron",
       description:
         "Tests, runs, and deletes WP-Cron events; manages WP-Cron schedules.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "db",
       Pdescription:
         "Performs basic database operations using credentials stored in wp-config.php.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "dist-archive",
       description:
         "Create a distribution archive based on a project’s .distignore file.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "embed",
       description: "Inspects oEmbed providers, clears embed cache, and more.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "eval",
       description: "Executes arbitrary PHP code.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "eval-file",
       description: "Loads and executes a PHP file.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "export",
       description: "Exports WordPress content to a WXR file.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "find",
       description: "Find WordPress installations on the filesystem.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "help",
       description: "Gets help on WP-CLI, or on a specific command.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "i18n",
       description:
         "Provides internationalization tools for WordPress projects.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "import",
       description: "Imports content from a given WXR file.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "language",
       description: "Installs, activates, and manages language packs.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "maintenance-mode",
       description:
         "Activates, deactivates or checks the status of the maintenance mode of a site.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "media",
       description:
         "Imports files as attachments, regenerates thumbnails, or lists registered image sizes.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "menu",
       description:
         "Lists, creates, assigns, and deletes the active theme’s navigation menus.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "network",
       description: "Perform network-wide operations.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "option",
       description:
         "Retrieves and sets site options, including plugin and WordPress settings.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "package",
       description: "Lists, installs, and removes WP-CLI packages.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "plugin",
       description:
         "Manages plugins, including installs, activations, and updates.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "post",
       description: "Manages posts, content, and meta.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "post-type",
       description: "Retrieves details on the site’s registered post types.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "profile",
       description: "",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "rewrite",
       description:
         "Lists or flushes the site’s rewrite rules, updates the permalink structure.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "role",
       description:
         "Manages user roles, including creating new roles and resetting to defaults.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "scaffold",
       description:
         "Generates code for post types, taxonomies, plugins, child themes, etc.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "search-replace",
       description: "Searches/replaces strings in the database.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "server",
       description:
         "Launches PHP’s built-in web server for a specific WordPress installation.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "shell",
       description:
         "Opens an interactive PHP console for running and testing PHP code.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "sidebar",
       description: "Lists registered sidebars.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "site",
       description:
         "Creates, deletes, empties, moderates, and lists one or more sites on a multisite installation.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "super-admin",
       description:
         "Lists, adds, or removes super admin users on a multisite installation.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "taxonomy",
       description: "Retrieves information about registered taxonomies.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "term",
       description:
         "Manages taxonomy terms and term meta, with create, delete, and list commands.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "theme",
       description:
         "Manages themes, including installs, activations, and updates.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "transient",
       description:
         "Adds, gets, and deletes entries in the WordPress Transient Cache.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "user",
       description:
         "Manages users, along with their roles, capabilities, and meta.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
     {
       name: "widget",
       description:
         "Manages widgets, including adding and moving them within sidebars.",
-      subcommands: [
-        {
-          name: "",
-          description: "",
-          subcommands: [{}],
-        },
-      ],
+      subcommands: [{}],
     },
   ],
   options: global_options,
