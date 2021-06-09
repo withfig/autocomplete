@@ -1,23 +1,23 @@
 // Options used commonly
-const OPTION_CONFIG = {
+const OPTION_CONFIG: Fig.Option = {
   name: ["-c", "--config"],
   args: {
     name: "wrangler.toml",
   },
   description: "Path to configuration file [default: wrangler.toml]",
 };
-const OPTION_ENV = {
+const OPTION_ENV: Fig.Option = {
   name: ["-e", "--env"],
   args: {
     name: "environment",
   },
   description: "Environment to perform a command on",
 };
-const OPTION_HELP = {
+const OPTION_HELP: Fig.Option = {
   name: ["-h", "--help"],
   description: "Prints help information",
 };
-const OPTION_VERBOSE = {
+const OPTION_VERBOSE: Fig.Option = {
   name: ["--verbose"],
   description: "Toggle verbose output (when applicable)",
 };
@@ -32,10 +32,12 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "name",
+          isOptional: true,
           description: "The name of your worker! [default: worker]",
         },
         {
           name: "template",
+          isOptional: true,
           description: `A link to a GitHub template! Defaults to 
             https://github.com/cloudflare/worker-template`,
         },
@@ -49,6 +51,7 @@ export const completion: Fig.Spec = {
           name: ["-s", "--site"],
           args: {
             name: "site",
+            isOptional: true,
           },
           description: `Initializes a Workers Sites project. Overrides 'type' 
             and 'template'`,
@@ -57,6 +60,7 @@ export const completion: Fig.Spec = {
           name: ["-t", "--type"],
           args: {
             name: "type",
+            isOptional: true,
           },
           description: "The type of project you want generated",
         },
@@ -72,6 +76,10 @@ export const completion: Fig.Spec = {
         {
           name: "create",
           description: "Create a new namespace",
+          args: {
+            name: "namespace",
+            isOptional: false,
+          },
         },
         {
           name: "delete",
@@ -95,7 +103,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
-              description: "Key whose value to get",
+              description: "Key whose value to delete",
             },
           ],
           options: [
@@ -123,6 +131,10 @@ export const completion: Fig.Spec = {
         {
           name: "get",
           description: "Get a key's value from a namespace",
+          args: {
+            name: "key",
+            isOptional: false,
+          },
         },
         {
           name: "help",
@@ -136,6 +148,10 @@ export const completion: Fig.Spec = {
         {
           name: "put",
           description: "Put a key-value pair into a namespace",
+          args: {
+            name: "key",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -148,6 +164,10 @@ export const completion: Fig.Spec = {
         {
           name: "delete",
           description: "Delete multiple keys and their values from a namespace",
+          args: {
+            name: "keys",
+            isOptional: false,
+          },
         },
         {
           name: "help",
@@ -157,6 +177,11 @@ export const completion: Fig.Spec = {
         {
           name: "put",
           description: "Upload multiple key-value pairs to a namespace",
+          args: {
+            name: "keys",
+            isOptional: false,
+            template: "filepaths",
+          },
         },
       ],
     },
@@ -169,6 +194,10 @@ export const completion: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a route by ID",
+          args: {
+            name: "routeId",
+            isOptional: false,
+          },
         },
         {
           name: "list",
@@ -186,6 +215,10 @@ export const completion: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a secret variable from a script",
+          args: {
+            name: "secret",
+            isOptional: false,
+          },
         },
         {
           name: "list",
@@ -194,6 +227,10 @@ export const completion: Fig.Spec = {
         {
           name: "put",
           description: "Create or update a secret variable for a script",
+          args: {
+            name: "secret",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -205,6 +242,7 @@ export const completion: Fig.Spec = {
         {
           name: "name",
           description: "The name of your worker! [default: worker]",
+          isOptional: true,
         },
       ],
       options: [
@@ -224,6 +262,7 @@ export const completion: Fig.Spec = {
           name: ["-t", "--type"],
           args: {
             name: "type",
+            isOptional: true,
           },
           description: "The type of project you want generated",
         },
@@ -242,11 +281,13 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "method",
+          isOptional: true,
           description: `Type of request to preview your worker with (get, post) 
             [default: get]`,
         },
         {
           name: "body",
+          isOptional: true,
           description: "Body string to post to your preview worker request",
         },
       ],
