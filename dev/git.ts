@@ -157,7 +157,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         file = file.trim();
         const arr = file.split(" ");
 
-        return { working: arr[0], file: arr.slice(1).join(" ") };
+        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
       });
 
       return items.map((item) => {
