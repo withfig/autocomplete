@@ -6399,7 +6399,84 @@ export const completion: Fig.Spec = {
       name: "rewrite",
       description:
         "Lists or flushes the site’s rewrite rules, updates the permalink structure.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "flush",
+          description: "Flushes rewrite rules.",
+          options: [
+            {
+              name: "--hard",
+              description:
+                "Perform a hard flush – update .htaccess rules as well as rewrite rules in database. Works only on single site installs.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Gets a list of the current rewrite rules.",
+          options: [
+            {
+              name: "--match",
+              insertValue: "--match=",
+              description: "Show rewrite rules matching a particular URL.",
+            },
+            {
+              name: "--source",
+              insertValue: "--source=",
+              description: "Show rewrite rules from a particular source.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to match,query,source.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "structure",
+          description: "Updates the permalink structure.",
+          args: [
+            {
+              name: "permastruct",
+              description: "The new permalink structure to apply.",
+            },
+          ],
+          options: [
+            {
+              name: "--category-base",
+              insertValue: "--category-base=",
+              description:
+                "Set the base for category permalinks, i.e. ‘/category/’.",
+            },
+            {
+              name: "--tag-base",
+              insertValue: "--tag-base=",
+              description: "Set the base for tag permalinks, i.e. ‘/tag/’.",
+            },
+            {
+              name: "--hard",
+              description:
+                "Perform a hard flush – update .htaccess rules as well as rewrite rules in database. Works only on single site installs.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "role",
