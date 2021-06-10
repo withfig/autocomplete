@@ -8694,7 +8694,573 @@ export const completion: Fig.Spec = {
       name: "theme",
       description:
         "Manages themes, including installs, activations, and updates.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "activate",
+          description: "Activates a theme.",
+          args: [
+            {
+              name: "theme",
+              description: "The theme to activate.",
+            },
+          ],
+        },
+        {
+          name: "auto-updates",
+          description: "Manages theme auto-updates.",
+          subcommands: [
+            {
+              name: "disable",
+              description: "Disables the auto-updates for a theme.",
+              args: [
+                {
+                  name: "theme",
+                  description:
+                    "One or more themes to disable auto-updates for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, auto-updates will be disabled for all themes.",
+                },
+                {
+                  name: "--enabled-only",
+                  description:
+                    "If set, filters list of themes to only include the ones that have auto-updates enabled.",
+                },
+              ],
+            },
+            {
+              name: "enable",
+              description: "Enables the auto-updates for a theme.",
+              args: [
+                {
+                  name: "theme",
+                  description: "One or more themes to enable auto-updates for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, auto-updates will be enabled for all themes.",
+                },
+                {
+                  name: "--enabled-only",
+                  description:
+                    "If set, filters list of themes to only include the ones that have auto-updates disabled.",
+                },
+              ],
+            },
+            {
+              name: "status",
+              description: "Shows the status of auto-updates for a theme.",
+              args: [
+                {
+                  name: "theme",
+                  description:
+                    "One or more themes to show the status of the auto-updates of.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, the status of auto-updates for all themes will be shown.",
+                },
+                {
+                  name: "--enabled-only",
+                  description:
+                    "If set, filters list of themes to only include the ones that have auto-updates enabled.",
+                },
+                {
+                  name: "--disabled-only",
+                  description:
+                    "If set, filters list of themes to only include the ones that have auto-updates disabled.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Only show the provided field.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes one or more themes.",
+          args: [
+            {
+              name: "theme",
+              description: "One or more themes to delete.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description:
+                "If set, all themes will be deleted except active theme.",
+            },
+            {
+              name: "--force",
+              description: "To delete active theme use this.",
+            },
+          ],
+        },
+        {
+          name: "disable",
+          description: "Disables a theme on a WordPress multisite install.",
+          args: [
+            {
+              name: "theme",
+              description: "The theme to disable.",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "If set, the theme is disabled on the network level. Note that individual sites may still have this theme enabled if it was enabled for them independently.",
+            },
+          ],
+        },
+        {
+          name: "enable",
+          description: "Enables a theme on a WordPress multisite install.",
+          args: [
+            {
+              name: "theme",
+              description: "The theme to enable.",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "If set, the theme is enabled for the entire network.",
+            },
+            {
+              name: "--activate",
+              description:
+                "If set, the theme is activated for the current site. Note that the “network” flag has no influence on this.",
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets details about a theme.",
+          args: [
+            {
+              name: "theme",
+              description: "The theme to get.",
+            },
+          ],
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole theme, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Installs one or more themes.",
+          args: [
+            {
+              name: "theme|zip|url",
+              description:
+                "One or more themes to install. Accepts a theme slug, the path to a local zip file, or a URL to a remote zip file.",
+            },
+          ],
+          options: [
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "If set, get that particular version from wordpress.org, instead of the stable version.",
+            },
+            {
+              name: "--force",
+              description:
+                "If set, the command will overwrite any installed version of the theme, without prompting for confirmation.",
+            },
+            {
+              name: "--activate",
+              description:
+                "If set, the theme is activated for the current site. Note that the “network” flag has no influence on this.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "is-active",
+          description: "Checks if a given theme is active.",
+          args: [
+            {
+              name: "theme",
+              description: "The plugin to check.",
+            },
+          ],
+        },
+        {
+          name: "is-installed",
+          description: "Checks if a given theme is installed.",
+          args: [
+            {
+              name: "theme",
+              description: "The plugin to check.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Gets a list of themes.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "Filter results based on the value of a field.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each theme.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+            {
+              name: "--status",
+              insertValue: "--status=",
+              description: "Filter the output by theme status.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "active" },
+                  { name: "parent" },
+                  { name: "inactive" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "mod",
+          description: "Sets, gets, and removes theme mods.",
+          subcommands: [
+            {
+              name: "get",
+              description: "Gets one or more theme mods.",
+              args: [
+                {
+                  name: "mod",
+                  description: "One or more mods to get.",
+                },
+              ],
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Returns the value of a single field.",
+                },
+                {
+                  name: "--all",
+                  description: "List all theme mods.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "json" },
+                      { name: "csv" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Gets a list of theme mods.",
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Returns the value of a single field.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "json" },
+                      { name: "csv" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "remove",
+              description: "Removes one or more theme mods.",
+              args: [
+                {
+                  name: "mod",
+                  description: "One or more mods to remove.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Remove all theme mods.",
+                },
+              ],
+            },
+            {
+              name: "set",
+              description: "Sets the value of a theme mod.",
+              args: [
+                {
+                  name: "mod",
+                  description: "The name of the theme mod to set or update.",
+                },
+                {
+                  name: "value",
+                  description: "The new value.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "path",
+          description: "Gets the path to a theme or to the theme directory.",
+          args: [
+            {
+              name: "theme",
+              description:
+                "The theme to get the path to. Path includes “style.css” file. If not set, will return the path to the themes directory.",
+            },
+          ],
+          options: [
+            {
+              name: "--dir",
+              description:
+                "If set, get the path to the closest parent directory, instead of the theme’s “style.css” file.",
+            },
+          ],
+        },
+        {
+          name: "search",
+          description: "Searches the WordPress.org theme directory.",
+          args: [
+            {
+              name: "search",
+              description: "The string to search for.",
+            },
+          ],
+          options: [
+            {
+              name: "--page",
+              insertValue: "--page=",
+              description: "Optional page to display.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "1" }],
+              },
+            },
+            {
+              name: "--per-page",
+              insertValue: "--per-page=",
+              description:
+                "Optional number of results to display. Defaults to 10.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "10" }],
+              },
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each theme.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Ask for specific fields from the API. Defaults to name,slug,author,rating.",
+              args: {
+                name: "default",
+                suggestions: [
+                  {
+                    name: "name",
+                  },
+                  {
+                    name: "slug",
+                  },
+                  {
+                    name: "version",
+                  },
+                  {
+                    name: "author",
+                  },
+                  {
+                    name: "preview_url",
+                  },
+                  {
+                    name: "screenshot_url",
+                  },
+                  {
+                    name: "rating",
+                  },
+                  {
+                    name: "num_ratings",
+                  },
+                  {
+                    name: "homepage",
+                  },
+                  {
+                    name: "description",
+                  },
+                  {
+                    name: "url",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "Reveals the status of one or all themes.",
+          args: [
+            {
+              name: "theme",
+              description: "A particular theme to show the status for.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates one or more themes.",
+          args: [
+            {
+              name: "theme",
+              description: "One or more themes to update.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description:
+                "If set, all themes that have updates will be updated.",
+            },
+            {
+              name: "--exclude",
+              description:
+                "Comma separated list of theme names that should be excluded from updating.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "summary" },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "If set, the theme will be updated to the specified version.",
+            },
+            {
+              name: "--dry-run",
+              description: "Preview which themes would be updated.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "transient",
