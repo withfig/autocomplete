@@ -2,15 +2,35 @@
 
 clear
 
-if !([[ -d /Applications/Fig.app ]] || [[ -d ~/Applications/Fig.app ]]) && [ ! "$TERMINAL_EMULATOR" = JetBrains-JediTerm ]  && command -v fig 1> /dev/null 2> /dev/null
-then          
-            echo
-            echo
-            echo "$(tput setaf 7)******"
-            echo "******"
-            echo "$(tput setaf 3)$(tput bold) WARNING: Fig is not installed" 1>&2;
-            echo "$(tput setaf 7)******"
-            echo "******"
+# Checks if CLI is installed
+if ! command -v Fig --help &> /dev/null; then          
+
+    # Checks if Applications directory exists
+    if ([[! -d /Applications ]] && [[! -d ~/Applications]])> /dev/null 2> /dev/null; then 
+        echo
+        echo
+        echo "No applications directory found, couldn't check if Fig was installed"
+
+    # Checks if Fig App is installed
+    elif ([[ ! -d /Applications/Fig.app ]] && [[ ! -d ~/Applications/Fig.app ]])> /dev/null 2> /dev/null; then
+        echo
+        echo
+        echo "$(tput setaf 7)******"
+        echo "******"
+        echo "$(tput setaf 3)$(tput bold) WARNING: Fig App is not installed"
+        echo "$(tput setaf 7)******"
+        echo "******"
+    
+    # Lets user know that the CLI isn't installed
+    else 
+        echo
+        echo
+        echo "$(tput setaf 7)******"
+        echo "******"
+        echo "$(tput setaf 3)$(tput bold) WARNING: Fig CLI is not installed"
+        echo "$(tput setaf 7)******"
+        echo "******"
+    fi
 fi
 
 echo 
