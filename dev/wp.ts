@@ -2677,7 +2677,22 @@ export const completion: Fig.Spec = {
     {
       name: "eval-file",
       description: "Loads and executes a PHP file.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "file",
+          // description: "The path to the PHP file to execute. Use ‘-‘ to run code from STDIN."
+        },
+        {
+          name: "arg",
+          // description: "One or more arguments to pass to the file. They are placed in the $args variable."
+        },
+      ],
+      options: [
+        {
+          name: "--skip-wordpress",
+          description: "Load and execute file without loading WordPress.",
+        },
+      ],
     },
     {
       name: "export",
