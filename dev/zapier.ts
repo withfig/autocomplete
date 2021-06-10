@@ -362,6 +362,7 @@ export const completionSpec: Fig.Spec = {
             "Specify the new file's directory. Use this flag when you want to create a different folder structure such as `src/triggers` instead of the default `triggers`. Defaults to `[triggers|searches|creates]/{noun}`.",
           args: {
             name: "dest",
+            template: "folders",
           },
         },
         {
@@ -427,6 +428,7 @@ export const completionSpec: Fig.Spec = {
           isOptional: true,
         },
       ],
+      isDangerous: true,
     },
     {
       name: ["team:get", "team:list"],
