@@ -3410,7 +3410,30 @@ export const completion: Fig.Spec = {
       name: "maintenance-mode",
       description:
         "Activates, deactivates or checks the status of the maintenance mode of a site.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "activate",
+          description: "Activates maintenance mode.",
+          options: [
+            {
+              name: "--force",
+              description: "Force maintenance mode activation operation.",
+            },
+          ],
+        },
+        {
+          name: "deactivate",
+          description: "Deactivates maintenance mode.",
+        },
+        {
+          name: "is-active",
+          description: "Detects maintenance mode status.",
+        },
+        {
+          name: "status",
+          description: "Displays maintenance mode status.",
+        },
+      ],
     },
     {
       name: "media",
