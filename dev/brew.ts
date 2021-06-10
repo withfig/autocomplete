@@ -187,7 +187,6 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "cleanup",
-      insertValue: "cleanup ",
       description:
         "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
       options: [
