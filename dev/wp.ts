@@ -2431,7 +2431,232 @@ export const completion: Fig.Spec = {
     {
       name: "embed",
       description: "Inspects oEmbed providers, clears embed cache, and more.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "cache",
+          description: "Finds, triggers, and deletes oEmbed caches.",
+          subcommands: [
+            {
+              name: "clear",
+              description: "Deletes all oEmbed caches for a given post.",
+              args: [
+                {
+                  name: "post_id",
+                  // description: "ID of the post to clear the cache for."
+                },
+              ],
+            },
+            {
+              name: "find",
+              description: "Finds an oEmbed cache post ID for a given URL.",
+              args: [
+                {
+                  name: "url",
+                  // description: "ID of the post to clear the cache for."
+                },
+              ],
+              options: [
+                {
+                  name: "--width",
+                  insertValue: "--width=",
+                  description:
+                    "Width of the embed in pixels. Part of cache key so must match. Defaults to content_width if set else 500px, so is theme and context dependent.",
+                },
+                {
+                  name: "--height",
+                  insertValue: "--height=",
+                  description:
+                    "Height of the embed in pixels. Part of cache key so must match. Defaults to 1.5 * default width (content_width or 500px), to a maximum of 1000px.",
+                },
+                {
+                  name: "--discover",
+                  description:
+                    "Whether to search with the discover attribute set or not. Part of cache key so must match. If not given, will search with attribute: unset, ‘1’, ‘0’, returning first.",
+                },
+              ],
+            },
+            {
+              name: "trigger",
+              description:
+                "Triggers the caching of all oEmbed results for a given post.",
+              args: [
+                {
+                  name: "post_id",
+                  // description: "ID of the post to do the caching for."
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "fetch",
+          description: "Attempts to convert a URL into embed HTML.",
+          args: [
+            {
+              name: "url",
+              // description: "URL to retrieve oEmbed data for."
+            },
+          ],
+          options: [
+            {
+              name: "--width",
+              insertValue: "--width=",
+              description: "Width of the embed in pixels.",
+            },
+            {
+              name: "--height",
+              insertValue: "--height=",
+              description: "Height of the embed in pixels.",
+            },
+            {
+              name: "--post-id",
+              insertValue: "--post-id=",
+              description: "Cache oEmbed response for a given post.",
+            },
+            {
+              name: "--discover",
+              description: "Enable oEmbed discovery. Defaults to true.",
+            },
+            {
+              name: "--skip-cache",
+              description:
+                "Ignore already cached oEmbed responses. Has no effect if using the ‘raw’ option, which doesn’t use the cache.",
+            },
+            {
+              name: "--skip-sanitization",
+              description:
+                "Remove the filter that WordPress from 4.4 onwards uses to sanitize oEmbed responses. Has no effect if using the ‘raw’ option, which by-passes sanitization.",
+            },
+            {
+              name: "--do-shortcode",
+              description:
+                "If the URL is handled by a registered embed handler and returns a shortcode, do shortcode and return result. Has no effect if using the ‘raw’ option, which by-passes handlers.",
+            },
+            {
+              name: "--limit-response-size",
+              insertValue: "--limit-response-size=",
+              description:
+                "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’.",
+            },
+            {
+              name: "--raw",
+              description:
+                "Return the raw oEmbed response instead of the resulting HTML. Ignores the cache and does not sanitize responses or use registered embed handlers.",
+            },
+            {
+              name: "--raw-format",
+              insertValue: "--raw-format=",
+              description: "The serialization format for the value.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "json" }, { name: "xml" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "handler",
+          description: "Retrieves embed handlers.",
+          subcommands: [
+            {
+              name: "list",
+              description: "Lists all available embed handlers.",
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Display the value of a single field.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "provider",
+          description: "Retrieves oEmbed providers.",
+          subcommands: [
+            {
+              name: "list",
+              description: "Lists all available oEmbed providers.",
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Display the value of a single field.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "match",
+              description: "Gets the matching provider for a given URL.",
+              args: [
+                {
+                  name: "url",
+                  // description: "URL to retrieve oEmbed data for."
+                },
+              ],
+              options: [
+                {
+                  name: "--discover",
+                  description: "Enable oEmbed discovery. Defaults to true.",
+                },
+                {
+                  name: "--limit-response-size",
+                  insertValue: "--limit-response-size=",
+                  description:
+                    "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’.",
+                },
+                {
+                  name: "--link-typet",
+                  insertValue: "--link-typet=",
+                  description:
+                    "Whether to accept only a certain link type when using discovery. Defaults to any (json or xml), preferring json. Not compatible with ‘no-discover’.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "json" }, { name: "xml" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "eval",
