@@ -2801,7 +2801,55 @@ export const completion: Fig.Spec = {
     {
       name: "find",
       description: "Find WordPress installations on the filesystem.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "path",
+          // description: "Path to search the subdirectories of."
+        },
+      ],
+      options: [
+        {
+          name: "--skip-ignored-paths",
+          insertValue: "--skip-ignored-paths=",
+          description: "Skip the paths that are ignored by default.",
+        },
+        {
+          name: "--include_ignored_paths",
+          insertValue: "--include_ignored_paths=",
+          description:
+            "Include additional ignored paths as CSV (e.g. ‘/sys-backup/,/temp/’).",
+        },
+        {
+          name: "--max_depth",
+          insertValue: "--max_depth=",
+          description: "Only recurse to a specified depth, inclusive.",
+        },
+        {
+          name: "--fields",
+          insertValue: "--fields=",
+          description: "Limit the output to specific row fields.",
+        },
+        {
+          name: "--field",
+          insertValue: "--field=",
+          description: "Output a specific field for each row.",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Render output in a particular format.",
+          args: {
+            name: "options",
+            suggestions: [
+              { name: "table" },
+              { name: "json" },
+              { name: "csv" },
+              { name: "yaml" },
+              { name: "count" },
+            ],
+          },
+        },
+      ],
     },
     {
       name: "help",
