@@ -2854,7 +2854,12 @@ export const completion: Fig.Spec = {
     {
       name: "help",
       description: "Gets help on WP-CLI, or on a specific command.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "command",
+          description: "Get help on a specific command.",
+        },
+      ],
     },
     {
       name: "i18n",
