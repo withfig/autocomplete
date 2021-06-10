@@ -3005,7 +3005,26 @@ export const completion: Fig.Spec = {
     {
       name: "import",
       description: "Imports content from a given WXR file.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "file",
+          // description: "Path to one or more valid WXR files for importing. Directories are also accepted.",
+        },
+      ],
+      options: [
+        {
+          name: "--authors",
+          insertValue: "--authors",
+          description:
+            "How the author mapping should be handled. Options are ‘create’, ‘mapping.csv’, or ‘skip’. The first will create any non-existent users from the WXR file. The second will read author mapping associations from a CSV, or create a CSV for editing if the file path doesn’t exist. The CSV requires two columns, and a header row like “old_user_login,new_user_login”. The last option will skip any author mapping.",
+        },
+        {
+          name: "--skip",
+          insertValue: "--skip",
+          description:
+            "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation).",
+        },
+      ],
     },
     {
       name: "language",
