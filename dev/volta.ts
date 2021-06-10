@@ -13,6 +13,11 @@ const defaultOptions: Fig.Option[] = [
   },
 ];
 
+const toolArgs: Fig.Arg = {
+  variadic: true,
+  name: "tool@version",
+};
+
 export const completion: Fig.Spec = {
   name: "volta",
   description: "The JavaScript Launcher",
@@ -31,8 +36,7 @@ export const completion: Fig.Spec = {
       name: "install",
       description: "Installs a tool in your toolchain",
       args: {
-        variadic: true,
-        name: "tool@version",
+        ...toolArgs,
       },
       options: [...defaultOptions],
     },
@@ -48,8 +52,7 @@ export const completion: Fig.Spec = {
       name: "pin",
       description: "Pins your project's runtime or package manager",
       args: {
-        variadic: true,
-        name: "tool@version",
+        ...toolArgs,
       },
       options: [...defaultOptions],
     },
