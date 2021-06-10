@@ -11,17 +11,17 @@ whichapp() {
         bundleId=$(osascript -e "id of application \"$appNameOrBundleId\"" 2>/dev/null) || 
         { 
             echo
-            echo "******"
-            echo "******"
-            echo "WARNING: Fig is not installed" 1>&2;
-            echo "******"
-            echo "******"
             echo
+            echo "$(tput setaf 7)******"
+            echo "******"
+            echo "$(tput setaf 3)$(tput bold) WARNING: Fig is not installed" 1>&2;
+            echo "$(tput setaf 7)******"
+            echo "******"
         }
     fi
 }
 
-whichapp Fig
+whichapp Bob
 
 echo 
 echo "Welcome to $(tput bold)$(tput setaf 5)Fig Dev Mode$(tput sgr0)";
