@@ -5105,7 +5105,984 @@ export const completion: Fig.Spec = {
     {
       name: "post",
       description: "Manages posts, content, and meta.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "create",
+          description: "Creates a new post.",
+          args: [
+            {
+              name: "file",
+              description:
+                "Read post content from <file>. If this value is present, the --post_content argument will be ignored. Passing - as the filename will cause post content to be read from STDIN",
+            },
+          ],
+          options: [
+            {
+              name: "--post_author",
+              insertValue: "--post_author=",
+              description:
+                "The ID of the user who added the post. Default is the current user ID.",
+            },
+            {
+              name: "--post_date",
+              insertValue: "--post_date=",
+              description: "The date of the post. Default is the current time.",
+            },
+            {
+              name: "--post_date_gmt",
+              insertValue: "--post_date_gmt=",
+              description:
+                "The date of the post in the GMT timezone. Default is the value of $post_date.",
+            },
+            {
+              name: "--post_content",
+              insertValue: "--post_content=",
+              description: "The post content. Default empty.",
+            },
+            {
+              name: "--post_content_filtered",
+              insertValue: "--post_content_filtered=",
+              description: "The filtered post content. Default empty.",
+            },
+            {
+              name: "--post_title",
+              insertValue: "--post_title=",
+              description: "The post title. Default empty.",
+            },
+            {
+              name: "--post_excerpt",
+              insertValue: "--post_excerpt=",
+              description: "The post excerpt. Default empty.",
+            },
+            {
+              name: "--post_status",
+              insertValue: "--post_status=",
+              description: "The post status. Default ‘draft’.",
+            },
+            {
+              name: "--post_type",
+              insertValue: "--post_type=",
+              description: "The post type. Default ‘post’.",
+            },
+            {
+              name: "--comment_status",
+              insertValue: "--comment_status=",
+              description:
+                "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'open'" }, { name: "'closed" }],
+              },
+            },
+            {
+              name: "--ping_status",
+              insertValue: "--ping_status=",
+              description:
+                "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'open'" }, { name: "'closed" }],
+              },
+            },
+            {
+              name: "--post_password",
+              insertValue: "--post_password=",
+              description: "The password to access the post. Default empty.",
+            },
+            {
+              name: "--post_name",
+              insertValue: "--post_name=",
+              description:
+                "The post name. Default is the sanitized post title when creating a new post.",
+            },
+            {
+              name: "--from-post",
+              insertValue: "--from-post=",
+              description: "Post id of a post to be duplicated.",
+            },
+            {
+              name: "--to_ping",
+              insertValue: "--to_ping=",
+              description:
+                "Space or carriage return-separated list of URLs to ping. Default empty.",
+            },
+            {
+              name: "--pinged",
+              insertValue: "--pinged=",
+              description:
+                "Space or carriage return-separated list of URLs that have been pinged. Default empty.",
+            },
+            {
+              name: "--post_modified",
+              insertValue: "--post_modified=",
+              description:
+                "The date when the post was last modified. Default is the current time.",
+            },
+            {
+              name: "--post_modified_gmt",
+              insertValue: "--post_modified_gmt=",
+              description:
+                "The date when the post was last modified in the GMT timezone. Default is the current time.",
+            },
+            {
+              name: "--post_parent",
+              insertValue: "--post_parent=",
+              description:
+                "Set this for the post it belongs to, if any. Default 0.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "0" }],
+              },
+            },
+            {
+              name: "--menu_order",
+              insertValue: "--menu_order=",
+              description:
+                "The order the post should be displayed in. Default 0.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "0" }],
+              },
+            },
+            {
+              name: "--post_mime_type",
+              insertValue: "--post_mime_type=",
+              description: "The mime type of the post. Default empty.",
+            },
+            {
+              name: "--guid",
+              insertValue: "--guid=",
+              description:
+                "Global Unique ID for referencing the post. Default empty.",
+            },
+            {
+              name: "--post_category",
+              insertValue: "--post_category=",
+              description:
+                "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option.",
+            },
+            {
+              name: "--tags_input",
+              insertValue: "--tags_input=",
+              description: "Array of tag names, slugs, or IDs. Default empty.",
+            },
+            {
+              name: "--tax_input",
+              insertValue: "--tax_input=",
+              description:
+                "Array of taxonomy terms keyed by their taxonomy name. Default empty.",
+            },
+            {
+              name: "--meta_input",
+              insertValue: "--meta_input=",
+              description:
+                "Array in JSON format of post meta values keyed by their post meta key. Default empty.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "The serialization format for the value.",
+            },
+            {
+              name: "--edit",
+              description:
+                "Immediately open system’s editor to write or edit post content. If content is read from a file, from STDIN, or from the --post_content argument, that text will be loaded into the editor.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output just the new post id.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes an existing post.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of posts to delete.",
+            },
+          ],
+          options: [
+            {
+              name: "--force",
+              description: "Skip the trash bin.",
+            },
+            {
+              name: "--defer-term-counting",
+              description:
+                "Recalculate term count in batch, for a performance boost.",
+            },
+          ],
+        },
+        {
+          name: "edit",
+          description: "Launches system editor to edit post content.",
+          args: [
+            {
+              name: "id",
+              description: "The ID of the post to edit.",
+            },
+          ],
+        },
+        {
+          name: "exists",
+          description: "Verifies whether a post exists.",
+          args: [
+            {
+              name: "id",
+              description: "The ID of the post to check.",
+            },
+          ],
+        },
+        {
+          name: "generate",
+          description: "Generates some posts.",
+          options: [
+            {
+              name: "--count",
+              insertValue: "--count=",
+              description: "How many posts to generate?",
+              args: {
+                name: "default",
+                suggestions: [{ name: "100" }],
+              },
+            },
+            {
+              name: "--post_type",
+              insertValue: "--post_type=",
+              description: "The type of the generated posts.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "post" }],
+              },
+            },
+            {
+              name: "--post_status",
+              insertValue: "--post_status=",
+              description: "The status of the generated posts.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "publish" }],
+              },
+            },
+            {
+              name: "--post_title",
+              insertValue: "--post_title=",
+              description: "The post title.",
+            },
+            {
+              name: "--post_author",
+              insertValue: "--post_author=",
+              description: "The author of the generated posts.",
+            },
+            {
+              name: "--post_date",
+              insertValue: "--post_date=",
+              description:
+                "The date of the generated posts. Default: current date",
+            },
+            {
+              name: "--post_date_gmt",
+              insertValue: "--post_date_gmt=",
+              description:
+                "The GMT date of the generated posts. Default: value of post_date (or current date if it’s not set).",
+            },
+            {
+              name: "--post_content",
+              description:
+                "If set, the command reads the post_content from STDIN.",
+            },
+            {
+              name: "--max_depth",
+              insertValue: "--max_depth=",
+              description:
+                "For hierarchical post types, generate child posts down to a certain depth.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "1" }],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "progress" }, { name: "ids" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets details about a post.",
+          args: [
+            {
+              name: "id",
+              description: "The ID of the post to get.",
+            },
+          ],
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole post, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Gets a list of posts.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "One or more args to pass to WP_Query.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each post.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "meta",
+          description: "Adds, updates, deletes, and lists post custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to create.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value of the meta field. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to delete.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value to delete. If omitted, all rows with key will deleted.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Delete all meta for the object.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Get meta field value.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Get value in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "var_export" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all metadata associated with an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "ID for the object.",
+                },
+              ],
+              options: [
+                {
+                  name: "--keys",
+                  insertValue: "--keys=",
+                  description: "Limit output to metadata of specific keys.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description:
+                    "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                      { name: "count" },
+                    ],
+                  },
+                },
+                {
+                  name: "--orderby",
+                  insertValue: "--orderby=",
+                  description: "Set orderby which field.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "id" },
+                      { name: "meta_key" },
+                      { name: "meta_value" },
+                    ],
+                  },
+                },
+                {
+                  name: "--order",
+                  insertValue: "--order=",
+                  description: "Set ascending or descending order.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "asc" }, { name: "desc" }],
+                  },
+                },
+                {
+                  name: "--unserialize",
+                  description: "Unserialize meta_value output.",
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+              args: [
+                {
+                  name: "action",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Update a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "term",
+          description: "Adds, updates, removes, and lists post terms.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a term to an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the taxonomy type to be added.",
+                },
+                {
+                  name: "term",
+                  description: "The slug of the term or terms to be added.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all terms associated with an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "One or more taxonomies to list.",
+                },
+              ],
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description:
+                    "Prints the value of a single field for each term.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific row fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                      { name: "count" },
+                      { name: "ids" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "remove",
+              description: "Remove a term from an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the term’s taxonomy.",
+                },
+                {
+                  name: "term",
+                  description:
+                    "The name of the term or terms to be removed from the object.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+                {
+                  name: "--all",
+                  description: "Remove all terms from the object.",
+                },
+              ],
+            },
+            {
+              name: "set",
+              description: "Set object terms.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the taxonomy type to be updated.",
+                },
+                {
+                  name: "term",
+                  description: "The slug of the term or terms to be updated.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+                {
+                  name: "--all",
+                  description: "Remove all terms from the object.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates one or more existing posts.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of posts to update.",
+            },
+            {
+              name: "file",
+              description:
+                "One or more fields to update. See wp_insert_post().",
+            },
+          ],
+          options: [
+            {
+              name: "--post_author",
+              insertValue: "--post_author=",
+              description:
+                "The ID of the user who added the post. Default is the current user ID.",
+            },
+            {
+              name: "--post_date",
+              insertValue: "--post_date=",
+              description: "The date of the post. Default is the current time.",
+            },
+            {
+              name: "--post_date_gmt",
+              insertValue: "--post_date_gmt=",
+              description:
+                "The date of the post in the GMT timezone. Default is the value of $post_date.",
+            },
+            {
+              name: "--post_content",
+              insertValue: "--post_content=",
+              description: "The post content. Default empty.",
+            },
+            {
+              name: "--post_content_filtered",
+              insertValue: "--post_content_filtered=",
+              description: "The filtered post content. Default empty.",
+            },
+            {
+              name: "--post_title",
+              insertValue: "--post_title=",
+              description: "The post title. Default empty.",
+            },
+            {
+              name: "--post_excerpt",
+              insertValue: "--post_excerpt=",
+              description: "The post excerpt. Default empty.",
+            },
+            {
+              name: "--post_status",
+              insertValue: "--post_status=",
+              description: "The post status. Default ‘draft’.",
+            },
+            {
+              name: "--post_type",
+              insertValue: "--post_type=",
+              description: "The post type. Default ‘post’.",
+            },
+            {
+              name: "--comment_status",
+              insertValue: "--comment_status=",
+              description:
+                "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'open'" }, { name: "'closed" }],
+              },
+            },
+            {
+              name: "--ping_status",
+              insertValue: "--ping_status=",
+              description:
+                "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'open'" }, { name: "'closed" }],
+              },
+            },
+            {
+              name: "--post_password",
+              insertValue: "--post_password=",
+              description: "The password to access the post. Default empty.",
+            },
+            {
+              name: "--post_name",
+              insertValue: "--post_name=",
+              description:
+                "The post name. Default is the sanitized post title when creating a new post.",
+            },
+            {
+              name: "--to_ping",
+              insertValue: "--to_ping=",
+              description:
+                "Space or carriage return-separated list of URLs to ping. Default empty.",
+            },
+            {
+              name: "--pinged",
+              insertValue: "--pinged=",
+              description:
+                "Space or carriage return-separated list of URLs that have been pinged. Default empty.",
+            },
+            {
+              name: "--post_modified",
+              insertValue: "--post_modified=",
+              description:
+                "The date when the post was last modified. Default is the current time.",
+            },
+            {
+              name: "--post_modified_gmt",
+              insertValue: "--post_modified_gmt=",
+              description:
+                "The date when the post was last modified in the GMT timezone. Default is the current time.",
+            },
+            {
+              name: "--post_parent",
+              insertValue: "--post_parent=",
+              description:
+                "Set this for the post it belongs to, if any. Default 0.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "0" }],
+              },
+            },
+            {
+              name: "--menu_order",
+              insertValue: "--menu_order=",
+              description:
+                "The order the post should be displayed in. Default 0.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "0" }],
+              },
+            },
+            {
+              name: "--post_mime_type",
+              insertValue: "--post_mime_type=",
+              description: "The mime type of the post. Default empty.",
+            },
+            {
+              name: "--guid",
+              insertValue: "--guid=",
+              description:
+                "Global Unique ID for referencing the post. Default empty.",
+            },
+            {
+              name: "--post_category",
+              insertValue: "--post_category=",
+              description:
+                "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option.",
+            },
+            {
+              name: "--tags_input",
+              insertValue: "--tags_input=",
+              description: "Array of tag names, slugs, or IDs. Default empty.",
+            },
+            {
+              name: "--tax_input",
+              insertValue: "--tax_input=",
+              description:
+                "Array of taxonomy terms keyed by their taxonomy name. Default empty.",
+            },
+            {
+              name: "--meta_input",
+              insertValue: "--meta_input=",
+              description:
+                "Array in JSON format of post meta values keyed by their post meta key. Default empty.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "One or more fields to update. See wp_insert_post().",
+            },
+            {
+              name: "--defer-term-counting",
+              description:
+                "Recalculate term count in batch, for a performance boost.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "post-type",
