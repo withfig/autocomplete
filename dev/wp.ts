@@ -5647,6 +5647,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "action",
+                  description: "Patch action to perform.",
                   suggestions: [
                     { name: "insert" },
                     { name: "update" },
@@ -7271,7 +7272,478 @@ export const completion: Fig.Spec = {
       name: "site",
       description:
         "Creates, deletes, empties, moderates, and lists one or more sites on a multisite installation.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "activate",
+          description: "Activates one or more sites.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to activate.",
+            },
+          ],
+        },
+        {
+          name: "archive",
+          description: "Archives one or more sites.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to activate.",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Creates a site in a multisite installation.",
+          options: [
+            {
+              name: "--slug",
+              description:
+                "Path for the new site. Subdomain on subdomain installs, directory on subdirectory installs.",
+            },
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "Title of the new site. Default: prettified slug.",
+            },
+            {
+              name: "--email",
+              insertValue: "--email=",
+              description:
+                "Email for Admin user. User will be created if none exists. Assignement to Super Admin if not included.",
+            },
+            {
+              name: "--network_id",
+              insertValue: "--network_id=",
+              description:
+                "Network to associate new site with. Defaults to current network (typically 1).",
+            },
+            {
+              name: "--private",
+              description:
+                "If set, the new site will be non-public (not indexed).",
+            },
+            {
+              name: "--porcelain",
+              description:
+                "If set, only the site id will be output on success.",
+            },
+          ],
+        },
+        {
+          name: "deactivate",
+          description: "Deactivates one or more sites.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to deactivate.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes a site in a multisite installation.",
+          args: [
+            {
+              name: "site-id",
+              description:
+                "The id of the site to delete. If not provided, you must set the –slug parameter.",
+            },
+          ],
+          options: [
+            {
+              name: "--slug",
+              insertValue: "--slug=",
+              description:
+                "Path of the blog to be deleted. Subdomain on subdomain installs, directory on subdirectory installs.",
+            },
+            {
+              name: "--yes",
+              description: "Answer yes to the confirmation message.",
+            },
+            {
+              name: "--keep-tables",
+              description:
+                "Delete the blog from the list, but don’t drop it’s tables.",
+            },
+          ],
+        },
+        {
+          name: "empty",
+          description:
+            "Empties a site of its content (posts, comments, terms, and meta).",
+          options: [
+            {
+              name: "--uploads",
+              description:
+                "Also delete all files in the site’s uploads directory.",
+            },
+            {
+              name: "--yes",
+              description:
+                "Proceed to empty the site without a confirmation prompt.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists all sites in a multisite installation.",
+          options: [
+            {
+              name: "--network",
+              insertValue: "--network=",
+              description: "The network to which the sites belong.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "The serialization format for the value.",
+            },
+            {
+              name: "--site_in",
+              insertValue: "--site_in=",
+              description:
+                "Only list the sites with these blog_id values (comma-separated).",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each site.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Comma-separated list of fields to show.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "mature",
+          description: "Sets one or more sites as mature.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to set as mature.",
+            },
+          ],
+        },
+        {
+          name: "meta",
+          description: "Adds, updates, deletes, and lists site custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to create.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value of the meta field. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to delete.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value to delete. If omitted, all rows with key will deleted.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Delete all meta for the object.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Get meta field value.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Get value in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "var_export" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all metadata associated with an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "ID for the object.",
+                },
+              ],
+              options: [
+                {
+                  name: "--keys",
+                  insertValue: "--keys=",
+                  description: "Limit output to metadata of specific keys.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description:
+                    "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                  args: {
+                    name: "default",
+                    suggestions: [{ name: "id,meta_key,meta_value" }],
+                  },
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+                {
+                  name: "--orderby",
+                  insertValue: "--orderby=",
+                  description: "Set orderby which field.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "id" },
+                      { name: "meta_key" },
+                      { name: "meta_value" },
+                    ],
+                  },
+                },
+                {
+                  name: "--order",
+                  insertValue: "--order=",
+                  description: "Set ascending or descending order.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "asc" }, { name: "desc" }],
+                  },
+                },
+                {
+                  name: "--unserialize",
+                  description: "Unserialize meta_value output.",
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+              args: [
+                {
+                  name: "action",
+                  description: "Patch action to perform.",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Update a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "option",
+          description:
+            "Adds, updates, deletes, and lists site options in a multisite installation.",
+        },
+        {
+          name: "private",
+          description: "Sets one or more sites as private.",
+        },
+        {
+          name: "public",
+          description: "Sets one or more sites as public.",
+        },
+        {
+          name: "spam",
+          description: "Marks one or more sites as spam.",
+        },
+        {
+          name: "switch-language",
+          description: "Activates a given language.",
+        },
+        {
+          name: "unarchive",
+          description: "Unarchives one or more sites.",
+        },
+        {
+          name: "unmature",
+          description: "Sets one or more sites as immature.",
+        },
+        {
+          name: "unspam",
+          description: "Removes one or more sites from spam.",
+        },
+      ],
     },
     {
       name: "super-admin",
