@@ -7039,7 +7039,152 @@ export const completion: Fig.Spec = {
     {
       name: "search-replace",
       description: "Searches/replaces strings in the database.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "new",
+          description:
+            "Replace instances of the first string with this new string.",
+        },
+        {
+          name: "table",
+          description:
+            "List of database tables to restrict the replacement to. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
+        },
+      ],
+      options: [
+        {
+          name: "--dry-run",
+          description:
+            "Run the entire search/replace operation and show report, but don’t save changes to the database.",
+        },
+        {
+          name: "--network",
+          description:
+            "Search/replace through all the tables registered to $wpdb in a multisite install.",
+        },
+        {
+          name: "--all-tables-with-prefix",
+          description:
+            "Enable replacement on any tables that match the table prefix even if not registered on $wpdb.",
+        },
+        {
+          name: "--all-tables",
+          description:
+            "Enable replacement on ALL tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –network and –all-tables-with-prefix.",
+        },
+        {
+          name: "--export",
+          insertValue: "--export=",
+          description:
+            "Write transformed data as SQL file instead of saving replacements to the database. If <file> is not supplied, will output to STDOUT.",
+        },
+        {
+          name: "--export_insert_size",
+          insertValue: "--export_insert_size=",
+          description:
+            "Define number of rows in single INSERT statement when doing SQL export. You might want to change this depending on your database configuration (e.g. if you need to do fewer queries). Default: 50",
+          args: {
+            name: "default",
+            suggestions: [{ name: "50" }],
+          },
+        },
+        {
+          name: "--skip-tables",
+          insertValue: "--skip-tables=",
+          description:
+            "Do not perform the replacement on specific tables. Use commas to specify multiple tables. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
+        },
+        {
+          name: "--skip-columns",
+          insertValue: "--skip-columns=",
+          description:
+            "Do not perform the replacement on specific columns. Use commas to specify multiple columns.",
+        },
+        {
+          name: "--include-columns",
+          insertValue: "--include-columns=",
+          description:
+            "Perform the replacement on specific columns. Use commas to specify multiple columns.",
+        },
+        {
+          name: "--precise",
+          description:
+            "Force the use of PHP (instead of SQL) which is more thorough, but slower.",
+        },
+        {
+          name: "--recurse-objects",
+          description:
+            "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
+        },
+        {
+          name: "--no-recurse-objects",
+          description:
+            "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
+        },
+        {
+          name: "--verbose",
+          description: "Prints rows to the console as they’re updated.",
+        },
+        {
+          name: "--regex",
+          description:
+            "Runs the search using a regular expression (without delimiters). Warning: search-replace will take about 15-20x longer when using –regex.",
+        },
+        {
+          name: "--regex-flags",
+          insertValue: "--regex-flags=",
+          description:
+            "Pass PCRE modifiers to regex search-replace (e.g. ‘i’ for case-insensitivity).",
+        },
+        {
+          name: "--regex-delimiter",
+          insertValue: "--regex-delimiter=",
+          description:
+            "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
+        },
+        {
+          name: "--regex-limit",
+          insertValue: "--regex-limit=",
+          description:
+            "The maximum possible replacements for the regex per row (or per unserialized data bit per row). Defaults to -1 (no limit).",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Render output in a particular format.",
+          args: {
+            name: "options",
+            suggestions: [{ name: "table" }, { name: "count" }],
+          },
+        },
+        {
+          name: "--report",
+          description: "Produce report. Defaults to true.",
+        },
+        {
+          name: "--report-changed-only",
+          description:
+            "Report changed fields only. Defaults to false, unless logging, when it defaults to true.",
+        },
+        {
+          name: "--log",
+          insertValue: "--log",
+          description:
+            "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
+        },
+        {
+          name: "--before_context",
+          insertValue: "--before_context=",
+          description:
+            "For logging, number of characters to display before the old match and the new replacement. Default 40. Ignored if not logging.",
+        },
+        {
+          name: "--after_context",
+          insertValue: "--after_context=",
+          description:
+            "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging.",
+        },
+      ],
     },
     {
       name: "server",
