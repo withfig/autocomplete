@@ -23,7 +23,7 @@ const global_options = [
     description:
       "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”).",
     args: {
-      name: "type",
+      name: "options",
       suggestions: [
         { name: "scheme:" },
         { name: "user@" },
@@ -48,7 +48,7 @@ const global_options = [
     insertValue: "--user=",
     description: "Set the WordPress user.",
     args: {
-      name: "type",
+      name: "options",
       suggestions: [{ name: "id" }, { name: "login" }, { name: "email" }],
     },
   },
@@ -345,7 +345,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--config=",
                   description: "Config file to be considered for operations.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "global" }, { name: "project" }],
                   },
                 },
@@ -365,7 +365,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--config=",
                   description: "Config file to be considered for operations.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "global" }, { name: "project" }],
                   },
                 },
@@ -389,7 +389,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Set user for alias.",
                   args: {
-                    name: "output type",
+                    name: "options",
                     suggestions: [
                       { name: "yaml" },
                       { name: "json" },
@@ -443,7 +443,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--config=",
                   description: "Config file to be considered for operations.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "global" }, { name: "project" }],
                   },
                 },
@@ -499,7 +499,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "output type",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -550,7 +550,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [{ name: "list" }, { name: "json" }],
               },
             },
@@ -570,7 +570,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [{ name: "list" }, { name: "json" }],
               },
             },
@@ -705,7 +705,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "format",
+                name: "options",
                 suggestions: [{ name: "progress" }, { name: "ids" }],
               },
             },
@@ -741,7 +741,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "format",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -783,7 +783,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "format",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "ids" },
@@ -821,7 +821,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -865,7 +865,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Get value in a particular format.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [
                       { name: "var_export" },
                       { name: "json" },
@@ -900,7 +900,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -915,7 +915,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--orderby=",
                   description: "Set orderby which field.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [
                       { name: "id" },
                       { name: "meta_key" },
@@ -928,7 +928,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--order=",
                   description: "Set ascending or descending order.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "asc" }, { name: "desc" }],
                   },
                 },
@@ -943,7 +943,7 @@ export const completion: Fig.Spec = {
               description: "Update a nested value for a meta field.",
               args: [
                 {
-                  name: "action",
+                  name: "options",
                   suggestions: [
                     { name: "insert" },
                     { name: "update" },
@@ -969,7 +969,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -995,7 +995,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -1025,7 +1025,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -1147,7 +1147,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dbpass=",
               description: "Set the database password.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [{ name: "plaintext" }, { name: "json" }],
               },
             },
@@ -1231,7 +1231,7 @@ export const completion: Fig.Spec = {
               description:
                 "Type of the config value to delete. Defaults to ‘all’.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "constant" },
                   { name: "variable" },
@@ -1262,7 +1262,7 @@ export const completion: Fig.Spec = {
               description:
                 "Type of the config value to delete. Defaults to ‘all’.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "constant" },
                   { name: "variable" },
@@ -1275,7 +1275,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Get value in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "var_export" },
                   { name: "json" },
@@ -1302,7 +1302,7 @@ export const completion: Fig.Spec = {
               description:
                 "Type of the config value to delete. Defaults to ‘all’.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "constant" },
                   { name: "variable" },
@@ -1334,7 +1334,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -1391,7 +1391,7 @@ export const completion: Fig.Spec = {
               description:
                 "Where to place the new values in relation to the anchor string.",
               args: {
-                name: "place",
+                name: "options",
                 suggestions: [{ name: "before" }, { name: "after" }],
               },
             },
@@ -1407,7 +1407,7 @@ export const completion: Fig.Spec = {
               description:
                 "Type of the config value to set. Defaults to ‘all’.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "constant" },
                   { name: "variable" },
@@ -1477,7 +1477,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -1793,7 +1793,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "type",
+                    name: "options",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -1925,7 +1925,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -2294,7 +2294,7 @@ export const completion: Fig.Spec = {
               insertValue: "--size_format=",
               description: "Display the database size only, as a bare number.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "b" },
                   { name: "kb" },
@@ -2327,7 +2327,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -2392,7 +2392,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "type",
+                name: "options",
                 suggestions: [{ name: "list" }, { name: "csv" }],
               },
             },
