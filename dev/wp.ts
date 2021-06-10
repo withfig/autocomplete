@@ -6168,7 +6168,232 @@ export const completion: Fig.Spec = {
     {
       name: "profile",
       description: "",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "eval",
+          description: "Profile arbitrary code execution.",
+          args: [
+            {
+              name: "php-code",
+              description: "The code to execute, as a string.",
+            },
+          ],
+          options: [
+            {
+              name: "--hook",
+              insertValue: "--hook=",
+              description:
+                "Focus on key metrics for all hooks, or callbacks on a specific hook.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Display one or more fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "yaml" },
+                  { name: "csv" },
+                ],
+              },
+            },
+            {
+              name: "--order",
+              insertValue: "--order=",
+              description: "Ascending or descending order.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "asc" }, { name: "desc" }],
+              },
+            },
+            {
+              name: "--orderby",
+              insertValue: "--orderby=",
+              description: "Order by fields.",
+            },
+          ],
+        },
+        {
+          name: "eval-file",
+          description: "Profile execution of an arbitrary file.",
+          args: [
+            {
+              name: "file",
+              description: "The path to the PHP file to execute and profile.",
+            },
+          ],
+          options: [
+            {
+              name: "--hook",
+              insertValue: "--hook=",
+              description:
+                "Focus on key metrics for all hooks, or callbacks on a specific hook.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Display one or more fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "yaml" },
+                  { name: "csv" },
+                ],
+              },
+            },
+            {
+              name: "--order",
+              insertValue: "--order=",
+              description: "Ascending or descending order.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "asc" }, { name: "desc" }],
+              },
+            },
+            {
+              name: "--orderby",
+              insertValue: "--orderby=",
+              description: "Order by fields.",
+            },
+          ],
+        },
+        {
+          name: "hook",
+          description:
+            "Profile key metrics for WordPress hooks (actions and filters).",
+          args: [
+            {
+              name: "hook",
+              description:
+                "Drill into key metrics of callbacks on a specific WordPress hook.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "Profile callbacks for all WordPress hooks.",
+            },
+            {
+              name: "--spotlight",
+              description: "Filter out logs with zero-ish values from the set.",
+            },
+            {
+              name: "--url",
+              insertValue: "--url=",
+              description:
+                "Execute a request against a specified URL. Defaults to the home URL.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Display one or more fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "yaml" },
+                  { name: "csv" },
+                ],
+              },
+            },
+            {
+              name: "--order",
+              insertValue: "--order=",
+              description: "Ascending or descending order.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "asc" }, { name: "desc" }],
+              },
+            },
+            {
+              name: "--orderby",
+              insertValue: "--orderby=",
+              description: "Order by fields.",
+            },
+          ],
+        },
+        {
+          name: "stage",
+          description:
+            "Profile each stage of the WordPress load process (bootstrap, main_query, template).",
+          args: [
+            {
+              name: "stage",
+              description: "Drill down into a specific stage.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "Expand upon all stages.",
+            },
+            {
+              name: "--spotlight",
+              description: "Filter out logs with zero-ish values from the set.",
+            },
+            {
+              name: "--url",
+              insertValue: "--url=",
+              description:
+                "Execute a request against a specified URL. Defaults to the home URL.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Default is all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "yaml" },
+                  { name: "csv" },
+                ],
+              },
+            },
+            {
+              name: "--order",
+              insertValue: "--order=",
+              description: "Ascending or descending order.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "asc" }, { name: "desc" }],
+              },
+            },
+            {
+              name: "--orderby",
+              insertValue: "--orderby=",
+              description: "Order by fields.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "rewrite",
