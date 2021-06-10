@@ -6087,7 +6087,83 @@ export const completion: Fig.Spec = {
     {
       name: "post-type",
       description: "Retrieves details on the site’s registered post types.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "get",
+          description: "Gets details about a registered post type.",
+          args: [
+            {
+              name: "post-type",
+            },
+          ],
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole taxonomy, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists registered post types.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Filter by one or more fields (see get_post_types() first parameter for a list of available fields).",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Prints the value of a single field for each post type.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific post type fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "profile",
