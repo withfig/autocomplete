@@ -1764,7 +1764,55 @@ export const completion: Fig.Spec = {
       name: "cron",
       description:
         "Tests, runs, and deletes WP-Cron events; manages WP-Cron schedules.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "event",
+          description: "Schedules, runs, and deletes WP-Cron events.",
+        },
+        {
+          name: "schedule",
+          description: "Gets WP-Cron schedules.",
+          subcommands: [
+            {
+              name: "list",
+              description: "List available cron schedules.",
+              options: [
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific object fields.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description:
+                    "Prints the value of a single field for each schedule.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "type",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "ids" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "test",
+          description:
+            "Tests the WP Cron spawning system and reports back its status.",
+        },
+      ],
     },
     {
       name: "db",
