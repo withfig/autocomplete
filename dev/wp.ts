@@ -2697,7 +2697,106 @@ export const completion: Fig.Spec = {
     {
       name: "export",
       description: "Exports WordPress content to a WXR file.",
-      subcommands: [{}],
+      options: [
+        {
+          name: "--dir",
+          insertValue: "--dir=",
+          description:
+            "Full path to directory where WXR export files should be stored. Defaults to current working directory.",
+        },
+        {
+          name: "--stdout",
+          description:
+            "Output the whole XML using standard output (incompatible with –dir=)",
+        },
+        {
+          name: "--skip_comments",
+          description: "Don’t include comments in the WXR export file.",
+        },
+        {
+          name: "--max_file_size",
+          insertValue: "--max_file_size=",
+          description:
+            "A single export file should have this many megabytes. -1 for unlimited.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "15" }],
+          },
+        },
+        {
+          name: "--start_date",
+          insertValue: "--start_date=",
+          description:
+            "Export only posts published after this date, in format YYYY-MM-DD.",
+        },
+        {
+          name: "--end_date",
+          insertValue: "--end_date=",
+          description:
+            "Export only posts published before this date, in format YYYY-MM-DD.",
+        },
+        {
+          name: "--post_type",
+          insertValue: "--post_type=",
+          description:
+            "Export only posts with this post_type. Separate multiple post types with a comma.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "any" }],
+          },
+        },
+        {
+          name: "--post_type__not_in",
+          insertValue: "--post_type__not_in=",
+          description:
+            "Export all post types except those identified. Separate multiple post types with a comma. Defaults to none.",
+        },
+        {
+          name: "--post_in",
+          insertValue: "--post_in=",
+          description:
+            "Export all posts specified as a comma- or space-separated list of IDs. Post’s attachments won’t be exported unless –with_attachments is specified.",
+        },
+        {
+          name: "--with_attachments",
+          description:
+            "Force including attachments in case –post__in has been specified.",
+        },
+        {
+          name: "--start_id",
+          insertValue: "--start_id=",
+          description:
+            "Export only posts with IDs greater than or equal to this post ID.",
+        },
+        {
+          name: "--max_num_posts",
+          insertValue: "--max_num_posts=",
+          description:
+            "Export no more than <num> posts (excluding attachments).",
+        },
+        {
+          name: "--author",
+          insertValue: "--author=",
+          description:
+            "Export only posts by this author. Can be either user login or user ID.",
+        },
+        {
+          name: "--category",
+          insertValue: "--category=",
+          description: "Export only posts in this category.",
+        },
+        {
+          name: "--post_status",
+          insertValue: "--post_status=",
+          description: "Export only posts with this status.",
+        },
+        {
+          name: "--filename_format",
+          insertValue: "--filename_format=",
+          description:
+            "Use a custom format for export filenames. Defaults to ‘{site}.wordpress.{date}.{n}.xml’.",
+        },
+      ],
     },
     {
       name: "find",
