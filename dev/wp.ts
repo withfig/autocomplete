@@ -2661,7 +2661,18 @@ export const completion: Fig.Spec = {
     {
       name: "eval",
       description: "Executes arbitrary PHP code.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "php-code",
+          // description: "The code to execute, as a string."
+        },
+      ],
+      options: [
+        {
+          name: "--skip-wordpress",
+          description: "Execute code without loading WordPress.",
+        },
+      ],
     },
     {
       name: "eval-file",
