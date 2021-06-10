@@ -7190,7 +7190,37 @@ export const completion: Fig.Spec = {
       name: "server",
       description:
         "Launches PHP’s built-in web server for a specific WordPress installation.",
-      subcommands: [{}],
+      options: [
+        {
+          name: "--host",
+          insertValue: "--host=",
+          description: "The hostname to bind the server to.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "localhost" }],
+          },
+        },
+        {
+          name: "--port",
+          insertValue: "--port=",
+          description: "The port number to bind the server to.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "8080" }],
+          },
+        },
+        {
+          name: "--docroot",
+          insertValue: "--docroot=",
+          description:
+            "The path to use as the document root. If the path global parameter is set, the default value is it.",
+        },
+        {
+          name: "--config",
+          insertValue: "--config=",
+          description: "Config the server with a specific .ini file.",
+        },
+      ],
     },
     {
       name: "shell",
