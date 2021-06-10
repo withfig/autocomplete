@@ -1816,9 +1816,589 @@ export const completion: Fig.Spec = {
     },
     {
       name: "db",
-      Pdescription:
+      description:
         "Performs basic database operations using credentials stored in wp-config.php.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "check",
+          description: "Checks the current status of the database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqlcheck. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqlcheck. Refer to mysqlcheck docs.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "clean",
+          description:
+            "Removes all tables with `$table_prefix` from the database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqlcheck. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--yes",
+              description: "Answer yes to the confirmation message.",
+            },
+          ],
+        },
+        {
+          name: "cli",
+          description:
+            "Opens a MySQL console using credentials from wp-config.php",
+          options: [
+            {
+              name: "--database",
+              insertValue: "--database=",
+              description: "Use a specific database. Defaults to DB_NAME.",
+            },
+            {
+              name: "--default-character-set",
+              insertValue: "--default-character-set=",
+              description:
+                "Use a specific character set. Defaults to DB_CHARSET when defined.",
+            },
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysql. Refer to mysql docs.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "columns",
+          description: "Displays information about a given table.",
+          args: [
+            {
+              name: "table",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Creates a new database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+          ],
+        },
+        {
+          name: "drop",
+          description: "Deletes the existing database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--yes",
+              description: "Answer yes to the confirmation message.",
+            },
+          ],
+        },
+        {
+          name: "export",
+          description: "Exports the database to a file or to STDOUT.",
+          args: [
+            {
+              name: "file",
+            },
+          ],
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqldump. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqldump. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--tables",
+              insertValue: "--tables=",
+              description:
+                "The comma separated list of specific tables to export. Excluding this parameter will export all tables in the database.",
+            },
+            {
+              name: "--exclude_tables",
+              insertValue: "--exclude_tables=",
+              description:
+                "The comma separated list of specific tables that should be skipped from exporting. Excluding this parameter will export all tables in the database.",
+            },
+            {
+              name: "--include-tablespaces",
+              description:
+                "Skips adding the default –no-tablespaces option to mysqldump.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output filename for the exported database.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "import",
+          description: "Imports a database from a file or from STDIN.",
+          args: [
+            {
+              name: "file",
+            },
+          ],
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--skip-optimization",
+              description:
+                "When using an SQL file, do not include speed optimization such as disabling auto-commit and key checks.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "optimize",
+          description: "Optimizes the database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqlcheck. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "prefix",
+          description: "Displays the database table prefix.",
+        },
+        {
+          name: "query",
+          description: "Executes a SQL query against the database.",
+          args: [
+            {
+              name: "sql",
+            },
+          ],
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "repair",
+          description: "Repairs the database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqlcheck. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description: "Removes all tables from the database.",
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description: "Username to pass to mysql. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysql. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--yes",
+              description: "Answer yes to the confirmation message.",
+            },
+          ],
+        },
+        {
+          name: "search",
+          description: "Finds a string in the database.",
+          args: [
+            {
+              name: "search",
+            },
+            {
+              name: "tables",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "Search through all the tables registered to $wpdb in a multisite install.",
+            },
+            {
+              name: "--all-tables-with-prefix",
+              description:
+                "Search through all tables that match the registered table prefix, even if not registered on $wpdb. On one hand, sometimes plugins use tables without registering them to $wpdb. On another hand, this could return tables you don’t expect. Overrides –network.",
+            },
+            {
+              name: "--all-tables",
+              description:
+                "Search through ALL tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –network and –all-tables-with-prefix.",
+            },
+            {
+              name: "--before_context",
+              insertValue: "--before_context=",
+              description: "Number of characters to display before the match.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "40" }],
+              },
+            },
+            {
+              name: "--after_context",
+              insertValue: "--after_context=",
+              description: "Number of characters to display after the match.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "40" }],
+              },
+            },
+            {
+              name: "--regex",
+              description:
+                "Runs the search as a regular expression (without delimiters). The search becomes case-sensitive (i.e. no PCRE flags are added). Delimiters must be escaped if they occur in the expression. Because the search is run on individual columns, you can use the ^ and $ tokens to mark the start and end of a match, respectively.",
+            },
+            {
+              name: "--regex-flags",
+              insertValue: "--regex-flags=",
+              description:
+                "Pass PCRE modifiers to the regex search (e.g. ‘i’ for case-insensitivity).",
+            },
+            {
+              name: "--regex-delimiter",
+              insertValue: "--regex-delimiter=",
+              description:
+                "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
+            },
+            {
+              name: "--table_column_once",
+              description:
+                "Output the ‘table:column’ line once before all matching row lines in the table column rather than before each matching row.",
+            },
+            {
+              name: "--one_line",
+              description:
+                "Place the ‘table:column’ output on the same line as the row id and match (‘table:column:id:match’). Overrides –table_column_once.",
+            },
+            {
+              name: "--matches_only",
+              description:
+                "Only output the string matches (including context). No ‘table:column’s or row ids are outputted.",
+            },
+            {
+              name: "--stats",
+              description:
+                "Output stats on the number of matches found, time taken, tables/columns/rows searched, tables skipped..",
+            },
+            {
+              name: "--table_column_color",
+              insertValue: "--table_column_color=",
+              description:
+                "Percent color code to use for the ‘table:column’ output. For a list of available percent color codes, see below. Default ‘%G’ (bright green).",
+            },
+            {
+              name: "--id_color",
+              insertValue: "--id_color=",
+              description:
+                "Percent color code to use for the row id output. For a list of available percent color codes, see below. Default ‘%Y’ (bright yellow).",
+            },
+            {
+              name: "--match_color",
+              insertValue: "--match_color=",
+              description:
+                "Percent color code to use for the match (unless both before and after context are 0, when no color code is used). For a list of available percent color codes, see below. Default ‘%3%k’ (black on a mustard background).",
+            },
+          ],
+        },
+        {
+          name: "size",
+          description: "Displays the database name and size.",
+          options: [
+            {
+              name: "--size_format",
+              insertValue: "--size_format=",
+              description: "Display the database size only, as a bare number.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "b" },
+                  { name: "kb" },
+                  { name: "mb" },
+                  { name: "gb" },
+                  { name: "tb" },
+                  { name: "B" },
+                  { name: "KB" },
+                  { name: "KiB" },
+                  { name: "MB" },
+                  { name: "MiB" },
+                  { name: "GB" },
+                  { name: "GiB" },
+                  { name: "TB" },
+                  { name: "TiB" },
+                ],
+              },
+            },
+            {
+              name: "--table",
+              description:
+                "Display each table name and size instead of the database size.",
+            },
+            {
+              name: "--human-readable",
+              description: "Display database sizes in human readable formats.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+            {
+              name: "--scope",
+              insertValue: "--scope=",
+              description:
+                "Can be all, global, ms_global, blog, or old tables. Defaults to all.",
+            },
+            {
+              name: "--network",
+              description: "List all the tables in a multisite install.",
+            },
+            {
+              name: "--all-tables-with-prefix",
+              description:
+                "List all tables that match the table prefix even if not registered on $wpdb. Overrides –network.",
+            },
+            {
+              name: "--all-tables",
+              description:
+                "List all tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –all-tables-with-prefix.",
+            },
+          ],
+        },
+        {
+          name: "tables",
+          description: "Lists the database tables.",
+          args: [
+            {
+              name: "table",
+            },
+          ],
+          options: [
+            {
+              name: "--scope",
+              insertValue: "--scope=",
+              description:
+                "Can be all, global, ms_global, blog, or old tables. Defaults to all.",
+            },
+            {
+              name: "--network",
+              description: "List all the tables in a multisite install.",
+            },
+            {
+              name: "--all-tables-with-prefix",
+              description:
+                "List all tables that match the table prefix even if not registered on $wpdb. Overrides –network.",
+            },
+            {
+              name: "--all-tables",
+              description:
+                "List all tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –all-tables-with-prefix.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [{ name: "list" }, { name: "csv" }],
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "dist-archive",
