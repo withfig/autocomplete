@@ -1446,7 +1446,319 @@ export const completion: Fig.Spec = {
       name: "core",
       description:
         "Downloads, installs, updates, and manages a WordPress installation.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "check-update",
+          description: "Checks for WordPress updates via Version Check API.",
+          options: [
+            {
+              name: "--minor",
+              description:
+                "Compare only the first two parts of the version number.",
+            },
+            {
+              name: "--major",
+              description: "Compare only the first part of the version number.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Prints the value of a single field for each update.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific object fields. Defaults to version,update_type,package_url.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "type",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "download",
+          description: "Downloads core WordPress files.",
+          args: [
+            {
+              name: "download-url",
+              description:
+                "Download directly from a provided URL instead of fetching the URL from the wordpress.org servers.",
+            },
+          ],
+          options: [
+            {
+              name: "--path",
+              insertValue: "--path=",
+              description:
+                "Specify the path in which to install WordPress. Defaults to current directory.",
+            },
+            {
+              name: "--locale",
+              insertValue: "--locale=",
+              description: "Select which language you want to download.",
+            },
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "Select which version you want to download. Accepts a version number, ‘latest’ or ‘nightly’.",
+            },
+            {
+              name: "--skip-content",
+              description:
+                "Download WP without the default themes and plugins.",
+            },
+            {
+              name: "--force",
+              description: "Overwrites existing files, if present.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry download without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Runs the standard WordPress installation process.",
+          options: [
+            {
+              name: "--url",
+              insertValue: "--url=",
+              description: "The address of the new site.",
+            },
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "The title of the new site.",
+            },
+            {
+              name: "--admin_user",
+              insertValue: "--admin_user=",
+              description: "The name of the admin user.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "admin" }],
+              },
+            },
+            {
+              name: "--admin_password",
+              insertValue: "--admin_password=",
+              description:
+                "The password for the admin user. Defaults to randomly generated string.",
+            },
+            {
+              name: "--admin_email",
+              insertValue: "--admin_email=",
+              description: "The email address for the admin user.",
+            },
+            {
+              name: "--skip-email",
+              description:
+                "Don’t send an email notification to the new admin user.",
+            },
+          ],
+        },
+        {
+          name: "is-installed",
+          description: "Checks if WordPress is installed.",
+          options: [
+            {
+              name: "--network",
+              insertValue: "--network=",
+              description: "Check if this is a multisite installation.",
+            },
+          ],
+        },
+        {
+          name: "multisite-convert",
+          description:
+            "Transforms an existing single-site installation into a multisite installation.",
+          options: [
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "The title of the new network.",
+            },
+            {
+              name: "--base",
+              insertValue: "--base=",
+              description:
+                "Base path after the domain name that each site url will start with.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "/" }],
+              },
+            },
+            {
+              name: "--subdomains",
+              description:
+                "If passed, the network will use subdomains, instead of subdirectories. Doesn’t work with ‘localhost’.",
+            },
+          ],
+        },
+        {
+          name: "multisite-install",
+          description: "Installs WordPress multisite from scratch.",
+          options: [
+            {
+              name: "--url",
+              insertValue: "--url=",
+              description: "The address of the new site.",
+            },
+            {
+              name: "--base",
+              insertValue: "--base=",
+              description:
+                "Base path after the domain name that each site url will start with.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "/" }],
+              },
+            },
+            {
+              name: "--subdomains",
+              description:
+                "If passed, the network will use subdomains, instead of subdirectories. Doesn’t work with ‘localhost’.",
+            },
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "The title of the new site.",
+            },
+            {
+              name: "--admin_user",
+              insertValue: "--admin_user=",
+              description: "The name of the admin user.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "admin" }],
+              },
+            },
+            {
+              name: "--admin_password",
+              insertValue: "--admin_password=",
+              description:
+                "The password for the admin user. Defaults to randomly generated string.",
+            },
+            {
+              name: "--admin_email",
+              insertValue: "--admin_email=",
+              description: "The email address for the admin user.",
+            },
+            {
+              name: "--skip-email",
+              description:
+                "Don’t send an email notification to the new admin user.",
+            },
+            {
+              name: "--skip-config",
+              description: "Don’t add multisite constants to wp-config.php.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates WordPress to a newer version.",
+          args: [
+            {
+              name: "zip",
+            },
+          ],
+          options: [
+            {
+              name: "--minor",
+              description:
+                "Only perform updates for minor releases (e.g. update from WP 4.3 to 4.3.3 instead of 4.4.2).",
+            },
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "Update to a specific version, instead of to the latest version. Alternatively accepts ‘nightly’.",
+            },
+            {
+              name: "--force",
+              description:
+                "Update even when installed WP version is greater than the requested version.",
+            },
+            {
+              name: "--locale",
+              insertValue: "--locale=",
+              description: "Select which language you want to download.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry download without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "update-db",
+          description: "Runs the WordPress database update procedure.",
+          options: [
+            {
+              name: "--network",
+              description: "Update databases for all sites on a network.",
+            },
+            {
+              name: "--dry-run",
+              description:
+                "Compare database versions without performing the update.",
+            },
+          ],
+        },
+        {
+          name: "verify-checksums",
+          description:
+            "Verifies WordPress files against WordPress.org’s checksums.",
+          options: [
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "Verify checksums against a specific version of WordPress.",
+            },
+            {
+              name: "--locale",
+              insertValue: "--locale=",
+              description:
+                "Verify checksums against a specific locale of WordPress.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Verify checksums against a specific locale of WordPress.",
+            },
+          ],
+        },
+        {
+          name: "version",
+          description: "Displays the WordPress version.",
+          options: [
+            {
+              name: "--extra",
+              description: "Show extended version information.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "cron",
