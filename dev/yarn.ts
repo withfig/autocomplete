@@ -127,7 +127,7 @@ export const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = ["vue", "nuxt", "expo", "jest", "next"];
+    const cli = ["vue", "nuxt", "expo", "jest", "next", "electron"];
     const subcommands = packages
       .filter((name) => cli.includes(name))
       .map((name) => ({
@@ -961,6 +961,12 @@ export const completionSpec: Fig.Spec = {
     {
       name: "upgrade-interactive",
       description: "Upgrades packages in interactive mode",
+      options: [
+        {
+          name: "--latest",
+          description: "Use the version tagged latest in the registry",
+        },
+      ],
     },
     {
       name: "version",

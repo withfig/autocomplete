@@ -1,13 +1,21 @@
+const filterMessages = (out: string): string => {
+  return out.startsWith("warning:") || out.startsWith("error:")
+    ? out.split("\n").slice(1).join("\n")
+    : out;
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
     script: "git log --oneline",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((line) => {
+      return output.split("\n").map((line) => {
         return {
           name: line.substring(0, 7),
           icon: "fig://icon?type=node",
@@ -22,11 +30,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   stashes: {
     script: "git stash list",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((file) => {
+      return output.split("\n").map((file) => {
         return {
           name: file.split(":")[2],
           insertValue: file.split(":")[0],
@@ -45,11 +55,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   treeish: {
     script: "git diff --cached --name-only",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
 
-      return out.split("\n").map((file) => {
+      return output.split("\n").map((file) => {
         return {
           name: file,
           insertValue: "-- " + file,
@@ -64,10 +76,13 @@ const gitGenerators: Record<string, Fig.Generator> = {
   branches: {
     script: "git branch --no-color",
     postProcess: function (out) {
-      if (out.startsWith("fatal:")) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
         return [];
       }
-      return out.split("\n").map((elm) => {
+
+      return output.split("\n").map((elm) => {
         // current branch
         if (elm.includes("*")) {
           return {
@@ -131,15 +146,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // Files for staging
   files_for_staging: {
     script: "git status --short",
-    postProcess: (output, context) => {
+    postProcess: (out, context) => {
+      const output = filterMessages(out);
+
       if (output.startsWith("fatal:")) {
         return [];
       }
+
       const items = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
-        return { working: arr[0], file: arr.slice(1).join(" ") };
+        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
       });
 
       return items.map((item) => {
@@ -164,6 +182,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
         };
       });
     },
+  },
+  getStagedFiles: {
+    script: "git diff --name-only --cached",
+    splitOn: "\n",
   },
   getUnstagedFiles: {
     script: "git diff --name-only",
@@ -1204,7 +1226,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: "-force-with-lease",
+          name: "--force-with-lease",
           description:
             "protect the named ref (alone), if it is going to be updated, by requiring its current value to be the same as the specified value <expect> (which is allowed to be different from the remote-tracking branch we have for the refname, or we do not even have to have such a remote-tracking branch when this form is used). If <expect> is the empty string, then the named ref must not already exist.",
           args: {
@@ -1269,10 +1291,10 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       args: {
-        name: "commit",
+        name: "file|commit",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: [gitGenerators.commits, gitGenerators.getUnstagedFiles],
+        generators: [gitGenerators.files_for_staging, gitGenerators.commits],
       },
     },
     {

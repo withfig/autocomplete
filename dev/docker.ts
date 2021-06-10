@@ -96,13 +96,11 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["--no-stdin"],
           description: "Do not attach STDIN",
-          args: {},
         },
         {
           name: ["--sig-proxy"],
           description:
             "Proxy all received signals to the process (default true)",
-          args: {},
         },
       ],
     },
@@ -1003,7 +1001,6 @@ export const completionSpec: Fig.Spec = {
     {
       name: "events",
       description: "Get real time events from the server",
-      args: {},
       options: [
         {
           args: {
@@ -1213,7 +1210,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "info",
       description: "Display system-wide information",
-      args: {},
+
       options: [
         {
           args: {
@@ -1305,7 +1302,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "load",
       description: "Load an image from a tar archive or STDIN",
-      args: {},
+
       options: [
         {
           description: 'Signal to send to the container (default "KILL")',
@@ -1411,7 +1408,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "ps",
       description: "List containers",
-      args: {},
+
       options: [
         {
           description: "Show all containers (default shows just running)",
@@ -1926,7 +1923,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Show the Docker version information",
-      args: {},
+
       options: [
         {
           description:
@@ -1955,63 +1952,56 @@ export const completionSpec: Fig.Spec = {
       name: "builder",
       description: "Manage builds",
       // TODO Subcommands
-      args: {},
     },
     {
       name: "config",
       description: "Manage Docker configs",
       // TODO Subcommands
-      args: {},
+    },
+    {
+      name: "compose",
+      description: "Contains most of docker-compose features and flags",
+      loadSpec: "docker-compose",
     },
     {
       name: "container",
       description: "Manage containers",
-      args: {},
     },
     {
       name: "context",
       description: "Manage contexts",
-      args: {},
     },
     {
       name: "image",
       description: "Manage images",
-      args: {},
     },
     {
       name: "network",
       description: "Manage networks",
-      args: {},
     },
     {
       name: "node",
       description: "Manage Swarm nodes",
-      args: {},
     },
     {
       name: "plugin",
       description: "Manage plugins",
-      args: {},
     },
     {
       name: "secret",
       description: "Manage Docker secrets",
-      args: {},
     },
     {
       name: "service",
       description: "Manage services",
-      args: {},
     },
     {
       name: "stack",
       description: "Manage Docker stacks",
-      args: {},
     },
     {
       name: "swarm",
       description: "Manage Swarm",
-      args: {},
     },
     {
       name: "system",
