@@ -3439,7 +3439,143 @@ export const completion: Fig.Spec = {
       name: "media",
       description:
         "Imports files as attachments, regenerates thumbnails, or lists registered image sizes.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "fix-orientation",
+          description: "Fix image orientation for one or more attachments.",
+          args: [
+            {
+              name: "attachment-id",
+              description: "One or more IDs of the attachments to regenerate.",
+            },
+          ],
+          options: [
+            {
+              name: "--dry-run",
+              description:
+                "Check images needing orientation without performing the operation.",
+            },
+          ],
+        },
+        {
+          name: "image-size",
+          description: "Lists image sizes registered with WordPress.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "csv" },
+                  { name: "yaml" },
+                  { name: "count" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "import",
+          description: "Creates attachments from local files or URLs.",
+          args: [
+            {
+              name: "file",
+              description:
+                "Path to file or files to be imported. Supports the glob(3) capabilities of the current shell. If file is recognized as a URL (for example, with a scheme of http or ftp), the file will be downloaded to a temp file before being sideloaded.",
+            },
+          ],
+          options: [
+            {
+              name: "--post_id",
+              insertValue: "--post_id=",
+              description: "ID of the post to attach the imported files to.",
+            },
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "Attachment title (post title field).",
+            },
+            {
+              name: "--caption",
+              insertValue: "--caption=",
+              description: "Caption for attachent (post excerpt field).",
+            },
+            {
+              name: "--alt",
+              insertValue: "--alt=",
+              description: "Alt text for image (saved as post meta).",
+            },
+            {
+              name: "--desc",
+              insertValue: "--desc=",
+              description:
+                "'Description' field (post content) of attachment post.",
+            },
+            {
+              name: "--skip-copy",
+              description:
+                "If set, media files (local only) are imported to the library but not moved on disk. File names will not be run through wp_unique_filename() with this set.",
+            },
+            {
+              name: "--preserve-filetime",
+              description:
+                "Use the file modified time as the post published & modified dates. Remote files will always use the current time.",
+            },
+            {
+              name: "--featured_image",
+              description:
+                "If set, set the imported image as the Featured Image of the post its attached to.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output just the new attachment ID.",
+            },
+          ],
+        },
+        {
+          name: "regenerate",
+          description: "Regenerates thumbnails for one or more attachments.",
+          args: [
+            {
+              name: "attachment-id",
+              description: "One or more IDs of the attachments to regenerate.",
+            },
+          ],
+          options: [
+            {
+              name: "--image_size",
+              insertValue: "--image_size=",
+              description:
+                "Name of the image size to regenerate. Only thumbnails of this image size will be regenerated, thumbnails of other image sizes will not.",
+            },
+            {
+              name: "--skip-delete",
+              description:
+                "Skip deletion of the original thumbnails. If your thumbnails are linked from sources outside your control, it’s likely best to leave them around. Defaults to false.",
+            },
+            {
+              name: "--only-missing",
+              description:
+                "Only generate thumbnails for images missing image sizes.",
+            },
+            {
+              name: "--yes",
+              description:
+                "Answer yes to the confirmation message. Confirmation only shows when no IDs passed as arguments.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "menu",
