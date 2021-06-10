@@ -2404,7 +2404,29 @@ export const completion: Fig.Spec = {
       name: "dist-archive",
       description:
         "Create a distribution archive based on a project’s .distignore file.",
-      subcommands: [{}],
+      args: [
+        {
+          name: "path",
+        },
+        {
+          name: "target",
+        },
+      ],
+      options: [
+        {
+          name: "--create-target-dir",
+          description: "Automatically create the target directory as needed.",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Choose the format for the archive.",
+          args: {
+            name: "options",
+            suggestions: [{ name: "zip" }, { name: "targz" }],
+          },
+        },
+      ],
     },
     {
       name: "embed",
