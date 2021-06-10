@@ -6577,7 +6577,464 @@ export const completion: Fig.Spec = {
       name: "scaffold",
       description:
         "Generates code for post types, taxonomies, plugins, child themes, etc.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "block",
+          description:
+            "Generates PHP, JS and CSS code for registering a Gutenberg block for a plugin or theme.",
+          args: [
+            {
+              name: "slug",
+              description: "The internal name of the block.",
+            },
+          ],
+          options: [
+            {
+              name: "--title",
+              insertValue: "--title=",
+              description: "The display title for your block.",
+            },
+            {
+              name: "--dashicon",
+              insertValue: "--dashicon=",
+              description:
+                "The dashicon to make it easier to identify your block.",
+            },
+            {
+              name: "--category",
+              insertValue: "--category=",
+              description:
+                "The category name to help users browse and discover your block.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "common" },
+                  { name: "embed" },
+                  { name: "formatting" },
+                  { name: "layout" },
+                  { name: "widgets" },
+                ],
+              },
+            },
+            {
+              name: "--title",
+              description:
+                "Create files in the active theme directory. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme.",
+            },
+            {
+              name: "--plugin",
+              insertValue: "--plugin=",
+              description: "Create files in the given plugin’s directory.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "child-theme",
+          description: "Generates child theme based on an existing theme.",
+          args: [
+            {
+              name: "slug",
+              description: "The slug for the new child theme.",
+            },
+          ],
+          options: [
+            {
+              name: "--parent_theme",
+              insertValue: "--parent_theme=",
+              description:
+                "What to put in the ‘Template:’ header in ‘style.css’.",
+            },
+            {
+              name: "--theme_name",
+              insertValue: "--theme_name=",
+              description:
+                "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author",
+              insertValue: "--author=",
+              description:
+                "What to put in the ‘Author:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author_uri",
+              insertValue: "--author_uri=",
+              description:
+                "What to put in the ‘Author URI:’ header in ‘style.css’.",
+            },
+            {
+              name: "--theme_uri",
+              insertValue: "--theme_uri=",
+              description:
+                "What to put in the ‘Theme URI:’ header in ‘style.css’.",
+            },
+            {
+              name: "--activate",
+              description: "Activate the newly created child theme.",
+            },
+            {
+              name: "--enable-network",
+              description:
+                "Enable the newly created child theme for the entire network.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "plugin",
+          description: "Generates starter code for a plugin.",
+          args: [
+            {
+              name: "slug",
+              description: "The internal name of the plugin.",
+            },
+          ],
+          options: [
+            {
+              name: "--dir",
+              insertValue: "--dir=",
+              description:
+                "Put the new plugin in some arbitrary directory path. Plugin directory will be path plus supplied slug.",
+            },
+            {
+              name: "--plugin_name",
+              insertValue: "--plugin_name=",
+              description: "What to put in the ‘Plugin Name:’ header.",
+            },
+            {
+              name: "--plugin_description",
+              insertValue: "--plugin_description=",
+              description: "What to put in the ‘Description:’ header.",
+            },
+            {
+              name: "--plugin_author",
+              insertValue: "--plugin_author=",
+              description: "What to put in the ‘Author:’ header.",
+            },
+            {
+              name: "--plugin_author_uri",
+              insertValue: "--plugin_author_uri=",
+              description: "What to put in the ‘Author URI:’ header.",
+            },
+            {
+              name: "--plugin_uri",
+              insertValue: "--plugin_uri=",
+              description: "What to put in the ‘Plugin URI:’ header.",
+            },
+            {
+              name: "--skip-tests",
+              description: "Don’t generate files for unit testing.",
+            },
+            {
+              name: "--ci",
+              insertValue: "--ci=",
+              description:
+                "Choose a configuration file for a continuous integration provider.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "travis" },
+                  { name: "circle" },
+                  { name: "gitlab" },
+                ],
+              },
+            },
+            {
+              name: "--activate",
+              description: "Activate the newly created plugin.",
+            },
+            {
+              name: "--enable-network",
+              description: "Network activate the newly generated plugin.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "plugin-tests",
+          description:
+            "Generates files needed for running PHPUnit tests in a plugin.",
+          args: [
+            {
+              name: "plugin",
+              description: "The name of the plugin to generate test files for.",
+            },
+          ],
+          options: [
+            {
+              name: "--dir",
+              insertValue: "--dir=",
+              description:
+                "Generate test files for a non-standard plugin path. If no plugin slug is specified, the directory name is used.",
+            },
+            {
+              name: "--ci",
+              insertValue: "--ci=",
+              description:
+                "Choose a configuration file for a continuous integration provider.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "travis" },
+                  { name: "circle" },
+                  { name: "gitlab" },
+                  { name: "bitbucket" },
+                ],
+              },
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "post-type",
+          description: "Generates PHP code for registering a custom post type.",
+          args: [
+            {
+              name: "slug",
+              description: "The internal name of the post type.",
+            },
+          ],
+          options: [
+            {
+              name: "--label",
+              insertValue: "--label=",
+              description: "The text used to translate the update messages.",
+            },
+            {
+              name: "--textdomain",
+              insertValue: "--textdomain=",
+              description: "The textdomain to use for the labels.",
+            },
+            {
+              name: "--dashicon",
+              insertValue: "--dashicon=",
+              description: "The dashicon to use in the menu.",
+            },
+            {
+              name: "--theme",
+              description:
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme.",
+            },
+            {
+              name: "--plugin",
+              insertValue: "--plugin=",
+              description:
+                "Create a file in the given plugin’s directory, instead of sending to STDOUT.",
+            },
+            {
+              name: "--raw",
+              description:
+                "Just generate the register_post_type() call and nothing else.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "taxonomy",
+          description: "Generates PHP code for registering a custom taxonomy.",
+          args: [
+            {
+              name: "slug",
+              description: "The internal name of taxonomy.",
+            },
+          ],
+          options: [
+            {
+              name: "--post_types",
+              insertValue: "--post_types=",
+              description: "Post types to register for use with the taxonomy.",
+            },
+            {
+              name: "--label",
+              insertValue: "--label=",
+              description: "The text used to translate the update messages.",
+            },
+            {
+              name: "--textdomain",
+              insertValue: "--textdomain=",
+              description: "The textdomain to use for the labels.",
+            },
+            {
+              name: "--theme",
+              description:
+                "Create a file in the active theme directory, instead of sending to STDOUT. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme.",
+            },
+            {
+              name: "--plugin",
+              insertValue: "--plugin=",
+              description:
+                "Create a file in the given plugin’s directory, instead of sending to STDOUT.",
+            },
+            {
+              name: "--raw",
+              description:
+                "Just generate the register_taxonomy() call and nothing else.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "theme-tests",
+          description:
+            "Generates files needed for running PHPUnit tests in a theme.",
+          args: [
+            {
+              name: "theme",
+              description: "The name of the theme to generate test files for.",
+            },
+          ],
+          options: [
+            {
+              name: "--dir",
+              insertValue: "--dir=",
+              description:
+                "Generate test files for a non-standard theme path. If no theme slug is specified, the directory name is used.",
+            },
+            {
+              name: "--ci",
+              insertValue: "--ci=",
+              description:
+                "Choose a configuration file for a continuous integration provider.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "travis" },
+                  { name: "circle" },
+                  { name: "gitlab" },
+                  { name: "bitbucket" },
+                ],
+              },
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "underscores",
+          description: "Generates starter code for a theme based on _s.",
+          args: [
+            {
+              name: "slug",
+              description:
+                "The slug for the new theme, used for prefixing functions.",
+            },
+          ],
+          options: [
+            {
+              name: "--activate",
+              description: "Activate the newly downloaded theme.",
+            },
+            {
+              name: "--enable-network",
+              description:
+                "Enable the newly downloaded theme for the entire network.",
+            },
+            {
+              name: "--theme_name",
+              insertValue: "--theme_name=",
+              description:
+                "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author",
+              insertValue: "--author=",
+              description:
+                "What to put in the ‘Author:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author_uri",
+              insertValue: "--author_uri=",
+              description:
+                "What to put in the ‘Author URI:’ header in ‘style.css’.",
+            },
+            {
+              name: "--sassify",
+              description: "Include stylesheets as SASS.",
+            },
+            {
+              name: "--woocommerce",
+              description: "Include WooCommerce boilerplate files.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+        {
+          name: "_s",
+          description: "Generates starter code for a theme based on _s.",
+          args: [
+            {
+              name: "slug",
+              description:
+                "The slug for the new theme, used for prefixing functions.",
+            },
+          ],
+          options: [
+            {
+              name: "--activate",
+              description: "Activate the newly downloaded theme.",
+            },
+            {
+              name: "--enable-network",
+              description:
+                "Enable the newly downloaded theme for the entire network.",
+            },
+            {
+              name: "--theme_name",
+              insertValue: "--theme_name=",
+              description:
+                "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author",
+              insertValue: "--author=",
+              description:
+                "What to put in the ‘Author:’ header in ‘style.css’.",
+            },
+            {
+              name: "--author_uri",
+              insertValue: "--author_uri=",
+              description:
+                "What to put in the ‘Author URI:’ header in ‘style.css’.",
+            },
+            {
+              name: "--sassify",
+              description: "Include stylesheets as SASS.",
+            },
+            {
+              name: "--woocommerce",
+              description: "Include WooCommerce boilerplate files.",
+            },
+            {
+              name: "--force",
+              description: "Overwrite files that already exist.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "search-replace",
