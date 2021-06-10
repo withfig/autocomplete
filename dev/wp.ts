@@ -7237,7 +7237,35 @@ export const completion: Fig.Spec = {
     {
       name: "sidebar",
       description: "Lists registered sidebars.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "list",
+          description: "Lists registered sidebars.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific row fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "ids" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "site",
