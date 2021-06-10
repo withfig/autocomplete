@@ -3970,7 +3970,245 @@ export const completion: Fig.Spec = {
     {
       name: "network",
       description: "Perform network-wide operations.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "meta",
+          description:
+            "Gets, adds, updates, deletes, and lists network custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a meta field.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+                {
+                  name: "value",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a meta field.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+                {
+                  name: "value",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Delete all meta for the object.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Get meta field value.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Get value in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "var_export" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all metadata associated with an object.",
+              args: [
+                {
+                  name: "id",
+                },
+              ],
+              options: [
+                {
+                  name: "--keys",
+                  insertValue: "--keys=",
+                  description: "Limit output to metadata of specific keys.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description:
+                    "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                      { name: "count" },
+                    ],
+                  },
+                },
+                {
+                  name: "--orderby",
+                  insertValue: "--orderby=",
+                  description: "Set orderby which field.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "id" },
+                      { name: "meta_key" },
+                      { name: "meta_value" },
+                    ],
+                  },
+                },
+                {
+                  name: "--order",
+                  insertValue: "--order=",
+                  description: "Set ascending or descending order.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "asc" }, { name: "desc" }],
+                  },
+                },
+                {
+                  name: "--unserialize",
+                  description: "Unserialize meta_value output.",
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+              args: [
+                {
+                  name: "action",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+                {
+                  name: "key-path",
+                },
+                {
+                  name: "value",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+                {
+                  name: "key-path",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Update a meta field.",
+              args: [
+                {
+                  name: "id",
+                },
+                {
+                  name: "key",
+                },
+                {
+                  name: "key-path",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "option",
