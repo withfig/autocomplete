@@ -1541,12 +1541,12 @@ export const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: "$(docker ps -aq)",
-            insertValue: "$(docker ps -aq)",
+
             description: "All containers, running and exited",
           },
           {
             name: "$(docker ps -q)",
-            insertValue: "$(docker ps -q)",
+
             description: "All running containers",
           },
         ],
@@ -1578,12 +1578,12 @@ export const completionSpec: Fig.Spec = {
         suggestions: [
           {
             name: "$(docker images -aq)",
-            insertValue: "$(docker images -aq)",
+
             description: "All images (including intermediate images)",
           },
           {
             name: "$(docker images -q)",
-            insertValue: "$(docker images -q)",
+
             description: "All non-intermediate images",
           },
         ],

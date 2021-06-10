@@ -482,7 +482,7 @@ const experimentalInvalidationStrategy = [
 
 const deviceUser = {
   name: "--device-user",
-  insertValue: "--device-user ",
+
   description:
     'Identifier number for a user or work profile on Android only. Run "adb shell pm list users" for available identifiers.',
   args: {
@@ -492,7 +492,7 @@ const deviceUser = {
 
 const deviceTimeout = {
   name: "--device-timeout",
-  insertValue: "--device-timeout ",
+
   description:
     "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
   args: {
@@ -542,7 +542,7 @@ const hostVmServicePort = {
 
 const dartDefine = {
   name: "--dart-define",
-  insertValue: "--dart-define ",
+
   description:
     "Additional key-value pairs that will be available as constants from the String.fromEnvironment, bool.fromEnvironment, int.fromEnvironment, and double.fromEnvironment constructors.",
   args: {
@@ -599,7 +599,7 @@ const run = [
   },
   {
     name: "--vmservice-out-file",
-    insertValue: "--vmservice-out-file ",
+
     description:
       "A file to write the attached vmservice uri to after an application is started. e.g. project/example/out.txt",
     args: {
@@ -609,7 +609,7 @@ const run = [
   },
   {
     name: "--use-application-binary",
-    insertValue: "--use-application-binary ",
+
     description:
       "Specify a pre-built application binary to use when running. For android applications, this must be the path to an APK. For iOS applications, the path to an IPA. Other device types do not yet support prebuilt application binaries. e.g. path/to/app.apk",
     args: {
@@ -678,7 +678,7 @@ const completionSpec = {
         },
         {
           name: "--write",
-          insertValue: "--write ",
+
           description:
             "Also output the results to a file. This is useful with --watch if you want a file to always contain the latest results.",
           args: {
@@ -923,7 +923,7 @@ const completionSpec = {
         },
         {
           name: "--build-dir",
-          insertValue: "--build-dir ",
+
           description:
             "The relative path to override a projects build directory",
           args: {
@@ -958,19 +958,19 @@ const completionSpec = {
         ...overwrite,
         {
           name: "--description",
-          insertValue: "--description ",
+
           description:
             'The description to use for your new Flutter project. This string ends up in the pubspec.yaml file. (defaults to "A new Flutter project.")',
         },
         {
           name: "--org",
-          insertValue: "--org ",
+
           description:
             'The organization responsible for your new Flutter project, in reverse domain name notation. This string is used in Java package names and as prefix in the iOS bundle identifier. (defaults to "com.example")',
         },
         {
           name: "--project-name",
-          insertValue: "--project-name ",
+
           description:
             "The project name for this new Flutter project. This must be a valid dart package name.",
         },
@@ -1016,7 +1016,7 @@ const completionSpec = {
         },
         {
           name: "--platforms",
-          insertValue: "--platforms ",
+
           description:
             "The platforms supported by this project. This argument only works when the --template is set to app or plugin. Platform folders (e.g. android/) will be generated in the target project. When adding platforms to a plugin project, the pubspec.yaml will be updated with the requested platform. Adding desktop platforms requires the corresponding desktop config setting to be enabled. [ios (default), android (default), windows (default), linux (default), macos (default), web (default)]",
           args: {
@@ -1097,7 +1097,7 @@ const completionSpec = {
         },
         {
           name: "--list-samples",
-          insertValue: "--list-samples ",
+
           description:
             "Specifies a JSON output file for a listing of Flutter code samples that can be created with --sample.",
           args: {
@@ -1152,7 +1152,7 @@ const completionSpec = {
         ...keepAppRunning,
         {
           name: "--use-existing-app",
-          insertValue: "--use-existing-app ",
+
           description:
             "Connect to an already running instance via the given observatory URL. If this option is given, the application will not be automatically started, and it will only be stopped if --no-keep-app-running is explicitly set.",
           args: {
@@ -1161,7 +1161,7 @@ const completionSpec = {
         },
         {
           name: "--driver",
-          insertValue: "--driver ",
+
           description:
             'The test file to run on the host (as opposed to the target file to run on the device). By default, this file has the same base name as the target file, but in the "test_driver/" directory instead, and with "_test" inserted just before the extension, so e.g. if the target is "lib/main.dart", the driver will be "test_driver/main_test.dart".',
           args: {
@@ -1171,7 +1171,7 @@ const completionSpec = {
         ...build,
         {
           name: "--driver-port",
-          insertValue: "--driver-port ",
+
           description:
             "The port where Webdriver server is launched at. Defaults to 4444.",
           args: {
@@ -1223,13 +1223,13 @@ const completionSpec = {
         },
         {
           name: "--create",
-          insertValue: "--create ",
+
           description:
             "Creates a new Android emulator based on a Pixel device.",
         },
         {
           name: "--name",
-          insertValue: "--name ",
+
           description:
             "Used with flag --create. Specifies a name for the emulator being created.",
         },
@@ -1298,7 +1298,7 @@ const completionSpec = {
         },
         {
           name: "--preferred-supported-locales",
-          insertValue: "--preferred-supported-locales ",
+
           description:
             "The list of preferred supported locales for the application. By default, the tool will generate the supported locales list in alphabetical order. Use this flag if you would like to default to a different locale. For example, pass in `en_US` if you would like your app to default to American English if a device supports it.(Pass this option multiple times for defining multiple items",
           args: {
@@ -1318,7 +1318,7 @@ const completionSpec = {
         ...useDefferedLoading,
         {
           name: "--gen-inputs-and-outputs-list",
-          insertValue: "--gen-inputs-and-outputs-list ",
+
           description:
             "When specified, the tool generates a JSON file containing the tool's inputs and outputs named gen_l10n_inputs_and_outputs.json. \n\nThis can be useful for keeping track of which files of the Flutter project were used when generating the latest set of localizations. For example, the Flutter tool's build system uses this file to keep track of when to call gen_l10n during hot reload. \n\nThe value of this option is the directory where the JSON file will be generated. \n\nWhen null, the JSON file will not be generated.",
           args: {
@@ -1329,7 +1329,7 @@ const completionSpec = {
         ...syntheticPackage,
         {
           name: "--project-dir",
-          insertValue: "--project-dir ",
+
           description:
             "When specified, the tool uses the path passed into this option as the directory of the root Flutter project. \n\nWhen null, the relative path to the present working directory will be used.",
           args: {
@@ -1479,7 +1479,7 @@ const completionSpec = {
         },
         {
           name: "--observatory-uri",
-          insertValue: "--observatory-uri ",
+
           description:
             'The observatory URI to connect to. This is required when --type is "skia" or "rasterizer". To find the observatory URI, use "flutter run" and look for "An Observatory ... is available at" in the output.',
           args: {
@@ -1488,7 +1488,7 @@ const completionSpec = {
         },
         {
           name: "--type",
-          insertValue: "--type ",
+
           description:
             "The type of screenshot to retrieve. [device] (default)    Delegate to the device's native screenshot capabilities. This screenshots the entire screen currently being displayed (including content not rendered by Flutter, like the device status bar). [rasterizer]          Render the Flutter app using the rasterizer. Requires --observatory-uri [skia]                Render the Flutter app as a Skia picture. Requires --observatory-uri ",
           args: {
@@ -1515,7 +1515,7 @@ const completionSpec = {
         },
         {
           name: "--device-timeout",
-          insertValue: "--device-timeout ",
+
           description:
             "Time in seconds to wait for devices to attach. Longer timeouts may be necessary for networked devices.",
           args: {
@@ -1577,7 +1577,7 @@ const completionSpec = {
         },
         {
           name: "--name",
-          insertValue: "--name ",
+
           description:
             "A regular expression matching substrings of the names of tests to run.",
           args: {
@@ -1586,7 +1586,7 @@ const completionSpec = {
         },
         {
           name: "--plain-name",
-          insertValue: "--plain-name ",
+
           description: "A plain-text substring of the names of tests to run.",
           args: {
             name: "substring",

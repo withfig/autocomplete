@@ -109,7 +109,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "write",
-      insertValue: "write ",
+
       description: "writes key for domain",
       args: [domain, key, value],
     },
