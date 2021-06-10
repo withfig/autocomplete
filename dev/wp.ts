@@ -3581,7 +3581,391 @@ export const completion: Fig.Spec = {
       name: "menu",
       description:
         "Lists, creates, assigns, and deletes the active theme’s navigation menus.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "create",
+          description: "Creates a new menu.",
+          args: [
+            {
+              name: "menu-name",
+              description: "A descriptive name for the menu.",
+            },
+          ],
+          options: [
+            {
+              name: "--porcelain",
+              description: "Output just the new menu ID.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes one or more menus.",
+          args: [
+            {
+              name: "menu",
+              description: "The name, slug, or term ID for the menu(s).",
+            },
+          ],
+        },
+        {
+          name: "item",
+          description: "List, add, and delete items associated with a menu.",
+          subcommands: [
+            {
+              name: "add-custom",
+              description: "Adds a custom menu item.",
+              args: [
+                {
+                  name: "menu",
+                },
+                {
+                  name: "title",
+                },
+                {
+                  name: "link",
+                },
+              ],
+              options: [
+                {
+                  name: "--description",
+                  insertValue: "--description=",
+                  description: "Set a custom description for the menu item.",
+                },
+                {
+                  name: "--attr-title",
+                  insertValue: "--attr-title=",
+                  description:
+                    "Set a custom title attribute for the menu item.",
+                },
+                {
+                  name: "--target",
+                  insertValue: "--target=",
+                  description: "Set a custom link target for the menu item.",
+                },
+                {
+                  name: "--classes",
+                  insertValue: "--classes=",
+                  description: "Set a custom link classes for the menu item.",
+                },
+                {
+                  name: "--position",
+                  insertValue: "--position=",
+                  description: "Specify the position of this menu item.",
+                },
+                {
+                  name: "--parent-id",
+                  insertValue: "--parent-id=",
+                  description:
+                    "Make this menu item a child of another menu item.",
+                },
+                {
+                  name: "--porcelain",
+                  description: "Output just the new menu item ID.",
+                },
+              ],
+            },
+            {
+              name: "add-post",
+              description: "Adds a post as a menu item.",
+              args: [
+                {
+                  name: "menu",
+                },
+                {
+                  name: "post-id",
+                },
+              ],
+              options: [
+                {
+                  name: "--title",
+                  insertValue: "--title=",
+                  description: "Set a custom title for the menu item.",
+                },
+                {
+                  name: "--link",
+                  insertValue: "--link=",
+                  description: "Set a custom url for the menu item.",
+                },
+                {
+                  name: "--description",
+                  insertValue: "--description=",
+                  description: "Set a custom description for the menu item.",
+                },
+                {
+                  name: "--attr-title",
+                  insertValue: "--attr-title=",
+                  description:
+                    "Set a custom title attribute for the menu item.",
+                },
+                {
+                  name: "--target",
+                  insertValue: "--target=",
+                  description: "Set a custom link target for the menu item.",
+                },
+                {
+                  name: "--classes",
+                  insertValue: "--classes=",
+                  description: "Set a custom link classes for the menu item.",
+                },
+                {
+                  name: "--position",
+                  insertValue: "--position=",
+                  description: "Specify the position of this menu item.",
+                },
+                {
+                  name: "--parent-id",
+                  insertValue: "--parent-id=",
+                  description:
+                    "Make this menu item a child of another menu item.",
+                },
+                {
+                  name: "--porcelain",
+                  description: "Output just the new menu item id.",
+                },
+              ],
+            },
+            {
+              name: "add-term",
+              description: "Adds a taxonomy term as a menu item.",
+              args: [
+                {
+                  name: "menu",
+                },
+                {
+                  name: "taxonomy",
+                },
+                {
+                  name: "term-id",
+                },
+              ],
+              options: [
+                {
+                  name: "--title",
+                  insertValue: "--title=",
+                  description: "Set a custom title for the menu item.",
+                },
+                {
+                  name: "--link",
+                  insertValue: "--link=",
+                  description: "Set a custom url for the menu item.",
+                },
+                {
+                  name: "--description",
+                  insertValue: "--description=",
+                  description: "Set a custom description for the menu item.",
+                },
+                {
+                  name: "--attr-title",
+                  insertValue: "--attr-title=",
+                  description:
+                    "Set a custom title attribute for the menu item.",
+                },
+                {
+                  name: "--target",
+                  insertValue: "--target=",
+                  description: "Set a custom link target for the menu item.",
+                },
+                {
+                  name: "--classes",
+                  insertValue: "--classes=",
+                  description: "Set a custom link classes for the menu item.",
+                },
+                {
+                  name: "--position",
+                  insertValue: "--position=",
+                  description: "Specify the position of this menu item.",
+                },
+                {
+                  name: "--parent-id",
+                  insertValue: "--parent-id=",
+                  description:
+                    "Make this menu item a child of another menu item.",
+                },
+                {
+                  name: "--porcelain",
+                  description: "Output just the new menu item id.",
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Deletes one or more items from a menu.",
+              args: [
+                {
+                  name: "db-id",
+                  description: "Database ID for the menu item(s).",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Gets a list of items associated with a menu.",
+              args: [
+                {
+                  name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
+                },
+              ],
+              options: [
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific object fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "ids" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Updates a menu item.",
+              args: [
+                {
+                  name: "db-id",
+                },
+              ],
+              options: [
+                {
+                  name: "--title",
+                  insertValue: "--title=",
+                  description: "Set a custom title for the menu item.",
+                },
+                {
+                  name: "--link",
+                  insertValue: "--link=",
+                  description: "Set a custom url for the menu item.",
+                },
+                {
+                  name: "--description",
+                  insertValue: "--description=",
+                  description: "Set a custom description for the menu item.",
+                },
+                {
+                  name: "--attr-title",
+                  insertValue: "--attr-title=",
+                  description:
+                    "Set a custom title attribute for the menu item.",
+                },
+                {
+                  name: "--target",
+                  insertValue: "--target=",
+                  description: "Set a custom link target for the menu item.",
+                },
+                {
+                  name: "--classes",
+                  insertValue: "--classes=",
+                  description: "Set a custom link classes for the menu item.",
+                },
+                {
+                  name: "--position",
+                  insertValue: "--position=",
+                  description: "Specify the position of this menu item.",
+                },
+                {
+                  name: "--parent-id",
+                  insertValue: "--parent-id=",
+                  description:
+                    "Make this menu item a child of another menu item.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Gets a list of menus.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "ids" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "location",
+          description: "Assigns, removes, and lists a menu’s locations.",
+          subcommands: [
+            {
+              name: "assign",
+              description: "Assigns a location to a menu.",
+              args: [
+                {
+                  name: "menu",
+                },
+                {
+                  name: "location",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Lists locations for the current theme.",
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "yaml" },
+                      { name: "ids" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "remove",
+              description: "Removes a location from a menu.",
+              args: [
+                {
+                  name: "menu",
+                },
+                {
+                  name: "location",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "network",
