@@ -6482,7 +6482,96 @@ export const completion: Fig.Spec = {
       name: "role",
       description:
         "Manages user roles, including creating new roles and resetting to defaults.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "create",
+          description: "Creates a new role.",
+          args: [
+            {
+              name: "role-key",
+              description: "The internal name of the role.",
+            },
+            {
+              name: "role-name",
+              description: "The publicly visible name of the role.",
+            },
+          ],
+          options: [
+            {
+              name: "--clone",
+              insertValue: "--clone=",
+              description: "Clone capabilities from an existing role.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes an existing role.",
+          args: [
+            {
+              name: "role-key",
+              description: "The internal name of the role.",
+            },
+          ],
+        },
+        {
+          name: "exists",
+          description: "Checks if a role exists.",
+          args: [
+            {
+              name: "role-key",
+              description: "The internal name of the role.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists all roles.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific row fields.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "reset",
+          description: "Resets any default role to default capabilities.",
+          args: [
+            {
+              name: "role-key",
+              description: "The internal name of one or more roles to reset.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "If set, all default roles will be reset.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "scaffold",
