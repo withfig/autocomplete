@@ -7226,7 +7226,13 @@ export const completion: Fig.Spec = {
       name: "shell",
       description:
         "Opens an interactive PHP console for running and testing PHP code.",
-      subcommands: [{}],
+      options: [
+        {
+          name: "--basic",
+          description:
+            "Force the use of WP-CLI’s built-in PHP REPL, even if the Boris or PsySH PHP REPLs are available.",
+        },
+      ],
     },
     {
       name: "sidebar",
