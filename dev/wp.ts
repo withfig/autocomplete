@@ -3029,7 +3029,382 @@ export const completion: Fig.Spec = {
     {
       name: "language",
       description: "Installs, activates, and manages language packs.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "core",
+          description: "Installs, activates, and manages core language packs.",
+          subcommands: [
+            {
+              name: "activate",
+              description: "Activates a given language.",
+              args: [
+                {
+                  name: "language",
+                  // description: "Language code to activate.",
+                },
+              ],
+            },
+            {
+              name: "install",
+              description: "Installs a given language.",
+              args: [
+                {
+                  name: "language",
+                  // description: "Language code to install.",
+                },
+              ],
+              options: [
+                {
+                  name: "--activate",
+                  description:
+                    "If set, the language will be activated immediately after install.",
+                },
+              ],
+            },
+            {
+              name: "is-installed",
+              description: "Checks if a given language is installed.",
+              args: [
+                {
+                  name: "language",
+                  // description: "Language code to check.",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Lists all available languages.",
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Display the value of a single field.",
+                },
+                {
+                  name: "--field=value",
+                  insertValue: "--",
+                  description: "Filter results by key=value pairs.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "uninstall",
+              description: "Uninstalls a given language.",
+              args: [
+                {
+                  name: "language",
+                  // description: "Language code to uninstall.",
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Updates installed languages for core.",
+              options: [
+                {
+                  name: "--dry-run",
+                  description: "Preview which translations would be updated.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "plugin",
+          description:
+            "Installs, activates, and manages plugin language packs.",
+          subcommands: [
+            {
+              name: "install",
+              description: "Installs a given language for a plugin.",
+              args: [
+                {
+                  name: "plugin",
+                  // description: "Plugin to install language for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to install.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, languages for all plugins will be installed.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description:
+                    "Render output in a particular format. Used when installing languages for all plugins.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "summary" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "is-installed",
+              description: "Checks if a given language is installed.",
+              args: [
+                {
+                  name: "plugin",
+                  // description: "Plugin to check for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to check.",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "Lists all available languages for one or more plugins.",
+              args: [
+                {
+                  name: "plugin",
+                  // description: "One or more plugins to list languages for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, languages for all plugins will be listed.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Display the value of a single field.",
+                },
+                {
+                  name: "--field=value",
+                  insertValue: "--",
+                  description: "Filter results by key=value pairs.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "uninstall",
+              description: "Uninstalls a given language for a plugin.",
+              args: [
+                {
+                  name: "plugin",
+                  // description: "Plugin to uninstall language for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to uninstall.",
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Updates installed languages for one or more plugins.",
+              args: [
+                {
+                  name: "plugin",
+                  // description: "One or more plugins to update languages for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, languages for all plugins will be updated.",
+                },
+                {
+                  name: "--dry-run",
+                  description: "Preview which translations would be updated.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "theme",
+          description: "Installs, activates, and manages theme language packs.",
+          subcommands: [
+            {
+              name: "install",
+              description: "Installs a given language for a theme.",
+              args: [
+                {
+                  name: "theme",
+                  // description: "Theme to install language for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to install.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, languages for all themes will be installed.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description:
+                    "Render output in a particular format. Used when installing languages for all themes.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "summary" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "is-installed",
+              description: "Checks if a given language is installed.",
+              args: [
+                {
+                  name: "theme",
+                  // description: "Theme to install language for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to install.",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description:
+                "Lists all available languages for one or more themes.",
+              args: [
+                {
+                  name: "theme",
+                  // description: "One or more themes to list languages for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, available languages for all themes will be listed.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Display the value of a single field.",
+                },
+                {
+                  name: "--field=value",
+                  insertValue: "--",
+                  description: "Filter results by key=value pairs.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "uninstall",
+              description: "Uninstalls a given language for a theme.",
+              args: [
+                {
+                  name: "theme",
+                  // description: "Theme to uninstall language for.",
+                },
+                {
+                  name: "language",
+                  // description: "Language code to uninstall.",
+                },
+              ],
+            },
+            {
+              name: "update",
+              description:
+                "Updates installed languages for one or more themes.",
+              args: [
+                {
+                  name: "theme",
+                  // description: "One or more themes to update languages for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, languages for all themes will be updated.",
+                },
+                {
+                  name: "--dry-run",
+                  description: "Preview which translations would be updated.",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "maintenance-mode",
