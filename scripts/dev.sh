@@ -4,10 +4,10 @@ clear
 
 whichapp() {
     local appNameOrBundleId=$1 isAppName=0 bundleId
-    # Determine whether an app *name* or *bundle ID* was specified.
+    # Determine whether an app *name* or *bundle ID* was specified
     [[ $appNameOrBundleId =~ \.[aA][pP][pP]$ || $appNameOrBundleId =~ ^[^.]+$ ]] && isAppName=1
     if (( isAppName )); then
-        # Translate to a bundle ID first.
+        # Translate to a bundle ID first
         bundleId=$(osascript -e "id of application \"$appNameOrBundleId\"" 2>/dev/null) || 
         { 
             echo
@@ -21,7 +21,7 @@ whichapp() {
     fi
 }
 
-whichapp Bob
+whichapp Fig
 
 echo 
 echo "Welcome to $(tput bold)$(tput setaf 5)Fig Dev Mode$(tput sgr0)";
