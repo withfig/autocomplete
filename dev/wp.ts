@@ -7714,34 +7714,280 @@ export const completion: Fig.Spec = {
           name: "option",
           description:
             "Adds, updates, deletes, and lists site options in a multisite installation.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Adds a site option.",
+              args: [
+                {
+                  name: "key",
+                  description: "The name of the site option to add.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value of the site option to add. If ommited, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Deletes a site option.",
+              args: [
+                {
+                  name: "key",
+                  description: "Key for the site option.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Gets a site option.",
+              args: [
+                {
+                  name: "key",
+                  description: "Key for the site option.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Get value in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "var_export" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Lists site options.",
+              options: [
+                {
+                  name: "--search",
+                  insertValue: "--search=",
+                  description:
+                    "Use wildcards ( * and ? ) to match option name.",
+                },
+                {
+                  name: "--site_id",
+                  insertValue: "--site_id=",
+                  description:
+                    "Limit options to those of a particular site id.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Prints the value of a single field.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific object fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description:
+                    "The serialization format for the value. total_bytes displays the total size of matching options in bytes.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "json" },
+                      { name: "csv" },
+                      { name: "count" },
+                      { name: "yaml" },
+                      { name: "total_bytes" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Updates a nested value in an option.",
+              args: [
+                {
+                  name: "action",
+                  description: "Patch action to perform.",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "key",
+                  description: "The option name.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Gets a nested value from an option.",
+              args: [
+                {
+                  name: "key",
+                  description: "The option name.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Updates a site option.",
+              args: [
+                {
+                  name: "key",
+                  description: "The name of the site option to update.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The new value. If ommited, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
           name: "private",
           description: "Sets one or more sites as private.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to set as private.",
+            },
+          ],
         },
         {
           name: "public",
           description: "Sets one or more sites as public.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to set as public.",
+            },
+          ],
         },
         {
           name: "spam",
           description: "Marks one or more sites as spam.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to set as spam.",
+            },
+          ],
         },
         {
           name: "switch-language",
           description: "Activates a given language.",
+          args: [
+            {
+              name: "language",
+              description: "Language code to activate.",
+            },
+          ],
         },
         {
           name: "unarchive",
           description: "Unarchives one or more sites.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to unarchive.",
+            },
+          ],
         },
         {
           name: "unmature",
           description: "Sets one or more sites as immature.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to set as unmature.",
+            },
+          ],
         },
         {
           name: "unspam",
           description: "Removes one or more sites from spam.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of sites to remove from spam.",
+            },
+          ],
         },
       ],
     },
