@@ -4450,7 +4450,111 @@ export const completion: Fig.Spec = {
     {
       name: "package",
       description: "Lists, installs, and removes WP-CLI packages.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "browse",
+          description: "Browses WP-CLI packages available for installation.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Installs a WP-CLI package.",
+          args: [
+            {
+              name: "name",
+            },
+            {
+              name: "git",
+            },
+            {
+              name: "path",
+            },
+            {
+              name: "zip",
+            },
+          ],
+          options: [
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists installed WP-CLI packages.",
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "path",
+          description:
+            "Gets the path to an installed WP-CLI package, or the package directory.",
+          args: [
+            {
+              name: "name",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          description: "Uninstalls a WP-CLI package.",
+          args: [
+            {
+              name: "name",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description:
+            "Updates all installed WP-CLI packages to their latest version.",
+        },
+      ],
     },
     {
       name: "plugin",
