@@ -9266,7 +9266,138 @@ export const completion: Fig.Spec = {
       name: "transient",
       description:
         "Adds, gets, and deletes entries in the WordPress Transient Cache.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "delete",
+          description: "Deletes a transient value.",
+          args: [
+            {
+              name: "key",
+              description: "Key for the transient.",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "Delete the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site).",
+            },
+            {
+              name: "--all",
+              description: "Delete all transients.",
+            },
+            {
+              name: "--expired",
+              description: "Delete all expired transients.",
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets a transient value.",
+          args: [
+            {
+              name: "key",
+              description: "Key for the transient.",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists transients and their values.",
+          options: [
+            {
+              name: "--search",
+              insertValue: "--search=",
+              description: "Use wildcards ( * and ? ) to match transient name.",
+            },
+            {
+              name: "--exclude",
+              insertValue: "--exclude=",
+              description:
+                "Pattern to exclude. Use wildcards ( * and ? ) to match transient name.",
+            },
+            {
+              name: "--network",
+              description:
+                "Get the values of network|site transients. On single site, this is a specially-named cache key. On multisite, this is a global cache (instead of local to the site).",
+            },
+            {
+              name: "--unserialize",
+              description: "Unserialize transient values in output.",
+            },
+            {
+              name: "--human-readable",
+              description: "Human-readable output for expirations.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "set",
+          description: "Sets a transient value.",
+          args: [
+            {
+              name: "key",
+              description: "Key for the transient.",
+            },
+            {
+              name: "value",
+              description: "Value to be set for the transient.",
+            },
+            {
+              name: "expiration",
+              description: "Time until expiration, in seconds.",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "Set the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site).",
+            },
+          ],
+        },
+        {
+          name: "type",
+          description: "Determines the type of transients implementation.",
+        },
+      ],
     },
     {
       name: "user",
