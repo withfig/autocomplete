@@ -4560,7 +4560,547 @@ export const completion: Fig.Spec = {
       name: "plugin",
       description:
         "Manages plugins, including installs, activations, and updates.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "activate",
+          description: "Activates one or more plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "If set, all plugins will be activated.",
+            },
+            {
+              name: "--network",
+              description:
+                "If set, the plugin will be activated for the entire multisite network.",
+            },
+          ],
+        },
+        {
+          name: "auto-updates",
+          description: "Manages plugin auto-updates.",
+          subcommands: [
+            {
+              name: "disable",
+              description: "Disables the auto-updates for a plugin.",
+              args: [
+                {
+                  name: "plugin",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, auto-updates will be disabled for all plugins.",
+                },
+                {
+                  name: "--enabled-only",
+                  description:
+                    "If set, filters list of plugins to only include the ones that have auto-updates enabled.",
+                },
+              ],
+            },
+            {
+              name: "enable",
+              description: "Enables the auto-updates for a plugin.",
+              args: [
+                {
+                  name: "plugin",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, auto-updates will be enabled for all plugins.",
+                },
+                {
+                  name: "--disabled-only",
+                  description:
+                    "If set, filters list of plugins to only include the ones that have auto-updates disabled.",
+                },
+              ],
+            },
+            {
+              name: "status",
+              description: "Shows the status of auto-updates for a plugin.",
+              args: [
+                {
+                  name: "plugin",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description:
+                    "If set, the status of auto-updates for all plugins will be shown.",
+                },
+                {
+                  name: "--enabled-only",
+                  description:
+                    "If set, filters list of plugins to only include the ones that have auto-updates enabled.",
+                },
+                {
+                  name: "--disabled-only",
+                  description:
+                    "If set, filters list of plugins to only include the ones that have auto-updates disabled.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description: "Only show the provided field.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "deactivate",
+          description: "Deactivates one or more plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--uninstall",
+              description: "Uninstall the plugin after deactivation.",
+            },
+            {
+              name: "--all",
+              description: "If set, all plugins will be deactivated.",
+            },
+            {
+              name: "--network",
+              description:
+                "If set, the plugin will be deactivated for the entire multisite network.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description:
+            "Deletes plugin files without deactivating or uninstalling.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "If set, all plugins will be deleted.",
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets details about an installed plugin.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole plugin, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "install",
+          description: "Installs one or more plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "If set, get that particular version from wordpress.org, instead of the stable version.",
+            },
+            {
+              name: "--force",
+              description:
+                "If set, the command will overwrite any installed version of the plugin, without prompting for confirmation.",
+            },
+            {
+              name: "--activate",
+              description:
+                "If set, the plugin will be activated immediately after install.",
+            },
+            {
+              name: "--activate-network",
+              description:
+                "If set, the plugin will be network activated immediately after installl.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "is-active",
+          description: "Checks if a given plugin is active.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description: "If set, check if plugin is network-activated.",
+            },
+          ],
+        },
+        {
+          name: "is-installed",
+          description: "Checks if a given plugin is installed.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Gets a list of plugins.",
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "Filter results based on the value of a field.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each plugin",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "path",
+          description: "Gets the path to a plugin or to the plugin directory.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--dir",
+              description:
+                "If set, get the path to the closest parent directory, instead of the plugin file.",
+            },
+          ],
+        },
+        {
+          name: "search",
+          description: "Searches the WordPress.org plugin directory.",
+          args: [
+            {
+              name: "search",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "The serialization format for the value.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "plaintext" }, { name: "json" }],
+              },
+            },
+            {
+              name: "--page",
+              insertValue: "--page=",
+              description: "Optional page to display.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "1" }],
+              },
+            },
+            {
+              name: "--per-page",
+              insertValue: "--per-page=",
+              description: "Optional number of results to display.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "10" }],
+              },
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Prints the value of a single field for each plugin.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Ask for specific fields from the API. Defaults to name,slug,author_profile,rating. Acceptable values:",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "name" },
+                  { name: "slug" },
+                  { name: "version" },
+                  { name: "author" },
+                  { name: "author_profile" },
+                  { name: "contributors" },
+                  { name: "requires" },
+                  { name: "tested" },
+                  { name: "compatibility" },
+                  { name: "rating" },
+                  { name: "ratings" },
+                  { name: "num_ratings" },
+                  { name: "homepage" },
+                  { name: "description" },
+                  { name: "short_description" },
+                  { name: "sections" },
+                  { name: "downloaded" },
+                  { name: "last_updated" },
+                  { name: "added" },
+                  { name: "tags" },
+                  { name: "versions" },
+                  { name: "donate_link" },
+                  { name: "banners" },
+                  { name: "icons" },
+                  { name: "active_installs" },
+                  { name: "contributors" },
+                  { name: "url" },
+                ],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "status",
+          description: "Reveals the status of one or all plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+        },
+        {
+          name: "toggle",
+          description: "Toggles a plugin’s activation state.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "If set, the plugin will be toggled for the entire multisite network.",
+            },
+          ],
+        },
+        {
+          name: "uninstall",
+          description: "Uninstalls one or more plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--deactivate",
+              description:
+                "Deactivate the plugin before uninstalling. Default behavior is to warn and skip if the plugin is active.",
+            },
+            {
+              name: "--skip-delete",
+              description:
+                "If set, the plugin files will not be deleted. Only the uninstall procedure will be run.",
+            },
+            {
+              name: "--all",
+              description: "If set, all plugins will be uninstalled.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates one or more plugins.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description:
+                "If set, all plugins that have updates will be updated.",
+            },
+            {
+              name: "--exclude",
+              insertValue: "--exclude=",
+              description:
+                "Comma separated list of plugin names that should be excluded from updating.",
+            },
+            {
+              name: "--minor",
+              description:
+                "Only perform updates for minor releases (e.g. from 1.3 to 1.4 instead of 2.0)",
+            },
+            {
+              name: "--patch",
+              description:
+                "Only perform updates for patch releases (e.g. from 1.3 to 1.3.3 instead of 1.4)",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "summary" },
+                ],
+              },
+            },
+            {
+              name: "--version",
+              insertValue: "--version=",
+              description:
+                "If set, the plugin will be updated to the specified version.",
+            },
+            {
+              name: "--dry-run",
+              description: "Preview which plugins would be updated.",
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+        {
+          name: "verify-checksums",
+          description:
+            "Verifies plugin files against WordPress.org’s checksums.",
+          args: [
+            {
+              name: "plugin",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "If set, all plugins will be verified.",
+            },
+            {
+              name: "--strict",
+              description:
+                "If set, even “soft changes” like readme.txt changes will trigger checksum errors.",
+            },
+
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "csv" },
+                  { name: "yaml" },
+                  { name: "count" },
+                ],
+              },
+            },
+            {
+              name: "--insecure",
+              description:
+                "Retry downloads without certificate validation if TLS handshake fails. Note: This makes the request vulnerable to a MITM attack.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "post",
