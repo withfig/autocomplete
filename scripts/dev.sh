@@ -2,14 +2,8 @@
 
 clear
 
-whichapp() {
-    local appNameOrBundleId=$1 isAppName=0 bundleId
-    # Determine whether an app *name* or *bundle ID* was specified
-    [[ $appNameOrBundleId =~ \.[aA][pP][pP]$ || $appNameOrBundleId =~ ^[^.]+$ ]] && isAppName=1
-    if (( isAppName )); then
-        # Translate to a bundle ID first
-        bundleId=$(osascript -e "id of application \"$appNameOrBundleId\"" 2>/dev/null) || 
-        { 
+if !([[ -d /Applications/Fig.app ]] || [[ -d ~/Applications/Fig.app ]]) && [ ! "$TERMINAL_EMULATOR" = JetBrains-JediTerm ]  && command -v fig 1> /dev/null 2> /dev/null
+then          
             echo
             echo
             echo "$(tput setaf 7)******"
@@ -17,11 +11,7 @@ whichapp() {
             echo "$(tput setaf 3)$(tput bold) WARNING: Fig is not installed" 1>&2;
             echo "$(tput setaf 7)******"
             echo "******"
-        }
-    fi
-}
-
-whichapp Fig
+fi
 
 echo 
 echo "Welcome to $(tput bold)$(tput setaf 5)Fig Dev Mode$(tput sgr0)";
