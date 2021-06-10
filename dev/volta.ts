@@ -1,4 +1,4 @@
-const defaultOptions = [
+const defaultOptions: Fig.Option[] = [
   {
     name: "--verbose",
     description: "Enables verbose diagnostics",
@@ -108,6 +108,7 @@ export const completion: Fig.Spec = {
       args: {
         variadic: true,
         name: "binary",
+        template: "filepaths",
       },
       options: [...defaultOptions],
     },
