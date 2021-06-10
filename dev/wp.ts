@@ -4156,12 +4156,16 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to get.",
                 },
                 {
                   name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
                 },
               ],
               options: [
@@ -4357,6 +4361,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "action",
+              description: "Patch action to perform.",
               suggestions: [
                 { name: "insert" },
                 { name: "update" },
@@ -4364,13 +4369,22 @@ export const completion: Fig.Spec = {
               ],
             },
             {
+              name: "id",
+              description: "The ID of the object.",
+            },
+            {
               name: "key",
+              description: "The name of the meta field to update.",
             },
             {
               name: "key-path",
+              description:
+                "The name(s) of the keys within the value to locate the value to patch.",
             },
             {
               name: "value",
+              description:
+                "The new value. If omitted, the value is read from STDIN.",
             },
           ],
           options: [
@@ -8126,7 +8140,555 @@ export const completion: Fig.Spec = {
       name: "term",
       description:
         "Manages taxonomy terms and term meta, with create, delete, and list commands.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "create",
+          description: "Creates a new term.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "Taxonomy for the new term.",
+            },
+            {
+              name: "term",
+              description: "A name for the new term.",
+            },
+          ],
+          options: [
+            {
+              name: "--slug",
+              insertValue: "--slug",
+              description:
+                "A unique slug for the new term. Defaults to sanitized version of name.",
+            },
+            {
+              name: "--description",
+              insertValue: "--description=",
+              description: "A description for the new term.",
+            },
+            {
+              name: "--parent",
+              insertValue: "--parent=",
+              description: "A parent for the new term.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output just the new term id.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes an existing term.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "Taxonomy of the term to delete.",
+            },
+            {
+              name: "term",
+              description: "One or more IDs or slugs of terms to delete.",
+            },
+          ],
+          options: [
+            {
+              name: "--by",
+              insertValue: "--by=",
+              description: "Explicitly handle the term value as a slug or id.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "slug" }, { name: "id" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "generate",
+          description: "Generates some terms.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "The taxonomy for the generated terms.",
+            },
+          ],
+          options: [
+            {
+              name: "--count",
+              insertValue: "--count=",
+              description: "How many terms to generate?",
+              args: {
+                name: "default",
+                suggestions: [{ name: "100" }],
+              },
+            },
+            {
+              name: "--max_depth",
+              insertValue: "--max_depth=",
+              description: "Generate child terms down to a certain depth.",
+              args: {
+                name: "default",
+                suggestions: [{ name: "1" }],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "progress" }, { name: "ids" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets details about a term.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "Taxonomy of the term to get.",
+            },
+            {
+              name: "term",
+              description: "ID or slug of term to get.",
+            },
+          ],
+          options: [
+            {
+              name: "--by",
+              insertValue: "--by=",
+              description: "Explicitly handle the term value as a slug or id.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "slug" }, { name: "id" }],
+              },
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole term, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description:
+                "Limit the output to specific fields. Defaults to all fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Get value in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists terms in a taxonomy.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "List terms of one or more taxonomies.",
+            },
+          ],
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Filter by one or more fields (see get_terms() $args parameter for a list of fields).",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each term.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "meta",
+          description: "Adds, updates, deletes, and lists term custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to create.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value of the meta field. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Delete a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to delete.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value to delete. If omitted, all rows with key will deleted.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Delete all meta for the object.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Get meta field value.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Get value in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "var_export" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all metadata associated with an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "ID for the object.",
+                },
+              ],
+              options: [
+                {
+                  name: "--keys",
+                  insertValue: "--keys=",
+                  description: "Limit output to metadata of specific keys.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description:
+                    "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                  args: {
+                    name: "default",
+                    suggestions: [{ name: "id,meta_key,meta_value" }],
+                  },
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+                {
+                  name: "--orderby",
+                  insertValue: "--orderby=",
+                  description: "Set orderby which field.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "id" },
+                      { name: "meta_key" },
+                      { name: "meta_value" },
+                    ],
+                  },
+                },
+                {
+                  name: "--order",
+                  insertValue: "--order=",
+                  description: "Set ascending or descending order.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "asc" }, { name: "desc" }],
+                  },
+                },
+                {
+                  name: "--unserialize",
+                  description: "Unserialize meta_value output.",
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+              args: [
+                {
+                  name: "action",
+                  description: "Patch action to perform.",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Update a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "migrate",
+          description: "Migrate a term of a taxonomy to another taxonomy.",
+          args: [
+            {
+              name: "term",
+              description: "Slug or ID of the term to migrate.",
+            },
+          ],
+          options: [
+            {
+              name: "--by",
+              insertValue: "--by=",
+              description: "Explicitly handle the term value as a slug or id.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "slug" }, { name: "id" }],
+              },
+            },
+            {
+              name: "--from",
+              insertValue: "--from=",
+              description: "Taxonomy slug of the term to migrate.",
+            },
+            {
+              name: "--to",
+              insertValue: "--to=",
+              description: "Taxonomy slug to migrate to.",
+            },
+          ],
+        },
+        {
+          name: "recount",
+          description: "Recalculates number of posts assigned to each term.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "One or more taxonomies to recalculate.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates an existing term.",
+          args: [
+            {
+              name: "taxonomy",
+              description: "Taxonomy of the term to update.",
+            },
+            {
+              name: "term",
+              description: "ID or slug for the term to update.",
+            },
+          ],
+          options: [
+            {
+              name: "--by",
+              insertValue: "--by=",
+              description: "Explicitly handle the term value as a slug or id.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "slug" }, { name: "id" }],
+              },
+            },
+            {
+              name: "--name",
+              insertValue: "--name=",
+              description: "A new name for the term.",
+            },
+            {
+              name: "--slug",
+              insertValue: "--slug=",
+              description: "A new slug for the term.",
+            },
+            {
+              name: "--description",
+              insertValue: "--description=",
+              description: "A new description for the term.",
+            },
+            {
+              name: "--parent",
+              insertValue: "--parent=",
+              description: "A new parent for the term.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "theme",
