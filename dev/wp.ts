@@ -7995,7 +7995,50 @@ export const completion: Fig.Spec = {
       name: "super-admin",
       description:
         "Lists, adds, or removes super admin users on a multisite installation.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "add",
+          description: "Grants super admin privileges to one or more users.",
+          args: [
+            {
+              name: "user",
+              description: "One or more user IDs, user emails, or user logins.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists users with super admin capabilities.",
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "list" },
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Removes super admin privileges from one or more users.",
+          args: [
+            {
+              name: "user",
+              description: "One or more user IDs, user emails, or user logins.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "taxonomy",
