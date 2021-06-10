@@ -4214,7 +4214,238 @@ export const completion: Fig.Spec = {
       name: "option",
       description:
         "Retrieves and sets site options, including plugin and WordPress settings.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "add",
+          description: "Adds a new option value.",
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "The serialization format for the value.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "plaintext" }, { name: "json" }],
+              },
+            },
+            {
+              name: "--autoload",
+              insertValue: "--autoload=",
+              description: "Should this option be automatically loaded.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'yes'" }, { name: "'no'" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes an option.",
+          args: [
+            {
+              name: "key",
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets the value for an option.",
+          args: [
+            {
+              name: "key",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Get value in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "var_export" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists options and their values.",
+          options: [
+            {
+              name: "--search",
+              insertValue: "--search=",
+              description: "Use wildcards ( * and ? ) to match option name.",
+            },
+            {
+              name: "--exclude",
+              insertValue: "--exclude=",
+              description:
+                "Pattern to exclude. Use wildcards ( * and ? ) to match option name.",
+            },
+            {
+              name: "--autoload",
+              insertValue: "--autoload=",
+              description:
+                "Match only autoload options when value is on, and only not-autoload option when off.",
+            },
+            {
+              name: "--transients",
+              description:
+                "List only transients. Use --no-transients to ignore all transients.",
+            },
+            {
+              name: "--unserialize",
+              description: "Unserialize option values in output.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields..",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "json" },
+                  { name: "csv" },
+                  { name: "count" },
+                  { name: "yaml" },
+                  { name: "total_bytes" },
+                ],
+              },
+            },
+            {
+              name: "--orderby",
+              insertValue: "--orderby=",
+              description: "Set orderby which field.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "option_id" },
+                  { name: "option_name" },
+                  { name: "option_value" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "patch",
+          description: "Updates a nested value in an option.",
+          args: [
+            {
+              name: "action",
+              suggestions: [
+                { name: "insert" },
+                { name: "update" },
+                { name: "delete" },
+              ],
+            },
+            {
+              name: "key",
+            },
+            {
+              name: "key-path",
+            },
+            {
+              name: "value",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "The serialization format for the value.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "plaintext" }, { name: "json" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "pluck",
+          description: "Gets a nested value from an option.",
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "key-path",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "The output format for the value.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "plaintext" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates an option value.",
+          args: [
+            {
+              name: "key",
+            },
+            {
+              name: "value",
+            },
+          ],
+          options: [
+            {
+              name: "--autoload",
+              insertValue: "--autoload=",
+              description:
+                "Requires WP 4.2. Should this option be automatically loaded.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "'yes'" }, { name: "'no" }],
+              },
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "The serialization format for the value.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "plaintext" }, { name: "json" }],
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: "package",
