@@ -18,7 +18,7 @@ async function getFigCompletionObjectFromManPageOfACommand(
 ): Promise<unknown> {
   // Check command was provided
   if (cmd == undefined) {
-    console.log("Usage: `CMD=YOUR_COMMAND npm run auto-fig-config`");
+    console.log("Usage: `CMD=YOUR_COMMAND npm run auto-fig-command`");
     process.exit(1);
   }
 
