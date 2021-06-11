@@ -1,5 +1,5 @@
 // To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-const global_options = [
+const global_parameters = [
   {
     name: "--path",
     insertValue: "--path=",
@@ -149,7 +149,7 @@ const global_options = [
 export const completion: Fig.Spec = {
   name: "wp",
   description: "WP-CLI is the command-line interface for WordPress.",
-  // options: global_options,
+  // options: global_parameters,
   subcommands: [
     // {
     //   name: "admin",
@@ -158,7 +158,7 @@ export const completion: Fig.Spec = {
     //   // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
     //   // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
     //   args: [{}],
-    //   options: global_options,
+    //   options: global_parameters,
     // },
     {
       name: "cache",
@@ -197,7 +197,6 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
-          options: global_options,
         },
         {
           name: "delete",
@@ -210,7 +209,6 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
-          options: global_options,
         },
         {
           name: "flush",
@@ -227,7 +225,6 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
-          options: global_options,
         },
         {
           name: "incr",
@@ -243,7 +240,6 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
-          options: global_options,
         },
         {
           name: "replace",
@@ -263,7 +259,6 @@ export const completion: Fig.Spec = {
               name: "expiration",
             },
           ],
-          options: global_options,
         },
         {
           name: "set",
@@ -283,20 +278,18 @@ export const completion: Fig.Spec = {
               name: "expiration",
             },
           ],
-          options: global_options,
         },
         {
           name: "type",
           description:
             "Attempts to determine which object cache is being used.",
-          options: global_options,
         },
       ],
 
       // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
       // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
       args: [{}],
-      options: global_options,
+      options: global_parameters,
     },
     {
       name: "cap",
@@ -322,6 +315,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "cli",
@@ -650,6 +648,11 @@ export const completion: Fig.Spec = {
           description: "Prints WP-CLI version.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
 
     {
@@ -1155,6 +1158,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "config",
@@ -1473,6 +1481,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "core",
@@ -1791,6 +1804,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "cron",
@@ -1845,6 +1863,11 @@ export const completion: Fig.Spec = {
             "Tests the WP Cron spawning system and reports back its status.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "db",
@@ -2431,6 +2454,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "dist-archive",
@@ -2459,6 +2487,11 @@ export const completion: Fig.Spec = {
           },
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "embed",
@@ -2689,6 +2722,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "eval",
@@ -2705,6 +2743,11 @@ export const completion: Fig.Spec = {
           description: "Execute code without loading WordPress.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "eval-file",
@@ -2727,6 +2770,11 @@ export const completion: Fig.Spec = {
           description: "Load and execute file without loading WordPress.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "export",
@@ -2831,6 +2879,11 @@ export const completion: Fig.Spec = {
             "Use a custom format for export filenames. Defaults to ‘{site}.wordpress.{date}.{n}.xml’.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "find",
@@ -2884,6 +2937,11 @@ export const completion: Fig.Spec = {
           },
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "help",
@@ -2894,6 +2952,11 @@ export const completion: Fig.Spec = {
           description: "Get help on a specific command.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "i18n",
@@ -3039,6 +3102,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "import",
@@ -3064,6 +3132,11 @@ export const completion: Fig.Spec = {
             "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation).",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "language",
@@ -3444,6 +3517,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "maintenance-mode",
@@ -3473,6 +3551,11 @@ export const completion: Fig.Spec = {
           description: "Displays maintenance mode status.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "media",
@@ -3615,6 +3698,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "menu",
@@ -4005,6 +4093,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "network",
@@ -4252,6 +4345,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "option",
@@ -4499,6 +4597,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "package",
@@ -4608,6 +4711,11 @@ export const completion: Fig.Spec = {
             "Updates all installed WP-CLI packages to their latest version.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "plugin",
@@ -5169,6 +5277,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "post",
@@ -6152,6 +6265,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "post-type",
@@ -6233,6 +6351,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "profile",
@@ -6463,6 +6586,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "rewrite",
@@ -6546,6 +6674,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "role",
@@ -6641,6 +6774,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "scaffold",
@@ -7104,6 +7242,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "search-replace",
@@ -7254,6 +7397,11 @@ export const completion: Fig.Spec = {
             "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "server",
@@ -7290,6 +7438,11 @@ export const completion: Fig.Spec = {
           description: "Config the server with a specific .ini file.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "shell",
@@ -7302,6 +7455,11 @@ export const completion: Fig.Spec = {
             "Force the use of WP-CLI’s built-in PHP REPL, even if the Boris or PsySH PHP REPLs are available.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "sidebar",
@@ -7335,6 +7493,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "site",
@@ -8058,6 +8221,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "super-admin",
@@ -8107,6 +8275,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "taxonomy",
@@ -8189,6 +8362,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "term",
@@ -8743,6 +8921,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "theme",
@@ -9315,6 +9498,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "transient",
@@ -9452,6 +9640,11 @@ export const completion: Fig.Spec = {
           description: "Determines the type of transients implementation.",
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "user",
@@ -10438,6 +10631,11 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
     {
       name: "widget",
@@ -10580,7 +10778,12 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
+
+      // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
+      // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+      args: [{}],
+      options: global_parameters,
     },
   ],
-  // options: global_options,
+  // options: global_parameters,
 };
