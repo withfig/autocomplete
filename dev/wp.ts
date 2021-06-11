@@ -197,6 +197,7 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
+          options: global_options,
         },
         {
           name: "delete",
@@ -209,6 +210,7 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
+          options: global_options,
         },
         {
           name: "flush",
@@ -225,6 +227,7 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
+          options: global_options,
         },
         {
           name: "incr",
@@ -240,6 +243,7 @@ export const completion: Fig.Spec = {
               name: "group",
             },
           ],
+          options: global_options,
         },
         {
           name: "replace",
@@ -259,6 +263,7 @@ export const completion: Fig.Spec = {
               name: "expiration",
             },
           ],
+          options: global_options,
         },
         {
           name: "set",
@@ -278,11 +283,13 @@ export const completion: Fig.Spec = {
               name: "expiration",
             },
           ],
+          options: global_options,
         },
         {
           name: "type",
           description:
             "Attempts to determine which object cache is being used.",
+          options: global_options,
         },
       ],
 
