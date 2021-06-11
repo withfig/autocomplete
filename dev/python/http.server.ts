@@ -3,7 +3,7 @@ import { SIGUNUSED } from "node:constants";
 export const completion: Fig.Spec = {
   name: "http.server",
   description: "",
-  subcommands: [],
+
   options: [
     {
       name: ["-d", "--directory"],

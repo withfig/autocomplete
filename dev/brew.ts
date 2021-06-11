@@ -13,8 +13,6 @@ const generators: Record<string, Fig.Generator> = {
   },
 };
 
-// fake-change file
-
 export const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
@@ -24,10 +22,30 @@ export const completionSpec: Fig.Spec = {
       name: "leaves",
       description:
         "List installed formulae that are not dependencies of another installed formula",
+      options: [
+        {
+          name: ["-r", "--installed-on-request"],
+          description: "Show manually installed formula.",
+        },
+        {
+          name: ["-p", "--installed-as-dependency"],
+          description: "Show installed formula as dependencies.",
+        },
+      ],
     },
     {
       name: "doctor",
       description: "Check your system for potential problems",
+      options: [
+        {
+          name: "--list-checks",
+          description: "List all audit methods.",
+        },
+        {
+          name: ["-D", "--audit-debug"],
+          description: "Enable debugging and profiling of audit methods.",
+        },
+      ],
     },
     {
       name: "info",
@@ -36,6 +54,42 @@ export const completionSpec: Fig.Spec = {
     {
       name: "update",
       description: "Fetch the newest version of Homebrew and all formulae",
+    },
+    {
+      name: "outdated",
+      description:
+        "List installed casks and formulae that have an updated version available",
+      options: [
+        {
+          name: ["-d", "--debug"],
+          description: "Display any debugging information.",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "List only the names of outdated kegs.",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Include detailed version information.",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Show help message for the outdated command.",
+        },
+        { name: "--cask", description: "List only outdated casks." },
+        {
+          name: "--fetch-HEAD",
+          description:
+            "Fetch the upstream repository to detect if the HEAD installation of the formula is outdated.",
+        },
+        { name: "--formula", description: "List only outdated formulae." },
+        {
+          name: "--greedy",
+          description:
+            "Print outdated casks with auto_updates or version :latest.",
+        },
+        { name: "--json", description: "Print output in JSON format." },
+      ],
     },
     { name: "upgrade", description: "Upgrade outdated casks and outdated" },
     {
@@ -50,7 +104,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "Install <formula>",
-      insertValue: "install ",
+
       args: {
         variadic: true,
         name: "formula",
@@ -74,7 +128,6 @@ export const completionSpec: Fig.Spec = {
         },
       },
     },
-
     {
       name: "uninstall",
       description: "Uninstall <formula>",
@@ -97,13 +150,13 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "cask",
-      insertValue: "cask ",
+
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
       subcommands: [
         {
           name: "install",
-          insertValue: "install ",
+
           description: "Installs the given cask",
           args: {
             name: "cask",
@@ -112,7 +165,7 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "uninstall",
-          insertValue: "uninstall ",
+
           description: "Uninstalls the given cask",
           args: {
             variadic: true,
@@ -131,6 +184,36 @@ export const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "cleanup",
+      description:
+        "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
+      options: [
+        {
+          name: ["--prune", "--prune=all"],
+          description: "Remove all cache files older than specified days.",
+        },
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "Show what would be removed, but do not actually remove anything.",
+        },
+        {
+          name: "-s",
+          description:
+            "Scrub the cache, including downloads for even the latest versions.",
+        },
+        {
+          name: "--prune-prefix",
+          description:
+            "Only prune the symlinks and directories from the prefix and remove no other files.",
+        },
+      ],
+      args: {
+        variadic: true,
+        generators: generators.servicesGenerator,
+      },
     },
     {
       name: "services",
@@ -157,23 +240,23 @@ export const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "cleanup",
-          insertValue: "cleanup",
+
           description: "Remove all unused services.",
         },
         {
           name: "list",
-          insertValue: "list",
+
           description: "List all services.",
         },
         {
           name: "run",
-          insertValue: "run ",
+
           description:
             "Run the service formula without registering to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -184,13 +267,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "start",
-          insertValue: "start ",
+
           description:
             "Start the service formula immediately and register it to launch at login",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -201,13 +284,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "stop",
-          insertValue: "stop ",
+
           description:
             "Stop the service formula immediately and unregister it from launching at",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -218,13 +301,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "restart",
-          insertValue: "restart ",
+
           description:
             "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
@@ -232,6 +315,24 @@ export const completionSpec: Fig.Spec = {
             variadic: true,
             generators: generators.servicesGenerator,
           },
+        },
+      ],
+    },
+    {
+      name: "analytics",
+      description: "Manages analytics preferences",
+      subcommands: [
+        {
+          name: "on",
+          description: "Turns on analytics",
+        },
+        {
+          name: "off",
+          description: "Turns off analytics",
+        },
+        {
+          name: "regenerate-uuid",
+          description: "Regenerate the UUID used for analytics",
         },
       ],
     },
