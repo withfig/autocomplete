@@ -2467,7 +2467,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "post_id",
-                  // description: "ID of the post to clear the cache for."
+                  description: "ID of the post to clear the cache for.",
                 },
               ],
             },
@@ -2477,7 +2477,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "url",
-                  // description: "ID of the post to clear the cache for."
+                  description: "ID of the post to clear the cache for.",
                 },
               ],
               options: [
@@ -2507,7 +2507,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "post_id",
-                  // description: "ID of the post to do the caching for."
+                  description: "ID of the post to do the caching for.",
                 },
               ],
             },
@@ -2519,7 +2519,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "url",
-              // description: "URL to retrieve oEmbed data for."
+              description: "URL to retrieve oEmbed data for.",
             },
           ],
           options: [
@@ -2653,7 +2653,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "url",
-                  // description: "URL to retrieve oEmbed data for."
+                  description: "URL to retrieve oEmbed data for.",
                 },
               ],
               options: [
@@ -2689,7 +2689,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "php-code",
-          // description: "The code to execute, as a string."
+          description: "The code to execute, as a string.",
         },
       ],
       options: [
@@ -2705,11 +2705,13 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "file",
-          // description: "The path to the PHP file to execute. Use ‘-‘ to run code from STDIN."
+          description:
+            "The path to the PHP file to execute. Use ‘-‘ to run code from STDIN.",
         },
         {
           name: "arg",
-          // description: "One or more arguments to pass to the file. They are placed in the $args variable."
+          description:
+            "One or more arguments to pass to the file. They are placed in the $args variable.",
         },
       ],
       options: [
@@ -2829,7 +2831,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "path",
-          // description: "Path to search the subdirectories of."
+          description: "Path to search the subdirectories of.",
         },
       ],
       options: [
@@ -2898,11 +2900,13 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "source",
-              // description: "Path to an existing PO file or a directory containing multiple PO files.",
+              description:
+                "Path to an existing PO file or a directory containing multiple PO files.",
             },
             {
               name: "destination",
-              // description: "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
+              description:
+                "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
             },
           ],
           options: [
@@ -2923,11 +2927,13 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "source",
-              // description: "Path to an existing PO file or a directory containing multiple PO files.",
+              description:
+                "Path to an existing PO file or a directory containing multiple PO files.",
             },
             {
               name: "destination",
-              // description: "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
+              description:
+                "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
             },
           ],
         },
@@ -2937,11 +2943,11 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "source",
-              // description: "Directory to scan for string extraction.",
+              description: "Directory to scan for string extraction.",
             },
             {
               name: "destination",
-              // description: "Name of the resulting POT file.",
+              description: "Name of the resulting POT file.",
             },
           ],
           options: [
@@ -3033,7 +3039,8 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "file",
-          // description: "Path to one or more valid WXR files for importing. Directories are also accepted.",
+          description:
+            "Path to one or more valid WXR files for importing. Directories are also accepted.",
         },
       ],
       options: [
@@ -3065,7 +3072,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "language",
-                  // description: "Language code to activate.",
+                  description: "Language code to activate.",
                 },
               ],
             },
@@ -3075,7 +3082,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "language",
-                  // description: "Language code to install.",
+                  description: "Language code to install.",
                 },
               ],
               options: [
@@ -3092,7 +3099,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "language",
-                  // description: "Language code to check.",
+                  description: "Language code to check.",
                 },
               ],
             },
@@ -3136,7 +3143,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "language",
-                  // description: "Language code to uninstall.",
+                  description: "Language code to uninstall.",
                 },
               ],
             },
@@ -3163,11 +3170,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
-                  // description: "Plugin to install language for.",
+                  description: "Plugin to install language for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to install.",
+                  description: "Language code to install.",
                 },
               ],
               options: [
@@ -3199,11 +3206,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
-                  // description: "Plugin to check for.",
+                  description: "Plugin to check for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to check.",
+                  description: "Language code to check.",
                 },
               ],
             },
@@ -3214,7 +3221,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
-                  // description: "One or more plugins to list languages for.",
+                  description: "One or more plugins to list languages for.",
                 },
               ],
               options: [
@@ -3259,11 +3266,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
-                  // description: "Plugin to uninstall language for.",
+                  description: "Plugin to uninstall language for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to uninstall.",
+                  description: "Language code to uninstall.",
                 },
               ],
             },
@@ -3274,7 +3281,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
-                  // description: "One or more plugins to update languages for.",
+                  description: "One or more plugins to update languages for.",
                 },
               ],
               options: [
@@ -3301,11 +3308,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "theme",
-                  // description: "Theme to install language for.",
+                  description: "Theme to install language for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to install.",
+                  description: "Language code to install.",
                 },
               ],
               options: [
@@ -3337,11 +3344,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "theme",
-                  // description: "Theme to install language for.",
+                  description: "Theme to install language for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to install.",
+                  description: "Language code to install.",
                 },
               ],
             },
@@ -3352,7 +3359,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "theme",
-                  // description: "One or more themes to list languages for.",
+                  description: "One or more themes to list languages for.",
                 },
               ],
               options: [
@@ -3397,11 +3404,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "theme",
-                  // description: "Theme to uninstall language for.",
+                  description: "Theme to uninstall language for.",
                 },
                 {
                   name: "language",
-                  // description: "Language code to uninstall.",
+                  description: "Language code to uninstall.",
                 },
               ],
             },
@@ -3412,7 +3419,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "theme",
-                  // description: "One or more themes to update languages for.",
+                  description: "One or more themes to update languages for.",
                 },
               ],
               options: [
