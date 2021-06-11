@@ -10785,5 +10785,4 @@ export const completion: Fig.Spec = {
       options: global_parameters,
     },
   ],
-  // options: global_parameters,
 };
