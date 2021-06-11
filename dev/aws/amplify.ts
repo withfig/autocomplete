@@ -1,3 +1,344 @@
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      console.log(elm);
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const customGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<any> => {
+  try {
+    let cmd = `aws amplify ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        return [];
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("~/")) {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) {
+        folderPath = "/";
+      } else {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listAmplifyServiceRoles: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      try {
+        const list = JSON.parse(out)["Roles"];
+        return list
+          .filter((elm) => {
+            const policyDocument = elm["AssumeRolePolicyDocument"];
+            const statement = policyDocument["Statement"];
+
+            if (statement.length > 0) {
+              const service = statement[0]["Principal"]["Service"];
+              return service === "amplify.amazonaws.com";
+            }
+            return false;
+          })
+          .map((elm) => ({
+            name: elm["Arn"],
+            icon: "fig://icon?type=aws",
+          }));
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+  },
+
+  listAmplifyAppIds: {
+    script: "aws amplify list-apps",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "apps", "appId");
+    },
+  },
+
+  listCfnStackNames: {
+    script: "aws cloudformation list-stacks",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "StackSummaries", "StackName");
+    },
+  },
+
+  listEnvironemntNames: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-backend-environments",
+        ["--app-id"],
+        "backendEnvironments",
+        "environmentName"
+      );
+    },
+  },
+
+  listEnvironemntArns: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-backend-environments",
+        ["--app-id"],
+        "backendEnvironments",
+        "backendEnvironmentArn"
+      );
+    },
+  },
+
+  listBranchNames: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-branches",
+        ["--app-id"],
+        "branches",
+        "branchName"
+      );
+    },
+  },
+
+  listFrameworkForApp: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-branches",
+        ["--app-id"],
+        "branches",
+        "framework"
+      );
+    },
+  },
+
+  listBuildSpecForApp: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-branches",
+        ["--app-id"],
+        "branches",
+        "buildSpec"
+      );
+    },
+  },
+
+  listIamRoleArns: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "Arn");
+    },
+  },
+
+  listDomainNames: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-domain-associations",
+        ["--app-id"],
+        "domainAssociations",
+        "domainName"
+      );
+    },
+  },
+
+  listJobIds: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "list-jobs",
+        ["--app-id", "--branch-name"],
+        "jobSummaries",
+        "jobId"
+      );
+    },
+  },
+
+  listWebhookIds: {
+    script: "aws amplify list-webhooks",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "webhooks", "webhookId");
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "amplify",
   description:
@@ -33,6 +374,7 @@ export const completionSpec: Fig.Spec = {
           description: "The platform or framework for an Amplify app.",
           args: {
             name: "string",
+            suggestions: ["WEB"],
           },
         },
         {
@@ -41,6 +383,7 @@ export const completionSpec: Fig.Spec = {
             "The AWS Identity and Access Management (IAM) service role for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyServiceRoles,
           },
         },
         {
@@ -64,6 +407,7 @@ export const completionSpec: Fig.Spec = {
           description: "The environment variables map for an Amplify app.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -117,6 +461,7 @@ export const completionSpec: Fig.Spec = {
           description: "The tag for an Amplify app.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -148,6 +493,7 @@ export const completionSpec: Fig.Spec = {
             "The automated branch creation glob patterns for an Amplify app.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -164,6 +510,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -186,6 +533,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -193,6 +541,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the backend environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironemntNames,
           },
         },
         {
@@ -201,6 +550,7 @@ export const completionSpec: Fig.Spec = {
             "The AWS CloudFormation stack name of a backend environment.",
           args: {
             name: "string",
+            generators: generators.listCfnStackNames,
           },
         },
         {
@@ -216,6 +566,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -238,6 +589,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -245,6 +597,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the branch.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -259,6 +612,13 @@ export const completionSpec: Fig.Spec = {
           description: "Describes the current stage for the branch.",
           args: {
             name: "string",
+            suggestions: [
+              "PRODUCTION",
+              "BETA",
+              "DEVELOPMENT",
+              "EXPERIMENTAL",
+              "PULL_REQUEST",
+            ],
           },
         },
         {
@@ -266,6 +626,7 @@ export const completionSpec: Fig.Spec = {
           description: "The framework for the branch.",
           args: {
             name: "string",
+            generators: generators.listFrameworkForApp,
           },
         },
         {
@@ -289,6 +650,7 @@ export const completionSpec: Fig.Spec = {
           description: "The environment variables for the branch.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -321,6 +683,7 @@ export const completionSpec: Fig.Spec = {
           description: "The tag for the branch.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -328,6 +691,7 @@ export const completionSpec: Fig.Spec = {
           description: "The build specification (build spec) for the branch.",
           args: {
             name: "string",
+            generators: generators.listBuildSpecForApp,
           },
         },
         {
@@ -367,6 +731,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listEnvironemntArns,
           },
         },
         {
@@ -375,6 +740,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -398,6 +764,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -405,6 +772,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the branch, for the job.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -413,6 +781,7 @@ export const completionSpec: Fig.Spec = {
             "An optional file map that contains the file name as the key and the file content md5 hash as the value. If this argument is provided, the service will generate a unique upload URL per file. Otherwise, the service will only generate a single upload URL for the zipped files.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -421,6 +790,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -444,6 +814,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -468,6 +839,8 @@ export const completionSpec: Fig.Spec = {
           description: "The setting for the subdomain.",
           args: {
             name: "list",
+            variadic: true,
+            description: "prefix=string,branchName=string",
           },
         },
         {
@@ -476,6 +849,7 @@ export const completionSpec: Fig.Spec = {
             "Sets the branch patterns for automatic subdomain creation.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -484,6 +858,7 @@ export const completionSpec: Fig.Spec = {
             "The required AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) for automatically creating subdomains.",
           args: {
             name: "string",
+            generators: generators.listIamRoleArns,
           },
         },
         {
@@ -492,6 +867,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -514,6 +890,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -521,6 +898,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for a branch that is part of an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -536,6 +914,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -558,6 +937,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -566,6 +946,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -588,6 +969,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID of an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -595,6 +977,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of a backend environment of an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listEnvironemntNames,
           },
         },
         {
@@ -603,6 +986,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -625,6 +1009,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -632,6 +1017,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the branch.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -640,6 +1026,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -662,6 +1049,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique id for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -669,6 +1057,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the domain.",
           args: {
             name: "string",
+            generators: generators.listDomainNames,
           },
         },
         {
@@ -677,6 +1066,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -699,6 +1089,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -706,6 +1097,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the branch, for the job.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -713,6 +1105,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for the job.",
           args: {
             name: "string",
+            generators: generators.listJobIds,
           },
         },
         {
@@ -721,6 +1114,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -743,6 +1137,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for a webhook.",
           args: {
             name: "string",
+            generators: generators.listWebhookIds,
           },
         },
         {
@@ -751,6 +1146,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -790,6 +1186,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the domain.",
           args: {
             name: "string",
+            generators: generators.listDomainNames,
           },
         },
         {
@@ -797,6 +1194,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -805,6 +1203,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -827,6 +1226,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -835,6 +1235,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -866,6 +1267,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -888,6 +1290,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique id for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -895,6 +1298,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the backend environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironemntNames,
           },
         },
         {
@@ -903,6 +1307,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -925,6 +1330,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -932,6 +1338,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for the branch.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -940,6 +1347,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -962,6 +1370,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique id for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -969,6 +1378,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the domain.",
           args: {
             name: "string",
+            generators: generators.listDomainNames,
           },
         },
         {
@@ -977,6 +1387,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -999,6 +1410,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -1006,6 +1418,7 @@ export const completionSpec: Fig.Spec = {
           description: "The branch name for the job.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -1013,6 +1426,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for the job.",
           args: {
             name: "string",
+            generators: generators.listJobIds,
           },
         },
         {
@@ -1021,6 +1435,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1044,6 +1459,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for a webhook.",
           args: {
             name: "string",
+            generators: generators.listWebhookIds,
           },
         },
         {
@@ -1052,6 +1468,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1091,6 +1508,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1138,6 +1556,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -1145,6 +1564,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of a branch that is part of an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -1152,6 +1572,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for a job.",
           args: {
             name: "string",
+            generators: generators.listJobIds,
           },
         },
         {
@@ -1176,6 +1597,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1198,6 +1620,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -1205,6 +1628,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the backend environment",
           args: {
             name: "string",
+            generators: generators.listEnvironemntNames,
           },
         },
         {
@@ -1229,6 +1653,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1251,6 +1676,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -1275,6 +1701,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1321,6 +1748,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listDomainNames,
           },
         },
         {
@@ -1345,6 +1773,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1391,6 +1820,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unique ID for an Amplify app.",
           args: {
             name: "string",
+            generators: generators.listAmplifyAppIds,
           },
         },
         {
@@ -1398,6 +1828,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name for a branch.",
           args: {
             name: "string",
+            generators: generators.listBranchNames,
           },
         },
         {
@@ -1422,6 +1853,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
