@@ -298,19 +298,19 @@ export const completion: Fig.Spec = {
         {
           name: "add",
           description: "Adds a value to the object cache.",
-          options: [
-            {
-              name: "--grant",
-              description:
-                "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
-            },
-          ],
           args: [
             {
               name: "role",
             },
             {
               name: "cap",
+            },
+          ],
+          options: [
+            {
+              name: "--grant",
+              description:
+                "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
             },
           ],
         },
