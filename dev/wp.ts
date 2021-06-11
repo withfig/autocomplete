@@ -56,12 +56,26 @@ const global_options = [
     name: "--skip-plugins",
     description:
       "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
+  },
+  {
+    name: "--skip-plugins",
+    insertValue: "--skip-plugins=",
+    displayName: "--skip-plugins=",
+    description:
+      "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
     args: {
-      name: "=plugins",
+      name: "plugins",
     },
   },
   {
     name: "--skip-themes",
+    description:
+      "Skip loading all themes, or a comma-separated list of themes.",
+  },
+  {
+    name: "--skip-themes",
+    insertValue: "--skip-themes=",
+    displayName: "--skip-themes=",
     description:
       "Skip loading all themes, or a comma-separated list of themes.",
     args: {
@@ -102,16 +116,30 @@ const global_options = [
     name: "--debug",
     description:
       "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
+  },
+  {
+    name: "--debug",
+    displayName: "--debug=",
+    insertValue: "--debug=",
+    description:
+      "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
     args: {
-      name: "=group",
+      name: "group",
     },
   },
   {
     name: "--prompt",
     description:
       "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
+  },
+  {
+    name: "--prompt",
+    insertValue: "--prompt=",
+    displayName: "--prompt=",
+    description:
+      "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
     args: {
-      name: "=assoc",
+      name: "assoc",
     },
   },
   {
@@ -2263,7 +2291,7 @@ export const completion: Fig.Spec = {
             {
               name: "--stats",
               description:
-                "Output stats on the number of matches found, time taken, tables/columns/rows searched, tables skipped..",
+                "Output stats on the number of matches found, time taken, tables/columns/rows searched, tables skipped.",
             },
             {
               name: "--table_column_color",
@@ -4322,7 +4350,7 @@ export const completion: Fig.Spec = {
             {
               name: "--fields",
               insertValue: "--fields=",
-              description: "Limit the output to specific object fields..",
+              description: "Limit the output to specific object fields.",
             },
             {
               name: "--format",
@@ -4843,6 +4871,21 @@ export const completion: Fig.Spec = {
                   { name: "count" },
                   { name: "json" },
                   { name: "yaml" },
+                ],
+              },
+            },
+            {
+              name: "--status",
+              insertValue: "--status=",
+              description: "Filter the output by plugin status.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "active" },
+                  { name: "active-network" },
+                  { name: "dropin" },
+                  { name: "inactive" },
+                  { name: "must-use" },
                 ],
               },
             },
@@ -6757,7 +6800,7 @@ export const completion: Fig.Spec = {
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
-                  { name: "gitlab" },
+                  { name: "gitlab", icon: "fig://icon?type=gitlab" },
                 ],
               },
             },
@@ -6802,7 +6845,7 @@ export const completion: Fig.Spec = {
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
-                  { name: "gitlab" },
+                  { name: "gitlab", icon: "fig://icon?type=gitlab" },
                   { name: "bitbucket" },
                 ],
               },
@@ -6934,7 +6977,7 @@ export const completion: Fig.Spec = {
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
-                  { name: "gitlab" },
+                  { name: "gitlab", icon: "fig://icon?type=gitlab" },
                   { name: "bitbucket" },
                 ],
               },
