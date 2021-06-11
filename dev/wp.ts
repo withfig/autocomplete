@@ -10393,31 +10393,137 @@ export const completion: Fig.Spec = {
         {
           name: "add",
           description: "Adds a widget to a sidebar.",
+          args: [
+            {
+              name: "name",
+              description: "Widget name.",
+            },
+            {
+              name: "sidebar-id",
+              description: "ID for the corresponding sidebar.",
+            },
+            {
+              name: "position",
+              description:
+                "Widget’s current position within the sidebar. Defaults to last",
+            },
+          ],
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "Widget option to add, with its new value.",
+            },
+          ],
         },
         {
           name: "deactivate",
           description:
             "Deactivates one or more widgets from an active sidebar.",
+          args: [
+            {
+              name: "widget-id",
+              description: "Unique ID for the widget(s).",
+            },
+          ],
         },
         {
           name: "delete",
           description: "Deletes one or more widgets from a sidebar.",
+          args: [
+            {
+              name: "widget-id",
+              description: "Unique ID for the widget(s).",
+            },
+          ],
         },
         {
           name: "list",
           description: "Lists widgets associated with a sidebar.",
+          args: [
+            {
+              name: "sidebar-id",
+              description: "ID for the corresponding sidebar.",
+            },
+          ],
+          options: [
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific row fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
         },
         {
           name: "move",
           description: "Moves the position of a widget.",
+          args: [
+            {
+              name: "widget-id",
+              description: "Unique ID for the widget.",
+            },
+          ],
+          options: [
+            {
+              name: "--position",
+              insertValue: "--position=",
+              description: "Assign the widget to a new position.",
+            },
+            {
+              name: "--sidebar-id",
+              insertValue: "--sidebar-id=",
+              description: "Assign the widget to a new sidebars.",
+            },
+          ],
         },
         {
           name: "reset",
           description: "Resets sidebar.",
+          args: [
+            {
+              name: "sidebar-id",
+              description: "One or more sidebars to reset.",
+            },
+          ],
+          options: [
+            {
+              name: "--all",
+              description: "If set, all sidebars will be reset.",
+            },
+          ],
         },
         {
           name: "update",
           description: "Updates options for an existing widget.",
+          args: [
+            {
+              name: "widget-id",
+              description: "Unique ID for the widget.",
+            },
+          ],
+          options: [
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description: "Field to update, with its new value.",
+            },
+          ],
         },
       ],
     },
