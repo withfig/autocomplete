@@ -47,10 +47,7 @@ const global_options = [
     name: "--user",
     insertValue: "--user=",
     description: "Set the WordPress user.",
-    args: {
-      name: "options",
-      suggestions: [{ name: "id" }, { name: "login" }, { name: "email" }],
-    },
+    args: [{ name: "id" }, { name: "login" }, { name: "email" }],
   },
   {
     name: "--skip-plugins",
