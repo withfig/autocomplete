@@ -9403,13 +9403,1023 @@ export const completion: Fig.Spec = {
       name: "user",
       description:
         "Manages users, along with their roles, capabilities, and meta.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "add-cap",
+          description: "Adds a capability to a user.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+            {
+              name: "cap",
+              description: "The capability to add.",
+            },
+          ],
+        },
+        {
+          name: "add-role",
+          description: "Adds a role for a user.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+            {
+              name: "cap",
+              description: "Add the specified role to the user.",
+            },
+          ],
+        },
+        {
+          name: "check-password",
+          description: "Checks if a user’s password is valid or not.",
+          args: [
+            {
+              name: "user",
+              description:
+                "The user login, user email or user ID of the user to check credentials for.",
+            },
+            {
+              name: "user_pass",
+              description:
+                "A string that contains the plain text password for the user.",
+            },
+          ],
+          options: [
+            {
+              name: "--escape-chars",
+              description:
+                "Escape password with wp_slash() to mimic the same behavior as wp-login.php.",
+            },
+          ],
+        },
+        {
+          name: "create",
+          description: "Creates a new user.",
+          args: [
+            {
+              name: "user",
+              description: "The login of the user to create.",
+            },
+            {
+              name: "user-email",
+              description: "The email address of the user to create.",
+            },
+          ],
+          options: [
+            {
+              name: "--role",
+              insertValue: "--role=",
+              description:
+                "The role of the user to create. Default: default role. Possible values include ‘administrator’, ‘editor’, ‘author’, ‘contributor’, ‘subscriber’.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "adminstrator" },
+                  { name: "editor" },
+                  { name: "author" },
+                  { name: "contributor" },
+                  { name: "subscriber" },
+                ],
+              },
+            },
+            {
+              name: "--user_pass",
+              insertValue: "--user_pass=",
+              description: "The user password. Default: randomly generated.",
+            },
+            {
+              name: "--user_registered",
+              insertValue: "--user_registered=",
+              description:
+                "The date the user registered. Default: current date.",
+            },
+            {
+              name: "--display_name",
+              insertValue: "--display_name=",
+              description: "The display name.",
+            },
+            {
+              name: "--user_nicename",
+              insertValue: "--user_nicename=",
+              description:
+                "A string that contains a URL-friendly name for the user. The default is the user’s username.",
+            },
+            {
+              name: "--user_url",
+              insertValue: "--user_url=",
+              description:
+                "A string containing the user’s URL for the user’s web site.",
+            },
+            {
+              name: "--nickname",
+              insertValue: "--nickname=",
+              description:
+                "The user’s nickname, defaults to the user’s username.",
+            },
+            {
+              name: "--first_name",
+              insertValue: "--first_name=",
+              description: "The user’s first name.",
+            },
+            {
+              name: "--last_name",
+              insertValue: "--last_name=",
+              description: "The user’s last name.",
+            },
+            {
+              name: "--description",
+              insertValue: "--description=",
+              description: "A string containing content about the user.",
+            },
+            {
+              name: "--rich_editing",
+              insertValue: "--rich_editing=",
+              description:
+                "A string for whether to enable the rich editor or not. False if not empty.",
+            },
+            {
+              name: "--send-email",
+              description:
+                "Send an email to the user with their new account details.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output just the new user id.",
+            },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes one or more users from the current site.",
+          args: [
+            {
+              name: "user",
+              description:
+                "The user login, user email, or user ID of the user(s) to delete.",
+            },
+          ],
+          options: [
+            {
+              name: "--network",
+              description:
+                "On multisite, delete the user from the entire network.",
+            },
+            {
+              name: "--reassign",
+              insertValue: "--reassign=",
+              description: "User ID to reassign the posts to.",
+            },
+            {
+              name: "--yes",
+              description: "Answer yes to any confirmation prompts.",
+            },
+          ],
+        },
+        {
+          name: "generate",
+          description: "Generates some users.",
+          options: [
+            {
+              name: "--count",
+              insertValue: "--count=",
+              description: "How many users to generate?",
+              args: {
+                name: "default",
+                suggestions: [{ name: "100" }],
+              },
+            },
+            {
+              name: "--role",
+              insertValue: "--role=",
+              description:
+                "The role of the generated users. Default: default role from WP.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "progress" }, { name: "ids" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "Gets details about a user.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+          ],
+          options: [
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "Instead of returning the whole user, returns the value of a single field.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Get a specific subset of the user’s fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "import-csv",
+          description: "Imports users from a CSV file.",
+          args: [
+            {
+              name: "file",
+              description:
+                "The local or remote CSV file of users to import. If ‘-‘, then reads from STDIN.",
+            },
+          ],
+          options: [
+            {
+              name: "--send-email",
+              description:
+                "Send an email to new users with their account details.",
+            },
+            {
+              name: "--skip-update",
+              description: "Don’t update users that already exist.",
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists users.",
+          options: [
+            {
+              name: "--role",
+              insertValue: "--role=",
+              description: "Only display users with a certain role.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Control output by one or more arguments of WP_User_Query().",
+            },
+            {
+              name: "--network",
+              description: "List all users in the network for multisite.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description: "Prints the value of a single field for each user.",
+            },
+            {
+              name: "--fields",
+              insertValue: "--fields=",
+              description: "Limit the output to specific object fields.",
+            },
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "ids" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "list-caps",
+          description: "Lists all capabilities for a user.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or login.",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "list" },
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "meta",
+          description: "Adds, updates, deletes, and lists user custom fields.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Adds a meta field.",
+              args: [
+                {
+                  name: "user",
+                  description:
+                    "The user login, user email, or user ID of the user to add metadata for.",
+                },
+                {
+                  name: "key",
+                  description: "The metadata key.",
+                },
+                {
+                  name: "value",
+                  description: "The new metadata value.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "delete",
+              description: "Deletes a meta field.",
+              args: [
+                {
+                  name: "user",
+                  description:
+                    "The user login, user email, or user ID of the user to delete metadata from.",
+                },
+                {
+                  name: "key",
+                  description: "The metadata key.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The value to delete. If omitted, all rows with key will deleted.",
+                },
+              ],
+            },
+            {
+              name: "get",
+              description: "Gets meta field value.",
+              args: [
+                {
+                  name: "user",
+                  description:
+                    "The user login, user email, or user ID of the user to get metadata for.",
+                },
+                {
+                  name: "key",
+                  description: "The metadata key.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Lists all metadata associated with a user.",
+              args: [
+                {
+                  name: "user",
+                  description:
+                    "The user login, user email, or user ID of the user to get metadata for.",
+                },
+              ],
+              options: [
+                {
+                  name: "--keys",
+                  insertValue: "--keys=",
+                  description: "Limit output to metadata of specific keys.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description:
+                    "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                  args: {
+                    name: "default",
+                    suggestions: [{ name: "id,meta_key,meta_value" }],
+                  },
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+                {
+                  name: "--orderby",
+                  insertValue: "--orderby=",
+                  description: "Set orderby which field.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "id" },
+                      { name: "meta_key" },
+                      { name: "meta_value" },
+                    ],
+                  },
+                },
+                {
+                  name: "--order",
+                  insertValue: "--order=",
+                  description: "Set ascending or descending order.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "asc" }, { name: "desc" }],
+                  },
+                },
+                {
+                  name: "--unserialize",
+                  description: "Unserialize meta_value output.",
+                },
+              ],
+            },
+            {
+              name: "patch",
+              description: "Update a nested value for a meta field.",
+              args: [
+                {
+                  name: "action",
+                  description: "Patch action to perform.",
+                  suggestions: [
+                    { name: "insert" },
+                    { name: "update" },
+                    { name: "delete" },
+                  ],
+                },
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to update.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
+                },
+                {
+                  name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "pluck",
+              description: "Get a nested value from a meta field.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "key",
+                  description: "The name of the meta field to get.",
+                },
+                {
+                  name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The output format of the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "plaintext" },
+                      { name: "json" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "update",
+              description: "Updates a meta field.",
+              args: [
+                {
+                  name: "user",
+                  description:
+                    "The user login, user email, or user ID of the user to update metadata for.",
+                },
+                {
+                  name: "key",
+                  description: "The metadata key.",
+                },
+                {
+                  name: "value",
+                  description: "The new metadata value.",
+                },
+              ],
+              options: [
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "The serialization format for the value.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "plaintext" }, { name: "json" }],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "remove-cap",
+          description: "Removes a user’s capability.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+            {
+              name: "cap",
+              description: "The capability to be removed.",
+            },
+          ],
+        },
+        {
+          name: "remove-role",
+          description: "Removes a user’s role.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+            {
+              name: "role",
+              description: "A specific role to remove.",
+            },
+          ],
+        },
+        {
+          name: "reset-password",
+          description: "Resets the password for one or more users.",
+          args: [
+            {
+              name: "user",
+              description: "One or more user logins or IDs.",
+            },
+          ],
+          options: [
+            {
+              name: "--skip-email",
+              description:
+                "Don’t send an email notification to the affected user(s).",
+            },
+          ],
+        },
+        {
+          name: "session",
+          description: "Destroys and lists a user’s sessions.",
+          subcommands: [
+            {
+              name: "destroy",
+              description: "Destroy a session for the given user.",
+              args: [
+                {
+                  name: "user",
+                  description: "User ID, user email, or user login.",
+                },
+                {
+                  name: "token",
+                  description:
+                    "The token of the session to destroy. Defaults to the most recently created session.",
+                },
+              ],
+              options: [
+                {
+                  name: "--all",
+                  description: "Destroy all of the user’s sessions.",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List sessions for the given user.",
+              args: [
+                {
+                  name: "user",
+                  description: "User ID, user email, or user login.",
+                },
+              ],
+              options: [
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                      { name: "count" },
+                      { name: "ids" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "set-role",
+          description: "Sets the user role.",
+          args: [
+            {
+              name: "user",
+              description: "User ID, user email, or user login.",
+            },
+            {
+              name: "role",
+              description:
+                "Make the user have the specified role. If not passed, the default role is used.",
+            },
+          ],
+        },
+        {
+          name: "spam",
+          description: "Marks one or more users as spam.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of users to mark as spam.",
+            },
+          ],
+        },
+        {
+          name: "term",
+          description: "Adds, updates, removes, and lists user terms.",
+          subcommands: [
+            {
+              name: "add",
+              description: "Add a term to an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the taxonomy type to be added.",
+                },
+                {
+                  name: "term",
+                  description: "The slug of the term or terms to be added.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "List all terms associated with an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "ID for the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "One or more taxonomies to list.",
+                },
+              ],
+              options: [
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description:
+                    "Prints the value of a single field for each term.",
+                },
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific row fields.",
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "json" },
+                      { name: "yaml" },
+                      { name: "count" },
+                      { name: "ids" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "remove",
+              description: "Remove a term from an object.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the term’s taxonomy.",
+                },
+                {
+                  name: "term",
+                  description:
+                    "The name of the term or terms to be removed from the object.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+                {
+                  name: "--all",
+                  description: "Remove all terms from the object.",
+                },
+              ],
+            },
+            {
+              name: "set",
+              description: "Set object terms.",
+              args: [
+                {
+                  name: "id",
+                  description: "The ID of the object.",
+                },
+                {
+                  name: "taxonomy",
+                  description: "The name of the taxonomy type to be updated.",
+                },
+                {
+                  name: "term",
+                  description: "The slug of the term or terms to be updated.",
+                },
+              ],
+              options: [
+                {
+                  name: "--by",
+                  insertValue: "--by=",
+                  description:
+                    "Explicitly handle the term value as a slug or id.",
+                  args: {
+                    name: "options",
+                    suggestions: [{ name: "slug" }, { name: "id" }],
+                  },
+                },
+                {
+                  name: "--all",
+                  description: "Remove all terms from the object.",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "unspam",
+          description: "Removes one or more users from spam.",
+          args: [
+            {
+              name: "id",
+              description: "One or more IDs of users to remove from spam.",
+            },
+          ],
+        },
+        {
+          name: "update",
+          description: "Updates an existing user.",
+          args: [
+            {
+              name: "user",
+              description:
+                "The user login, user email or user ID of the user(s) to update.",
+            },
+          ],
+          options: [
+            {
+              name: "--user_pass",
+              insertValue: "--user_pass=",
+              description:
+                "A string that contains the plain text password for the user",
+            },
+            {
+              name: "--user_nicename",
+              insertValue: "--user_nicename=",
+              description:
+                "A string that contains a URL-friendly name for the user. The default is the user’s username.",
+            },
+            {
+              name: "--user_url",
+              insertValue: "--user_url=",
+              description:
+                "A string containing the user’s URL for the user’s web site.",
+            },
+            {
+              name: "--user_email",
+              insertValue: "--user_email=",
+              description: "A string containing the user’s email address.",
+            },
+            {
+              name: "--display_name",
+              insertValue: "--display_name=",
+              description: "The display name.",
+            },
+            {
+              name: "--nickname",
+              insertValue: "--nickname=",
+              description:
+                "The user’s nickname, defaults to the user’s username.",
+            },
+            {
+              name: "--first_name",
+              insertValue: "--first_name=",
+              description: "The user’s first name.",
+            },
+            {
+              name: "--last_name",
+              insertValue: "--last_name=",
+              description: "The user’s last name.",
+            },
+            {
+              name: "--description",
+              insertValue: "--description=",
+              description: "A string containing content about the user.",
+            },
+            {
+              name: "--rich_editing",
+              insertValue: "--rich_editing=",
+              description:
+                "A string for whether to enable the rich editor or not. False if not empty.",
+            },
+            {
+              name: "--user_registered",
+              insertValue: "--user_registered=",
+              description:
+                "The date the user registered. Default: current date.",
+            },
+            {
+              name: "--role",
+              insertValue: "--role=",
+              description: "A string used to set the user’s role.",
+            },
+            {
+              name: "--field",
+              insertValue: "--field=",
+              description:
+                "One or more fields to update. For accepted fields, see wp_update_user().",
+            },
+            {
+              name: "--skip-email",
+              description: "Don’t send an email notification to the user.",
+            },
+          ],
+        },
+      ],
     },
     {
       name: "widget",
       description:
         "Manages widgets, including adding and moving them within sidebars.",
-      subcommands: [{}],
+      subcommands: [
+        {
+          name: "add",
+          description: "Adds a widget to a sidebar.",
+        },
+        {
+          name: "deactivate",
+          description:
+            "Deactivates one or more widgets from an active sidebar.",
+        },
+        {
+          name: "delete",
+          description: "Deletes one or more widgets from a sidebar.",
+        },
+        {
+          name: "list",
+          description: "Lists widgets associated with a sidebar.",
+        },
+        {
+          name: "move",
+          description: "Moves the position of a widget.",
+        },
+        {
+          name: "reset",
+          description: "Resets sidebar.",
+        },
+        {
+          name: "update",
+          description: "Updates options for an existing widget.",
+        },
+      ],
     },
   ],
   options: global_options,
