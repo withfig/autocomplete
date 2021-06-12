@@ -3499,7 +3499,6 @@ export const completion: Fig.Spec = {
       options: [
         {
           name: "--skip-ignored-paths",
-          insertValue: "--skip-ignored-paths=",
           description: "Skip the paths that are ignored by default.",
         },
         {
@@ -3507,21 +3506,25 @@ export const completion: Fig.Spec = {
           insertValue: "--include_ignored_paths=",
           description:
             "Include additional ignored paths as CSV (e.g. ‘/sys-backup/,/temp/’).",
+          args: { name: "paths" },
         },
         {
           name: "--max_depth",
           insertValue: "--max_depth=",
           description: "Only recurse to a specified depth, inclusive.",
+          args: { name: "max-depth" },
         },
         {
           name: "--fields",
           insertValue: "--fields=",
           description: "Limit the output to specific row fields.",
+          args: { name: "fields" },
         },
         {
           name: "--field",
           insertValue: "--field=",
           description: "Output a specific field for each row.",
+          args: { name: "field" },
         },
         {
           name: "--format",
