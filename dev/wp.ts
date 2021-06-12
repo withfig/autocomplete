@@ -2989,9 +2989,12 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "path",
+          description: "Path to the project that includes a .distignore file.",
         },
         {
           name: "target",
+          description:
+            "Path and file name for the distribution archive. Defaults to project directory name plus version, if discoverable.",
         },
       ],
       options: [
