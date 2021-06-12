@@ -88,6 +88,7 @@
     "manolo": "^0.1.0",
     "node-html-parser": "^3.3.5",
     "pretty": "^2.0.0",
-    "remove-trailing-spaces": "^1.0.8"
+    "remove-trailing-spaces": "^1.0.8",
+    "sleep": "^6.3.0"
   }
 }
