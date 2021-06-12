@@ -7,6 +7,7 @@
 
 // Dependencies
 const fs = require("fs");
+const { sleep } = require("sleep");
 const execSh = require("exec-sh");
 const { parse } = require("node-html-parser");
 const pretty = require("pretty");
@@ -42,13 +43,18 @@ async function getFigCompletionObjectFromManPageOfACommand(
         if (isCompressed(manPage)) {
           // save decompressed man page in /tmp
           const decompressManPage = async (path: string): Promise<string> => {
-            execSh(`gzip -dc7 ${path} > /tmp/${cmd}.1`);
+            await execSh(`gzip -dc7 ${path} > /tmp/${cmd}.1`);
+            // Fixes a bug that happens because saved decompressed man page is accessed before being wrote
+            sleep(2);
             return `/tmp/${cmd}.1`;
           };
           // wait until the man page is parsed & resolve it
           await new Promise((resolve) => {
             decompressManPage(manPage).then(async (decompressedManPagePath) => {
-              const man = fs.readFileSync(decompressedManPagePath, "utf8");
+              const man = await fs.promises.readFile(
+                decompressedManPagePath,
+                "utf8"
+              );
               manPageInHTML = manolo(man).toHTML();
               resolve(manPageInHTML);
             });
@@ -56,9 +62,11 @@ async function getFigCompletionObjectFromManPageOfACommand(
         } else {
           // wait until the man page is parsed & resolve it
           await new Promise((resolve) => {
-            const man = fs.readFileSync(manPage, "utf8");
-            manPageInHTML = manolo(man).toHTML();
-            resolve(manPageInHTML);
+            async () => {
+              const man = await fs.promises.readFile(manPage, "utf8");
+              manPageInHTML = manolo(man).toHTML();
+              resolve(manPageInHTML);
+            };
           });
         }
         // resolve parsed man page
