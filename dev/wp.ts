@@ -2137,6 +2137,119 @@ export const completion: Fig.Spec = {
         {
           name: "event",
           description: "Schedules, runs, and deletes WP-Cron events.",
+          subcommands: [
+            {
+              name: "delete",
+              description:
+                "Deletes all scheduled cron events for the given hook.",
+              args: [
+                {
+                  name: "hook",
+                  description: "The hook name.",
+                },
+              ],
+            },
+            {
+              name: "list",
+              description: "Lists scheduled cron events.",
+              options: [
+                {
+                  name: "--fields",
+                  insertValue: "--fields=",
+                  description: "Limit the output to specific object fields.",
+                  args: { name: "fields" },
+                },
+                {
+                  name: "--field=value",
+                  insertValue: "--",
+                  description: "Filter by one or more fields.",
+                },
+                {
+                  name: "--field",
+                  insertValue: "--field=",
+                  description:
+                    "Prints the value of a single field for each term.",
+                  args: { name: "field" },
+                },
+                {
+                  name: "--format",
+                  insertValue: "--format=",
+                  description: "Render output in a particular format.",
+                  args: {
+                    name: "options",
+                    suggestions: [
+                      { name: "table" },
+                      { name: "csv" },
+                      { name: "ids" },
+                      { name: "json" },
+                      { name: "count" },
+                      { name: "yaml" },
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              name: "run",
+              description:
+                "Runs the next scheduled cron event for the given hook.",
+              args: [
+                {
+                  name: "hook",
+                  description: "The hook name.",
+                },
+              ],
+              options: [
+                {
+                  name: "--due-now",
+                  description: "Run all hooks due right now.",
+                },
+                {
+                  name: "--all",
+                  description: "Run all hooks.",
+                },
+              ],
+            },
+            {
+              name: "schedule",
+              description: "Schedules a new cron event.",
+              args: [
+                {
+                  name: "hook",
+                  description: "The hook name.",
+                },
+                {
+                  name: "next-run",
+                  description:
+                    "A Unix timestamp or an English textual datetime description compatible with strtotime(). Defaults to now.",
+                },
+                {
+                  name: "recurrence",
+                  description:
+                    "How often the event should recur. See wp cron schedule list for available schedule names. Defaults to no recurrence.",
+                },
+              ],
+              options: [
+                {
+                  name: "--field=value",
+                  insertValue: "--",
+                  description:
+                    "Arguments to pass to the hook for the event. <field> should be a numeric key, not a string.",
+                },
+              ],
+            },
+            {
+              name: "unschedule",
+              description: "Unschedules all cron events for a given hook.",
+              args: [
+                {
+                  name: "hook",
+                  description:
+                    "Name of the hook for which all events should be unscheduled.",
+                },
+              ],
+            },
+          ],
         },
         {
           name: "schedule",
@@ -2150,12 +2263,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific object fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--field",
                   insertValue: "--field=",
                   description:
                     "Prints the value of a single field for each schedule.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--format",
