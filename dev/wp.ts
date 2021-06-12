@@ -4326,13 +4326,14 @@ export const completion: Fig.Spec = {
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -4359,27 +4360,32 @@ export const completion: Fig.Spec = {
               name: "--post_id",
               insertValue: "--post_id=",
               description: "ID of the post to attach the imported files to.",
+              args: { name: "post_id" },
             },
             {
               name: "--title",
               insertValue: "--title=",
               description: "Attachment title (post title field).",
+              args: { name: "title" },
             },
             {
               name: "--caption",
               insertValue: "--caption=",
               description: "Caption for attachent (post excerpt field).",
+              args: { name: "caption" },
             },
             {
               name: "--alt",
               insertValue: "--alt=",
               description: "Alt text for image (saved as post meta).",
+              args: { name: "alt_text" },
             },
             {
               name: "--desc",
               insertValue: "--desc=",
               description:
                 "'Description' field (post content) of attachment post.",
+              args: { name: "description" },
             },
             {
               name: "--skip-copy",
@@ -4417,6 +4423,7 @@ export const completion: Fig.Spec = {
               insertValue: "--image_size=",
               description:
                 "Name of the image size to regenerate. Only thumbnails of this image size will be regenerated, thumbnails of other image sizes will not.",
+              args: { name: "image_size" },
             },
             {
               name: "--skip-delete",
