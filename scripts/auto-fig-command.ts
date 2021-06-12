@@ -61,12 +61,10 @@ async function getFigCompletionObjectFromManPageOfACommand(
           });
         } else {
           // wait until the man page is parsed & resolve it
-          await new Promise((resolve) => {
-            async () => {
-              const man = await fs.promises.readFile(manPage, "utf8");
-              manPageInHTML = manolo(man).toHTML();
-              resolve(manPageInHTML);
-            };
+          await new Promise(async (resolve) => {
+            const man = await fs.promises.readFile(manPage, "utf8");
+            manPageInHTML = manolo(man).toHTML();
+            resolve(manPageInHTML);
           });
         }
         // resolve parsed man page
