@@ -840,6 +840,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "id",
+              description: "The IDs of the comments to approve.",
             },
           ],
         },
@@ -849,6 +850,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "post-id",
+              description: "The ID of the post to count comments in.",
             },
           ],
         },
@@ -873,6 +875,7 @@ export const completion: Fig.Spec = {
           description: "Deletes a comment.",
           args: {
             name: "id",
+            description: "One or more IDs of comments to delete.",
           },
           options: [
             {
@@ -887,6 +890,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "id",
+              description: "The ID of the comment to check.",
             },
           ],
         },
@@ -899,7 +903,8 @@ export const completion: Fig.Spec = {
               insertValue: "--count=",
               description: "How many comments to generate?",
               args: {
-                name: "number",
+                name: "default",
+                suggestions: [{ name: "100" }],
               },
             },
             {
@@ -926,6 +931,7 @@ export const completion: Fig.Spec = {
           description: "Gets the data of a single comment.",
           args: {
             name: "id",
+            description: "The comment to get.",
           },
           options: [
             {
@@ -1017,12 +1023,16 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to create.",
                 },
                 {
                   name: "value",
+                  description:
+                    "The value of the meta field. If omitted, the value is read from STDIN.",
                 },
               ],
               options: [
@@ -1043,12 +1053,16 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to delete.",
                 },
                 {
                   name: "value",
+                  description:
+                    "The value to delete. If omitted, all rows with key will deleted.",
                 },
               ],
               options: [
@@ -1064,9 +1078,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to get.",
                 },
               ],
               options: [
@@ -1091,6 +1107,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "ID for the object.",
                 },
               ],
               options: [
@@ -1098,12 +1115,18 @@ export const completion: Fig.Spec = {
                   name: "--keys",
                   insertValue: "--keys=",
                   description: "Limit output to metadata of specific keys.",
+                  args: {
+                    name: "keys",
+                  },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                  args: {
+                    name: "fields",
+                  },
                 },
                 {
                   name: "--format",
@@ -1154,6 +1177,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "options",
+                  description: "Patch action to perform.",
                   suggestions: [
                     { name: "insert" },
                     { name: "update" },
@@ -1162,15 +1186,21 @@ export const completion: Fig.Spec = {
                 },
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to update.",
                 },
                 {
                   name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to patch.",
                 },
                 {
                   name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
                 },
               ],
               options: [
@@ -1191,12 +1221,16 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to get.",
                 },
                 {
                   name: "key-path",
+                  description:
+                    "The name(s) of the keys within the value to locate the value to pluck.",
                 },
               ],
               options: [
@@ -1221,12 +1255,16 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "id",
+                  description: "The ID of the object.",
                 },
                 {
                   name: "key",
+                  description: "The name of the meta field to update.",
                 },
                 {
                   name: "value",
+                  description:
+                    "The new value. If omitted, the value is read from STDIN.",
                 },
               ],
               options: [
