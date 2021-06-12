@@ -1426,11 +1426,13 @@ export const completion: Fig.Spec = {
               name: "--dbname",
               insertValue: "--dbname=",
               description: "Set the database name.",
+              args: { name: "dbname" },
             },
             {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Set the database user.",
+              args: { name: "dbuser" },
             },
             {
               name: "--dbpass",
@@ -1472,12 +1474,14 @@ export const completion: Fig.Spec = {
               name: "--dbcollate",
               insertValue: "--dbcollate=",
               description: "Set the database collation.",
+              args: { name: "dbcollate" },
             },
             {
               name: "--locale",
               insertValue: "--locale=",
               description:
                 "Set the WPLANG constant. Defaults to $wp_local_package variable.",
+              args: { name: "locale" },
             },
             {
               name: "--extra-php",
@@ -1618,6 +1622,7 @@ export const completion: Fig.Spec = {
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
@@ -1665,6 +1670,11 @@ export const completion: Fig.Spec = {
                 "Add the value if it doesn’t exist yet. This is the default behavior, override with –no-add.",
             },
             {
+              name: "--no-add",
+              description:
+                "Add the value if it doesn’t exist yet. This is the default behavior, override with –no-add.",
+            },
+            {
               name: "--raw",
               description:
                 "Place the value into the wp-config.php file as is, instead of as a quoted string.",
@@ -1674,6 +1684,7 @@ export const completion: Fig.Spec = {
               insertValue: "--anchor=",
               description:
                 "Anchor string where additions of new values are anchored around. Defaults to “/* That’s all, stop editing!”.",
+              args: { name: "anchor" },
             },
             {
               name: "--placement",
@@ -1690,6 +1701,7 @@ export const completion: Fig.Spec = {
               insertValue: "--separator=",
               description:
                 "Separator string to put between an added value and its anchor string. The following escape sequences will be recognized and properly interpreted: ‘\n’ => newline, ‘\r’ => carriage return, ‘\t’ => tab. Defaults to a single EOL (“\n” on *nix and “\r\n” on Windows).",
+              args: { name: "separator" },
             },
             {
               name: "--type",
