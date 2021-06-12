@@ -3889,6 +3889,7 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Display the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--field=value",
@@ -3899,13 +3900,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -3967,7 +3969,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Render output in a particular format. Used when installing languages for all plugins.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -4012,6 +4014,7 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Display the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--field=value",
@@ -4022,13 +4025,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -4105,7 +4109,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Render output in a particular format. Used when installing languages for all themes.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -4150,6 +4154,7 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Display the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--field=value",
@@ -4160,13 +4165,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
