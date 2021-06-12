@@ -3381,6 +3381,7 @@ export const completion: Fig.Spec = {
           insertValue: "--dir=",
           description:
             "Full path to directory where WXR export files should be stored. Defaults to current working directory.",
+          args: { name: "dirname" },
         },
         {
           name: "--stdout",
@@ -3397,7 +3398,7 @@ export const completion: Fig.Spec = {
           description:
             "A single export file should have this many megabytes. -1 for unlimited.",
           args: {
-            name: "default",
+            name: "MB",
             suggestions: [{ name: "15" }],
           },
         },
@@ -3406,12 +3407,14 @@ export const completion: Fig.Spec = {
           insertValue: "--start_date=",
           description:
             "Export only posts published after this date, in format YYYY-MM-DD.",
+          args: { name: "date" },
         },
         {
           name: "--end_date",
           insertValue: "--end_date=",
           description:
             "Export only posts published before this date, in format YYYY-MM-DD.",
+          args: { name: "date" },
         },
         {
           name: "--post_type",
@@ -3419,7 +3422,7 @@ export const completion: Fig.Spec = {
           description:
             "Export only posts with this post_type. Separate multiple post types with a comma.",
           args: {
-            name: "default",
+            name: "post-type",
             suggestions: [{ name: "any" }],
           },
         },
@@ -3428,12 +3431,14 @@ export const completion: Fig.Spec = {
           insertValue: "--post_type__not_in=",
           description:
             "Export all post types except those identified. Separate multiple post types with a comma. Defaults to none.",
+          args: { name: "post-type" },
         },
         {
           name: "--post_in",
           insertValue: "--post_in=",
           description:
             "Export all posts specified as a comma- or space-separated list of IDs. Post’s attachments won’t be exported unless –with_attachments is specified.",
+          args: { name: "pid" },
         },
         {
           name: "--with_attachments",
@@ -3445,34 +3450,40 @@ export const completion: Fig.Spec = {
           insertValue: "--start_id=",
           description:
             "Export only posts with IDs greater than or equal to this post ID.",
+          args: { name: "pid" },
         },
         {
           name: "--max_num_posts",
           insertValue: "--max_num_posts=",
           description:
             "Export no more than <num> posts (excluding attachments).",
+          args: { name: "num" },
         },
         {
           name: "--author",
           insertValue: "--author=",
           description:
             "Export only posts by this author. Can be either user login or user ID.",
+          args: { name: "author" },
         },
         {
           name: "--category",
           insertValue: "--category=",
           description: "Export only posts in this category.",
+          args: { name: "category" },
         },
         {
           name: "--post_status",
           insertValue: "--post_status=",
           description: "Export only posts with this status.",
+          args: { name: "status" },
         },
         {
           name: "--filename_format",
           insertValue: "--filename_format=",
           description:
             "Use a custom format for export filenames. Defaults to ‘{site}.wordpress.{date}.{n}.xml’.",
+          args: { name: "format" },
         },
       ],
     },
