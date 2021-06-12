@@ -3087,12 +3087,14 @@ export const completion: Fig.Spec = {
                   insertValue: "--width=",
                   description:
                     "Width of the embed in pixels. Part of cache key so must match. Defaults to content_width if set else 500px, so is theme and context dependent.",
+                  args: { name: "width" },
                 },
                 {
                   name: "--height",
                   insertValue: "--height=",
                   description:
                     "Height of the embed in pixels. Part of cache key so must match. Defaults to 1.5 * default width (content_width or 500px), to a maximum of 1000px.",
+                  args: { name: "height" },
                 },
                 {
                   name: "--discover",
@@ -3128,16 +3130,19 @@ export const completion: Fig.Spec = {
               name: "--width",
               insertValue: "--width=",
               description: "Width of the embed in pixels.",
+              args: { name: "width" },
             },
             {
               name: "--height",
               insertValue: "--height=",
               description: "Height of the embed in pixels.",
+              args: { name: "height" },
             },
             {
               name: "--post-id",
               insertValue: "--post-id=",
               description: "Cache oEmbed response for a given post.",
+              args: { name: "id" },
             },
             {
               name: "--discover",
@@ -3163,6 +3168,7 @@ export const completion: Fig.Spec = {
               insertValue: "--limit-response-size=",
               description:
                 "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’.",
+              args: { name: "size" },
             },
             {
               name: "--raw",
@@ -3174,7 +3180,7 @@ export const completion: Fig.Spec = {
               insertValue: "--raw-format=",
               description: "The serialization format for the value.",
               args: {
-                name: "options",
+                name: "json|xml",
                 suggestions: [{ name: "json" }, { name: "xml" }],
               },
             },
@@ -3192,18 +3198,20 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Display the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -3227,18 +3235,20 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Display the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -3254,27 +3264,29 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "url",
-                  description: "URL to retrieve oEmbed data for.",
+                  description: "URL to retrieve provider for.",
                 },
               ],
               options: [
                 {
                   name: "--discover",
-                  description: "Enable oEmbed discovery. Defaults to true.",
+                  description:
+                    "Whether to use oEmbed discovery or not. Defaults to true.",
                 },
                 {
                   name: "--limit-response-size",
                   insertValue: "--limit-response-size=",
                   description:
                     "Limit the size of the resulting HTML when using discovery. Default 150 KB (the standard WordPress limit). Not compatible with ‘no-discover’.",
+                  args: { name: "size" },
                 },
                 {
-                  name: "--link-typet",
-                  insertValue: "--link-typet=",
+                  name: "--link-type",
+                  insertValue: "--link-type=",
                   description:
                     "Whether to accept only a certain link type when using discovery. Defaults to any (json or xml), preferring json. Not compatible with ‘no-discover’.",
                   args: {
-                    name: "options",
+                    name: "json|xml",
                     suggestions: [{ name: "json" }, { name: "xml" }],
                   },
                 },
