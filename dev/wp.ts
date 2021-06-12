@@ -491,6 +491,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
+                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -541,6 +542,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
+                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -561,6 +563,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
+                  description: "Key for the alias.",
                 },
               ],
             },
@@ -589,6 +592,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "key",
+                  description: "Key for the alias.",
                 },
               ],
               options: [
@@ -722,6 +726,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "command_name",
+              description: "The command",
             },
           ],
         },
@@ -755,7 +760,7 @@ export const completion: Fig.Spec = {
               description: "Render output in a particular format.",
               args: {
                 name: "options",
-                suggestions: [{ name: "list" }, { name: "json" }],
+                suggestions: [{ name: "var_export" }, { name: "json" }],
               },
             },
           ],
