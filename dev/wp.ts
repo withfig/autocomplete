@@ -206,15 +206,21 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "value",
+              description: "Value to add to the key.",
             },
             {
-              name: "[group]",
+              name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
             {
-              name: "[expiration]",
+              name: "expiration",
+              description:
+                "Define how long to keep the value, in seconds. 0 means as long as possible.",
             },
           ],
         },
@@ -224,12 +230,16 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "offset",
+              description: "The amount by which to decrement the item’s value.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
           ],
         },
@@ -239,9 +249,12 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
           ],
         },
@@ -255,9 +268,12 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
           ],
         },
@@ -267,12 +283,16 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "offset",
+              description: "The amount by which to increment the item’s value.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
           ],
         },
@@ -283,15 +303,21 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "value",
+              description: "Value to replace.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
             {
               name: "expiration",
+              description:
+                "Define how long to keep the value, in seconds. 0 means as long as possible.",
             },
           ],
         },
@@ -302,15 +328,21 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Cache key.",
             },
             {
               name: "value",
+              description: "Value to set on the key.",
             },
             {
               name: "group",
+              description:
+                "Method for grouping data within the cache which allows the same key to be used across groups.",
             },
             {
               name: "expiration",
+              description:
+                "Define how long to keep the value, in seconds. 0 means as long as possible.",
             },
           ],
         },
