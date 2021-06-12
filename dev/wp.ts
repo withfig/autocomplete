@@ -3781,15 +3781,17 @@ export const completion: Fig.Spec = {
       options: [
         {
           name: "--authors",
-          insertValue: "--authors",
+          insertValue: "--authors=",
           description:
             "How the author mapping should be handled. Options are ‘create’, ‘mapping.csv’, or ‘skip’. The first will create any non-existent users from the WXR file. The second will read author mapping associations from a CSV, or create a CSV for editing if the file path doesn’t exist. The CSV requires two columns, and a header row like “old_user_login,new_user_login”. The last option will skip any author mapping.",
+          args: { name: "authors" },
         },
         {
           name: "--skip",
-          insertValue: "--skip",
+          insertValue: "--skip=",
           description:
             "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation).",
+          args: { name: "data-type" },
         },
         global_parameter_path,
         global_parameter_url,
