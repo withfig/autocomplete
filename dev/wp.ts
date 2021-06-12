@@ -3683,16 +3683,17 @@ export const completion: Fig.Spec = {
               insertValue: "--slug=",
               description:
                 "Plugin or theme slug. Defaults to the source directory’s basename.",
+              args: { name: "slug" },
             },
             {
               name: "--domain",
               insertValue: "--domain=",
               description:
                 "Text domain to look for in the source code, unless the --ignore-domain option is used. By default, the “Text Domain” header of the plugin or theme is used. If none is provided, it falls back to the project slug.",
+              args: { name: "domain" },
             },
             {
               name: "--ignore-domain",
-              insertValue: "--ignore-domain=",
               description:
                 "Ignore the text domain completely and extract strings with any text domain.",
             },
@@ -3701,30 +3702,35 @@ export const completion: Fig.Spec = {
               insertValue: "--merge=",
               description:
                 "Comma-separated list of POT files whose contents should be merged with the extracted strings. If left empty, defaults to the destination POT file. POT file headers will be ignored.",
+              args: { name: "paths" },
             },
             {
               name: "--subtract",
               insertValue: "--subtract=",
               description:
                 "Comma-separated list of POT files whose contents should act as some sort of blacklist for string extraction. Any string which is found on that blacklist will not be extracted. This can be useful when you want to create multiple POT files from the same source directory with slightly different content and no duplicate strings between them.",
+              args: { name: "paths" },
             },
             {
               name: "--include",
               insertValue: "--include=",
               description:
                 "Comma-separated list of files and paths that should be used for string extraction. If provided, only these files and folders will be taken into account for string extraction. For example, --include='src,my-file.php will ignore anything besides my-file.php and files in the src directory. Simple glob patterns can be used, i.e. --include=foo-*.php includes any PHP file with the foo- prefix. Leading and trailing slashes are ignored, i.e. /my/directory/ is the same as my/directory.",
+              args: { name: "paths" },
             },
             {
               name: "--exclude",
               insertValue: "--exclude=",
               description:
                 "Comma-separated list of files and paths that should be skipped for string extraction. For example, --exclude='.github,myfile.php would ignore any strings found within myfile.php or the .github folder. Simple glob patterns can be used, i.e. --exclude=foo-*.php excludes any PHP file with the foo- prefix. Leading and trailing slashes are ignored, i.e. /my/directory/ is the same as my/directory. The following files and folders are always excluded: node_modules, .git, .svn, .CVS, .hg, vendor, *.min.js.",
+              args: { name: "paths" },
             },
             {
               name: "--headers",
               insertValue: "--headers=",
               description:
                 "Array in JSON format of custom headers which will be added to the POT file. Defaults to empty array.",
+              args: { name: "headers" },
             },
             {
               name: "--skip-js",
@@ -3749,12 +3755,14 @@ export const completion: Fig.Spec = {
               insertValue: "--file-comment=",
               description:
                 "String that should be added as a comment to the top of the resulting POT file. By default, a copyright comment is added for WordPress plugins and themes in the following manner: Copyright (C) 2018 Example Plugin Author. This file is distributed under the same license as the Example Plugin package. If a plugin or theme specifies a license in their main plugin file or stylesheet, the comment looks like this: Copyright (C) 2018 Example Plugin Author. This file is distributed under the GPLv2.",
+              args: { name: "file-comment" },
             },
             {
               name: "--package-name",
               insertValue: "--package-name=",
               description:
                 "Name to use for package name in the resulting POT file’s Project-Id-Version header. Overrides plugin or theme name, if applicable.",
+              args: { name: "name" },
             },
           ],
         },
