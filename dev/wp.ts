@@ -2334,12 +2334,14 @@ export const completion: Fig.Spec = {
               insertValue: "--dbuser=",
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
             {
               name: "--field=value",
@@ -2364,12 +2366,14 @@ export const completion: Fig.Spec = {
               insertValue: "--dbuser=",
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
             {
               name: "--yes",
@@ -2386,23 +2390,27 @@ export const completion: Fig.Spec = {
               name: "--database",
               insertValue: "--database=",
               description: "Use a specific database. Defaults to DB_NAME.",
+              args: { name: "database" },
             },
             {
               name: "--default-character-set",
               insertValue: "--default-character-set=",
               description:
                 "Use a specific character set. Defaults to DB_CHARSET when defined.",
+              args: { name: "character-set" },
             },
             {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
             {
               name: "--field=value",
@@ -2423,6 +2431,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "table",
+              description: "Name of the database table.",
             },
           ],
           options: [
@@ -2450,12 +2459,14 @@ export const completion: Fig.Spec = {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
           ],
         },
@@ -2467,12 +2478,14 @@ export const completion: Fig.Spec = {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
             {
               name: "--yes",
@@ -2486,6 +2499,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "file",
+              description:
+                "The name of the SQL file to export. If ‘-‘, then outputs to STDOUT. If omitted, it will be ‘{dbname}-{Y-m-d}-{random-hash}.sql’.",
             },
           ],
           options: [
@@ -2494,12 +2509,14 @@ export const completion: Fig.Spec = {
               insertValue: "--dbuser=",
               description:
                 "Username to pass to mysqldump. Defaults to DB_USER.",
+              args: { name: "value" },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysqldump. Defaults to DB_PASSWORD.",
+              args: { name: "value" },
             },
             {
               name: "--field=value",
@@ -2512,12 +2529,14 @@ export const completion: Fig.Spec = {
               insertValue: "--tables=",
               description:
                 "The comma separated list of specific tables to export. Excluding this parameter will export all tables in the database.",
+              args: { name: "tables" },
             },
             {
               name: "--exclude_tables",
               insertValue: "--exclude_tables=",
               description:
                 "The comma separated list of specific tables that should be skipped from exporting. Excluding this parameter will export all tables in the database.",
+              args: { name: "tables" },
             },
             {
               name: "--include-tablespaces",
@@ -2533,25 +2552,6 @@ export const completion: Fig.Spec = {
               description:
                 "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
             },
-            global_parameter_path,
-            global_parameter_url,
-            global_parameter_ssh,
-            global_parameter_http,
-            global_parameter_user,
-            global_parameter_skip_plugins1,
-            global_parameter_skip_plugins2,
-            global_parameter_skip_themes1,
-            global_parameter_skip_themes2,
-            global_parameter_skip_packages,
-            global_parameter_require,
-            global_parameter_exec,
-            global_parameter_color,
-            global_parameter_no_color,
-            global_parameter_debug1,
-            global_parameter_debug2,
-            global_parameter_prompt1,
-            global_parameter_prompt2,
-            global_parameter_quiet,
           ],
         },
         {
@@ -2560,6 +2560,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "file",
+              description:
+                "The name of the SQL file to import. If ‘-‘, then reads from STDIN. If omitted, it will look for ‘{dbname}.sql’.",
             },
           ],
           options: [
@@ -2567,18 +2569,26 @@ export const completion: Fig.Spec = {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_USER" }],
+              },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_PASSWORD" }],
+              },
             },
             {
               name: "--field=value",
               insertValue: "--",
               description:
-                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+                "Extra arguments to pass to mysql. Refer to mysql binary docs.",
             },
             {
               name: "--skip-optimization",
@@ -2601,12 +2611,20 @@ export const completion: Fig.Spec = {
               insertValue: "--dbuser=",
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_USER" }],
+              },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_PASSWORD" }],
+              },
             },
             {
               name: "--field=value",
@@ -2631,6 +2649,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "sql",
+              description:
+                "A SQL query. If not passed, will try to read from STDIN.",
             },
           ],
           options: [
@@ -2638,18 +2658,26 @@ export const completion: Fig.Spec = {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_USER" }],
+              },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_PASSWORD" }],
+              },
             },
             {
               name: "--field=value",
               insertValue: "--",
               description:
-                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+                "Extra arguments to pass to mysql. Refer to mysql docs.",
             },
             {
               name: "--defaults",
@@ -2667,18 +2695,26 @@ export const completion: Fig.Spec = {
               insertValue: "--dbuser=",
               description:
                 "Username to pass to mysqlcheck. Defaults to DB_USER.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_USER" }],
+              },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysqlcheck. Defaults to DB_PASSWORD.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_PASSWORD" }],
+              },
             },
             {
               name: "--field=value",
               insertValue: "--",
               description:
-                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+                "Extra arguments to pass to mysqlcheck. Refer to mysqlcheck docs.",
             },
             {
               name: "--defaults",
@@ -2695,12 +2731,20 @@ export const completion: Fig.Spec = {
               name: "--dbuser",
               insertValue: "--dbuser=",
               description: "Username to pass to mysql. Defaults to DB_USER.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_USER" }],
+              },
             },
             {
               name: "--dbpass",
               insertValue: "--dbpass=",
               description:
                 "Password to pass to mysql. Defaults to DB_PASSWORD.",
+              args: {
+                name: "value",
+                suggestions: [{ name: "DB_PASSWORD" }],
+              },
             },
             {
               name: "--yes",
@@ -2714,9 +2758,13 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "search",
+              description:
+                "String to search for. The search is case-insensitive by default.",
             },
             {
               name: "tables",
+              description:
+                "One or more tables to search through for the string.",
             },
           ],
           options: [
@@ -2740,7 +2788,7 @@ export const completion: Fig.Spec = {
               insertValue: "--before_context=",
               description: "Number of characters to display before the match.",
               args: {
-                name: "default",
+                name: "num",
                 suggestions: [{ name: "40" }],
               },
             },
@@ -2749,7 +2797,7 @@ export const completion: Fig.Spec = {
               insertValue: "--after_context=",
               description: "Number of characters to display after the match.",
               args: {
-                name: "default",
+                name: "num",
                 suggestions: [{ name: "40" }],
               },
             },
@@ -2763,12 +2811,14 @@ export const completion: Fig.Spec = {
               insertValue: "--regex-flags=",
               description:
                 "Pass PCRE modifiers to the regex search (e.g. ‘i’ for case-insensitivity).",
+              args: { name: "regex-flags" },
             },
             {
               name: "--regex-delimiter",
               insertValue: "--regex-delimiter=",
               description:
                 "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
+              args: { name: "regex-delimiter" },
             },
             {
               name: "--table_column_once",
@@ -2795,18 +2845,21 @@ export const completion: Fig.Spec = {
               insertValue: "--table_column_color=",
               description:
                 "Percent color code to use for the ‘table:column’ output. For a list of available percent color codes, see below. Default ‘%G’ (bright green).",
+              args: { name: "table_column_color" },
             },
             {
               name: "--id_color",
               insertValue: "--id_color=",
               description:
                 "Percent color code to use for the row id output. For a list of available percent color codes, see below. Default ‘%Y’ (bright yellow).",
+              args: { name: "id_color" },
             },
             {
               name: "--match_color",
               insertValue: "--match_color=",
               description:
                 "Percent color code to use for the match (unless both before and after context are 0, when no color code is used). For a list of available percent color codes, see below. Default ‘%3%k’ (black on a mustard background).",
+              args: { name: "match_color" },
             },
           ],
         },
@@ -2819,7 +2872,7 @@ export const completion: Fig.Spec = {
               insertValue: "--size_format=",
               description: "Display the database size only, as a bare number.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "b" },
                   { name: "kb" },
@@ -2839,7 +2892,7 @@ export const completion: Fig.Spec = {
               },
             },
             {
-              name: "--table",
+              name: "--tables",
               description:
                 "Display each table name and size instead of the database size.",
             },
@@ -2866,6 +2919,7 @@ export const completion: Fig.Spec = {
               insertValue: "--scope=",
               description:
                 "Can be all, global, ms_global, blog, or old tables. Defaults to all.",
+              args: { name: "scope" },
             },
             {
               name: "--network",
@@ -2889,6 +2943,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "table",
+              description:
+                "List tables based on wildcard search, e.g. ‘wp_*_options’ or ‘wp_post?’.",
             },
           ],
           options: [
@@ -2897,6 +2953,7 @@ export const completion: Fig.Spec = {
               insertValue: "--scope=",
               description:
                 "Can be all, global, ms_global, blog, or old tables. Defaults to all.",
+              args: { name: "scope" },
             },
             {
               name: "--network",
