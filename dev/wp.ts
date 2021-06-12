@@ -1789,12 +1789,14 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Prints the value of a single field for each update.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific object fields. Defaults to version,update_type,package_url.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
@@ -1829,17 +1831,27 @@ export const completion: Fig.Spec = {
               insertValue: "--path=",
               description:
                 "Specify the path in which to install WordPress. Defaults to current directory.",
+              args: { name: "path" },
             },
             {
               name: "--locale",
               insertValue: "--locale=",
               description: "Select which language you want to download.",
+              args: { name: "locale" },
             },
             {
               name: "--version",
               insertValue: "--version=",
               description:
                 "Select which version you want to download. Accepts a version number, ‘latest’ or ‘nightly’.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "<number>" },
+                  { name: "latest" },
+                  { name: "nightly" },
+                ],
+              },
             },
             {
               name: "--skip-content",
@@ -1865,31 +1877,32 @@ export const completion: Fig.Spec = {
               name: "--url",
               insertValue: "--url=",
               description: "The address of the new site.",
+              args: { name: "url" },
             },
             {
               name: "--title",
               insertValue: "--title=",
               description: "The title of the new site.",
+              args: { name: "site-title" },
             },
             {
               name: "--admin_user",
               insertValue: "--admin_user=",
               description: "The name of the admin user.",
-              args: {
-                name: "default",
-                suggestions: [{ name: "admin" }],
-              },
+              args: { name: "username" },
             },
             {
               name: "--admin_password",
               insertValue: "--admin_password=",
               description:
                 "The password for the admin user. Defaults to randomly generated string.",
+              args: { name: "password" },
             },
             {
               name: "--admin_email",
               insertValue: "--admin_email=",
               description: "The email address for the admin user.",
+              args: { name: "email" },
             },
             {
               name: "--skip-email",
@@ -1904,7 +1917,6 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--network",
-              insertValue: "--network=",
               description: "Check if this is a multisite installation.",
             },
           ],
@@ -1918,6 +1930,7 @@ export const completion: Fig.Spec = {
               name: "--title",
               insertValue: "--title=",
               description: "The title of the new network.",
+              args: { name: "network-title" },
             },
             {
               name: "--base",
@@ -1925,7 +1938,7 @@ export const completion: Fig.Spec = {
               description:
                 "Base path after the domain name that each site url will start with.",
               args: {
-                name: "default",
+                name: "url-path",
                 suggestions: [{ name: "/" }],
               },
             },
@@ -1944,6 +1957,7 @@ export const completion: Fig.Spec = {
               name: "--url",
               insertValue: "--url=",
               description: "The address of the new site.",
+              args: { name: "url" },
             },
             {
               name: "--base",
@@ -1951,7 +1965,7 @@ export const completion: Fig.Spec = {
               description:
                 "Base path after the domain name that each site url will start with.",
               args: {
-                name: "default",
+                name: "url-path",
                 suggestions: [{ name: "/" }],
               },
             },
@@ -1964,13 +1978,14 @@ export const completion: Fig.Spec = {
               name: "--title",
               insertValue: "--title=",
               description: "The title of the new site.",
+              args: { name: "site-title" },
             },
             {
               name: "--admin_user",
               insertValue: "--admin_user=",
               description: "The name of the admin user.",
               args: {
-                name: "default",
+                name: "username",
                 suggestions: [{ name: "admin" }],
               },
             },
@@ -1979,11 +1994,13 @@ export const completion: Fig.Spec = {
               insertValue: "--admin_password=",
               description:
                 "The password for the admin user. Defaults to randomly generated string.",
+              args: { name: "password" },
             },
             {
               name: "--admin_email",
               insertValue: "--admin_email=",
               description: "The email address for the admin user.",
+              args: { name: "email" },
             },
             {
               name: "--skip-email",
@@ -2002,6 +2019,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "zip",
+              description:
+                "Path to zip file to use, instead of downloading from wordpress.org.",
             },
           ],
           options: [
@@ -2015,6 +2034,7 @@ export const completion: Fig.Spec = {
               insertValue: "--version=",
               description:
                 "Update to a specific version, instead of to the latest version. Alternatively accepts ‘nightly’.",
+              args: { name: "version" },
             },
             {
               name: "--force",
@@ -2025,6 +2045,7 @@ export const completion: Fig.Spec = {
               name: "--locale",
               insertValue: "--locale=",
               description: "Select which language you want to download.",
+              args: { name: "locale" },
             },
             {
               name: "--insecure",
@@ -2058,12 +2079,14 @@ export const completion: Fig.Spec = {
               insertValue: "--version=",
               description:
                 "Verify checksums against a specific version of WordPress.",
+              args: { name: "version" },
             },
             {
               name: "--locale",
               insertValue: "--locale=",
               description:
                 "Verify checksums against a specific locale of WordPress.",
+              args: { name: "locale" },
             },
             {
               name: "--insecure",
