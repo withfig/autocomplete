@@ -50,7 +50,10 @@ const global_parameter_user = {
   name: "--user",
   insertValue: "--user=",
   description: "Set the WordPress user.",
-  args: [{ name: "id" }, { name: "login" }, { name: "email" }],
+  args: {
+    name: "options",
+    suggestions: [{ name: "id" }, { name: "login" }, { name: "email" }],
+  },
 };
 
 const global_parameter_skip_plugins1 = {
@@ -499,31 +502,37 @@ export const completion: Fig.Spec = {
                   name: "--set-user",
                   insertValue: "--set-user=",
                   description: "Set user for alias.",
+                  args: { name: "user" },
                 },
                 {
                   name: "--set-url",
                   insertValue: "--set-url=",
                   description: "Set url for alias.",
+                  args: { name: "url" },
                 },
                 {
                   name: "--set-path",
                   insertValue: "--set-path=",
                   description: "Set path for alias.",
+                  args: { name: "path" },
                 },
                 {
                   name: "--set-ssh",
                   insertValue: "--set-ssh=",
                   description: "Set ssh for alias.",
+                  args: { name: "ssh" },
                 },
                 {
                   name: "--set-http",
                   insertValue: "--set-http=",
                   description: "Set http for alias.",
+                  args: { name: "http" },
                 },
                 {
                   name: "--grouping",
                   insertValue: "--grouping=",
                   description: "For grouping multiple aliases.",
+                  args: { name: "grouping" },
                 },
                 {
                   name: "--config",
@@ -600,31 +609,37 @@ export const completion: Fig.Spec = {
                   name: "--set-user",
                   insertValue: "--set-user=",
                   description: "Set user for alias.",
+                  args: { name: "user" },
                 },
                 {
                   name: "--set-url",
                   insertValue: "--set-url=",
                   description: "Set url for alias.",
+                  args: { name: "url" },
                 },
                 {
                   name: "--set-path",
                   insertValue: "--set-path=",
                   description: "Set path for alias.",
+                  args: { name: "path" },
                 },
                 {
                   name: "--set-ssh",
                   insertValue: "--set-ssh=",
                   description: "Set ssh for alias.",
+                  args: { name: "ssh" },
                 },
                 {
                   name: "--set-http",
                   insertValue: "--set-http=",
                   description: "Set http for alias.",
+                  args: { name: "http" },
                 },
                 {
                   name: "--grouping",
                   insertValue: "--grouping=",
                   description: "For grouping multiple aliases.",
+                  args: { name: "grouping" },
                 },
                 {
                   name: "--config",
@@ -675,12 +690,14 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Prints the value of a single field for each update.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific object fields. Defaults to version,update_type,package_url.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
@@ -711,12 +728,14 @@ export const completion: Fig.Spec = {
               name: "--line",
               insertValue: "--line=",
               description: "The current command line to be executed.",
+              args: { name: "line" },
             },
             {
               name: "--point",
               insertValue: "--point=",
               description:
                 "The index to the current cursor position relative to the beginning of the command.",
+              args: { name: "point" },
             },
           ],
         },
@@ -863,6 +882,7 @@ export const completion: Fig.Spec = {
               insertValue: "--",
               description:
                 "Associative args for the new comment. See wp_insert_comment().",
+              args: { name: "field" },
             },
             {
               name: "--porcelain",
