@@ -4507,12 +4507,15 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
                 },
                 {
                   name: "title",
+                  description: "Title for the link.",
                 },
                 {
                   name: "link",
+                  description: "Target URL for the link.",
                 },
               ],
               options: [
@@ -4520,33 +4523,39 @@ export const completion: Fig.Spec = {
                   name: "--description",
                   insertValue: "--description=",
                   description: "Set a custom description for the menu item.",
+                  args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
                   insertValue: "--attr-title=",
                   description:
                     "Set a custom title attribute for the menu item.",
+                  args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
                   insertValue: "--target=",
                   description: "Set a custom link target for the menu item.",
+                  args: { name: "target" },
                 },
                 {
                   name: "--classes",
                   insertValue: "--classes=",
                   description: "Set a custom link classes for the menu item.",
+                  args: { name: "classes" },
                 },
                 {
                   name: "--position",
                   insertValue: "--position=",
                   description: "Specify the position of this menu item.",
+                  args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
                   insertValue: "--parent-id=",
                   description:
                     "Make this menu item a child of another menu item.",
+                  args: { name: "parent-id" },
                 },
                 {
                   name: "--porcelain",
@@ -4560,9 +4569,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
                 },
                 {
                   name: "post-id",
+                  description: "Post ID to add to the menu.",
                 },
               ],
               options: [
@@ -4570,43 +4581,51 @@ export const completion: Fig.Spec = {
                   name: "--title",
                   insertValue: "--title=",
                   description: "Set a custom title for the menu item.",
+                  args: { name: "title" },
                 },
                 {
                   name: "--link",
                   insertValue: "--link=",
                   description: "Set a custom url for the menu item.",
+                  args: { name: "link" },
                 },
                 {
                   name: "--description",
                   insertValue: "--description=",
                   description: "Set a custom description for the menu item.",
+                  args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
                   insertValue: "--attr-title=",
                   description:
                     "Set a custom title attribute for the menu item.",
+                  args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
                   insertValue: "--target=",
                   description: "Set a custom link target for the menu item.",
+                  args: { name: "target" },
                 },
                 {
                   name: "--classes",
                   insertValue: "--classes=",
                   description: "Set a custom link classes for the menu item.",
+                  args: { name: "classes" },
                 },
                 {
                   name: "--position",
                   insertValue: "--position=",
                   description: "Specify the position of this menu item.",
+                  args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
                   insertValue: "--parent-id=",
                   description:
                     "Make this menu item a child of another menu item.",
+                  args: { name: "parent-id" },
                 },
                 {
                   name: "--porcelain",
@@ -4620,12 +4639,15 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
                 },
                 {
                   name: "taxonomy",
+                  description: "Taxonomy of the term to be added.",
                 },
                 {
                   name: "term-id",
+                  description: "Term ID of the term to be added.",
                 },
               ],
               options: [
@@ -4633,43 +4655,51 @@ export const completion: Fig.Spec = {
                   name: "--title",
                   insertValue: "--title=",
                   description: "Set a custom title for the menu item.",
+                  args: { name: "title" },
                 },
                 {
                   name: "--link",
                   insertValue: "--link=",
                   description: "Set a custom url for the menu item.",
+                  args: { name: "link" },
                 },
                 {
                   name: "--description",
                   insertValue: "--description=",
                   description: "Set a custom description for the menu item.",
+                  args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
                   insertValue: "--attr-title=",
                   description:
                     "Set a custom title attribute for the menu item.",
+                  args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
                   insertValue: "--target=",
                   description: "Set a custom link target for the menu item.",
+                  args: { name: "target" },
                 },
                 {
                   name: "--classes",
                   insertValue: "--classes=",
                   description: "Set a custom link classes for the menu item.",
+                  args: { name: "classes" },
                 },
                 {
                   name: "--position",
                   insertValue: "--position=",
                   description: "Specify the position of this menu item.",
+                  args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
                   insertValue: "--parent-id=",
                   description:
                     "Make this menu item a child of another menu item.",
+                  args: { name: "parent-id" },
                 },
                 {
                   name: "--porcelain",
@@ -4701,13 +4731,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific object fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -4726,6 +4757,7 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "db-id",
+                  description: "Database ID for the menu item.",
                 },
               ],
               options: [
@@ -4733,43 +4765,51 @@ export const completion: Fig.Spec = {
                   name: "--title",
                   insertValue: "--title=",
                   description: "Set a custom title for the menu item.",
+                  args: { name: "title" },
                 },
                 {
                   name: "--link",
                   insertValue: "--link=",
                   description: "Set a custom url for the menu item.",
+                  args: { name: "link" },
                 },
                 {
                   name: "--description",
                   insertValue: "--description=",
                   description: "Set a custom description for the menu item.",
+                  args: { name: "description" },
                 },
                 {
                   name: "--attr-title",
                   insertValue: "--attr-title=",
                   description:
                     "Set a custom title attribute for the menu item.",
+                  args: { name: "attr-title" },
                 },
                 {
                   name: "--target",
                   insertValue: "--target=",
                   description: "Set a custom link target for the menu item.",
+                  args: { name: "target" },
                 },
                 {
                   name: "--classes",
                   insertValue: "--classes=",
                   description: "Set a custom link classes for the menu item.",
+                  args: { name: "classes" },
                 },
                 {
                   name: "--position",
                   insertValue: "--position=",
                   description: "Specify the position of this menu item.",
+                  args: { name: "position" },
                 },
                 {
                   name: "--parent-id",
                   insertValue: "--parent-id=",
                   description:
                     "Make this menu item a child of another menu item.",
+                  args: { name: "parent-id" },
                 },
               ],
             },
@@ -4783,13 +4823,14 @@ export const completion: Fig.Spec = {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -4812,9 +4853,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
                 },
                 {
                   name: "location",
+                  description: "Location’s slug.",
                 },
               ],
             },
@@ -4827,7 +4870,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -4846,9 +4889,11 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "menu",
+                  description: "The name, slug, or term ID for the menu.",
                 },
                 {
                   name: "location",
+                  description: "Location’s slug.",
                 },
               ],
             },
