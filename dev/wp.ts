@@ -1,491 +1,168 @@
 // To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-const global_parameters = [
-  {
-    name: "--path",
-    insertValue: "--path=",
-    description: "Path to the WordPress files.",
-    args: {
-      name: "path",
-    },
+const global_parameter_path = {
+  name: "--path",
+  insertValue: "--path=",
+  description: "Path to the WordPress files.",
+  args: {
+    name: "path",
   },
-  {
-    name: "--url",
-    insertValue: "--url=",
-    description:
-      "Pretend request came from given URL. In multisite, this argument is how the target site is specified.",
-    args: {
-      name: "url",
-    },
-  },
-  {
-    name: "--ssh",
-    insertValue: "--ssh=",
-    description:
-      "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”).",
-    args: {
-      name: "options",
-      suggestions: [
-        { name: "scheme:" },
-        { name: "user@" },
-        { name: "host" },
-        { name: "container" },
-        { name: ":port" },
-        { name: "path" },
-      ],
-    },
-  },
-  {
-    name: "--http",
-    insertValue: "--http=",
-    description:
-      "Perform operation against a remote WordPress installation over HTTP.",
-    args: {
-      name: "http",
-    },
-  },
-  {
-    name: "--user",
-    insertValue: "--user=",
-    description: "Set the WordPress user.",
-    args: [{ name: "id" }, { name: "login" }, { name: "email" }],
-  },
-  {
-    name: "--skip-plugins",
-    description:
-      "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
-  },
-  {
-    name: "--skip-plugins",
-    insertValue: "--skip-plugins=",
-    displayName: "--skip-plugins=",
-    description:
-      "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
-    args: {
-      name: "plugins",
-    },
-  },
-  {
-    name: "--skip-themes",
-    description:
-      "Skip loading all themes, or a comma-separated list of themes.",
-  },
-  {
-    name: "--skip-themes",
-    insertValue: "--skip-themes=",
-    displayName: "--skip-themes=",
-    description:
-      "Skip loading all themes, or a comma-separated list of themes.",
-    args: {
-      name: "themes",
-    },
-  },
-  {
-    name: "--skip-packages",
-    description: "Skip loading all installed packages.",
-  },
-  {
-    name: "--require",
-    insertValue: "--require=",
-    description:
-      "Load PHP file before running the command (may be used more than once).",
-    args: {
-      name: "path",
-    },
-  },
-  {
-    name: "--exec",
-    insertValue: "--exec=",
-    description:
-      "Execute PHP code before running the command (may be used more than once).",
-    args: {
-      name: "php-code",
-    },
-  },
-  {
-    name: "--color",
-    description: "Whether to colorize the output.",
-  },
-  {
-    name: "--no-color",
-    description: "Whether to colorize the output.",
-  },
-  {
-    name: "--debug",
-    description:
-      "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
-  },
-  {
-    name: "--debug",
-    displayName: "--debug=",
-    insertValue: "--debug=",
-    description:
-      "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
-    args: {
-      name: "group",
-    },
-  },
-  {
-    name: "--prompt",
-    description:
-      "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
-  },
-  {
-    name: "--prompt",
-    insertValue: "--prompt=",
-    displayName: "--prompt=",
-    description:
-      "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
-    args: {
-      name: "assoc",
-    },
-  },
-  {
-    name: "--quiet",
-    description: "Suppress informational messages.",
-  },
-];
+};
 
-function get_dist_archive_options() {
-  const wp_dist_archive = [
-    {
-      name: "--create-target-dir",
-      description: "Automatically create the target directory as needed.",
-    },
-    {
-      name: "--format",
-      insertValue: "--format=",
-      description: "Choose the format for the archive.",
-      args: {
-        name: "options",
-        suggestions: [{ name: "zip" }, { name: "targz" }],
-      },
-    },
-  ];
-  return wp_dist_archive.concat(global_parameters);
-}
+const global_parameter_url = {
+  name: "--url",
+  insertValue: "--url=",
+  description:
+    "Pretend request came from given URL. In multisite, this argument is how the target site is specified.",
+  args: {
+    name: "url",
+  },
+};
 
-function get_eval_options() {
-  const wp_eval = [
-    {
-      name: "--skip-wordpress",
-      description: "Execute code without loading WordPress.",
-    },
-  ];
-  return wp_eval.concat(global_parameters);
-}
+const global_parameter_ssh = {
+  name: "--ssh",
+  insertValue: "--ssh=",
+  description:
+    "Perform operation against a remote server over SSH (or a container using scheme of “docker”, “docker-compose”, “vagrant”).",
+  args: {
+    name: "options",
+    suggestions: [
+      { name: "scheme:" },
+      { name: "user@" },
+      { name: "host" },
+      { name: "container" },
+      { name: ":port" },
+      { name: "path" },
+    ],
+  },
+};
 
-function get_eval_file_options() {
-  const wp_eval_file = [
-    {
-      name: "--skip-wordpress",
-      description: "Load and execute file without loading WordPress.",
-    },
-  ];
-  return wp_eval_file.concat(global_parameters);
-}
+const global_parameter_http = {
+  name: "--http",
+  insertValue: "--http=",
+  description:
+    "Perform operation against a remote WordPress installation over HTTP.",
+  args: {
+    name: "http",
+  },
+};
 
-function get_export_options() {
-  const wp_export = [
-    {
-      name: "--dbuser",
-      insertValue: "--dbuser=",
-      description: "Username to pass to mysqldump. Defaults to DB_USER.",
-    },
-    {
-      name: "--dbpass",
-      insertValue: "--dbpass=",
-      description: "Password to pass to mysqldump. Defaults to DB_PASSWORD.",
-    },
-    {
-      name: "--field=value",
-      insertValue: "--",
-      description:
-        "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
-    },
-    {
-      name: "--tables",
-      insertValue: "--tables=",
-      description:
-        "The comma separated list of specific tables to export. Excluding this parameter will export all tables in the database.",
-    },
-    {
-      name: "--exclude_tables",
-      insertValue: "--exclude_tables=",
-      description:
-        "The comma separated list of specific tables that should be skipped from exporting. Excluding this parameter will export all tables in the database.",
-    },
-    {
-      name: "--include-tablespaces",
-      description:
-        "Skips adding the default –no-tablespaces option to mysqldump.",
-    },
-    {
-      name: "--porcelain",
-      description: "Output filename for the exported database.",
-    },
-    {
-      name: "--defaults",
-      description:
-        "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
-    },
-  ];
-  return wp_export.concat(global_parameters);
-}
+const global_parameter_user = {
+  name: "--user",
+  insertValue: "--user=",
+  description: "Set the WordPress user.",
+  args: [{ name: "id" }, { name: "login" }, { name: "email" }],
+};
 
-function get_find_options() {
-  const wp_find = [
-    {
-      name: "--skip-ignored-paths",
-      insertValue: "--skip-ignored-paths=",
-      description: "Skip the paths that are ignored by default.",
-    },
-    {
-      name: "--include_ignored_paths",
-      insertValue: "--include_ignored_paths=",
-      description:
-        "Include additional ignored paths as CSV (e.g. ‘/sys-backup/,/temp/’).",
-    },
-    {
-      name: "--max_depth",
-      insertValue: "--max_depth=",
-      description: "Only recurse to a specified depth, inclusive.",
-    },
-    {
-      name: "--fields",
-      insertValue: "--fields=",
-      description: "Limit the output to specific row fields.",
-    },
-    {
-      name: "--field",
-      insertValue: "--field=",
-      description: "Output a specific field for each row.",
-    },
-    {
-      name: "--format",
-      insertValue: "--format=",
-      description: "Render output in a particular format.",
-      args: {
-        name: "options",
-        suggestions: [
-          { name: "table" },
-          { name: "json" },
-          { name: "csv" },
-          { name: "yaml" },
-          { name: "count" },
-        ],
-      },
-    },
-  ];
-  return wp_find.concat(global_parameters);
-}
+const global_parameter_skip_plugins1 = {
+  name: "--skip-plugins",
+  description:
+    "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
+};
 
-function get_import_options() {
-  const wp_import = [
-    {
-      name: "--authors",
-      insertValue: "--authors",
-      description:
-        "How the author mapping should be handled. Options are ‘create’, ‘mapping.csv’, or ‘skip’. The first will create any non-existent users from the WXR file. The second will read author mapping associations from a CSV, or create a CSV for editing if the file path doesn’t exist. The CSV requires two columns, and a header row like “old_user_login,new_user_login”. The last option will skip any author mapping.",
-    },
-    {
-      name: "--skip",
-      insertValue: "--skip",
-      description:
-        "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation).",
-    },
-  ];
-  return wp_import.concat(global_parameters);
-}
+const global_parameter_skip_plugins2 = {
+  name: "--skip-plugins",
+  insertValue: "--skip-plugins=",
+  displayName: "--skip-plugins=",
+  description:
+    "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
+  args: {
+    name: "plugins",
+  },
+};
 
-function get_search_replace_options() {
-  const wp_search_replace_options = [
-    {
-      name: "--dry-run",
-      description:
-        "Run the entire search/replace operation and show report, but don’t save changes to the database.",
-    },
-    {
-      name: "--network",
-      description:
-        "Search/replace through all the tables registered to $wpdb in a multisite install.",
-    },
-    {
-      name: "--all-tables-with-prefix",
-      description:
-        "Enable replacement on any tables that match the table prefix even if not registered on $wpdb.",
-    },
-    {
-      name: "--all-tables",
-      description:
-        "Enable replacement on ALL tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –network and –all-tables-with-prefix.",
-    },
-    {
-      name: "--export",
-      insertValue: "--export=",
-      description:
-        "Write transformed data as SQL file instead of saving replacements to the database. If <file> is not supplied, will output to STDOUT.",
-    },
-    {
-      name: "--export_insert_size",
-      insertValue: "--export_insert_size=",
-      description:
-        "Define number of rows in single INSERT statement when doing SQL export. You might want to change this depending on your database configuration (e.g. if you need to do fewer queries). Default: 50",
-      args: {
-        name: "default",
-        suggestions: [{ name: "50" }],
-      },
-    },
-    {
-      name: "--skip-tables",
-      insertValue: "--skip-tables=",
-      description:
-        "Do not perform the replacement on specific tables. Use commas to specify multiple tables. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
-    },
-    {
-      name: "--skip-columns",
-      insertValue: "--skip-columns=",
-      description:
-        "Do not perform the replacement on specific columns. Use commas to specify multiple columns.",
-    },
-    {
-      name: "--include-columns",
-      insertValue: "--include-columns=",
-      description:
-        "Perform the replacement on specific columns. Use commas to specify multiple columns.",
-    },
-    {
-      name: "--precise",
-      description:
-        "Force the use of PHP (instead of SQL) which is more thorough, but slower.",
-    },
-    {
-      name: "--recurse-objects",
-      description:
-        "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
-    },
-    {
-      name: "--no-recurse-objects",
-      description:
-        "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
-    },
-    {
-      name: "--verbose",
-      description: "Prints rows to the console as they’re updated.",
-    },
-    {
-      name: "--regex",
-      description:
-        "Runs the search using a regular expression (without delimiters). Warning: search-replace will take about 15-20x longer when using –regex.",
-    },
-    {
-      name: "--regex-flags",
-      insertValue: "--regex-flags=",
-      description:
-        "Pass PCRE modifiers to regex search-replace (e.g. ‘i’ for case-insensitivity).",
-    },
-    {
-      name: "--regex-delimiter",
-      insertValue: "--regex-delimiter=",
-      description:
-        "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
-    },
-    {
-      name: "--regex-limit",
-      insertValue: "--regex-limit=",
-      description:
-        "The maximum possible replacements for the regex per row (or per unserialized data bit per row). Defaults to -1 (no limit).",
-    },
-    {
-      name: "--format",
-      insertValue: "--format=",
-      description: "Render output in a particular format.",
-      args: {
-        name: "options",
-        suggestions: [{ name: "table" }, { name: "count" }],
-      },
-    },
-    {
-      name: "--report",
-      description: "Produce report. Defaults to true.",
-    },
-    {
-      name: "--report-changed-only",
-      description:
-        "Report changed fields only. Defaults to false, unless logging, when it defaults to true.",
-    },
-    {
-      name: "--log",
-      insertValue: "--log",
-      description:
-        "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
-    },
-    {
-      name: "--before_context",
-      insertValue: "--before_context=",
-      description:
-        "For logging, number of characters to display before the old match and the new replacement. Default 40. Ignored if not logging.",
-    },
-    {
-      name: "--after_context",
-      insertValue: "--after_context=",
-      description:
-        "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging.",
-    },
-  ];
-  return wp_search_replace_options.concat(global_parameters);
-}
+const global_parameter_skip_themes1 = {
+  name: "--skip-themes",
+  description: "Skip loading all themes, or a comma-separated list of themes.",
+};
 
-function get_server_options() {
-  const wp_server_options = [
-    {
-      name: "--host",
-      insertValue: "--host=",
-      description: "The hostname to bind the server to.",
-      args: {
-        name: "default",
-        suggestions: [{ name: "localhost" }],
-      },
-    },
-    {
-      name: "--port",
-      insertValue: "--port=",
-      description: "The port number to bind the server to.",
-      args: {
-        name: "default",
-        suggestions: [{ name: "8080" }],
-      },
-    },
-    {
-      name: "--docroot",
-      insertValue: "--docroot=",
-      description:
-        "The path to use as the document root. If the path global parameter is set, the default value is it.",
-    },
-    {
-      name: "--config",
-      insertValue: "--config=",
-      description: "Config the server with a specific .ini file.",
-    },
-  ];
-  return wp_server_options.concat(global_parameters);
-}
+const global_parameter_skip_themes2 = {
+  name: "--skip-themes",
+  insertValue: "--skip-themes=",
+  displayName: "--skip-themes=",
+  description: "Skip loading all themes, or a comma-separated list of themes.",
+  args: {
+    name: "themes",
+  },
+};
 
-function get_shell_options() {
-  const wp_shell_options = [
-    {
-      name: "--basic",
-      description:
-        "Force the use of WP-CLI’s built-in PHP REPL, even if the Boris or PsySH PHP REPLs are available.",
-    },
-  ];
-  return wp_shell_options.concat(global_parameters);
-}
+const global_parameter_skip_packages = {
+  name: "--skip-packages",
+  description: "Skip loading all installed packages.",
+};
+
+const global_parameter_require = {
+  name: "--require",
+  insertValue: "--require=",
+  description:
+    "Load PHP file before running the command (may be used more than once).",
+  args: {
+    name: "path",
+  },
+};
+
+const global_parameter_exec = {
+  name: "--exec",
+  insertValue: "--exec=",
+  description:
+    "Execute PHP code before running the command (may be used more than once).",
+  args: {
+    name: "php-code",
+  },
+};
+
+const global_parameter_color = {
+  name: "--color",
+  description: "Whether to colorize the output.",
+};
+
+const global_parameter_no_color = {
+  name: "--no-color",
+  description: "Whether to colorize the output.",
+};
+
+const global_parameter_debug1 = {
+  name: "--debug",
+  description:
+    "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
+};
+
+const global_parameter_debug2 = {
+  name: "--debug",
+  displayName: "--debug=",
+  insertValue: "--debug=",
+  description:
+    "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
+  args: {
+    name: "group",
+  },
+};
+
+const global_parameter_prompt1 = {
+  name: "--prompt",
+  description:
+    "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
+};
+
+const global_parameter_prompt2 = {
+  name: "--prompt",
+  insertValue: "--prompt=",
+  displayName: "--prompt=",
+  description:
+    "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
+  args: {
+    name: "assoc",
+  },
+};
+
+const global_parameter_quiet = {
+  name: "--quiet",
+  description: "Suppress informational messages.",
+};
 
 // The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "wp",
   description: "WP-CLI is the command-line interface for WordPress.",
-  // options: global_parameters,
   subcommands: [
     // {
     //   name: "admin",
@@ -501,7 +178,27 @@ export const completion: Fig.Spec = {
       description:
         "Adds, removes, fetches, and flushes the WP Object Cache object.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add",
@@ -628,7 +325,27 @@ export const completion: Fig.Spec = {
       name: "cap",
       description: "Adds, removes, and lists capabilities of a user role.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add",
@@ -656,7 +373,27 @@ export const completion: Fig.Spec = {
       description:
         "Reviews current WP-CLI info, checks for updates, or views defined aliases.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "alias",
@@ -985,7 +722,27 @@ export const completion: Fig.Spec = {
       name: "comment",
       description: "Creates, updates, deletes, and moderates comments.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "approve",
@@ -1491,7 +1248,27 @@ export const completion: Fig.Spec = {
       name: "config",
       description: "Generates and reads the wp-config.php file.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "create",
@@ -1812,7 +1589,27 @@ export const completion: Fig.Spec = {
       description:
         "Downloads, installs, updates, and manages a WordPress installation.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "check-update",
@@ -2132,7 +1929,27 @@ export const completion: Fig.Spec = {
       description:
         "Tests, runs, and deletes WP-Cron events; manages WP-Cron schedules.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "event",
@@ -2188,7 +2005,27 @@ export const completion: Fig.Spec = {
       description:
         "Performs basic database operations using credentials stored in wp-config.php.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "check",
@@ -2353,7 +2190,71 @@ export const completion: Fig.Spec = {
               name: "file",
             },
           ],
-          options: get_export_options(),
+          options: [
+            {
+              name: "--dbuser",
+              insertValue: "--dbuser=",
+              description:
+                "Username to pass to mysqldump. Defaults to DB_USER.",
+            },
+            {
+              name: "--dbpass",
+              insertValue: "--dbpass=",
+              description:
+                "Password to pass to mysqldump. Defaults to DB_PASSWORD.",
+            },
+            {
+              name: "--field=value",
+              insertValue: "--",
+              description:
+                "Extra arguments to pass to mysqldump. Refer to mysqldump docs.",
+            },
+            {
+              name: "--tables",
+              insertValue: "--tables=",
+              description:
+                "The comma separated list of specific tables to export. Excluding this parameter will export all tables in the database.",
+            },
+            {
+              name: "--exclude_tables",
+              insertValue: "--exclude_tables=",
+              description:
+                "The comma separated list of specific tables that should be skipped from exporting. Excluding this parameter will export all tables in the database.",
+            },
+            {
+              name: "--include-tablespaces",
+              description:
+                "Skips adding the default –no-tablespaces option to mysqldump.",
+            },
+            {
+              name: "--porcelain",
+              description: "Output filename for the exported database.",
+            },
+            {
+              name: "--defaults",
+              description:
+                "Loads the environment’s MySQL option files. Default behavior is to skip loading them to avoid failures due to misconfiguration.",
+            },
+            global_parameter_path,
+            global_parameter_url,
+            global_parameter_ssh,
+            global_parameter_http,
+            global_parameter_user,
+            global_parameter_skip_plugins1,
+            global_parameter_skip_plugins2,
+            global_parameter_skip_themes1,
+            global_parameter_skip_themes2,
+            global_parameter_skip_packages,
+            global_parameter_require,
+            global_parameter_exec,
+            global_parameter_color,
+            global_parameter_no_color,
+            global_parameter_debug1,
+            global_parameter_debug2,
+            global_parameter_prompt1,
+            global_parameter_prompt2,
+            global_parameter_quiet,
+          ],
         },
         {
           name: "import",
@@ -2738,13 +2639,66 @@ export const completion: Fig.Spec = {
           name: "target",
         },
       ],
-      options: get_dist_archive_options(),
+      options: [
+        {
+          name: "--create-target-dir",
+          description: "Automatically create the target directory as needed.",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Choose the format for the archive.",
+          args: {
+            name: "options",
+            suggestions: [{ name: "zip" }, { name: "targz" }],
+          },
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "embed",
       description: "Inspects oEmbed providers, clears embed cache, and more.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "cache",
@@ -2981,7 +2935,31 @@ export const completion: Fig.Spec = {
           description: "The code to execute, as a string.",
         },
       ],
-      options: get_eval_options(),
+      options: [
+        {
+          name: "--skip-wordpress",
+          description: "Execute code without loading WordPress.",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "eval-file",
@@ -2998,7 +2976,31 @@ export const completion: Fig.Spec = {
             "One or more arguments to pass to the file. They are placed in the $args variable.",
         },
       ],
-      options: get_eval_file_options(),
+      options: [
+        {
+          name: "--skip-wordpress",
+          description: "Load and execute file without loading WordPress.",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "export",
@@ -3113,7 +3115,68 @@ export const completion: Fig.Spec = {
           description: "Path to search the subdirectories of.",
         },
       ],
-      options: get_find_options(),
+      options: [
+        {
+          name: "--skip-ignored-paths",
+          insertValue: "--skip-ignored-paths=",
+          description: "Skip the paths that are ignored by default.",
+        },
+        {
+          name: "--include_ignored_paths",
+          insertValue: "--include_ignored_paths=",
+          description:
+            "Include additional ignored paths as CSV (e.g. ‘/sys-backup/,/temp/’).",
+        },
+        {
+          name: "--max_depth",
+          insertValue: "--max_depth=",
+          description: "Only recurse to a specified depth, inclusive.",
+        },
+        {
+          name: "--fields",
+          insertValue: "--fields=",
+          description: "Limit the output to specific row fields.",
+        },
+        {
+          name: "--field",
+          insertValue: "--field=",
+          description: "Output a specific field for each row.",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Render output in a particular format.",
+          args: {
+            name: "options",
+            suggestions: [
+              { name: "table" },
+              { name: "json" },
+              { name: "csv" },
+              { name: "yaml" },
+              { name: "count" },
+            ],
+          },
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "help",
@@ -3124,14 +3187,54 @@ export const completion: Fig.Spec = {
           description: "Get help on a specific command.",
         },
       ],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "i18n",
       description:
         "Provides internationalization tools for WordPress projects.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "make-json",
@@ -3283,13 +3386,65 @@ export const completion: Fig.Spec = {
             "Path to one or more valid WXR files for importing. Directories are also accepted.",
         },
       ],
-      options: get_import_options(),
+      options: [
+        {
+          name: "--authors",
+          insertValue: "--authors",
+          description:
+            "How the author mapping should be handled. Options are ‘create’, ‘mapping.csv’, or ‘skip’. The first will create any non-existent users from the WXR file. The second will read author mapping associations from a CSV, or create a CSV for editing if the file path doesn’t exist. The CSV requires two columns, and a header row like “old_user_login,new_user_login”. The last option will skip any author mapping.",
+        },
+        {
+          name: "--skip",
+          insertValue: "--skip",
+          description:
+            "Skip importing specific data. Supported options are: ‘attachment’ and ‘image_resize’ (skip time-consuming thumbnail generation).",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "language",
       description: "Installs, activates, and manages language packs.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "core",
@@ -3672,7 +3827,27 @@ export const completion: Fig.Spec = {
       description:
         "Activates, deactivates or checks the status of the maintenance mode of a site.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "activate",
@@ -3703,7 +3878,27 @@ export const completion: Fig.Spec = {
       description:
         "Imports files as attachments, regenerates thumbnails, or lists registered image sizes.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "fix-orientation",
@@ -3847,7 +4042,27 @@ export const completion: Fig.Spec = {
       description:
         "Lists, creates, assigns, and deletes the active theme’s navigation menus.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "create",
@@ -4238,7 +4453,27 @@ export const completion: Fig.Spec = {
       name: "network",
       description: "Perform network-wide operations.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "meta",
@@ -4488,7 +4723,27 @@ export const completion: Fig.Spec = {
       description:
         "Retrieves and sets site options, including plugin and WordPress settings.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add",
@@ -4736,7 +4991,27 @@ export const completion: Fig.Spec = {
       name: "package",
       description: "Lists, installs, and removes WP-CLI packages.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "browse",
@@ -4848,7 +5123,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages plugins, including installs, activations, and updates.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "activate",
@@ -5410,7 +5705,27 @@ export const completion: Fig.Spec = {
       name: "post",
       description: "Manages posts, content, and meta.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "create",
@@ -6395,7 +6710,27 @@ export const completion: Fig.Spec = {
       name: "post-type",
       description: "Retrieves details on the site’s registered post types.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "get",
@@ -6478,7 +6813,27 @@ export const completion: Fig.Spec = {
       name: "profile",
       description: "",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "eval",
@@ -6711,7 +7066,27 @@ export const completion: Fig.Spec = {
       description:
         "Lists or flushes the site’s rewrite rules, updates the permalink structure.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "flush",
@@ -6796,7 +7171,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages user roles, including creating new roles and resetting to defaults.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "create",
@@ -6893,7 +7288,27 @@ export const completion: Fig.Spec = {
       description:
         "Generates code for post types, taxonomies, plugins, child themes, etc.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "block",
@@ -7368,27 +7783,273 @@ export const completion: Fig.Spec = {
             "List of database tables to restrict the replacement to. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
         },
       ],
-      options: get_search_replace_options(),
+      options: [
+        {
+          name: "--dry-run",
+          description:
+            "Run the entire search/replace operation and show report, but don’t save changes to the database.",
+        },
+        {
+          name: "--network",
+          description:
+            "Search/replace through all the tables registered to $wpdb in a multisite install.",
+        },
+        {
+          name: "--all-tables-with-prefix",
+          description:
+            "Enable replacement on any tables that match the table prefix even if not registered on $wpdb.",
+        },
+        {
+          name: "--all-tables",
+          description:
+            "Enable replacement on ALL tables in the database, regardless of the prefix, and even if not registered on $wpdb. Overrides –network and –all-tables-with-prefix.",
+        },
+        {
+          name: "--export",
+          insertValue: "--export=",
+          description:
+            "Write transformed data as SQL file instead of saving replacements to the database. If <file> is not supplied, will output to STDOUT.",
+        },
+        {
+          name: "--export_insert_size",
+          insertValue: "--export_insert_size=",
+          description:
+            "Define number of rows in single INSERT statement when doing SQL export. You might want to change this depending on your database configuration (e.g. if you need to do fewer queries). Default: 50",
+          args: {
+            name: "default",
+            suggestions: [{ name: "50" }],
+          },
+        },
+        {
+          name: "--skip-tables",
+          insertValue: "--skip-tables=",
+          description:
+            "Do not perform the replacement on specific tables. Use commas to specify multiple tables. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
+        },
+        {
+          name: "--skip-columns",
+          insertValue: "--skip-columns=",
+          description:
+            "Do not perform the replacement on specific columns. Use commas to specify multiple columns.",
+        },
+        {
+          name: "--include-columns",
+          insertValue: "--include-columns=",
+          description:
+            "Perform the replacement on specific columns. Use commas to specify multiple columns.",
+        },
+        {
+          name: "--precise",
+          description:
+            "Force the use of PHP (instead of SQL) which is more thorough, but slower.",
+        },
+        {
+          name: "--recurse-objects",
+          description:
+            "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
+        },
+        {
+          name: "--no-recurse-objects",
+          description:
+            "Enable recursing into objects to replace strings. Defaults to true; pass –no-recurse-objects to disable.",
+        },
+        {
+          name: "--verbose",
+          description: "Prints rows to the console as they’re updated.",
+        },
+        {
+          name: "--regex",
+          description:
+            "Runs the search using a regular expression (without delimiters). Warning: search-replace will take about 15-20x longer when using –regex.",
+        },
+        {
+          name: "--regex-flags",
+          insertValue: "--regex-flags=",
+          description:
+            "Pass PCRE modifiers to regex search-replace (e.g. ‘i’ for case-insensitivity).",
+        },
+        {
+          name: "--regex-delimiter",
+          insertValue: "--regex-delimiter=",
+          description:
+            "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
+        },
+        {
+          name: "--regex-limit",
+          insertValue: "--regex-limit=",
+          description:
+            "The maximum possible replacements for the regex per row (or per unserialized data bit per row). Defaults to -1 (no limit).",
+        },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "Render output in a particular format.",
+          args: {
+            name: "options",
+            suggestions: [{ name: "table" }, { name: "count" }],
+          },
+        },
+        {
+          name: "--report",
+          description: "Produce report. Defaults to true.",
+        },
+        {
+          name: "--report-changed-only",
+          description:
+            "Report changed fields only. Defaults to false, unless logging, when it defaults to true.",
+        },
+        {
+          name: "--log",
+          insertValue: "--log",
+          description:
+            "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
+        },
+        {
+          name: "--before_context",
+          insertValue: "--before_context=",
+          description:
+            "For logging, number of characters to display before the old match and the new replacement. Default 40. Ignored if not logging.",
+        },
+        {
+          name: "--after_context",
+          insertValue: "--after_context=",
+          description:
+            "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging.",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "server",
       description:
         "Launches PHP’s built-in web server for a specific WordPress installation.",
       args: [{}],
-      options: get_server_options(),
+      options: [
+        {
+          name: "--host",
+          insertValue: "--host=",
+          description: "The hostname to bind the server to.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "localhost" }],
+          },
+        },
+        {
+          name: "--port",
+          insertValue: "--port=",
+          description: "The port number to bind the server to.",
+          args: {
+            name: "default",
+            suggestions: [{ name: "8080" }],
+          },
+        },
+        {
+          name: "--docroot",
+          insertValue: "--docroot=",
+          description:
+            "The path to use as the document root. If the path global parameter is set, the default value is it.",
+        },
+        {
+          name: "--config",
+          insertValue: "--config=",
+          description: "Config the server with a specific .ini file.",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "shell",
       description:
         "Opens an interactive PHP console for running and testing PHP code.",
       args: [{}],
-      options: get_shell_options(),
+      options: [
+        {
+          name: "--basic",
+          description:
+            "Force the use of WP-CLI’s built-in PHP REPL, even if the Boris or PsySH PHP REPLs are available.",
+        },
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
     },
     {
       name: "sidebar",
       description: "Lists registered sidebars.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "list",
@@ -7424,7 +8085,27 @@ export const completion: Fig.Spec = {
       description:
         "Creates, deletes, empties, moderates, and lists one or more sites on a multisite installation.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "activate",
@@ -8149,7 +8830,27 @@ export const completion: Fig.Spec = {
       description:
         "Lists, adds, or removes super admin users on a multisite installation.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add",
@@ -8199,7 +8900,27 @@ export const completion: Fig.Spec = {
       name: "taxonomy",
       description: "Retrieves information about registered taxonomies.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "get",
@@ -8284,7 +9005,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages taxonomy terms and term meta, with create, delete, and list commands.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "create",
@@ -8840,7 +9581,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages themes, including installs, activations, and updates.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "activate",
@@ -9414,7 +10175,27 @@ export const completion: Fig.Spec = {
       description:
         "Adds, gets, and deletes entries in the WordPress Transient Cache.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "delete",
@@ -9553,7 +10334,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages users, along with their roles, capabilities, and meta.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add-cap",
@@ -10541,7 +11342,27 @@ export const completion: Fig.Spec = {
       description:
         "Manages widgets, including adding and moving them within sidebars.",
       args: [{}],
-      options: global_parameters,
+      options: [
+        global_parameter_path,
+        global_parameter_url,
+        global_parameter_ssh,
+        global_parameter_http,
+        global_parameter_user,
+        global_parameter_skip_plugins1,
+        global_parameter_skip_plugins2,
+        global_parameter_skip_themes1,
+        global_parameter_skip_themes2,
+        global_parameter_skip_packages,
+        global_parameter_require,
+        global_parameter_exec,
+        global_parameter_color,
+        global_parameter_no_color,
+        global_parameter_debug1,
+        global_parameter_debug2,
+        global_parameter_prompt1,
+        global_parameter_prompt2,
+        global_parameter_quiet,
+      ],
       subcommands: [
         {
           name: "add",
