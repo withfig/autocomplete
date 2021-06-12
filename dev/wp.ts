@@ -385,9 +385,11 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "role",
+              description: "Key for the role.",
             },
             {
               name: "cap",
+              description: "One or more capabilities to add.",
             },
           ],
           options: [
@@ -395,6 +397,57 @@ export const completion: Fig.Spec = {
               name: "--grant",
               description:
                 "Adds the capability as an explicit boolean value, instead of implicitly defaulting to true.",
+              args: {
+                name: "options",
+                suggestions: [{ name: "true" }, { name: "false" }],
+              },
+            },
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists capabilities for a given role.",
+          args: [
+            {
+              name: "role",
+              description: "Key for the role.",
+            },
+          ],
+          options: [
+            {
+              name: "--format",
+              insertValue: "--format=",
+              description: "Render output in a particular format.",
+              args: {
+                name: "options",
+                suggestions: [
+                  { name: "list" },
+                  { name: "table" },
+                  { name: "csv" },
+                  { name: "json" },
+                  { name: "count" },
+                  { name: "yaml" },
+                ],
+              },
+            },
+            {
+              name: "--show-grant",
+              description:
+                "Display all capabilities defined for a role including grant.",
+            },
+          ],
+        },
+        {
+          name: "remove",
+          description: "Removes capabilities from a given role.",
+          args: [
+            {
+              name: "role",
+              description: "Key for the role.",
+            },
+            {
+              name: "cap",
+              description: "One or more capabilities to remove.",
             },
           ],
         },
