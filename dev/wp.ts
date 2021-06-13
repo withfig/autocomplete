@@ -9807,19 +9807,22 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--slug",
-              insertValue: "--slug",
+              insertValue: "--slug=",
               description:
                 "A unique slug for the new term. Defaults to sanitized version of name.",
+              args: { name: "slug" },
             },
             {
               name: "--description",
               insertValue: "--description=",
               description: "A description for the new term.",
+              args: { name: "description" },
             },
             {
               name: "--parent",
               insertValue: "--parent=",
               description: "A parent for the new term.",
+              args: { name: "term-id" },
             },
             {
               name: "--porcelain",
@@ -9846,7 +9849,7 @@ export const completion: Fig.Spec = {
               insertValue: "--by=",
               description: "Explicitly handle the term value as a slug or id.",
               args: {
-                name: "options",
+                name: "field",
                 suggestions: [{ name: "slug" }, { name: "id" }],
               },
             },
@@ -9867,7 +9870,7 @@ export const completion: Fig.Spec = {
               insertValue: "--count=",
               description: "How many terms to generate?",
               args: {
-                name: "default",
+                name: "number",
                 suggestions: [{ name: "100" }],
               },
             },
@@ -9876,7 +9879,7 @@ export const completion: Fig.Spec = {
               insertValue: "--max_depth=",
               description: "Generate child terms down to a certain depth.",
               args: {
-                name: "default",
+                name: "number",
                 suggestions: [{ name: "1" }],
               },
             },
@@ -9885,7 +9888,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "progress" }, { name: "ids" }],
               },
             },
@@ -9910,7 +9913,7 @@ export const completion: Fig.Spec = {
               insertValue: "--by=",
               description: "Explicitly handle the term value as a slug or id.",
               args: {
-                name: "options",
+                name: "field",
                 suggestions: [{ name: "slug" }, { name: "id" }],
               },
             },
@@ -9919,19 +9922,21 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole term, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Get value in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -9962,18 +9967,20 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each term.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -10014,7 +10021,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -10064,7 +10071,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Get value in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "var_export" },
                       { name: "json" },
@@ -10088,6 +10095,7 @@ export const completion: Fig.Spec = {
                   name: "--keys",
                   insertValue: "--keys=",
                   description: "Limit output to metadata of specific keys.",
+                  args: { name: "keys" },
                 },
                 {
                   name: "--fields",
@@ -10095,7 +10103,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
                   args: {
-                    name: "default",
+                    name: "fields",
                     suggestions: [{ name: "id,meta_key,meta_value" }],
                   },
                 },
@@ -10104,7 +10112,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -10119,7 +10127,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--orderby=",
                   description: "Set orderby which field.",
                   args: {
-                    name: "options",
+                    name: "fields",
                     suggestions: [
                       { name: "id" },
                       { name: "meta_key" },
@@ -10132,7 +10140,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--order=",
                   description: "Set ascending or descending order.",
                   args: {
-                    name: "options",
+                    name: "order",
                     suggestions: [{ name: "asc" }, { name: "desc" }],
                   },
                 },
@@ -10180,7 +10188,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -10210,7 +10218,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -10244,7 +10252,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -10267,7 +10275,7 @@ export const completion: Fig.Spec = {
               insertValue: "--by=",
               description: "Explicitly handle the term value as a slug or id.",
               args: {
-                name: "options",
+                name: "field",
                 suggestions: [{ name: "slug" }, { name: "id" }],
               },
             },
@@ -10275,11 +10283,13 @@ export const completion: Fig.Spec = {
               name: "--from",
               insertValue: "--from=",
               description: "Taxonomy slug of the term to migrate.",
+              args: { name: "taxonomy" },
             },
             {
               name: "--to",
               insertValue: "--to=",
               description: "Taxonomy slug to migrate to.",
+              args: { name: "taxonomy" },
             },
           ],
         },
@@ -10312,7 +10322,7 @@ export const completion: Fig.Spec = {
               insertValue: "--by=",
               description: "Explicitly handle the term value as a slug or id.",
               args: {
-                name: "options",
+                name: "field",
                 suggestions: [{ name: "slug" }, { name: "id" }],
               },
             },
@@ -10320,21 +10330,25 @@ export const completion: Fig.Spec = {
               name: "--name",
               insertValue: "--name=",
               description: "A new name for the term.",
+              args: { name: "name" },
             },
             {
               name: "--slug",
               insertValue: "--slug=",
               description: "A new slug for the term.",
+              args: { name: "slug" },
             },
             {
               name: "--description",
               insertValue: "--description=",
               description: "A new description for the term.",
+              args: { name: "description" },
             },
             {
               name: "--parent",
               insertValue: "--parent=",
               description: "A new parent for the term.",
+              args: { name: "term-id" },
             },
           ],
         },
