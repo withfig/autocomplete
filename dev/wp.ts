@@ -7521,18 +7521,20 @@ export const completion: Fig.Spec = {
               insertValue: "--hook=",
               description:
                 "Focus on key metrics for all hooks, or callbacks on a specific hook.",
+              args: { name: "hook" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Display one or more fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -7546,14 +7548,15 @@ export const completion: Fig.Spec = {
               insertValue: "--order=",
               description: "Ascending or descending order.",
               args: {
-                name: "options",
-                suggestions: [{ name: "asc" }, { name: "desc" }],
+                name: "order",
+                suggestions: [{ name: "ASC" }, { name: "DESC" }],
               },
             },
             {
               name: "--orderby",
               insertValue: "--orderby=",
               description: "Order by fields.",
+              args: { name: "orderby" },
             },
           ],
         },
@@ -7572,18 +7575,20 @@ export const completion: Fig.Spec = {
               insertValue: "--hook=",
               description:
                 "Focus on key metrics for all hooks, or callbacks on a specific hook.",
+              args: { name: "hook" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Display one or more fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -7597,14 +7602,15 @@ export const completion: Fig.Spec = {
               insertValue: "--order=",
               description: "Ascending or descending order.",
               args: {
-                name: "options",
-                suggestions: [{ name: "asc" }, { name: "desc" }],
+                name: "order",
+                suggestions: [{ name: "ASC" }, { name: "DESC" }],
               },
             },
             {
               name: "--orderby",
               insertValue: "--orderby=",
               description: "Order by fields.",
+              args: { name: "orderby" },
             },
           ],
         },
@@ -7633,18 +7639,20 @@ export const completion: Fig.Spec = {
               insertValue: "--url=",
               description:
                 "Execute a request against a specified URL. Defaults to the home URL.",
+              args: { name: "url" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Display one or more fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -7658,14 +7666,15 @@ export const completion: Fig.Spec = {
               insertValue: "--order=",
               description: "Ascending or descending order.",
               args: {
-                name: "options",
-                suggestions: [{ name: "asc" }, { name: "desc" }],
+                name: "order",
+                suggestions: [{ name: "ASC" }, { name: "DESC" }],
               },
             },
             {
               name: "--orderby",
               insertValue: "--orderby=",
               description: "Order by fields.",
+              args: { name: "orderby" },
             },
           ],
         },
@@ -7693,19 +7702,21 @@ export const completion: Fig.Spec = {
               insertValue: "--url=",
               description:
                 "Execute a request against a specified URL. Defaults to the home URL.",
+              args: { name: "url" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Default is all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -7719,7 +7730,7 @@ export const completion: Fig.Spec = {
               insertValue: "--order=",
               description: "Ascending or descending order.",
               args: {
-                name: "options",
+                name: "order",
                 suggestions: [{ name: "asc" }, { name: "desc" }],
               },
             },
@@ -7727,6 +7738,7 @@ export const completion: Fig.Spec = {
               name: "--orderby",
               insertValue: "--orderby=",
               description: "Order by fields.",
+              args: { name: "orderby" },
             },
           ],
         },
