@@ -11026,7 +11026,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -11034,6 +11034,11 @@ export const completion: Fig.Spec = {
                   { name: "yaml" },
                 ],
               },
+            },
+            {
+              name: "--network",
+              description:
+                "Get the value of a network|site transient. On single site, this is is a specially-named cache key. On multisite, this is a global cache (instead of local to the site).",
             },
           ],
         },
@@ -11045,12 +11050,14 @@ export const completion: Fig.Spec = {
               name: "--search",
               insertValue: "--search=",
               description: "Use wildcards ( * and ? ) to match transient name.",
+              args: { name: "pattern" },
             },
             {
               name: "--exclude",
               insertValue: "--exclude=",
               description:
                 "Pattern to exclude. Use wildcards ( * and ? ) to match transient name.",
+              args: { name: "pattern" },
             },
             {
               name: "--network",
@@ -11069,13 +11076,14 @@ export const completion: Fig.Spec = {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
