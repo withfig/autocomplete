@@ -8868,7 +8868,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "id",
-              description: "One or more IDs of sites to activate.",
+              description: "One or more IDs of sites to archive.",
             },
           ],
         },
@@ -8878,25 +8878,30 @@ export const completion: Fig.Spec = {
           options: [
             {
               name: "--slug",
+              insertValue: "--slug=",
               description:
                 "Path for the new site. Subdomain on subdomain installs, directory on subdirectory installs.",
+              args: { name: "slug" },
             },
             {
               name: "--title",
               insertValue: "--title=",
               description: "Title of the new site. Default: prettified slug.",
+              args: { name: "title" },
             },
             {
               name: "--email",
               insertValue: "--email=",
               description:
                 "Email for Admin user. User will be created if none exists. Assignement to Super Admin if not included.",
+              args: { name: "email" },
             },
             {
               name: "--network_id",
               insertValue: "--network_id=",
               description:
                 "Network to associate new site with. Defaults to current network (typically 1).",
+              args: { name: "network-id" },
             },
             {
               name: "--private",
@@ -8936,6 +8941,7 @@ export const completion: Fig.Spec = {
               insertValue: "--slug=",
               description:
                 "Path of the blog to be deleted. Subdomain on subdomain installs, directory on subdirectory installs.",
+              args: { name: "slug" },
             },
             {
               name: "--yes",
@@ -8973,6 +8979,7 @@ export const completion: Fig.Spec = {
               name: "--network",
               insertValue: "--network=",
               description: "The network to which the sites belong.",
+              args: { name: "id" },
             },
             {
               name: "--field=value",
@@ -8984,23 +8991,26 @@ export const completion: Fig.Spec = {
               insertValue: "--site_in=",
               description:
                 "Only list the sites with these blog_id values (comma-separated).",
+              args: { name: "value" },
             },
             {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each site.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Comma-separated list of fields to show.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -9051,7 +9061,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -9101,7 +9111,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Get value in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "var_export" },
                       { name: "json" },
@@ -9125,6 +9135,7 @@ export const completion: Fig.Spec = {
                   name: "--keys",
                   insertValue: "--keys=",
                   description: "Limit output to metadata of specific keys.",
+                  args: { name: "keys" },
                 },
                 {
                   name: "--fields",
@@ -9132,7 +9143,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
                   args: {
-                    name: "default",
+                    name: "fields",
                     suggestions: [{ name: "id,meta_key,meta_value" }],
                   },
                 },
@@ -9141,7 +9152,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -9156,7 +9167,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--orderby=",
                   description: "Set orderby which field.",
                   args: {
-                    name: "options",
+                    name: "fields",
                     suggestions: [
                       { name: "id" },
                       { name: "meta_key" },
@@ -9169,7 +9180,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--order=",
                   description: "Set ascending or descending order.",
                   args: {
-                    name: "options",
+                    name: "order",
                     suggestions: [{ name: "asc" }, { name: "desc" }],
                   },
                 },
@@ -9217,7 +9228,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -9247,7 +9258,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -9281,7 +9292,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -9314,7 +9325,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -9345,7 +9356,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Get value in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "var_export" },
                       { name: "json" },
@@ -9364,22 +9375,26 @@ export const completion: Fig.Spec = {
                   insertValue: "--search=",
                   description:
                     "Use wildcards ( * and ? ) to match option name.",
+                  args: { name: "pattern" },
                 },
                 {
                   name: "--site_id",
                   insertValue: "--site_id=",
                   description:
                     "Limit options to those of a particular site id.",
+                  args: { name: "id" },
                 },
                 {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Prints the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific object fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
@@ -9387,7 +9402,7 @@ export const completion: Fig.Spec = {
                   description:
                     "The serialization format for the value. total_bytes displays the total size of matching options in bytes.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "json" },
@@ -9434,7 +9449,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -9460,7 +9475,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -9490,7 +9505,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
