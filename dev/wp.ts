@@ -8690,7 +8690,7 @@ export const completion: Fig.Spec = {
           insertValue: "--host=",
           description: "The hostname to bind the server to.",
           args: {
-            name: "default",
+            name: "host",
             suggestions: [{ name: "localhost" }],
           },
         },
@@ -8699,7 +8699,7 @@ export const completion: Fig.Spec = {
           insertValue: "--port=",
           description: "The port number to bind the server to.",
           args: {
-            name: "default",
+            name: "port",
             suggestions: [{ name: "8080" }],
           },
         },
@@ -8708,11 +8708,13 @@ export const completion: Fig.Spec = {
           insertValue: "--docroot=",
           description:
             "The path to use as the document root. If the path global parameter is set, the default value is it.",
+          args: { name: "path" },
         },
         {
           name: "--config",
           insertValue: "--config=",
           description: "Config the server with a specific .ini file.",
+          args: { name: "file" },
         },
         global_parameter_path,
         global_parameter_url,
@@ -8801,13 +8803,14 @@ export const completion: Fig.Spec = {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific row fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
