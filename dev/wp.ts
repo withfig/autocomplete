@@ -5525,17 +5525,18 @@ export const completion: Fig.Spec = {
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
-                  { name: "count" },
+                  { name: "ids" },
                   { name: "json" },
                   { name: "yaml" },
                 ],
@@ -5548,16 +5549,9 @@ export const completion: Fig.Spec = {
           description: "Installs a WP-CLI package.",
           args: [
             {
-              name: "name",
-            },
-            {
-              name: "git",
-            },
-            {
-              name: "path",
-            },
-            {
-              name: "zip",
+              name: "name|git|path|zip",
+              description:
+                "Name, git URL, directory path, or .zip file for the package to install. Names can optionally include a version constraint (e.g. wp-cli/server-command:@stable).",
             },
           ],
           options: [
@@ -5577,13 +5571,14 @@ export const completion: Fig.Spec = {
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -5602,6 +5597,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "name",
+              description: "Name of the package to get the directory for.",
             },
           ],
         },
@@ -5611,6 +5607,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "name",
+              description: "Name of the package to uninstall.",
             },
           ],
         },
