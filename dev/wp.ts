@@ -7899,6 +7899,7 @@ export const completion: Fig.Spec = {
               name: "--clone",
               insertValue: "--clone=",
               description: "Clone capabilities from an existing role.",
+              args: { name: "role" },
             },
           ],
         },
@@ -7930,18 +7931,20 @@ export const completion: Fig.Spec = {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific row fields.",
+              args: { name: "fields" },
             },
             {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
