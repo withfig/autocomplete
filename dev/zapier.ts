@@ -472,6 +472,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description: "Skip confirmation. Useful for running programatically.",
+          isDangerous: true,
         },
         debugFlag,
       ],
@@ -509,6 +510,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-f", "--force"],
           description:
             "Skips confirmation. Useful for running programatically.",
+          isDangerous: true
         },
         debugFlag,
       ],
