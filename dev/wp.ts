@@ -7404,6 +7404,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "post-type",
+              description: "Post type slug.",
             },
           ],
           options: [
@@ -7412,19 +7413,21 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole taxonomy, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -7450,18 +7453,20 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Prints the value of a single field for each post type.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific post type fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
