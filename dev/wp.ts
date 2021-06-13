@@ -6273,47 +6273,56 @@ export const completion: Fig.Spec = {
               insertValue: "--post_author=",
               description:
                 "The ID of the user who added the post. Default is the current user ID.",
+              args: { name: "post_author" },
             },
             {
               name: "--post_date",
               insertValue: "--post_date=",
               description: "The date of the post. Default is the current time.",
+              args: { name: "post_date" },
             },
             {
               name: "--post_date_gmt",
               insertValue: "--post_date_gmt=",
               description:
                 "The date of the post in the GMT timezone. Default is the value of $post_date.",
+              args: { name: "post_date_gmt" },
             },
             {
               name: "--post_content",
               insertValue: "--post_content=",
               description: "The post content. Default empty.",
+              args: { name: "post_content" },
             },
             {
               name: "--post_content_filtered",
               insertValue: "--post_content_filtered=",
               description: "The filtered post content. Default empty.",
+              args: { name: "post_content_filtered" },
             },
             {
               name: "--post_title",
               insertValue: "--post_title=",
               description: "The post title. Default empty.",
+              args: { name: "post_title" },
             },
             {
               name: "--post_excerpt",
               insertValue: "--post_excerpt=",
               description: "The post excerpt. Default empty.",
+              args: { name: "post_excerpt" },
             },
             {
               name: "--post_status",
               insertValue: "--post_status=",
               description: "The post status. Default ‘draft’.",
+              args: { name: "post_status" },
             },
             {
               name: "--post_type",
               insertValue: "--post_type=",
               description: "The post type. Default ‘post’.",
+              args: { name: "post_type" },
             },
             {
               name: "--comment_status",
@@ -6321,7 +6330,7 @@ export const completion: Fig.Spec = {
               description:
                 "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option.",
               args: {
-                name: "options",
+                name: "comment_status",
                 suggestions: [{ name: "'open'" }, { name: "'closed" }],
               },
             },
@@ -6331,7 +6340,7 @@ export const completion: Fig.Spec = {
               description:
                 "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option.",
               args: {
-                name: "options",
+                name: "ping_status",
                 suggestions: [{ name: "'open'" }, { name: "'closed" }],
               },
             },
@@ -6339,41 +6348,48 @@ export const completion: Fig.Spec = {
               name: "--post_password",
               insertValue: "--post_password=",
               description: "The password to access the post. Default empty.",
+              args: { name: "post_password" },
             },
             {
               name: "--post_name",
               insertValue: "--post_name=",
               description:
                 "The post name. Default is the sanitized post title when creating a new post.",
+              args: { name: "post_name" },
             },
             {
               name: "--from-post",
               insertValue: "--from-post=",
               description: "Post id of a post to be duplicated.",
+              args: { name: "post_id" },
             },
             {
               name: "--to_ping",
               insertValue: "--to_ping=",
               description:
                 "Space or carriage return-separated list of URLs to ping. Default empty.",
+              args: { name: "to_ping" },
             },
             {
               name: "--pinged",
               insertValue: "--pinged=",
               description:
                 "Space or carriage return-separated list of URLs that have been pinged. Default empty.",
+              args: { name: "pinged" },
             },
             {
               name: "--post_modified",
               insertValue: "--post_modified=",
               description:
                 "The date when the post was last modified. Default is the current time.",
+              args: { name: "post_modified" },
             },
             {
               name: "--post_modified_gmt",
               insertValue: "--post_modified_gmt=",
               description:
                 "The date when the post was last modified in the GMT timezone. Default is the current time.",
+              args: { name: "post_modified_gmt" },
             },
             {
               name: "--post_parent",
@@ -6381,7 +6397,7 @@ export const completion: Fig.Spec = {
               description:
                 "Set this for the post it belongs to, if any. Default 0.",
               args: {
-                name: "default",
+                name: "post_parent",
                 suggestions: [{ name: "0" }],
               },
             },
@@ -6391,7 +6407,7 @@ export const completion: Fig.Spec = {
               description:
                 "The order the post should be displayed in. Default 0.",
               args: {
-                name: "default",
+                name: "menu_order",
                 suggestions: [{ name: "0" }],
               },
             },
@@ -6399,40 +6415,47 @@ export const completion: Fig.Spec = {
               name: "--post_mime_type",
               insertValue: "--post_mime_type=",
               description: "The mime type of the post. Default empty.",
+              args: { name: "post_mime_type" },
             },
             {
               name: "--guid",
               insertValue: "--guid=",
               description:
                 "Global Unique ID for referencing the post. Default empty.",
+              args: { name: "guid" },
             },
             {
               name: "--post_category",
               insertValue: "--post_category=",
               description:
                 "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option.",
+              args: { name: "post_category" },
             },
             {
               name: "--tags_input",
               insertValue: "--tags_input=",
               description: "Array of tag names, slugs, or IDs. Default empty.",
+              args: { name: "tags_input" },
             },
             {
               name: "--tax_input",
               insertValue: "--tax_input=",
               description:
                 "Array of taxonomy terms keyed by their taxonomy name. Default empty.",
+              args: { name: "tax_input" },
             },
             {
               name: "--meta_input",
               insertValue: "--meta_input=",
               description:
                 "Array in JSON format of post meta values keyed by their post meta key. Default empty.",
+              args: { name: "meta_input" },
             },
             {
               name: "--field=value",
               insertValue: "--",
-              description: "The serialization format for the value.",
+              description:
+                "Associative args for the new post. See wp_insert_post().",
             },
             {
               name: "--edit",
@@ -6495,7 +6518,7 @@ export const completion: Fig.Spec = {
               insertValue: "--count=",
               description: "How many posts to generate?",
               args: {
-                name: "default",
+                name: "number",
                 suggestions: [{ name: "100" }],
               },
             },
@@ -6504,7 +6527,7 @@ export const completion: Fig.Spec = {
               insertValue: "--post_type=",
               description: "The type of the generated posts.",
               args: {
-                name: "default",
+                name: "type",
                 suggestions: [{ name: "post" }],
               },
             },
@@ -6513,7 +6536,7 @@ export const completion: Fig.Spec = {
               insertValue: "--post_status=",
               description: "The status of the generated posts.",
               args: {
-                name: "default",
+                name: "status",
                 suggestions: [{ name: "publish" }],
               },
             },
@@ -6521,23 +6544,27 @@ export const completion: Fig.Spec = {
               name: "--post_title",
               insertValue: "--post_title=",
               description: "The post title.",
+              args: { name: "post_title" },
             },
             {
               name: "--post_author",
               insertValue: "--post_author=",
               description: "The author of the generated posts.",
+              args: { name: "login" },
             },
             {
               name: "--post_date",
               insertValue: "--post_date=",
               description:
                 "The date of the generated posts. Default: current date",
+              args: { name: "yyyy-mm-dd-hh-ii-ss" },
             },
             {
               name: "--post_date_gmt",
               insertValue: "--post_date_gmt=",
               description:
                 "The GMT date of the generated posts. Default: value of post_date (or current date if it’s not set).",
+              args: { name: "yyyy-mm-dd-hh-ii-ss" },
             },
             {
               name: "--post_content",
@@ -6550,7 +6577,7 @@ export const completion: Fig.Spec = {
               description:
                 "For hierarchical post types, generate child posts down to a certain depth.",
               args: {
-                name: "default",
+                name: "number",
                 suggestions: [{ name: "1" }],
               },
             },
@@ -6559,7 +6586,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "progress" }, { name: "ids" }],
               },
             },
@@ -6580,19 +6607,21 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole post, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -6616,18 +6645,78 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each post.",
+              args: {
+                name: "fields",
+                suggestions: [
+                  { name: "ID" },
+                  { name: "post_title" },
+                  { name: "post_name" },
+                  { name: "post_date" },
+                  { name: "post_status" },
+                  { name: "post_author" },
+                  { name: "post_date_gmt" },
+                  { name: "post_content" },
+                  { name: "post_excerpt" },
+                  { name: "comment_status" },
+                  { name: "ping_status" },
+                  { name: "post_password" },
+                  { name: "to_ping" },
+                  { name: "pinged" },
+                  { name: "post_modified" },
+                  { name: "post_modified_gmt" },
+                  { name: "post_content_filtered" },
+                  { name: "post_parent" },
+                  { name: "guid" },
+                  { name: "menu_order" },
+                  { name: "post_type" },
+                  { name: "post_mime_type" },
+                  { name: "comment_count" },
+                  { name: "filter" },
+                  { name: "url" },
+                ],
+              },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: {
+                name: "fields",
+                suggestions: [
+                  { name: "ID" },
+                  { name: "post_title" },
+                  { name: "post_name" },
+                  { name: "post_date" },
+                  { name: "post_status" },
+                  { name: "post_author" },
+                  { name: "post_date_gmt" },
+                  { name: "post_content" },
+                  { name: "post_excerpt" },
+                  { name: "comment_status" },
+                  { name: "ping_status" },
+                  { name: "post_password" },
+                  { name: "to_ping" },
+                  { name: "pinged" },
+                  { name: "post_modified" },
+                  { name: "post_modified_gmt" },
+                  { name: "post_content_filtered" },
+                  { name: "post_parent" },
+                  { name: "guid" },
+                  { name: "menu_order" },
+                  { name: "post_type" },
+                  { name: "post_mime_type" },
+                  { name: "comment_count" },
+                  { name: "filter" },
+                  { name: "url" },
+                ],
+              },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -6668,7 +6757,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -6718,7 +6807,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Get value in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "var_export" },
                       { name: "json" },
@@ -6742,19 +6831,21 @@ export const completion: Fig.Spec = {
                   name: "--keys",
                   insertValue: "--keys=",
                   description: "Limit output to metadata of specific keys.",
+                  args: { name: "keys" },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -6769,7 +6860,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--orderby=",
                   description: "Set orderby which field.",
                   args: {
-                    name: "options",
+                    name: "fields",
                     suggestions: [
                       { name: "id" },
                       { name: "meta_key" },
@@ -6782,7 +6873,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--order=",
                   description: "Set ascending or descending order.",
                   args: {
-                    name: "options",
+                    name: "order",
                     suggestions: [{ name: "asc" }, { name: "desc" }],
                   },
                 },
@@ -6830,7 +6921,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -6860,7 +6951,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -6894,7 +6985,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -6930,7 +7021,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
                 },
@@ -6955,18 +7046,46 @@ export const completion: Fig.Spec = {
                   insertValue: "--field=",
                   description:
                     "Prints the value of a single field for each term.",
+                  args: {
+                    name: "field",
+                    suggestions: [
+                      { name: "term_id" },
+                      { name: "name" },
+                      { name: "slug" },
+                      { name: "taxonomy" },
+                      { name: "term_taxonomy_id" },
+                      { name: "description" },
+                      { name: "term_group" },
+                      { name: "parent" },
+                      { name: "count" },
+                    ],
+                  },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific row fields.",
+                  args: {
+                    name: "fields",
+                    suggestions: [
+                      { name: "term_id" },
+                      { name: "name" },
+                      { name: "slug" },
+                      { name: "taxonomy" },
+                      { name: "term_taxonomy_id" },
+                      { name: "description" },
+                      { name: "term_group" },
+                      { name: "parent" },
+                      { name: "count" },
+                    ],
+                  },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -7004,7 +7123,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
                 },
@@ -7038,13 +7157,9 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
-                },
-                {
-                  name: "--all",
-                  description: "Remove all terms from the object.",
                 },
               ],
             },
@@ -7070,47 +7185,56 @@ export const completion: Fig.Spec = {
               insertValue: "--post_author=",
               description:
                 "The ID of the user who added the post. Default is the current user ID.",
+              args: { name: "post_author" },
             },
             {
               name: "--post_date",
               insertValue: "--post_date=",
               description: "The date of the post. Default is the current time.",
+              args: { name: "post_date" },
             },
             {
               name: "--post_date_gmt",
               insertValue: "--post_date_gmt=",
               description:
                 "The date of the post in the GMT timezone. Default is the value of $post_date.",
+              args: { name: "post_date_gmt" },
             },
             {
               name: "--post_content",
               insertValue: "--post_content=",
               description: "The post content. Default empty.",
+              args: { name: "post_content" },
             },
             {
               name: "--post_content_filtered",
               insertValue: "--post_content_filtered=",
               description: "The filtered post content. Default empty.",
+              args: { name: "post_content_filtered" },
             },
             {
               name: "--post_title",
               insertValue: "--post_title=",
               description: "The post title. Default empty.",
+              args: { name: "post_title" },
             },
             {
               name: "--post_excerpt",
               insertValue: "--post_excerpt=",
               description: "The post excerpt. Default empty.",
+              args: { name: "post_excerpt" },
             },
             {
               name: "--post_status",
               insertValue: "--post_status=",
               description: "The post status. Default ‘draft’.",
+              args: { name: "post_status" },
             },
             {
               name: "--post_type",
               insertValue: "--post_type=",
               description: "The post type. Default ‘post’.",
+              args: { name: "post_type" },
             },
             {
               name: "--comment_status",
@@ -7118,7 +7242,7 @@ export const completion: Fig.Spec = {
               description:
                 "Whether the post can accept comments. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_comment_status’ option.",
               args: {
-                name: "options",
+                name: "comment_status",
                 suggestions: [{ name: "'open'" }, { name: "'closed" }],
               },
             },
@@ -7128,7 +7252,7 @@ export const completion: Fig.Spec = {
               description:
                 "Whether the post can accept pings. Accepts ‘open’ or ‘closed’. Default is the value of ‘default_ping_status’ option.",
               args: {
-                name: "options",
+                name: "ping_status",
                 suggestions: [{ name: "'open'" }, { name: "'closed" }],
               },
             },
@@ -7136,36 +7260,42 @@ export const completion: Fig.Spec = {
               name: "--post_password",
               insertValue: "--post_password=",
               description: "The password to access the post. Default empty.",
+              args: { name: "post_password" },
             },
             {
               name: "--post_name",
               insertValue: "--post_name=",
               description:
                 "The post name. Default is the sanitized post title when creating a new post.",
+              args: { name: "post_name" },
             },
             {
               name: "--to_ping",
               insertValue: "--to_ping=",
               description:
                 "Space or carriage return-separated list of URLs to ping. Default empty.",
+              args: { name: "to_ping" },
             },
             {
               name: "--pinged",
               insertValue: "--pinged=",
               description:
                 "Space or carriage return-separated list of URLs that have been pinged. Default empty.",
+              args: { name: "pinged" },
             },
             {
               name: "--post_modified",
               insertValue: "--post_modified=",
               description:
                 "The date when the post was last modified. Default is the current time.",
+              args: { name: "post_modified" },
             },
             {
               name: "--post_modified_gmt",
               insertValue: "--post_modified_gmt=",
               description:
                 "The date when the post was last modified in the GMT timezone. Default is the current time.",
+              args: { name: "post_modified_gmt" },
             },
             {
               name: "--post_parent",
@@ -7173,7 +7303,7 @@ export const completion: Fig.Spec = {
               description:
                 "Set this for the post it belongs to, if any. Default 0.",
               args: {
-                name: "default",
+                name: "post_parent",
                 suggestions: [{ name: "0" }],
               },
             },
@@ -7183,7 +7313,7 @@ export const completion: Fig.Spec = {
               description:
                 "The order the post should be displayed in. Default 0.",
               args: {
-                name: "default",
+                name: "menu_order",
                 suggestions: [{ name: "0" }],
               },
             },
@@ -7191,35 +7321,41 @@ export const completion: Fig.Spec = {
               name: "--post_mime_type",
               insertValue: "--post_mime_type=",
               description: "The mime type of the post. Default empty.",
+              args: { name: "post_mime_type" },
             },
             {
               name: "--guid",
               insertValue: "--guid=",
               description:
                 "Global Unique ID for referencing the post. Default empty.",
+              args: { name: "guid" },
             },
             {
               name: "--post_category",
               insertValue: "--post_category=",
               description:
                 "Array of category names, slugs, or IDs. Defaults to value of the ‘default_category’ option.",
+              args: { name: "post_category" },
             },
             {
               name: "--tags_input",
               insertValue: "--tags_input=",
               description: "Array of tag names, slugs, or IDs. Default empty.",
+              args: { name: "tags_input" },
             },
             {
               name: "--tax_input",
               insertValue: "--tax_input=",
               description:
                 "Array of taxonomy terms keyed by their taxonomy name. Default empty.",
+              args: { name: "tax_input" },
             },
             {
               name: "--meta_input",
               insertValue: "--meta_input=",
               description:
                 "Array in JSON format of post meta values keyed by their post meta key. Default empty.",
+              args: { name: "meta_input" },
             },
             {
               name: "--field",
