@@ -7,6 +7,11 @@ export const completionSpec: Fig.Spec = {
       icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
       loadSpec: "react-native",
     },
+    {
+      name: "next",
+      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      loadSpec: "next",
+    },
   ],
   options: [
     {
