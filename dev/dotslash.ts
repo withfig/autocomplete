@@ -28,8 +28,8 @@ const dotslashGenerator: Fig.Generator = {
         filename = components[components.length - 2] + "/";
       }
 
-      // Removes "*" from the end of an executable
-      if (isExecutable) {
+      // Removes character at the end of the filepath
+      if (path.endsWith("*" || "@" || "%" || "|")) {
         filename = filename.slice(0, -1);
       }
 
