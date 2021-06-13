@@ -10470,6 +10470,7 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Only show the provided field.",
+                  args: { name: "field" },
                 },
               ],
             },
@@ -10550,19 +10551,21 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole theme, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -10589,6 +10592,7 @@ export const completion: Fig.Spec = {
               insertValue: "--version=",
               description:
                 "If set, get that particular version from wordpress.org, instead of the stable version.",
+              args: { name: "version" },
             },
             {
               name: "--force",
@@ -10640,18 +10644,20 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each theme.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -10666,7 +10672,7 @@ export const completion: Fig.Spec = {
               insertValue: "--status=",
               description: "Filter the output by theme status.",
               args: {
-                name: "options",
+                name: "status",
                 suggestions: [
                   { name: "active" },
                   { name: "parent" },
@@ -10704,7 +10710,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "json" },
@@ -10723,13 +10729,14 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Returns the value of a single field.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "json" },
@@ -10805,7 +10812,7 @@ export const completion: Fig.Spec = {
               insertValue: "--page=",
               description: "Optional page to display.",
               args: {
-                name: "default",
+                name: "page",
                 suggestions: [{ name: "1" }],
               },
             },
@@ -10815,7 +10822,7 @@ export const completion: Fig.Spec = {
               description:
                 "Optional number of results to display. Defaults to 10.",
               args: {
-                name: "default",
+                name: "per-page",
                 suggestions: [{ name: "10" }],
               },
             },
@@ -10823,6 +10830,7 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each theme.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
@@ -10830,7 +10838,7 @@ export const completion: Fig.Spec = {
               description:
                 "Ask for specific fields from the API. Defaults to name,slug,author,rating.",
               args: {
-                name: "default",
+                name: "fields",
                 suggestions: [
                   {
                     name: "name",
@@ -10873,7 +10881,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -10912,15 +10920,17 @@ export const completion: Fig.Spec = {
             },
             {
               name: "--exclude",
+              insertValue: "--exclude=",
               description:
                 "Comma separated list of theme names that should be excluded from updating.",
+              args: { name: "theme-names" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -10934,6 +10944,7 @@ export const completion: Fig.Spec = {
               insertValue: "--version=",
               description:
                 "If set, the theme will be updated to the specified version.",
+              args: { name: "version" },
             },
             {
               name: "--dry-run",
