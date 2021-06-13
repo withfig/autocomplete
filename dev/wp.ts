@@ -5227,9 +5227,12 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "The name of the option to add.",
             },
             {
               name: "value",
+              description:
+                "The value of the option to add. If ommited, the value is read from STDIN.",
             },
           ],
           options: [
@@ -5238,7 +5241,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "The serialization format for the value.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "plaintext" }, { name: "json" }],
               },
             },
@@ -5247,7 +5250,7 @@ export const completion: Fig.Spec = {
               insertValue: "--autoload=",
               description: "Should this option be automatically loaded.",
               args: {
-                name: "options",
+                name: "autoload",
                 suggestions: [{ name: "'yes'" }, { name: "'no'" }],
               },
             },
@@ -5259,6 +5262,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Key for the option.",
             },
           ],
         },
@@ -5268,6 +5272,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "Key for the option.",
             },
           ],
           options: [
@@ -5276,7 +5281,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Get value in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "var_export" },
                   { name: "json" },
@@ -5294,21 +5299,29 @@ export const completion: Fig.Spec = {
               name: "--search",
               insertValue: "--search=",
               description: "Use wildcards ( * and ? ) to match option name.",
+              args: { name: "search" },
             },
             {
               name: "--exclude",
               insertValue: "--exclude=",
               description:
                 "Pattern to exclude. Use wildcards ( * and ? ) to match option name.",
+              args: { name: "exclude" },
             },
             {
               name: "--autoload",
               insertValue: "--autoload=",
               description:
                 "Match only autoload options when value is on, and only not-autoload option when off.",
+              args: { name: "autoload" },
             },
             {
               name: "--transients",
+              description:
+                "List only transients. Use --no-transients to ignore all transients.",
+            },
+            {
+              name: "--no-transients",
               description:
                 "List only transients. Use --no-transients to ignore all transients.",
             },
@@ -5320,18 +5333,21 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
-              description: "Render output in a particular format.",
+              description:
+                "The serialization format for the value. total_bytes displays the total size of matching options in bytes.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
@@ -5347,12 +5363,21 @@ export const completion: Fig.Spec = {
               insertValue: "--orderby=",
               description: "Set orderby which field.",
               args: {
-                name: "options",
+                name: "fields",
                 suggestions: [
                   { name: "option_id" },
                   { name: "option_name" },
                   { name: "option_value" },
                 ],
+              },
+            },
+            {
+              name: "--order",
+              insertValue: "--order=",
+              description: "Set ascending or descending order.",
+              args: {
+                name: "order",
+                suggestions: [{ name: "asc" }, { name: "desc" }],
               },
             },
           ],
@@ -5371,12 +5396,8 @@ export const completion: Fig.Spec = {
               ],
             },
             {
-              name: "id",
-              description: "The ID of the object.",
-            },
-            {
               name: "key",
-              description: "The name of the meta field to update.",
+              description: "The option name.",
             },
             {
               name: "key-path",
@@ -5395,7 +5416,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "The serialization format for the value.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "plaintext" }, { name: "json" }],
               },
             },
@@ -5407,9 +5428,12 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "The option name.",
             },
             {
               name: "key-path",
+              description:
+                "The name(s) of the keys within the value to locate the value to pluck.",
             },
           ],
           options: [
@@ -5418,7 +5442,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "The output format for the value.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "plaintext" },
                   { name: "json" },
@@ -5434,9 +5458,12 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "key",
+              description: "The name of the option to update.",
             },
             {
               name: "value",
+              description:
+                "The new value. If ommited, the value is read from STDIN.",
             },
           ],
           options: [
@@ -5446,7 +5473,7 @@ export const completion: Fig.Spec = {
               description:
                 "Requires WP 4.2. Should this option be automatically loaded.",
               args: {
-                name: "options",
+                name: "autoload",
                 suggestions: [{ name: "'yes'" }, { name: "'no" }],
               },
             },
@@ -5455,7 +5482,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "The serialization format for the value.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "plaintext" }, { name: "json" }],
               },
             },
