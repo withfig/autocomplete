@@ -11176,7 +11176,7 @@ export const completion: Fig.Spec = {
               description: "User ID, user email, or user login.",
             },
             {
-              name: "cap",
+              name: "role",
               description: "Add the specified role to the user.",
             },
           ],
@@ -11209,7 +11209,7 @@ export const completion: Fig.Spec = {
           description: "Creates a new user.",
           args: [
             {
-              name: "user",
+              name: "user-login",
               description: "The login of the user to create.",
             },
             {
@@ -11224,7 +11224,7 @@ export const completion: Fig.Spec = {
               description:
                 "The role of the user to create. Default: default role. Possible values include ‘administrator’, ‘editor’, ‘author’, ‘contributor’, ‘subscriber’.",
               args: {
-                name: "options",
+                name: "role",
                 suggestions: [
                   { name: "adminstrator" },
                   { name: "editor" },
@@ -11238,56 +11238,66 @@ export const completion: Fig.Spec = {
               name: "--user_pass",
               insertValue: "--user_pass=",
               description: "The user password. Default: randomly generated.",
+              args: { name: "password" },
             },
             {
               name: "--user_registered",
               insertValue: "--user_registered=",
               description:
                 "The date the user registered. Default: current date.",
+              args: { name: "yyyy-mm-dd-hh-ii-ss" },
             },
             {
               name: "--display_name",
               insertValue: "--display_name=",
               description: "The display name.",
+              args: { name: "name" },
             },
             {
               name: "--user_nicename",
               insertValue: "--user_nicename=",
               description:
                 "A string that contains a URL-friendly name for the user. The default is the user’s username.",
+              args: { name: "nice_name" },
             },
             {
               name: "--user_url",
               insertValue: "--user_url=",
               description:
                 "A string containing the user’s URL for the user’s web site.",
+              args: { name: "url" },
             },
             {
               name: "--nickname",
               insertValue: "--nickname=",
               description:
                 "The user’s nickname, defaults to the user’s username.",
+              args: { name: "nickname" },
             },
             {
               name: "--first_name",
               insertValue: "--first_name=",
               description: "The user’s first name.",
+              args: { name: "first_name" },
             },
             {
               name: "--last_name",
               insertValue: "--last_name=",
               description: "The user’s last name.",
+              args: { name: "last_name" },
             },
             {
               name: "--description",
               insertValue: "--description=",
               description: "A string containing content about the user.",
+              args: { name: "description" },
             },
             {
               name: "--rich_editing",
               insertValue: "--rich_editing=",
               description:
                 "A string for whether to enable the rich editor or not. False if not empty.",
+              args: { name: "rich_editing" },
             },
             {
               name: "--send-email",
@@ -11320,6 +11330,7 @@ export const completion: Fig.Spec = {
               name: "--reassign",
               insertValue: "--reassign=",
               description: "User ID to reassign the posts to.",
+              args: { name: "user-id" },
             },
             {
               name: "--yes",
@@ -11336,7 +11347,7 @@ export const completion: Fig.Spec = {
               insertValue: "--count=",
               description: "How many users to generate?",
               args: {
-                name: "default",
+                name: "number",
                 suggestions: [{ name: "100" }],
               },
             },
@@ -11345,13 +11356,14 @@ export const completion: Fig.Spec = {
               insertValue: "--role=",
               description:
                 "The role of the generated users. Default: default role from WP.",
+              args: { name: "role" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "progress" }, { name: "ids" }],
               },
             },
@@ -11372,18 +11384,20 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole user, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Get a specific subset of the user’s fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -11424,6 +11438,7 @@ export const completion: Fig.Spec = {
               name: "--role",
               insertValue: "--role=",
               description: "Only display users with a certain role.",
+              args: { name: "role" },
             },
             {
               name: "--field=value",
@@ -11439,18 +11454,20 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each user.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -11478,7 +11495,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "list" },
                   { name: "table" },
@@ -11519,7 +11536,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -11565,7 +11582,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -11591,6 +11608,7 @@ export const completion: Fig.Spec = {
                   name: "--keys",
                   insertValue: "--keys=",
                   description: "Limit output to metadata of specific keys.",
+                  args: { name: "keys" },
                 },
                 {
                   name: "--fields",
@@ -11598,7 +11616,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Limit the output to specific row fields. Defaults to id,meta_key,meta_value.",
                   args: {
-                    name: "default",
+                    name: "fields",
                     suggestions: [{ name: "id,meta_key,meta_value" }],
                   },
                 },
@@ -11607,7 +11625,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -11622,7 +11640,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--orderby=",
                   description: "Set orderby which field.",
                   args: {
-                    name: "options",
+                    name: "fields",
                     suggestions: [
                       { name: "id" },
                       { name: "meta_key" },
@@ -11635,7 +11653,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--order=",
                   description: "Set ascending or descending order.",
                   args: {
-                    name: "options",
+                    name: "order",
                     suggestions: [{ name: "asc" }, { name: "desc" }],
                   },
                 },
@@ -11683,7 +11701,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -11713,7 +11731,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The output format of the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "plaintext" },
                       { name: "json" },
@@ -11747,7 +11765,7 @@ export const completion: Fig.Spec = {
                   insertValue: "--format=",
                   description: "The serialization format for the value.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [{ name: "plaintext" }, { name: "json" }],
                   },
                 },
@@ -11839,13 +11857,14 @@ export const completion: Fig.Spec = {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -11913,7 +11932,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
                 },
@@ -11938,18 +11957,20 @@ export const completion: Fig.Spec = {
                   insertValue: "--field=",
                   description:
                     "Prints the value of a single field for each term.",
+                  args: { name: "field" },
                 },
                 {
                   name: "--fields",
                   insertValue: "--fields=",
                   description: "Limit the output to specific row fields.",
+                  args: { name: "fields" },
                 },
                 {
                   name: "--format",
                   insertValue: "--format=",
                   description: "Render output in a particular format.",
                   args: {
-                    name: "options",
+                    name: "format",
                     suggestions: [
                       { name: "table" },
                       { name: "csv" },
@@ -11987,7 +12008,7 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
                 },
@@ -12021,13 +12042,9 @@ export const completion: Fig.Spec = {
                   description:
                     "Explicitly handle the term value as a slug or id.",
                   args: {
-                    name: "options",
+                    name: "field",
                     suggestions: [{ name: "slug" }, { name: "id" }],
                   },
-                },
-                {
-                  name: "--all",
-                  description: "Remove all terms from the object.",
                 },
               ],
             },
@@ -12059,72 +12076,85 @@ export const completion: Fig.Spec = {
               insertValue: "--user_pass=",
               description:
                 "A string that contains the plain text password for the user",
+              args: { name: "password" },
             },
             {
               name: "--user_nicename",
               insertValue: "--user_nicename=",
               description:
                 "A string that contains a URL-friendly name for the user. The default is the user’s username.",
+              args: { name: "nice_name" },
             },
             {
               name: "--user_url",
               insertValue: "--user_url=",
               description:
                 "A string containing the user’s URL for the user’s web site.",
+              args: { name: "url" },
             },
             {
               name: "--user_email",
               insertValue: "--user_email=",
               description: "A string containing the user’s email address.",
+              args: { name: "email" },
             },
             {
               name: "--display_name",
               insertValue: "--display_name=",
               description: "The display name.",
+              args: { name: "display_name" },
             },
             {
               name: "--nickname",
               insertValue: "--nickname=",
               description:
                 "The user’s nickname, defaults to the user’s username.",
+              args: { name: "nickname" },
             },
             {
               name: "--first_name",
               insertValue: "--first_name=",
               description: "The user’s first name.",
+              args: { name: "first_name" },
             },
             {
               name: "--last_name",
               insertValue: "--last_name=",
               description: "The user’s last name.",
+              args: { name: "last_name" },
             },
             {
               name: "--description",
               insertValue: "--description=",
               description: "A string containing content about the user.",
+              args: { name: "description" },
             },
             {
               name: "--rich_editing",
               insertValue: "--rich_editing=",
               description:
                 "A string for whether to enable the rich editor or not. False if not empty.",
+              args: { name: "rich_editing" },
             },
             {
               name: "--user_registered",
               insertValue: "--user_registered=",
               description:
                 "The date the user registered. Default: current date.",
+              args: { name: "yyyy-mm-dd-hh-ii-ss" },
             },
             {
               name: "--role",
               insertValue: "--role=",
               description: "A string used to set the user’s role.",
+              args: { name: "role" },
             },
             {
               name: "--field",
               insertValue: "--field=",
               description:
                 "One or more fields to update. For accepted fields, see wp_update_user().",
+              args: { name: "field" },
             },
             {
               name: "--skip-email",
