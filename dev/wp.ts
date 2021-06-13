@@ -12252,13 +12252,14 @@ export const completion: Fig.Spec = {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific row fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -12285,11 +12286,13 @@ export const completion: Fig.Spec = {
               name: "--position",
               insertValue: "--position=",
               description: "Assign the widget to a new position.",
+              args: { name: "position" },
             },
             {
               name: "--sidebar-id",
               insertValue: "--sidebar-id=",
               description: "Assign the widget to a new sidebars.",
+              args: { name: "sidebar-id" },
             },
           ],
         },
