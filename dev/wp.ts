@@ -7790,24 +7790,27 @@ export const completion: Fig.Spec = {
               name: "--match",
               insertValue: "--match=",
               description: "Show rewrite rules matching a particular URL.",
+              args: { name: "url" },
             },
             {
               name: "--source",
               insertValue: "--source=",
               description: "Show rewrite rules from a particular source.",
+              args: { name: "source" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to match,query,source.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -7834,11 +7837,13 @@ export const completion: Fig.Spec = {
               insertValue: "--category-base=",
               description:
                 "Set the base for category permalinks, i.e. ‘/category/’.",
+              args: { name: "base" },
             },
             {
               name: "--tag-base",
               insertValue: "--tag-base=",
               description: "Set the base for tag permalinks, i.e. ‘/tag/’.",
+              args: { name: "base" },
             },
             {
               name: "--hard",
