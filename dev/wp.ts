@@ -9631,7 +9631,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "list" },
                   { name: "table" },
