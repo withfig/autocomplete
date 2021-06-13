@@ -5651,6 +5651,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to activate.",
             },
           ],
           options: [
@@ -5675,6 +5676,8 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
+                  description:
+                    "One or more plugins to disable auto-updates for.",
                 },
               ],
               options: [
@@ -5696,6 +5699,8 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
+                  description:
+                    "One or more plugins to enable auto-updates for.",
                 },
               ],
               options: [
@@ -5717,6 +5722,8 @@ export const completion: Fig.Spec = {
               args: [
                 {
                   name: "plugin",
+                  description:
+                    "One or more plugins to show the status of the auto-updates of.",
                 },
               ],
               options: [
@@ -5739,6 +5746,7 @@ export const completion: Fig.Spec = {
                   name: "--field",
                   insertValue: "--field=",
                   description: "Only show the provided field.",
+                  args: { name: "field" },
                 },
               ],
             },
@@ -5750,6 +5758,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to deactivate.",
             },
           ],
           options: [
@@ -5775,6 +5784,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to delete.",
             },
           ],
           options: [
@@ -5790,6 +5800,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "The plugin to get.",
             },
           ],
           options: [
@@ -5798,19 +5809,21 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Instead of returning the whole plugin, returns the value of a single field.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description:
                 "Limit the output to specific fields. Defaults to all fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -5826,7 +5839,9 @@ export const completion: Fig.Spec = {
           description: "Installs one or more plugins.",
           args: [
             {
-              name: "plugin",
+              name: "plugin|zip|url",
+              description:
+                "One or more plugins to install. Accepts a plugin slug, the path to a local zip file, or a URL to a remote zip file.",
             },
           ],
           options: [
@@ -5835,6 +5850,7 @@ export const completion: Fig.Spec = {
               insertValue: "--version=",
               description:
                 "If set, get that particular version from wordpress.org, instead of the stable version.",
+              args: { name: "version" },
             },
             {
               name: "--force",
@@ -5864,6 +5880,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "The plugin to check.",
             },
           ],
           options: [
@@ -5879,6 +5896,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "The plugin to check.",
             },
           ],
         },
@@ -5895,18 +5913,20 @@ export const completion: Fig.Spec = {
               name: "--field",
               insertValue: "--field=",
               description: "Prints the value of a single field for each plugin",
+              args: { name: "field" },
             },
             {
               name: "--fields",
               insertValue: "--fields=",
               description: "Limit the output to specific object fields.",
+              args: { name: "fields" },
             },
             {
               name: "--format",
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -5921,7 +5941,7 @@ export const completion: Fig.Spec = {
               insertValue: "--status=",
               description: "Filter the output by plugin status.",
               args: {
-                name: "options",
+                name: "status",
                 suggestions: [
                   { name: "active" },
                   { name: "active-network" },
@@ -5939,6 +5959,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description:
+                "The plugin to get the path to. If not set, will return the path to the plugins directory.",
             },
           ],
           options: [
@@ -5955,6 +5977,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "search",
+              description: "The string to search for.",
             },
           ],
           options: [
@@ -5963,7 +5986,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "The serialization format for the value.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [{ name: "plaintext" }, { name: "json" }],
               },
             },
@@ -5972,7 +5995,7 @@ export const completion: Fig.Spec = {
               insertValue: "--page=",
               description: "Optional page to display.",
               args: {
-                name: "default",
+                name: "page",
                 suggestions: [{ name: "1" }],
               },
             },
@@ -5981,7 +6004,7 @@ export const completion: Fig.Spec = {
               insertValue: "--per-page=",
               description: "Optional number of results to display.",
               args: {
-                name: "default",
+                name: "per-page",
                 suggestions: [{ name: "10" }],
               },
             },
@@ -5990,6 +6013,7 @@ export const completion: Fig.Spec = {
               insertValue: "--field=",
               description:
                 "Prints the value of a single field for each plugin.",
+              args: { name: "field" },
             },
             {
               name: "--fields",
@@ -5997,7 +6021,7 @@ export const completion: Fig.Spec = {
               description:
                 "Ask for specific fields from the API. Defaults to name,slug,author_profile,rating. Acceptable values:",
               args: {
-                name: "options",
+                name: "fields",
                 suggestions: [
                   { name: "name" },
                   { name: "slug" },
@@ -6034,7 +6058,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -6052,6 +6076,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "A particular plugin to show the status for.",
             },
           ],
         },
@@ -6061,6 +6086,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to toggle.",
             },
           ],
           options: [
@@ -6077,6 +6103,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to uninstall.",
             },
           ],
           options: [
@@ -6102,6 +6129,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to update.",
             },
           ],
           options: [
@@ -6115,6 +6143,7 @@ export const completion: Fig.Spec = {
               insertValue: "--exclude=",
               description:
                 "Comma separated list of plugin names that should be excluded from updating.",
+              args: { name: "name" },
             },
             {
               name: "--minor",
@@ -6131,7 +6160,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "csv" },
@@ -6164,6 +6193,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "plugin",
+              description: "One or more plugins to verify.",
             },
           ],
           options: [
@@ -6182,7 +6212,7 @@ export const completion: Fig.Spec = {
               insertValue: "--format=",
               description: "Render output in a particular format.",
               args: {
-                name: "options",
+                name: "format",
                 suggestions: [
                   { name: "table" },
                   { name: "json" },
