@@ -8494,6 +8494,10 @@ export const completion: Fig.Spec = {
       description: "Searches/replaces strings in the database.",
       args: [
         {
+          name: "old",
+          description: "A string to search for within the database.",
+        },
+        {
           name: "new",
           description:
             "Replace instances of the first string with this new string.",
@@ -8530,6 +8534,7 @@ export const completion: Fig.Spec = {
           insertValue: "--export=",
           description:
             "Write transformed data as SQL file instead of saving replacements to the database. If <file> is not supplied, will output to STDOUT.",
+          args: { name: "file" },
         },
         {
           name: "--export_insert_size",
@@ -8537,7 +8542,7 @@ export const completion: Fig.Spec = {
           description:
             "Define number of rows in single INSERT statement when doing SQL export. You might want to change this depending on your database configuration (e.g. if you need to do fewer queries). Default: 50",
           args: {
-            name: "default",
+            name: "rows",
             suggestions: [{ name: "50" }],
           },
         },
@@ -8546,18 +8551,21 @@ export const completion: Fig.Spec = {
           insertValue: "--skip-tables=",
           description:
             "Do not perform the replacement on specific tables. Use commas to specify multiple tables. Wildcards are supported, e.g. 'wp_*options' or 'wp_post*'.",
+          args: { name: "tables" },
         },
         {
           name: "--skip-columns",
           insertValue: "--skip-columns=",
           description:
             "Do not perform the replacement on specific columns. Use commas to specify multiple columns.",
+          args: { name: "columns" },
         },
         {
           name: "--include-columns",
           insertValue: "--include-columns=",
           description:
             "Perform the replacement on specific columns. Use commas to specify multiple columns.",
+          args: { name: "columns" },
         },
         {
           name: "--precise",
@@ -8588,25 +8596,28 @@ export const completion: Fig.Spec = {
           insertValue: "--regex-flags=",
           description:
             "Pass PCRE modifiers to regex search-replace (e.g. ‘i’ for case-insensitivity).",
+          args: { name: "regex-flags" },
         },
         {
           name: "--regex-delimiter",
           insertValue: "--regex-delimiter=",
           description:
             "The delimiter to use for the regex. It must be escaped if it appears in the search string. The default value is the result of chr(1).",
+          args: { name: "regex-delimiter" },
         },
         {
           name: "--regex-limit",
           insertValue: "--regex-limit=",
           description:
             "The maximum possible replacements for the regex per row (or per unserialized data bit per row). Defaults to -1 (no limit).",
+          args: { name: "regex-limit" },
         },
         {
           name: "--format",
           insertValue: "--format=",
           description: "Render output in a particular format.",
           args: {
-            name: "options",
+            name: "format",
             suggestions: [{ name: "table" }, { name: "count" }],
           },
         },
@@ -8626,16 +8637,26 @@ export const completion: Fig.Spec = {
             "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
         },
         {
+          name: "--log",
+          displayName: "--log=",
+          insertValue: "--log=",
+          description:
+            "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
+          args: { name: "file" },
+        },
+        {
           name: "--before_context",
           insertValue: "--before_context=",
           description:
             "For logging, number of characters to display before the old match and the new replacement. Default 40. Ignored if not logging.",
+          args: { name: "num" },
         },
         {
           name: "--after_context",
           insertValue: "--after_context=",
           description:
             "For logging, number of characters to display after the old match and the new replacement. Default 40. Ignored if not logging.",
+          args: { name: "num" },
         },
         global_parameter_path,
         global_parameter_url,
