@@ -8016,12 +8016,14 @@ export const completion: Fig.Spec = {
               name: "--title",
               insertValue: "--title=",
               description: "The display title for your block.",
+              args: { name: "title" },
             },
             {
               name: "--dashicon",
               insertValue: "--dashicon=",
               description:
                 "The dashicon to make it easier to identify your block.",
+              args: { name: "dashicon" },
             },
             {
               name: "--category",
@@ -8029,7 +8031,7 @@ export const completion: Fig.Spec = {
               description:
                 "The category name to help users browse and discover your block.",
               args: {
-                name: "options",
+                name: "category",
                 suggestions: [
                   { name: "common" },
                   { name: "embed" },
@@ -8040,7 +8042,7 @@ export const completion: Fig.Spec = {
               },
             },
             {
-              name: "--title",
+              name: "--theme",
               description:
                 "Create files in the active theme directory. Specify a theme with --theme=&lt;theme&gt; to have the file placed in that theme.",
             },
@@ -8048,6 +8050,7 @@ export const completion: Fig.Spec = {
               name: "--plugin",
               insertValue: "--plugin=",
               description: "Create files in the given plugin’s directory.",
+              args: { name: "plugin" },
             },
             {
               name: "--force",
@@ -8070,30 +8073,35 @@ export const completion: Fig.Spec = {
               insertValue: "--parent_theme=",
               description:
                 "What to put in the ‘Template:’ header in ‘style.css’.",
+              args: { name: "slug" },
             },
             {
               name: "--theme_name",
               insertValue: "--theme_name=",
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+              args: { name: "title" },
             },
             {
               name: "--author",
               insertValue: "--author=",
               description:
                 "What to put in the ‘Author:’ header in ‘style.css’.",
+              args: { name: "full-name" },
             },
             {
               name: "--author_uri",
               insertValue: "--author_uri=",
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’.",
+              args: { name: "uri" },
             },
             {
               name: "--theme_uri",
               insertValue: "--theme_uri=",
               description:
                 "What to put in the ‘Theme URI:’ header in ‘style.css’.",
+              args: { name: "uri" },
             },
             {
               name: "--activate",
@@ -8125,31 +8133,37 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Put the new plugin in some arbitrary directory path. Plugin directory will be path plus supplied slug.",
+              args: { name: "dirname" },
             },
             {
               name: "--plugin_name",
               insertValue: "--plugin_name=",
               description: "What to put in the ‘Plugin Name:’ header.",
+              args: { name: "title" },
             },
             {
               name: "--plugin_description",
               insertValue: "--plugin_description=",
               description: "What to put in the ‘Description:’ header.",
+              args: { name: "description" },
             },
             {
               name: "--plugin_author",
               insertValue: "--plugin_author=",
               description: "What to put in the ‘Author:’ header.",
+              args: { name: "author" },
             },
             {
               name: "--plugin_author_uri",
               insertValue: "--plugin_author_uri=",
               description: "What to put in the ‘Author URI:’ header.",
+              args: { name: "uri" },
             },
             {
               name: "--plugin_uri",
               insertValue: "--plugin_uri=",
               description: "What to put in the ‘Plugin URI:’ header.",
+              args: { name: "uri" },
             },
             {
               name: "--skip-tests",
@@ -8161,7 +8175,7 @@ export const completion: Fig.Spec = {
               description:
                 "Choose a configuration file for a continuous integration provider.",
               args: {
-                name: "options",
+                name: "provider",
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
@@ -8199,6 +8213,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Generate test files for a non-standard plugin path. If no plugin slug is specified, the directory name is used.",
+              args: { name: "dirname" },
             },
             {
               name: "--ci",
@@ -8206,7 +8221,7 @@ export const completion: Fig.Spec = {
               description:
                 "Choose a configuration file for a continuous integration provider.",
               args: {
-                name: "options",
+                name: "provider",
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
@@ -8235,16 +8250,19 @@ export const completion: Fig.Spec = {
               name: "--label",
               insertValue: "--label=",
               description: "The text used to translate the update messages.",
+              args: { name: "label" },
             },
             {
               name: "--textdomain",
               insertValue: "--textdomain=",
               description: "The textdomain to use for the labels.",
+              args: { name: "textdomain" },
             },
             {
               name: "--dashicon",
               insertValue: "--dashicon=",
               description: "The dashicon to use in the menu.",
+              args: { name: "dashicon" },
             },
             {
               name: "--theme",
@@ -8256,6 +8274,7 @@ export const completion: Fig.Spec = {
               insertValue: "--plugin=",
               description:
                 "Create a file in the given plugin’s directory, instead of sending to STDOUT.",
+              args: { name: "plugin" },
             },
             {
               name: "--raw",
@@ -8282,16 +8301,19 @@ export const completion: Fig.Spec = {
               name: "--post_types",
               insertValue: "--post_types=",
               description: "Post types to register for use with the taxonomy.",
+              args: { name: "post_types" },
             },
             {
               name: "--label",
               insertValue: "--label=",
               description: "The text used to translate the update messages.",
+              args: { name: "label" },
             },
             {
               name: "--textdomain",
               insertValue: "--textdomain=",
               description: "The textdomain to use for the labels.",
+              args: { name: "textdomain" },
             },
             {
               name: "--theme",
@@ -8303,6 +8325,7 @@ export const completion: Fig.Spec = {
               insertValue: "--plugin=",
               description:
                 "Create a file in the given plugin’s directory, instead of sending to STDOUT.",
+              args: { name: "plugin" },
             },
             {
               name: "--raw",
@@ -8331,6 +8354,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Generate test files for a non-standard theme path. If no theme slug is specified, the directory name is used.",
+              args: { name: "dirname" },
             },
             {
               name: "--ci",
@@ -8338,7 +8362,7 @@ export const completion: Fig.Spec = {
               description:
                 "Choose a configuration file for a continuous integration provider.",
               args: {
-                name: "options",
+                name: "provider",
                 suggestions: [
                   { name: "travis" },
                   { name: "circle" },
@@ -8378,18 +8402,21 @@ export const completion: Fig.Spec = {
               insertValue: "--theme_name=",
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+              args: { name: "title" },
             },
             {
               name: "--author",
               insertValue: "--author=",
               description:
                 "What to put in the ‘Author:’ header in ‘style.css’.",
+              args: { name: "full-name" },
             },
             {
               name: "--author_uri",
               insertValue: "--author_uri=",
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’.",
+              args: { name: "uri" },
             },
             {
               name: "--sassify",
@@ -8430,18 +8457,21 @@ export const completion: Fig.Spec = {
               insertValue: "--theme_name=",
               description:
                 "What to put in the ‘Theme Name:’ header in ‘style.css’.",
+              args: { name: "title" },
             },
             {
               name: "--author",
               insertValue: "--author=",
               description:
                 "What to put in the ‘Author:’ header in ‘style.css’.",
+              args: { name: "full-name" },
             },
             {
               name: "--author_uri",
               insertValue: "--author_uri=",
               description:
                 "What to put in the ‘Author URI:’ header in ‘style.css’.",
+              args: { name: "uri" },
             },
             {
               name: "--sassify",
