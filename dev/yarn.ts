@@ -1019,6 +1019,31 @@ export const completionSpec: Fig.Spec = {
             },
           },
         },
+        {
+          name: "script",
+          generators: {
+            script: function (context) {
+              return `cat ${context[2]}/package.json`;
+            },
+            postProcess: function (out) {
+              if (out.trim() == "") {
+                return [];
+              }
+              try {
+                const packageContent = JSON.parse(out);
+                const scripts = packageContent["scripts"];
+                if (scripts) {
+                  const scriptKeys = [];
+                  for (let i = 0; i < Object.keys(scripts).length; i++) {
+                    scriptKeys.push({ name: Object.keys(scripts)[i] });
+                  }
+                  return scriptKeys;
+                }
+              } catch (e) {}
+              return [];
+            },
+          },
+        },
         // TODO arg 1 is script suggestion from the workspace specified in arg 0.
       ],
     },
