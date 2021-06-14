@@ -252,9 +252,6 @@ export const completion: Fig.Spec = {
         OPTION_VERBOSE,
         {
           name: ["-s", "--site"],
-          args: {
-            name: "site",
-          },
           description: `Initializes a Workers Sites project. Overrides 'type' 
             and 'template'`,
         },
