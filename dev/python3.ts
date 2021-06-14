@@ -7,12 +7,23 @@ export const completionSpec: Fig.Spec = {
     generators: {
       template: "filepaths",
       filterTemplateSuggestions: function (paths) {
-        return paths.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(".py") || file.name.endsWith("/");
-          }
-          return false;
-        });
+        return paths
+          .filter((file) => {
+            if (typeof file.name === "string") {
+              return file.name.endsWith(".py") || file.name.endsWith("/");
+            }
+            return false;
+          })
+          .map((file) => {
+            let isPyFile = false;
+            if (typeof file.name === "string" && file.name.endsWith(".py")) {
+              isPyFile = true;
+            }
+            return {
+              ...file,
+              priority: isPyFile && 76,
+            };
+          });
       },
     },
   },
