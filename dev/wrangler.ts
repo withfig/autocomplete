@@ -23,6 +23,9 @@ const OPTION_VERBOSE: Fig.Option = {
   description: "Toggle verbose output (when applicable)",
 };
 
+/* DOCS: 
+https://developers.cloudflare.com/workers/cli-wrangler/commands 
+*/
 export const completion: Fig.Spec = {
   name: "wrangler",
   description: "Wrangler CLI for Cloudflare Workers",
