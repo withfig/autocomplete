@@ -3,6 +3,7 @@ const OPTION_CONFIG: Fig.Option = {
   name: ["-c", "--config"],
   args: {
     name: "wrangler.toml",
+    template: "filepaths",
   },
   description: "Path to configuration file [default: wrangler.toml]",
 };
@@ -78,7 +79,6 @@ export const completion: Fig.Spec = {
           description: "Create a new namespace",
           args: {
             name: "namespace",
-            isOptional: false,
           },
         },
         {
@@ -279,6 +279,7 @@ export const completion: Fig.Spec = {
         {
           name: "method",
           isOptional: true,
+          suggestions: ["get", "post"],
           description: `Type of request to preview your worker with (get, post) 
             [default: get]`,
         },
@@ -347,6 +348,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "output",
+          suggestions: ["json"],
           description: "[possible values: json]",
         },
       ],
@@ -439,6 +441,7 @@ export const completion: Fig.Spec = {
           name: ["-f", "--format"],
           args: {
             name: "format",
+            suggestions: ["json", "pretty"],
           },
           description:
             "Specify an output format [default: json]  [possible values: json, pretty]",
@@ -480,6 +483,7 @@ export const completion: Fig.Spec = {
           name: "log",
           args: {
             name: "logfile",
+            template: "filepaths",
           },
           description:
             "Specifies a log to report (e.g. --log=1619728882567.log)",
