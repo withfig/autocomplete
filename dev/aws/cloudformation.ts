@@ -1,3 +1,359 @@
+const awsRegions = [
+  "af-south-1",
+  "eu-north-1",
+  "ap-south-1",
+  "eu-west-3",
+  "eu-west-2",
+  "eu-south-1",
+  "eu-west-1",
+  "ap-northeast-3",
+  "ap-northeast-2",
+  "me-south-1",
+  "ap-northeast-1",
+  "sa-east-1",
+  "ca-central-1",
+  "ap-east-1",
+  "ap-southeast-1",
+  "ap-southeast-2",
+  "eu-central-1",
+  "us-east-1",
+  "us-east-2",
+  "us-west-1",
+  "us-west-2",
+];
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+    console.log(list);
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const customGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws cloudformation ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        return [];
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const customGeneratorWithFilter = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = "",
+  filter: string
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws cloudformation ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        return [];
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    return list
+      .filter((elm) => {
+        return elm.ResourceStatus === filter;
+      })
+      .map((elm) => ({
+        name: (childKey ? elm[childKey] : elm) as string,
+        icon: "fig://icon?type=aws",
+      }));
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("~/")) {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) {
+        folderPath = "/";
+      } else {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  return sortSuggestions(out.split("\n"), false);
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dots_arr = [];
+    const other_arr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") {
+        dots_arr.push(elm);
+      } else {
+        other_arr.push(elm);
+      }
+    });
+
+    if (isS3) {
+      return [
+        ...other_arr.sort(sortFnStrings),
+        ...dots_arr.sort(sortFnStrings),
+      ];
+    }
+
+    return [
+      ...other_arr.sort(sortFnStrings),
+      "../",
+      ...dots_arr.sort(sortFnStrings),
+    ];
+  };
+
+  const temp_array = alphabeticalSortFilesAndFolders(arr);
+
+  const final_array = [];
+
+  temp_array.forEach((item) => {
+    if (item !== "" && item !== null) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      final_array.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return final_array;
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listCfnStackIds: {
+    script: "aws cloudformation list-stacks",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "StackSummaries", "StackId");
+    },
+  },
+
+  listUpdateFailedResources: {
+    custom: async (context, executeShellCommand) => {
+      return customGeneratorWithFilter(
+        context,
+        executeShellCommand,
+        "list-stack-resources",
+        ["--stack-name"],
+        "StackResourceSummaries",
+        "LogicalResourceId",
+        "UPDATE_FAILED"
+      );
+    },
+  },
+
+  listDeleteFailedResources: {
+    custom: async (context, executeShellCommand) => {
+      return customGeneratorWithFilter(
+        context,
+        executeShellCommand,
+        "list-stack-resources",
+        ["--stack-name"],
+        "StackResourceSummaries",
+        "LogicalResourceId",
+        "DELETE_FAILED"
+      );
+    },
+  },
+
+  listCfnStackSets: {
+    script: "aws cloudformation list-stack-sets",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Summaries", "StackSetId");
+    },
+  },
+
+  listCfnChangeSets: {
+    script: "aws cloudformation list-change-sets",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Summaries", "ChangeSetId");
+    },
+  },
+
+  listRoleArns: {
+    script: "aws iam list-roles --page-size 100",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "Arn");
+    },
+  },
+
+  listRoles: {
+    script: "aws iam list-roles --page-size 100",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "RoleName");
+    },
+  },
+
+  listSNSTopics: {
+    script: "aws sns list-topics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Topics", "TopicArn");
+    },
+  },
+
+  getAccountArn: {
+    script: "aws sts get-caller-identity",
+    postProcess: function (out, context) {
+      try {
+        const accountId = JSON.parse(out)["Account"];
+        return [{ name: `arn:aws:iam::${accountId}-ID:root` }];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "cloudformation",
   description:
@@ -14,6 +370,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique stack ID that is associated with the stack.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -30,6 +387,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -54,6 +412,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique ID of the stack that you want to continue rolling back.  Don't specify the name of a nested stack (a stack that was created by using the AWS::CloudFormation::Stack resource). Instead, use this operation on the parent stack (the stack that contains the AWS::CloudFormation::Stack resource).",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -62,6 +421,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes to roll back the stack. AWS CloudFormation uses the role's credentials to make calls on your behalf. AWS CloudFormation always uses this role for all future operations on the stack. As long as users have permission to operate on the stack, AWS CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -70,6 +430,8 @@ export const completionSpec: Fig.Spec = {
             "A list of the logical IDs of the resources that AWS CloudFormation skips during the continue update rollback operation. You can specify only resources that are in the UPDATE_FAILED state because a rollback failed. You can't specify resources that are in the UPDATE_FAILED state for other reasons, for example, because an update was cancelled. To check why a resource update failed, use the DescribeStackResources action, and view the resource status reason.   Specify this property to skip rolling back resources that AWS CloudFormation can't successfully roll back. We recommend that you  troubleshoot resources before skipping them. AWS CloudFormation sets the status of the specified resources to UPDATE_COMPLETE and continues to roll back the stack. After the rollback is complete, the state of the skipped resources will be inconsistent with the state of the resources in the stack template. Before performing another stack update, you must update the stack or resources to be consistent with each other. If you don't, subsequent stack updates might fail, and the stack will become unrecoverable.   Specify the minimum number of resources required to successfully roll back your stack. For example, a failed resource update might cause dependent resources to fail. In this case, it might not be necessary to skip the dependent resources.  To skip resources that are part of nested stacks, use the following format: NestedStackName.ResourceLogicalID. If you want to specify the logical ID of a stack resource (Type: AWS::CloudFormation::Stack) in the ResourcesToSkip list, then its corresponding embedded stack must be in one of the following states: DELETE_IN_PROGRESS, DELETE_COMPLETE, or DELETE_FAILED.   Don't confuse a child stack's name with its corresponding logical ID defined in the parent stack. For an example of a continue update rollback operation with nested stacks, see Using ResourcesToSkip to recover a nested stacks hierarchy.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listUpdateFailedResources,
           },
         },
         {
@@ -86,6 +448,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -110,6 +473,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique ID of the stack for which you are creating a change set. AWS CloudFormation generates the change set by comparing this stack's information with the information that you submit, such as a modified template or different parameter input values.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -118,6 +482,7 @@ export const completionSpec: Fig.Spec = {
             "A structure that contains the body of the revised template, with a minimum length of 1 byte and a maximum length of 51,200 bytes. AWS CloudFormation generates the change set by comparing this template with the template of the stack that you specified. Conditional: You must specify only TemplateBody or TemplateURL.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -144,6 +509,9 @@ export const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the change set. For more information, see the Parameter data type.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -152,6 +520,12 @@ export const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to create the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually creating the stack. If your stack template contains one or more macros, and you choose to create a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.  This capacity does not apply to creating change sets, and specifying it when creating change sets has no effect. If you want to create a stack from a stack template that contains macros and nested stacks, you must create or update the stack directly from the template using the CreateStack or UpdateStack action, and specifying this capability.  For more information on macros, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CAPABILITY_IAM",
+              "CAPABILITY_NAMED_IAM",
+              "CAPABILITY_AUTO_EXPAND",
+            ],
           },
         },
         {
@@ -160,6 +534,7 @@ export const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with if you execute this change set, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. If the list of resource types doesn't include a resource type that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for condition keys in IAM policies for AWS CloudFormation. For more information, see Controlling Access with AWS Identity and Access Management in the AWS CloudFormation User Guide.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -168,6 +543,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes when executing the change set. AWS CloudFormation uses the role's credentials to make calls on your behalf. AWS CloudFormation uses this role for all future operations on the stack. As long as users have permission to operate on the stack, AWS CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -176,6 +552,8 @@ export const completionSpec: Fig.Spec = {
             "The rollback triggers for AWS CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
           args: {
             name: "structure",
+            description:
+              "RollbackTriggers=[{Arn=string,Type=string},{Arn=string,Type=string}],MonitoringTimeInMinutes=integer",
           },
         },
         {
@@ -184,6 +562,8 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Names (ARNs) of Amazon Simple Notification Service (Amazon SNS) topics that AWS CloudFormation associates with the stack. To remove all associated notification topics, specify an empty list.",
           args: {
             name: "list",
+            generators: [generators.listSNSTopics],
+            variadic: true,
           },
         },
         {
@@ -192,6 +572,8 @@ export const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to resources in the stack. You can specify a maximum of 50 tags.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -223,6 +605,7 @@ export const completionSpec: Fig.Spec = {
             "The type of change set operation. To create a change set for a new stack, specify CREATE. To create a change set for an existing stack, specify UPDATE. To create a change set for an import operation, specify IMPORT. If you create a change set for a new stack, AWS Cloudformation creates a stack with a unique stack ID, but no template or resources. The stack will be in the  REVIEW_IN_PROGRESS  state until you execute the change set. By default, AWS CloudFormation specifies UPDATE. You can't use the UPDATE type to create a change set for a new stack or the CREATE type to create a change set for an existing stack.",
           args: {
             name: "string",
+            suggestions: ["CREATE", "UPDATE", "IMPORT"],
           },
         },
         {
@@ -230,6 +613,9 @@ export const completionSpec: Fig.Spec = {
           description: "The resources to import into your stack.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceType=string,LogicalResourceId=string,ResourceIdentifier={Key1=string,Key2=string}",
           },
         },
         {
@@ -248,6 +634,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -280,6 +667,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, go to Template Anatomy in the AWS CloudFormation User Guide. Conditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -296,6 +684,9 @@ export const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -314,6 +705,8 @@ export const completionSpec: Fig.Spec = {
             "The rollback triggers for AWS CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
           args: {
             name: "structure",
+            description:
+              "RollbackTriggers=[{Arn=string,Type=string},{Arn=string,Type=string}],MonitoringTimeInMinutes=integer",
           },
         },
         {
@@ -330,6 +723,8 @@ export const completionSpec: Fig.Spec = {
             "The Simple Notification Service (SNS) topic ARNs to publish stack related events. You can find your SNS topic ARNs using the SNS console or your Command Line Interface (CLI).",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -338,6 +733,12 @@ export const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to create the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually creating the stack. If your stack template contains one or more macros, and you choose to create a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation. If you want to create a stack from a stack template that contains macros and nested stacks, you must create the stack directly from the template using this capability.  You should only create stacks directly from a stack template that contains macros if you know what processing the macro performs. Each macro relies on an underlying Lambda service function for processing stack templates. Be aware that the Lambda function owner can update the function operation without AWS CloudFormation being notified.  For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CAPABILITY_IAM",
+              "CAPABILITY_NAMED_IAM",
+              "CAPABILITY_AUTO_EXPAND",
+            ],
           },
         },
         {
@@ -346,6 +747,7 @@ export const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with for this create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. Use the following syntax to describe template resource types: AWS::* (for all AWS resource), Custom::* (for all custom resources), Custom::logical_ID  (for a specific custom resource), AWS::service_name::* (for all resources of a particular AWS service), and AWS::service_name::resource_logical_ID  (for a specific AWS resource). If the list of resource types doesn't include a resource that you're creating, the stack creation fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with AWS Identity and Access Management.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -354,6 +756,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes to create the stack. AWS CloudFormation uses the role's credentials to make calls on your behalf. AWS CloudFormation always uses this role for all future operations on the stack. As long as users have permission to operate on the stack, AWS CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -362,6 +765,7 @@ export const completionSpec: Fig.Spec = {
             "Determines what action will be taken if stack creation fails. This must be one of: DO_NOTHING, ROLLBACK, or DELETE. You can specify either OnFailure or DisableRollback, but not both. Default: ROLLBACK",
           args: {
             name: "string",
+            suggestions: ["DO_NOTHING", "ROLLBACK", "DELETE"],
           },
         },
         {
@@ -370,6 +774,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the stack policy body. For more information, go to  Prevent Updates to Stack Resources in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -386,6 +791,8 @@ export const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -412,6 +819,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -436,6 +844,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to create stack instances from.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -444,6 +853,8 @@ export const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The names of one or more AWS accounts that you want to create stack instances in the specified Region(s) for. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "list",
+            generators: generators.getAccountArn,
+            variadic: true,
           },
         },
         {
@@ -452,6 +863,8 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] The AWS Organizations accounts for which to create stack instances in the specified Regions. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "structure",
+            description:
+              "Accounts=string,string,AccountsUrl=string,OrganizationalUnitIds=string,string",
           },
         },
         {
@@ -460,6 +873,8 @@ export const completionSpec: Fig.Spec = {
             "The names of one or more Regions where you want to create stack instances using the specified AWS account(s).",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: awsRegions,
           },
         },
         {
@@ -468,6 +883,9 @@ export const completionSpec: Fig.Spec = {
             "A list of stack set parameters whose values you want to override in the selected stack instances. Any overridden parameter values will be applied to all stack instances in the specified accounts and Regions. When specifying parameters and their values, be aware of how AWS CloudFormation sets parameter values during stack instance operations:   To override the current value for a parameter, include the parameter and specify its value.   To leave a parameter set to its present value, you can do one of the following:   Do not include the parameter in the list.   Include the parameter and specify UsePreviousValue as true. (You cannot specify both a value and set UsePreviousValue to true.)     To set all overridden parameter back to the values specified in the stack set, specify a parameter list but do not include any parameters.   To leave all parameters set to their present values, do not specify this property at all.   During stack set updates, any parameter values overridden for a stack instance are not updated, but retain their overridden value. You can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -492,6 +910,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -500,6 +919,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -539,6 +959,7 @@ export const completionSpec: Fig.Spec = {
             "The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, see Template Anatomy in the AWS CloudFormation User Guide. Conditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -554,6 +975,9 @@ export const completionSpec: Fig.Spec = {
           description: "The input parameters for the stack set template.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -562,6 +986,12 @@ export const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stack sets, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some templates reference macros. If your stack set template references one or more macros, you must create the stack set directly from the processed template, without first reviewing the resulting changes in a change set. To create the stack set directly, you must acknowledge this capability. For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.  Stack sets with service-managed permissions do not currently support the use of macros in templates. (This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.) Even if you specify this capability for a stack set with service-managed permissions, if you reference a macro in your template the stack set operation will fail.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CAPABILITY_IAM",
+              "CAPABILITY_NAMED_IAM",
+              "CAPABILITY_AUTO_EXPAND",
+            ],
           },
         },
         {
@@ -570,6 +1000,8 @@ export const completionSpec: Fig.Spec = {
             "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified. If you specify tags as part of a CreateStackSet action, AWS CloudFormation checks to see if you have the required IAM permission to tag resources. If you don't, the entire CreateStackSet action fails with an access denied error, and the stack set is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -578,6 +1010,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Number (ARN) of the IAM role to use to create this stack set.  Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account. For more information, see Prerequisites: Granting Permissions for Stack Set Operations in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -586,6 +1019,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM execution role to use to create the stack set. If you do not specify an execution role, AWS CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation. Specify an IAM role only if you are using customized execution roles to control which stack resources users and groups can include in their stack sets.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -594,6 +1028,7 @@ export const completionSpec: Fig.Spec = {
             "Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.   With self-managed permissions, you must create the administrator and execution roles required to deploy to target accounts. For more information, see Grant Self-Managed Stack Set Permissions.   With service-managed permissions, StackSets automatically creates the IAM roles required to deploy to accounts managed by AWS Organizations. For more information, see Grant Service-Managed Stack Set Permissions.",
           args: {
             name: "string",
+            suggestions: ["SERVICE_MANAGED", "SELF_MANAGED"],
           },
         },
         {
@@ -602,6 +1037,7 @@ export const completionSpec: Fig.Spec = {
             "Describes whether StackSets automatically deploys to AWS Organizations accounts that are added to the target organization or organizational unit (OU). Specify only if PermissionModel is SERVICE_MANAGED.",
           args: {
             name: "structure",
+            description: "Enabled=boolean,RetainStacksOnAccountRemoval=boolean",
           },
         },
         {
@@ -610,6 +1046,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   To create a stack set with service-managed permissions while signed in to the management account, specify SELF.   To create a stack set with service-managed permissions while signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated admin in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.   Stack sets with service-managed permissions are created in the management account, including stack sets that are created by delegated administrators.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -626,6 +1063,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -650,6 +1088,7 @@ export const completionSpec: Fig.Spec = {
             "The name or Amazon Resource Name (ARN) of the change set that you want to delete.",
           args: {
             name: "string",
+            generators: generators.listCfnChangeSets,
           },
         },
         {
@@ -658,6 +1097,7 @@ export const completionSpec: Fig.Spec = {
             "If you specified the name of a change set to delete, specify the stack name or ID (ARN) that is associated with it.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -666,6 +1106,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -690,6 +1131,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique stack ID that is associated with the stack.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -698,6 +1140,8 @@ export const completionSpec: Fig.Spec = {
             "For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, AWS CloudFormation deletes the stack but does not delete the retained resources. Retaining resources is useful when you cannot delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listDeleteFailedResources,
           },
         },
         {
@@ -706,6 +1150,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes to delete the stack. AWS CloudFormation uses the role's credentials to make calls on your behalf. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -722,6 +1167,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
