@@ -15,10 +15,8 @@ export const completionSpec: Fig.Spec = {
             return false;
           })
           .map((file) => {
-            let isJsFile = false;
-            if (typeof file.name === "string" && file.name.endsWith(".js")) {
-              isJsFile = true;
-            }
+            const isJsFile = typeof file.name === "string" && file.name.endsWith(".js")
+
             return {
               ...file,
               priority: isJsFile && 76,
