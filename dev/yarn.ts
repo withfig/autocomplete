@@ -1023,7 +1023,7 @@ export const completionSpec: Fig.Spec = {
           name: "script",
           generators: {
             script: function (context) {
-              return `cat ${context[2]}/package.json`;
+              return `cat ${context[context.length - 2]}/package.json`;
             },
             postProcess: function (out) {
               if (out.trim() == "") {
