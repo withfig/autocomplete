@@ -15,7 +15,8 @@ export const completionSpec: Fig.Spec = {
             return false;
           })
           .map((file) => {
-            const isPyFile = typeof file.name === "string" && file.name.endsWith(".js")
+            const isPyFile =
+              typeof file.name === "string" && file.name.endsWith(".js");
 
             return {
               ...file,
