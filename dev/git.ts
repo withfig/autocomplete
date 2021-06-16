@@ -315,9 +315,6 @@ const head = {
 export const completionSpec: Fig.Spec = {
   name: "git",
   description: "the stupid content tracker",
-  args: {
-    generators: gitGenerators.aliases,
-  },
   options: [
     {
       name: "--version",
