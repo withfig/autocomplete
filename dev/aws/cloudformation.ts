@@ -140,6 +140,7 @@ const customGeneratorWithFilter = async (
 };
 
 const _prefixFile = "file://";
+const _prefixS3 = "s3://";
 
 const appendFolderPath = (tokens: string[], prefix: string): string => {
   const baseLSCommand = "\\ls -1ApL ";
@@ -270,6 +271,108 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
+  listRemoteFilesGenerator: {
+    script: (tokens) => {
+      const whatHasUserTyped = tokens[tokens.length - 1];
+      const baseLSCommand = "\\aws s3 ls ";
+
+      let folderPath = "";
+
+      const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (!whatHasUserTyped.startsWith(_prefixS3)) {
+        // if whatHasUserTyped is neither s3:// or its substr permutations,
+        // then we can assume that the filepath generator is in work
+        // so do not return any s3 related filepaths
+        if (!_prefixS3.startsWith(whatHasUserTyped)) {
+          return "";
+        }
+
+        return "echo 's3://'";
+      }
+
+      if (lastSlashIndex > -1) {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+
+      return baseLSCommand + folderPath;
+    },
+    postProcess: (out) => {
+      if (out == "") {
+        return [];
+      }
+
+      if (out.trim() === _prefixS3) {
+        return [
+          {
+            name: _prefixS3,
+            insertValue: _prefixS3,
+          },
+        ];
+      }
+
+      let preFound = false;
+      const lines = out.split("\n").map((line) => {
+        const parts = line.split(/\s+/);
+        // sub prefix
+        if (!parts.length) {
+          return [];
+        }
+
+        let s3Path = parts[parts.length - 1];
+
+        // Parsing S3 CLI Output here
+        // Do this in a try block beacuse of the indexing magic
+        try {
+          //Example Output:
+          //                             PRE charts/
+          //  2021-05-08 10:15:53      81765 img.jpg
+          //
+          // After we have found at least 1 PRE keyword
+          // we can assume that all lines without PRE are files
+          if (parts[1] === "PRE") {
+            preFound = true;
+            return s3Path;
+          }
+
+          const hasBackSlash =
+            s3Path.slice(_prefixS3.length).lastIndexOf("/") > -1;
+
+          // it is a file, do not append trailing '/'
+          if (preFound && !hasBackSlash) {
+            return s3Path;
+          }
+
+          // If output line's third column is a number (File size column)
+          // we can assume that it is a file so do not append trailing '/'
+          if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
+            return s3Path;
+          }
+
+          // Any leftover lines are bucket names
+          // just append '/' at the end
+          if (!hasBackSlash) {
+            s3Path = s3Path + "/";
+          }
+        } catch (e) {
+          console.log(e);
+        }
+
+        return s3Path;
+      });
+
+      return sortSuggestions(lines as string[], true);
+    },
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixS3);
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefixS3)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+
   listCfnStackIds: {
     script: "aws cloudformation list-stacks",
     postProcess: (out) => {
@@ -285,7 +388,7 @@ const generators: Record<string, Fig.Generator> = {
         "list-stack-resources",
         ["--stack-name"],
         "StackResourceSummaries",
-        "LogicalResourceId",
+        "LogicalResourceId"
       );
     },
   },
@@ -298,7 +401,7 @@ const generators: Record<string, Fig.Generator> = {
         "list-stack-resources",
         ["--stack-name"],
         "StackResourceSummaries",
-        "PhysicalResourceId",
+        "PhysicalResourceId"
       );
     },
   },
@@ -394,7 +497,7 @@ const generators: Record<string, Fig.Generator> = {
         "list-type-versions",
         ["--type-name"],
         "TypeVersionSummaries",
-        "VersionId",
+        "VersionId"
       );
     },
   },
@@ -407,8 +510,69 @@ const generators: Record<string, Fig.Generator> = {
         "list-type-versions",
         ["--arn"],
         "TypeVersionSummaries",
-        "VersionId",
+        "VersionId"
       );
+    },
+  },
+
+  getStackIdForChangeSet: {
+    custom: async (context, executeShellCommand) => {
+      try {
+        const idx = context.indexOf("--change-set-name");
+        if (idx < 0) {
+          return [];
+        }
+        const param = context[idx + 1];
+        const cmd = `aws cloudformation describe-change-set --change-set-name ${param}`;
+        const out = await executeShellCommand(cmd);
+
+        const stackId = JSON.parse(out)["StackId"];
+
+        return [
+          {
+            name: stackId,
+            icon: "fig://icon?type=aws",
+          },
+        ];
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+  },
+
+  listExportNames: {
+    script: "aws cloudformation list-exports",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Exports", "Name");
+    },
+  },
+
+  listBuckets: {
+    script: "aws s3 ls --page-size 1000",
+    postProcess: function (out, context) {
+      try {
+        return out.split("\n").map((line) => {
+          const parts = line.split(/\s+/);
+          // sub prefix
+          if (!parts.length) {
+            return [];
+          }
+          return {
+            name: _prefixS3 + parts[parts.length - 1],
+          };
+        }) as Fig.Suggestion[];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+  },
+
+  listKmsKeys: {
+    script: "aws kms list-keys --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Keys", "KeyId");
     },
   },
 };
@@ -1270,7 +1434,8 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] The AWS Organizations accounts from which to delete stack instances. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "structure",
-            description: "Accounts=string,string,AccountsUrl=string,OrganizationalUnitIds=string,string",
+            description:
+              "Accounts=string,string,AccountsUrl=string,OrganizationalUnitIds=string,string",
           },
         },
         {
@@ -1315,10 +1480,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: [
-              "SELF",
-              "DELEGATED_ADMIN",
-            ],
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -1361,10 +1523,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: [
-              "SELF",
-              "DELEGATED_ADMIN",
-            ],
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -1407,10 +1566,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
-            suggestions: [
-              "RESOURCE",
-              "MODULE",
-            ],
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -1428,7 +1584,10 @@ export const completionSpec: Fig.Spec = {
             "The ID of a specific version of the extension. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the extension version when it is registered.",
           args: {
             name: "string",
-            generators: [generators.listTypeVersionsByTypeName, generators.listTypeVersionsByArn],
+            generators: [
+              generators.listTypeVersionsByTypeName,
+              generators.listTypeVersionsByArn,
+            ],
           },
         },
         {
@@ -1695,10 +1854,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: [
-              "SELF",
-              "DELEGATED_ADMIN",
-            ],
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -1785,12 +1941,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: [
-              "IN_SYNC",
-              "MODIFIED",
-              "DELETED",
-              "NOT_CHECKED",
-            ],
+            suggestions: ["IN_SYNC", "MODIFIED", "DELETED", "NOT_CHECKED"],
           },
         },
         {
@@ -1900,10 +2051,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: [
-              "SELF",
-              "DELEGATED_ADMIN",
-            ],
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -1953,10 +2101,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: [
-              "SELF",
-              "DELEGATED_ADMIN",
-            ],
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -2048,6 +2193,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension.  Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -2056,6 +2202,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -2080,6 +2227,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2112,6 +2260,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2136,6 +2285,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the stack for which you want to detect drift.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2144,6 +2294,7 @@ export const completionSpec: Fig.Spec = {
             "The logical names of any resources you want to use as filters.",
           args: {
             name: "list",
+            generators: generators.listLogicalResourceIds,
           },
         },
         {
@@ -2152,6 +2303,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2175,6 +2327,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the stack to which the resource belongs.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2183,6 +2336,7 @@ export const completionSpec: Fig.Spec = {
             "The logical name of the resource for which to return drift information.",
           args: {
             name: "string",
+            generators: generators.listLogicalResourceIds,
           },
         },
         {
@@ -2191,6 +2345,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2215,6 +2370,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the stack set on which to perform the drift detection operation.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -2238,6 +2394,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -2246,6 +2403,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2270,6 +2428,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. (For more information, go to Template Anatomy in the AWS CloudFormation User Guide.) Conditional: You must pass TemplateBody or TemplateURL. If both are passed, only TemplateBody is used.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2286,6 +2445,9 @@ export const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -2294,6 +2456,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2318,6 +2481,7 @@ export const completionSpec: Fig.Spec = {
             "The name or ARN of the change set that you want use to update the specified stack.",
           args: {
             name: "string",
+            generators: generators.listCfnChangeSets,
           },
         },
         {
@@ -2326,6 +2490,7 @@ export const completionSpec: Fig.Spec = {
             "If you specified the name of a change set, specify the stack name or ID (ARN) that is associated with the change set you want to execute.",
           args: {
             name: "string",
+            generators: generators.getStackIdForChangeSet,
           },
         },
         {
@@ -2342,6 +2507,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2366,6 +2532,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique stack ID that is associated with the stack whose policy you want to get.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2374,6 +2541,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2398,6 +2566,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2406,6 +2575,7 @@ export const completionSpec: Fig.Spec = {
             "The name or Amazon Resource Name (ARN) of a change set for which AWS CloudFormation returns the associated template. If you specify a name, you must also specify the StackName.",
           args: {
             name: "string",
+            generators: generators.listCfnChangeSets,
           },
         },
         {
@@ -2414,6 +2584,7 @@ export const completionSpec: Fig.Spec = {
             "For templates that include transforms, the stage of the template that AWS CloudFormation returns. To get the user-submitted template, specify Original. To get the template after AWS CloudFormation has processed all transforms, specify Processed.  If the template doesn't include transforms, Original and Processed return the same template. By default, AWS CloudFormation specifies Original.",
           args: {
             name: "string",
+            suggestions: ["Original", "Processed"],
           },
         },
         {
@@ -2422,6 +2593,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2446,6 +2618,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information about templates, see Template Anatomy in the AWS CloudFormation User Guide. Conditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2462,6 +2635,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the stack ID that is associated with the stack, which are not always interchangeable. For running stacks, you can specify either the stack's name or its unique stack ID. For deleted stack, you must specify the unique stack ID. Conditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2470,6 +2644,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set from which the stack was created. Conditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -2478,6 +2653,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2502,6 +2678,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the Amazon Resource Name (ARN) of the stack for which you want to list change sets.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2518,6 +2695,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2566,6 +2744,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2606,6 +2785,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the exported output value. AWS CloudFormation returns the stack names that are importing this value.",
           args: {
             name: "string",
+            generators: generators.listExportNames,
           },
         },
         {
@@ -2622,6 +2802,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2662,6 +2843,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to list stack instances for.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -2685,6 +2867,8 @@ export const completionSpec: Fig.Spec = {
           description: "The status that stack instances are filtered by.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Name=string,Values=string",
           },
         },
         {
@@ -2693,6 +2877,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the AWS account that you want to list stack instances for.",
           args: {
             name: "string",
+            generators: generators.getAccountId,
           },
         },
         {
@@ -2701,6 +2886,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Region where you want to list stack instances.",
           args: {
             name: "string",
+            suggestions: awsRegions,
           },
         },
         {
@@ -2709,6 +2895,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -2717,6 +2904,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2765,6 +2953,7 @@ export const completionSpec: Fig.Spec = {
             "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -2781,6 +2970,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2821,6 +3011,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to get operation results for.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -2852,6 +3043,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -2860,6 +3052,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2908,6 +3101,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to get operation summaries for.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -2932,6 +3126,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -2940,6 +3135,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3004,6 +3200,7 @@ export const completionSpec: Fig.Spec = {
             "The status of the stack sets that you want to get summary information about.",
           args: {
             name: "string",
+            suggestions: ["ACTIVE", "DELETED"],
           },
         },
         {
@@ -3012,6 +3209,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -3020,6 +3218,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3076,6 +3275,31 @@ export const completionSpec: Fig.Spec = {
             "Stack status to use as a filter. Specify one or more stack status codes to list only stacks with the specified status codes. For a complete list of stack status codes, see the StackStatus parameter of the Stack data type.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CREATE_IN_PROGRESS",
+              "CREATE_FAILED",
+              "CREATE_COMPLETE",
+              "ROLLBACK_IN_PROGRESS",
+              "ROLLBACK_FAILED",
+              "ROLLBACK_COMPLETE",
+              "DELETE_IN_PROGRESS",
+              "DELETE_FAILED",
+              "DELETE_COMPLETE",
+              "UPDATE_IN_PROGRESS",
+              "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
+              "UPDATE_COMPLETE",
+              "UPDATE_ROLLBACK_IN_PROGRESS",
+              "UPDATE_ROLLBACK_FAILED",
+              "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS",
+              "UPDATE_ROLLBACK_COMPLETE",
+              "REVIEW_IN_PROGRESS",
+              "IMPORT_IN_PROGRESS",
+              "IMPORT_COMPLETE",
+              "IMPORT_ROLLBACK_IN_PROGRESS",
+              "IMPORT_ROLLBACK_FAILED",
+              "IMPORT_ROLLBACK_COMPLETE",
+            ],
           },
         },
         {
@@ -3084,6 +3308,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3124,6 +3349,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -3132,6 +3358,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3140,6 +3367,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3148,6 +3376,7 @@ export const completionSpec: Fig.Spec = {
             "The current status of the extension registration request. The default is IN_PROGRESS.",
           args: {
             name: "string",
+            suggestions: ["COMPLETE", "IN_PROGRESS", "FAILED"],
           },
         },
         {
@@ -3172,6 +3401,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3196,6 +3426,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -3204,6 +3435,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the extension for which you want version summary information. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3212,6 +3444,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the extension for which you want version summary information. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3236,6 +3469,7 @@ export const completionSpec: Fig.Spec = {
             "The deprecation status of the extension versions that you want to get summary information about. Valid values include:    LIVE: The extension version is registered and can be used in CloudFormation operations, dependent on its provisioning behavior and visibility scope.    DEPRECATED: The extension version has been deregistered and can no longer be used in CloudFormation operations.    The default is LIVE.",
           args: {
             name: "string",
+            suggestions: ["LIVE", "DEPRECATED"],
           },
         },
         {
@@ -3244,6 +3478,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3268,6 +3503,7 @@ export const completionSpec: Fig.Spec = {
             "The scope at which the extension is visible and usable in CloudFormation operations. Valid values include:    PRIVATE: The extension is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any extension you create as PRIVATE.    PUBLIC: The extension is publically visible and usable within any Amazon account.   The default is PRIVATE.",
           args: {
             name: "string",
+            suggestions: ["PUBLIC", "PRIVATE"],
           },
         },
         {
@@ -3276,6 +3512,7 @@ export const completionSpec: Fig.Spec = {
             "The provisioning behavior of the type. AWS CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted. Valid values include:    FULLY_MUTABLE: The extension includes an update handler to process updates to the extension during stack update operations.    IMMUTABLE: The extension does not include an update handler, so the extension cannot be updated and must instead be replaced during stack update operations.    NON_PROVISIONABLE: The extension does not include create, read, and delete handlers, and therefore cannot actually be provisioned.",
           args: {
             name: "string",
+            suggestions: ["NON_PROVISIONABLE", "IMMUTABLE", "FULLY_MUTABLE"],
           },
         },
         {
@@ -3284,6 +3521,7 @@ export const completionSpec: Fig.Spec = {
             "The deprecation status of the extension that you want to get summary information about. Valid values include:    LIVE: The extension is registered for use in CloudFormation operations.    DEPRECATED: The extension has been deregistered and can no longer be used in CloudFormation operations.",
           args: {
             name: "string",
+            suggestions: ["LIVE", "DEPRECATED"],
           },
         },
         {
@@ -3291,6 +3529,7 @@ export const completionSpec: Fig.Spec = {
           description: "The type of extension.",
           args: {
             name: "string",
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -3315,6 +3554,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3345,6 +3585,7 @@ export const completionSpec: Fig.Spec = {
           description: "Reserved for use by the CloudFormation CLI.",
           args: {
             name: "string",
+            suggestions: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
           },
         },
         {
@@ -3352,6 +3593,7 @@ export const completionSpec: Fig.Spec = {
           description: "Reserved for use by the CloudFormation CLI.",
           args: {
             name: "string",
+            suggestions: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
           },
         },
         {
@@ -3366,6 +3608,22 @@ export const completionSpec: Fig.Spec = {
           description: "Reserved for use by the CloudFormation CLI.",
           args: {
             name: "string",
+            suggestions: [
+              "NotUpdatable",
+              "InvalidRequest",
+              "AccessDenied",
+              "InvalidCredentials",
+              "AlreadyExists",
+              "NotFound",
+              "ResourceConflict",
+              "Throttling",
+              "ServiceLimitExceeded",
+              "NotStabilized",
+              "GeneralServiceException",
+              "ServiceInternalError",
+              "NetworkFailure",
+              "InternalFailure",
+            ],
           },
         },
         {
@@ -3388,6 +3646,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3411,6 +3670,7 @@ export const completionSpec: Fig.Spec = {
           description: "The kind of extension.",
           args: {
             name: "string",
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -3419,6 +3679,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the extension being registered. We recommend that extension names adhere to the following pattern: company_or_organization::service::type.  The following organization namespaces are reserved and cannot be used in your extension names:    Alexa     AMZN     Amazon     AWS     Custom     Dev",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3427,6 +3688,7 @@ export const completionSpec: Fig.Spec = {
             "A url to the S3 bucket containing the extension project package that contains the neccessary files for the extension you want to register. For information on generating a schema handler package for the extension you want to register, see submit in the CloudFormation CLI User Guide.  The user registering the extension must be able to access the package in the S3 bucket. That is, the user needs to have GetObject permissions for the schema handler package. For more information, see Actions, Resources, and Condition Keys for Amazon S3 in the AWS Identity and Access Management User Guide.",
           args: {
             name: "string",
+            generators: generators.listRemoteFilesGenerator,
           },
         },
         {
@@ -3435,6 +3697,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies logging configuration information for an extension.",
           args: {
             name: "structure",
+            description: "LogRoleArn=string,LogGroupName=string",
           },
         },
         {
@@ -3443,6 +3706,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM role for CloudFormation to assume when invoking the extension. If your extension calls AWS APIs in any of its handlers, you must create an  IAM execution role  that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. When CloudFormation needs to invoke the extension handler, CloudFormation assumes this execution role to create a temporary session token, which it then passes to the extension handler, thereby supplying your extension with the appropriate credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -3459,6 +3723,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3482,6 +3747,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique stack ID that you want to associate a policy with.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -3490,6 +3756,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the stack policy body. For more information, go to  Prevent Updates to Stack Resources in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3506,6 +3773,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3530,6 +3798,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the extension for which you want version summary information. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3538,6 +3807,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            suggestions: ["RESOURCE", "MODULE"],
           },
         },
         {
@@ -3546,6 +3816,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
+            generators: generators.listTypeArns,
           },
         },
         {
@@ -3554,6 +3825,10 @@ export const completionSpec: Fig.Spec = {
             "The ID of a specific version of the extension. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the extension version when it is registered.",
           args: {
             name: "string",
+            generators: [
+              generators.listTypeVersionsByTypeName,
+              generators.listTypeVersionsByArn,
+            ],
           },
         },
         {
@@ -3562,6 +3837,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3586,6 +3862,7 @@ export const completionSpec: Fig.Spec = {
             "The stack name or unique stack ID that includes the resource that you want to signal.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -3594,6 +3871,7 @@ export const completionSpec: Fig.Spec = {
             "The logical ID of the resource that you want to signal. The logical ID is the name of the resource that given in the template.",
           args: {
             name: "string",
+            generators: generators.listLogicalResourceIds,
           },
         },
         {
@@ -3610,6 +3888,7 @@ export const completionSpec: Fig.Spec = {
             "The status of the signal, which is either success or failure. A failure signal causes AWS CloudFormation to immediately fail the stack creation or update.",
           args: {
             name: "string",
+            suggestions: ["SUCCESS", "FAILURE"],
           },
         },
         {
@@ -3618,6 +3897,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3642,6 +3922,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to stop the operation for.",
           args: {
             name: "string",
+            generators: generators.listCfnChangeSets,
           },
         },
         {
@@ -3657,6 +3938,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -3665,6 +3947,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3688,6 +3971,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name or unique stack ID of the stack to update.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -3696,6 +3980,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. (For more information, go to Template Anatomy in the AWS CloudFormation User Guide.) Conditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3722,6 +4007,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the temporary overriding stack policy body. You can specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL parameter, but not both. If you want to update protected resources, specify a temporary overriding stack policy during this update. If you do not specify a stack policy, the current policy that is associated with the stack will be used.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3738,6 +4024,9 @@ export const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -3746,6 +4035,12 @@ export const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to update the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually updating the stack. If your stack template contains one or more macros, and you choose to update a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation. If you want to update a stack from a stack template that contains macros and nested stacks, you must update the stack directly from the template using this capability.  You should only update stacks directly from a stack template that contains macros if you know what processing the macro performs. Each macro relies on an underlying Lambda service function for processing stack templates. Be aware that the Lambda function owner can update the function operation without AWS CloudFormation being notified.  For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CAPABILITY_IAM",
+              "CAPABILITY_NAMED_IAM",
+              "CAPABILITY_AUTO_EXPAND",
+            ],
           },
         },
         {
@@ -3754,6 +4049,7 @@ export const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with for this update stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with AWS Identity and Access Management.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -3762,6 +4058,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes to update the stack. AWS CloudFormation uses the role's credentials to make calls on your behalf. AWS CloudFormation always uses this role for all future operations on the stack. As long as users have permission to operate on the stack, AWS CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege. If you don't specify a value, AWS CloudFormation uses the role that was previously associated with the stack. If no role is available, AWS CloudFormation uses a temporary session that is generated from your user credentials.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -3770,6 +4067,8 @@ export const completionSpec: Fig.Spec = {
             "The rollback triggers for AWS CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
           args: {
             name: "structure",
+            description:
+              "RollbackTriggers=[{Arn=string,Type=string},{Arn=string,Type=string}],MonitoringTimeInMinutes=integer",
           },
         },
         {
@@ -3778,6 +4077,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing a new stack policy body. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both. You might update the stack policy, for example, in order to protect a new resource that you created during a stack update. If you do not specify a stack policy, the current policy that is associated with the stack is unchanged.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3794,6 +4094,7 @@ export const completionSpec: Fig.Spec = {
             "Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that AWS CloudFormation associates with the stack. Specify an empty list to remove all notification topics.",
           args: {
             name: "list",
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -3802,6 +4103,8 @@ export const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to supported resources in the stack. You can specify a maximum number of 50 tags. If you don't specify this parameter, AWS CloudFormation doesn't modify the stack's tags. If you specify an empty value, AWS CloudFormation removes all associated tags.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -3818,6 +4121,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3842,6 +4146,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set associated with the stack instances.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -3850,6 +4155,8 @@ export const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The names of one or more AWS accounts for which you want to update parameter values for stack instances. The overridden parameter values will be applied to all stack instances in the specified accounts and Regions. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.getAccountId,
           },
         },
         {
@@ -3858,6 +4165,8 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] The AWS Organizations accounts for which you want to update parameter values for stack instances. If your update targets OUs, the overridden parameter values only apply to the accounts that are currently in the target OUs and their child OUs. Accounts added to the target OUs and their child OUs in the future won't use the overridden values. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "structure",
+            description:
+              "Accounts=string,string,AccountsUrl=string,OrganizationalUnitIds=string,string",
           },
         },
         {
@@ -3866,6 +4175,7 @@ export const completionSpec: Fig.Spec = {
             "The names of one or more Regions in which you want to update parameter values for stack instances. The overridden parameter values will be applied to all stack instances in the specified accounts and Regions.",
           args: {
             name: "list",
+            suggestions: awsRegions,
           },
         },
         {
@@ -3874,6 +4184,9 @@ export const completionSpec: Fig.Spec = {
             "A list of input parameters whose values you want to update for the specified stack instances.  Any overridden parameter values will be applied to all stack instances in the specified accounts and Regions. When specifying parameters and their values, be aware of how AWS CloudFormation sets parameter values during stack instance update operations:   To override the current value for a parameter, include the parameter and specify its value.   To leave a parameter set to its present value, you can do one of the following:   Do not include the parameter in the list.   Include the parameter and specify UsePreviousValue as true. (You cannot specify both a value and set UsePreviousValue to true.)     To set all overridden parameter back to the values specified in the stack set, specify a parameter list but do not include any parameters.   To leave all parameters set to their present values, do not specify this property at all.   During stack set updates, any parameter values overridden for a stack instance are not updated, but retain their overridden value. You can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template. If you add a parameter to a template, before you can override the parameter value specified in the stack set you must first use UpdateStackSet to update all stack instances with the updated template and parameter value specified in the stack set. Once a stack instance has been updated with the new parameter, you can then override the parameter value using UpdateStackInstances.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -3898,6 +4211,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -3906,6 +4220,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3930,6 +4245,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack set that you want to update.",
           args: {
             name: "string",
+            generators: generators.listCfnStackSets,
           },
         },
         {
@@ -3945,6 +4261,7 @@ export const completionSpec: Fig.Spec = {
             "The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, see Template Anatomy in the AWS CloudFormation User Guide. Conditional: You must specify only one of the following parameters: TemplateBody or TemplateURL\u2014or set UsePreviousTemplate to true.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3970,6 +4287,9 @@ export const completionSpec: Fig.Spec = {
           description: "A list of input parameters for the stack set template.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
         },
         {
@@ -3978,6 +4298,12 @@ export const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to update the stack set and its associated stack instances.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks sets, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some templates reference macros. If your stack set template references one or more macros, you must update the stack set directly from the processed template, without first reviewing the resulting changes in a change set. To update the stack set directly, you must acknowledge this capability. For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.  Stack sets with service-managed permissions do not currently support the use of macros in templates. (This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.) Even if you specify this capability for a stack set with service-managed permissions, if you reference a macro in your template the stack set operation will fail.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "CAPABILITY_IAM",
+              "CAPABILITY_NAMED_IAM",
+              "CAPABILITY_AUTO_EXPAND",
+            ],
           },
         },
         {
@@ -3986,6 +4312,8 @@ export const completionSpec: Fig.Spec = {
             "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. You can specify a maximum number of 50 tags. If you specify tags for this parameter, those tags replace any list of tags that are currently associated with this stack set. This means:   If you don't specify this parameter, AWS CloudFormation doesn't modify the stack's tags.    If you specify any tags using this parameter, you must specify all the tags that you want associated with this stack set, even tags you've specifed before (for example, when creating the stack set or during a previous update of the stack set.). Any tags that you don't include in the updated list of tags are removed from the stack set, and therefore from the stacks and resources as well.    If you specify an empty value, AWS CloudFormation removes all currently associated tags.   If you specify new tags as part of an UpdateStackSet action, AWS CloudFormation checks to see if you have the required IAM permission to tag resources. If you omit tags that are currently associated with the stack set from the list of tags you specify, AWS CloudFormation assumes that you want to remove those tags from the stack set, and checks to see if you have permission to untag resources. If you don't have the necessary permission(s), the entire UpdateStackSet action fails with an access denied error, and the stack set is not updated.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -4002,6 +4330,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Number (ARN) of the IAM role to use to update this stack set. Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account. For more information, see Granting Permissions for Stack Set Operations in the AWS CloudFormation User Guide. If you specified a customized administrator role when you created the stack set, you must specify a customized administrator role, even if it is the same customized administrator role used with this stack set previously.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -4010,6 +4339,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM execution role to use to update the stack set. If you do not specify an execution role, AWS CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation. Specify an IAM role only if you are using customized execution roles to control which stack resources users and groups can include in their stack sets.   If you specify a customized execution role, AWS CloudFormation uses that role to update the stack. If you do not specify a customized execution role, AWS CloudFormation performs the update using the role previously associated with the stack set, so long as you have permissions to perform operations on the stack set.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -4018,6 +4348,8 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] The AWS Organizations accounts in which to update associated stack instances. To update all the stack instances associated with this stack set, do not specify DeploymentTargets or Regions. If the stack set update includes changes to the template (that is, if TemplateBody or TemplateURL is specified), or the Parameters, AWS CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
           args: {
             name: "structure",
+            description:
+              "Accounts=string,string,AccountsUrl=string,OrganizationalUnitIds=string,string",
           },
         },
         {
@@ -4026,6 +4358,7 @@ export const completionSpec: Fig.Spec = {
             "Describes how the IAM roles required for stack set operations are created. You cannot modify PermissionModel if there are stack instances associated with your stack set.   With self-managed permissions, you must create the administrator and execution roles required to deploy to target accounts. For more information, see Grant Self-Managed Stack Set Permissions.   With service-managed permissions, StackSets automatically creates the IAM roles required to deploy to accounts managed by AWS Organizations. For more information, see Grant Service-Managed Stack Set Permissions.",
           args: {
             name: "string",
+            suggestions: ["SERVICE_MANAGED", "SELF_MANAGED"],
           },
         },
         {
@@ -4034,6 +4367,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Describes whether StackSets automatically deploys to AWS Organizations accounts that are added to a target organization or organizational unit (OU). If you specify AutoDeployment, do not specify DeploymentTargets or Regions.",
           args: {
             name: "structure",
+            description: "Enabled=boolean,RetainStacksOnAccountRemoval=boolean",
           },
         },
         {
@@ -4050,6 +4384,8 @@ export const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The accounts in which to update associated stack instances. If you specify accounts, you must also specify the Regions in which to update stack set instances. To update all the stack instances associated with this stack set, do not specify the Accounts or Regions properties. If the stack set update includes changes to the template (that is, if the TemplateBody or TemplateURL properties are specified), or the Parameters property, AWS CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.getAccountId,
           },
         },
         {
@@ -4058,6 +4394,7 @@ export const completionSpec: Fig.Spec = {
             "The Regions in which to update associated stack instances. If you specify Regions, you must also specify accounts in which to update stack set instances. To update all the stack instances associated with this stack set, do not specify the Accounts or Regions properties. If the stack set update includes changes to the template (that is, if the TemplateBody or TemplateURL properties are specified), or the Parameters property, AWS CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
           args: {
             name: "list",
+            suggestions: awsRegions,
           },
         },
         {
@@ -4066,6 +4403,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
+            suggestions: ["SELF", "DELEGATED_ADMIN"],
           },
         },
         {
@@ -4074,6 +4412,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4108,6 +4447,7 @@ export const completionSpec: Fig.Spec = {
             "The name or unique ID of the stack for which you want to set termination protection.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -4116,6 +4456,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4140,6 +4481,7 @@ export const completionSpec: Fig.Spec = {
             "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, go to Template Anatomy in the AWS CloudFormation User Guide. Conditional: You must pass TemplateURL or TemplateBody. If both are passed, only TemplateBody is used.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4156,6 +4498,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4180,6 +4523,7 @@ export const completionSpec: Fig.Spec = {
             "The path where your AWS CloudFormation template is located.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4188,6 +4532,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the S3 bucket where this command uploads the artifacts that are referenced in your template.",
           args: {
             name: "string",
+            generators: generators.listBuckets,
           },
         },
         {
@@ -4204,6 +4549,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of an AWS KMS key that the command uses to encrypt artifacts that are at rest in the S3 bucket.",
           args: {
             name: "string",
+            generators: generators.listKmsKeys,
           },
         },
         {
@@ -4212,6 +4558,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the file where the command writes the output AWS CloudFormation template. If you don't specify a path, the command writes the template to the standard output.",
           args: {
             name: "string",
+            template: "folders",
           },
         },
         {
@@ -4230,6 +4577,7 @@ export const completionSpec: Fig.Spec = {
             "A map of metadata to attach to *ALL* the artifacts that are referenced in your template.",
           args: {
             name: "map",
+            description: "KeyName1=string,KeyName2=string",
           },
         },
       ],
@@ -4245,6 +4593,7 @@ export const completionSpec: Fig.Spec = {
             "The path where your AWS CloudFormation template is located.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4253,6 +4602,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the AWS CloudFormation stack you're deploying to. If you specify an existing stack, the command updates the stack. If you specify a new stack, the command creates it.",
           args: {
             name: "string",
+            generators: generators.listCfnStackIds,
           },
         },
         {
@@ -4261,6 +4611,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the S3 bucket where this command uploads your CloudFormation template. This is required the deployments of templates sized greater than 51,200 bytes",
           args: {
             name: "string",
+            generators: generators.listBuckets,
           },
         },
         {
@@ -4282,6 +4633,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of an AWS KMS key that the command uses to encrypt artifacts that are at rest in the S3 bucket.",
           args: {
             name: "string",
+            generators: generators.listKmsKeys,
           },
         },
         {
@@ -4300,6 +4652,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
+            suggestions: ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"],
           },
         },
         {
@@ -4313,6 +4666,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes when executing the change set.",
           args: {
             name: "string",
+            generators: generators.listRoleArns,
           },
         },
         {
@@ -4322,6 +4676,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -4341,6 +4696,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
+            description: "Tag1=Value1 Tag2=Value2 ...",
           },
         },
       ],
@@ -4492,6 +4848,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or Amazon Resource Name (ARN) of the change set that you want to describe.",
               args: {
                 name: "string",
+                generators: generators.listCfnChangeSets,
               },
             },
             {
@@ -4500,6 +4857,7 @@ export const completionSpec: Fig.Spec = {
                 "If you specified the name of a change set, specify the stack name or ID (ARN) of the change set you want to describe.",
               args: {
                 name: "string",
+                generators: generators.getStackIdForChangeSet,
               },
             },
             {
@@ -4516,6 +4874,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4556,6 +4915,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4572,6 +4932,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4612,6 +4973,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4628,6 +4990,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4668,6 +5031,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4684,6 +5048,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4724,6 +5089,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4740,6 +5106,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4780,6 +5147,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4796,6 +5164,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4836,6 +5205,7 @@ export const completionSpec: Fig.Spec = {
                 "The name or the unique stack ID that is associated with the stack, which are not always interchangeable:   Running stacks: You can specify either the stack's name or its unique stack ID.   Deleted stacks: You must specify the unique stack ID.   Default: There is no default value.",
               args: {
                 name: "string",
+                generators: generators.listCfnStackIds,
               },
             },
             {
@@ -4852,6 +5222,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4900,6 +5271,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
