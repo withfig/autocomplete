@@ -47,6 +47,62 @@ const globalOptions: Fig.Option[] = [
   },
 ];
 
+const sharedOptions: Fig.Option[] = [
+  {
+    name: ["-s", "--show-headers"],
+    description: "Shows response HTTP headers",
+  },
+  {
+    name: ["-c", "--confirm"],
+    description:
+      "Skips the warning prompt and automatically confirms the command being entered",
+  },
+  {
+    name: "--dark-style",
+    description: "Uses a darker color scheme",
+  },
+  {
+    name: ["-d", "--data"],
+    description: "Additional data ot send with an API request",
+    args: {
+      name: "value",
+    },
+  },
+  {
+    name: ["-e", "--expand"],
+    description: "Response attributes to expand inline",
+    args: {
+      name: "value",
+    },
+  },
+  {
+    name: ["-i", "--idempotency"],
+    description:
+      "Sets an idempotency key for the request, preventing the same request from replaying within 24 hours",
+    args: {
+      name: "key",
+    },
+  },
+  {
+    name: "--live",
+    description: "Makes a live request",
+  },
+  {
+    name: "--stripe-account",
+    description: "Specify the Stripe account to use for this request",
+    args: {
+      name: "account id",
+    },
+  },
+  {
+    name: ["-v", "--stripe-version"],
+    description: "Specify the Stripe API version to use for this request",
+    args: {
+      name: "version",
+    },
+  },
+];
+
 export const completion: Fig.Spec = {
   name: "stripe",
   description: "CLI interface for Stripe.com",
@@ -522,63 +578,10 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: ["-c", "--confirm"],
-          description:
-            "Skips the warning prompt and automatically confirms the command being entered",
-        },
-        {
-          name: "--dark-style",
-          description: "Uses a darker color scheme",
-        },
-        {
-          name: ["-d", "--data"],
-          description: "Additional data ot send with an API request",
-          args: {
-            name: "value",
-          },
-        },
-        {
-          name: ["-e", "--expand"],
-          description: "Response attributes to expand inline",
-          args: {
-            name: "value",
-          },
-        },
-        {
-          name: ["-i", "--idempotency"],
-          description:
-            "Sets an idempotency key for the request, preventing the same request from replaying within 24 hours",
-          args: {
-            name: "key",
-          },
-        },
-        {
-          name: "--live",
-          description: "Makes a live request",
-        },
-        {
           name: "--param",
           description: "Key-value data to send along with the API request",
           args: {
             name: "value",
-          },
-        },
-        {
-          name: ["-s", "--show-headers"],
-          description: "Shows response HTTP headers",
-        },
-        {
-          name: "--stripe-account",
-          description: "Specify the Stripe account to use for this request",
-          args: {
-            name: "account id",
-          },
-        },
-        {
-          name: ["-v", "--stripe-version"],
-          description: "Specify the Stripe API version to use for this request",
-          args: {
-            name: "version",
           },
         },
         {
@@ -588,8 +591,168 @@ export const completion: Fig.Spec = {
             name: "endpoint id",
           },
         },
+        ...sharedOptions,
         ...globalOptions,
       ],
+    },
+    {
+      name: "get",
+      description:
+        "Makes GET HTTP requests to retrieve an individual API object",
+      args: [
+        {
+          name: "id or path",
+          description: "ID or URL path of the API object to retrieve",
+        },
+      ],
+      options: [
+        {
+          name: ["-b", "--ending-before"],
+          description: "Retrieves the previous page in the list",
+          args: {
+            name: "object id",
+          },
+        },
+        {
+          name: ["-l", "--limit"],
+          description: "Number of objects to return",
+          args: {
+            name: "number",
+            description: "Number between 1 - 100 (default)",
+          },
+        },
+        {
+          name: ["-a", "--starting-after"],
+          description: "Retrieves the next page in the list",
+          args: {
+            name: "object id",
+          },
+        },
+        ...sharedOptions,
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "post",
+      description: "Makes POST HTTP requests to the Stripe API",
+      args: {
+        name: "path",
+        description: "URL path of the API object to create or update",
+      },
+      options: [...sharedOptions, ...globalOptions],
+    },
+    {
+      name: "delete",
+      description: "Makes DELETE HTTP requests to the Stripe API",
+      args: {
+        name: "path",
+        description: "URL path of the API object to delete",
+      },
+      options: [...sharedOptions, ...globalOptions],
+    },
+    {
+      name: "samples",
+      description: "Creates a local copy of a sample",
+      subcommands: [
+        {
+          name: "create",
+          args: [
+            {
+              name: "sample",
+              description: "Name of the sample used to create a local copy",
+            },
+            {
+              name: "path",
+              description: "Destination path for the created sample",
+              isOptional: true,
+            },
+          ],
+          options: [
+            {
+              name: "--force-refresh",
+              description:
+                "Force a refresh of the chaced list of Stripe Samples",
+            },
+            ...globalOptions,
+          ],
+        },
+        {
+          name: "list",
+          description: "Lists available Stripe Samples",
+          options: [
+            {
+              name: "--force-refresh",
+              description:
+                "Force a refresh of the chaced list of Stripe Samples",
+            },
+            ...globalOptions,
+          ],
+        },
+      ],
+      options: [...globalOptions],
+    },
+    {
+      name: "serve",
+      description: "Starts an HTTP server to serve static files",
+      args: {
+        name: "base path",
+        description: "path of the directory to serve files from",
+      },
+      options: [
+        {
+          name: "--port",
+          description: "Port the HTTP server should use",
+          args: {
+            name: "port number",
+          },
+        },
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "terminal quickstart",
+      description: "Starts up Stripe Terminal",
+      options: [
+        {
+          name: "--api-key",
+          args: {
+            name: "api key",
+          },
+        },
+      ],
+    },
+    {
+      name: "logout",
+      description: "Removes all credentials",
+      options: [
+        {
+          name: ["-a", "--all"],
+          description:
+            "Removes credentials for all projects listed in your config",
+        },
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "feedback",
+      description: "Prints info about how to provide feedback",
+      options: [...globalOptions],
+    },
+    {
+      name: "help",
+      description: "Gets help for any command",
+      args: {
+        name: "command",
+        isOptional: true,
+      },
+    },
+    {
+      name: "version",
+      description: "Gets the version and checks or updates",
+      args: {
+        name: "command",
+        isOptional: true,
+      },
     },
   ],
   options: [...globalOptions],
