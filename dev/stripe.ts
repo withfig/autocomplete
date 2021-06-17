@@ -47,11 +47,6 @@ const globalOptions: Fig.Option[] = [
   },
 ];
 
-const toolArgs: Fig.Arg = {
-  variadic: true,
-  name: "tool@version",
-};
-
 export const completion: Fig.Spec = {
   name: "stripe",
   description: "CLI interface for Stripe.com",
@@ -371,6 +366,227 @@ export const completion: Fig.Spec = {
         {
           name: "--live",
           description: "Opens the Dashboard for your live integrations",
+        },
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "listen",
+      description: "Receives webhook events from Stripe locally",
+      options: [
+        {
+          name: "--connect-headers",
+          description:
+            "A comma-seperated list of custom HTTP headers to any connected accounts",
+          args: {
+            variadic: true,
+            name: "values",
+            description: "Key1:Value1, Key2:Value2",
+          },
+        },
+        {
+          name: ["-e", "--events"],
+          description: "A comma-seperated list of which events to listen for",
+          args: {
+            variadic: true,
+            name: "events types",
+          },
+        },
+        {
+          name: ["-c", "--forward-connect-to"],
+          description:
+            "The URL that Connect webhook events will be forwarded to",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: ["-f", "--forward-to"],
+          description: "The URL that webhook events will be forwarded to",
+          args: {
+            name: "url",
+          },
+        },
+        {
+          name: ["-H", "--headers"],
+          description:
+            "A comma-separated list of custom HTTP headers to forward",
+          args: {
+            variadic: true,
+            name: "values",
+            description: "Key1:Value1, Key2:Value2",
+          },
+        },
+        {
+          name: ["-l", "--latest"],
+          description: "Receive events used in the latest API version",
+        },
+        {
+          name: "--live",
+          description: "Make a live request",
+        },
+        {
+          name: ["-a", "--load-from-webhooks-api"],
+          description:
+            "Listen for all webhook events based on existing webhook endpoints",
+        },
+        {
+          name: ["-j", "--print-json"],
+          description: "Print JSON objects to stdout",
+        },
+        {
+          name: "--skip-verify",
+          description:
+            "Skip certificate verification when forwarding to HTTPS endpoints",
+        },
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "trigger",
+      description: "Triggers webhook events to conduct local testing",
+      args: {
+        name: "event",
+        description: "webhook events",
+        suggestions: [
+          "account.updated",
+          "balance.available",
+          "charge.captured",
+          "charge.dispute.created",
+          "charge.failed",
+          "charge.refunded",
+          "charge.succeeded",
+          "checkout.session.async_payment_failed",
+          "checkout.session.async_payment_succeeded",
+          "checkout.session.completed",
+          "customer.created",
+          "customer.deleted",
+          "customer.source.created",
+          "customer.source.updated",
+          "customer.subscription.created",
+          "customer.subscription.deleted",
+          "customer.subscription.updated",
+          "customer.updated",
+          "invoice.created",
+          "invoice.finalized",
+          "invoice.payment_action_required",
+          "invoice.payment_failed",
+          "invoice.payment_succeeded",
+          "invoice.updated",
+          "issuing_authorization.request",
+          "issuing_card.created",
+          "issuing_cardholder.created",
+          "payment_intent.amount_capturable_updated",
+          "payment_intent.canceled",
+          "payment_intent.created",
+          "payment_intent.payment_failed",
+          "payment_intent.succeeded",
+          "payment_method.attached",
+          "plan.created",
+          "plan.deleted",
+          "plan.updated",
+          "product.created",
+          "product.deleted",
+          "product.updated",
+          "setup_intent.canceled",
+          "setup_intent.created",
+          "setup_intent.setup_failed",
+          "setup_intent.succeeded",
+          "subscription_schedule.canceled",
+          "subscription_schedule.created",
+          "subscription_schedule.released",
+          "subscription_schedule.updated",
+        ],
+      },
+      options: [
+        {
+          name: "--stripe-account",
+          description: "Sets a header identifying the connected account",
+        },
+        ...globalOptions,
+      ],
+    },
+    {
+      name: "events resend",
+      description: "Resend an event to test a webhook endpoint",
+      args: {
+        name: "event id",
+        description: "The ID of the event to resend",
+      },
+      options: [
+        {
+          name: "--account",
+          description: "Resend the event to the given Stripe account",
+          args: {
+            name: "account id",
+          },
+        },
+        {
+          name: ["-c", "--confirm"],
+          description:
+            "Skips the warning prompt and automatically confirms the command being entered",
+        },
+        {
+          name: "--dark-style",
+          description: "Uses a darker color scheme",
+        },
+        {
+          name: ["-d", "--data"],
+          description: "Additional data ot send with an API request",
+          args: {
+            name: "value",
+          },
+        },
+        {
+          name: ["-e", "--expand"],
+          description: "Response attributes to expand inline",
+          args: {
+            name: "value",
+          },
+        },
+        {
+          name: ["-i", "--idempotency"],
+          description:
+            "Sets an idempotency key for the request, preventing the same request from replaying within 24 hours",
+          args: {
+            name: "key",
+          },
+        },
+        {
+          name: "--live",
+          description: "Makes a live request",
+        },
+        {
+          name: "--param",
+          description: "Key-value data to send along with the API request",
+          args: {
+            name: "value",
+          },
+        },
+        {
+          name: ["-s", "--show-headers"],
+          description: "Shows response HTTP headers",
+        },
+        {
+          name: "--stripe-account",
+          description: "Specify the Stripe account to use for this request",
+          args: {
+            name: "account id",
+          },
+        },
+        {
+          name: ["-v", "--stripe-version"],
+          description: "Specify the Stripe API version to use for this request",
+          args: {
+            name: "version",
+          },
+        },
+        {
+          name: "-webhook-endpoint",
+          description: "Resends the event to the given webhook endpoint ID",
+          args: {
+            name: "endpoint id",
+          },
         },
         ...globalOptions,
       ],
