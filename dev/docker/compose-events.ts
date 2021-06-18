@@ -17,7 +17,6 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--json"],
       description: "Output events as a stream of json objects",
-      args: {},
     },
   ],
 };

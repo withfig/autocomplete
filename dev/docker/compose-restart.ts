@@ -17,7 +17,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-t", "--timeout"],
       description: "Specify a shutdown timeout in seconds. (default: 10)",
-      args: {},
+      args: {
+        name: "timeout",
+      },
     },
   ],
 };

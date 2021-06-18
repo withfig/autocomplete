@@ -17,7 +17,6 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-q", "--quiet"],
       description: "Only display IDs",
-      args: {},
     },
   ],
 };

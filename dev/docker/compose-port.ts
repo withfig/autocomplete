@@ -16,13 +16,18 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--protocol"],
       description: "tcp or udp [default: tcp]",
-      args: {},
+      args: {
+        name: "Protocol",
+        suggestions: ["tcp", "udp"],
+      },
     },
     {
       name: ["--index"],
       description:
         "index of the container if there are multiple instances of a service [default: 1]",
-      args: {},
+      args: {
+        name: "index",
+      },
     },
   ],
 };

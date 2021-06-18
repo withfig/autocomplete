@@ -18,75 +18,87 @@ export const completionSpec: Fig.Spec = {
       name: ["-d", "--detach"],
       description:
         "Detached mode: Run container in the background, print new container name.",
-      args: {},
     },
     {
       name: ["--name"],
       description: "Assign a name to the container",
-      args: {},
+      args: {
+        name: "name",
+      },
     },
     {
       name: ["--entrypoint"],
       description: "Override the entrypoint of the image.",
-      args: {},
+      args: {
+        name: "CMD",
+      },
     },
     {
       name: ["-e"],
       description: "Set an environment variable (can be used multiple times)",
-      args: {},
+      args: {
+        name: "KEY=VAL",
+        variadic: true,
+      },
     },
     {
       name: ["-l", "--label"],
       description: "Add or override a label (can be used multiple times)",
-      args: {},
+      args: {
+        name: "KEY=VAL",
+        variadic: true,
+      },
     },
     {
       name: ["-u", "--user"],
       description: "Run as specified username or uid",
-      args: {},
+      args: {
+        name: "user",
+      },
     },
     {
       name: ["--no-deps"],
       description: "Don't start linked services.",
-      args: {},
     },
     {
       name: ["--rm"],
       description: "Remove container after run. Ignored in detached mode.",
-      args: {},
     },
     {
       name: ["-p", "--publish"],
       description: "Publish a container's port(s) to the host",
-      args: {},
+      args: {
+        name: "hostport:containerport",
+      },
     },
     {
       name: ["--service-ports"],
       description:
         "Run command with the service's ports enabled and mapped to the host.",
-      args: {},
     },
     {
       name: ["--use-aliases"],
       description:
         "Use the service's network aliases in the network(s) the container connects to.",
-      args: {},
     },
     {
       name: ["-v", "--volume"],
       description: "Bind mount a volume (default [])",
-      args: {},
+      args: {
+        name: "volume",
+      },
     },
     {
       name: ["-T"],
       description:
         "Disable pseudo-tty allocation. By default `docker-compose run` allocates a TTY.",
-      args: {},
     },
     {
       name: ["-w", "--workdir"],
       description: "Working directory inside the container",
-      args: {},
+      args: {
+        name: "workdir",
+      },
     },
   ],
 };

@@ -18,7 +18,6 @@ export const completionSpec: Fig.Spec = {
       name: ["-s"],
       description:
         "SIGNAL to send to the container. Default signal is SIGKILL.",
-      args: {},
     },
   ],
 };

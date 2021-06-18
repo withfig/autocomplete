@@ -17,23 +17,22 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-q", "--quiet"],
       description: "Only display IDs",
-      args: {},
     },
     {
       name: ["--services"],
       description: "Display services",
-      args: {},
     },
     {
       name: ["--filter"],
       description: "Filter services by a property",
-      args: {},
+      args: {
+        name: "KEY=VAL",
+      },
     },
     {
       name: ["-a", "--all"],
       description:
         "Show all stopped containers (including those created by the run command)",
-      args: {},
     },
   ],
 };

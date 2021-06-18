@@ -15,56 +15,54 @@ export const completionSpec: Fig.Spec = {
   args: [getServices],
   options: [
     {
-      name: ["--build-arg"],
+      name: "--build-arg",
       description: "Set build-time variables for services.",
-      args: {},
+      args: {
+        name: "key=val",
+      },
     },
     {
-      name: ["--compress"],
+      name: "--compress",
       description: "Compress the build context using gzip.",
-      args: {},
     },
     {
-      name: ["--force-rm"],
+      name: "--force-rm",
       description: "Always remove intermediate containers.",
-      args: {},
     },
     {
       name: ["-m", "--memory"],
       description: "Set memory limit for the build container.",
-      args: {},
+      args: {
+        name: "MEM",
+      },
     },
     {
-      name: ["--no-cache"],
+      name: "--no-cache",
       description: "Do not use cache when building the image.",
-      args: {},
     },
     {
-      name: ["--no-rm"],
+      name: "--no-rm",
       description:
         "Do not remove intermediate containers after a successful build.",
-      args: {},
     },
     {
-      name: ["--parallel"],
+      name: "--parallel",
       description: "Build images in parallel.",
-      args: {},
     },
     {
-      name: ["--progress"],
-      description:
-        "Set type of progress output (auto, plain, tty). EXPERIMENTAL flag for native builder. To enable, run with COMPOSE_DOCKER_CLI_BUILD=1)",
-      args: {},
+      name: "--progress",
+      description: "Set type of progress output (auto, plain, tty).",
+      args: {
+        name: "string",
+      },
     },
     {
-      name: ["--pull"],
+      name: "--pull",
       description: "Always attempt to pull a newer version of the image.",
-      args: {},
     },
     {
       name: ["-q", "--quiet"],
       description: "Don't print anything to STDOUT",
-      args: {},
     },
   ],
 };

@@ -17,28 +17,23 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--ignore-pull-failures"],
       description: "Pull what it can and ignores images with pull failures.",
-      args: {},
     },
     {
       name: ["--parallel"],
       description:
         "Deprecated, pull multiple images in parallel (enabled by default).",
-      args: {},
     },
     {
       name: ["--no-parallel"],
       description: "Disable parallel pulling.",
-      args: {},
     },
     {
       name: ["-q", "--quiet"],
       description: "Pull without printing progress information",
-      args: {},
     },
     {
       name: ["--include-deps"],
       description: "Also pull services declared as dependencies",
-      args: {},
     },
   ],
 };

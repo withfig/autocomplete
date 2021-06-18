@@ -17,23 +17,26 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["--no-color"],
       description: "Produce monochrome output.",
-      args: {},
     },
     {
       name: ["-f", "--follow"],
-      description: "Follow log output.",
-      args: {},
     },
     {
       name: ["-t", "--timestamps"],
       description: "Show timestamps.",
-      args: {},
     },
     {
       name: ["--tail"],
       description:
         "Number of lines to show from the end of the logs for each container.",
-      args: {},
+      args: {
+        name: "Num of Lines",
+        suggestions: "all",
+      },
+    },
+    {
+      name: "--no-log-prefix",
+      description: "Don't print prefix in logs.",
     },
   ],
 };

@@ -17,39 +17,45 @@ export const completionSpec: Fig.Spec = {
     {
       name: ["-d", "--detach"],
       description: "Detached mode: Run command in the background.",
-      args: {},
     },
     {
       name: ["--privileged"],
       description: "Give extended privileges to the process.",
-      args: {},
     },
     {
       name: ["-u", "--user"],
       description: "Run the command as this user.",
-      args: {},
+      args: {
+        name: "user",
+      },
     },
     {
       name: ["-T"],
       description:
         "Disable pseudo-tty allocation. By default `docker-compose exec` allocates a TTY.",
-      args: {},
     },
     {
       name: ["--index"],
       description:
         "index of the container if there are multiple instances of a service [default: 1]",
-      args: {},
+      args: {
+        name: "index",
+      },
     },
     {
       name: ["-e", "--env"],
       description: "not supported in API < 1.25)",
-      args: {},
+      args: {
+        name = "KEY=VAL",
+        variadic: true,
+      },
     },
     {
       name: ["-w", "--workdir"],
       description: "DIR Path to workdir directory for this command.",
-      args: {},
+      args: {
+        name: "DIR PATH",
+      },
     },
   ],
 };
