@@ -7,12 +7,22 @@ export const completionSpec: Fig.Spec = {
     generators: {
       template: "filepaths",
       filterTemplateSuggestions: function (paths) {
-        return paths.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(".js") || file.name.endsWith("/");
-          }
-          return false;
-        });
+        return paths
+          .filter((file) => {
+            if (typeof file.name === "string") {
+              return file.name.endsWith(".js") || file.name.endsWith("/");
+            }
+            return false;
+          })
+          .map((file) => {
+            const isJsFile =
+              typeof file.name === "string" && file.name.endsWith(".js");
+
+            return {
+              ...file,
+              priority: isJsFile && 76,
+            };
+          });
       },
     },
   },

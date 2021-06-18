@@ -14,7 +14,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.developerMode",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.developerMode ",
+
           description:
             "Turns off caching and loads completions from <code>devCompletionsFolder</code>",
           args: {
@@ -28,7 +28,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.devCompletionsFolder",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.devCompletionsFolder ",
+
           description:
             "Directory to load completion specs when in <code>developerMode</code>",
           args: {
@@ -54,7 +54,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.scrollWrapAround",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.scrollWrapAround ",
+
           description:
             "A flag that determines whether the selection will wrap around when pressing arrow key at bottom or top of list.",
           args: {
@@ -68,7 +68,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.insertSpaceAutomatically",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.insertSpaceAutomatically ",
+
           description:
             "A flag that determines whether Fig will automatically insert a space.",
           args: {
@@ -82,7 +82,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.immediatelyRunDangerousCommands",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.immediatelyRunDangerousCommands ",
+
           description:
             "A flag that determines whether Fig will present suggestions to immediately run commands that might be dangerous, like rm.",
           args: {
@@ -96,7 +96,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.immediatelyRunGitAliases",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.immediatelyRunGitAliases ",
+
           description:
             "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
           args: {
@@ -110,7 +110,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.immediatelyExecuteAfterSpace",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.immediatelyExecuteAfterSpace",
+
           description: "Show immediate execute button after space",
           args: {
             name: "bool",
@@ -123,7 +123,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.enter",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.enter ",
+
           description:
             "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
           args: {
@@ -146,7 +146,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.tab",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.tab ",
+
           description:
             "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
           args: {
@@ -242,7 +242,7 @@ export const completionSpec: Fig.Spec = {
           description:
             "Search of suggestions using fuzzy search rather than prefix search. NOTE: this currenty does not support the tab autocomplete underlining that prefix search has",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.fuzzySearch ",
+
           args: {
             name: "bool",
             suggestions: [
@@ -325,7 +325,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.width",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.width ",
+
           description: "Set the maximum width of the autocomplete window.",
           args: {
             name: "number",
@@ -334,7 +334,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "autocomplete.height",
           icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.height ",
+
           description: "Set the maximum height of the autocomplete window.",
           args: {
             name: "number",
