@@ -1,5 +1,5 @@
 // To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-const global_parameter_path = {
+const global_parameter_path: Fig.Option = {
   name: "--path",
   insertValue: "--path=",
   description: "Path to the WordPress files.",
@@ -8,7 +8,7 @@ const global_parameter_path = {
   },
 };
 
-const global_parameter_url = {
+const global_parameter_url: Fig.Option = {
   name: "--url",
   insertValue: "--url=",
   description:
@@ -18,7 +18,7 @@ const global_parameter_url = {
   },
 };
 
-const global_parameter_ssh = {
+const global_parameter_ssh: Fig.Option = {
   name: "--ssh",
   insertValue: "--ssh=",
   description:
@@ -36,7 +36,7 @@ const global_parameter_ssh = {
   },
 };
 
-const global_parameter_http = {
+const global_parameter_http: Fig.Option = {
   name: "--http",
   insertValue: "--http=",
   description:
@@ -46,7 +46,7 @@ const global_parameter_http = {
   },
 };
 
-const global_parameter_user = {
+const global_parameter_user: Fig.Option = {
   name: "--user",
   insertValue: "--user=",
   description: "Set the WordPress user.",
@@ -56,13 +56,13 @@ const global_parameter_user = {
   },
 };
 
-const global_parameter_skip_plugins1 = {
+const global_parameter_skip_plugins1: Fig.Option = {
   name: "--skip-plugins",
   description:
     "Skip loading all plugins, or a comma-separated list of plugins. Note: mu-plugins are still loaded.",
 };
 
-const global_parameter_skip_plugins2 = {
+const global_parameter_skip_plugins2: Fig.Option = {
   name: "--skip-plugins",
   insertValue: "--skip-plugins=",
   displayName: "--skip-plugins=",
@@ -73,12 +73,12 @@ const global_parameter_skip_plugins2 = {
   },
 };
 
-const global_parameter_skip_themes1 = {
+const global_parameter_skip_themes1: Fig.Option = {
   name: "--skip-themes",
   description: "Skip loading all themes, or a comma-separated list of themes.",
 };
 
-const global_parameter_skip_themes2 = {
+const global_parameter_skip_themes2: Fig.Option = {
   name: "--skip-themes",
   insertValue: "--skip-themes=",
   displayName: "--skip-themes=",
@@ -88,12 +88,12 @@ const global_parameter_skip_themes2 = {
   },
 };
 
-const global_parameter_skip_packages = {
+const global_parameter_skip_packages: Fig.Option = {
   name: "--skip-packages",
   description: "Skip loading all installed packages.",
 };
 
-const global_parameter_require = {
+const global_parameter_require: Fig.Option = {
   name: "--require",
   insertValue: "--require=",
   description:
@@ -103,7 +103,7 @@ const global_parameter_require = {
   },
 };
 
-const global_parameter_exec = {
+const global_parameter_exec: Fig.Option = {
   name: "--exec",
   insertValue: "--exec=",
   description:
@@ -113,23 +113,23 @@ const global_parameter_exec = {
   },
 };
 
-const global_parameter_color = {
+const global_parameter_color: Fig.Option = {
   name: "--color",
   description: "Whether to colorize the output.",
 };
 
-const global_parameter_no_color = {
+const global_parameter_no_color: Fig.Option = {
   name: "--no-color",
   description: "Whether to colorize the output.",
 };
 
-const global_parameter_debug1 = {
+const global_parameter_debug1: Fig.Option = {
   name: "--debug",
   description:
     "Show all PHP errors and add verbosity to WP-CLI output. Built-in groups include: bootstrap, commandfactory, and help.",
 };
 
-const global_parameter_debug2 = {
+const global_parameter_debug2: Fig.Option = {
   name: "--debug",
   displayName: "--debug=",
   insertValue: "--debug=",
@@ -140,13 +140,13 @@ const global_parameter_debug2 = {
   },
 };
 
-const global_parameter_prompt1 = {
+const global_parameter_prompt1: Fig.Option = {
   name: "--prompt",
   description:
     "Prompt the user to enter values for all command arguments, or a subset specified as comma-separated values.",
 };
 
-const global_parameter_prompt2 = {
+const global_parameter_prompt2: Fig.Option = {
   name: "--prompt",
   insertValue: "--prompt=",
   displayName: "--prompt=",
@@ -157,7 +157,7 @@ const global_parameter_prompt2 = {
   },
 };
 
-const global_parameter_quiet = {
+const global_parameter_quiet: Fig.Option = {
   name: "--quiet",
   description: "Suppress informational messages.",
 };
