@@ -46,7 +46,7 @@ export const completionSpec: Fig.Spec = {
       name: ["-e", "--env"],
       description: "not supported in API < 1.25)",
       args: {
-        name = "KEY=VAL",
+        name: "KEY=VAL",
         variadic: true,
       },
     },

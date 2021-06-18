@@ -31,7 +31,7 @@ export const completionSpec: Fig.Spec = {
         "Number of lines to show from the end of the logs for each container.",
       args: {
         name: "Num of Lines",
-        suggestions: "all",
+        suggestions: ["all"],
       },
     },
     {

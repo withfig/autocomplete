@@ -13,7 +13,7 @@ const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
   });
 };
 
-const sharedPostProcess = (Fig.Generator["postProcess"] = (out) => {
+const sharedPostProcess: Fig.Generator["postProcess"] = (out) => {
   return out
     .split("\n")
     .map((line) => JSON.parse(line))
@@ -22,7 +22,7 @@ const sharedPostProcess = (Fig.Generator["postProcess"] = (out) => {
       description: i.ID,
       icon: "fig://icon?type=docker",
     }));
-});
+};
 
 const dockerGenerators: Record<string, Fig.Generator> = {
   runningDockerContainers: {
