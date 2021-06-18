@@ -5,6 +5,7 @@ const global_parameter_path: Fig.Option = {
   description: "Path to the WordPress files.",
   args: {
     name: "path",
+    template: "filepaths",
   },
 };
 
@@ -514,7 +515,10 @@ export const completion: Fig.Spec = {
                   name: "--set-path",
                   insertValue: "--set-path=",
                   description: "Set path for alias.",
-                  args: { name: "path" },
+                  args: {
+                    name: "path",
+                    template: "folders",
+                  },
                 },
                 {
                   name: "--set-ssh",
@@ -621,7 +625,10 @@ export const completion: Fig.Spec = {
                   name: "--set-path",
                   insertValue: "--set-path=",
                   description: "Set path for alias.",
-                  args: { name: "path" },
+                  args: {
+                    name: "path",
+                    template: "folders",
+                  },
                 },
                 {
                   name: "--set-ssh",
@@ -1831,7 +1838,7 @@ export const completion: Fig.Spec = {
               insertValue: "--path=",
               description:
                 "Specify the path in which to install WordPress. Defaults to current directory.",
-              args: { name: "path" },
+              args: { name: "path", template: "folders" },
             },
             {
               name: "--locale",
@@ -2019,6 +2026,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "zip",
+              template: "filepaths",
               description:
                 "Path to zip file to use, instead of downloading from wordpress.org.",
             },
@@ -2990,9 +2998,11 @@ export const completion: Fig.Spec = {
         {
           name: "path",
           description: "Path to the project that includes a .distignore file.",
+          template: "folders",
         },
         {
           name: "target",
+          template: "filepaths",
           description:
             "Path and file name for the distribution archive. Defaults to project directory name plus version, if discoverable.",
         },
@@ -3381,7 +3391,7 @@ export const completion: Fig.Spec = {
           insertValue: "--dir=",
           description:
             "Full path to directory where WXR export files should be stored. Defaults to current working directory.",
-          args: { name: "dirname" },
+          args: { name: "dirname", template: "folders" },
         },
         {
           name: "--stdout",
@@ -3493,6 +3503,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "path",
+          template: "folders",
           description: "Path to search the subdirectories of.",
         },
       ],
@@ -3627,11 +3638,13 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "source",
+              template: "filepaths",
               description:
                 "Path to an existing PO file or a directory containing multiple PO files.",
             },
             {
               name: "destination",
+              template: "folders",
               description:
                 "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
             },
@@ -3654,11 +3667,13 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "source",
+              template: "filepaths",
               description:
                 "Path to an existing PO file or a directory containing multiple PO files.",
             },
             {
               name: "destination",
+              template: "folders",
               description:
                 "Path to the destination directory for the resulting JSON files. Defaults to the source directory.",
             },
@@ -3774,6 +3789,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "file",
+          template: "filepaths",
           description:
             "Path to one or more valid WXR files for importing. Directories are also accepted.",
         },
@@ -4351,6 +4367,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "file",
+              template: "filepaths",
               description:
                 "Path to file or files to be imported. Supports the glob(3) capabilities of the current shell. If file is recognized as a URL (for example, with a scheme of http or ftp), the file will be downloaded to a temp file before being sideloaded.",
             },
@@ -5597,6 +5614,7 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "name",
+              template: "folders",
               description: "Name of the package to get the directory for.",
             },
           ],
@@ -7566,6 +7584,8 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "file",
+              insertValue: "file ",
+              template: "filepaths",
               description: "The path to the PHP file to execute and profile.",
             },
           ],
@@ -8133,7 +8153,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Put the new plugin in some arbitrary directory path. Plugin directory will be path plus supplied slug.",
-              args: { name: "dirname" },
+              args: { name: "dirname", template: "folders" },
             },
             {
               name: "--plugin_name",
@@ -8213,7 +8233,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Generate test files for a non-standard plugin path. If no plugin slug is specified, the directory name is used.",
-              args: { name: "dirname" },
+              args: { name: "dirname", template: "folders" },
             },
             {
               name: "--ci",
@@ -8354,7 +8374,7 @@ export const completion: Fig.Spec = {
               insertValue: "--dir=",
               description:
                 "Generate test files for a non-standard theme path. If no theme slug is specified, the directory name is used.",
-              args: { name: "dirname" },
+              args: { name: "dirname", template: "folders" },
             },
             {
               name: "--ci",
@@ -8708,7 +8728,7 @@ export const completion: Fig.Spec = {
           insertValue: "--docroot=",
           description:
             "The path to use as the document root. If the path global parameter is set, the default value is it.",
-          args: { name: "path" },
+          args: { name: "path", template: "folders" },
         },
         {
           name: "--config",
