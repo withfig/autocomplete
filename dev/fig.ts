@@ -3,10 +3,61 @@ const SETTINGS_PATH = "~/.fig/tools/all-settings.json";
 interface Settings {
   settingName: string;
   description: string;
-  type: "boolean" | "text" | "single_select" | "multi_select";
+  type: "boolean" | "text" | "single_select" | "multiselect";
   options?: Array<string | { name: string; description: string }>;
   default?: string;
 }
+
+const devCompletionsFolderGenerator: Fig.Generator = {
+  script: 'ls -d -1 "$PWD/"**/',
+  postProcess: (out) =>
+    out.split("\n").map((folder) => {
+      const paths = folder.split("/");
+      paths.pop();
+
+      return {
+        name: paths.pop(),
+        insertValue: folder,
+        icon: `fig://${folder}`,
+      };
+    }),
+};
+
+const disableForCommandsGenerator: Fig.Generator = {
+  script: "fig settings autocomplete.disableForCommands",
+  postProcess: (out) => {
+    const existing = out.split("\n").filter((item) => item.length > 0);
+
+    const append: Fig.Suggestion = {
+      name: "Disable...",
+      icon: "fig://icon?type=box",
+      insertValue: JSON.stringify(existing.concat(["{cursor}"])),
+    };
+
+    const enabledAll: Fig.Suggestion = {
+      name: "Enable all commands",
+      icon: "fig://icon?type=box",
+      insertValue: "[]",
+    };
+
+    return [append, enabledAll].concat(
+      existing.map((disabledCommand) => {
+        return {
+          name: `Enable ${disabledCommand}`,
+          icon: "fig://icon?type=box",
+          insertValue: JSON.stringify(
+            existing.filter((cmd) => cmd != disabledCommand)
+          ),
+        };
+      })
+    );
+  },
+};
+
+const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
+  "autocomplete.devCompletionsFolder": devCompletionsFolderGenerator,
+  "autocomplete.disableForCommands": disableForCommandsGenerator,
+};
 
 export const completionSpec: Fig.Spec = {
   name: "fig",
@@ -42,16 +93,19 @@ export const completionSpec: Fig.Spec = {
                       name: option["name"] || option,
                       description: option["description"] || "",
                     }));
-              const variadic = type === "multi_select";
+              const insertValue =
+                type === "multiselect" ? `${name} '{cursor}'` : undefined;
+              const generators = SETTINGS_GENERATOR[name];
 
               return {
                 name,
                 description,
+                insertValue,
                 args: {
                   name: type,
                   default: defaultValue,
                   suggestions,
-                  variadic,
+                  generators,
                 },
               };
             }
