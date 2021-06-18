@@ -1,17 +1,28 @@
 const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
-  const allLines = out.split("\n");
-  return allLines.map((i) => {
+  return out.split("\n").map((i) => {
     try {
       const parsedJSON: Record<string, string> = JSON.parse(i);
       return {
         name: parsedJSON.ID,
         displayName: `${parsedJSON.ID} (${parsedJSON.Image})`,
+        icon: "fig://icon?type=docker",
       };
     } catch (error) {
       console.error(error);
     }
   });
 };
+
+const sharedPostProcess = (Fig.Generator["postProcess"] = (out) => {
+  return out
+    .split("\n")
+    .map((line) => JSON.parse(line))
+    .map((i) => ({
+      name: i.Name,
+      description: i.ID,
+      icon: "fig://icon?type=docker",
+    }));
+});
 
 const dockerGenerators: Record<string, Fig.Generator> = {
   runningDockerContainers: {
@@ -29,13 +40,14 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   allLocalImages: {
     script: `docker image ls --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: `${i.ID}`,
-        displayName: `${i.Repository} - ${i.ID}`,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.ID}`,
+          displayName: `${i.Repository} - ${i.ID}`,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   dockerHubSearch: {
@@ -45,13 +57,13 @@ const dockerGenerators: Record<string, Fig.Generator> = {
       return `docker search ${searchTerm} --format '{{ json . }}'`;
     },
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: `${i.Name}`,
-        icon: "fig://icon?type=docker",
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.Name}`,
+          icon: "fig://icon?type=docker",
+        }));
     },
     trigger: function () {
       return true;
@@ -60,108 +72,90 @@ const dockerGenerators: Record<string, Fig.Generator> = {
   allDockerContexts: {
     script: `docker context list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-        description: i.Description,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          description: i.Description,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   listDockerNetworks: {
     script: `docker network list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
-        .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-        description: i.ID,
-      }));
-    },
+    postProcess: sharedPostProcess,
   },
   listDockerSwarmNodes: {
     script: `docker node list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.ID,
-        displayName: `${i.ID} - ${i.Hostname}`,
-        description: i.Status,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.ID,
+          displayName: `${i.ID} - ${i.Hostname}`,
+          description: i.Status,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   listDockerPlugins: {
     script: `docker plugin list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
-        .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-        description: i.ID,
-      }));
-    },
+    postProcess: sharedPostProcess,
   },
   listDockerSecrets: {
     script: `docker secret list --format '{{ json . }}'`,
-    postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
-        .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-        description: i.ID,
-      }));
-    },
+    postProcess: sharedPostProcess,
   },
   listDockerServices: {
     script: `docker service list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-        description: i.Image,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          description: i.Image,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   listDockerServicesReplicas: {
     script: `docker service list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: `${i.Name}=`,
-        description: i.Image,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: `${i.Name}=`,
+          description: i.Image,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   listDockerStacks: {
     script: `docker stack list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
   listDockerVolumes: {
     script: `docker volume list --format '{{ json . }}'`,
     postProcess: function (out) {
-      const allLines: Array<Record<string, string>> = out
+      return out
         .split("\n")
-        .map((line) => JSON.parse(line));
-      return allLines.map((i) => ({
-        name: i.Name,
-      }));
+        .map((line) => JSON.parse(line))
+        .map((i) => ({
+          name: i.Name,
+          icon: "fig://icon?type=docker",
+        }));
     },
   },
 };
@@ -1109,7 +1103,6 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     options: [
       {
         name: ["-it"],
-        insertValue: "-it ",
         description: "Launch an interactive session",
         icon: "fig://icon?type=commandkey",
       },
@@ -1287,12 +1280,10 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
       suggestions: [
         {
           name: "$(docker ps -aq)",
-          insertValue: "$(docker ps -aq)",
           description: "All containers, running and exited",
         },
         {
           name: "$(docker ps -q)",
-          insertValue: "$(docker ps -q)",
           description: "All running containers",
         },
       ],
@@ -2047,6 +2038,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-f", "--format"],
           args: {
             name: "string",
+            suggestions: ["pretty", "json"],
           },
         },
         {
@@ -2342,6 +2334,7 @@ export const completionSpec: Fig.Spec = {
                 "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
               args: {
                 name: "string",
+                suggestions: ["swarm", "kubernetes", "all"],
               },
             },
             {
@@ -2446,6 +2439,7 @@ export const completionSpec: Fig.Spec = {
                 "Format the output. Values: [pretty | json]. (Default: pretty)",
               args: {
                 name: "string",
+                suggestions: ["pretty", "json"],
               },
             },
             {
@@ -2494,6 +2488,7 @@ export const completionSpec: Fig.Spec = {
                 "Default orchestrator for stack operations to use with this context (swarm|kubernetes|all)",
               args: {
                 name: "string",
+                suggestions: ["swarm", "kubernetes", "all"],
               },
             },
             {
@@ -3547,6 +3542,12 @@ export const completionSpec: Fig.Spec = {
                 'Service mode (replicated, global, replicated-job, or global-job) (default "replicated")',
               args: {
                 name: "string",
+                suggestions: [
+                  "replicated",
+                  "global",
+                  "replicated-job",
+                  "global-job",
+                ],
               },
             },
             {
