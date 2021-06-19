@@ -1,3 +1,7 @@
+// https://laravel.com/docs/8.x/valet
+// valet version 2.15.x
+// 19 June 2021
+
 export const completion: Fig.Spec = {
   name: "valet",
   description:
@@ -20,6 +24,10 @@ export const completion: Fig.Spec = {
     {
       name: "link",
       description: "Link the current working directory to Valet.",
+    },
+    {
+      name: "links",
+      description: "Display all of the registered Valet links.",
     },
     {
       name: "on-latest-version",
