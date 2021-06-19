@@ -97,15 +97,17 @@ const gitGenerators: Record<string, Fig.Generator> = {
         // current branch
         let name = elm.trim();
         const parts = elm.match(/\S+/g);
-        if (parts.length > 1 && parts[0] == "*") {
-          return {
-            name: elm.replace("*", "").trim(),
-            description: "current branch",
-            icon: "⭐️",
-            // priority: 100,
-          };
-        } else if (parts.length > 1 && parts[0] == "+") {
-          name = elm.replace("+", "").trim();
+        if (parts.length > 1) {
+          if (parts[0] == "*") {
+            return {
+              name: elm.replace("*", "").trim(),
+              description: "current branch",
+              icon: "⭐️",
+              // priority: 100,
+            };
+          } else if (parts[0] == "+") {
+            name = elm.replace("+", "").trim();
+          }
         }
 
         return {
