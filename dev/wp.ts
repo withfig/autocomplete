@@ -172,7 +172,6 @@ export const completion: Fig.Spec = {
       name: "cache",
       description:
         "Adds, removes, fetches, and flushes the WP Object Cache object.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -351,7 +350,6 @@ export const completion: Fig.Spec = {
     {
       name: "cap",
       description: "Adds, removes, and lists capabilities of a user role.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -452,7 +450,6 @@ export const completion: Fig.Spec = {
       name: "cli",
       description:
         "Reviews current WP-CLI info, checks for updates, or views defined aliases.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -828,7 +825,6 @@ export const completion: Fig.Spec = {
     {
       name: "comment",
       description: "Creates, updates, deletes, and moderates comments.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -1393,7 +1389,6 @@ export const completion: Fig.Spec = {
     {
       name: "config",
       description: "Generates and reads the wp-config.php file.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -1746,7 +1741,6 @@ export const completion: Fig.Spec = {
       name: "core",
       description:
         "Downloads, installs, updates, and manages a WordPress installation.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -2110,7 +2104,6 @@ export const completion: Fig.Spec = {
       name: "cron",
       description:
         "Tests, runs, and deletes WP-Cron events; manages WP-Cron schedules.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -2301,7 +2294,6 @@ export const completion: Fig.Spec = {
       name: "db",
       description:
         "Performs basic database operations using credentials stored in wp-config.php.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -3036,7 +3028,6 @@ export const completion: Fig.Spec = {
     {
       name: "embed",
       description: "Inspects oEmbed providers, clears embed cache, and more.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -3599,7 +3590,6 @@ export const completion: Fig.Spec = {
       name: "i18n",
       description:
         "Provides internationalization tools for WordPress projects.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -3824,7 +3814,6 @@ export const completion: Fig.Spec = {
     {
       name: "language",
       description: "Installs, activates, and manages language packs.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -4233,7 +4222,6 @@ export const completion: Fig.Spec = {
       name: "maintenance-mode",
       description:
         "Activates, deactivates or checks the status of the maintenance mode of a site.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -4284,7 +4272,6 @@ export const completion: Fig.Spec = {
       name: "media",
       description:
         "Imports files as attachments, regenerates thumbnails, or lists registered image sizes.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -4456,7 +4443,6 @@ export const completion: Fig.Spec = {
       name: "menu",
       description:
         "Lists, creates, assigns, and deletes the active theme’s navigation menus.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -4912,7 +4898,6 @@ export const completion: Fig.Spec = {
     {
       name: "network",
       description: "Perform network-wide operations.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -5206,7 +5191,6 @@ export const completion: Fig.Spec = {
       name: "option",
       description:
         "Retrieves and sets site options, including plugin and WordPress settings.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -5501,7 +5485,6 @@ export const completion: Fig.Spec = {
     {
       name: "package",
       description: "Lists, installs, and removes WP-CLI packages.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -5631,7 +5614,6 @@ export const completion: Fig.Spec = {
       name: "plugin",
       description:
         "Manages plugins, including installs, activations, and updates.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -6243,7 +6225,6 @@ export const completion: Fig.Spec = {
     {
       name: "post",
       description: "Manages posts, content, and meta.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -7384,7 +7365,6 @@ export const completion: Fig.Spec = {
     {
       name: "post-type",
       description: "Retrieves details on the site’s registered post types.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -7492,7 +7472,6 @@ export const completion: Fig.Spec = {
     {
       name: "profile",
       description: "",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -7758,7 +7737,6 @@ export const completion: Fig.Spec = {
       name: "rewrite",
       description:
         "Lists or flushes the site’s rewrite rules, updates the permalink structure.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -7868,7 +7846,6 @@ export const completion: Fig.Spec = {
       name: "role",
       description:
         "Manages user roles, including creating new roles and resetting to defaults.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -7988,7 +7965,6 @@ export const completion: Fig.Spec = {
       name: "scaffold",
       description:
         "Generates code for post types, taxonomies, plugins, child themes, etc.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -8692,7 +8668,6 @@ export const completion: Fig.Spec = {
       name: "server",
       description:
         "Launches PHP’s built-in web server for a specific WordPress installation.",
-      args: [{}],
       options: [
         {
           name: "--host",
@@ -8750,7 +8725,6 @@ export const completion: Fig.Spec = {
       name: "shell",
       description:
         "Opens an interactive PHP console for running and testing PHP code.",
-      args: [{}],
       options: [
         {
           name: "--basic",
@@ -8781,7 +8755,6 @@ export const completion: Fig.Spec = {
     {
       name: "sidebar",
       description: "Lists registered sidebars.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -8838,7 +8811,6 @@ export const completion: Fig.Spec = {
       name: "site",
       description:
         "Creates, deletes, empties, moderates, and lists one or more sites on a multisite installation.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -9598,7 +9570,6 @@ export const completion: Fig.Spec = {
       name: "super-admin",
       description:
         "Lists, adds, or removes super admin users on a multisite installation.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -9668,7 +9639,6 @@ export const completion: Fig.Spec = {
     {
       name: "taxonomy",
       description: "Retrieves information about registered taxonomies.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -9777,7 +9747,6 @@ export const completion: Fig.Spec = {
       name: "term",
       description:
         "Manages taxonomy terms and term meta, with create, delete, and list commands.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -10367,7 +10336,6 @@ export const completion: Fig.Spec = {
       name: "theme",
       description:
         "Manages themes, including installs, activations, and updates.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -10972,7 +10940,6 @@ export const completion: Fig.Spec = {
       name: "transient",
       description:
         "Adds, gets, and deletes entries in the WordPress Transient Cache.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -11139,7 +11106,6 @@ export const completion: Fig.Spec = {
       name: "user",
       description:
         "Manages users, along with their roles, capabilities, and meta.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -12177,7 +12143,6 @@ export const completion: Fig.Spec = {
       name: "widget",
       description:
         "Manages widgets, including adding and moving them within sidebars.",
-      args: [{}],
       options: [
         global_parameter_path,
         global_parameter_url,
