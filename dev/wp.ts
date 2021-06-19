@@ -168,15 +168,6 @@ export const completion: Fig.Spec = {
   name: "wp",
   description: "WP-CLI is the command-line interface for WordPress.",
   subcommands: [
-    // {
-    //   name: "admin",
-    //   description: "Open /wp-admin/ in a browser.",
-
-    //   // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
-    //   // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
-    //   args: [{}],
-    //   options: global_parameters,
-    // },
     {
       name: "cache",
       description:
