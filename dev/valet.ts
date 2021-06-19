@@ -89,6 +89,34 @@ export const completion: Fig.Spec = {
       ],
     },
     {
+      name: "list",
+      description: "List commands.",
+      args: {
+        name: "namespace",
+      },
+      options: [
+        { name: "--raw", description: "To output raw command list." },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "To output raw command list.",
+          args: {
+            name: "FORMAT",
+            suggestions: [
+              { name: "txt" },
+              { name: "xml" },
+              { name: "json" },
+              { name: "md" },
+            ],
+          },
+        },
+        {
+          name: "--short",
+          description: "To skip describing commands' arguments.",
+        },
+      ],
+    },
+    {
       name: "log",
       description: "Tail log file",
       args: {
