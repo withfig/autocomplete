@@ -1,7 +1,6 @@
 export const completion: Fig.Spec = {
   name: "rustc",
   description: "CLI for rustc",
-  subcommands: [],
   args: {
     name: "filepath",
     template: ["filepaths"],
@@ -56,6 +55,7 @@ export const completion: Fig.Spec = {
         {
           name: "path",
           description: "Path to search for external crates and libraries",
+          template: "folders",
         },
       ],
     },
@@ -308,7 +308,8 @@ export const completion: Fig.Spec = {
       description: "Specify where an external library is located",
       args: {
         name: "Path",
-        description: "Path where crate can be found",
+        description: "Path where crate(s) can be found",
+        template: "folders",
       },
     },
     {

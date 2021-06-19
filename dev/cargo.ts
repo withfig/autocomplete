@@ -427,12 +427,6 @@ export const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      args: {
-        template: "filepaths",
-        name: "file",
-        description: "Additional files to compile",
-        isOptional: true,
-      },
       options: [
         {
           name: ["-q", "--quiet"],
@@ -476,7 +470,7 @@ export const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: "--examples  ",
+          name: "--examples",
           description: "Builds all examples",
         },
         {
@@ -538,6 +532,7 @@ export const completionSpec: Fig.Spec = {
           description: "Directory for all generated artifacts",
           args: {
             name: "Directory",
+            template: "folders",
           },
         },
         {
@@ -545,6 +540,7 @@ export const completionSpec: Fig.Spec = {
           description: "Path to Cargo.toml",
           args: {
             name: "Path",
+            template: ["folders", "filepaths"],
           },
         },
         {
