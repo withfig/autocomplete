@@ -3905,7 +3905,7 @@ export const completion: Fig.Spec = {
                 },
                 {
                   name: "--fields",
-                  insertValue: "--fields",
+                  insertValue: "--fields=",
                   description: "Limit the output to specific fields.",
                   args: { name: "fields" },
                 },
@@ -7575,7 +7575,6 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "file",
-              insertValue: "file ",
               template: "filepaths",
               description: "The path to the PHP file to execute and profile.",
             },
@@ -8643,7 +8642,6 @@ export const completion: Fig.Spec = {
         },
         {
           name: "--log",
-          insertValue: "--log",
           description:
             "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
         },
