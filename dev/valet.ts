@@ -1,16 +1,32 @@
 // https://laravel.com/docs/8.x/valet
+// laravel version 8
 // valet version 2.15.x
 // 19 June 2021
+
+const global_option_help: Fig.Option = {
+  name: ["-h", "--help"],
+  description:
+    "Display help for the given command. When no command is given display help for the list command.",
+};
+
+const global_option_quiet: Fig.Option = {
+  name: ["-q", "--quiet"],
+  description: "Do not output any message.",
+};
 
 export const completion: Fig.Spec = {
   name: "valet",
   description:
     "Valet is a Laravel development environment for macOS minimalists.",
+  options: [global_option_help, global_option_quiet],
   subcommands: [
     {
       name: "forget",
       description:
         "Run this command from a 'parked' directory to remove it from the parked directory list.",
+      args: {
+        name: "path",
+      },
     },
     {
       name: "install",
