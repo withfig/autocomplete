@@ -1,3 +1,289 @@
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const customGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws elasticbeanstalk ${command}`;
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        continue;
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const filterManagedAction = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = "",
+  filter: string
+): Promise<Fig.Suggestion[]> => {
+  return customGenerator(
+    context,
+    executeShellCommand,
+    `${command} --status ${filter}`,
+    options,
+    parentKey,
+    childKey
+  );
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("~/")) {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    } else if (whatHasUserTyped.startsWith("/")) {
+      if (lastSlashIndex === 0) {
+        folderPath = "/";
+      } else {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listEnvironmentIds: {
+    script: "aws elasticbeanstalk describe-environments",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Environments", "EnvironmentId");
+    },
+  },
+
+  listEnvironmentNames: {
+    script: "aws elasticbeanstalk describe-environments",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Environments", "EnvironmentName");
+    },
+  },
+
+  listManagedActionsWithFilter: {
+    custom: async function (context, executeShellCommand) {
+      return filterManagedAction(
+        context,
+        executeShellCommand,
+        "describe-environment-managed-actions",
+        ["--environment-name", "--environment-id"],
+        "ManagedActions",
+        "ActionId",
+        "Scheduled"
+      );
+    },
+  },
+
+  listIamRoleArns: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "Arn");
+    },
+  },
+
+  listCnamePrefixes: {
+    script: "aws elasticbeanstalk describe-environments",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Environments", "CNAME").map((elm) => {
+        try {
+          const parts = (elm.name as string).split(".");
+          if (parts.length && parts[0] !== "elasticbeanstalk") {
+            return {
+              name: parts[0],
+              icon: elm.icon,
+            };
+          }
+          return null;
+        } catch (e) {
+          console.log(e);
+        }
+      });
+    },
+  },
+
+  listApplications: {
+    script: "aws elasticbeanstalk describe-applications",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Applications", "ApplicationName");
+    },
+  },
+
+  listApplicationVersionLabels: {
+    custom: async function (context, executeShellCommand) {
+      return customGenerator(
+        context,
+        executeShellCommand,
+        "describe-application-versions",
+        ["--application-name"],
+        "ApplicationVersions",
+        "VersionLabel"
+      );
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "elasticbeanstalk",
   description:
@@ -14,6 +300,7 @@ export const completionSpec: Fig.Spec = {
             "This specifies the ID of the environment with the in-progress update that you want to cancel.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -22,6 +309,7 @@ export const completionSpec: Fig.Spec = {
             "This specifies the name of the environment with the in-progress update that you want to cancel.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -30,6 +318,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -53,6 +342,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -60,6 +350,7 @@ export const completionSpec: Fig.Spec = {
           description: "The environment ID of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -68,6 +359,7 @@ export const completionSpec: Fig.Spec = {
             "The action ID of the scheduled managed action to execute.",
           args: {
             name: "string",
+            generators: generators.listManagedActionsWithFilter,
           },
         },
         {
@@ -76,6 +368,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -100,6 +393,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the environment to which to set the operations role.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -108,6 +402,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role.",
           args: {
             name: "string",
+            generators: generators.listIamRoleArns,
           },
         },
         {
@@ -116,6 +411,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -138,6 +434,7 @@ export const completionSpec: Fig.Spec = {
           description: "The prefix used when this CNAME is reserved.",
           args: {
             name: "string",
+            generators: generators.listCnamePrefixes,
           },
         },
         {
@@ -146,6 +443,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -170,6 +468,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application to which the specified source bundles belong.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -186,6 +485,7 @@ export const completionSpec: Fig.Spec = {
             "A list of version labels, specifying one or more application source bundles that belong to the target application. Each source bundle must include an environment manifest that specifies the name of the environment and the name of the solution stack to use, and optionally can specify environment links to create.",
           args: {
             name: "list",
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -194,6 +494,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
