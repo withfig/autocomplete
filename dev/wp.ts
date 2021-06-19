@@ -1,3 +1,7 @@
+// https://wp-cli.org/
+// wp-cli version 2.5.0
+// 19 June 2021
+
 // To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
 const global_parameter_path: Fig.Option = {
   name: "--path",
