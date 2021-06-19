@@ -1,3 +1,151 @@
+const webhookSuggestions: Fig.Suggestion[] = [
+  {
+    name: "balance.available",
+    description:
+      "Occurs whenever your Stripe balance has been updated (e.g., when a charge is available to be paid out). By default, Stripe automatically transfers funds in your balance to your bank account on a daily basis.",
+  },
+  {
+    name: "charge.captured",
+    description: "Occurs whenever a previously uncaptured charge is captured.",
+  },
+  {
+    name: "charge.dispute.created",
+    description:
+      "Occurs whenever a customer disputes a charge with their bank.",
+  },
+  {
+    name: "charge.failed",
+    description: "Occurs whenever a failed charge attempt occurs.",
+  },
+  {
+    name: "charge.refunded",
+    description:
+      "Occurs whenever a charge is refunded, including partial refunds.",
+  },
+  {
+    name: "charge.succeeded",
+    description: "Occurs whenever a new charge is created and is successful.",
+  },
+  {
+    name: "checkout.session.completed",
+    description:
+      "Occurs when a Checkout Session has been successfully completed.",
+  },
+  {
+    name: "customer.created",
+    description: "Occurs whenever a new customer is created.",
+  },
+  {
+    name: "customer.deleted",
+    description: "Occurs whenever a customer is deleted.",
+  },
+  {
+    name: "customer.source.created",
+    description: "Occurs whenever a new source is created for a customer.",
+  },
+  {
+    name: "customer.source.updated",
+    description: "Occurs whenever a source's details are changed.",
+  },
+  {
+    name: "customer.subscription.created",
+    description: "Occurs whenever a customer is signed up for a new plan.",
+  },
+  {
+    name: "customer.subscription.deleted",
+    description: "Occurs whenever a customer's subscription ends.",
+  },
+  {
+    name: "customer.subscription.updated",
+    description:
+      "Occurs whenever a subscription changes (e.g., switching from one plan to another, or changing the status from trial to active).",
+  },
+  {
+    name: "customer.updated",
+    description: "Occurs whenever any property of a customer changes.",
+  },
+  {
+    name: "invoice.created",
+    description: "Occurs whenever a new invoice is created.",
+  },
+  {
+    name: "invoice.finalized",
+    description:
+      "Occurs whenever a draft invoice is finalized and updated to be an open invoice.",
+  },
+  {
+    name: "invoice.payment_failed",
+    description:
+      "Occurs whenever an invoice payment attempt fails, due either to a declined payment or to the lack of a stored payment method.",
+  },
+  {
+    name: "invoice.payment_succeeded",
+    description: "Occurs whenever an invoice payment attempt succeeds.",
+  },
+  {
+    name: "invoice.updated",
+    description:
+      "Occurs whenever an invoice changes (e.g., the invoice amount).",
+  },
+  {
+    name: "issuing_authorization.request",
+    description: "Represents a synchronous request for authorization",
+  },
+  {
+    name: "issuing_card.created",
+    description: "Occurs whenever a card is created.",
+  },
+  {
+    name: "issuing_cardholder.created",
+    description: "Occurs whenever a cardholder is created.",
+  },
+  {
+    name: "payment_intent.amount_capturable_updated",
+    description: "Occurs when a PaymentIntent has funds to be captured.",
+  },
+  {
+    name: "payment_intent.canceled",
+    description: "Occurs when a PaymentIntent is canceled.",
+  },
+  {
+    name: "payment_intent.created",
+    description: "Occurs when a new PaymentIntent is created.",
+  },
+  {
+    name: "payment_intent.payment_failed",
+    description:
+      "Occurs when a PaymentIntent has failed the attempt to create a payment method or a payment.",
+  },
+  {
+    name: "payment_intent.succeeded",
+    description:
+      "Occurs when a PaymentIntent has successfully completed payment.",
+  },
+  {
+    name: "payment_method.attached",
+    description:
+      "Occurs whenever a new payment method is attached to a customer.",
+  },
+  {
+    name: "setup_intent.canceled",
+    description: "Occurs when a SetupIntent is canceled.",
+  },
+  {
+    name: "setup_intent.created",
+    description: "Occurs when a new SetupIntent is created.",
+  },
+  {
+    name: "setup_intent.setup_failed",
+    description:
+      "Occurs when a SetupIntent has failed the attempt to setup a payment method.",
+  },
+  {
+    name: "setup_intent.succeeded",
+    description:
+      "Occurs when an SetupIntent has successfully setup a payment method.",
+  },
+];
+
 const globalOptions: Fig.Option[] = [
   {
     name: "--api-key",
@@ -492,11 +640,6 @@ export const completion: Fig.Spec = {
                   "Occurs whenever an application fee refund is updated.",
               },
               {
-                name: "balance.available",
-                description:
-                  "Occurs whenever your Stripe balance has been updated (e.g., when a charge is available to be paid out). By default, Stripe automatically transfers funds in your balance to your bank account on a daily basis.",
-              },
-              {
                 name: "billing_portal.configuration.created",
                 description:
                   "Occurs whenever a portal configuration is created.",
@@ -512,31 +655,12 @@ export const completion: Fig.Spec = {
                   "Occurs whenever a capability has new requirements or a new status.",
               },
               {
-                name: "charge.captured",
-                description:
-                  "Occurs whenever a previously uncaptured charge is captured.",
-              },
-              {
                 name: "charge.expired",
                 description: "Occurs whenever an uncaptured charge expires.",
               },
               {
-                name: "charge.failed",
-                description: "Occurs whenever a failed charge attempt occurs.",
-              },
-              {
                 name: "charge.pending",
                 description: "Occurs whenever a pending charge is created.",
-              },
-              {
-                name: "charge.refunded",
-                description:
-                  "Occurs whenever a charge is refunded, including partial refunds.",
-              },
-              {
-                name: "charge.succeeded",
-                description:
-                  "Occurs whenever a new charge is created and is successful.",
               },
               {
                 name: "charge.updated",
@@ -547,11 +671,6 @@ export const completion: Fig.Spec = {
                 name: "charge.dispute.closed",
                 description:
                   "Occurs when a dispute is closed and the dispute status changes to lost, warning_closed, or won.",
-              },
-              {
-                name: "charge.dispute.created",
-                description:
-                  "Occurs whenever a customer disputes a charge with their bank.",
               },
               {
                 name: "charge.dispute.funds_reinstated",
@@ -584,11 +703,6 @@ export const completion: Fig.Spec = {
                   "Occurs when a payment intent using a delayed payment method finally succeeds.",
               },
               {
-                name: "checkout.session.completed",
-                description:
-                  "Occurs when a Checkout Session has been successfully completed.",
-              },
-              {
                 name: "coupon.created",
                 description: "Occurs whenever a coupon is created.",
               },
@@ -613,19 +727,6 @@ export const completion: Fig.Spec = {
                 description: "Occurs whenever a credit note is voided.",
               },
               {
-                name: "customer.created",
-                description: "Occurs whenever a new customer is created.",
-              },
-              {
-                name: "customer.deleted",
-                description: "Occurs whenever a customer is deleted.",
-              },
-              {
-                name: "customer.updated",
-                description:
-                  "Occurs whenever any property of a customer changes.",
-              },
-              {
                 name: "customer.discount.created",
                 description:
                   "Occurs whenever a coupon is attached to a customer.",
@@ -641,11 +742,6 @@ export const completion: Fig.Spec = {
                   "Occurs whenever a customer is switched from one coupon to another.",
               },
               {
-                name: "customer.source.created",
-                description:
-                  "Occurs whenever a new source is created for a customer.",
-              },
-              {
                 name: "customer.source.deleted",
                 description:
                   "Occurs whenever a source is removed from a customer.",
@@ -654,19 +750,6 @@ export const completion: Fig.Spec = {
                 name: "customer.source.expiring",
                 description:
                   "Occurs whenever a card or source will expire at the end of the month.",
-              },
-              {
-                name: "customer.source.updated",
-                description: "Occurs whenever a source's details are changed.",
-              },
-              {
-                name: "customer.subscription.created",
-                description:
-                  "Occurs whenever a customer is signed up for a new plan.",
-              },
-              {
-                name: "customer.subscription.deleted",
-                description: "Occurs whenever a customer's subscription ends.",
               },
               {
                 name: "customer.subscription.pending_update_applied",
@@ -682,11 +765,6 @@ export const completion: Fig.Spec = {
                 name: "customer.subscription.trial_will_end",
                 description:
                   "Occurs three days before a subscription's trial period is scheduled to end, or when a trial is ended immediately (using trial_end=now).",
-              },
-              {
-                name: "customer.subscription.updated",
-                description:
-                  "Occurs whenever a subscription changes (e.g., switching from one plan to another, or changing the status from trial to active).",
               },
               {
                 name: "customer.tax_id.created",
@@ -737,11 +815,6 @@ export const completion: Fig.Spec = {
                   "Occurs whenever a VerificationSession transitions to verified",
               },
               {
-                name: "invoice.created",
-                description:
-                  "Occurs whenever a new invoice is created. To learn how webhooks can be used with this event, and how they can affect it, see Using Webhooks with Subscriptions.",
-              },
-              {
                 name: "invoice.deleted",
                 description: "Occurs whenever a draft invoice is deleted.",
               },
@@ -749,11 +822,6 @@ export const completion: Fig.Spec = {
                 name: "invoice.finalization_failed",
                 description:
                   "Occurs whenever a draft invoice cannot be finalized. See the invoice’s last finalization error for details.",
-              },
-              {
-                name: "invoice.finalized",
-                description:
-                  "Occurs whenever a draft invoice is finalized and updated to be an open invoice.",
               },
               {
                 name: "invoice.marked_uncollectible",
@@ -771,16 +839,6 @@ export const completion: Fig.Spec = {
                   "Occurs whenever an invoice payment attempt requires further user action to complete.",
               },
               {
-                name: "invoice.payment_failed",
-                description:
-                  "Occurs whenever an invoice payment attempt fails, due either to a declined payment or to the lack of a stored payment method.",
-              },
-              {
-                name: "invoice.payment_succeeded",
-                description:
-                  "Occurs whenever an invoice payment attempt succeeds.",
-              },
-              {
                 name: "invoice.sent",
                 description: "Occurs whenever an invoice email is sent out.",
               },
@@ -788,11 +846,6 @@ export const completion: Fig.Spec = {
                 name: "invoice.upcoming",
                 description:
                   "Occurs X number of days before a subscription is scheduled to create an invoice that is automatically charged—where X is determined by your subscriptions settings. Note: The received Invoice object will not have an invoice ID.",
-              },
-              {
-                name: "invoice.updated",
-                description:
-                  "Occurs whenever an invoice changes (e.g., the invoice amount).",
               },
               {
                 name: "invoice.voided",
@@ -815,25 +868,12 @@ export const completion: Fig.Spec = {
                 description: "Occurs whenever an authorization is created.",
               },
               {
-                name: "issuing_authorization.request",
-                description:
-                  "Represents a synchronous request for authorization, see Using your integration to handle authorization requests. You must create a webhook endpoint which explicitly subscribes to this event type to access it. Webhook endpoints which subscribe to all events will not include this event type.",
-              },
-              {
                 name: "issuing_authorization.updated",
                 description: "Occurs whenever an authorization is updated.",
               },
               {
-                name: "issuing_card.created",
-                description: "Occurs whenever a card is created.",
-              },
-              {
                 name: "issuing_card.updated",
                 description: "Occurs whenever a card is updated.",
-              },
-              {
-                name: "issuing_cardholder.created",
-                description: "Occurs whenever a cardholder is created.",
               },
               {
                 name: "issuing_cardholder.updated",
@@ -897,24 +937,6 @@ export const completion: Fig.Spec = {
                 description: "Occurs whenever an order return is created.",
               },
               {
-                name: "payment_intent.amount_capturable_updated",
-                description:
-                  "Occurs when a PaymentIntent has funds to be captured. Check the amount_capturable property on the PaymentIntent to determine the amount that can be captured. You may capture the PaymentIntent with an amount_to_capture value up to the specified amount. Learn more about capturing PaymentIntents.",
-              },
-              {
-                name: "payment_intent.canceled",
-                description: "Occurs when a PaymentIntent is canceled.",
-              },
-              {
-                name: "payment_intent.created",
-                description: "Occurs when a new PaymentIntent is created.",
-              },
-              {
-                name: "payment_intent.payment_failed",
-                description:
-                  "Occurs when a PaymentIntent has failed the attempt to create a payment method or a payment.",
-              },
-              {
                 name: "payment_intent.processing",
                 description:
                   "Occurs when a PaymentIntent has started processing.",
@@ -923,16 +945,6 @@ export const completion: Fig.Spec = {
                 name: "payment_intent.requires_action",
                 description:
                   "Occurs when a PaymentIntent transitions to requires_action state",
-              },
-              {
-                name: "payment_intent.succeeded",
-                description:
-                  "Occurs when a PaymentIntent has successfully completed payment.",
-              },
-              {
-                name: "payment_method.attached",
-                description:
-                  "Occurs whenever a new payment method is attached to a customer.",
               },
               {
                 name: "payment_method.automatically_updated",
@@ -1076,27 +1088,9 @@ export const completion: Fig.Spec = {
                 description: "Occurs whenever a review is opened.",
               },
               {
-                name: "setup_intent.canceled",
-                description: "Occurs when a SetupIntent is canceled.",
-              },
-              {
-                name: "setup_intent.created",
-                description: "Occurs when a new SetupIntent is created.",
-              },
-              {
                 name: "setup_intent.requires_action",
                 description:
                   "Occurs when a SetupIntent is in requires_action state.",
-              },
-              {
-                name: "setup_intent.setup_failed",
-                description:
-                  "Occurs when a SetupIntent has failed the attempt to setup a payment method.",
-              },
-              {
-                name: "setup_intent.succeeded",
-                description:
-                  "Occurs when an SetupIntent has successfully setup a payment method.",
               },
               {
                 name: "sigma.scheduled_query_run.created",
@@ -1232,6 +1226,7 @@ export const completion: Fig.Spec = {
                 description:
                   "Occurs whenever a transfer's description or metadata is updated.",
               },
+              ...webhookSuggestions,
             ],
           },
         },
@@ -1292,55 +1287,7 @@ export const completion: Fig.Spec = {
       args: {
         name: "event",
         description: "webhook events",
-        suggestions: [
-          "account.updated",
-          "balance.available",
-          "charge.captured",
-          "charge.dispute.created",
-          "charge.failed",
-          "charge.refunded",
-          "charge.succeeded",
-          "checkout.session.async_payment_failed",
-          "checkout.session.async_payment_succeeded",
-          "checkout.session.completed",
-          "customer.created",
-          "customer.deleted",
-          "customer.source.created",
-          "customer.source.updated",
-          "customer.subscription.created",
-          "customer.subscription.deleted",
-          "customer.subscription.updated",
-          "customer.updated",
-          "invoice.created",
-          "invoice.finalized",
-          "invoice.payment_action_required",
-          "invoice.payment_failed",
-          "invoice.payment_succeeded",
-          "invoice.updated",
-          "issuing_authorization.request",
-          "issuing_card.created",
-          "issuing_cardholder.created",
-          "payment_intent.amount_capturable_updated",
-          "payment_intent.canceled",
-          "payment_intent.created",
-          "payment_intent.payment_failed",
-          "payment_intent.succeeded",
-          "payment_method.attached",
-          "plan.created",
-          "plan.deleted",
-          "plan.updated",
-          "product.created",
-          "product.deleted",
-          "product.updated",
-          "setup_intent.canceled",
-          "setup_intent.created",
-          "setup_intent.setup_failed",
-          "setup_intent.succeeded",
-          "subscription_schedule.canceled",
-          "subscription_schedule.created",
-          "subscription_schedule.released",
-          "subscription_schedule.updated",
-        ],
+        suggestions: [...webhookSuggestions],
       },
       options: [
         {
