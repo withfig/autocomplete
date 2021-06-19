@@ -61,40 +61,138 @@ export const completion: Fig.Spec = {
       args: {
         name: "path",
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "install",
       description:
         "This will configure and install Valet and DnsMasq. In addition, the daemons Valet depends on will be configured to launch when your system starts.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "log",
       description: "View a list of logs which are written by Valet's services.",
+      args: {
+        name: "key",
+      },
+      options: [
+        { name: ["-f", "--follow"] },
+        {
+          name: "-l",
+          args: {
+            name: "LINES",
+          },
+        },
+        {
+          name: "--lines",
+          insertValue: "--lines=",
+          args: {
+            name: "LINES",
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "link",
       description: "Link the current working directory to Valet.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "links",
       description: "Display all of the registered Valet links.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "on-latest-version",
       description: "Determine if this is the latest version of Valet.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "paths",
       description: "View all of your 'parked' paths.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "park",
       description:
         "Register the current working (or specified) directory with Valet.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "parked",
       description: "Display all the current sites within parked paths.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "proxy",
@@ -110,15 +208,42 @@ export const completion: Fig.Spec = {
           name: "appName",
         },
       ],
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "proxies",
       description:
         "You may use the proxies command to list all site configurations that are proxied.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "restart",
       description: "Restart the Valet daemons.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "secure",
@@ -126,14 +251,41 @@ export const completion: Fig.Spec = {
       args: {
         name: "appName",
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "start",
       description: "Start the Valet daemons.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "stop",
       description: "Stop the Valet daemons.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "tld",
@@ -142,11 +294,29 @@ export const completion: Fig.Spec = {
         name: "tld",
         suggestions: [{ name: "local" }, { name: "test" }],
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "trust",
       description:
         "Add sudoers files for Brew and Valet to allow Valet commands to be run without prompting for your password.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "uninstall",
@@ -158,6 +328,13 @@ export const completion: Fig.Spec = {
           description:
             "Pass the --force option to aggressively delete all of Valet's resources.",
         },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
       ],
     },
     {
@@ -166,6 +343,15 @@ export const completion: Fig.Spec = {
       args: {
         name: "appName",
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "unproxy",
@@ -173,6 +359,15 @@ export const completion: Fig.Spec = {
       args: {
         name: "appName",
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "unsecure",
@@ -180,6 +375,15 @@ export const completion: Fig.Spec = {
       args: {
         name: "appName",
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "use",
@@ -189,6 +393,15 @@ export const completion: Fig.Spec = {
         name: "php",
         suggestions: [{ name: "php" }, { name: "php@" }],
       },
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
   ],
 };
