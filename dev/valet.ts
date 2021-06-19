@@ -40,6 +40,10 @@ const global_option_verbose: Fig.Option = {
     "Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug",
 };
 
+const global_option_secure: Fig.Option = {
+  name: "--secure",
+};
+
 export const completion: Fig.Spec = {
   name: "valet",
   description:
@@ -57,7 +61,7 @@ export const completion: Fig.Spec = {
     {
       name: "forget",
       description:
-        "Run this command from a 'parked' directory to remove it from the parked directory list.",
+        "Remove the current working (or specified) directory from Valet's list of paths.",
       args: {
         name: "path",
       },
@@ -73,8 +77,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "install",
-      description:
-        "This will configure and install Valet and DnsMasq. In addition, the daemons Valet depends on will be configured to launch when your system starts.",
+      description: "Install the Valet services.",
       options: [
         global_option_help,
         global_option_quiet,
@@ -87,7 +90,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "log",
-      description: "View a list of logs which are written by Valet's services.",
+      description: "Tail log file",
       args: {
         name: "key",
       },
@@ -118,7 +121,11 @@ export const completion: Fig.Spec = {
     {
       name: "link",
       description: "Link the current working directory to Valet.",
+      args: {
+        name: "name",
+      },
       options: [
+        global_option_secure,
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -156,7 +163,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "paths",
-      description: "View all of your 'parked' paths.",
+      description: "Get all of the paths registered with Valet.",
       options: [
         global_option_help,
         global_option_quiet,
@@ -171,6 +178,12 @@ export const completion: Fig.Spec = {
       name: "park",
       description:
         "Register the current working (or specified) directory with Valet.",
+      args: [
+        {
+          name: "path",
+          template: "folders",
+        },
+      ],
       options: [
         global_option_help,
         global_option_quiet,
