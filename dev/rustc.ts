@@ -284,7 +284,15 @@ export const completion: Fig.Spec = {
       name: ["-C", "--codegen"],
       description: "Set a codegen option",
       args: {
-        name: "identifier",
+        name: "option",
+      },
+    },
+    {
+      name: "-Z",
+      description: "Set unstable options",
+      args: {
+        name: "option",
+        description: "unstable options to pass to rustc",
       },
     },
     {
@@ -294,9 +302,6 @@ export const completion: Fig.Spec = {
     {
       name: ["-v", "--verbose"],
       description: "Use verbose output",
-      args: {
-        name: "identifier",
-      },
     },
     {
       name: "--extern",
