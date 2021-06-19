@@ -213,15 +213,14 @@ export const completion: Fig.Spec = {
         "Sometimes you may wish to proxy a Valet domain to another service on your local machine.",
       args: [
         {
-          name: "--secure",
-          variadic: true,
-          suggestions: [{ name: "appName" }, { name: "http://127.0.0.1:9200" }],
+          name: "domain",
         },
         {
-          name: "appName",
+          name: "host",
         },
       ],
       options: [
+        global_option_secure,
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -233,8 +232,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "proxies",
-      description:
-        "You may use the proxies command to list all site configurations that are proxied.",
+      description: "Display all of the proxy sites.",
       options: [
         global_option_help,
         global_option_quiet,
@@ -247,7 +245,10 @@ export const completion: Fig.Spec = {
     },
     {
       name: "restart",
-      description: "Restart the Valet daemons.",
+      description: "Restart the Valet services.",
+      args: {
+        name: "service",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -262,7 +263,7 @@ export const completion: Fig.Spec = {
       name: "secure",
       description: "Secure the given domain with a trusted TLS certificate",
       args: {
-        name: "appName",
+        name: "domain",
       },
       options: [
         global_option_help,
@@ -276,7 +277,10 @@ export const completion: Fig.Spec = {
     },
     {
       name: "start",
-      description: "Start the Valet daemons.",
+      description: "Start the Valet services.",
+      args: {
+        name: "service",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -289,7 +293,10 @@ export const completion: Fig.Spec = {
     },
     {
       name: "stop",
-      description: "Stop the Valet daemons.",
+      description: "Stop the Valet services.",
+      args: {
+        name: "service",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -302,9 +309,9 @@ export const completion: Fig.Spec = {
     },
     {
       name: "tld",
-      description: "Link the current working directory to Valet.",
+      description: "Get or set the TLD used for Valet sites.",
       args: {
-        name: "tld",
+        name: "domain",
         suggestions: [{ name: "local" }, { name: "test" }],
       },
       options: [
@@ -320,8 +327,16 @@ export const completion: Fig.Spec = {
     {
       name: "trust",
       description:
-        "Add sudoers files for Brew and Valet to allow Valet commands to be run without prompting for your password.",
+        "Add sudoers files for Brew and Valet to make Valet commands run without passwords.",
+      args: {
+        name: "options",
+      },
       options: [
+        {
+          name: "--off",
+          description:
+            "Remove the sudoers files so normal sudo password prompts are required.",
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -333,13 +348,12 @@ export const completion: Fig.Spec = {
     },
     {
       name: "uninstall",
-      description:
-        "Uninstall Valet: shows instructions for manual uninstall. Pass the --force option to aggressively delete all of Valet's resources.",
+      description: "Uninstall the Valet services.",
       options: [
         {
           name: "--force",
           description:
-            "Pass the --force option to aggressively delete all of Valet's resources.",
+            "Do a forceful uninstall of Valet and related Homebrew pkgs.",
         },
         global_option_help,
         global_option_quiet,
@@ -354,7 +368,7 @@ export const completion: Fig.Spec = {
       name: "unlink",
       description: "Remove the specified Valet link.",
       args: {
-        name: "appName",
+        name: "name",
       },
       options: [
         global_option_help,
@@ -368,9 +382,9 @@ export const completion: Fig.Spec = {
     },
     {
       name: "unproxy",
-      description: "You may remove a proxy using the unproxy command.",
+      description: "Delete an Nginx proxy config.",
       args: {
-        name: "appName",
+        name: "domain",
       },
       options: [
         global_option_help,
@@ -384,11 +398,13 @@ export const completion: Fig.Spec = {
     },
     {
       name: "unsecure",
-      description: "Secure the given domain with a trusted TLS certificate",
+      description:
+        "Stop serving the given domain over HTTPS and remove the trusted TLS certificate.",
       args: {
-        name: "appName",
+        name: "domain",
       },
       options: [
+        { name: "--all" },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -400,13 +416,13 @@ export const completion: Fig.Spec = {
     },
     {
       name: "use",
-      description:
-        "Valet allows you to switch PHP versions using the valet use php@version command. Valet will install the specified PHP version via Homebrew if it is not already installed.",
+      description: "Change the version of PHP used by valet",
       args: {
-        name: "php",
+        name: "phpVersion",
         suggestions: [{ name: "php" }, { name: "php@" }],
       },
       options: [
+        { name: "--force" },
         global_option_help,
         global_option_quiet,
         global_option_version,
