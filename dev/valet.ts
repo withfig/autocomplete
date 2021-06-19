@@ -14,11 +14,45 @@ const global_option_quiet: Fig.Option = {
   description: "Do not output any message.",
 };
 
+const global_option_version: Fig.Option = {
+  name: ["-V", "--version"],
+  description: "Display this application version.",
+};
+
+const global_option_ansi: Fig.Option = {
+  name: "--ansi",
+  description: "Force (or disable --no-ansi) ANSI output.",
+};
+
+const global_option_noansi: Fig.Option = {
+  name: "--no-ansi",
+  description: "Force (or disable --no-ansi) ANSI output.",
+};
+
+const global_option_nointeraction: Fig.Option = {
+  name: ["-n", "--no-interaction"],
+  description: "Do not ask any interactive question.",
+};
+
+const global_option_verbose: Fig.Option = {
+  name: ["-v", "-vv", "-vvv", "--verbose"],
+  description:
+    "Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug",
+};
+
 export const completion: Fig.Spec = {
   name: "valet",
   description:
     "Valet is a Laravel development environment for macOS minimalists.",
-  options: [global_option_help, global_option_quiet],
+  options: [
+    global_option_help,
+    global_option_quiet,
+    global_option_version,
+    global_option_ansi,
+    global_option_noansi,
+    global_option_nointeraction,
+    global_option_verbose,
+  ],
   subcommands: [
     {
       name: "forget",
