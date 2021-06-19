@@ -10,7 +10,7 @@ export const completion: Fig.Spec = {
     {
       name: "forget",
       description:
-        'Run this command from a "parked" directory to remove it from the parked directory list.',
+        "Run this command from a 'parked' directory to remove it from the parked directory list.",
     },
     {
       name: "install",
@@ -35,7 +35,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "paths",
-      description: 'View all of your "parked" paths.',
+      description: "View all of your 'parked' paths.",
     },
     {
       name: "park",
@@ -47,12 +47,35 @@ export const completion: Fig.Spec = {
       description: "Display all the current sites within parked paths.",
     },
     {
+      name: "proxy",
+      description:
+        "Sometimes you may wish to proxy a Valet domain to another service on your local machine.",
+      args: [
+        {
+          name: "--secure",
+          variadic: true,
+          suggestions: [{ name: "appName" }, { name: "http://127.0.0.1:9200" }],
+        },
+        {
+          name: "appName",
+        },
+      ],
+    },
+    {
+      name: "proxies",
+      description:
+        "You may use the proxies command to list all site configurations that are proxied.",
+    },
+    {
       name: "restart",
       description: "Restart the Valet daemons.",
     },
     {
       name: "secure",
       description: "Secure the given domain with a trusted TLS certificate",
+      args: {
+        name: "appName",
+      },
     },
     {
       name: "start",
@@ -79,9 +102,13 @@ export const completion: Fig.Spec = {
       name: "uninstall",
       description:
         "Uninstall Valet: shows instructions for manual uninstall. Pass the --force option to aggressively delete all of Valet's resources.",
-      args: {
-        name: "--force",
-      },
+      options: [
+        {
+          name: "--force",
+          description:
+            "Pass the --force option to aggressively delete all of Valet's resources.",
+        },
+      ],
     },
     {
       name: "unlink",
@@ -91,8 +118,18 @@ export const completion: Fig.Spec = {
       },
     },
     {
+      name: "unproxy",
+      description: "You may remove a proxy using the unproxy command.",
+      args: {
+        name: "appName",
+      },
+    },
+    {
       name: "unsecure",
       description: "Secure the given domain with a trusted TLS certificate",
+      args: {
+        name: "appName",
+      },
     },
     {
       name: "use",
