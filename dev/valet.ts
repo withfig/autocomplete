@@ -62,6 +62,14 @@ export const completion: Fig.Spec = {
       name: "diagnose",
       description: "Output diagnostics to aid in debugging Valet.",
       options: [
+        {
+          name: ["-p", "--print"],
+          description: "Print diagnostics output while running.",
+        },
+        {
+          name: "--plain",
+          description: "Format clipboard output as plain text.",
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -75,6 +83,12 @@ export const completion: Fig.Spec = {
       name: "directory-listing",
       description:
         "Determine directory-listing behavior. Default is off, which means a 404 will display.",
+      args: {
+        name: "status",
+        description:
+          "on or off. (default=off) will show a 404 page; [on] will display a listing if project folder exists but requested URI not found.",
+        suggestions: [{ name: "on" }, { name: "off" }],
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -88,6 +102,9 @@ export const completion: Fig.Spec = {
     {
       name: "fetch-share-url",
       description: "Get the URL to the current Ngrok tunnel",
+      args: {
+        name: "domain",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -115,7 +132,38 @@ export const completion: Fig.Spec = {
         global_option_verbose,
       ],
     },
-    { name: "help", description: "Display help for a command" },
+    {
+      name: "help",
+      description: "Display help for a command",
+      args: {
+        name: "command_name",
+        description: "The command name [default: 'help']",
+      },
+      options: [
+        { name: "--raw", description: "To output raw command help." },
+        {
+          name: "--format",
+          insertValue: "--format=",
+          description: "The output format.",
+          args: {
+            name: "FORMAT",
+            suggestions: [
+              { name: "txt" },
+              { name: "xml" },
+              { name: "json" },
+              { name: "md" },
+            ],
+          },
+        },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
     {
       name: "install",
       description: "Install the Valet services.",
@@ -227,6 +275,9 @@ export const completion: Fig.Spec = {
     {
       name: "loopback",
       description: "Get or set the loopback address used for Valet sites",
+      args: {
+        name: "loopback",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -254,6 +305,9 @@ export const completion: Fig.Spec = {
       name: "open",
       description:
         "Open the site for the current (or specified) directory in your browser",
+      args: {
+        name: "domain",
+      },
       options: [
         global_option_help,
         global_option_quiet,
@@ -383,6 +437,84 @@ export const completion: Fig.Spec = {
       name: "share",
       description: "Generate a publicly accessible URL for your project",
       options: [
+        {
+          name: "--auth",
+          description: "enforce basic auth on tunnel endpoint, 'user:password'",
+        },
+        {
+          name: "--authtoken",
+          description: "ngrok.com authtoken identifying a user",
+        },
+        {
+          name: '--bind-tls "both"',
+          description: "listen for http, https or both: true/false/both",
+        },
+        {
+          name: "--config",
+          description: "path to config files; they are merged if multiple",
+        },
+        {
+          name: "--host-header",
+          description:
+            "set Host header; if 'rewrite' use local address hostname",
+        },
+        {
+          name: "--hostname",
+          description: "host tunnel on custom hostname (requires DNS CNAME)",
+        },
+        {
+          name: "--inspect",
+          description: "enable/disable http introspection",
+        },
+        {
+          name: '--log "false"',
+          description: "path to log file, 'stdout', 'stderr' or 'false'",
+          args: {
+            name: "path",
+            suggestions: [
+              { name: "stdout" },
+              { name: "stderr" },
+              { name: "false" },
+            ],
+          },
+        },
+        {
+          name: '--log-format "term"',
+          description: "log record format: 'term', 'logfmt', 'json'",
+          args: {
+            name: "format",
+            suggestions: [
+              { name: "term" },
+              { name: "logfmt" },
+              { name: "json" },
+            ],
+          },
+        },
+        {
+          name: '--log-level "info"',
+          description: "logging level",
+        },
+        {
+          name: "--region",
+          description:
+            "ngrok server region [us, eu, au, ap, sa, jp, in] (default: us)",
+          args: {
+            name: "region",
+            suggestions: [
+              { name: "us" },
+              { name: "eu" },
+              { name: "au" },
+              { name: "ap" },
+              { name: "sa" },
+              { name: "jp" },
+              { name: "in" },
+            ],
+          },
+        },
+        {
+          name: "--subdomain",
+          description: "host tunnel on a custom subdomain",
+        },
         global_option_help,
         global_option_quiet,
         global_option_version,
