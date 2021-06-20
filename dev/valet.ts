@@ -121,6 +121,7 @@ export const completion: Fig.Spec = {
         "Remove the current working (or specified) directory from Valet's list of paths.",
       args: {
         name: "path",
+        template: "folders",
       },
       options: [
         global_option_help,
@@ -140,11 +141,11 @@ export const completion: Fig.Spec = {
         description: "The command name [default: 'help']",
       },
       options: [
-        { name: "--raw", description: "To output raw command help." },
         {
           name: "--format",
           insertValue: "--format=",
-          description: "The output format.",
+          description:
+            "The output format (txt, xml, json, or md) [default: 'txt'].",
           args: {
             name: "FORMAT",
             suggestions: [
@@ -155,6 +156,7 @@ export const completion: Fig.Spec = {
             ],
           },
         },
+        { name: "--raw", description: "To output raw command help." },
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -218,7 +220,8 @@ export const completion: Fig.Spec = {
         {
           name: "--format",
           insertValue: "--format=",
-          description: "To output raw command list.",
+          description:
+            "The output format (txt, xml, json, or md) [default: 'txt'].",
           args: {
             name: "FORMAT",
             suggestions: [
@@ -400,7 +403,6 @@ export const completion: Fig.Spec = {
         global_option_verbose,
       ],
     },
-
     {
       name: "restart",
       description: "Restart the Valet services.",
@@ -572,7 +574,7 @@ export const completion: Fig.Spec = {
       name: "tld",
       description: "Get or set the TLD used for Valet sites.",
       args: {
-        name: "domain",
+        name: "tld",
         suggestions: [{ name: "local" }, { name: "test" }],
       },
       options: [
@@ -680,7 +682,12 @@ export const completion: Fig.Spec = {
       description: "Change the version of PHP used by valet",
       args: {
         name: "phpVersion",
-        suggestions: [{ name: "php" }, { name: "php@" }],
+        suggestions: [
+          { name: "php@7.2" },
+          { name: "php@7.3" },
+          { name: "php@7.4" },
+          { name: "php@8.0" },
+        ],
       },
       options: [
         { name: "--force" },
