@@ -446,8 +446,16 @@ export const completion: Fig.Spec = {
           description: "ngrok.com authtoken identifying a user",
         },
         {
-          name: '--bind-tls "both"',
+          name: "--bind-tls",
           description: "listen for http, https or both: true/false/both",
+          args: {
+            name: "listen",
+            suggestions: [
+              { name: "true", insertValue: "'true'" },
+              { name: "false", insertValue: "'false'" },
+              { name: "both", insertValue: "'both'" },
+            ],
+          },
         },
         {
           name: "--config",
@@ -467,32 +475,36 @@ export const completion: Fig.Spec = {
           description: "enable/disable http introspection",
         },
         {
-          name: '--log "false"',
+          name: "--log",
           description: "path to log file, 'stdout', 'stderr' or 'false'",
           args: {
             name: "path",
             suggestions: [
-              { name: "stdout" },
-              { name: "stderr" },
-              { name: "false" },
+              { name: "stdout", insertValue: "'stdout'" },
+              { name: "stderr", insertValue: "'stderr'" },
+              { name: "false", insertValue: "'false'" },
             ],
           },
         },
         {
-          name: '--log-format "term"',
+          name: "--log-format",
           description: "log record format: 'term', 'logfmt', 'json'",
           args: {
             name: "format",
             suggestions: [
-              { name: "term" },
-              { name: "logfmt" },
-              { name: "json" },
+              { name: "term", insertValue: "'term'" },
+              { name: "logfmt", insertValue: "'logfmt'" },
+              { name: "json", insertValue: "'json'" },
             ],
           },
         },
         {
-          name: '--log-level "info"',
+          name: "--log-level",
           description: "logging level",
+          args: {
+            name: "level",
+            suggestions: [{ name: "info", insertValue: "'info'" }],
+          },
         },
         {
           name: "--region",
