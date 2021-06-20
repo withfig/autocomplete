@@ -59,6 +59,19 @@ export const completion: Fig.Spec = {
   ],
   subcommands: [
     {
+      name: "diagnose",
+      description: "Output diagnostics to aid in debugging Valet.",
+    },
+    {
+      name: "directory-listing",
+      description:
+        "Determine directory-listing behavior. Default is off, which means a 404 will display.",
+    },
+    {
+      name: "fetch-share-url",
+      description: "Get the URL to the current Ngrok tunnel",
+    },
+    {
       name: "forget",
       description:
         "Remove the current working (or specified) directory from Valet's list of paths.",
@@ -75,9 +88,40 @@ export const completion: Fig.Spec = {
         global_option_verbose,
       ],
     },
+    { name: "help", description: "Display help for a command" },
     {
       name: "install",
       description: "Install the Valet services.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "link",
+      description: "Link the current working directory to Valet.",
+      args: {
+        name: "name",
+      },
+      options: [
+        global_option_secure,
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+    {
+      name: "links",
+      description: "Display all of the registered Valet links.",
       options: [
         global_option_help,
         global_option_quiet,
@@ -147,34 +191,8 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "link",
-      description: "Link the current working directory to Valet.",
-      args: {
-        name: "name",
-      },
-      options: [
-        global_option_secure,
-        global_option_help,
-        global_option_quiet,
-        global_option_version,
-        global_option_ansi,
-        global_option_noansi,
-        global_option_nointeraction,
-        global_option_verbose,
-      ],
-    },
-    {
-      name: "links",
-      description: "Display all of the registered Valet links.",
-      options: [
-        global_option_help,
-        global_option_quiet,
-        global_option_version,
-        global_option_ansi,
-        global_option_noansi,
-        global_option_nointeraction,
-        global_option_verbose,
-      ],
+      name: "loopback",
+      description: "Get or set the loopback address used for Valet sites",
     },
     {
       name: "on-latest-version",
@@ -190,17 +208,9 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "paths",
-      description: "Get all of the paths registered with Valet.",
-      options: [
-        global_option_help,
-        global_option_quiet,
-        global_option_version,
-        global_option_ansi,
-        global_option_noansi,
-        global_option_nointeraction,
-        global_option_verbose,
-      ],
+      name: "open",
+      description:
+        "Open the site for the current (or specified) directory in your browser",
     },
     {
       name: "park",
@@ -236,19 +246,9 @@ export const completion: Fig.Spec = {
       ],
     },
     {
-      name: "proxy",
-      description:
-        "Sometimes you may wish to proxy a Valet domain to another service on your local machine.",
-      args: [
-        {
-          name: "domain",
-        },
-        {
-          name: "host",
-        },
-      ],
+      name: "paths",
+      description: "Get all of the paths registered with Valet.",
       options: [
-        global_option_secure,
         global_option_help,
         global_option_quiet,
         global_option_version,
@@ -271,6 +271,30 @@ export const completion: Fig.Spec = {
         global_option_verbose,
       ],
     },
+    {
+      name: "proxy",
+      description:
+        "Create an Nginx proxy site for the specified host. Useful for docker, mailhog etc.",
+      args: [
+        {
+          name: "domain",
+        },
+        {
+          name: "host",
+        },
+      ],
+      options: [
+        global_option_secure,
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
+    },
+
     {
       name: "restart",
       description: "Restart the Valet services.",
@@ -302,6 +326,10 @@ export const completion: Fig.Spec = {
         global_option_nointeraction,
         global_option_verbose,
       ],
+    },
+    {
+      name: "share",
+      description: "Generate a publicly accessible URL for your project",
     },
     {
       name: "start",
@@ -459,6 +487,11 @@ export const completion: Fig.Spec = {
         global_option_nointeraction,
         global_option_verbose,
       ],
+    },
+    {
+      name: "which",
+      description:
+        "Determine which Valet driver serves the current working directory",
     },
   ],
 };
