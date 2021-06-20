@@ -61,15 +61,42 @@ export const completion: Fig.Spec = {
     {
       name: "diagnose",
       description: "Output diagnostics to aid in debugging Valet.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "directory-listing",
       description:
         "Determine directory-listing behavior. Default is off, which means a 404 will display.",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "fetch-share-url",
       description: "Get the URL to the current Ngrok tunnel",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "forget",
@@ -158,6 +185,13 @@ export const completion: Fig.Spec = {
           name: "--short",
           description: "To skip describing commands' arguments.",
         },
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
       ],
     },
     {
@@ -193,6 +227,15 @@ export const completion: Fig.Spec = {
     {
       name: "loopback",
       description: "Get or set the loopback address used for Valet sites",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "on-latest-version",
@@ -211,6 +254,15 @@ export const completion: Fig.Spec = {
       name: "open",
       description:
         "Open the site for the current (or specified) directory in your browser",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "park",
@@ -330,6 +382,15 @@ export const completion: Fig.Spec = {
     {
       name: "share",
       description: "Generate a publicly accessible URL for your project",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
     {
       name: "start",
@@ -492,6 +553,15 @@ export const completion: Fig.Spec = {
       name: "which",
       description:
         "Determine which Valet driver serves the current working directory",
+      options: [
+        global_option_help,
+        global_option_quiet,
+        global_option_version,
+        global_option_ansi,
+        global_option_noansi,
+        global_option_nointeraction,
+        global_option_verbose,
+      ],
     },
   ],
 };
