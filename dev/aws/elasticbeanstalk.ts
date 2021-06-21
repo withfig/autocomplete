@@ -282,6 +282,43 @@ const generators: Record<string, Fig.Generator> = {
       );
     },
   },
+
+  listBuckets: {
+    script: "aws s3 ls --page-size 1000",
+    postProcess: (out) => {
+      try {
+        return out.split("\n").map((line) => {
+          const parts = line.split(/\s+/);
+          // sub prefix
+          if (!parts.length) {
+            return [];
+          }
+          console.log(parts[parts.length - 1]);
+          return {
+            name: parts[parts.length - 1],
+            insertValue: `S3Bucket=${parts[parts.length - 1]},S3Key=`,
+          };
+        }) as Fig.Suggestion[];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+  },
+
+  listSolutionStacks: {
+    script: "aws elasticbeanstalk list-available-solution-stacks",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "SolutionStacks");
+    },
+  },
+
+  listPlatformArns: {
+    script: "aws elasticbeanstalk list-platform-versions",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "PlatformSummaryList", "PlatformArn");
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -542,6 +579,8 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the application. Elastic Beanstalk applies these tags only to the application. Environments that you create in the application don't inherit the tags.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -550,6 +589,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -574,6 +614,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application. If no application is found with this name, and AutoCreateApplication is false, returns an InvalidParameterValue error.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -597,6 +638,8 @@ export const completionSpec: Fig.Spec = {
             "Specify a commit in an AWS CodeCommit Git repository to use as the source code for the application version.",
           args: {
             name: "structure",
+            description:
+              "SourceType=string,SourceRepository=string,SourceLocation=string",
           },
         },
         {
@@ -605,6 +648,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon S3 bucket and key that identify the location of the source bundle for this version.  The Amazon S3 bucket must be in the same region as the environment.  Specify a source bundle in S3 or a commit in an AWS CodeCommit repository (with SourceBuildInformation), but not both. If neither SourceBundle nor SourceBuildInformation are provided, Elastic Beanstalk uses a sample application.",
           args: {
             name: "structure",
+            generators: generators.listBuckets,
           },
         },
         {
@@ -612,6 +656,8 @@ export const completionSpec: Fig.Spec = {
           description: "Settings for an AWS CodeBuild build.",
           args: {
             name: "structure",
+            description:
+              "ArtifactName=string,CodeBuildServiceRole=string,ComputeType=string,Image=string,TimeoutInMinutes=integer",
           },
         },
         {
@@ -640,6 +686,8 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the application version. Elastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -648,6 +696,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -672,6 +721,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Elastic Beanstalk application to associate with this configuration template.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -688,6 +738,7 @@ export const completionSpec: Fig.Spec = {
             "The name of an Elastic Beanstalk solution stack (platform version) that this configuration uses. For example, 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7. A solution stack specifies the operating system, runtime, and application server for a configuration template. It also determines the set of configuration options as well as the possible and default values. For more information, see Supported Platforms in the AWS Elastic Beanstalk Developer Guide. You must specify SolutionStackName if you don't specify PlatformArn, EnvironmentId, or SourceConfiguration. Use the  ListAvailableSolutionStacks  API to obtain a list of available solution stacks.",
           args: {
             name: "string",
+            generators: generators.listSolutionStacks,
           },
         },
         {
@@ -696,6 +747,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the custom platform. For more information, see  Custom Platforms in the AWS Elastic Beanstalk Developer Guide.  If you specify PlatformArn, then don't specify SolutionStackName.",
           args: {
             name: "string",
+            generators: generators.listPlatformArns,
           },
         },
         {
@@ -704,6 +756,7 @@ export const completionSpec: Fig.Spec = {
             "An Elastic Beanstalk configuration template to base this one on. If specified, Elastic Beanstalk uses the configuration values from the specified configuration template to create a new configuration. Values specified in OptionSettings override any values obtained from the SourceConfiguration. You must specify SourceConfiguration if you don't specify PlatformArn, EnvironmentId, or SolutionStackName. Constraint: If both solution stack name and source configuration are specified, the solution stack of the source configuration template must match the specified solution stack name.",
           args: {
             name: "structure",
+            description: "ApplicationName=string,TemplateName=string",
           },
         },
         {
@@ -712,6 +765,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of an environment whose settings you want to use to create the configuration template. You must specify EnvironmentId if you don't specify PlatformArn, SolutionStackName, or SourceConfiguration.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -727,6 +781,9 @@ export const completionSpec: Fig.Spec = {
             "Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see Option Values in the AWS Elastic Beanstalk Developer Guide.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
         },
         {
@@ -735,6 +792,8 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the configuration template.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -743,6 +802,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -767,6 +827,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application that is associated with this environment.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -798,6 +859,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by appending a random alphanumeric string to the environment name.",
           args: {
             name: "string",
+            generators: generators.listCnamePrefixes,
           },
         },
         {
@@ -806,6 +868,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.",
           args: {
             name: "structure",
+            description: "Name=string,Type=string,Version=string",
           },
         },
         {
@@ -814,6 +877,8 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tags applied to resources in the environment.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -822,6 +887,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application version to deploy. Default: If not specified, Elastic Beanstalk attempts to deploy the sample application.",
           args: {
             name: "string",
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -838,6 +904,7 @@ export const completionSpec: Fig.Spec = {
             "The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see Elastic Beanstalk Supported Platforms in the AWS Elastic Beanstalk Platforms guide.  If you specify SolutionStackName, don't specify PlatformArn or TemplateName.",
           args: {
             name: "string",
+            generators: generators.listSolutionStacks,
           },
         },
         {
@@ -846,6 +913,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see Custom Platforms in the AWS Elastic Beanstalk Developer Guide.  If you specify PlatformArn, don't specify SolutionStackName.",
           args: {
             name: "string",
+            generators: generators.listPlatformArns,
           },
         },
         {
@@ -854,6 +922,9 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
         },
         {
@@ -862,6 +933,9 @@ export const completionSpec: Fig.Spec = {
             "A list of custom user-defined configuration options to remove from the configuration set for this new environment.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceName=string,Namespace=string,OptionName=string",
           },
         },
         {
@@ -870,6 +944,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the iam:PassRole permission for the role. For more information, see Operations roles in the AWS Elastic Beanstalk Developer Guide.",
           args: {
             name: "string",
+            generators: generators.listIamRoleArns,
           },
         },
         {
@@ -878,6 +953,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -916,6 +992,7 @@ export const completionSpec: Fig.Spec = {
             "The location of the platform definition archive in Amazon S3.",
           args: {
             name: "structure",
+            generators: generators.listBuckets,
           },
         },
         {
@@ -923,6 +1000,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the builder environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -931,6 +1009,9 @@ export const completionSpec: Fig.Spec = {
             "The configuration option settings to apply to the builder environment.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
         },
         {
@@ -939,6 +1020,8 @@ export const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the new platform version. Elastic Beanstalk applies these tags only to the platform version. Environments that you create using the platform version don't inherit the tags.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -947,6 +1030,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -971,6 +1055,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -994,6 +1079,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the application to delete.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1012,6 +1098,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1036,6 +1123,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application to which the version belongs.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1043,6 +1131,7 @@ export const completionSpec: Fig.Spec = {
           description: "The label of the version to delete.",
           args: {
             name: "string",
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -1061,6 +1150,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1085,6 +1175,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application to delete the configuration template from.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1100,6 +1191,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1124,6 +1216,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application the environment is associated with.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1132,6 +1225,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the environment to delete the draft configuration from.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1140,6 +1234,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1162,6 +1257,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ARN of the version of the custom platform.",
           args: {
             name: "string",
+            generators: generators.listPlatformArns,
           },
         },
         {
@@ -1170,6 +1266,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1194,6 +1291,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1217,6 +1315,7 @@ export const completionSpec: Fig.Spec = {
             "Specify an application name to show only application versions for that application.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1225,6 +1324,8 @@ export const completionSpec: Fig.Spec = {
             "Specify a version label to show a specific application version.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -1249,6 +1350,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1296,6 +1398,8 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listApplications,
           },
         },
         {
@@ -1304,6 +1408,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1328,6 +1433,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1344,6 +1450,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the environment whose configuration options you want to describe.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1352,6 +1459,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the solution stack whose configuration options you want to describe.",
           args: {
             name: "string",
+            generators: generators.listSolutionStacks,
           },
         },
         {
@@ -1359,6 +1467,7 @@ export const completionSpec: Fig.Spec = {
           description: "The ARN of the custom platform.",
           args: {
             name: "string",
+            generators: generators.listPlatformArns,
           },
         },
         {
@@ -1367,6 +1476,9 @@ export const completionSpec: Fig.Spec = {
             "If specified, restricts the descriptions to only the specified options.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "ResourceName=string,Namespace=string,OptionName=string",
           },
         },
         {
@@ -1375,6 +1487,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1399,6 +1512,7 @@ export const completionSpec: Fig.Spec = {
             "The application for the environment or configuration template.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1415,6 +1529,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the environment to describe.  Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination error. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1423,6 +1538,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1447,6 +1563,7 @@ export const completionSpec: Fig.Spec = {
             "Specify the environment by name. You must specify either this or an EnvironmentName, or both.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1455,6 +1572,7 @@ export const completionSpec: Fig.Spec = {
             "Specify the environment by ID. You must specify either this or an EnvironmentName, or both.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1463,6 +1581,16 @@ export const completionSpec: Fig.Spec = {
             "Specify the response elements to return. To retrieve all attributes, set to All. If no attribute names are specified, returns the name of the environment.",
           args: {
             name: "list",
+            suggestions: [
+              "Status",
+              "Color",
+              "Causes",
+              "ApplicationMetrics",
+              "InstancesHealth",
+              "All",
+              "HealthStatus",
+              "RefreshedAt",
+            ],
           },
         },
         {
@@ -1471,6 +1599,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1494,6 +1623,7 @@ export const completionSpec: Fig.Spec = {
           description: "The environment ID of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1501,6 +1631,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1524,6 +1655,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1563,6 +1695,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1570,6 +1703,7 @@ export const completionSpec: Fig.Spec = {
           description: "The environment ID of the target environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1578,6 +1712,7 @@ export const completionSpec: Fig.Spec = {
             "To show only actions with a particular status, specify a status.",
           args: {
             name: "string",
+            suggestions: ["Scheduled", "Pending", "Running", "Unknown"],
           },
         },
         {
@@ -1586,6 +1721,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1609,6 +1745,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the environment to retrieve AWS resource usage data.  Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1617,6 +1754,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the environment to retrieve AWS resource usage data.  Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1625,6 +1763,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1648,6 +1787,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1656,6 +1796,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.",
           args: {
             name: "string",
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -1664,6 +1805,8 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1672,6 +1815,8 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1714,6 +1859,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1762,6 +1908,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.",
           args: {
             name: "string",
+            generators: generators.listApplications,
           },
         },
         {
@@ -1770,6 +1917,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version.",
           args: {
             name: "string",
+            generators: generators.listApplicationVersionLabels,
           },
         },
         {
@@ -1786,6 +1934,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentIds,
           },
         },
         {
@@ -1794,6 +1943,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.",
           args: {
             name: "string",
+            generators: generators.listEnvironmentNames,
           },
         },
         {
@@ -1802,6 +1952,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.",
           args: {
             name: "string",
+            generators: generators.listPlatformArns,
           },
         },
         {
@@ -1818,6 +1969,7 @@ export const completionSpec: Fig.Spec = {
             "If specified, limits the events returned from this call to include only those with the specified severity or higher.",
           args: {
             name: "string",
+            suggestions: ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"],
           },
         },
         {
@@ -1858,6 +2010,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
