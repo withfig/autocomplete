@@ -81,6 +81,7 @@ export const completionSpec: Fig.Spec = {
                 description: `Ex: verbose' or 'feature="serde"'`,
               },
             },
+
             {
               name: "-L",
               description: "Adds a directory to the library search path",
@@ -90,27 +91,32 @@ export const completionSpec: Fig.Spec = {
                   description: "The kind of search path",
                   suggestions: [
                     {
-                      name: "KIND=dependency",
+                      name: "dependency",
+                      insertValue: "KIND=dependency",
                       description:
                         "Only search for transitive dependencies in this directory",
                     },
                     {
-                      name: "KIND=crate",
+                      name: "crate",
+                      insertValue: "KIND=crate",
                       description:
                         "Only search for this crate's direct dependencies in this directory",
                     },
                     {
-                      name: "KIND=native",
+                      name: "native",
+                      insertValue: "KIND=native",
                       description:
                         "Only search for native libraries in this directory",
                     },
                     {
-                      name: "KIND=framework",
+                      name: "framework",
+                      insertValue: "KIND=framework",
                       description:
                         "Only search for macOS frameworks in this directory",
                     },
                     {
-                      name: "KIND=all",
+                      name: "all",
+                      insertValue: "KIND=all",
                       description:
                         "Search for all library kinds in this directory",
                     },
@@ -121,6 +127,7 @@ export const completionSpec: Fig.Spec = {
                   name: "path",
                   description:
                     "Path to search for external crates and libraries",
+                  template: "folders",
                 },
               ],
             },
@@ -133,15 +140,18 @@ export const completionSpec: Fig.Spec = {
                   description: "Kind of library",
                   suggestions: [
                     {
-                      name: "KIND=dylib",
+                      name: "dylib",
+                      insertValue: "KIND=dylib",
                       description: "A native dynamic library",
                     },
                     {
-                      name: "KIND=static",
+                      name: "static",
+                      insertValue: "KIND=static",
                       description: "A native static library",
                     },
                     {
-                      name: "KIND=framework",
+                      name: "framework",
+                      insertValue: "KIND=framework",
                       description: "A macOS framework",
                     },
                   ],
@@ -397,7 +407,8 @@ export const completionSpec: Fig.Spec = {
               description: "Specify where an external library is located",
               args: {
                 name: "Path",
-                description: "Path where crate can be found",
+                description: "Path where crate(s) can be found",
+                template: "folders",
               },
             },
             {

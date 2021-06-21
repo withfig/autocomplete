@@ -28,25 +28,30 @@ export const completion: Fig.Spec = {
           description: "The kind of search path",
           suggestions: [
             {
-              name: "KIND=dependency",
+              name: "dependency",
+              insertValue: "KIND=dependency",
               description:
                 "Only search for transitive dependencies in this directory",
             },
             {
-              name: "KIND=crate",
+              name: "crate",
+              insertValue: "KIND=crate",
               description:
                 "Only search for this crate's direct dependencies in this directory",
             },
             {
-              name: "KIND=native",
+              name: "native",
+              insertValue: "KIND=native",
               description: "Only search for native libraries in this directory",
             },
             {
-              name: "KIND=framework",
+              name: "framework",
+              insertValue: "KIND=framework",
               description: "Only search for macOS frameworks in this directory",
             },
             {
-              name: "KIND=all",
+              name: "all",
+              insertValue: "KIND=all",
               description: "Search for all library kinds in this directory",
             },
           ],
@@ -67,9 +72,21 @@ export const completion: Fig.Spec = {
           name: "kind",
           description: "Kind of library",
           suggestions: [
-            { name: "KIND=dylib", description: "A native dynamic library" },
-            { name: "KIND=static", description: "A native static library" },
-            { name: "KIND=framework", description: "A macOS framework" },
+            {
+              name: "dylib",
+              insertValue: "KIND=dylib",
+              description: "A native dynamic library",
+            },
+            {
+              name: "static",
+              insertValue: "KIND=static",
+              description: "A native static library",
+            },
+            {
+              name: "framework",
+              insertValue: "KIND=framework",
+              description: "A macOS framework",
+            },
           ],
           isOptional: true,
         },
