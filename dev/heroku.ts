@@ -15,7 +15,7 @@ const getAppGenerator: Fig.Generator = {
   },
 };
 
-export const spec: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "heroku",
   subcommands: [
     {

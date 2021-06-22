@@ -137,7 +137,7 @@ var customArgument = {
   },
 };
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "trigger_example",
   description: "",
   subcommands: [

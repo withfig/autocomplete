@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "echo",
   description: "Write arguments to the standard output",
   args: {

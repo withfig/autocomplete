@@ -88,7 +88,7 @@ const checkFlags: Array<Fig.Option> = [
   },
 ];
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "rclone",
   description: "The Swiss army knife of cloud storage",
   subcommands: [

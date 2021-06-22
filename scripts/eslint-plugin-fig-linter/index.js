@@ -6,6 +6,7 @@ module.exports = {
     "no-invalid-name": require("./rules/no-invalid-name"),
     "no-empty-array-values": require("./rules/no-empty-array-values"),
     "no-useless-insertvalue": require("./rules/no-useless-insertvalue"),
+    "no-missing-spec-export": require("./rules/no-missing-spec-export"),
   },
   configs: {
     recommended: {
@@ -18,7 +19,16 @@ module.exports = {
         // TODO: Re-Enable Rule if we got a proper flag for that
         "fig-linter/no-invalid-option": "off",
         "fig-linter/no-invalid-name": "error",
+        "fig-linter/no-missing-spec-export": "off",
       },
+      overrides: [
+        {
+          files: "dev/**/*.ts",
+          rules: {
+            "fig-linter/no-missing-spec-export": "error",
+          },
+        },
+      ],
     },
   },
 };

@@ -47,7 +47,7 @@ const flagsOption: Fig.Option = {
   },
 };
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "tmux",
   description: "A terminal multiplexer",
   subcommands: [
