@@ -3447,6 +3447,7 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-a", "--all"],
+          exclusive: ["-r", "--remotes"],
           description: "list both remote-tracking and local branches",
         },
         {
@@ -3517,7 +3518,13 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "--column",
+          exclusive: ["--no-column"],
           description: "list branches in columns [=<style>]",
+        },
+        {
+          name: "--no-column",
+          exclusive: ["--column"],
+          description: "Doesn't display branch listing in columns",
         },
         {
           name: "--sort",
@@ -3537,6 +3544,92 @@ export const completionSpec: Fig.Spec = {
           name: "--format",
           description: "format to use for the output",
           args: { name: "format" },
+        },
+        {
+          name: ["-r", "--remotes"],
+          exclusive: ["-a", "--all"],
+          description:
+            "Lists or deletes (if used with -d) the remote-tracking branches.",
+        },
+        {
+          name: "--show-current",
+          description: "Prints the name of the current branch",
+        },
+        {
+          name: ["-v", "-vv", "--verbose"],
+          description:
+            "Shows sha1 and commit subject line for each head, along with relationship to upstream branch when in list mode. If given twice, prints the path of the linked worktree and the name of the upstream branch",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Suppress non-error messages",
+        },
+        {
+          name: "--abbrev",
+          description:
+            "Shows the shortest prefix that is at least <n> hexdigits long that uniquely refers the object",
+          exclusive: ["--no-abbrev"],
+          args: {
+            name: "Number",
+          },
+        },
+        {
+          name: "--no-abbrev",
+          exclusive: ["--abbrev"],
+          description: "Displays the full sha1s in the output listing",
+        },
+        {
+          name: ["-t", "--track"],
+          exclusive: ["--no-track"],
+          description: "Sets up a remote branch when creating a new branch",
+        },
+        {
+          name: "--no-track",
+          exclusive: ["-t", "--track"],
+          description: "Doesn't set up the upstream config",
+        },
+        {
+          name: ["-u", "--set-upstream-to"],
+          description: "Sets branch to upstream provided",
+          args: {
+            name: "upstream",
+          },
+        },
+        {
+          name: "--unset-upstream",
+          description: "Removes the upstream information",
+        },
+        {
+          name: "--contains",
+          description: "Only lists branches which contain the specified commit",
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
+        },
+        {
+          name: "--no-contains",
+          description:
+            "Only lists branches which don't contain the specified commit",
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
+        },
+        {
+          name: "--color",
+          description:
+            "Color branches to highlight current, local, and remote-tracking branches",
+          exclusive: ["--no-color"],
+          args: {
+            name: "when",
+            suggestions: ["always", "never", "auto"],
+          },
+        },
+        {
+          name: "--no-color",
+          description: "Turns off branch colors",
+          exclusive: ["--color"],
         },
       ],
     },
