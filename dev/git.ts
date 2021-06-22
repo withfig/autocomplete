@@ -94,18 +94,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       return output.split("\n").map((elm) => {
-        // current branch
         let name = elm.trim();
         const parts = elm.match(/\S+/g);
         if (parts.length > 1) {
           if (parts[0] == "*") {
+            // Current branch.
             return {
               name: elm.replace("*", "").trim(),
               description: "current branch",
               icon: "⭐️",
-              // priority: 100,
             };
           } else if (parts[0] == "+") {
+            // Branch checked out in another worktree.
             name = elm.replace("+", "").trim();
           }
         }
