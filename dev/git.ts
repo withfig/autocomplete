@@ -3580,30 +3580,57 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--track"],
-          exclusive: ["--no-track"],
-          description: "Sets up a remote branch when creating a new branch",
+          description:
+            "When creating a new branch, set up 'upstream' configuration.",
+          args: [
+            {
+              generators: gitGenerators.branches,
+            },
+            {
+              isOptional: true,
+              generators: gitGenerators.branches,
+            },
+          ],
         },
+
         {
-          name: "--no-track",
-          exclusive: ["-t", "--track"],
-          description: "Doesn't set up the upstream config",
+          name: ["--no-track"],
+          description:
+            "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
+          args: [
+            {
+              generators: gitGenerators.branches,
+            },
+            {
+              isOptional: true,
+              generators: gitGenerators.branches,
+            },
+          ],
         },
         {
           name: ["-u", "--set-upstream-to"],
           description: "Sets branch to upstream provided",
           args: {
             name: "upstream",
+            isOptional: true,
+            generators: gitGenerators.branches,
           },
         },
         {
           name: "--unset-upstream",
           description: "Removes the upstream information",
+          args: {
+            name: "upstream",
+            isOptional: true,
+            generators: gitGenerators.branches,
+          },
         },
         {
           name: "--contains",
           description: "Only lists branches which contain the specified commit",
           args: {
             name: "commit",
+            isOptional: true,
             generators: gitGenerators.commits,
           },
         },
@@ -3613,6 +3640,7 @@ export const completionSpec: Fig.Spec = {
             "Only lists branches which don't contain the specified commit",
           args: {
             name: "commit",
+            isOptional: true,
             generators: gitGenerators.commits,
           },
         },
@@ -3623,6 +3651,7 @@ export const completionSpec: Fig.Spec = {
           exclusive: ["--no-color"],
           args: {
             name: "when",
+            isOptional: true,
             suggestions: ["always", "never", "auto"],
           },
         },
