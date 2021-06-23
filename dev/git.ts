@@ -2278,11 +2278,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--source",
           description: "show source",
-        },
-        {
-          name: "--oneline",
-          description: "show each commit as a single line",
-        },
+        }
       ],
       args: [
         {
