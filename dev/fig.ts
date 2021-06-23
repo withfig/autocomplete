@@ -100,6 +100,7 @@ export const completionSpec: Fig.Spec = {
               return {
                 name,
                 description,
+                icon: "fig://icon?type=commandkey",
                 insertValue,
                 args: {
                   name: type,
