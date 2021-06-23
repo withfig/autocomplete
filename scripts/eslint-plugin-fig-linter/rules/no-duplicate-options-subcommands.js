@@ -24,29 +24,29 @@ module.exports = {
             if (obj.type !== "ObjectExpression") return;
             const nameProp = getNameProperty(obj);
             if (!nameProp) return;
-            let names = [];
+            let nameLiterals = [];
             switch (nameProp.value.type) {
               case "Literal":
                 // e.g. name: "npm"
-                names = [nameProp.value];
+                nameLiterals = [nameProp.value];
                 break;
               case "ArrayExpression":
                 // e.g. name: ["-v", "--version"]
-                names = nameProp.value.elements;
+                nameLiterals = nameProp.value.elements;
                 break;
               default:
                 return;
             }
-            names.forEach((v) => {
-              if (set.has(v.value)) {
+            nameLiterals.forEach((nameLiteral) => {
+              if (set.has(nameLiteral.value)) {
                 return context.report({
-                  node: v,
-                  message: `Duplicate "${v.value}" ${
+                  node: nameLiteral,
+                  message: `Duplicate "${nameLiteral.value}" ${
                     node.key.name === "options" ? "option" : "subcommand"
                   } name.`,
                 });
               }
-              set.add(v.value);
+              set.add(nameLiteral.value);
             });
           }
         }
