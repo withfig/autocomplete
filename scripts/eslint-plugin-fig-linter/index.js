@@ -19,7 +19,7 @@ module.exports = {
         // TODO: Re-Enable Rule if we got a proper flag for that
         "fig-linter/no-invalid-option": "off",
         "fig-linter/no-invalid-name": "error",
-        "fig-linter/no-duplicate-options-subcommands": "error"
+        "fig-linter/no-duplicate-options-subcommands": "error",
       },
     },
   },
