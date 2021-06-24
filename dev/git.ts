@@ -1513,7 +1513,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: "--dry-run",
+          name: ["-n", "--dry-run"],
           description: "Do everything except actually send the updates.",
         },
 
@@ -2007,7 +2007,7 @@ export const completionSpec: Fig.Spec = {
             "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Show what would be done, without making any changes.",
         },
         {
@@ -3395,7 +3395,7 @@ export const completionSpec: Fig.Spec = {
             "Skip move or rename actions which would lead to an error condition",
         },
         {
-          name: "--dry-run",
+          name: ["-n", "--dry-run"],
           description: "Do nothing; only show what would happen",
         },
         {
