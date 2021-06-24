@@ -3580,21 +3580,25 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--track"],
+          exclusive: ["--no-track"],
           description:
             "When creating a new branch, set up 'upstream' configuration.",
           args: [
             {
+              name: "branch",
               generators: gitGenerators.branches,
             },
             {
+              name: "start point",
               isOptional: true,
-              generators: gitGenerators.branches,
+              generators: gitGenerators.commits,
             },
           ],
         },
 
         {
           name: ["--no-track"],
+          exclusive: ["--track", "-t"],
           description:
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
