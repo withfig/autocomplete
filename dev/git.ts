@@ -94,18 +94,24 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       return output.split("\n").map((elm) => {
-        // current branch
-        if (elm.includes("*")) {
-          return {
-            name: elm.replace("*", "").trim(),
-            description: "current branch",
-            icon: "⭐️",
-            // priority: 100,
-          };
+        let name = elm.trim();
+        const parts = elm.match(/\S+/g);
+        if (parts.length > 1) {
+          if (parts[0] == "*") {
+            // Current branch.
+            return {
+              name: elm.replace("*", "").trim(),
+              description: "current branch",
+              icon: "⭐️",
+            };
+          } else if (parts[0] == "+") {
+            // Branch checked out in another worktree.
+            name = elm.replace("+", "").trim();
+          }
         }
 
         return {
-          name: elm.trim(),
+          name,
           description: "branch",
           icon: "fig://icon?type=git",
         };
@@ -315,9 +321,6 @@ const head = {
 export const completionSpec: Fig.Spec = {
   name: "git",
   description: "the stupid content tracker",
-  args: {
-    generators: gitGenerators.aliases,
-  },
   options: [
     {
       name: "--version",
@@ -2281,10 +2284,6 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--source",
           description: "show source",
-        },
-        {
-          name: "--oneline",
-          description: "show each commit as a single line",
         },
       ],
       args: [
