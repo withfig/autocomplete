@@ -16785,13 +16785,6 @@ export const completionSpec: Fig.Spec = {
             name: "implementation",
           },
         },
-        {
-          name: ["--platform"],
-          description: "Only use wheels compatible with platform.",
-          args: {
-            name: "platform",
-          },
-        },
       ],
     },
     {

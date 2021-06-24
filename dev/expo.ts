@@ -1392,13 +1392,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "url",
-      description: "",
       options: [
-        {
-          name: ["-w", "--web"],
-          description: "Return the URL of the web app",
-          args: {},
-        },
         {
           name: ["-a", "--android"],
           description:

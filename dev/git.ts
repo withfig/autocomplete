@@ -1513,7 +1513,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: ["-n", "--dry-run"],
+          name: "--dry-run",
           description: "Do everything except actually send the updates.",
         },
 
@@ -2029,7 +2029,7 @@ export const completionSpec: Fig.Spec = {
             "Before fetching, remove any local tags that no longer exist on the remote if --prune is enabled",
         },
         {
-          name: ["-n", "--no-tags"],
+          name: "--no-tags",
           description:
             "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
         },
@@ -2280,10 +2280,6 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "pattern",
           },
-        },
-        {
-          name: "--source",
-          description: "show source",
         },
       ],
       args: [
@@ -3075,7 +3071,7 @@ export const completionSpec: Fig.Spec = {
             "Automatically setup .git/objects/info/alternates to share the objects with the source repository",
         },
         {
-          name: ["-n", "--dry-run"],
+          name: "--dry-run",
           description: "Do nothing; only show what would happen",
         },
         {
@@ -3399,7 +3395,7 @@ export const completionSpec: Fig.Spec = {
             "Skip move or rename actions which would lead to an error condition",
         },
         {
-          name: ["-n", "--dry-run"],
+          name: "--dry-run",
           description: "Do nothing; only show what would happen",
         },
         {

@@ -1323,14 +1323,8 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "url",
-      description: "",
+      name: ["url", "u"],
       options: [
-        {
-          name: ["-w", "--web"],
-          description: "Return the URL of the web app\n",
-          args: {},
-        },
         {
           name: ["-a", "--android"],
           description:
