@@ -1487,6 +1487,7 @@ export const completionSpec: Fig.Spec = {
         "Create new commit that undoes all of the changes made in <commit>, then apply it to the current branch.",
       args: {
         name: "commit",
+        isOptional: true,
         generators: gitGenerators.commits,
       },
     },
@@ -2289,12 +2290,14 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "since",
+          isOptional: true,
           description: "commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
           suggestions: [{ name: "HEAD" }],
         },
         {
           name: "until",
+          isOptional: true,
           description: "commit ID, branch name, HEAD, or revision reference",
           generators: gitGenerators.commits,
           suggestions: [{ name: "HEAD" }],
@@ -3281,6 +3284,7 @@ export const completionSpec: Fig.Spec = {
         "Create an empty Git repository or reinitialize an existing one",
       args: {
         name: "directory",
+        isOptional: true,
       },
       options: [
         {
@@ -3726,7 +3730,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "branch or commit",
+          name: "branch",
           description: "branch or commit to switch to",
           isOptional: true,
           generators: gitGenerators.branches,
