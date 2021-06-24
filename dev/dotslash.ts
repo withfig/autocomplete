@@ -29,7 +29,7 @@ const dotslashGenerator: Fig.Generator = {
       }
 
       // Removes character at the end of the filepath
-      if (path.endsWith("*" || "@" || "%" || "|")) {
+      if (["@", "*", "%", "|"].includes(path.slice(-1))) {
         filename = filename.slice(0, -1);
       }
 
