@@ -2284,7 +2284,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "--source",
           description: "show source",
-        }
+        },
       ],
       args: [
         {
