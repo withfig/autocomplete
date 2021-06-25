@@ -13,7 +13,7 @@ export const completionSpec: Fig.Spec = {
   name: "up",
   description:
     "Builds, (re)creates, starts, and attaches to containers for a service.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["-d", "--detach"],

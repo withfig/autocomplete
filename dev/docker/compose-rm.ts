@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "rm",
   description: "Removes stopped service containers.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["-f", "--force"],

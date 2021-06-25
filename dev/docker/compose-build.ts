@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "build",
   description: "Build or rebuild services.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: "--build-arg",

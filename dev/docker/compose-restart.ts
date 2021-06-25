@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "restart",
   description: "Restart running containers.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["-t", "--timeout"],

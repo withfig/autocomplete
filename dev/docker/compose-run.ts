@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "run",
   description: "Run a one-off command on a service.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["-d", "--detach"],

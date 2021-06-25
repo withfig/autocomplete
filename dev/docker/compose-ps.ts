@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "ps",
   description: "List containers.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["-q", "--quiet"],
