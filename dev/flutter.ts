@@ -661,7 +661,7 @@ const run = [
 
 // spec
 
-const completionSpec = {
+export const completionSpec: Fig.Spec = {
   name: "flutter",
   description: "Run flutter command.",
   subcommands: [

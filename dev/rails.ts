@@ -608,7 +608,7 @@ const defaultCommands: Fig.Subcommand[] = [
   newCommand,
 ];
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "rails",
   description: "Ruby on Rails CLI",
   async generateSpec(_, executeShellCommand) {

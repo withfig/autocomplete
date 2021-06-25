@@ -168,7 +168,7 @@ const global_parameter_quiet: Fig.Option = {
 };
 
 // The below is a dummy example for git. Make sure to change the file name!
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "wp",
   description: "WP-CLI is the command-line interface for WordPress.",
   subcommands: [

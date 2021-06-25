@@ -253,7 +253,7 @@ const sharedOptions: Fig.Option[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "stripe",
   description: "CLI interface for Stripe.com",
   subcommands: [

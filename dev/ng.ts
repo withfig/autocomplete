@@ -25,7 +25,7 @@ const projectsOption = {
     generators: projectsGenerator,
   },
 };
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "ng",
   description: "CLI interface for Angular",
   subcommands: [

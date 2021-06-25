@@ -1,6 +1,6 @@
 import { SIGUNUSED } from "node:constants";
 
-export const completion: Fig.Spec = {
+export const completionSpec: Fig.Spec = {
   name: "http.server",
   description: "",
 
