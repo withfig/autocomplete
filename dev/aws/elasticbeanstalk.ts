@@ -1,3 +1,12 @@
+const attributes: string[] = [
+  "HealthStatus",
+  "Color",
+  "Causes",
+  "ApplicationMetrics",
+  "RefreshedAt",
+  "All",
+];
+
 const postPrecessGenerator = (
   out: string,
   parentKey: string,
@@ -15,8 +24,8 @@ const postPrecessGenerator = (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
       return {
         name,
         icon: "fig://icon?type=aws",
@@ -60,8 +69,8 @@ const customGenerator = async (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
       return {
         name,
         icon: "fig://icon?type=aws",
@@ -107,14 +116,8 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
   if (lastSlashIndex > -1) {
-    if (whatHasUserTyped.startsWith("~/")) {
-      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    } else if (whatHasUserTyped.startsWith("/")) {
-      if (lastSlashIndex === 0) {
-        folderPath = "/";
-      } else {
-        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-      }
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
     } else {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
     }
@@ -140,10 +143,10 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
     const dotsArr = [];
     const otherArr = [];
 
-    arr.map((elm) => {
-      if (elm.toLowerCase() == ".ds_store") return;
-      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
-      else otherArr.push(elm);
+    arr.map((fsObject) => {
+      if (fsObject.toLowerCase() == ".ds_store") return;
+      if (fsObject.slice(0, 1) === ".") dotsArr.push(fsObject);
+      else otherArr.push(fsObject);
     });
 
     return [
@@ -246,13 +249,13 @@ const generators: Record<string, Fig.Generator> = {
   listCnamePrefixes: {
     script: "aws elasticbeanstalk describe-environments",
     postProcess: (out) => {
-      return postPrecessGenerator(out, "Environments", "CNAME").map((elm) => {
+      return postPrecessGenerator(out, "Environments", "CNAME").map((cname) => {
         try {
-          const parts = (elm.name as string).split(".");
+          const parts = (cname.name as string).split(".");
           if (parts.length && parts[0] !== "elasticbeanstalk") {
             return {
               name: parts[0],
-              icon: elm.icon,
+              icon: cname.icon,
             };
           }
           return null;
@@ -293,7 +296,7 @@ const generators: Record<string, Fig.Generator> = {
           if (!parts.length) {
             return [];
           }
-          console.log(parts[parts.length - 1]);
+
           return {
             name: parts[parts.length - 1],
             insertValue: `S3Bucket=${parts[parts.length - 1]},S3Key=`,
@@ -1597,13 +1600,9 @@ export const completionSpec: Fig.Spec = {
             name: "list",
             suggestions: [
               "Status",
-              "Color",
-              "Causes",
               "ApplicationMetrics",
               "InstancesHealth",
-              "All",
-              "HealthStatus",
-              "RefreshedAt",
+              ...attributes,
             ],
           },
         },
@@ -2090,17 +2089,12 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             suggestions: [
-              "HealthStatus",
-              "Color",
-              "Causes",
-              "ApplicationMetrics",
-              "RefreshedAt",
               "LaunchedAt",
               "System",
               "Deployment",
               "AvailabilityZone",
               "InstanceType",
-              "All",
+              ...attributes,
             ],
           },
         },
