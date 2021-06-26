@@ -67,7 +67,7 @@ const customGenerator = async (
       const option = options[i];
       const idx = context.indexOf(option);
       if (idx < 0) {
-        return [];
+        continue;
       }
       const param = context[idx + 1];
       cmd += ` ${option} ${param}`;
@@ -155,14 +155,8 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
   if (lastSlashIndex > -1) {
-    if (whatHasUserTyped.startsWith("~/")) {
-      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    } else if (whatHasUserTyped.startsWith("/")) {
-      if (lastSlashIndex === 0) {
-        folderPath = "/";
-      } else {
-        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-      }
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
     } else {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
     }
