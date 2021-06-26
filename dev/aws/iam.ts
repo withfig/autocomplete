@@ -202,12 +202,11 @@ const appendFolderPath = (tokens: string[], prefix: string): string => {
   const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
 
   if (lastSlashIndex > -1) {
-    if (whatHasUserTyped.startsWith("~/"))
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
       folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    else if (whatHasUserTyped.startsWith("/")) {
-      if (lastSlashIndex === 0) folderPath = "/";
-      else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
-    } else folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
   }
 
   return baseLSCommand + folderPath;
