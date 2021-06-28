@@ -1,10 +1,36 @@
-import { isOptionalChain } from "typescript";
-
+const sortbyArg: Fig.Arg = {
+  name: "Sortby",
+  default: "none",
+  suggestions: [
+    {
+      name: "none",
+      description: "Do not sort results. Fastest. Can be multi-threaded",
+    },
+    {
+      name: "path",
+      description: "Sort by file path, Always single-threaded",
+    },
+    {
+      name: "modified",
+      description:
+        "Sort by the last modified time on a file. Always single-threaded",
+    },
+    {
+      name: "accessed",
+      description:
+        "Sort by the last accessed time on a file. Always single-threaded",
+    },
+    {
+      name: "created",
+      description:
+        "Sort by the creation time on a file. Always single-threaded",
+    },
+  ],
+};
 export const completion: Fig.Spec = {
   name: "rg",
   description:
     "recursively searches current directory for lines matching a pattern",
-  subcommands: [],
   options: [
     {
       name: ["-A", "--after-context"],
@@ -45,6 +71,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: ["--color"],
+      description: "Controls when to use colors",
       args: {
         name: "when",
         suggestions: [
@@ -89,11 +116,11 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: "--context-seperator",
+      name: "--context-separator",
       description:
-        "The string used to seperate non-contiguous context lines in the output",
+        "The string used to separate non-contiguous context lines in the output",
       args: {
-        name: "Seperator",
+        name: "Separator",
       },
     },
     {
@@ -206,6 +233,7 @@ export const completion: Fig.Spec = {
         "Includes or excludes files and directories for searching that match given the glob",
       args: {
         name: "GLOB",
+        template: ["filepaths", "folders"],
         variadic: true,
       },
     },
@@ -483,72 +511,17 @@ export const completion: Fig.Spec = {
     },
     {
       name: ["-S, --smart-case"],
-      description: "Seaches case insensitively if the pattern is all lowercase",
+      description:
+        "Searches case insensitively if the pattern is all lowercase",
     },
     {
       name: "--sort",
-      args: {
-        name: "Sortby",
-        default: "none",
-        suggestions: [
-          {
-            name: "none",
-            description: "Do not sort results. Fastest. Can be multi-threaded",
-          },
-          {
-            name: "path",
-            description: "Sort by file path, Always single-threaded",
-          },
-          {
-            name: "modified",
-            description:
-              "Sort by the last modified time on a file. Always single-threaded",
-          },
-          {
-            name: "accessed",
-            description:
-              "Sort by the last accessed time on a file. Always single-threaded",
-          },
-          {
-            name: "created",
-            description:
-              "Sort by the creation time on a file. Always single-threaded",
-          },
-        ],
-      },
+      args: sortbyArg,
     },
     {
       name: "--sortr",
       description: "Enables sorting results in descending order",
-      args: {
-        name: "Sortby",
-        default: "none",
-        suggestions: [
-          {
-            name: "none",
-            description: "Do not sort results. Fastest. Can be multi-threaded",
-          },
-          {
-            name: "path",
-            description: "Sort by file path, Always single-threaded",
-          },
-          {
-            name: "modified",
-            description:
-              "Sort by the last modified time on a file. Always single-threaded",
-          },
-          {
-            name: "accessed",
-            description:
-              "Sort by the last accessed time on a file. Always single-threaded",
-          },
-          {
-            name: "created",
-            description:
-              "Sort by the creation time on a file. Always single-threaded",
-          },
-        ],
-      },
+      args: sortbyArg,
     },
     {
       name: "--stats",
