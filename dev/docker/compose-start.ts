@@ -12,5 +12,5 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "start",
   description: "Start existing containers.",
-  args: [getServices],
+  args: [{ generators: getServices }],
 };

@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "create",
   description: "Creates containers for a service.",
-  args: [getServices],
+  args: [{ generators: getServices }],
   options: [
     {
       name: ["--force-recreate"],
