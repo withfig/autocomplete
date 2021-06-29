@@ -1,19 +1,15 @@
---- 
+---
 blank_issues_enabled: true
-contact_links: 
-  - 
-    about: "Create a new issue in the withfig/fig repo to be directed to the right place"
+contact_links:
+  - about: "Create a new issue in the withfig/fig repo to be directed to the right place"
     name: Not an autocomplete issue?
     url: "https://github.com/withfig/fig/issues/new/choose"
-  - 
-    about: "Fig's support knowledge base"
-    name: "💬  Forum"
-    url: "https://forum.withfig.com"
-  - 
-    about: "Get instant support from the Fig Community Slack"
-    name: "👋  Slack"
-    url: "https://waitlist.withfig.com/waitlist"
-  - 
-    about: "Get support from the Fig team at hello@withfig.com"
+  - about: "Fig's support knowledge base"
+    name: "💬  User Support"
+    url: "https://fig.io/support"
+  - about: "Get instant support from the Fig Community Discord"
+    name: "👋  Discord"
+    url: "https://fig.io/community"
+  - about: "Get support from the Fig team at hello@fig.io"
     name: "📩  Email"
     url: "https://tinyurl.com/y4m9zqlw"
