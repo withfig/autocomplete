@@ -254,6 +254,7 @@ export const completion: Fig.Spec = {
       name: "file",
       template: "filepaths",
       variadic: true,
+      isOptional: true,
     },
   ],
 };
