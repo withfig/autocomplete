@@ -7,15 +7,28 @@ export const completionSpec: Fig.Spec = {
       description: "Specify the application to use for opening the file",
       args: {
         name: "Application",
-        generators: {
-          script: "ls /Applications",
-          postProcess: function (out) {
-            return out.split("\n").map((line) => ({
-              name: line,
-              icon: "💻",
-            }));
+        generators: [
+          {
+            script: "ls -1p /Applications",
+            postProcess: function (out) {
+              return out.split("\n").map((line) => ({
+                name: line,
+                icon: `fig:///Applications/${line}`,
+                priority: line.endsWith(".app/") && 76,
+              }));
+            },
           },
-        },
+          {
+            script: "ls -1p ~/Applications",
+            postProcess: function (out) {
+              return out.split("\n").map((line) => ({
+                name: line,
+                icon: `fig://~/Applications/${line}`,
+                priority: line.endsWith(".app/") && 76,
+              }));
+            },
+          },
+        ],
       },
     },
     {
@@ -73,6 +86,10 @@ export const completionSpec: Fig.Spec = {
       name: "--args",
       description:
         "All remaining arguments are passed to the opened application in the argv parameter to main().  These arguments are not opened or interpreted by the open tool",
+      args: {
+        name: "Arguments",
+        variadic: true,
+      },
     },
   ],
   args: {
