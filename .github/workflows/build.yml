@@ -43,7 +43,7 @@ jobs:
       - name: Checkout Cache
         uses: actions/checkout@v2
         with:
-          repository: "withfig/core-backend"
+          repository: 'withfig/core-backend'
           token: ${{ secrets.CACHE_SPECS_TOKEN }}
           ref: master
           path: backend
@@ -56,3 +56,4 @@ jobs:
           git add .
           git commit -m "Updates specs to latest"
           git push origin master
+

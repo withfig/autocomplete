@@ -336,6 +336,18 @@ export const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "autoremove",
+      description:
+        "Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed.",
+      options: [
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "List what would be uninstalled, but do not actually uninstall anything.",
+        },
+      ],
+    },
   ],
   options: [
     {

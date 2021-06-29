@@ -309,8 +309,8 @@ const otherCommands: Fig.Subcommand[] = [
               template: "filepaths",
             },
           },
+          ...globalOptions,
         ],
-        ...globalOptions,
       },
       {
         name: "show",

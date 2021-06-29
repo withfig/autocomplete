@@ -1,3 +1,64 @@
+const SETTINGS_PATH = "~/.fig/tools/all-settings.json";
+
+interface Settings {
+  settingName: string;
+  description: string;
+  type: "boolean" | "text" | "single_select" | "multiselect";
+  options?: Array<string | { name: string; description: string }>;
+  default?: string;
+}
+
+const devCompletionsFolderGenerator: Fig.Generator = {
+  script: 'ls -d -1 "$PWD/"**/',
+  postProcess: (out) =>
+    out.split("\n").map((folder) => {
+      const paths = folder.split("/");
+      paths.pop();
+
+      return {
+        name: paths.pop(),
+        insertValue: folder,
+        icon: `fig://${folder}`,
+      };
+    }),
+};
+
+const disableForCommandsGenerator: Fig.Generator = {
+  script: "fig settings autocomplete.disableForCommands",
+  postProcess: (out) => {
+    const existing = out.split("\n").filter((item) => item.length > 0);
+
+    const append: Fig.Suggestion = {
+      name: "Disable...",
+      icon: "fig://icon?type=box",
+      insertValue: JSON.stringify(existing.concat(["{cursor}"])),
+    };
+
+    const enabledAll: Fig.Suggestion = {
+      name: "Enable all commands",
+      icon: "fig://icon?type=box",
+      insertValue: "[]",
+    };
+
+    return [append, enabledAll].concat(
+      existing.map((disabledCommand) => {
+        return {
+          name: `Enable ${disabledCommand}`,
+          icon: "fig://icon?type=box",
+          insertValue: JSON.stringify(
+            existing.filter((cmd) => cmd != disabledCommand)
+          ),
+        };
+      })
+    );
+  },
+};
+
+const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
+  "autocomplete.devCompletionsFolder": devCompletionsFolderGenerator,
+  "autocomplete.disableForCommands": disableForCommandsGenerator,
+};
+
 export const completionSpec: Fig.Spec = {
   name: "fig",
   description: "Autocomplete for your terminal",
@@ -10,337 +71,48 @@ export const completionSpec: Fig.Spec = {
     {
       name: "settings",
       description: "update preferences",
-      subcommands: [
-        {
-          name: "autocomplete.developerMode",
-          icon: "fig://icon?type=commandkey",
+      generateSpec: async (_, executeShellCommand) => {
+        const settings: Settings[] = JSON.parse(
+          await executeShellCommand(`cat ${SETTINGS_PATH}`)
+        );
 
-          description:
-            "Turns off caching and loads completions from <code>devCompletionsFolder</code>",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.devCompletionsFolder",
-          icon: "fig://icon?type=commandkey",
+        return {
+          name: "settings",
+          subcommands: settings.map(
+            ({
+              settingName: name,
+              description,
+              type,
+              options,
+              default: defaultValue,
+            }) => {
+              const suggestions =
+                type === "boolean"
+                  ? ["true", "false"]
+                  : options?.map((option) => ({
+                      name: option["name"] || option,
+                      description: option["description"] || "",
+                    }));
+              const insertValue =
+                type === "multiselect" ? `${name} '{cursor}'` : undefined;
+              const generators = SETTINGS_GENERATOR[name];
 
-          description:
-            "Directory to load completion specs when in <code>developerMode</code>",
-          args: {
-            name: "folder",
-            description: "absolute path to directory containing specs",
-            generators: {
-              script: 'ls -d -1 "$PWD/"**/',
-              postProcess: (out) => {
-                const folders = out.split("\n");
-                return folders.map((folder) => {
-                  const paths = folder.split("/");
-                  paths.pop();
-                  return {
-                    name: paths.pop(),
-                    insertValue: folder,
-                    icon: `fig://${folder}`,
-                  };
-                });
-              },
-            },
-          },
-        },
-        {
-          name: "autocomplete.scrollWrapAround",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether the selection will wrap around when pressing arrow key at bottom or top of list.",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.insertSpaceAutomatically",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether Fig will automatically insert a space.",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.immediatelyRunDangerousCommands",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether Fig will present suggestions to immediately run commands that might be dangerous, like rm.",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.immediatelyRunGitAliases",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.immediatelyExecuteAfterSpace",
-          icon: "fig://icon?type=commandkey",
-
-          description: "Show immediate execute button after space",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.enter",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
-          args: {
-            name: "behavior",
-            suggestions: [
-              {
-                name: "insert",
-                description: "pressing enter will insert selected suggestion",
-                icon: "fig://icon?type=string",
-              },
-              {
-                name: "ignore",
-                description:
-                  "pressing enter will run whatever command is currently in the terminal.",
-                icon: "fig://icon?type=string",
-              },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.tab",
-          icon: "fig://icon?type=commandkey",
-
-          description:
-            "A flag that determines whether Fig will present suggestions to immediately run git aliases.",
-          args: {
-            name: "behavior",
-            suggestions: [
-              {
-                name: "insert",
-                description: "pressing tab will insert selected suggestion",
-                icon: "fig://icon?type=string",
-              },
-              {
-                name: "insertOrPrefix",
-                description:
-                  "pressing tab will insert selected suggestion or common prefix of all suggestions, if it exists",
-                icon: "fig://icon?type=string",
-              },
-              {
-                name: "shake",
-                description:
-                  "pressing tab will insert common prefix, if it exists. Otherwise, it will indicate that there is no shared prefix by shaking.",
-                icon: "fig://icon?type=string",
-              },
-              {
-                name: "navigate",
-                description:
-                  "pressing tab will insert common prefix, if it exists. Otherwise, it will select the next suggestion in the list.",
-                icon: "fig://icon?type=string",
-              },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.disableForCommands",
-          icon: "fig://icon?type=commandkey",
-          insertValue: "autocomplete.disableForCommands '{cursor}'",
-          description: "JSON array of commands Fig should not autocomplete on.",
-          args: {
-            name: "array",
-            generators: {
-              script: "fig settings autocomplete.disableForCommands",
-              postProcess: (out) => {
-                const existing = out.split("\n").filter((item) => {
-                  return item.length > 0;
-                });
-
-                const append = {
-                  name: "Disable...",
-                  icon: "fig://icon?type=box",
-                  insertValue: JSON.stringify(existing.concat(["{cursor}"])),
-                };
-
-                const enabledAll = {
-                  name: "Enable all commands",
-                  icon: "fig://icon?type=box",
-                  insertValue: "[]",
-                };
-
-                return [append, enabledAll].concat(
-                  existing.map((disabledCommand) => {
-                    return {
-                      name: `Enable ${disabledCommand}`,
-                      icon: "fig://icon?type=box",
-                      insertValue: JSON.stringify(
-                        existing.filter((cmd) => {
-                          return cmd != disabledCommand;
-                        })
-                      ),
-                    };
-                  })
-                );
-              },
-            },
-          },
-        },
-        {
-          name: "autocomplete.sortMethod",
-          description: "Specify how Fig should sort suggestions",
-          args: {
-            suggestions: [
-              {
-                name: "recency",
-                description: "Sort by recency",
-              },
-              {
-                name: "alphabetical",
-                description: "Sort by alphabetical order",
-              },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.fuzzySearch",
-          description:
-            "Search of suggestions using fuzzy search rather than prefix search. NOTE: this currenty does not support the tab autocomplete underlining that prefix search has",
-          icon: "fig://icon?type=commandkey",
-
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "pty.path",
-          icon: "fig://icon?type=commandkey",
-          description: "Specify the $PATH variable in Fig's pseudoterminal",
-          args: {
-            name: "path",
-            description:
-              "The <code>$PATH</code> variable in Fig's pseudoterminal",
-            suggestions: [{ name: "$PATH", icon: "fig://icon?type=string" }],
-          },
-        },
-        {
-          name: "pty.rc",
-          icon: "fig://icon?type=commandkey",
-          description:
-            "A file that will be sourced when Fig creates a pseudoterminal",
-          args: {
-            name: "filepath",
-            template: "filepaths",
-          },
-        },
-        {
-          name: "app.launchOnStartup",
-          icon: "fig://icon?type=commandkey",
-          description:
-            "A flag that determines whether the Fig app is added to Login Items. If true, Fig will launch automatically whenever you restart your computer.",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "app.disableTelemetry",
-          icon: "fig://icon?type=commandkey",
-          description: "Opt-out of all non-essential telemetry collection",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-          priority: 1,
-        },
-        {
-          name: "app.hideMenubarIcon",
-          icon: "fig://icon?type=commandkey",
-          description: "Hide Fig's icon ◧ in the mac status bar",
-          args: {
-            name: "bool",
-            suggestions: [
-              { name: "true", icon: "fig://icon?type=string" },
-              { name: "false", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.theme",
-          icon: "fig://icon?type=commandkey",
-          description: "Change Fig's theme",
-          args: {
-            name: "mode",
-            suggestions: [
-              { name: "light", icon: "fig://icon?type=string" },
-              { name: "dark", icon: "fig://icon?type=string" },
-            ],
-          },
-        },
-        {
-          name: "autocomplete.width",
-          icon: "fig://icon?type=commandkey",
-
-          description: "Set the maximum width of the autocomplete window.",
-          args: {
-            name: "number",
-          },
-        },
-        {
-          name: "autocomplete.height",
-          icon: "fig://icon?type=commandkey",
-
-          description: "Set the maximum height of the autocomplete window.",
-          args: {
-            name: "number",
-          },
-        },
-      ],
+              return {
+                name,
+                description,
+                icon: "fig://icon?type=commandkey",
+                insertValue,
+                args: {
+                  name: type,
+                  default: defaultValue,
+                  suggestions,
+                  generators,
+                },
+              };
+            }
+          ),
+        };
+      },
     },
     {
       name: "uninstall",
