@@ -41,7 +41,7 @@ export const completion: Fig.Spec = {
       ],
     },
   ],
-  options: [],
+
   // Only uncomment if nuxt takes an argument
   // args: {}
 };

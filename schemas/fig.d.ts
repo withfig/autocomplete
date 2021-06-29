@@ -29,10 +29,10 @@ declare namespace Fig {
   export interface Spec extends Subcommand {
     /**
      * This flag allows options to have multiple characters
-     * even though they only have one hyphen
+     * even if they only have one hyphen
      *
      * @example
-     * -mod
+     * -longflag
      */
     posixNoncompliantFlags?: boolean;
   }
@@ -69,7 +69,7 @@ declare namespace Fig {
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
      * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
-     * colorful and fun systems icons: https://withfig.com/docs/autocomplete/reference/icon-api
+     * colorful and fun systems icons: https://fig.io/docs/autocomplete/reference/icon-api
      *
      * @example
      * `A`, `😊`
@@ -89,11 +89,11 @@ declare namespace Fig {
 
     /**
      * The priority for a given suggestion determines its ranking in the Fig popup. A higher ranked priority will be listed first. The min priority is 0. The max priority is 100. The default priority is 50.
-     * If a given suggestion has a priority between 50 and 75 (inluding the default 50) AND has been selected by the user before, the prioritiy will be replaced with 75 + the timestamp of when that suggestion was selected as a decimal.
-     * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the prioritiy will be increased by the timestamp of when that suggestion was selected as a decimal.
+     * If a given suggestion has a priority between 50 and 75 (including the default 50) AND has been selected by the user before, the priority will be replaced with 75 + the timestamp of when that suggestion was selected as a decimal.
+     * If a given suggestion has a priority outside of 50-75 AND has been selected by the user before, the priority will be increased by the timestamp of when that suggestion was selected as a decimal.
      *
      *
-     * @examlpes
+     * @example
      * If you want your suggestions to always be at the top order regardless of whether they have been selected before or not, rank them 76 or above
      * If you want your suggestions to always be at the bottom regardless of whether they have been selected before or not, rank them 49 or below
      */
@@ -164,17 +164,17 @@ declare namespace Fig {
     additionalSuggestions?: Suggestion[] | string[];
     /**
      * Allows Fig to refer to another completion spec in the `~/.fig/autocomplete` folder.
-     * Specify the spec name without `js`. This is simiar but different to isCommand in the Arg object so read both carefully
+     * Specify the spec name without `js`. This is similar but different to isCommand in the Arg object so read both carefully
      *
      * @example
      * `aws-s3` refer to the `~/.fig/autocomplete/aws-s3` spec.
      *
      * When is this used? The aws spec is so large that it is slow to load. It needs to be
-     * brokenup into a separate spec for each subcommand.
+     * broken up into a separate spec for each subcommand.
      *
      * If your CLI tool takes another CLI command (e.g. time , builtin... ) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in {@link {https://withfig.com/docs/autocomplete/api#arg-object | Arg}.
+     * script, see `isCommand` and `isScript` in {@link https://fig.io/docs/reference/arg | Arg}.
      */
     loadSpec?: string;
     /**
@@ -286,10 +286,10 @@ declare namespace Fig {
     isDangerous?: boolean;
 
     /**
-     * An array of strings or Suggestion obejcts. Use this prop to specify custom suggestions
+     * An array of strings or Suggestion objects. Use this prop to specify custom suggestions
      * that are static (ie you know of in advance and don't have to be statically generated).
      * If suggestions are dependent upon the user's input or context, you most likely will
-     * want to use a Generator object in this arg's generator prop.
+     * want to use a Generator object in this Arg's generator prop.
      */
     suggestions?: string[] | Suggestion[];
     /**
@@ -331,7 +331,7 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
-     * Exactly the same as isCommand, except, you specify a string to preprend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
+     * Exactly the same as isCommand, except, you specify a string to prepend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the ~/.fig/autocomplete
      *
      * @example
      * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
@@ -342,7 +342,7 @@ declare namespace Fig {
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
-     * See our docs for more on this {@link https://withfig.com/docs/autocomplete/autocomplete-for-teams | Fig for Teams}
+     * See our docs for more on this {@link https://fig.io/docs/tutorials/building-internal-clis | Fig for Teams}
      */
     isScript?: boolean;
 
@@ -356,14 +356,12 @@ declare namespace Fig {
     /**
      * The default value for an optional argument. This is just a string
      *
-     * @example
-     *
      */
     default?: string;
   }
 
   /**
-   * @see https://withfig.com/docs/autocomplete/api#generator-object
+   * @see https://fig.io/docs/autocomplete/api#generator-object
    */
   export interface Generator {
     /**
@@ -394,14 +392,14 @@ declare namespace Fig {
      */
     script?: StringOrFunction<string[], string>;
     /**
-     * A synctactic sugar over postProcess. This takes in the text output of `script`, splits it on the string you provide here, and the automatically generates an array of suggestion objects for each item.
+     * A syntactic sugar over postProcess. This takes in the text output of `script`, splits it on the string you provide here, and the automatically generates an array of suggestion objects for each item.
      *
      * @example
      * Specify "," or "\n", and Fig will do the work of the `postProcess` prop for you
      */
     splitOn?: string;
     /**
-     * This function takes one paramater: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
+     * This function takes one parameter: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
     postProcess?: (out: string, context?: string[]) => Suggestion[];
 
@@ -415,7 +413,7 @@ declare namespace Fig {
      * Trigger as a function takes two arguments: 1. the new token 2. the old token
      * e.g. the old token might be `desktop` and the new token might be `desktop/`. The function may look for a different in the number of slashes. In this case there is a difference so it would return true.
      *
-     * The trigger prop can also be a simple string. This is synctactic sugar that allows you to specify a single character. If count of this character in the string before !== the count of the new string, Fig will regenerate the suggestions.
+     * The trigger prop can also be a simple string. This is syntactic sugar that allows you to specify a single character. If count of this character in the string before !== the count of the new string, Fig will regenerate the suggestions.
      *
      * Using a trigger is especially beneficial when you have an argument contained inside a single string that is not separated by a space. It is often used with a custom prop or script (as a function)
      *
@@ -433,7 +431,7 @@ declare namespace Fig {
      * Read the note above about how triggers work. Triggers and filterTerm may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The filterTerm defines what characters we should use to filter over these suggestions.
      *
      * It can be a function: this takes in what the user has currently typed as a string and outputs a separate string that is used for filtering
-     * It can also be a string: this is synctactic sugar that takes everything in the string after the character(s) you choose.
+     * It can also be a string: this is syntactic sugar that takes everything in the string after the character(s) you choose.
      *
      * Use some logging in the function to work out what the trigger is
      *
@@ -451,15 +449,17 @@ declare namespace Fig {
      * 1. Context: an array of tokens of what the user has typed
      * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
      *
-     * It must return an array of suggestion obejcts.
+     * It must return an array of suggestion objects.
      *
      *
      * @example
      * ```
-     * custom: (context) => {
-     *    var out = await executeShellCommand("ls")
-     *    return out.split("\n").map((elm) => ({name: elm}) )
-     * }
+     * const generator: Fig.Generator = {
+     *   custom: (context) => {
+     *     const out = await executeShellCommand("ls");
+     *     return out.split("\n").map((elm) => ({ name: elm }));
+     *   },
+     * };
      * ```
      */
     custom?: (
