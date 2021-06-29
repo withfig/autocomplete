@@ -1,3 +1,14 @@
+const appGenerator = (path: string): Fig.Generator => ({
+  script: `ls -1 ${path}`,
+  postProcess: (out) => {
+    return out.split("\n").map((line) => ({
+      name: line,
+      icon: `fig://${path}/${line}`,
+      priority: line.endsWith(".app") && 76,
+    }));
+  },
+});
+
 export const completionSpec: Fig.Spec = {
   name: "open",
   description: "open files using default application",
@@ -8,26 +19,8 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "Application",
         generators: [
-          {
-            script: "ls -1p /Applications",
-            postProcess: function (out) {
-              return out.split("\n").map((line) => ({
-                name: line,
-                icon: `fig:///Applications/${line}`,
-                priority: line.endsWith(".app/") && 76,
-              }));
-            },
-          },
-          {
-            script: "ls -1p ~/Applications",
-            postProcess: function (out) {
-              return out.split("\n").map((line) => ({
-                name: line,
-                icon: `fig://~/Applications/${line}`,
-                priority: line.endsWith(".app/") && 76,
-              }));
-            },
-          },
+          appGenerator("/Applications"),
+          appGenerator("~/Applications"),
         ],
       },
     },
