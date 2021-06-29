@@ -25,10 +25,9 @@ Here is a small checklist to get this PR merged as quickly as possible:
 
 - [ ] Do all subcommands / options which take arguments have the arg property (\`arg: {}\`)?
 - [ ] Are all options modular? E.g. \`a\` \`-u\` \`-x\` instead of \`-aux\`
-- [ ] Did you run \`npm run build\`?
 - [ ] Have all other checks passed?
 
-Please add a 👍 as a reaction to this comment to show that you read this.`,
+Please add a 👍  as a reaction to this comment to show that you read this.`,
     });
   }
 });

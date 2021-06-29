@@ -7,7 +7,7 @@ export const completionSpec: Fig.Spec = {
       template: ["folders", "filepaths"],
     },
   ],
-  subcommands: [],
+
   options: [
     {
       name: ["-r", "-R"],
