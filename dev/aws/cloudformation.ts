@@ -22,6 +22,12 @@ const awsRegions = [
   "us-west-2",
 ];
 
+const callAs = ["SELF", "DELEGATED_ADMIN"];
+const typeSuggestion = ["RESOURCE", "MODULE"];
+const permissionModel = ["SERVICE_MANAGED", "SELF_MANAGED"];
+const deprecatedStatus = ["LIVE", "DEPRECATED"];
+const operationStatus = ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"];
+
 const postPrecessGenerator = (
   out: string,
   parentKey: string,
@@ -37,10 +43,9 @@ const postPrecessGenerator = (
         },
       ];
     }
-    console.log(list);
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
       return {
         name,
         icon: "fig://icon?type=aws",
@@ -86,8 +91,8 @@ const customGenerator = async (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
       return {
         name,
         icon: "fig://icon?type=aws",
@@ -115,7 +120,7 @@ const customGeneratorWithFilter = async (
       const option = options[i];
       const idx = context.indexOf(option);
       if (idx < 0) {
-        return [];
+        continue;
       }
       const param = context[idx + 1];
       cmd += ` ${option} ${param}`;
@@ -126,11 +131,11 @@ const customGeneratorWithFilter = async (
     const list = JSON.parse(out)[parentKey];
 
     return list
-      .filter((elm) => {
-        return elm.ResourceStatus === filter;
+      .filter((resource) => {
+        return resource.ResourceStatus === filter;
       })
-      .map((elm) => ({
-        name: (childKey ? elm[childKey] : elm) as string,
+      .map((resource) => ({
+        name: (childKey ? resource[childKey] : resource) as string,
         icon: "fig://icon?type=aws",
       }));
   } catch (e) {
@@ -205,12 +210,12 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
     const dots_arr = [];
     const other_arr = [];
 
-    arr.map((elm) => {
-      if (elm.toLowerCase() == ".ds_store") return;
-      if (elm.slice(0, 1) === ".") {
-        dots_arr.push(elm);
+    arr.map((fsObject) => {
+      if (fsObject.toLowerCase() == ".ds_store") return;
+      if (fsObject.slice(0, 1) === ".") {
+        dots_arr.push(fsObject);
       } else {
-        other_arr.push(elm);
+        other_arr.push(fsObject);
       }
     });
 
@@ -1127,7 +1132,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -1245,7 +1250,7 @@ export const completionSpec: Fig.Spec = {
             "Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.   With self-managed permissions, you must create the administrator and execution roles required to deploy to target accounts. For more information, see Grant Self-Managed Stack Set Permissions.   With service-managed permissions, StackSets automatically creates the IAM roles required to deploy to accounts managed by AWS Organizations. For more information, see Grant Service-Managed Stack Set Permissions.",
           args: {
             name: "string",
-            suggestions: ["SERVICE_MANAGED", "SELF_MANAGED"],
+            suggestions: permissionModel,
           },
         },
         {
@@ -1263,7 +1268,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   To create a stack set with service-managed permissions while signed in to the management account, specify SELF.   To create a stack set with service-managed permissions while signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated admin in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.   Stack sets with service-managed permissions are created in the management account, including stack sets that are created by delegated administrators.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -1474,7 +1479,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -1517,7 +1522,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -1560,7 +1565,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -1848,7 +1853,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -2045,7 +2050,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -2095,7 +2100,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -2388,7 +2393,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -2889,7 +2894,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -3037,7 +3042,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -3120,7 +3125,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -3203,7 +3208,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -3343,7 +3348,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -3420,7 +3425,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of the extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -3463,7 +3468,7 @@ export const completionSpec: Fig.Spec = {
             "The deprecation status of the extension versions that you want to get summary information about. Valid values include:    LIVE: The extension version is registered and can be used in CloudFormation operations, dependent on its provisioning behavior and visibility scope.    DEPRECATED: The extension version has been deregistered and can no longer be used in CloudFormation operations.    The default is LIVE.",
           args: {
             name: "string",
-            suggestions: ["LIVE", "DEPRECATED"],
+            suggestions: deprecatedStatus,
           },
         },
         {
@@ -3515,7 +3520,7 @@ export const completionSpec: Fig.Spec = {
             "The deprecation status of the extension that you want to get summary information about. Valid values include:    LIVE: The extension is registered for use in CloudFormation operations.    DEPRECATED: The extension has been deregistered and can no longer be used in CloudFormation operations.",
           args: {
             name: "string",
-            suggestions: ["LIVE", "DEPRECATED"],
+            suggestions: deprecatedStatus,
           },
         },
         {
@@ -3523,7 +3528,7 @@ export const completionSpec: Fig.Spec = {
           description: "The type of extension.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -3579,7 +3584,7 @@ export const completionSpec: Fig.Spec = {
           description: "Reserved for use by the CloudFormation CLI.",
           args: {
             name: "string",
-            suggestions: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
+            suggestions: operationStatus,
           },
         },
         {
@@ -3587,7 +3592,7 @@ export const completionSpec: Fig.Spec = {
           description: "Reserved for use by the CloudFormation CLI.",
           args: {
             name: "string",
-            suggestions: ["PENDING", "IN_PROGRESS", "SUCCESS", "FAILED"],
+            suggestions: operationStatus,
           },
         },
         {
@@ -3664,7 +3669,7 @@ export const completionSpec: Fig.Spec = {
           description: "The kind of extension.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -3801,7 +3806,7 @@ export const completionSpec: Fig.Spec = {
             "The kind of extension. Conditional: You must specify either TypeName and Type, or Arn.",
           args: {
             name: "string",
-            suggestions: ["RESOURCE", "MODULE"],
+            suggestions: typeSuggestion,
           },
         },
         {
@@ -3932,7 +3937,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -4205,7 +4210,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
@@ -4352,7 +4357,7 @@ export const completionSpec: Fig.Spec = {
             "Describes how the IAM roles required for stack set operations are created. You cannot modify PermissionModel if there are stack instances associated with your stack set.   With self-managed permissions, you must create the administrator and execution roles required to deploy to target accounts. For more information, see Grant Self-Managed Stack Set Permissions.   With service-managed permissions, StackSets automatically creates the IAM roles required to deploy to accounts managed by AWS Organizations. For more information, see Grant Service-Managed Stack Set Permissions.",
           args: {
             name: "string",
-            suggestions: ["SERVICE_MANAGED", "SELF_MANAGED"],
+            suggestions: permissionModel,
           },
         },
         {
@@ -4397,7 +4402,7 @@ export const completionSpec: Fig.Spec = {
             "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account. By default, SELF is specified. Use SELF for stack sets with self-managed permissions.   If you are signed in to the management account, specify SELF.   If you are signed in to a delegated administrator account, specify DELEGATED_ADMIN. Your AWS account must be registered as a delegated administrator in the management account. For more information, see Register a delegated administrator in the AWS CloudFormation User Guide.",
           args: {
             name: "string",
-            suggestions: ["SELF", "DELEGATED_ADMIN"],
+            suggestions: callAs,
           },
         },
         {
