@@ -23,6 +23,32 @@ const awsRegions = [
   "us-west-2",
 ];
 
+const storageClasses = [
+  "STANDARD",
+  "REDUCED_REDUNDANCY",
+  "STANDARD_IA",
+  "ONEZONE_IA",
+  "INTELLIGENT_TIERING",
+  "GLACIER",
+  "DEEP_ARCHIVE",
+];
+
+const acl = [
+  "private",
+  "public-read",
+  "public-read-write",
+  "authenticated-read",
+  "aws-exec-read",
+  "bucket-owner-read",
+  "bucket-owner-full-control",
+  "log-delivery-write",
+];
+
+const metadataDirective = ["COPY", "REPLACE"];
+const sse = ["AES256", "aws:kms"];
+const sseC = ["AES256"];
+const requester = ["requester"];
+
 const ttl = 30000;
 
 const appendFolderPath = (
@@ -376,7 +402,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
       ],
@@ -454,16 +480,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -485,7 +502,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -494,7 +511,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -521,7 +538,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -539,15 +556,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -657,7 +666,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -675,7 +684,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
         {
@@ -746,16 +755,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -777,7 +777,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -786,7 +786,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -813,7 +813,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -831,15 +831,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -949,7 +941,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -967,7 +959,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
         {
@@ -1018,7 +1010,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -1096,16 +1088,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -1127,7 +1110,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -1136,7 +1119,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -1163,7 +1146,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -1181,15 +1164,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -1299,7 +1274,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -1317,7 +1292,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
       ],
