@@ -357,7 +357,7 @@ const listCustomSIDGenerator = async (
 const MultiSuggestionsGenerator = async (
   context: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: any[]
+  enabled: Record<string, string>[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
