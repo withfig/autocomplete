@@ -1,3 +1,11 @@
+const branchStages = [
+  "PRODUCTION",
+  "BETA",
+  "DEVELOPMENT",
+  "EXPERIMENTAL",
+  "PULL_REQUEST",
+];
+
 const postPrecessGenerator = (
   out: string,
   parentKey: string,
@@ -634,13 +642,7 @@ export const completionSpec: Fig.Spec = {
           description: "Describes the current stage for the branch.",
           args: {
             name: "string",
-            suggestions: [
-              "PRODUCTION",
-              "BETA",
-              "DEVELOPMENT",
-              "EXPERIMENTAL",
-              "PULL_REQUEST",
-            ],
+            suggestions: branchStages,
           },
         },
         {
@@ -2492,13 +2494,7 @@ export const completionSpec: Fig.Spec = {
           description: "Describes the current stage for the branch.",
           args: {
             name: "string",
-            suggestions: [
-              "PRODUCTION",
-              "BETA",
-              "DEVELOPMENT",
-              "EXPERIMENTAL",
-              "PULL_REQUEST",
-            ],
+            suggestions: branchStages,
           },
         },
         {
