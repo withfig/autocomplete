@@ -278,10 +278,6 @@ export const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "scp",
-      description: "SCP to/from instance(s)",
-    },
-    {
       name: "help",
       description: "Show this help message",
     },

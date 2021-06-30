@@ -5986,15 +5986,6 @@ export const completion: Fig.Spec = {
           ],
           options: [
             {
-              name: "--format",
-              insertValue: "--format=",
-              description: "The serialization format for the value.",
-              args: {
-                name: "format",
-                suggestions: [{ name: "plaintext" }, { name: "json" }],
-              },
-            },
-            {
               name: "--page",
               insertValue: "--page=",
               description: "Optional page to display.",
@@ -6064,6 +6055,7 @@ export const completion: Fig.Spec = {
               args: {
                 name: "format",
                 suggestions: [
+                  { name: "plaintext" },
                   { name: "table" },
                   { name: "csv" },
                   { name: "count" },
@@ -8631,16 +8623,11 @@ export const completion: Fig.Spec = {
         },
         {
           name: "--log",
-          description:
-            "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
-        },
-        {
-          name: "--log",
           displayName: "--log=",
           insertValue: "--log=",
           description:
             "Log the items changed. If <file> is not supplied or is “-“, will output to STDOUT. Warning: causes a significant slow down, similar or worse to enabling –precise or –regex.",
-          args: { name: "file" },
+          args: { name: "file", isOptional: true },
         },
         {
           name: "--before_context",

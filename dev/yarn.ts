@@ -872,14 +872,28 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all of the owners of a package",
+          args: {
+            name: "package",
+          },
         },
         {
           name: "add",
           description: "Adds the user as an owner of the package",
+          args: {
+            name: "package",
+          },
         },
         {
-          name: "add",
+          name: "remove",
           description: "Removes the user as an owner of the package",
+          args: [
+            {
+              name: "user",
+            },
+            {
+              name: "package",
+            },
+          ],
         },
       ],
     },

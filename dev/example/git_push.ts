@@ -44,7 +44,6 @@ export const completion: Fig.Spec = {
 
     // The | symbol means mutually exclusive. Fig currently doesn't support mutually exclusive options.
     // so you should list each option on their own.
-    { name: "--all" },
     { name: "--mirror" },
     { name: "--tags" },
 
