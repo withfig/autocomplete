@@ -64,12 +64,12 @@ const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
     const dots_arr = [];
     const other_arr = [];
 
-    arr.map((elm) => {
-      if (elm.toLowerCase() == ".ds_store") return;
-      if (elm.slice(0, 1) === ".") {
-        dots_arr.push(elm);
+    arr.map((fsObject) => {
+      if (fsObject.toLowerCase() == ".ds_store") return;
+      if (fsObject.slice(0, 1) === ".") {
+        dots_arr.push(fsObject);
       } else {
-        other_arr.push(elm);
+        other_arr.push(fsObject);
       }
     });
 
