@@ -3,7 +3,12 @@ const generators: Record<string, Fig.Generator> = {
     template: "filepaths",
     filterTemplateSuggestions: function (paths) {
       const suffix = ".json";
-      return paths.filter((file) => file.endsWidth(suffix));
+      return paths.filter((file) => {
+        if (typeof file.name === "string") {
+          return file.name.endsWith(suffix);
+        }
+        return false;
+      });
     },
   },
 };
