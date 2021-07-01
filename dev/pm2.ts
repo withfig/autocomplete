@@ -106,6 +106,7 @@ const sharedOptions: Fig.Option[] = [
     description: "Specify pid file",
     args: {
       name: "pid",
+      template: "filepaths",
     },
   },
   {
@@ -293,7 +294,6 @@ const sharedOptions: Fig.Option[] = [
     args: {
       name: "Node Args",
       description: "–node-args=`–debug=7001 –trace-deprecation`",
-      variadic: true,
     },
   },
   { name: "–-no-color", description: "skip colors" },
@@ -343,7 +343,7 @@ const sharedOptions: Fig.Option[] = [
 
 export const completion: Fig.Spec = {
   name: "pm2",
-  description: "",
+  description: "Daemon process manager",
   subcommands: [
     {
       name: "start",
@@ -374,6 +374,7 @@ export const completion: Fig.Spec = {
       description: "Deploy your json",
       args: {
         name: "File or environment",
+        template: "filepaths",
       },
     },
     {
