@@ -38,6 +38,24 @@ const global_option_verbose: Fig.Option = {
   name: ["-v", "-vv", "-vvv", "--verbose"],
   description:
     "Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug",
+  args: {
+    name: "verbosity",
+    suggestions: [
+      {
+        name: "1",
+        description: "normal output",
+      },
+      {
+        name: "2",
+        description: "more verbose output",
+      },
+      {
+        name: "3",
+        description: "debug output",
+      },
+    ],
+    isOptional: true,
+  },
 };
 
 const global_option_secure: Fig.Option = {
@@ -446,6 +464,9 @@ export const completion: Fig.Spec = {
         {
           name: "--authtoken",
           description: "ngrok.com authtoken identifying a user",
+          args: {
+            name: "token",
+          },
         },
         {
           name: "--bind-tls",
@@ -462,11 +483,18 @@ export const completion: Fig.Spec = {
         {
           name: "--config",
           description: "path to config files; they are merged if multiple",
+          args: {
+            name: "config",
+            template: "filepaths",
+          },
         },
         {
           name: "--host-header",
           description:
             "set Host header; if 'rewrite' use local address hostname",
+          args: {
+            name: "host",
+          },
         },
         {
           name: "--hostname",
