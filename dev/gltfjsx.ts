@@ -1,6 +1,3 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-
-// The below is a dummy example for git. Make sure to change the file name!
 export const completion: Fig.Spec = {
   name: "gltfjsx",
   description: "GLTF to JSX converter",
