@@ -1,3 +1,944 @@
+const ttl = 30000;
+
+const awsPrincipals = [
+  "a4b.amazonaws.com",
+  "acm-pca.amazonaws.com",
+  "acm.amazonaws.com",
+  "alexa-appkit.amazon.com",
+  "alexa-connectedhome.amazon.com",
+  "amazonmq.amazonaws.com",
+  "apigateway.amazonaws.com",
+  "appflow.amazonaws.com",
+  "application-autoscaling.amazonaws.com",
+  "appstream.application-autoscaling.amazonaws.com",
+  "appsync.amazonaws.com",
+  "athena.amazonaws.com",
+  "autoscaling.amazonaws.com",
+  "aws-artifact-account-sync.amazonaws.com",
+  "backup.amazonaws.com",
+  "batch.amazonaws.com",
+  "billingconsole.amazonaws.com",
+  "budgets.amazonaws.com",
+  "ce.amazonaws.com",
+  "channels.lex.amazonaws.com",
+  "chime.amazonaws.com",
+  "cloud9.amazonaws.com",
+  "clouddirectory.amazonaws.com",
+  "cloudformation.amazonaws.com",
+  "cloudfront.amazonaws.com",
+  "cloudhsm.amazonaws.com",
+  "cloudsearch.amazonaws.com",
+  "cloudtrail.amazonaws.com",
+  "cloudwatch-crossaccount.amazonaws.com",
+  "codebuild.amazonaws.com",
+  "codecommit.amazonaws.com",
+  "codedeploy.${AWS::Region}.amazonaws.com",
+  "codedeploy.amazonaws.com",
+  "codepipeline.amazonaws.com",
+  "codestar.amazonaws.com",
+  "cognito-identity.amazonaws.com",
+  "cognito-idp.amazonaws.com",
+  "cognito-sync.amazonaws.com",
+  "config-conforms.amazonaws.com",
+  "config-multiaccountsetup.amazonaws.com",
+  "config.amazonaws.com",
+  "connect.amazonaws.com",
+  "continuousexport.discovery.amazonaws.com",
+  "custom-resource.application-autoscaling.amazonaws.com",
+  "databrew.amazonaws.com",
+  "datapipeline.amazonaws.com",
+  "dax.amazonaws.com",
+  "deeplens.amazonaws.com",
+  "delivery.logs.amazonaws.com",
+  "diode.amazonaws.com",
+  "directconnect.amazonaws.com",
+  "discovery.amazonaws.com",
+  "dlm.amazonaws.com",
+  "dms.amazonaws.com",
+  "ds.amazonaws.com",
+  "dynamodb.amazonaws.com",
+  "dynamodb.application-autoscaling.amazonaws.com",
+  "ec.amazonaws.com",
+  "ec2.amazonaws.com",
+  "ec2.application-autoscaling.amazonaws.com",
+  "ec2fleet.amazonaws.com",
+  "ec2scheduled.amazonaws.com",
+  "ecr.amazonaws.com",
+  "ecs-tasks.amazonaws.com",
+  "ecs.amazonaws.com",
+  "ecs.application-autoscaling.amazonaws.com",
+  "edgelambda.amazonaws.com",
+  "eks.amazonaws.com",
+  "elasticache.amazonaws.com",
+  "elasticbeanstalk.amazonaws.com",
+  "elasticfilesystem.amazonaws.com",
+  "elasticloadbalancing.amazonaws.com",
+  "elasticmapreduce.amazonaws.com",
+  "elastictranscoder.amazonaws.com",
+  "email.cognito-idp.amazonaws.com",
+  "es.amazonaws.com",
+  "events.amazonaws.com",
+  "firehose.amazonaws.com",
+  "fms.amazonaws.com",
+  "freertos.amazonaws.com",
+  "fsx.amazonaws.com",
+  "gamelift.amazonaws.com",
+  "glacier.amazonaws.com",
+  "globalaccelerator.amazonaws.com",
+  "glue.amazonaws.com",
+  "greengrass.amazonaws.com",
+  "guardduty.amazonaws.com",
+  "health.amazonaws.com",
+  "iam.amazonaws.com",
+  "importexport.amazonaws.com",
+  "inspector.amazonaws.com",
+  "iot.amazonaws.com",
+  "iotanalytics.amazonaws.com",
+  "iotevents.amazonaws.com",
+  "iotsitewise.amazonaws.com",
+  "iotthingsgraph.amazonaws.com",
+  "jellyfish.amazonaws.com",
+  "kafka.amazonaws.com",
+  "kinesis.amazonaws.com",
+  "kinesisanalytics.amazonaws.com",
+  "kms.amazonaws.com",
+  "lakeformation.amazonaws.com",
+  "lambda.amazonaws.com",
+  "lex.amazonaws.com",
+  "license-manager.amazonaws.com",
+  "lightsail.amazonaws.com",
+  "logger.cloudfront.amazonaws.com",
+  "logs.amazonaws.com",
+  "machinelearning.amazonaws.com",
+  "macie.amazonaws.com",
+  "managedservices.amazonaws.com",
+  "mediaconnect.amazonaws.com",
+  "mediaconvert.amazonaws.com",
+  "mediapackage.amazonaws.com",
+  "mediastore.amazonaws.com",
+  "mediatailor.amazonaws.com",
+  "member.org.stacksets.cloudformation.amazonaws.com",
+  "metering-marketplace.amazonaws.com",
+  "migrationhub.amazonaws.com",
+  "mobilehub.amazonaws.com",
+  "monitoring.amazonaws.com",
+  "monitoring.rds.amazonaws.com",
+  "ops.apigateway.amazonaws.com",
+  "opsworks-cm.amazonaws.com",
+  "opsworks.amazonaws.com",
+  "organizations.amazonaws.com",
+  "pinpoint.amazonaws.com",
+  "polly.amazonaws.com",
+  "qldb.amazonaws.com",
+  "quicksight.amazonaws.com",
+  "ram.amazonaws.com",
+  "rds.amazonaws.com",
+  "redshift.amazonaws.com",
+  "rekognition.amazonaws.com",
+  "replication.dynamodb.amazonaws.com",
+  "replicator.lambda.amazonaws.com",
+  "resource-groups.amazonaws.com",
+  "robomaker.amazonaws.com",
+  "route53.amazonaws.com",
+  "route53domains.amazonaws.com",
+  "route53resolver.amazonaws.com",
+  "s3.amazonaws.com",
+  "sagemaker.amazonaws.com",
+  "secretsmanager.amazonaws.com",
+  "securityhub.amazonaws.com",
+  "serverlessrepo.amazonaws.com",
+  "servicecatalog.amazonaws.com",
+  "servicediscovery.amazonaws.com",
+  "ses.amazonaws.com",
+  "shield.amazonaws.com",
+  "signer.amazonaws.com",
+  "signin.amazonaws.com",
+  "sms.amazonaws.com",
+  "sns.amazonaws.com",
+  "spotfleet.amazonaws.com",
+  "sqs.amazonaws.com",
+  "ssm.amazonaws.com",
+  "sso.amazonaws.com",
+  "states.amazonaws.com",
+  "storagegateway.amazonaws.com",
+  "sts.amazonaws.com",
+  "support.amazonaws.com",
+  "swf.amazonaws.com",
+  "tagging.amazonaws.com",
+  "tagpolicies.tag.amazonaws.com",
+  "transcribe.amazonaws.com",
+  "transfer.amazonaws.com",
+  "translate.amazonaws.com",
+  "trustedadvisor.amazonaws.com",
+  "tts.amazonaws.com",
+  "vmie.amazonaws.com",
+  "waf-regional.amazonaws.com",
+  "waf.amazonaws.com",
+  "workdocs.amazonaws.com",
+  "worklink.amazonaws.com",
+  "workmail.amazonaws.com",
+  "workspaces.amazonaws.com",
+  "xray.amazonaws.com",
+];
+
+const identityStruct = [
+  { command: "aws iam list-users", parentKey: "Users", childKey: "Arn" },
+  { command: "aws iam list-groups", parentKey: "Groups", childKey: "Arn" },
+  { command: "aws iam list-roles", parentKey: "Roles", childKey: "Arn" },
+];
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArray = [];
+    const otherArray = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArray.push(elm);
+      else otherArray.push(elm);
+    });
+
+    return [
+      ...otherArray.sort(sortFnStrings),
+      "../",
+      ...dotsArray.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArray = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArray = [];
+
+  tempArray.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArray.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArray;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const listCustomGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  option: string,
+  parentKey: string,
+  childKey = ""
+): Promise<any> => {
+  try {
+    const idx = context.indexOf(option);
+    if (idx < 0) {
+      return [];
+    }
+    const param = context[idx + 1];
+    const out = await executeShellCommand(
+      `aws iam ${command} ${option} ${param}`
+    );
+
+    const policies = JSON.parse(out)[parentKey];
+    return policies.map((elm) => (childKey ? elm[childKey] : elm));
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+    return list.map((elm) => (childKey ? elm[childKey] : elm));
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
+};
+
+const MultiSuggestionsGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  enabled: any[]
+) => {
+  try {
+    const list: Fig.Suggestion[][] = [];
+    const promises: Promise<string>[] = [];
+    for (let i = 0; i < enabled.length; i++) {
+      promises[i] = executeShellCommand(enabled[i]["command"]);
+    }
+
+    const result = await Promise.all(promises);
+
+    for (let i = 0; i < enabled.length; i++) {
+      list[i] = postPrecessGenerator(
+        result[i],
+        enabled[i]["parentKey"],
+        enabled[i]["childKey"]
+      );
+    }
+
+    return list.flat();
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const generators: Record<string, Fig.Generator> = {
+  getAccountArn: {
+    script: "aws sts get-caller-identity",
+    postProcess: function (out, context) {
+      try {
+        const accountId = JSON.parse(out)["Account"];
+        return [{ name: `arn:aws:iam::${accountId}-ID:root` }];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listOpenIdProviders: {
+    script: "aws iam list-open-id-connect-providers",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "OpenIDConnectProviderList", "Arn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listOpenIdClientsForProvider: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-open-id-connect-provider",
+        "--open-id-connect-provider-arn",
+        "ClientIDList"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listOpenIdThumbprintsForProvider: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-open-id-connect-provider",
+        "--open-id-connect-provider-arn",
+        "ThumbprintList"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listInstanceProfiles: {
+    script: "aws iam list-instance-profiles --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(
+        out,
+        "InstanceProfiles",
+        "InstanceProfileName"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listInstancePorfileRoles: {
+    custom: async function (context, executeShellCommand) {
+      try {
+        const idx = context.indexOf("--instance-profile-name");
+        if (idx < 0) {
+          return [];
+        }
+        const param = context[idx + 1];
+        const out = await executeShellCommand(
+          `aws iam get-instance-profile --instance-profile-name ${param}`
+        );
+
+        const policies = JSON.parse(out as string)["InstanceProfile"];
+        return policies["Roles"].map((elm) => {
+          return {
+            name: elm["RoleName"],
+          };
+        });
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listUsers: {
+    script: "aws iam list-users --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Users", "UserName");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listUserArns: {
+    script: "aws iam list-users --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Users", "Arn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listPoliciesForUser: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-user-policies",
+        "--user-name",
+        "PolicyNames"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listGroups: {
+    script: "aws iam list-groups --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Groups", "GroupName");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listUsersInGroup: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-group",
+        "--group-name",
+        "Users",
+        "UserName"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listIamPoliciesArn: {
+    script: "aws iam list-policies --page-size 100 --scope Local",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Policies", "Arn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listVersionsForPolicy: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-policy-versions",
+        "--policy-arn",
+        "Versions",
+        "VersionId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listPoliciesForGroup: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-group-policies",
+        "--group-name",
+        "PolicyNames"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAttachedPolicyArnsForGroup: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-group-policies",
+        "--group-name",
+        "AttachedPolicies",
+        "PolicyArn"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAttachedPolicyNamesForGroup: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-group-policies",
+        "--group-name",
+        "AttachedPolicies",
+        "PolicyName"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAttachedPolicyArnsForRole: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-role-policies",
+        "--role-name",
+        "AttachedPolicies",
+        "PolicyArn"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAttachedPolicyArnsUser: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-attached-user-policies",
+        "--user-name",
+        "AttachedPolicies",
+        "PolicyArn"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listRoles: {
+    script: "aws iam list-roles --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "Roles", "RoleName");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listPoliciesForRole: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-role-policies",
+        "--role-name",
+        "PolicyNames"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  // --cli-input-json and a few other options takes a JSON string literal, or arbitrary files containing valid JSON.
+  // In case the JSON is passed as a file, the filepath must be prefixed by file://
+  // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listMfaDevices: {
+    script: "aws iam list-mfa-devices --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "MFADevices", "SerialNumber");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listVirtualMfaDevices: {
+    script: "aws iam list-virtual-mfa-devices --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "VirtualMFADevices", "SerialNumber");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAcessKeyIds: {
+    script: "aws iam list-access-keys --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "AccessKeyMetadata", "AccessKeyId");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAccountAliases: {
+    script: "aws iam list-account-aliases --page-size 100",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "AccountAliases");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSamlProviders: {
+    script: "aws iam list-saml-providers",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "SAMLProviderList", "Arn");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSSHPublicKeys: {
+    script: "aws iam list-ssh-public-keys --page-size 1000",
+    postProcess: function (out) {
+      return postPrecessGenerator(out, "SSHPublicKeys", "SSHPublicKeyId");
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSSHPublicKeysForUser: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-ssh-public-keys",
+        "--user-name",
+        "SSHPublicKeys",
+        "SSHPublicKeyId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listServerCerts: {
+    script: "aws iam list-server-certificates --page-size 1000",
+    postProcess: function (out) {
+      return postPrecessGenerator(
+        out,
+        "ServerCertificateMetadataList",
+        "ServerCertificateName"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listServiceSpecificCredentialsForUser: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-service-specific-credentials",
+        "--user-name",
+        "ServiceSpecificCredentials",
+        "ServiceSpecificCredentialId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSigningCertificatesForUser: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-signing-certificates",
+        "--user-name",
+        "Certificates",
+        "CertificateId"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listAllArns: {
+    custom: async function (context, executeShellCommand) {
+      return MultiSuggestionsGenerator(context, executeShellCommand, [
+        ...identityStruct,
+        {
+          command: "aws iam list-policies --scope Local",
+          parentKey: "Policies",
+          childKey: "Arn",
+        },
+      ]);
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listIdentityArns: {
+    custom: async function (context, executeShellCommand) {
+      return MultiSuggestionsGenerator(
+        context,
+        executeShellCommand,
+        identityStruct
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listInstanceProfileTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-instance-profile-tags",
+        "--instance-profile-name",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listMfaDeviceTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-mfa-device-tags",
+        "--serial-number",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listOpenIdProviderTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-open-id-connect-provider-tags",
+        "--open-id-connect-provider-arn",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listIamPolicyTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-policy-tags",
+        "--policy-arn",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listRoleTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-role-tags",
+        "--role-name",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listSamlProviderTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-saml-provider-tags",
+        "--saml-provider-arn",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listServerCertsKeys: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-server-certificate-tags",
+        "--server-certificate-name",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  listUserTags: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-user-tags",
+        "--user-name",
+        "Tags",
+        "Key"
+      );
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "iam",
   description:
@@ -14,6 +955,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider resource to add the client ID to. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -22,6 +964,7 @@ export const completionSpec: Fig.Spec = {
             "The client ID (also known as audience) to add to the IAM OpenID Connect provider resource.",
           args: {
             name: "string",
+            generators: generators.listOpenIdClientsForProvider,
           },
         },
         {
@@ -30,6 +973,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -54,6 +998,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -70,6 +1015,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -93,6 +1039,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -101,6 +1048,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to add. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -109,6 +1057,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -133,6 +1082,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the group to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -141,6 +1091,8 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            // NOTE: only suggest user policies to streamline number of returned items
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -149,6 +1101,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -173,6 +1126,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the role to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -181,6 +1135,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -189,6 +1144,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -213,6 +1169,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user to attach the policy to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -221,6 +1178,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to attach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -229,6 +1187,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -268,6 +1227,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -292,6 +1252,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user that the new key will belong to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -300,6 +1261,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -332,6 +1294,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -356,6 +1319,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the group. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -364,6 +1328,7 @@ export const completionSpec: Fig.Spec = {
             'The name of the group to create. Do not include the path in this value. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -372,6 +1337,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -404,6 +1370,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the instance profile. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -412,6 +1379,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -420,6 +1389,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -444,6 +1414,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user to create a password for. The user must already exist. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -470,6 +1441,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -494,6 +1466,7 @@ export const completionSpec: Fig.Spec = {
             "The URL of the identity provider. The URL must begin with https:// and should correspond to the iss claim in the provider's OpenID Connect ID tokens. Per the OIDC standard, path components are allowed but query parameters are not. Typically the URL consists of only a hostname, like https://server.example.org or https://example.com. You cannot register the same provider multiple times in a single AWS account. If you try to submit a URL that has already been used for an OpenID Connect provider in the AWS account, you will get an error.",
           args: {
             name: "string",
+            suggestions: ["https://"],
           },
         },
         {
@@ -518,6 +1491,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM OpenID Connect (OIDC) provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -526,6 +1501,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -558,6 +1534,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the policy. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -566,6 +1543,7 @@ export const completionSpec: Fig.Spec = {
             "The JSON policy document that you want to use as the content for the new policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -582,6 +1560,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -590,6 +1570,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -614,6 +1595,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy to which you want to add a new version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -622,6 +1604,7 @@ export const completionSpec: Fig.Spec = {
             "The JSON policy document that you want to use as the content for this new version of the policy. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -640,6 +1623,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -664,6 +1648,7 @@ export const completionSpec: Fig.Spec = {
             "The path to the role. For more information about paths, see IAM Identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -680,6 +1665,7 @@ export const completionSpec: Fig.Spec = {
             "The trust relationship policy document that grants an entity permission to assume the role. In IAM, you must provide a JSON policy that has been converted to a string. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)    Upon success, the response includes the same trust policy in JSON format.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -695,6 +1681,9 @@ export const completionSpec: Fig.Spec = {
             "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide.",
           args: {
             name: "integer",
+            suggestions: Array.from({ length: 13 - 1 }, (v, k) =>
+              String(k + 1)
+            ),
           },
         },
         {
@@ -703,6 +1692,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the policy that is used to set the permissions boundary for the role.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -711,6 +1701,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new role. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -719,6 +1711,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -743,6 +1736,7 @@ export const completionSpec: Fig.Spec = {
             "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP. For more information, see About SAML 2.0-based federation in the IAM User Guide",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -759,6 +1753,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -767,6 +1763,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -791,6 +1788,7 @@ export const completionSpec: Fig.Spec = {
             "The service principal for the AWS service to which this role is attached. You use a string similar to a URL but without the http:// in front. For example: elasticbeanstalk.amazonaws.com.  Service principals are unique and case-sensitive. To find the exact service principal for your service-linked role, see AWS services that work with IAM in the IAM User Guide. Look for the services that have Yes in the Service-Linked Role column. Choose the Yes link to view the service-linked role documentation for that service.",
           args: {
             name: "string",
+            suggestions: awsPrincipals,
           },
         },
         {
@@ -814,6 +1812,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -838,6 +1837,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user that is to be associated with the credentials. The new service-specific credentials have the same permissions as the associated user except that they can be used only to access the specified service. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -846,6 +1846,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the AWS service that is to be associated with the credentials. The service you specify here is the only service that can be accessed using these credentials.",
           args: {
             name: "string",
+            suggestions: awsPrincipals,
           },
         },
         {
@@ -854,6 +1855,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -878,6 +1880,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the user name. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -886,6 +1889,7 @@ export const completionSpec: Fig.Spec = {
             'The name of the user to create. IAM user, group, role, and policy names must be unique within the account. Names are not distinguished by case. For example, you cannot create resources named both "MyResource" and "myresource".',
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -894,6 +1898,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the policy that is used to set the permissions boundary for the user.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -902,6 +1907,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -910,6 +1917,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -934,6 +1942,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the virtual MFA device. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -950,6 +1959,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM virtual MFA device. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -982,6 +1993,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose MFA device you want to deactivate. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -990,6 +2002,7 @@ export const completionSpec: Fig.Spec = {
             "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the device ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -998,6 +2011,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1022,6 +2036,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose access key pair you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1030,6 +2045,7 @@ export const completionSpec: Fig.Spec = {
             "The access key ID for the access key ID and secret access key you want to delete. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listAcessKeyIds,
           },
         },
         {
@@ -1038,6 +2054,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1062,6 +2079,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the account alias to delete. This parameter allows (through its regex pattern) a string of characters consisting of lowercase letters, digits, and dashes. You cannot start or finish with a dash, nor can you have two dashes in a row.",
           args: {
             name: "string",
+            generators: generators.listAccountAliases,
           },
         },
         {
@@ -1070,6 +2088,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1094,6 +2113,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1118,6 +2138,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM group to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -1126,6 +2147,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1150,6 +2172,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) identifying the group that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -1158,6 +2181,7 @@ export const completionSpec: Fig.Spec = {
             "The name identifying the policy document to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForGroup,
           },
         },
         {
@@ -1166,6 +2190,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1190,6 +2215,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -1198,6 +2224,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1222,6 +2249,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose password you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1230,6 +2258,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1254,6 +2283,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM OpenID Connect provider resource object to delete. You can get a list of OpenID Connect provider resource ARNs by using the ListOpenIDConnectProviders operation.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -1262,6 +2292,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1286,6 +2317,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to delete. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -1294,6 +2326,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1318,6 +2351,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy from which you want to delete a version. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -1326,6 +2360,7 @@ export const completionSpec: Fig.Spec = {
             "The policy version to delete. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
           args: {
             name: "string",
+            generators: generators.listVersionsForPolicy,
           },
         },
         {
@@ -1334,6 +2369,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1358,6 +2394,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -1366,6 +2403,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1390,6 +2428,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM role from which you want to remove the permissions boundary.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -1398,6 +2437,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1422,6 +2462,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) identifying the role that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -1430,6 +2471,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the inline policy to delete from the specified IAM role. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForRole,
           },
         },
         {
@@ -1438,6 +2480,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1462,6 +2505,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the SAML provider to delete.",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -1470,6 +2514,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1494,6 +2539,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the SSH public key. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1502,6 +2548,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listSSHPublicKeysForUser,
           },
         },
         {
@@ -1510,6 +2557,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1534,6 +2582,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the server certificate you want to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -1542,6 +2591,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1565,6 +2615,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the service-linked role to be deleted.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -1573,6 +2624,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1596,14 +2648,16 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the service-specific credential. If this value is not specified, then the operation assumes the user whose credentials are used to call the operation. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
           name: "--service-specific-credential-id",
           description:
-            "The unique identifier of the service-specific credential. You can get this value by calling ListServiceSpecificCredentials. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
+            "The unique identifier of the service-specific credential. You can get this value by calling listServiceSpecificCredentialsForUser. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listServiceSpecificCredentialsForUser,
           },
         },
         {
@@ -1612,6 +2666,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1636,6 +2691,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user the signing certificate belongs to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1644,6 +2700,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the signing certificate to delete. The format of this parameter, as described by its regex pattern, is a string of characters that can be upper- or lower-cased letters or digits.",
           args: {
             name: "string",
+            generators: generators.listSigningCertificatesForUser,
           },
         },
         {
@@ -1652,6 +2709,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1676,6 +2734,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1684,6 +2743,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1708,6 +2768,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user from which you want to remove the permissions boundary.",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1716,6 +2777,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1740,6 +2802,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) identifying the user that the policy is embedded in. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1748,6 +2811,7 @@ export const completionSpec: Fig.Spec = {
             "The name identifying the policy document to delete. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForUser,
           },
         },
         {
@@ -1756,6 +2820,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1780,6 +2845,7 @@ export const completionSpec: Fig.Spec = {
             "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the same as the ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
           args: {
             name: "string",
+            generators: generators.listVirtualMfaDevices,
           },
         },
         {
@@ -1788,6 +2854,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1812,6 +2879,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM group to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -1820,6 +2888,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyArnsForGroup,
           },
         },
         {
@@ -1828,6 +2897,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1852,6 +2922,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM role to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -1860,6 +2931,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyArnsForRole,
           },
         },
         {
@@ -1868,6 +2940,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1892,6 +2965,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user to detach the policy from. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1900,6 +2974,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy you want to detach. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyArnsUser,
           },
         },
         {
@@ -1908,6 +2983,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1932,6 +3008,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user for whom you want to enable the MFA device. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -1940,6 +3017,7 @@ export const completionSpec: Fig.Spec = {
             "The serial number that uniquely identifies the MFA device. For virtual MFA devices, the serial number is the device ARN. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@:/-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -1980,6 +3058,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2004,6 +3083,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2044,6 +3124,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2068,6 +3149,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM resource (user, group, role, or managed policy) used to generate information about when the resource was last used in an attempt to access an AWS service.",
           args: {
             name: "string",
+            generators: generators.listAllArns,
           },
         },
         {
@@ -2076,6 +3158,7 @@ export const completionSpec: Fig.Spec = {
             "The level of detail that you want to generate. You can specify whether you want to generate information about the last attempt to access services or actions. If you specify service-level granularity, this operation generates only service data. If you specify action-level granularity, it generates service and action data. If you don't include this optional parameter, the operation generates service data.",
           args: {
             name: "string",
+            suggestions: ["SERVICE_LEVEL", "ACTION_LEVEL"],
           },
         },
         {
@@ -2084,6 +3167,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2108,6 +3192,7 @@ export const completionSpec: Fig.Spec = {
             "The identifier of an access key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listAcessKeyIds,
           },
         },
         {
@@ -2116,6 +3201,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2140,6 +3226,14 @@ export const completionSpec: Fig.Spec = {
             "A list of entity types used to filter the results. Only the entities that match the types you specify are included in the output. Use the value LocalManagedPolicy to include customer managed policies. The format for this parameter is a comma-separated (if more than one) list of strings. Each string value in the list must be one of the valid values listed below.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "User",
+              "Role",
+              "Group",
+              "LocalManagedPolicy",
+              "AWSManagedPolicy",
+            ],
           },
         },
         {
@@ -2164,6 +3258,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2204,6 +3299,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2228,6 +3324,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2252,6 +3349,8 @@ export const completionSpec: Fig.Spec = {
             "A list of policies for which you want the list of context keys referenced in those policies. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -2260,6 +3359,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2284,6 +3384,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of a user, group, or role whose policies contain the context keys that you want listed. If you specify a user, the list includes context keys that are found in all policies that are attached to the user. The list also includes all groups that the user is a member of. If you pick a group or a role, then it includes only those context keys that are found in policies attached to that entity. Note that all parameters are shown in unencoded form here for clarity, but must be URL encoded to be included as a part of a real HTML request. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listAllArns,
           },
         },
         {
@@ -2292,6 +3393,8 @@ export const completionSpec: Fig.Spec = {
             "An optional list of additional policies for which you want the list of context keys that are referenced. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -2300,6 +3403,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2324,6 +3428,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2348,6 +3453,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -2372,6 +3478,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2412,6 +3519,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group the policy is associated with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -2420,6 +3528,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document to get. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForGroup,
           },
         },
         {
@@ -2428,6 +3537,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2452,6 +3562,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -2460,6 +3571,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2484,6 +3596,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose login profile you want to retrieve. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -2492,6 +3605,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2516,6 +3630,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the OIDC provider resource object in IAM to get information for. You can get a list of OIDC provider resource ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -2524,6 +3639,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2572,6 +3688,12 @@ export const completionSpec: Fig.Spec = {
             "The key that is used to sort the results. If you choose the namespace key, the results are returned in alphabetical order. If you choose the time key, the results are sorted numerically by the date and time.",
           args: {
             name: "string",
+            suggestions: [
+              "SERVICE_NAMESPACE_ASCENDING",
+              "SERVICE_NAMESPACE_DESCENDING",
+              "LAST_AUTHENTICATED_TIME_ASCENDING",
+              "LAST_AUTHENTICATED_TIME_DESCENDING",
+            ],
           },
         },
         {
@@ -2580,6 +3702,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2604,6 +3727,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -2612,6 +3736,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2636,6 +3761,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -2644,6 +3770,7 @@ export const completionSpec: Fig.Spec = {
             "Identifies the policy version to retrieve. This parameter allows (through its regex pattern) a string of characters that consists of the lowercase letter 'v' followed by one or two digits, and optionally followed by a period '.' and a string of letters and digits.",
           args: {
             name: "string",
+            generators: generators.listVersionsForPolicy,
           },
         },
         {
@@ -2652,6 +3779,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2676,6 +3804,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM role to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -2684,6 +3813,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2708,6 +3838,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role associated with the policy. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -2716,6 +3847,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document to get. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForRole,
           },
         },
         {
@@ -2724,6 +3856,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2748,6 +3881,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the SAML provider resource object in IAM to get information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -2756,6 +3890,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2780,6 +3915,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the SSH public key. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -2788,6 +3924,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listSSHPublicKeysForUser,
           },
         },
         {
@@ -2796,6 +3933,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use SSH. To retrieve the public key in PEM format, use PEM.",
           args: {
             name: "string",
+            suggestions: ["SSH", "PEM"],
           },
         },
         {
@@ -2804,6 +3942,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2828,6 +3967,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the server certificate you want to retrieve information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -2836,6 +3976,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2884,6 +4025,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2916,6 +4058,9 @@ export const completionSpec: Fig.Spec = {
             "The service namespace for an AWS service. Provide the service namespace to learn when the IAM entity last attempted to access the specified service. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference.",
           args: {
             name: "string",
+            suggestions: awsPrincipals.map((elm) =>
+              elm.slice(0, elm.indexOf("."))
+            ),
           },
         },
         {
@@ -2940,6 +4085,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2972,6 +4118,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2996,6 +4143,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to get information about. This parameter is optional. If it is not included, it defaults to the user making the request. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -3004,6 +4152,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3028,6 +4177,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user who the policy is associated with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -3036,6 +4186,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document to get. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForUser,
           },
         },
         {
@@ -3044,6 +4195,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3068,6 +4220,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -3092,6 +4245,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3148,6 +4302,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3180,7 +4335,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "list-attached-group-policies",
       description:
-        "Lists all managed policies that are attached to the specified IAM group. An IAM group can also have inline policies embedded with it. To list the inline policies for a group, use ListGroupPolicies. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list.",
+        "Lists all managed policies that are attached to the specified IAM group. An IAM group can also have inline policies embedded with it. To list the inline policies for a group, use listPoliciesForGroup. For information about policies, see Managed policies and inline policies in the IAM User Guide. You can paginate the results using the MaxItems and Marker parameters. You can use the PathPrefix parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the operation returns an empty list.",
       options: [
         {
           name: "--group-name",
@@ -3188,6 +4343,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the group to list attached policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -3196,6 +4352,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3220,6 +4377,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3260,6 +4418,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the role to list attached policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -3268,6 +4427,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3292,6 +4452,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3332,6 +4493,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the user to list attached policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -3340,6 +4502,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3364,6 +4527,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3404,6 +4568,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -3412,6 +4577,13 @@ export const completionSpec: Fig.Spec = {
             "The entity type to use for filtering the results. For example, when EntityFilter is Role, only the roles that are attached to the specified policy are returned. This parameter is optional. If it is not included, all attached entities (users, groups, and roles) are returned. The argument for this parameter must be one of the valid values listed below.",
           args: {
             name: "string",
+            suggestions: [
+              "User",
+              "Role",
+              "Group",
+              "LocalManagedPolicy",
+              "AWSManagedPolicy",
+            ],
           },
         },
         {
@@ -3420,6 +4592,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all entities. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3428,6 +4601,7 @@ export const completionSpec: Fig.Spec = {
             "The policy usage method to use for filtering the results. To list only permissions policies, set\u00a0PolicyUsageFilter\u00a0to\u00a0PermissionsPolicy. To list only the policies used to set permissions boundaries, set\u00a0the value to\u00a0PermissionsBoundary. This parameter is optional. If it is not included, all policies are returned.",
           args: {
             name: "string",
+            suggestions: ["PermissionsPolicy", "PermissionsBoundary"],
           },
         },
         {
@@ -3452,6 +4626,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3492,6 +4667,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group to list policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -3516,6 +4692,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3556,6 +4733,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/ gets all groups whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all groups. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3580,6 +4758,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3620,6 +4799,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to list groups for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -3644,6 +4824,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3684,6 +4865,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM instance profile whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -3708,6 +4890,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3732,6 +4915,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all instance profiles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all instance profiles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -3756,6 +4940,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3796,6 +4981,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to list instance profiles for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -3820,6 +5006,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3860,6 +5047,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the IAM virtual MFA device whose tags you want to see. For virtual MFA devices, the serial number is the same as the ARN. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -3884,6 +5072,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3908,6 +5097,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose MFA devices you want to list. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -3932,6 +5122,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3972,6 +5163,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the OpenID Connect (OIDC) identity provider whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -3996,6 +5188,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4020,6 +5213,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4044,6 +5238,7 @@ export const completionSpec: Fig.Spec = {
             "The scope to use for filtering the results. To list only AWS managed policies, set Scope to AWS. To list only the customer managed policies in your AWS account, set Scope to Local. This parameter is optional. If it is not included, or if it is set to All, all policies are returned.",
           args: {
             name: "string",
+            suggestions: ["Local", "AWS"],
           },
         },
         {
@@ -4062,6 +5257,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. This parameter is optional. If it is not included, it defaults to a slash (/), listing all policies. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4094,6 +5290,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4142,6 +5339,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM identity (user, group, or role) whose policies you want to list.",
           args: {
             name: "string",
+            generators: generators.listIdentityArns,
           },
         },
         {
@@ -4150,6 +5348,9 @@ export const completionSpec: Fig.Spec = {
             "The service namespace for the AWS services whose policies you want to list. To learn the service namespace for a service, see Actions, resources, and condition keys for AWS services in the IAM User Guide. Choose the name of the service to view details for that service. In the first paragraph, find the service prefix. For example, (service prefix: a4b). For more information about service namespaces, see AWS service namespaces in the\u00a0AWS General Reference.",
           args: {
             name: "list",
+            suggestions: awsPrincipals.map((elm) =>
+              elm.slice(0, elm.indexOf("."))
+            ),
           },
         },
         {
@@ -4158,6 +5359,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4182,6 +5384,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM customer managed policy whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -4206,6 +5409,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4230,6 +5434,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy for which you want the versions. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -4254,6 +5459,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4294,6 +5500,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to list policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -4318,6 +5525,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4358,6 +5566,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM role for which you want to see the list of tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -4382,6 +5591,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4406,6 +5616,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/ gets all roles whose path starts with /application_abc/component_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all roles. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4430,6 +5641,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4470,6 +5682,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the Security Assertion Markup Language (SAML) identity provider whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -4494,6 +5707,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4518,6 +5732,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4542,6 +5757,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user to list SSH public keys for. If none is specified, the UserName field is determined implicitly based on the AWS access key used to sign the request. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -4566,6 +5782,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4606,6 +5823,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM server certificate whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -4630,6 +5848,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4654,6 +5873,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example: /company/servercerts would get all server certificates for which the path starts with /company/servercerts. This parameter is optional. If it is not included, it defaults to a slash (/), listing all server certificates. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4678,6 +5898,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4718,6 +5939,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose service-specific credentials you want information about. If this value is not specified, then the operation assumes the user whose credentials are used to call the operation. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -4726,6 +5948,7 @@ export const completionSpec: Fig.Spec = {
             "Filters the returned results to only those for the specified AWS service. If not specified, then AWS returns service-specific credentials for all services.",
           args: {
             name: "string",
+            suggestions: awsPrincipals,
           },
         },
         {
@@ -4734,6 +5957,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4758,6 +5982,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user whose signing certificates you want to examine. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -4782,6 +6007,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4822,6 +6048,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to list policies for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -4846,6 +6073,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4886,6 +6114,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user whose tags you want to see. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -4910,6 +6139,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4934,6 +6164,7 @@ export const completionSpec: Fig.Spec = {
             "The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/, which would get all user names whose path starts with /division_abc/subdivision_xyz/. This parameter is optional. If it is not included, it defaults to a slash (/), listing all user names. This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -4958,6 +6189,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4998,6 +6230,7 @@ export const completionSpec: Fig.Spec = {
             "The status (Unassigned or Assigned) of the devices to list. If you do not specify an AssignmentStatus, the operation defaults to Any, which lists both assigned and unassigned virtual MFA devices.,",
           args: {
             name: "string",
+            suggestions: ["Unassigned", "Assigned"],
           },
         },
         {
@@ -5022,6 +6255,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5062,6 +6296,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group to associate the policy with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-.",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -5070,6 +6305,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyNamesForGroup,
           },
         },
         {
@@ -5078,6 +6314,7 @@ export const completionSpec: Fig.Spec = {
             "The policy document. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5086,6 +6323,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5110,6 +6348,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM role for which you want to set the permissions boundary.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -5118,6 +6357,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the policy that is used to set the permissions boundary for the role.",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyArnsForRole,
           },
         },
         {
@@ -5126,6 +6366,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5150,6 +6391,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to associate the policy with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -5158,6 +6400,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForRole,
           },
         },
         {
@@ -5166,6 +6409,7 @@ export const completionSpec: Fig.Spec = {
             "The policy document. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5174,6 +6418,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5198,6 +6443,7 @@ export const completionSpec: Fig.Spec = {
             "The name (friendly name, not ARN) of the IAM user for which you want to set the permissions boundary.",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -5206,6 +6452,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the policy that is used to set the permissions boundary for the user.",
           args: {
             name: "string",
+            generators: generators.listAttachedPolicyArnsUser,
           },
         },
         {
@@ -5214,6 +6461,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5238,6 +6486,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to associate the policy with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -5246,6 +6495,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the policy document. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listPoliciesForUser,
           },
         },
         {
@@ -5254,6 +6504,7 @@ export const completionSpec: Fig.Spec = {
             "The policy document. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5262,6 +6513,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5286,6 +6538,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM OIDC provider resource to remove the client ID from. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -5294,6 +6547,7 @@ export const completionSpec: Fig.Spec = {
             "The client ID (also known as audience) to remove from the IAM OIDC provider resource. For more information about client IDs, see CreateOpenIDConnectProvider.",
           args: {
             name: "string",
+            generators: generators.listOpenIdClientsForProvider,
           },
         },
         {
@@ -5302,6 +6556,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5326,6 +6581,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the instance profile to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -5334,6 +6590,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to remove. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listInstancePorfileRoles,
           },
         },
         {
@@ -5342,6 +6599,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5365,6 +6623,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the group to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -5373,6 +6632,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user to remove. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsersInGroup,
           },
         },
         {
@@ -5381,6 +6641,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5405,6 +6666,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the service-specific credential. If this value is not specified, then the operation assumes the user whose credentials are used to call the operation. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -5413,6 +6675,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listServiceSpecificCredentialsForUser,
           },
         },
         {
@@ -5421,6 +6684,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5445,6 +6709,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose MFA device you want to resynchronize. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -5453,6 +6718,7 @@ export const completionSpec: Fig.Spec = {
             "Serial number that uniquely identifies the MFA device. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -5493,6 +6759,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5517,6 +6784,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM policy whose default version you want to set. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -5525,6 +6793,7 @@ export const completionSpec: Fig.Spec = {
             "The version of the policy to set as the default (operative) version. For more information about managed policy versions, see Versioning for managed policies in the IAM User Guide.",
           args: {
             name: "string",
+            generators: generators.listVersionsForPolicy,
           },
         },
         {
@@ -5533,6 +6802,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5565,6 +6835,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5589,6 +6860,8 @@ export const completionSpec: Fig.Spec = {
             'A list of policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. Do not include any resource-based policies in this parameter. Any resource-based policy must be submitted with the ResourcePolicy parameter. The policies cannot be "scope-down" policies, such as you could include in a call to GetFederationToken or one of the AssumeRole API operations. In other words, do not use policies designed to restrict what a user can do while using the temporary credentials. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)',
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -5597,6 +6870,8 @@ export const completionSpec: Fig.Spec = {
             "The IAM permissions boundary policy to simulate. The permissions boundary sets the maximum permissions that an IAM entity can have. You can input only one permissions boundary when you pass a policy to this operation. For more information about permissions boundaries, see Permissions boundaries for IAM entities in the IAM User Guide. The policy input is specified as a string that contains the complete, valid JSON text of a permissions boundary policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -5621,6 +6896,7 @@ export const completionSpec: Fig.Spec = {
             "A resource-based policy to include in the simulation provided as a string. Each resource in the simulation is treated as if it had this policy attached. You can include only one resource-based policy in a simulation. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5629,6 +6905,7 @@ export const completionSpec: Fig.Spec = {
             "An ARN representing the AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn. The ARN for an account uses the following syntax: arn:aws:iam::AWS-account-ID:root. For example, to represent the account with the 112233445566 ID, use the following ARN: arn:aws:iam::112233445566-ID:root.",
           args: {
             name: "string",
+            generators: generators.getAccountArn,
           },
         },
         {
@@ -5637,6 +6914,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM user that you want to use as the simulated caller of the API operations. CallerArn is required if you include a ResourcePolicy so that the policy's Principal element has a value to use in evaluating the policy. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.",
           args: {
             name: "string",
+            generators: generators.listUserArns,
           },
         },
         {
@@ -5677,6 +6955,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5717,6 +6996,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of a user, group, or role whose policies you want to include in the simulation. If you specify a user, group, or role, the simulation includes all policies that are associated with that entity. If you specify a user, the simulation also includes all policies that are attached to any groups the user belongs to. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listIdentityArns,
           },
         },
         {
@@ -5725,6 +7005,8 @@ export const completionSpec: Fig.Spec = {
             "An optional list of additional policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -5733,6 +7015,8 @@ export const completionSpec: Fig.Spec = {
             "The IAM permissions boundary policy to simulate. The permissions boundary sets the maximum permissions that the entity can have. You can input only one permissions boundary when you pass a policy to this operation. An IAM entity can only have one permissions boundary in effect at a time. For example, if a permissions boundary is attached to an entity and you pass in a different permissions boundary policy using this parameter, then the new permissions boundary policy is used for the simulation. For more information about permissions boundaries, see Permissions boundaries for IAM entities in the IAM User Guide. The policy input is specified as a string containing the complete, valid JSON text of a permissions boundary policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listFiles,
           },
         },
         {
@@ -5757,6 +7041,7 @@ export const completionSpec: Fig.Spec = {
             "A resource-based policy to include in the simulation provided as a string. Each resource in the simulation is treated as if it had this policy attached. You can include only one resource-based policy in a simulation. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5765,6 +7050,7 @@ export const completionSpec: Fig.Spec = {
             "An AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN. Examples of resource ARNs include an S3 bucket or object. If ResourceOwner is specified, it is also used as the account owner of any ResourcePolicy included in the simulation. If the ResourceOwner parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in CallerArn. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user CallerArn.",
           args: {
             name: "string",
+            generators: generators.getAccountArn,
           },
         },
         {
@@ -5773,6 +7059,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM user that you want to specify as the simulated caller of the API operations. If you do not specify a CallerArn, it defaults to the ARN of the user that you specify in PolicySourceArn, if you specified a user. If you include both a PolicySourceArn (for example, arn:aws:iam::123456789012:user/David) and a CallerArn (for example, arn:aws:iam::123456789012:user/Bob), the result is that you simulate calling the API operations as Bob, as if Bob had David's policies. You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.  CallerArn is required if you include a ResourcePolicy and the PolicySourceArn is not the ARN for an IAM user. This is required so that the resource-based policy's Principal element has a value to use in evaluating the policy. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listUserArns,
           },
         },
         {
@@ -5813,6 +7100,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5853,6 +7141,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM instance profile to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -5861,6 +7150,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM instance profile. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5869,6 +7160,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5893,6 +7185,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the IAM virtual MFA device to which you want to add tags. For virtual MFA devices, the serial number is the same as the ARN. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -5901,6 +7194,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM virtual MFA device. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5909,6 +7204,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5933,6 +7229,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the OIDC identity provider in IAM to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -5941,6 +7238,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the OIDC identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5949,6 +7248,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -5973,6 +7273,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM customer managed policy to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -5981,6 +7282,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM customer managed policy. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -5989,6 +7292,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6013,6 +7317,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM role to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -6021,6 +7326,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM role. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6029,6 +7336,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6053,6 +7361,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the SAML identity provider in IAM to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -6061,6 +7370,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the SAML identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6069,6 +7380,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6093,6 +7405,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM server certificate to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -6101,6 +7414,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM server certificate. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6109,6 +7424,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6133,6 +7449,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user to which you want to add tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -6141,6 +7458,8 @@ export const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM user. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -6149,6 +7468,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6173,6 +7493,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM instance profile from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listInstanceProfiles,
           },
         },
         {
@@ -6181,6 +7502,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile.",
           args: {
             name: "list",
+            generators: generators.listInstanceProfileTags,
           },
         },
         {
@@ -6189,6 +7511,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6213,6 +7536,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the IAM virtual MFA device from which you want to remove tags. For virtual MFA devices, the serial number is the same as the ARN. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listMfaDevices,
           },
         },
         {
@@ -6221,6 +7545,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified instance profile.",
           args: {
             name: "list",
+            generators: generators.listMfaDeviceTags,
           },
         },
         {
@@ -6229,6 +7554,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6253,6 +7579,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the OIDC provider in IAM from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -6261,6 +7588,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified OIDC provider.",
           args: {
             name: "list",
+            generators: generators.listOpenIdProviderTags,
           },
         },
         {
@@ -6269,6 +7597,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6293,6 +7622,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the IAM customer managed policy from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listIamPoliciesArn,
           },
         },
         {
@@ -6301,6 +7631,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified policy.",
           args: {
             name: "list",
+            generators: generators.listIamPolicyTags,
           },
         },
         {
@@ -6309,6 +7640,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6333,6 +7665,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM role from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -6341,6 +7674,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified role.",
           args: {
             name: "list",
+            generators: generators.listRoleTags,
           },
         },
         {
@@ -6349,6 +7683,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6373,6 +7708,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the SAML identity provider in IAM from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -6381,6 +7717,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified SAML identity provider.",
           args: {
             name: "list",
+            generators: generators.listSamlProviderTags,
           },
         },
         {
@@ -6389,6 +7726,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6413,6 +7751,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM server certificate from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -6421,6 +7760,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified IAM server certificate.",
           args: {
             name: "list",
+            generators: generators.listServerCertsKeys,
           },
         },
         {
@@ -6429,6 +7769,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6453,6 +7794,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user from which you want to remove tags. This parameter accepts (through its regex pattern) a string of characters that consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: =,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -6461,6 +7803,7 @@ export const completionSpec: Fig.Spec = {
             "A list of key names as a simple array of strings. The tags with matching keys are removed from the specified user.",
           args: {
             name: "list",
+            generators: generators.listUserTags,
           },
         },
         {
@@ -6469,6 +7812,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6493,6 +7837,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose key you want to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -6501,6 +7846,7 @@ export const completionSpec: Fig.Spec = {
             "The access key ID of the secret access key you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listAcessKeyIds,
           },
         },
         {
@@ -6509,6 +7855,7 @@ export const completionSpec: Fig.Spec = {
             "The status you want to assign to the secret access key. Active means that the key can be used for programmatic calls to AWS, while Inactive means that the key cannot be used.",
           args: {
             name: "string",
+            suggestions: ["Active", "Inactive"],
           },
         },
         {
@@ -6517,6 +7864,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6625,6 +7973,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6649,6 +7998,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the role to update with the new policy. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -6657,6 +8007,7 @@ export const completionSpec: Fig.Spec = {
             "The policy that grants an entity permission to assume the role. You must provide policies in JSON format in IAM. However, for AWS CloudFormation templates formatted in YAML, you can provide the policy in JSON or YAML format. AWS CloudFormation always converts a YAML policy to JSON format before submitting it to IAM. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6665,6 +8016,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6689,6 +8041,7 @@ export const completionSpec: Fig.Spec = {
             "Name of the IAM group to update. If you're changing the name of the group, this is the original name. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listGroups,
           },
         },
         {
@@ -6713,6 +8066,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6737,6 +8091,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user whose password you want to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -6763,6 +8118,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6787,6 +8143,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the IAM OIDC provider resource object for which you want to update the thumbprint. You can get a list of OIDC provider ARNs by using the ListOpenIDConnectProviders operation. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listOpenIdProviders,
           },
         },
         {
@@ -6795,6 +8152,7 @@ export const completionSpec: Fig.Spec = {
             "A list of certificate thumbprints that are associated with the specified IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.",
           args: {
             name: "list",
+            generators: generators.listOpenIdThumbprintsForProvider,
           },
         },
         {
@@ -6803,6 +8161,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6826,6 +8185,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the role that you want to modify.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -6842,6 +8202,9 @@ export const completionSpec: Fig.Spec = {
             "The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default maximum of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the AWS CLI or API can use the DurationSeconds API parameter or the duration-seconds CLI parameter to request a longer session. The MaxSessionDuration setting determines the maximum duration that can be requested using the DurationSeconds parameter. If users don't specify a value for the DurationSeconds parameter, their security credentials are valid for one hour by default. This applies when you use the AssumeRole* API operations or the assume-role* CLI operations but does not apply when you use those operations to create a console URL. For more information, see Using IAM roles in the IAM User Guide.",
           args: {
             name: "integer",
+            suggestions: Array.from({ length: 13 - 1 }, (v, k) =>
+              String(k + 1)
+            ),
           },
         },
         {
@@ -6850,6 +8213,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6873,6 +8237,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the role that you want to modify.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -6889,6 +8254,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6913,6 +8279,7 @@ export const completionSpec: Fig.Spec = {
             "An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6921,6 +8288,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the SAML provider to update. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
           args: {
             name: "string",
+            generators: generators.listSamlProviders,
           },
         },
         {
@@ -6929,6 +8297,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -6953,6 +8322,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the SSH public key. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -6961,6 +8331,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier for the SSH public key. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listSSHPublicKeysForUser,
           },
         },
         {
@@ -6969,6 +8340,7 @@ export const completionSpec: Fig.Spec = {
             "The status to assign to the SSH public key. Active means that the key can be used for authentication with an AWS CodeCommit repository. Inactive means that the key cannot be used.",
           args: {
             name: "string",
+            suggestions: ["Active", "Inactive"],
           },
         },
         {
@@ -6977,6 +8349,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7001,6 +8374,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the server certificate that you want to update. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listServerCerts,
           },
         },
         {
@@ -7025,6 +8399,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7049,6 +8424,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user associated with the service-specific credential. If you do not specify this value, then the operation assumes the user whose credentials are used to call the operation. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -7057,6 +8433,7 @@ export const completionSpec: Fig.Spec = {
             "The unique identifier of the service-specific credential. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listServiceSpecificCredentialsForUser,
           },
         },
         {
@@ -7065,6 +8442,7 @@ export const completionSpec: Fig.Spec = {
             "The status to be assigned to the service-specific credential.",
           args: {
             name: "string",
+            suggestions: ["Active", "Inactive"],
           },
         },
         {
@@ -7073,6 +8451,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7097,6 +8476,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user the signing certificate belongs to. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -7105,6 +8485,7 @@ export const completionSpec: Fig.Spec = {
             "The ID of the signing certificate you want to update. This parameter allows (through its regex pattern) a string of characters that can consist of any upper or lowercased letter or digit.",
           args: {
             name: "string",
+            generators: generators.listSigningCertificatesForUser,
           },
         },
         {
@@ -7113,6 +8494,7 @@ export const completionSpec: Fig.Spec = {
             "The status you want to assign to the certificate. Active means that the certificate can be used for programmatic calls to AWS Inactive means that the certificate cannot be used.",
           args: {
             name: "string",
+            suggestions: ["Active", "Inactive"],
           },
         },
         {
@@ -7121,6 +8503,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7145,6 +8528,7 @@ export const completionSpec: Fig.Spec = {
             "Name of the user to update. If you're changing the name of the user, this is the original user name. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -7169,6 +8553,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7193,6 +8578,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the IAM user to associate the SSH public key with. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -7201,6 +8587,7 @@ export const completionSpec: Fig.Spec = {
             "The SSH public key. The public key must be encoded in ssh-rsa format or PEM format. The minimum bit-length of the public key is 2048 bits. For example, you can generate a 2048-bit key, and the resulting PEM file is 1679 bytes long. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7209,6 +8596,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7233,6 +8621,7 @@ export const completionSpec: Fig.Spec = {
             "The path for the server certificate. For more information about paths, see IAM identifiers in the IAM User Guide. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its regex pattern) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (\\u0021) through the DEL character (\\u007F), including most punctuation characters, digits, and upper and lowercased letters.   If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the path parameter. The path must begin with /cloudfront and must include a trailing slash (for example, /cloudfront/test/).",
           args: {
             name: "string",
+            description: "Default path: /",
           },
         },
         {
@@ -7249,6 +8638,7 @@ export const completionSpec: Fig.Spec = {
             "The contents of the public key certificate in PEM-encoded format. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7257,6 +8647,7 @@ export const completionSpec: Fig.Spec = {
             "The contents of the private key in PEM-encoded format. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7265,6 +8656,7 @@ export const completionSpec: Fig.Spec = {
             "The contents of the certificate chain. This is typically a concatenation of the PEM-encoded public key certificates of the chain. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7273,6 +8665,8 @@ export const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string...",
           },
         },
         {
@@ -7281,6 +8675,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7305,6 +8700,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the user the signing certificate is for. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
           args: {
             name: "string",
+            generators: generators.listUsers,
           },
         },
         {
@@ -7313,6 +8709,7 @@ export const completionSpec: Fig.Spec = {
             "The contents of the signing certificate. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7321,6 +8718,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -7350,6 +8748,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the instance profile to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
               args: {
                 name: "string",
+                generators: generators.listInstanceProfiles,
               },
             },
             {
@@ -7358,6 +8757,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -7382,6 +8782,7 @@ export const completionSpec: Fig.Spec = {
                 "The Amazon Resource Name (ARN) of the managed policy that you want information about. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference.",
               args: {
                 name: "string",
+                generators: generators.listIamPoliciesArn,
               },
             },
             {
@@ -7390,6 +8791,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -7414,6 +8816,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the IAM role to get information about. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
               args: {
                 name: "string",
+                generators: generators.listRoles,
               },
             },
             {
@@ -7422,6 +8825,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -7446,6 +8850,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the user to get information about. This parameter is optional. If it is not included, it defaults to the user making the request. This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-",
               args: {
                 name: "string",
+                generators: generators.listUsers,
               },
             },
             {
@@ -7454,6 +8859,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
