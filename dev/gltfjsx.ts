@@ -3,6 +3,7 @@ export const completion: Fig.Spec = {
   description: "GLTF to JSX converter",
   args: {
     name: "file",
+    template: "filepaths",
   },
   options: [
     {
@@ -40,6 +41,7 @@ export const completion: Fig.Spec = {
       description: "Draco binary path",
       args: {
         name: "path",
+        template: "filepaths",
       },
     },
     {
@@ -47,6 +49,7 @@ export const completion: Fig.Spec = {
       description: "Sets directory from which .gltf file is served",
       args: {
         name: "root",
+        template: "folders",
       },
     },
     {
