@@ -147,22 +147,18 @@ export const completion: Fig.Spec = {
           description:
             "maximum # of files to delete, or -1 to disable (default 256)",
           insertValue: "--maxDeletes {cursor}",
-          args: [
-            {
-              name: "int",
-            },
-          ],
+          args: {
+            name: "int",
+          },
         },
         {
           name: ["--target"],
           description:
             "target deployment from deployments section in config file; defaults to the first one",
           insertValue: "--target {cursor}",
-          args: [
-            {
-              name: "target",
-            },
-          ],
+          args: {
+            name: "target",
+          },
         },
       ],
     },
@@ -192,12 +188,10 @@ export const completion: Fig.Spec = {
               name: ["-f", "--completionfile"],
               description: "autocompletion file, defaults to stdout",
               insertValue: "-f {cursor}",
-              args: [
-                {
-                  name: "file path",
-                  template: "filepaths",
-                },
-              ],
+              args: {
+                name: "file path",
+                template: "filepaths",
+              },
             },
             {
               name: ["-h", "--help"],
@@ -232,22 +226,18 @@ export const completion: Fig.Spec = {
               description:
                 "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
               insertValue: "--highlightStyle=#{cursor}",
-              args: [
-                {
-                  name: "hex_digits",
-                },
-              ],
+              args: {
+                name: "hex_digits",
+              },
             },
             {
               name: ["--linesStyle"],
               description:
                 "style used for line numbers (see https://github.com/alecthomas/chroma)",
               insertValue: "--linesStyle=#{cursor}",
-              args: [
-                {
-                  name: "hex_digits",
-                },
-              ],
+              args: {
+                name: "hex_digits",
+              },
             },
             {
               name: ["--style"],
@@ -309,13 +299,11 @@ export const completion: Fig.Spec = {
             //   name: [">"],
             //   description: "filesystem path to write syntax.css to",
             //   insertValue: "> {cursor}",
-            //   args: [
-            //     {
-            //       name: "filesystem_path",
-            //       description: "filesystem path to write syntax.css to",
-            //       template: "folders",
-            //     }
-            //   ],
+            //   args: {
+            //     name: "filesystem_path",
+            //     description: "filesystem path to write syntax.css to",
+            //     template: "folders",
+            //   },
             // },
           ],
         },
