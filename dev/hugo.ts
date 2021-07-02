@@ -225,7 +225,7 @@ export const completion: Fig.Spec = {
               name: ["--highlightStyle"],
               description:
                 "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
-              insertValue: "--highlightStyle=#{cursor}",
+              insertValue: "--highlightStyle #{cursor}",
               args: {
                 name: "hex_digits",
               },
@@ -234,7 +234,7 @@ export const completion: Fig.Spec = {
               name: ["--linesStyle"],
               description:
                 "style used for line numbers (see https://github.com/alecthomas/chroma)",
-              insertValue: "--linesStyle=#{cursor}",
+              insertValue: "--linesStyle #{cursor}",
               args: {
                 name: "hex_digits",
               },
@@ -243,7 +243,7 @@ export const completion: Fig.Spec = {
               name: ["--style"],
               description:
                 "highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
-              insertValue: "--style={cursor}",
+              insertValue: "--style {cursor}",
               args: {
                 name: "style_name",
                 suggestions: [
