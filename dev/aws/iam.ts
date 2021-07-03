@@ -181,7 +181,13 @@ const awsPrincipals = [
   "xray.amazonaws.com",
 ];
 
-const identityStruct = [
+interface Identity {
+  command: string;
+  parentKey: string;
+  childKey: string;
+}
+
+const identityStruct: Identity[] = [
   { command: "aws iam list-users", parentKey: "Users", childKey: "Arn" },
   { command: "aws iam list-groups", parentKey: "Groups", childKey: "Arn" },
   { command: "aws iam list-roles", parentKey: "Roles", childKey: "Arn" },
@@ -287,7 +293,7 @@ const listCustomGenerator = async (
   option: string,
   parentKey: string,
   childKey = ""
-): Promise<any> => {
+): Promise<Fig.Suggestion[]> => {
   try {
     const idx = context.indexOf(option);
     if (idx < 0) {
@@ -323,7 +329,7 @@ const postPrecessGenerator = (
 const MultiSuggestionsGenerator = async (
   context: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
-  enabled: any[]
+  enabled: Identity[]
 ) => {
   try {
     const list: Fig.Suggestion[][] = [];
