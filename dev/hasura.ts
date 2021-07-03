@@ -51,7 +51,10 @@ const adminSecretOption: Fig.Option = {
 const certificateAuthorityOption: Fig.Option = {
   name: "--certificate-authority",
   description: "Path to a cert file for the certificate authority",
-  args: stringArg,
+  args: {
+    name: "string",
+    template: "filepaths",
+  },
 };
 
 const endpointOption: Fig.Option = {
@@ -234,7 +237,7 @@ export const completion: Fig.Spec = {
             "Directory where static assets mentioned in the console html template can be served from",
           args: {
             name: "string",
-            template: "filepaths",
+            template: "folders",
           },
         },
         {
@@ -501,6 +504,7 @@ export const completion: Fig.Spec = {
             {
               name: "--force",
               description: "Executes operation without any confirmation",
+              isDangerous: true,
             },
             {
               name: "--version",
@@ -644,6 +648,7 @@ export const completion: Fig.Spec = {
             {
               name: "--force",
               description: "Do not ask for confirmation",
+              isDangerous: true,
             },
             {
               name: "--move-state-only",
