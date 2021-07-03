@@ -178,7 +178,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       });
 
       return items.map((item) => {
-        const file = item.file;
+        const file = item.file.replace(/^"|"$/g, "");
         let ext = "";
 
         try {
