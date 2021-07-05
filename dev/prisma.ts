@@ -1,18 +1,24 @@
-const commonOptions: Fig.Option[] = [
-  {
-    name: ["-h", "--help"],
-    description: "Display this help message",
+const commonOptions: Fig.Option = {
+  name: ["-h", "--help"],
+  description: "Display this help message",
+};
+const schemaOptions: Fig.Option = {
+  name: "--schema",
+  description: "Custom path to your Prisma schema",
+  args: {
+    name: "Schema path",
+    template: "filepaths",
+    isOptional: true,
   },
-];
-const schemaOptions: Fig.Option[] = [
+};
+const skipOptions: Fig.Option[] = [
   {
-    name: "--schema",
-    description: "Custom path to your Prisma schema",
-    args: {
-      name: "Schema path",
-      template: "filepaths",
-      isOptional: true,
-    },
+    name: "--skip-seed",
+    description: "Skip triggering seed",
+  },
+  {
+    name: "--skip-generate",
+    description: "Skip triggering generators (e.g. Prisma Client)",
   },
 ];
 
@@ -26,15 +32,15 @@ export const completionSpec: Fig.Spec = {
     {
       name: "init",
       description: "Setup Prisma for your app",
-      subcommands: [
-        ...commonOptions,
+      options: [
+        commonOptions,
         {
           name: "--datasource-provider",
           description: "Define the datasource provider to use",
           args: {
             description: "Choose provider",
             suggestions: ["PostgreSQL", "MySQL", "SQLServer", "SQLite"],
-            default: "postgres",
+            default: "PostgreSQL",
           },
         },
         {
@@ -52,26 +58,27 @@ export const completionSpec: Fig.Spec = {
       name: "introspect",
       description: "Get the datamodel of your database",
       options: [
-        ...commonOptions,
+        commonOptions,
         {
           name: "--force",
           description: "Ignore current Prisma schema file",
+          isDangerous: true,
         },
         {
           name: "--print",
           description: "Print the introspected Prisma schema to stdout",
         },
-        ...schemaOptions,
+        schemaOptions,
       ],
     },
     {
       name: "generate",
       description: "Generate artifacts",
       options: [
-        ...commonOptions,
-        ...schemaOptions,
+        commonOptions,
+        schemaOptions,
         {
-          name: ["--watch"],
+          name: "--watch",
           description: "Watch the Prisma schema and rerun after a change",
         },
       ],
@@ -80,11 +87,14 @@ export const completionSpec: Fig.Spec = {
       name: "studio",
       description: "Open Prisma Studio",
       options: [
-        ...commonOptions,
-        ...schemaOptions,
+        commonOptions,
+        schemaOptions,
         {
           name: ["-p", "--port"],
           description: "Port to start Studio on",
+          args: {
+            name: "port",
+          },
         },
         {
           name: ["-b", "--browser"],
@@ -97,6 +107,9 @@ export const completionSpec: Fig.Spec = {
         {
           name: ["-n", "--hostname"],
           description: "Hostname to bind the Express server to",
+          args: {
+            name: "port",
+          },
         },
       ],
     },
@@ -104,7 +117,7 @@ export const completionSpec: Fig.Spec = {
       name: "format",
       description: "Format your schema",
       isDangerous: true,
-      options: [...commonOptions, ...schemaOptions],
+      options: [commonOptions, schemaOptions],
     },
     {
       name: "migrate",
@@ -116,21 +129,13 @@ export const completionSpec: Fig.Spec = {
           description:
             "The migrate dev command updates your database using migrations during development",
           options: [
-            ...commonOptions,
-            ...schemaOptions,
+            commonOptions,
+            schemaOptions,
+            ...skipOptions,
             {
               name: "--create-only",
               description:
                 "Create a new migration but do not apply it. The migration will be empty if there are no changes in Prisma schema",
-            },
-            {
-              name: "--skip-seed",
-              description: "Skip triggering seed",
-            },
-            {
-              name: "--skip-generate",
-              description:
-                "Skip triggering generators (for example, Prisma Client)",
             },
             {
               name: ["-n", "--name"],
@@ -149,19 +154,13 @@ export const completionSpec: Fig.Spec = {
           description:
             "The migrate dev command updates your database using migrations during development",
           options: [
-            ...commonOptions,
-            ...schemaOptions,
-            {
-              name: "--skip-seed",
-              description: "Skip triggering seed",
-            },
-            {
-              name: "--skip-generate",
-              description: "Skip triggering generators (e.g. Prisma Client)",
-            },
+            commonOptions,
+            schemaOptions,
+            ...skipOptions,
             {
               name: ["-f", "--force"],
               description: "Skip the confirmation prompt",
+              isDangerous: true,
             },
           ],
         },
@@ -170,22 +169,21 @@ export const completionSpec: Fig.Spec = {
           icon: "🚀",
           description:
             "Apply pending migrations to update the database schema in production/staging",
-          options: [...commonOptions, ...schemaOptions],
+          options: [commonOptions, schemaOptions],
         },
         {
           name: "resolve",
           description:
             "Resolve issues with database migrations in deployment databases",
           options: [
-            ...commonOptions,
-            ...schemaOptions,
+            commonOptions,
+            schemaOptions,
             {
               name: "--applied",
               description: " Record a specific migration as applied",
               args: {
                 name: "migration file path",
                 template: "filepaths",
-                isOptional: false,
               },
             },
             {
@@ -194,7 +192,6 @@ export const completionSpec: Fig.Spec = {
               args: {
                 name: "migration file path",
                 template: "filepaths",
-                isOptional: false,
               },
             },
           ],
@@ -202,7 +199,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "status",
           description: "Check the status of your database migrations",
-          options: [...commonOptions, ...schemaOptions],
+          options: [commonOptions, schemaOptions],
         },
       ],
     },
@@ -213,11 +210,12 @@ export const completionSpec: Fig.Spec = {
         {
           name: "pull",
           options: [
-            ...commonOptions,
-            ...schemaOptions,
+            commonOptions,
+            schemaOptions,
             {
               name: "--force",
               description: "Ignore current Prisma schema file",
+              isDangerous: true,
             },
             {
               name: "--print",
@@ -230,8 +228,8 @@ export const completionSpec: Fig.Spec = {
           description:
             "This command pushes the state of your Prisma schema file to the database without using migrations",
           options: [
-            ...commonOptions,
-            ...schemaOptions,
+            commonOptions,
+            schemaOptions,
             {
               name: "--skip-generate",
               description: "Skip generation of artifacts such as Prisma Client",
@@ -240,11 +238,13 @@ export const completionSpec: Fig.Spec = {
               name: "--force-reset",
               description:
                 "Resets the database and then updates the schema - useful if you need to start from scratch due to unexecutable migrations.",
+              isDangerous: true,
             },
             {
               name: "--accept-data-loss",
               description:
                 "Ignore data loss warnings. This option is required if as a result of making the schema changes, data may be lost.",
+              isDangerous: true,
             },
           ],
         },
@@ -252,7 +252,7 @@ export const completionSpec: Fig.Spec = {
           name: "seed",
           isDangerous: true,
           description: "Seed your database",
-          options: [...commonOptions, ...schemaOptions],
+          options: [commonOptions, schemaOptions],
         },
       ],
     },
