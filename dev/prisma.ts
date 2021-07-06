@@ -8,7 +8,6 @@ const schemaOptions: Fig.Option = {
   args: {
     name: "Schema path",
     template: "filepaths",
-    isOptional: true,
   },
 };
 const skipOptions: Fig.Option[] = [
