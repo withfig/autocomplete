@@ -22,6 +22,12 @@ export const completionSpec: Fig.Spec = {
       icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
       loadSpec: "gltfjsx",
     },
+    {
+      name: "prisma",
+      icon:
+        "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+      loadSpec: "prisma",
+    },
   ],
   options: [
     {
