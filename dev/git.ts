@@ -200,6 +200,53 @@ const gitGenerators: Record<string, Fig.Generator> = {
       });
     },
   },
+
+  // Wildcard
+  wildcard_files_for_staging: {
+    script: "git status --short",
+    postProcess: (out) => {
+      const output = filterMessages(out);
+      if (output.startsWith("fatal:")) {
+        return [];
+      }
+
+      const items = output.split("\n").map((file) => {
+        file = file.slice(0, file.lastIndexOf("/") + 1);
+        file = file.trim();
+        const arr = file.split(" ");
+        return arr.slice(1).join(" ").trim();
+      });
+
+      if (items.length < 2) {
+        return [];
+      }
+
+      var dirArr = [];
+      var currentDir = items[0];
+      var count = 1;
+      for (var i = 1; i < items.length; i++) {
+        if (items[i].includes(currentDir) && i + 1 !== items.length) {
+          currentDir = items[i];
+          count++;
+        } else if (count >= 2) {
+          dirArr.push(currentDir);
+          currentDir = items[i];
+          count = 1;
+        } else {
+          currentDir = items[i];
+          count = 1;
+        }
+      }
+
+      return dirArr.map((name) => {
+        return {
+          name: name + "*",
+          description: "Wildcard",
+        };
+      });
+    },
+  },
+
   getStagedFiles: {
     script: "git diff --name-only --cached",
     splitOn: "\n",
@@ -1275,7 +1322,10 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
     },
     {
@@ -1297,7 +1347,7 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [gitGenerators.wildcard_files_for_staging],
       },
     },
     {
@@ -1457,7 +1507,10 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
     },
     {
@@ -3425,7 +3478,10 @@ export const completionSpec: Fig.Spec = {
             icon: "fig://icon?type=folder",
           },
         ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
       options: [
         {
