@@ -211,9 +211,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       const items = output.split("\n").map((file) => {
-        file = file.slice(0, file.lastIndexOf("/") + 1);
-        file = file.trim();
-        const arr = file.split(" ");
+        const arr = file
+          .slice(0, file.lastIndexOf("/") + 1)
+          .trim()
+          .split(" ");
         return arr.slice(1).join(" ").trim();
       });
 
@@ -221,21 +222,19 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      var dirArr = [];
-      var currentDir = items[0];
-      var count = 1;
+      const dirArr = [];
+      let currentDir = items[0];
+      let count = 1;
       for (var i = 1; i < items.length; i++) {
         if (items[i].includes(currentDir) && i + 1 !== items.length) {
-          currentDir = items[i];
           count++;
-        } else if (count >= 2) {
-          dirArr.push(currentDir);
-          currentDir = items[i];
-          count = 1;
         } else {
-          currentDir = items[i];
+          if (count >= 2) {
+            dirArr.push(currentDir);
+          }
           count = 1;
         }
+        currentDir = items[i];
       }
 
       return dirArr.map((name) => {
