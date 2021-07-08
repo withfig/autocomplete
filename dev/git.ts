@@ -4657,6 +4657,7 @@ export const completionSpec: Fig.Spec = {
             "The same as --merge option, but changes the way the conflicting hunks are presented",
           args: {
             name: "style",
+            suggestions: ["merge", "diff3"],
           },
         },
         {
