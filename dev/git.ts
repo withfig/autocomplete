@@ -200,6 +200,52 @@ const gitGenerators: Record<string, Fig.Generator> = {
       });
     },
   },
+
+  // Wildcard
+  wildcard_files_for_staging: {
+    script: "git status --short",
+    postProcess: (out) => {
+      const output = filterMessages(out);
+      if (output.startsWith("fatal:")) {
+        return [];
+      }
+
+      const items = output.split("\n").map((file) => {
+        const arr = file
+          .slice(0, file.lastIndexOf("/") + 1)
+          .trim()
+          .split(" ");
+        return arr.slice(1).join(" ").trim();
+      });
+
+      if (items.length < 2) {
+        return [];
+      }
+
+      const dirArr = [];
+      let currentDir = items[0];
+      let count = 1;
+      for (let i = 1; i < items.length; i++) {
+        if (items[i].includes(currentDir) && i + 1 !== items.length) {
+          count++;
+        } else {
+          if (count >= 2) {
+            dirArr.push(currentDir);
+          }
+          count = 1;
+        }
+        currentDir = items[i];
+      }
+
+      return dirArr.map((name) => {
+        return {
+          name: name + "*",
+          description: "Wildcard",
+        };
+      });
+    },
+  },
+
   getStagedFiles: {
     script: "git diff --name-only --cached",
     splitOn: "\n",
@@ -1275,7 +1321,10 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
     },
     {
@@ -1297,7 +1346,7 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [gitGenerators.wildcard_files_for_staging],
       },
     },
     {
@@ -1457,7 +1506,10 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
     },
     {
@@ -3421,7 +3473,10 @@ export const completionSpec: Fig.Spec = {
             icon: "fig://icon?type=folder",
           },
         ],
-        generators: gitGenerators.files_for_staging,
+        generators: [
+          gitGenerators.files_for_staging,
+          gitGenerators.wildcard_files_for_staging,
+        ],
       },
       options: [
         {
