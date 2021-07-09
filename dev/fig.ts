@@ -67,7 +67,7 @@ export const completionSpec: Fig.Spec = {
       name: "source",
       description: "(re)connect fig to the current shell session",
     },
-    { name: "update", description: "update completion specs" },
+    { name: "update", description: "update completion specs and app" },
     {
       name: "settings",
       description: "update preferences",
@@ -115,8 +115,8 @@ export const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: "uninstall",
-      description: "uninstall a completion spec",
+      name: "remove",
+      description: "remove a completion spec",
       args: {
         name: "spec",
         description: "The CLI completion spec to remove",
@@ -182,6 +182,10 @@ export const completionSpec: Fig.Spec = {
     {
       name: "integrations:iterm",
       description: "Install the iTerm tab integration",
+    },
+    {
+      name: "set:path",
+      description: "Sync your $PATH variable with Fig",
     },
   ],
 
