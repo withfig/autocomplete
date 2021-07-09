@@ -4600,17 +4600,31 @@ export const completionSpec: Fig.Spec = {
           name: ["-c", "--create"],
           description:
             "Create a new branch named <new-branch> starting at <start-point> before switching to the branch",
-          args: {
-            name: "new branch",
-          },
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
         },
         {
           name: ["-C", "--force-create"],
           description:
             "Similar to --create except that if <new-branch> already exists, it will be reset to <start-point>",
-          args: {
-            name: "new branch",
-          },
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
         },
         {
           name: ["-d", "--detach"],
@@ -4618,18 +4632,24 @@ export const completionSpec: Fig.Spec = {
             "Switch to a commit for inspection and discardable experiments",
         },
         {
-          name: ["--guess", "--no-guess"],
+          name: ["--guess"],
           description:
             "If <branch> is not found but there does exist a tracking branch in exactly one remote (call it <remote>) with a matching name",
         },
         {
+          name: ["--no-guess"],
+          description: "Disable --guess",
+        },
+        {
           name: ["-f", "--force"],
           description: "An alias for --discard-changes",
+          isDangerous: true,
         },
         {
           name: "--discard-changes",
           description:
             "Proceed even if the index or the working tree differs from HEAD. Both the index and working tree are restored to match the switching target",
+          isDangerous: true,
         },
         {
           name: ["-m", "--merge"],
