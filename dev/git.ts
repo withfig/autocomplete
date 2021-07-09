@@ -225,7 +225,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       const dirArr = [];
       let currentDir = items[0];
       let count = 1;
-      for (var i = 1; i < items.length; i++) {
+      for (let i = 1; i < items.length; i++) {
         if (items[i].includes(currentDir) && i + 1 !== items.length) {
           count++;
         } else {
