@@ -1248,10 +1248,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
 ].map((subcommand) => {
   return {
     ...subcommand,
-    options: {
-      ...subcommand.options,
-      ...ALWAYS_AVAILABLE_OPTIONS,
-    },
+    options: [...subcommand.options, ...ALWAYS_AVAILABLE_OPTIONS],
   };
 });
 
