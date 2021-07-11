@@ -37,7 +37,7 @@ const bazelBuildFiles: Fig.Generator = {
 export const completionSpec: Fig.Spec = {
   name: "bazel",
   description: "Bazel the build system!",
-  options: [
+  subcommands: [
     {
       name: "run",
       description: "Runs the specified target.",
