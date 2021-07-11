@@ -93,7 +93,8 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
       {
         name: ["--noinput", "--no-input"],
-        description: "Tells Django to NOT prompt the user for input of any",
+        description:
+          "Tells Django to NOT prompt the user for input of any kind.",
       },
       {
         name: "--database",
@@ -122,18 +123,21 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     options: [
       {
         name: ["--noinput", "--no-input"],
-        description: "Tells Django to NOT prompt the user for input of any",
+        description:
+          "Tells Django to NOT prompt the user for input of any kind.",
       },
       {
         name: "--database",
-        description: "Nominates the database to use. Defaults to the",
+        description:
+          'Nominates the database to use. Defaults to the "default" database.',
         args: {
           name: "DATABASE",
         },
       },
       {
         name: "--include-stale-apps",
-        description: "Deletes stale content types including ones from",
+        description:
+          "Deletes stale content types including ones from previously installed apps that have been removed from INSTALLED_APPS.",
       },
       {
         name: "--skip-checks",
@@ -162,7 +166,8 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
       {
         name: "--fail-level",
-        description: "Message level that will cause the command to exit with",
+        description:
+          "Message level that will cause the command to exit with a non-zero status. Default is ERROR.",
         args: {
           name: "{CRITICAL,ERROR,WARNING,INFO,DEBUG}",
           suggestions: ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"],
@@ -191,14 +196,16 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     options: [
       {
         name: ["--locale", "-l"],
-        description: "Locale(s) to process (e.g. de_AT). Default is to",
+        description:
+          "Locale(s) to process (e.g. de_AT). Default is to process all. Can be used multiple times.",
         args: {
           name: "LOCALE",
         },
       },
       {
         name: ["--exclude", "-x"],
-        description: "Locales to exclude. Default is none. Can be used",
+        description:
+          "Locales to exclude. Default is none. Can be used multiple times.",
         args: {
           name: "EXCLUDE",
         },
@@ -209,7 +216,8 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
       {
         name: ["--ignore", "-i"],
-        description: "Ignore directories matching this glob-style pattern.",
+        description:
+          "Ignore directories matching this glob-style pattern. Use multiple times to ignore more.",
         args: {
           name: "PATTERN",
         },
@@ -224,14 +232,16 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     options: [
       {
         name: "--database",
-        description: "Nominates a database onto which the cache tables will",
+        description:
+          'Nominates a database onto which the cache tables will be installed. Defaults to the "default" database.',
         args: {
           name: "DATABASE",
         },
       },
       {
         name: "--dry-run",
-        description: "Does not create the table, just prints the SQL that",
+        description:
+          "Does not create the table, just prints the SQL that would be run.",
       },
     ],
     description: "Creates the tables needed to use the SQL cache backend.",
