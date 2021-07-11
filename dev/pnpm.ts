@@ -663,6 +663,201 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
   },
 ];
 
+const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
+  {
+    name: "publish",
+    description: `Publishes a package to the registry.
+    \nWhen publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
+    \nYou may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
+    \nWhen running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
+    options: [
+      {
+        name: "--tag",
+        description: `Publishes the package with the given tag. By default, pnpm publish updates the latest tag.`,
+        args: [{ name: "<tag>" }],
+      },
+      {
+        name: "--access",
+        description: `Tells the registry whether the published package should be public or restricted.`,
+        args: [{ name: "<public|restricted>" }],
+      },
+      {
+        name: "--force",
+        description: `Try to publish packages even if their current version is already found in the registry`,
+      },
+      {
+        name: "--report-summary",
+        description: `Save the list of published packages to pnpm-publish-summary.json. Useful when some other tooling is used to report the list of published packages.`,
+      },
+      FILTER_OPTION,
+    ],
+  },
+  {
+    name: ["recursive", "m", "multi", "-r"],
+    description: `Runs a pnpm command recursively on all subdirectories in the package or every available workspace.`,
+    options: [
+      {
+        name: "--link-workspace-packages",
+        description: `Link locally available packages in workspaces of a monorepo into node_modules instead of re-downloading them from the registry. This emulates functionality similar to yarn workspaces.
+        \nWhen this is set to deep, local packages can also be linked to subdependencies.
+        \nBe advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
+        args: [{ name: "bool or `deep`" }],
+      },
+      {
+        name: "--workspace-concurrency",
+        description: `Set the maximum number of tasks to run simultaneously. For unlimited concurrency use Infinity`,
+        args: [{ name: "<number>" }],
+      },
+      {
+        name: "--bail",
+        description: `Stops when a task throws an error.`,
+      },
+      {
+        name: "--no-bail",
+        description: `Don't stop when a task throws an error.`,
+      },
+      {
+        name: "--sort",
+        description: `Packages are sorted topologically (dependencies before dependents).`,
+      },
+      {
+        name: "--no-sort",
+        description: `Disable packages sorting`,
+      },
+      {
+        name: "--reverse",
+        description: `The order of packages is reversed.`,
+      },
+      FILTER_OPTION,
+    ],
+  },
+  {
+    name: "server",
+    description: `Manage a store server.`,
+    subcommands: [
+      {
+        name: "start",
+        description:
+          "Starts a server that performs all interactions with the store. Other commands will delegate any store-related tasks to this server.",
+        options: [
+          {
+            name: "--background",
+            description: `Runs the server in the background, similar to daemonizing on UNIX systems.`,
+            args: [{ name: "bool" }],
+          },
+          {
+            name: "--network-concurrency",
+            description: `The maximum number of network requests to process simultaneously.`,
+            args: [{ name: "number" }],
+          },
+          {
+            name: "--protocol",
+            description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
+            args: [{ name: "<auto | tcp | ipc>" }],
+          },
+          {
+            name: "--port",
+            description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
+            args: [{ name: "port number" }],
+          },
+          {
+            name: "--store-dir",
+            description: `The directory to use for the content addressable store.`,
+            args: [{ name: "Path", template: "filepaths" }],
+          },
+          {
+            name: "--lock",
+            description: `Set to make the package store immutable to external processes while the server is running or not.`,
+            args: [{ name: "bool" }],
+          },
+          {
+            name: "--no-lock",
+            description: `Set to make the package store mutable to external processes while the server is running or not.`,
+            args: [{ name: "bool" }],
+          },
+          {
+            name: "--ignore-stop-requests",
+            description: `Prevents you from stopping the server using pnpm server stop.`,
+          },
+          {
+            name: "--ignore-upload-requests",
+            description: `Prevents creating a new side effect cache during install.`,
+          },
+        ],
+      },
+      {
+        name: "stop",
+        description: "Stops the store server.",
+      },
+      {
+        name: "status",
+        description: "Prints information about the running server.",
+      },
+    ],
+  },
+  {
+    name: "store",
+    description: "Managing the package store.",
+    subcommands: [
+      {
+        name: "status",
+        description: `Checks for modified packages in the store.
+          \nReturns exit code 0 if the content of the package is the same as it was at the time of unpacking.`,
+      },
+      {
+        name: "add",
+        description: `Functionally equivalent to pnpm add, 
+          \nexcept this adds new packages to the store directly without modifying any projects or files outside of the store.`,
+      },
+      {
+        name: "prune",
+        description: `Removes orphan packages from the store.
+          \nPruning the store will save disk space, however may slow down future installations involving pruned packages. 
+          \nUltimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
+          \nPlease read the FAQ for more information on unreferenced packages and best practices.
+          \nPlease note that this is prohibited when a store server is running.`,
+      },
+      {
+        name: "path",
+        description: `Returns the path to the active store directory`,
+      },
+    ],
+  },
+];
+
+const subcommands = [
+  ...SUBCOMMANDS_MANAGE_DEPENDENCIES,
+  ...SUBCOMMANDS_REVIEW_DEPS,
+  ...SUBCOMMANDS_RUN_SCRIPTS,
+  ...SUBCOMMANDS_MISC,
+];
+const recursiveSubcommandsNames = [
+  "add",
+  "exec",
+  "install",
+  "list",
+  "outdated",
+  "publish",
+  "rebuild",
+  "remove",
+  "run",
+  "test",
+  "unlink",
+  "update",
+  "why",
+];
+const recursiveSubcommands = subcommands.filter((subcommand) => {
+  if (Array.isArray(subcommand.name)) {
+    return subcommand.name.some((name) =>
+      recursiveSubcommandsNames.includes(name)
+    );
+  }
+  return recursiveSubcommandsNames.includes(subcommand.name);
+});
+
+// RECURSIVE SUBCOMMAND INDEX
+SUBCOMMANDS_MISC[1].subcommands = recursiveSubcommands;
+
 // SPEC
 export const completionSpec: Fig.Spec = {
   name: "pnpm",
@@ -673,9 +868,5 @@ export const completionSpec: Fig.Spec = {
     debounce: true,
     variadic: true,
   },
-  subcommands: [
-    ...SUBCOMMANDS_MANAGE_DEPENDENCIES,
-    ...SUBCOMMANDS_REVIEW_DEPS,
-    ...SUBCOMMANDS_RUN_SCRIPTS,
-  ],
+  subcommands,
 };
