@@ -495,6 +495,174 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   },
 ];
 
+const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
+  {
+    name: "audit",
+    description: `Checks for known security issues with the installed packages.
+      \nIf security issues are found, try to update your dependencies via pnpm update. 
+      \nIf a simple update does not fix all the issues, use overrides to force versions that are not vulnerable. 
+      \nFor instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0. 
+      \nDetails at: https://pnpm.io/cli/audit`,
+    options: [
+      {
+        name: "--audit-level",
+        description: `Only print advisories with severity greater than or equal to <severity>.`,
+        args: [
+          { name: "low" },
+          { name: "moderate" },
+          { name: "high" },
+          { name: "critical" },
+        ],
+      },
+      {
+        name: "--json",
+        description: `Output audit report in JSON format.`,
+      },
+      {
+        name: ["--dev", "-D"],
+        description: `Only audit dev dependencies.`,
+      },
+      {
+        name: ["--prod", "-P"],
+        description: `Only audit production dependencies.`,
+      },
+      {
+        name: "--no-optional",
+        description: `Don't audit optionalDependencies.`,
+      },
+      {
+        name: "--ignore-registry-errors",
+        description: `If the registry responds with a non-200 status code, the process should exit with 0. So the process will fail only if the registry actually successfully responds with found vulnerabilities.`,
+      },
+    ],
+  },
+  {
+    name: ["list", "ls"],
+    description: `This command will output all the versions of packages that are installed, as well as their dependencies, in a tree-structure.
+      \nPositional arguments are name-pattern@version-range identifiers, which will limit the results to only the packages named. For example, pnpm list "babel-*" "eslint-*" semver@5.`,
+    options: [
+      {
+        name: ["--recursive", "-r"],
+        description: `Perform command on every package in subdirectories or on every workspace package, when executed inside a workspace.`,
+      },
+      {
+        name: "--json",
+        description: `Log output in JSON format.`,
+      },
+      {
+        name: "--long",
+        description: `Show extended information.`,
+      },
+      {
+        name: "--parseable",
+        description: `Outputs package directories in a parseable format instead of their tree view.`,
+      },
+      {
+        name: "--global",
+        description: `List packages in the global install directory instead of in the current project.`,
+      },
+      {
+        name: "--depth",
+        description: `Max display depth of the dependency tree.
+          \npnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will list projects only. Useful inside a workspace when used with the -r option.`,
+        args: { name: "number" },
+      },
+      {
+        name: ["--dev", "-D"],
+        description: `Only list dev dependencies.`,
+      },
+      {
+        name: ["--prod", "-P"],
+        description: `Only list production dependencies.`,
+      },
+      {
+        name: "--no-optional",
+        description: `Don't list optionalDependencies.`,
+      },
+      FILTER_OPTION,
+    ],
+  },
+  {
+    name: "outdated",
+    description: `Checks for outdated packages. The check can be limited to a subset of the installed packages by providing arguments (patterns are supported).`,
+    options: [
+      {
+        name: ["--recursive", "-r"],
+        description: `Check for outdated dependencies in every package found in subdirectories, or in every workspace package when executed inside a workspace.`,
+      },
+      {
+        name: "--long",
+        description: `Print details.`,
+      },
+      {
+        name: "--global",
+        description: `List outdated global packages.`,
+      },
+      {
+        name: "--no-table",
+        description: `Prints the outdated dependencies in a list format instead of the default table. Good for small consoles.`,
+      },
+      {
+        name: "--compatible",
+        description: `Prints only versions that satisfy specifications in package.json.`,
+      },
+      {
+        name: ["--dev", "-D"],
+        description: `Only list dev dependencies.`,
+      },
+      {
+        name: ["--prod", "-P"],
+        description: `Only list production dependencies.`,
+      },
+      {
+        name: "--no-optional",
+        description: `Doesn't check optionalDependencies.`,
+      },
+    ],
+  },
+  {
+    name: "why",
+    description: `Shows all packages that depend on the specified package.`,
+    args: {
+      name: "Scripts",
+      generators: searchDependenciesGenerator,
+      debounce: true,
+      variadic: true,
+    },
+    options: [
+      {
+        name: ["--recursive", "-r"],
+        description: `Show the dependency tree for the specified package on every package in subdirectories or on every workspace package when executed inside a workspace.`,
+      },
+      {
+        name: "--json",
+        description: `Log output in JSON format.`,
+      },
+      {
+        name: "--long",
+        description: `Show verbose output.`,
+      },
+      {
+        name: "--parseable",
+        description: `Show parseable output instead of tree view`,
+      },
+      {
+        name: "--global",
+        description: `List packages in the global install directory instead of in the current project.`,
+      },
+      {
+        name: ["--dev", "-D"],
+        description: `Only display the dependency tree for packages in devDependencies.`,
+      },
+      {
+        name: ["--prod", "-P"],
+        description: `Only display the dependency tree for packages in dependencies.`,
+      },
+      FILTER_OPTION,
+    ],
+  },
+];
+
 // SPEC
 export const completionSpec: Fig.Spec = {
   name: "pnpm",
@@ -505,5 +673,9 @@ export const completionSpec: Fig.Spec = {
     debounce: true,
     variadic: true,
   },
-  subcommands: [...SUBCOMMANDS_MANAGE_DEPENDENCIES, ...SUBCOMMANDS_RUN_SCRIPTS],
+  subcommands: [
+    ...SUBCOMMANDS_MANAGE_DEPENDENCIES,
+    ...SUBCOMMANDS_REVIEW_DEPS,
+    ...SUBCOMMANDS_RUN_SCRIPTS,
+  ],
 };
