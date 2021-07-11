@@ -1,6 +1,6 @@
 const DJANGO_ICON_URL = "https://github.com/django.png";
 
-const ALWAYS_AVAILABLE_OPTIONS = [
+const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
   {
     name: ["-h", "--help"],
     description: "show this help message and exit",
@@ -17,6 +17,7 @@ const ALWAYS_AVAILABLE_OPTIONS = [
       "Verbosity level; 0=minimal output, 1=normal output, 2=verbose output, 3=very verbose output",
     args: {
       name: "{0,1,2,3}",
+      suggestions: ["0", "1", "2", "3"],
     },
     priority: 49,
   },
@@ -35,6 +36,7 @@ const ALWAYS_AVAILABLE_OPTIONS = [
       'A directory to add to the Python path, e.g. "/home/djangoprojects/myproject".',
     args: {
       name: "PYTHONPATH",
+      template: "folders",
     },
     priority: 49,
   },
@@ -163,6 +165,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         description: "Message level that will cause the command to exit with",
         args: {
           name: "{CRITICAL,ERROR,WARNING,INFO,DEBUG}",
+          suggestions: ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"],
         },
       },
       {
@@ -263,22 +266,29 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     options: [
       {
         name: "--all",
-        description: "Display all settings, regardless of their value. In",
+        description:
+          'Display all settings, regardless of their value. In "hash" mode, default values are prefixed by "###".',
       },
       {
         name: "--default",
-        description: "The settings module to compare the current settings",
+        description:
+          "The settings module to compare the current settings against. Leave empty to compare against Django's default settings.",
         args: {
           name: "MODULE",
         },
       },
       {
         name: "--output",
-        description: "{hash,unified}",
+        description:
+          "Selects the output format. 'hash' mode displays each changed setting, with the settings that don't appear in the defaults followed by ###. 'unified' mode prefixes the default setting with a minus sign, followed by the changed setting prefixed with a plus sign.",
+        args: {
+          name: "{hash,unified}",
+          suggestions: ["hash", "unified"],
+        },
       },
     ],
     description:
-      "Displays differences between the current settings.py and Django's default",
+      "Displays differences between the current settings.py and Django's default settings.",
   },
   {
     name: "dumpdata",
@@ -466,7 +476,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "fixture",
         description: "Fixture labels.",
-        isOptional: false,
         variadic: true,
       },
     ],
@@ -710,9 +719,10 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: ["-i", "--interface"],
         description:
-          '{ipython,bpython,python}, --interface {ipython,bpython,python} Specify an interactive interpreter interface. Available options: "ipython", "bpython", and "python"',
+          'Specify an interactive interpreter interface. Available options: "ipython", "bpython", and "python"',
         args: {
           name: "{ipython,bpython,python}",
+          suggestions: ["ipython", "bpython", "python"],
         },
       },
       {
@@ -811,12 +821,10 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "app_label",
         description: "App label of the application containing the migration.",
-        isOptional: false,
       },
       {
         name: "migration_name",
         description: "Migration name to print the SQL for.",
-        isOptional: false,
       },
     ],
   },
@@ -844,7 +852,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "app_label",
         description: "One or more application label.",
         variadic: true,
-        isOptional: false,
       },
     ],
   },
@@ -884,7 +891,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "app_label",
         description: "App label of the application to squash migrations for.",
-        isOptional: false,
       },
       {
         name: "start_migration_name",
@@ -896,7 +902,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "migration_name",
         description:
           "Migrations will be squashed until and including this migration.",
-        isOptional: false,
       },
     ],
   },
@@ -934,7 +939,6 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "name",
         description: "Name of the application or project.",
-        isOptional: false,
       },
       {
         name: "directory",
@@ -1013,6 +1017,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         description: "Top level of project for unittest discovery.",
         args: {
           name: "TOP_LEVEL",
+          template: "folders",
         },
       },
       {
@@ -1261,12 +1266,16 @@ export const completion: Fig.Spec = {
       name: "help",
       description: "Usage and help information for django-admin",
       icon: DJANGO_ICON_URL,
-      subcommands: DJANGO_NATIVE_COMMANDS.filter(
-        (command) => command.name != "help"
-      ).map((command) => ({
-        name: command.name,
-        icon: DJANGO_ICON_URL,
-      })),
+      args: {
+        name: "subcommand",
+        suggestions: DJANGO_NATIVE_COMMANDS.filter(
+          (command) => command.name != "help"
+        ).map((command) => ({
+          name: command.name,
+          description: command.description,
+          icon: command.icon,
+        })),
+      },
     },
     ...DJANGO_NATIVE_COMMANDS,
   ],
