@@ -4593,6 +4593,130 @@ export const completionSpec: Fig.Spec = {
       },
     },
     {
+      name: "restore",
+      description: "Restore working tree files",
+      options: [
+        {
+          name: ["-s", "--source"],
+          description:
+            "Restore the working tree files with the content from the given tree",
+          args: {
+            name: "tree",
+          },
+        },
+        {
+          name: ["-p", "--patch"],
+          description:
+            "Interactively select hunks in the difference between the restore source and the restore location",
+        },
+        {
+          name: ["-W", "--worktree"],
+          description: "Use the worktree as the restore location",
+        },
+        {
+          name: ["-S", "--staged"],
+          description: "Use staging as the restore location",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Quiet, suppress feedback messages",
+        },
+        {
+          name: "--progress",
+          description:
+            "Progress status is reported on the standard error stream by default when it is attached to a terminal",
+        },
+        {
+          name: "--no-progress",
+          description: "Disable progress status reporting",
+        },
+        {
+          name: ["-2", "--ours"],
+          description:
+            "When restoring paths from the index, check out stage #2 (ours) for unmerged paths",
+          exclusive: ["--theirs"],
+        },
+        {
+          name: ["-3", "--theirs"],
+          description:
+            "When re out paths from the index, check out stage #3 (theirs) for unmerged paths",
+          exclusive: ["--ours"],
+        },
+        {
+          name: ["-m", "--merge"],
+          description:
+            "When restoring files on the working tree from the index, recreate the conflicted merge in the unmerged paths",
+        },
+        {
+          name: "--conflict",
+          description:
+            "The same as --merge option, but changes the way the conflicting hunks are presented",
+          args: {
+            name: "style",
+            suggestions: ["merge", "diff3"],
+          },
+        },
+        {
+          name: "--ignore-unmerged",
+          description:
+            "When restoring files on the working tree from the index, do not abort the operation if there are unmerged entries",
+          exclusive: ["--ours", "--theirs", "--merge", "--conflict"],
+        },
+        {
+          name: "--ignore-skip-worktree-bits",
+          description:
+            "In sparse checkout mode, by default is to only update entries matched by <pathspec> and sparse patterns in $GIT_DIR/info/sparse-checkout",
+        },
+        {
+          name: "--recurse-submodules",
+          description:
+            "If <pathspec> names an active submodule and the restore location includes the working tree, the submodule will only be updated if this option is given, in which case its working tree will be restored to the commit recorded in the superproject, and any local modifications overwritten",
+          exclusive: ["--no-recurse-submodules"],
+        },
+        {
+          name: "--no-recurse-submodules",
+          description: "Submodules working trees will not be updated",
+          exclusive: ["--recurse-submodules"],
+        },
+        {
+          name: "--overlay",
+          description:
+            "In overlay mode, the command never removes files when restoring",
+          exclusive: ["--no-overlay"],
+        },
+        {
+          name: "--no-overlay",
+          description:
+            "In no-overlay mode, tracked files that do not appear in the --source tree are removed, to make them match <tree> exactly",
+          exclusive: ["--overlay"],
+        },
+        {
+          name: "--pathspec-from-file",
+          description:
+            "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used.",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--pathspec-file-nul",
+          description:
+            "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes)",
+        },
+        {
+          name: "--",
+          description: "Do not interpret any more arguments as options.",
+        },
+      ],
+      args: {
+        name: "pathspec",
+        isOptional: true,
+        variadic: true,
+        generators: gitGenerators.files_for_staging,
+      },
+    },
+    {
       name: "switch",
       description: "Switch branches",
       options: [
