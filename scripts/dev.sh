@@ -61,8 +61,8 @@ DISABLE_DEV_MODE() {
     echo 'Fig dev mode disabled';
     echo
 
-    fig settings autocomplete.developerModeNPM false;
-    fig settings autocomplete.developerModeNPMInvalidateCache false;
+    fig settings autocomplete.developerModeNPM false 2> /dev/null;
+    fig settings autocomplete.developerModeNPMInvalidateCache false 2> /dev/null;
 
     trap - SIGINT SIGTERM SIGQUIT;
     exit 0
@@ -70,4 +70,4 @@ DISABLE_DEV_MODE() {
 
 trap DISABLE_DEV_MODE SIGINT SIGTERM SIGQUIT;
 
-fig settings autocomplete.developerModeNPM true && fig settings autocomplete.devCompletionsFolder "$(pwd)"/specs && ts-node-script scripts/compiler.ts 'INVALIDATE_CACHE' --watch
+fig settings autocomplete.developerModeNPM true 2> /dev/null && fig settings autocomplete.devCompletionsFolder "$(pwd)"/specs 2> /dev/null && ts-node-script scripts/compiler.ts 'INVALIDATE_CACHE' --watch
