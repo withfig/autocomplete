@@ -4,7 +4,7 @@ const includeConvertSubcommandOptions: Fig.Option[] = [
   {
     name: ["-o", "--output"],
     description: "filesystem path to write files to",
-    insertValue: "-o {cursor}",
+    insertValue: "--output {cursor}",
     args: {
       name: "filesystem_path",
       template: "folders",
@@ -187,7 +187,7 @@ export const completion: Fig.Spec = {
             {
               name: ["-f", "--completionfile"],
               description: "autocompletion file, defaults to stdout",
-              insertValue: "-f {cursor}",
+              insertValue: "--completionfile {cursor}",
               args: {
                 name: "file path",
                 template: "filepaths",
