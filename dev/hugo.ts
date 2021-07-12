@@ -449,5 +449,360 @@ export const completion: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "new",
+      description: "Create new content for your site",
+      args: {
+        name: "content-section/file-name.md",
+      },
+      subcommands: [
+        {
+          name: "site",
+          description: "Create a new site (skeleton)",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+          options: [
+            {
+              name: "--force",
+              description: "init inside non-empty directory",
+              isDangerous: true,
+            },
+            {
+              name: ["-f", "--format"],
+              description: 'config & frontmatter format (default "toml")',
+              insertValue: "--format '{cursor}'",
+              args: {
+                name: "format",
+              },
+            },
+            {
+              name: ["-h", "--help"],
+              description: "help for site",
+            },
+          ],
+        },
+        {
+          name: "theme",
+          description: "Create a new theme",
+          args: {
+            name: "name",
+          },
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for theme",
+            },
+          ],
+        },
+      ],
+      options: [
+        {
+          name: ["-b", "--baseURL"],
+          description:
+            "hostname (and path) to the root, e.g. http://spf13.com/",
+          insertValue: "--baseURL {cursor}",
+          args: {
+            name: "hostname_and_path",
+          },
+        },
+        {
+          name: ["-D", "--buildDrafts"],
+          description: "include content marked as draft (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-E", "--buildExpired"],
+          description: "include expired content (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-F", "--buildFuture"],
+          description:
+            "include content with publishdate in the future (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--cacheDir",
+          description:
+            "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+          insertValue: "--cacheDir {cursor}",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--cleanDestinationDir",
+          description:
+            "remove files from destination not found in static directories (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-c", "--contentDir"],
+          description: "filesystem path to content directory",
+          insertValue: "--contentDir {cursor}",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: ["-d", "--destination"],
+          description: "filesystem path to write files to",
+          insertValue: "--destination {cursor}",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--disableKinds",
+          description: "disable different kind of pages (home, RSS etc.)",
+          insertValue: "--disableKinds={cursor}",
+          args: {
+            name: "kind,kind",
+            suggestions: [
+              "page",
+              "home",
+              "section",
+              "taxonomy",
+              "term",
+              "RSS",
+              "sitemap",
+              "robotsTXT",
+              "404",
+            ],
+          },
+        },
+        {
+          name: "--editor",
+          description: "edit new content with this editor, if provided",
+          args: {
+            name: "editor",
+          },
+        },
+        {
+          name: "--enableGitInfo",
+          description:
+            "add Git revision, date and author info to the pages (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--forceSyncStatic",
+          description: "copy all files when static is changed (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--gc",
+          description:
+            "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-h", "--help"],
+          description: "help for new",
+        },
+        {
+          name: "--i18n-warnings",
+          description: "print missing translations (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--ignoreCache",
+          description: "ignores the cache directory (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-k", "--kind"],
+          description: "content type to create",
+          args: [
+            {
+              // TODO: generate list from /archetypes
+              name: "archetype|default",
+            },
+            {
+              name: "content-section/file-name.md",
+            },
+          ],
+        },
+        {
+          name: ["-l", "--layoutDir"],
+          description: "filesystem path to layout directory",
+          args: {
+            name: "path",
+            template: "folders",
+          },
+        },
+        {
+          name: "--minify",
+          description:
+            "minify any supported output format (HTML, XML etc.) (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--noChmod",
+          description: "don't sync permission mode of files (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--noTimes",
+          description: "don't sync modification time of files (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--path-warnings",
+          description:
+            "print warnings on duplicate target paths etc (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--poll",
+          description:
+            "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+          args: {
+            name: "milliseconds",
+          },
+        },
+        {
+          name: "--print-mem",
+          description:
+            "print memory usage to screen at intervals (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--templateMetrics",
+          description:
+            "display metrics about template executions (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: "--templateMetricsHints",
+          description:
+            "calculate some improvement hints when combined with --templateMetrics (default false)",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
+        },
+        {
+          name: ["-t", "--theme"],
+          description: "themes to use (located in /themes/THEMENAME/)",
+          args: { name: "themename" },
+        },
+        {
+          name: "--trace",
+          description: "write trace to file (not useful in general)",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+      ],
+    },
+    {
+      name: "version",
+      description: "Print the version number of Hugo",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "help for version",
+        },
+      ],
+    },
   ],
 };
