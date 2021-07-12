@@ -6,7 +6,7 @@ const includeConvertSubcommandOptions: Fig.Option[] = [
     description: "filesystem path to write files to",
     insertValue: "--output {cursor}",
     args: {
-      name: "filesystem_path",
+      name: "path",
       template: "folders",
     },
   },
@@ -202,6 +202,7 @@ export const completion: Fig.Spec = {
               description:
                 "autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
               args: {
+                name: "string",
                 suggestions: [
                   { name: "bash", description: "default" },
                   { name: "zsh" },
@@ -321,7 +322,7 @@ export const completion: Fig.Spec = {
                 "the directory to write the doc. (default '/tmp/hugodoc/')",
               insertValue: "--dir {cursor}",
               args: {
-                name: "filesystem_path",
+                name: "path",
                 template: "folders",
               },
             },
@@ -341,7 +342,7 @@ export const completion: Fig.Spec = {
                 "the directory to write the man pages. (default 'man/')",
               insertValue: "--dir {cursor}",
               args: {
-                name: "filesystem_path",
+                name: "path",
                 template: "folders",
               },
             },
