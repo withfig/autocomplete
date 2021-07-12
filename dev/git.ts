@@ -170,47 +170,14 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      const items = output.split("\n").map((file) => {
+      const files = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
         return { working: arr[0], file: arr.slice(1).join(" ").trim() };
       });
 
-      return items.map((item) => {
-        const file = item.file;
-        let ext = "";
-
-        try {
-          ext = file.split(".").slice(-1)[0];
-        } catch (e) {}
-
-        if (file.endsWith("/")) {
-          ext = "folder";
-        }
-
-        return {
-          name: file,
-          icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-          description: "Changed file",
-          // If the current file already is already added
-          // we want to lower the priority
-          priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-        };
-      });
-    },
-  },
-
-  // Wildcard
-  wildcard_files_for_staging: {
-    script: "git status --short",
-    postProcess: (out) => {
-      const output = filterMessages(out);
-      if (output.startsWith("fatal:")) {
-        return [];
-      }
-
-      const items = output.split("\n").map((file) => {
+      const paths = output.split("\n").map((file) => {
         const arr = file
           .slice(0, file.lastIndexOf("/") + 1)
           .trim()
@@ -218,31 +185,52 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return arr.slice(1).join(" ").trim();
       });
 
-      if (items.length < 2) {
-        return [];
-      }
-
       const dirArr = [];
-      let currentDir = items[0];
-      let count = 1;
-      for (let i = 1; i < items.length; i++) {
-        if (items[i].includes(currentDir) && i + 1 !== items.length) {
-          count++;
-        } else {
-          if (count >= 2) {
-            dirArr.push(currentDir);
+      if (paths.length >= 2) {
+        let currentDir = paths[0];
+        let count = 1;
+        for (let i = 1; i < paths.length; i++) {
+          if (paths[i].includes(currentDir) && i + 1 !== paths.length) {
+            count++;
+          } else {
+            if (count >= 2) {
+              dirArr.push(currentDir);
+            }
+            count = 1;
           }
-          count = 1;
+          currentDir = paths[i];
         }
-        currentDir = items[i];
       }
 
-      return dirArr.map((name) => {
-        return {
-          name: name + "*",
-          description: "Wildcard",
-        };
-      });
+      return [
+        ...dirArr.map((name) => {
+          return {
+            name: name + "*",
+            description: "Wildcard",
+          };
+        }),
+        ...files.map((item) => {
+          const file = item.file;
+          let ext = "";
+
+          try {
+            ext = file.split(".").slice(-1)[0];
+          } catch (e) {}
+
+          if (file.endsWith("/")) {
+            ext = "folder";
+          }
+
+          return {
+            name: file,
+            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+            description: "Changed file",
+            // If the current file already is already added
+            // we want to lower the priority
+            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+          };
+        }),
+      ];
     },
   },
 
@@ -1321,10 +1309,7 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: [
-          gitGenerators.files_for_staging,
-          gitGenerators.wildcard_files_for_staging,
-        ],
+        generators: gitGenerators.files_for_staging,
       },
     },
     {
@@ -1346,7 +1331,7 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: [gitGenerators.wildcard_files_for_staging],
+        generators: gitGenerators.files_for_staging,
       },
     },
     {
@@ -1506,10 +1491,7 @@ export const completionSpec: Fig.Spec = {
         //         icon: "fig://icon?type=folder"
         //     }
         // ],
-        generators: [
-          gitGenerators.files_for_staging,
-          gitGenerators.wildcard_files_for_staging,
-        ],
+        generators: gitGenerators.files_for_staging,
       },
     },
     {
@@ -3477,10 +3459,7 @@ export const completionSpec: Fig.Spec = {
             icon: "fig://icon?type=folder",
           },
         ],
-        generators: [
-          gitGenerators.files_for_staging,
-          gitGenerators.wildcard_files_for_staging,
-        ],
+        generators: gitGenerators.files_for_staging,
       },
       options: [
         {
