@@ -2,35 +2,41 @@
 
 clear
 
-# Checks if CLI is installed
-if ! command -v Fig --help &> /dev/null; then          
+# Checks if user is on macOS
+if [[ "$OSTYPE" == "darwin"* ]] 1> /dev/null 2> /dev/null; then
 
-    # Checks if Applications directory exists
-    if ([[! -d /Applications ]] && [[! -d ~/Applications]])> /dev/null 2> /dev/null; then 
-        echo
-        echo
-        echo "No applications directory found, couldn't check if Fig was installed"
+    # Checks if CLI is installed
+    if ! command -v fig 1> /dev/null 2> /dev/null; then
 
-    # Checks if Fig App is installed
-    elif ([[ ! -d /Applications/Fig.app ]] && [[ ! -d ~/Applications/Fig.app ]])> /dev/null 2> /dev/null; then
-        echo
-        echo
-        echo "$(tput setaf 7)******"
-        echo "******"
-        echo "$(tput setaf 3)$(tput bold) WARNING: Fig App is not installed"
-        echo "$(tput setaf 7)******"
-        echo "******"
-    
-    # Lets user know that the CLI isn't installed
-    else 
-        echo
-        echo
-        echo "$(tput setaf 7)******"
-        echo "******"
-        echo "$(tput setaf 3)$(tput bold) WARNING: Fig CLI is not installed"
-        echo "$(tput setaf 7)******"
-        echo "******"
+        # Check if Fig app is installed
+        if !([[ -d /Applications/Fig.app ]] || [[ -d ~/Applications/Fig.app ]]) 1> /dev/null 2> /dev/null; then
+            echo
+            echo
+            echo "$(tput setaf 7)******";
+            echo "******";
+            echo "$(tput setaf 3)$(tput bold) WARNING: Fig App is not installed";
+            echo "$(tput setaf 7)******";
+            echo "******";
+        
+        # Lets user know that the CLI isn't installed
+        else 
+            echo
+            echo
+            echo "$(tput setaf 7)******";
+            echo "******";
+            echo "$(tput setaf 3)$(tput bold) WARNING: Fig CLI is not installed";
+            echo "$(tput setaf 7)******";
+            echo "******";
+        fi
     fi
+else
+    echo
+    echo "$(tput setaf 1)******";
+    echo "******";
+    echo "$(tput setaf 1)$(tput bold) WARNING: Looks like you're not on macOS. We're working on linux / windows builds!";
+    echo "$(tput setaf 3)$(tput bold) You can still build and contribute to completion specs, but you will not be able to test them unless you are on a mac or a macosVM";
+    echo "$(tput setaf 1)******"
+    echo "******";
 fi
 
 echo 
