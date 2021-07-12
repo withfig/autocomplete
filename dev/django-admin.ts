@@ -4,12 +4,10 @@ const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
   {
     name: ["-h", "--help"],
     description: "show this help message and exit",
-    priority: 49,
   },
   {
     name: "--version",
     description: "show program's version number and exit",
-    priority: 49,
   },
   {
     name: ["-v", "--verbosity"],
@@ -19,7 +17,6 @@ const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
       name: "{0,1,2,3}",
       suggestions: ["0", "1", "2", "3"],
     },
-    priority: 49,
   },
   {
     name: "--settings",
@@ -28,7 +25,6 @@ const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
     args: {
       name: "SETTINGS",
     },
-    priority: 49,
   },
   {
     name: "--pythonpath",
@@ -38,22 +34,18 @@ const ALWAYS_AVAILABLE_OPTIONS: Fig.Option[] = [
       name: "PYTHONPATH",
       template: "folders",
     },
-    priority: 49,
   },
   {
     name: "--traceback",
     description: "Raise on CommandError exceptions",
-    priority: 49,
   },
   {
     name: "--no-color",
     description: "Don't colorize the command output.",
-    priority: 49,
   },
   {
     name: "--force-color",
     description: "Force colorization of the command output.",
-    priority: 49,
   },
 ];
 
@@ -1263,7 +1255,13 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
 ].map((subcommand) => {
   return {
     ...subcommand,
-    options: [...subcommand.options, ...ALWAYS_AVAILABLE_OPTIONS],
+    options: [
+      ...subcommand.options.map((option) => ({
+        priority: 51,
+        ...option,
+      })),
+      ...ALWAYS_AVAILABLE_OPTIONS,
+    ],
   };
 });
 
