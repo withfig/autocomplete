@@ -539,13 +539,6 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: ["-j", "--threads"],
-      description: "The approximate number of threads to use",
-      args: {
-        name: "NUM",
-      },
-    },
-    {
       name: "--trim",
       description:
         "All ASCII whitespace at the beginning of each line printed will be trimmed",

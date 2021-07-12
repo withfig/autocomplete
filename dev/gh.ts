@@ -403,7 +403,7 @@ export const completionSpec: Fig.Spec = {
             name: "string",
           },
           options: [
-            { name: ["-h", "--help"], description: "Show help for command" },
+            { name: "--help", description: "Show help for command" },
             {
               name: ["-y", "--confirm"],
               description: "Skip the confirmation prompt",
@@ -475,7 +475,7 @@ export const completionSpec: Fig.Spec = {
             },
             { name: ["--fork"], description: "Show only forked repositories" },
             {
-              name: ["-l", "--fork"],
+              name: ["-l", "--language"],
               description: "Filter by primary coding language",
             },
             {

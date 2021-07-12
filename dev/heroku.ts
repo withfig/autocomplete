@@ -3149,31 +3149,7 @@ export const spec: Fig.Spec = {
       description: "display node-foreman version",
     },
     {
-      name: "oauth:create",
-      description: "create a new OAuth authorization",
-      options: [
-        {
-          name: ["-d", "--description"],
-          description: "set a custom authorization",
-          args: {},
-        },
-        {
-          name: ["-S", "--short"],
-          description: "only output token",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "output in json format",
-        },
-        {
-          name: ["-s", "--scope"],
-          description: "set custom OAuth scopes",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "oauth",
+      name: "authorizations",
       description: "list OAuth authorizations",
       options: [
         {
@@ -3183,87 +3159,7 @@ export const spec: Fig.Spec = {
       ],
     },
     {
-      name: "oauth:info",
-      description: "show an existing OAuth authorization",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-      options: [
-        {
-          name: ["-j", "--json"],
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "oauth:revoke",
-      description: "revoke OAuth authorization",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-    },
-    {
-      name: "oauth:rotate",
-      description: "updates an OAuth authorization token",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-    },
-    {
-      name: "oauth:update",
-      description: "updates an OAuth authorization",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-      options: [
-        {
-          name: ["-d", "--description"],
-          description: "set a custom authorization description",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "oauth:create",
-      description: "create a new OAuth client",
-      args: [
-        {
-          name: "name",
-        },
-        {
-          name: "redirect_uri",
-        },
-      ],
-      options: [
-        {
-          name: ["-j", "--json"],
-          description: "output in json format",
-        },
-        {
-          name: ["-s", "--shell"],
-          description: "output in shell format",
-        },
-      ],
-    },
-    {
-      name: "oauth:destroy",
-      description: "delete client by ID",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-    },
-    {
-      name: "oauth",
+      name: "clients",
       description: "list your OAuth clients",
       options: [
         {
@@ -3273,13 +3169,11 @@ export const spec: Fig.Spec = {
       ],
     },
     {
-      name: "oauth:info",
+      name: "clients:info",
       description: "show details of an oauth client",
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
       options: [
         {
           name: ["-j", "--json"],
@@ -3288,65 +3182,6 @@ export const spec: Fig.Spec = {
         {
           name: ["-s", "--shell"],
           description: "output in shell format",
-        },
-      ],
-    },
-    {
-      name: "oauth:rotate",
-      description: "rotate OAuth client secret",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-      options: [
-        {
-          name: ["-j", "--json"],
-          description: "output in json format",
-        },
-        {
-          name: ["-s", "--shell"],
-          description: "output in shell format",
-        },
-      ],
-    },
-    {
-      name: "oauth:update",
-      description: "update OAuth client",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-      options: [
-        {
-          name: ["-n", "--name"],
-          description: "change the client name",
-          args: {},
-        },
-        {
-          name: "url",
-          description: "change the client redirect URL",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "oauth:destroy",
-      description: "delete (logout) OAuth session by ID",
-      args: [
-        {
-          name: "id",
-        },
-      ],
-    },
-    {
-      name: "oauth",
-      description: "list your OAuth sessions",
-      options: [
-        {
-          name: ["-j", "--json"],
-          description: "output in json format",
         },
       ],
     },
@@ -3373,16 +3208,6 @@ export const spec: Fig.Spec = {
           name: "--short",
           description: "only output token",
         },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "authorizations",
-      description: "list OAuth authorizations",
-      options: [
         {
           name: "--json",
           description: "output in json format",
@@ -3476,35 +3301,6 @@ export const spec: Fig.Spec = {
       name: "clients:destroy",
       description: "delete client by ID",
 
-      args: [
-        {
-          name: "id",
-        },
-      ],
-    },
-    {
-      name: "clients",
-      description: "list your OAuth clients",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "clients:info",
-      description: "show details of an oauth client",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--shell",
-          description: "output in shell format",
-        },
-      ],
       args: [
         {
           name: "id",
@@ -6232,133 +6028,6 @@ export const spec: Fig.Spec = {
       args: [
         {
           name: "rak",
-          variadic: true,
-        },
-      ],
-    },
-    {
-      name: "run:detached",
-      description: "run a detached dyno, where output is sent to your logs",
-      options: [
-        {
-          name: "--size",
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: "--tail",
-          description: "stream logs from the dyno",
-        },
-        {
-          name: "--type",
-          description: "process type",
-          args: {},
-        },
-        {
-          name: "--env",
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "ru",
-          variadic: true,
-        },
-      ],
-    },
-    {
-      name: "run:inside",
-      description: "run a one-off process inside an existing heroku dyno",
-      options: [
-        {
-          name: "--exit-code",
-          description: "passthrough the exit code of the remote command",
-        },
-        {
-          name: "--env",
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: "--listen",
-          description: "listen on a local port",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "ru",
-          variadic: true,
-        },
-      ],
-    },
-    {
-      name: "run",
-      description: "run a one-off process inside a heroku dyno",
-      options: [
-        {
-          name: "--size",
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: "--type",
-          description: "process type",
-          args: {},
-        },
-        {
-          name: "--exit-code",
-          description: "passthrough the exit code of the remote command",
-        },
-        {
-          name: "--env",
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: "--no-tty",
-          description: "force the command to not run in a tty",
-        },
-        {
-          name: "--listen",
-          description: "listen on a local port",
-        },
-        {
-          name: "--no-notify",
-          description:
-            "disables notification when dyno is up (alternatively use HEROKU_NOTIFICATIONS=0)",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "ru",
           variadic: true,
         },
       ],

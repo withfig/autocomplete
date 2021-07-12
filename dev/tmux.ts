@@ -762,7 +762,7 @@ export const completion: Fig.Spec = {
       description: "Destroy a given pane",
       options: [
         {
-          name: "-t",
+          name: "-a",
           description: "Kill all but the target-pane",
         },
         {
@@ -801,7 +801,7 @@ export const completion: Fig.Spec = {
       description: "Destroy a given window",
       options: [
         {
-          name: "-t",
+          name: "-a",
           description: "Kill all but the target-window",
         },
         {
@@ -1930,66 +1930,6 @@ export const completion: Fig.Spec = {
           args: panesArg,
         },
         formatOption,
-      ],
-    },
-    {
-      name: ["respawnw", "respawn-window"],
-      description: "Resue a window in which a command has exited",
-      args: {
-        name: "shell-command",
-        description: "A shell command to run when creating the window",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: "-k",
-          description: "Kill the target-window if exist",
-        },
-        {
-          name: "-c",
-          description: "Specify a start directory for the window",
-          args: {
-            name: "start-directory",
-            description: "The start directory",
-            template: "folders",
-          },
-        },
-        {
-          name: "-e",
-          description: "Set environment variables",
-          args: {
-            name: "environment",
-            description: "Environment variables with the form VARIABLE=VALUE",
-          },
-        },
-        {
-          name: "-t",
-          description: "The target window",
-          args: windowsArg,
-        },
-      ],
-    },
-    {
-      name: ["rotatew", "rotate-window"],
-      description: "Rotate positions of panes in a window",
-      options: [
-        {
-          name: "-D",
-          description: "Rotate upward",
-        },
-        {
-          name: "-U",
-          description: "Rotate downward",
-        },
-        {
-          name: "-Z",
-          description: "Keep the window zoomed if it was zoomed",
-        },
-        {
-          name: "-t",
-          description: "The target window",
-          args: windowsArg,
-        },
       ],
     },
     {
