@@ -8,6 +8,12 @@ export const completionSpec: Fig.Spec = {
       )
     ).split("\n");
 
+    if (commands[0] === "") {
+      return {
+        name: "npx",
+      } as Fig.Spec;
+    }
+
     const cli = ["react-native", "tailwindcss", "next", "gltfjsx", "prisma"];
     const subcommands = commands
       .filter((name) => !cli.includes(name))
