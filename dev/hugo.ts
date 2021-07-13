@@ -1,5 +1,423 @@
 import { stdout } from "node:process";
 
+// Global Options
+// const config = {
+//   name: "--config",
+//   description: "config file (default is path/config.yaml|json|toml)",
+//   insertValue: "--config {cursor}",
+//   args: {
+//     name: "file path",
+//     description: "default is path/config.yaml|json|toml",
+//     template: "filepaths",
+//   },
+// };
+
+// const configDir = {
+//   name: "--configDir string",
+//   description: "config dir (default 'config')",
+//   args: {
+//     name: "directory path",
+//     description: "default is 'config'",
+//     template: "folders",
+//   },
+// };
+
+// const debug = {
+//   name: "--debug",
+//   description: "debug output",
+// };
+
+// const environment = {
+//   name: "-e, --environment string",
+//   description: "build environment",
+// };
+
+// const ignoreVendor = {
+//   name: "--ignoreVendor",
+//   description: "ignores any _vendor directory",
+// };
+
+// const ignoreVendorPaths = {
+//   name: "--ignoreVendorPaths string",
+//   description: "ignores any _vendor for module paths matching the given Glob pattern",
+// };
+
+// const log = {
+//   name: "--log",
+//   description: "enable Logging",
+// };
+
+// const logFile = {
+//   name: "--logFile string",
+//   description: "log File path (if set, logging enabled automatically)",
+// };
+
+// const quiet = {
+//   name: "--quiet",
+//   description: "build in quiet mode",
+// };
+
+// const source = {
+//   name: "-s, --source string",
+//   description: "filesystem path to read files relative from",
+// };
+
+// const themesDir = {
+//   name: "--themesDir",
+//   description: "filesystem path to themes directory",
+//   // args: {
+//   //   name: "file path",
+//   //   description: "default is path/config.yaml|json|toml",
+//   //   template: "filepaths",
+//   // },
+// };
+
+// const verbose = {
+//   name: "-v, --verbose",
+//   description: "verbose output",
+// };
+
+// const verboseLog = {
+//   name: "--verboseLog",
+//   description: "verbose logging",
+// };
+
+// const includeGlobalOptions = [
+//   config,
+//   configDir,
+//   debug,
+//   environment,
+//   ignoreVendor,
+//   ignoreVendorPaths,
+//   log,
+//   logFile,
+//   quiet,
+//   source,
+//   themesDir,
+//   verbose,
+//   verboseLog
+// ];
+
+// mod and new options
+
+const baseURL = {
+  name: ["-b", "--baseURL"],
+  description: "hostname (and path) to the root, e.g. http://spf13.com/",
+  insertValue: "--baseURL {cursor}",
+  args: {
+    name: "hostname_and_path",
+  },
+};
+
+const buildDrafts = {
+  name: ["-D", "--buildDrafts"],
+  description: "include content marked as draft (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const buildExpired = {
+  name: ["-E", "--buildExpired"],
+  description: "include expired content (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const buildFuture = {
+  name: ["-F", "--buildFuture"],
+  description: "include content with publishdate in the future (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const cacheDir = {
+  name: "--cacheDir",
+  description:
+    "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+  insertValue: "--cacheDir {cursor}",
+  args: {
+    name: "path",
+    template: "folders",
+  },
+};
+
+const cleanDestinationDir = {
+  name: "--cleanDestinationDir",
+  description:
+    "remove files from destination not found in static directories (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const contentDir = {
+  name: ["-c", "--contentDir"],
+  description: "filesystem path to content directory",
+  insertValue: "--contentDir {cursor}",
+  args: {
+    name: "path",
+    template: "folders",
+  },
+};
+
+const destination = {
+  name: ["-d", "--destination"],
+  description: "filesystem path to write files to",
+  insertValue: "--destination {cursor}",
+  args: {
+    name: "path",
+    template: "folders",
+  },
+};
+
+const disableKinds = {
+  name: "--disableKinds",
+  description: "disable different kind of pages (home, RSS etc.)",
+  insertValue: "--disableKinds={cursor}",
+  args: {
+    name: "kind,kind",
+    suggestions: [
+      "page",
+      "home",
+      "section",
+      "taxonomy",
+      "term",
+      "RSS",
+      "sitemap",
+      "robotsTXT",
+      "404",
+    ],
+  },
+};
+
+const enableGitInfo = {
+  name: "--enableGitInfo",
+  description:
+    "add Git revision, date and author info to the pages (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const forceSyncStatic = {
+  name: "--forceSyncStatic",
+  description: "copy all files when static is changed (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const gc = {
+  name: "--gc",
+  description:
+    "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const i18nWarnings = {
+  name: "--i18n-warnings",
+  description: "print missing translations (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const ignoreCache = {
+  name: "--ignoreCache",
+  description: "ignores the cache directory (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const layoutDir = {
+  name: ["-l", "--layoutDir"],
+  description: "filesystem path to layout directory",
+  args: {
+    name: "path",
+    template: "folders",
+  },
+};
+
+const minify = {
+  name: "--minify",
+  description:
+    "minify any supported output format (HTML, XML etc.) (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const noChmod = {
+  name: "--noChmod",
+  description: "don't sync permission mode of files (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const noTimes = {
+  name: "--noTimes",
+  description: "don't sync modification time of files (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const pathWarnings = {
+  name: "--path-warnings",
+  description: "print warnings on duplicate target paths etc (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const poll = {
+  name: "--poll",
+  description:
+    "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+  args: {
+    name: "milliseconds",
+  },
+};
+
+const printMem = {
+  name: "--print-mem",
+  description: "print memory usage to screen at intervals (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const templateMetrics = {
+  name: "--templateMetrics",
+  description: "display metrics about template executions (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const templateMetricsHints = {
+  name: "--templateMetricsHints",
+  description:
+    "calculate some improvement hints when combined with --templateMetrics (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const theme = {
+  name: ["-t", "--theme"],
+  description: "themes to use (located in /themes/THEMENAME/)",
+  args: { name: "themename" },
+};
+
+const trace = {
+  name: "--trace",
+  description: "write trace to file (not useful in general)",
+  args: {
+    name: "file",
+    template: "filepaths",
+  },
+};
+
+const includeModNewServerOptions = [
+  baseURL,
+  buildDrafts,
+  buildExpired,
+  buildFuture,
+  cacheDir,
+  cleanDestinationDir,
+  contentDir,
+  destination,
+  disableKinds,
+  enableGitInfo,
+  forceSyncStatic,
+  gc,
+  i18nWarnings,
+  ignoreCache,
+  layoutDir,
+  minify,
+  noChmod,
+  noTimes,
+  pathWarnings,
+  poll,
+  printMem,
+  templateMetrics,
+  templateMetricsHints,
+  theme,
+  trace,
+];
+
 const includeConvertSubcommandOptions: Fig.Option[] = [
   {
     name: ["-o", "--output"],
@@ -202,6 +620,7 @@ export const completion: Fig.Spec = {
               description:
                 "autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
               args: {
+                // ??? 'type' instead of 'string' ???
                 name: "string",
                 suggestions: [
                   { name: "bash", description: "default" },
@@ -296,16 +715,16 @@ export const completion: Fig.Spec = {
                 ],
               },
             },
-            // {
-            //   name: [">"],
-            //   description: "filesystem path to write syntax.css to",
-            //   insertValue: "> {cursor}",
-            //   args: {
-            //     name: "filesystem_path",
-            //     description: "filesystem path to write syntax.css to",
-            //     template: "folders",
-            //   },
-            // },
+            {
+              name: [">"],
+              description: "filesystem path to write syntax.css to",
+              insertValue: "> {cursor}",
+              // args: {
+              //   name: "path",
+              //   description: "filesystem path to write syntax.css to",
+              //   template: "folders",
+              // },
+            },
           ],
         },
         {
@@ -451,6 +870,165 @@ export const completion: Fig.Spec = {
       ],
     },
     {
+      name: "mod",
+      description: "Various Hugo Modules helpers.",
+      subcommands: [
+        {
+          name: "clean",
+          description: "Delete the Hugo Module cache for the current project",
+          options: [
+            {
+              name: "--all",
+              description: "clean entire module cache",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "help for clean",
+            },
+            {
+              name: "--pattern",
+              description:
+                'pattern matching module paths to clean (all if not set)", "e.g. "**hugo*"',
+              args: {
+                name: "path",
+              },
+            },
+          ],
+        },
+        {
+          name: "get",
+          description: "resolves dependencies in your current Hugo Project",
+          // Run `go help get` for more information. All flags available for `go get` are also relevant here.
+          options: [
+            {
+              name: ["-d"],
+              description: "download packages only and do not install",
+            },
+            {
+              name: ["-f"],
+              description:
+                "valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original.",
+            },
+            {
+              name: ["-fix"],
+              description:
+                "run the fix tool on downloaded packages before resolving dependencies or building the code",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "help for get",
+            },
+            {
+              name: ["-insecure"],
+              description:
+                "permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution.",
+            },
+            {
+              name: ["-t"],
+              description:
+                "also download the packages required to build the tests for the specified packages",
+            },
+            {
+              name: ["-u"],
+              description:
+                "recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.",
+            },
+            {
+              name: ["-v"],
+              description: "enables verbose progress and debug output",
+            },
+          ],
+        },
+        {
+          name: "graph",
+          description:
+            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status.",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for graph",
+            },
+          ],
+        },
+        {
+          name: "init",
+          description: "Initialize this project as a Hugo Module",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for init",
+            },
+          ],
+        },
+        {
+          name: "npm",
+          description: "Various npm helpers",
+          subcommands: [
+            {
+              name: "pack",
+              description:
+                "Experimental: Prepares and writes a composite package.json file for your project.",
+              options: [
+                {
+                  name: ["-h", "--help"],
+                  description: "help for pack",
+                },
+              ],
+            },
+          ],
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for npm",
+            },
+          ],
+        },
+        {
+          name: "tidy",
+          description: "Remove unused entries in go.mod and go.sum",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for tidy",
+            },
+          ],
+        },
+        {
+          name: "vendor",
+          description:
+            "Vendor all module dependencies into the _vendor directory",
+          options: [
+            {
+              name: ["-h", "--help"],
+              description: "help for vendor",
+            },
+          ],
+        },
+        {
+          name: "verify",
+          description: "Verify dependencie",
+          options: [
+            {
+              name: "--clean",
+              description:
+                "delete module cache for dependencies that fail verification",
+            },
+            {
+              name: ["-h", "--help"],
+              description: "help for verify",
+            },
+          ],
+        },
+      ],
+      options: [
+        ...includeModNewServerOptions,
+        {
+          name: ["-h", "--help"],
+          description: "help for mod",
+        },
+      ],
+    },
+    {
       name: "new",
       description: "Create new content for your site",
       args: {
@@ -499,107 +1077,19 @@ export const completion: Fig.Spec = {
         },
       ],
       options: [
+        ...includeModNewServerOptions,
         {
-          name: ["-b", "--baseURL"],
-          description:
-            "hostname (and path) to the root, e.g. http://spf13.com/",
-          insertValue: "--baseURL {cursor}",
-          args: {
-            name: "hostname_and_path",
-          },
-        },
-        {
-          name: ["-D", "--buildDrafts"],
-          description: "include content marked as draft (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: ["-E", "--buildExpired"],
-          description: "include expired content (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: ["-F", "--buildFuture"],
-          description:
-            "include content with publishdate in the future (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: "--cacheDir",
-          description:
-            "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
-          insertValue: "--cacheDir {cursor}",
-          args: {
-            name: "path",
-            template: "folders",
-          },
-        },
-        {
-          name: "--cleanDestinationDir",
-          description:
-            "remove files from destination not found in static directories (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: ["-c", "--contentDir"],
-          description: "filesystem path to content directory",
-          insertValue: "--contentDir {cursor}",
-          args: {
-            name: "path",
-            template: "folders",
-          },
-        },
-        {
-          name: ["-d", "--destination"],
-          description: "filesystem path to write files to",
-          insertValue: "--destination {cursor}",
-          args: {
-            name: "path",
-            template: "folders",
-          },
-        },
-        {
-          name: "--disableKinds",
-          description: "disable different kind of pages (home, RSS etc.)",
-          insertValue: "--disableKinds={cursor}",
-          args: {
-            name: "kind,kind",
-            suggestions: [
-              "page",
-              "home",
-              "section",
-              "taxonomy",
-              "term",
-              "RSS",
-              "sitemap",
-              "robotsTXT",
-              "404",
-            ],
-          },
+          name: ["-k", "--kind"],
+          description: "content type to create",
+          args: [
+            {
+              // TODO: generate list of any existing archetypes
+              name: "archetype|default",
+            },
+            {
+              name: "content-section/file-name.md",
+            },
+          ],
         },
         {
           name: "--editor",
@@ -609,189 +1099,83 @@ export const completion: Fig.Spec = {
           },
         },
         {
-          name: "--enableGitInfo",
-          description:
-            "add Git revision, date and author info to the pages (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: "--forceSyncStatic",
-          description: "copy all files when static is changed (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: "--gc",
-          description:
-            "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
           name: ["-h", "--help"],
           description: "help for new",
         },
+      ],
+    },
+    {
+      name: "server",
+      description: "A high performance webserver",
+      options: [
+        ...includeModNewServerOptions,
         {
-          name: "--i18n-warnings",
-          description: "print missing translations (default false)",
+          name: ["--appendPort"],
+          description: "append port to baseURL (default true)",
           args: {
             name: "boolean",
             suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
+              { name: "true", icon: "✅", description: "default" },
+              { name: "false", icon: "❌" },
             ],
           },
         },
         {
-          name: "--ignoreCache",
-          description: "ignores the cache directory (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
+          name: "--disableBrowserError",
+          description: "do not show build errors in the browser",
         },
         {
-          name: ["-k", "--kind"],
-          description: "content type to create",
-          args: [
-            {
-              // TODO: generate list from /archetypes
-              name: "archetype|default",
-            },
-            {
-              name: "content-section/file-name.md",
-            },
-          ],
+          name: "--disableFastRender",
+          description: "enables full re-renders on changes",
         },
         {
-          name: ["-l", "--layoutDir"],
-          description: "filesystem path to layout directory",
-          args: {
-            name: "path",
-            template: "folders",
-          },
+          name: "--disableLiveReload",
+          description: "watch without enabling live browser reload on rebuild",
         },
         {
-          name: "--minify",
+          name: "--liveReloadPort",
           description:
-            "minify any supported output format (HTML, XML etc.) (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
+            "port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
+          // int
         },
         {
-          name: "--noChmod",
-          description: "don't sync permission mode of files (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: "--noTimes",
-          description: "don't sync modification time of files (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: "--path-warnings",
+          name: "--meminterval",
           description:
-            "print warnings on duplicate target paths etc (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
+            'interval to poll memory usage (requires --memstats)", "valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". (default "100ms")',
+          // string
         },
         {
-          name: "--poll",
+          name: "--memstats",
+          description: "log memory usage to this file",
+          // string
+        },
+        {
+          name: "--navigateToChanged",
           description:
-            "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
-          args: {
-            name: "milliseconds",
-          },
+            "navigate to changed content file on live browser reload",
         },
         {
-          name: "--print-mem",
+          name: "--noHTTPCache",
+          description: "prevent HTTP caching",
+        },
+        {
+          name: ["-p", "--port"],
+          description: "port on which the server will listen (default 1313)",
+          // int
+        },
+        {
+          name: "--renderToDisk",
           description:
-            "print memory usage to screen at intervals (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
+            "render to Destination path (default is render to memory & serve from there)",
         },
         {
-          name: "--templateMetrics",
+          name: ["-w", "--watch"],
           description:
-            "display metrics about template executions (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
+            "watch filesystem for changes and recreate as needed (default true)",
         },
         {
-          name: "--templateMetricsHints",
-          description:
-            "calculate some improvement hints when combined with --templateMetrics (default false)",
-          args: {
-            name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
-          },
-        },
-        {
-          name: ["-t", "--theme"],
-          description: "themes to use (located in /themes/THEMENAME/)",
-          args: { name: "themename" },
-        },
-        {
-          name: "--trace",
-          description: "write trace to file (not useful in general)",
-          args: {
-            name: "file",
-            template: "filepaths",
-          },
+          name: ["-h", "--help"],
+          description: "help for server",
         },
       ],
     },
