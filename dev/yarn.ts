@@ -127,7 +127,16 @@ export const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = ["vue", "nuxt", "expo", "jest", "next", "electron", "prisma"];
+    const cli = [
+      "vue",
+      "nuxt",
+      "expo",
+      "jest",
+      "next",
+      "electron",
+      "prisma",
+      "prettier",
+    ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
       .map((name) => ({

@@ -213,7 +213,7 @@ export const completion: Fig.Spec = {
       description: "Add a plugin",
       args: {
         name: "path",
-        template: "filepaths",
+        template: "folders",
       },
     },
     {
@@ -327,6 +327,7 @@ export const completion: Fig.Spec = {
   ],
   args: {
     name: "file, dir or glob",
+    template: ["filepaths", "folders"],
     isOptional: true,
     variadic: true,
   },
