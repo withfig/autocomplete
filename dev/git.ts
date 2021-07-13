@@ -207,6 +207,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
           return {
             name: name + "*",
             description: "Wildcard",
+            icon: "fig://icon?type=asterisk",
           };
         }),
         ...files.map((item) => {
