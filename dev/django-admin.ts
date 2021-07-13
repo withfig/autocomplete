@@ -704,6 +704,9 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "email",
         description: "One or more email addresses to send a test email to.",
+        // This argument is not optional when no other arguments are supplied.
+        // But it is optional when either `--managers` or `--admins` are supplied as arguments,
+        // so keeping it as `isOptional` for now to keep things simple.
         isOptional: true,
         variadic: true,
       },
