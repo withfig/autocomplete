@@ -28,6 +28,11 @@ export const completionSpec: Fig.Spec = {
         "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
       loadSpec: "prisma",
     },
+    {
+      name: "prettier",
+      icon: "https://prettier.io/icon.png",
+      loadSpec: "prettier",
+    },
   ],
   options: [
     {
