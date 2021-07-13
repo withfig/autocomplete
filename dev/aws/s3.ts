@@ -1,3 +1,368 @@
+// TODO: suggest available s3 endpoints
+const awsRegions = [
+  "af-south-1",
+  "eu-north-1",
+  "ap-south-1",
+  "eu-west-3",
+  "eu-west-2",
+  "eu-south-1",
+  "eu-west-1",
+  "ap-northeast-3",
+  "ap-northeast-2",
+  "me-south-1",
+  "ap-northeast-1",
+  "sa-east-1",
+  "ca-central-1",
+  "ap-east-1",
+  "ap-southeast-1",
+  "ap-southeast-2",
+  "eu-central-1",
+  "us-east-1",
+  "us-east-2",
+  "us-west-1",
+  "us-west-2",
+];
+
+const storageClasses = [
+  "STANDARD",
+  "REDUCED_REDUNDANCY",
+  "STANDARD_IA",
+  "ONEZONE_IA",
+  "INTELLIGENT_TIERING",
+  "GLACIER",
+  "DEEP_ARCHIVE",
+];
+
+const acl = [
+  "private",
+  "public-read",
+  "public-read-write",
+  "authenticated-read",
+  "aws-exec-read",
+  "bucket-owner-read",
+  "bucket-owner-full-control",
+  "log-delivery-write",
+];
+
+const metadataDirective = ["COPY", "REPLACE"];
+const sse = ["AES256", "aws:kms"];
+const sseC = ["AES256"];
+const requester = ["requester"];
+
+const ttl = 30000;
+
+const appendFolderPath = (
+  whatHasUserTyped: string,
+  baseLSCommand: string
+): string => {
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  return sortSuggestions(out.split("\n"));
+};
+
+const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dots_arr = [];
+    const other_arr = [];
+
+    arr.map((fsObject) => {
+      if (fsObject.toLowerCase() == ".ds_store") return;
+      if (fsObject.slice(0, 1) === ".") {
+        dots_arr.push(fsObject);
+      } else {
+        other_arr.push(fsObject);
+      }
+    });
+
+    if (isS3) {
+      return [
+        ...other_arr.sort(sortFnStrings),
+        ...dots_arr.sort(sortFnStrings),
+      ];
+    }
+
+    return [
+      ...other_arr.sort(sortFnStrings),
+      "../",
+      ...dots_arr.sort(sortFnStrings),
+    ];
+  };
+
+  const temp_array = alphabeticalSortFilesAndFolders(arr);
+
+  const final_array = [];
+
+  temp_array.forEach((item) => {
+    if (item !== "" && item !== null) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      final_array.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return final_array;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const _prefixS3 = "s3://";
+const _prefixFile = "";
+const _prefixFileb = "fileb://";
+
+const generators: Record<string, Fig.Generator> = {
+  listFilesGenerator: {
+    script: (tokens) => {
+      const baseLSCommand = "\\ls -1ApL ";
+      const whatHasUserTyped = tokens[tokens.length - 1];
+
+      // Do not show file suggestions when s3:// typed
+      if (whatHasUserTyped.startsWith(_prefixS3)) {
+        return "";
+      }
+
+      return appendFolderPath(whatHasUserTyped, baseLSCommand);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
+      // simly return token
+      if (!token.startsWith(_prefixS3) && _prefixS3.startsWith(token)) {
+        return token;
+      }
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+
+  // --secret-binary and a few other options takes a blob as parameter.
+  // The path pointing to the blob must be prefixed by fileb://
+  // See more: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters-file.html
+  listBlobsGenerator: {
+    script: (tokens) => {
+      const baseLSCommand = "\\ls -1ApL ";
+      let whatHasUserTyped = tokens[tokens.length - 1];
+
+      if (whatHasUserTyped.startsWith(_prefixFileb)) {
+        whatHasUserTyped = whatHasUserTyped.slice(_prefixFileb.length);
+      } else {
+        return "echo 'fileb://'";
+      }
+
+      return appendFolderPath(whatHasUserTyped, baseLSCommand);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFileb);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFileb);
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefixFileb)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+  },
+
+  // generate s3 filepaths
+  listRemoteFilesGenerator: {
+    script: (tokens) => {
+      const whatHasUserTyped = tokens[tokens.length - 1];
+      const baseLSCommand = "\\aws s3 ls ";
+
+      let folderPath = "";
+
+      const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+      if (!whatHasUserTyped.startsWith(_prefixS3)) {
+        // if whatHasUserTyped is neither s3:// or its substr permutations,
+        // then we can assume that the filepath generator is in work
+        // so do not return any s3 related filepaths
+        if (!_prefixS3.startsWith(whatHasUserTyped)) {
+          return "";
+        }
+
+        return "echo 's3://'";
+      }
+
+      if (lastSlashIndex > -1) {
+        folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+      }
+
+      return baseLSCommand + folderPath;
+    },
+    postProcess: (out) => {
+      if (out == "") {
+        return [];
+      }
+
+      if (out.trim() === _prefixS3) {
+        return [
+          {
+            name: _prefixS3,
+            insertValue: _prefixS3,
+          },
+        ];
+      }
+
+      let preFound = false;
+      const lines = out.split("\n").map((line) => {
+        const parts = line.split(/\s+/);
+        // sub prefix
+        if (!parts.length) {
+          return [];
+        }
+
+        let s3Path = parts[parts.length - 1];
+
+        // Parsing S3 CLI Output here
+        // Do this in a try block beacuse of the indexing magic
+        try {
+          //Example Output:
+          //                             PRE charts/
+          //  2021-05-08 10:15:53      81765 img.jpg
+          //
+          // After we have found at least 1 PRE keyword
+          // we can assume that all lines without PRE are files
+          if (parts[1] === "PRE") {
+            preFound = true;
+            return s3Path;
+          }
+
+          const hasBackSlash =
+            s3Path.slice(_prefixS3.length).lastIndexOf("/") > -1;
+
+          // it is a file, do not append trailing '/'
+          if (preFound && !hasBackSlash) {
+            return s3Path;
+          }
+
+          // If output line's third column is a number (File size column)
+          // we can assume that it is a file so do not append trailing '/'
+          if (!isNaN(parseFloat(parts[2])) && isFinite(parseInt(parts[2]))) {
+            return s3Path;
+          }
+
+          // Any leftover lines are bucket names
+          // just append '/' at the end
+          if (!hasBackSlash) {
+            s3Path = s3Path + "/";
+          }
+        } catch (e) {
+          console.log(e);
+        }
+
+        return s3Path;
+      });
+
+      return sortSuggestions(lines as string[], true);
+    },
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixS3);
+    },
+
+    filterTerm: (token) => {
+      if (!token.startsWith(_prefixS3)) return token;
+      return token.slice(token.lastIndexOf("/") + 1);
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  // just bucket names
+  listBuckets: {
+    script: "aws s3 ls --page-size 1000",
+    postProcess: function (out, context) {
+      try {
+        return out.split("\n").map((line) => {
+          const parts = line.split(/\s+/);
+          // sub prefix
+          if (!parts.length) {
+            return [];
+          }
+          return {
+            name: _prefixS3 + parts[parts.length - 1],
+          };
+        }) as Fig.Suggestion[];
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+
+  kmsKeyIdGenerator: {
+    // --page-size does not affect the number of items returned,
+    // just chunks request so it won't timeout
+    script: "aws kms list-keys --page-size 100",
+    postProcess: function (out) {
+      try {
+        const list = JSON.parse(out)["Keys"];
+        return list.map((item) => ({
+          name: item["KeyId"],
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+      return [];
+    },
+    cache: {
+      ttl: ttl,
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "s3",
   description:
@@ -19,6 +384,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -36,13 +402,14 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
       ],
       args: [
         {
           name: "paths",
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },
@@ -56,6 +423,7 @@ export const completionSpec: Fig.Spec = {
             "A suffix that is appended to a request that is for a directory on the website endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/ the data that is returned will be for the object with the key name images/index.html) The suffix must not be empty and must not include a slash character.",
           args: {
             name: "string",
+            suggestions: ["index.html"],
           },
         },
         {
@@ -64,12 +432,14 @@ export const completionSpec: Fig.Spec = {
             "The object key name to use when a 4XX class error occurs.",
           args: {
             name: "string",
+            suggestions: ["error.html"],
           },
         },
       ],
       args: [
         {
           name: "paths",
+          generators: generators.listBuckets,
         },
       ],
     },
@@ -110,16 +480,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -141,7 +502,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -150,7 +511,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -159,6 +520,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -167,6 +529,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
           args: {
             name: "string",
+            generators: generators.kmsKeyIdGenerator,
           },
         },
         {
@@ -175,7 +538,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -184,6 +547,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -192,15 +556,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -272,6 +628,7 @@ export const completionSpec: Fig.Spec = {
             "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
           args: {
             name: "string",
+            suggestions: awsRegions,
           },
         },
         {
@@ -290,6 +647,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -308,7 +666,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -317,6 +675,7 @@ export const completionSpec: Fig.Spec = {
             "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
           args: {
             name: "map",
+            description: "KeyName1=string,KeyName2=string",
           },
         },
         {
@@ -325,7 +684,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
         {
@@ -344,7 +703,18 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
         },
       ],
     },
@@ -385,16 +755,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -416,7 +777,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -425,7 +786,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -434,6 +795,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -442,6 +804,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
           args: {
             name: "string",
+            generators: generators.kmsKeyIdGenerator,
           },
         },
         {
@@ -450,7 +813,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -459,6 +822,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -467,15 +831,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -547,6 +903,7 @@ export const completionSpec: Fig.Spec = {
             "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
           args: {
             name: "string",
+            suggestions: awsRegions,
           },
         },
         {
@@ -565,6 +922,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -583,7 +941,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -592,6 +950,7 @@ export const completionSpec: Fig.Spec = {
             "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
           args: {
             name: "map",
+            description: "KeyName1=string,KeyName2=string",
           },
         },
         {
@@ -600,7 +959,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
         {
@@ -611,7 +970,18 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
         },
       ],
     },
@@ -640,7 +1010,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -670,12 +1040,14 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
       ],
       args: [
         {
           name: "paths",
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },
@@ -716,16 +1088,7 @@ export const completionSpec: Fig.Spec = {
             'Sets the ACL for the object when the command is performed.  If you use this parameter you must have the "s3:PutObjectAcl" permission included in the list of actions for your IAM policy. Only accepts values of ``private``, ``public-read``, ``public-read-write``, ``authenticated-read``, ``aws-exec-read``, ``bucket-owner-read``, ``bucket-owner-full-control`` and ``log-delivery-write``. See Canned ACL for details',
           args: {
             name: "string",
-            suggestions: [
-              "private",
-              "public-read",
-              "public-read-write",
-              "authenticated-read",
-              "aws-exec-read",
-              "bucket-owner-read",
-              "bucket-owner-full-control",
-              "log-delivery-write",
-            ],
+            suggestions: acl,
           },
         },
         {
@@ -747,7 +1110,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption of the object in S3. Valid values are ``AES256`` and ``aws:kms``. If the parameter is specified but no value is provided, ``AES256`` is used.",
           args: {
             name: "string",
-            suggestions: ["AES256", "aws:kms"],
+            suggestions: sse,
           },
         },
         {
@@ -756,7 +1119,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies server-side encryption using customer provided keys of the the object in S3. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -765,6 +1128,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-provided encryption key to use to server-side encrypt the object in S3. If you provide this value, ``--sse-c`` must be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -773,6 +1137,7 @@ export const completionSpec: Fig.Spec = {
             "The customer-managed AWS Key Management Service (KMS) key ID that should be used to server-side encrypt the object in S3. You should only provide this parameter if you are using a customer managed customer master key (CMK) and not the AWS managed KMS CMK.",
           args: {
             name: "string",
+            generators: generators.kmsKeyIdGenerator,
           },
         },
         {
@@ -781,7 +1146,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. It specifies the algorithm to use when decrypting the source object. ``AES256`` is the only valid value. If the parameter is specified but no value is provided, ``AES256`` is used. If you provide this value, ``--sse-c-copy-source-key`` must be specified as well.",
           args: {
             name: "string",
-            suggestions: ["AES256"],
+            suggestions: sseC,
           },
         },
         {
@@ -790,6 +1155,7 @@ export const completionSpec: Fig.Spec = {
             "This parameter should only be specified when copying an S3 object that was encrypted server-side with a customer-provided key. Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object. The encryption key provided must be one that was used when the source object was created. If you provide this value, ``--sse-c-copy-source`` be specified as well. The key provided should **not** be base64 encoded.",
           args: {
             name: "blob",
+            generators: generators.listBlobsGenerator,
           },
         },
         {
@@ -798,15 +1164,7 @@ export const completionSpec: Fig.Spec = {
             "The type of storage to use for the object. Valid choices are: STANDARD | REDUCED_REDUNDANCY | STANDARD_IA | ONEZONE_IA | INTELLIGENT_TIERING | GLACIER | DEEP_ARCHIVE. Defaults to 'STANDARD'",
           args: {
             name: "string",
-            suggestions: [
-              "STANDARD",
-              "REDUCED_REDUNDANCY",
-              "STANDARD_IA",
-              "ONEZONE_IA",
-              "INTELLIGENT_TIERING",
-              "GLACIER",
-              "DEEP_ARCHIVE",
-            ],
+            suggestions: storageClasses,
           },
         },
         {
@@ -878,6 +1236,7 @@ export const completionSpec: Fig.Spec = {
             "When transferring objects from an s3 bucket to an s3 bucket, this specifies the region of the source bucket. Note the region specified by ``--region`` or through configuration of the CLI refers to the region of the destination bucket.  If ``--source-region`` is not specified the region of the source will be the same as the region of the destination bucket.",
           args: {
             name: "string",
+            suggestions: awsRegions,
           },
         },
         {
@@ -896,6 +1255,7 @@ export const completionSpec: Fig.Spec = {
             "The number of results to return in each response to a list operation. The default value is 1000 (the maximum allowed). Using a lower value may help if an operation times out.",
           args: {
             name: "integer",
+            description: "The default & max is 1000",
           },
         },
         {
@@ -914,7 +1274,7 @@ export const completionSpec: Fig.Spec = {
             "Confirms that the requester knows that they will be charged for the request. Bucket owners need not specify this parameter in their requests. Documentation on downloading objects from requester pays buckets can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html",
           args: {
             name: "string",
-            suggestions: ["requester"],
+            suggestions: requester,
           },
         },
         {
@@ -923,6 +1283,7 @@ export const completionSpec: Fig.Spec = {
             "A map of metadata to store with the objects in S3. This will be applied to every object which is part of this request. In a sync, this means that files which haven't changed won't receive the new metadata. When copying between two s3 locations, the metadata-directive argument will default to 'REPLACE' unless otherwise specified.",
           args: {
             name: "map",
+            description: "KeyName1=string,KeyName2=string",
           },
         },
         {
@@ -931,22 +1292,44 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether the metadata is copied from the source object or replaced with metadata provided when copying S3 objects. Note that if the object is copied over in parts, the source object's metadata will not be copied over, no matter the value for ``--metadata-directive``, and instead the desired metadata values must be specified as parameters on the command line. Valid values are ``COPY`` and ``REPLACE``. If this parameter is not specified, ``COPY`` will be used by default. If ``REPLACE`` is used, the copied object will only have the metadata values that were specified by the CLI command. Note that if you are using any of the following parameters: ``--content-type``, ``content-language``, ``--content-encoding``, ``--content-disposition``, ``--cache-control``, or ``--expires``, you will need to specify ``--metadata-directive REPLACE`` for non-multipart copies if you want the copied objects to have the specified metadata values.",
           args: {
             name: "string",
-            suggestions: ["COPY", "REPLACE"],
+            suggestions: metadataDirective,
           },
         },
       ],
       args: [
         {
-          name: "paths",
+          name: "source",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
+        },
+        {
+          name: "destination",
+          generators: [
+            generators.listRemoteFilesGenerator,
+            generators.listFilesGenerator,
+          ],
         },
       ],
     },
     {
       name: "mb",
       description: "Creates an S3 bucket.",
+      options: [
+        {
+          name: "--region",
+          description: "AWS region where the bucket is created",
+          args: {
+            name: "region",
+            suggestions: awsRegions,
+          },
+        },
+      ],
       args: [
         {
           name: "path",
+          generators: generators.listBuckets,
         },
       ],
     },
@@ -964,6 +1347,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "path",
+          generators: generators.listBuckets,
         },
       ],
     },
@@ -984,6 +1368,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "path",
+          generators: generators.listRemoteFilesGenerator,
         },
       ],
     },

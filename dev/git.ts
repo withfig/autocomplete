@@ -170,36 +170,71 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      const items = output.split("\n").map((file) => {
+      const files = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
         return { working: arr[0], file: arr.slice(1).join(" ").trim() };
       });
 
-      return items.map((item) => {
-        const file = item.file;
-        let ext = "";
-
-        try {
-          ext = file.split(".").slice(-1)[0];
-        } catch (e) {}
-
-        if (file.endsWith("/")) {
-          ext = "folder";
-        }
-
-        return {
-          name: file,
-          icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-          description: "Changed file",
-          // If the current file already is already added
-          // we want to lower the priority
-          priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-        };
+      const paths = output.split("\n").map((file) => {
+        const arr = file
+          .slice(0, file.lastIndexOf("/") + 1)
+          .trim()
+          .split(" ");
+        return arr.slice(1).join(" ").trim();
       });
+
+      const dirArr = [];
+      if (paths.length >= 2) {
+        let currentDir = paths[0];
+        let count = 1;
+        for (let i = 1; i < paths.length; i++) {
+          if (paths[i].includes(currentDir) && i + 1 !== paths.length) {
+            count++;
+          } else {
+            if (count >= 2) {
+              dirArr.push(currentDir);
+            }
+            count = 1;
+          }
+          currentDir = paths[i];
+        }
+      }
+
+      return [
+        ...dirArr.map((name) => {
+          return {
+            name: name + "*",
+            description: "Wildcard",
+            icon: "fig://icon?type=asterisk",
+          };
+        }),
+        ...files.map((item) => {
+          const file = item.file.replace(/^"|"$/g, "");
+          let ext = "";
+
+          try {
+            ext = file.split(".").slice(-1)[0];
+          } catch (e) {}
+
+          if (file.endsWith("/")) {
+            ext = "folder";
+          }
+
+          return {
+            name: file,
+            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+            description: "Changed file",
+            // If the current file already is already added
+            // we want to lower the priority
+            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+          };
+        }),
+      ];
     },
   },
+
   getStagedFiles: {
     script: "git diff --name-only --cached",
     splitOn: "\n",
@@ -2008,7 +2043,7 @@ export const completionSpec: Fig.Spec = {
             "By default, Git will report, to the server, commits reachable from all local refs to find common commits in an attempt to reduce the size of the to-be-received packfile",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Show what would be done, without making any changes.",
         },
         {
@@ -2030,7 +2065,7 @@ export const completionSpec: Fig.Spec = {
             "Before fetching, remove any local tags that no longer exist on the remote if --prune is enabled",
         },
         {
-          name: ["-n", "--no-tags"],
+          name: "--no-tags",
           description:
             "By default, tags that point at objects that are downloaded from the remote repository are fetched and stored locally. This option disables this automatic tag following",
         },
@@ -2281,10 +2316,6 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "pattern",
           },
-        },
-        {
-          name: "--source",
-          description: "show source",
         },
       ],
       args: [
@@ -3078,7 +3109,7 @@ export const completionSpec: Fig.Spec = {
             "Automatically setup .git/objects/info/alternates to share the objects with the source repository",
         },
         {
-          name: ["-n", "--dry-run"],
+          name: "--dry-run",
           description: "Do nothing; only show what would happen",
         },
         {
@@ -4595,6 +4626,293 @@ export const completionSpec: Fig.Spec = {
         generators: gitGenerators.tags,
         isOptional: true,
       },
+    },
+    {
+      name: "restore",
+      description: "Restore working tree files",
+      options: [
+        {
+          name: ["-s", "--source"],
+          description:
+            "Restore the working tree files with the content from the given tree",
+          args: {
+            name: "tree",
+          },
+        },
+        {
+          name: ["-p", "--patch"],
+          description:
+            "Interactively select hunks in the difference between the restore source and the restore location",
+        },
+        {
+          name: ["-W", "--worktree"],
+          description: "Use the worktree as the restore location",
+        },
+        {
+          name: ["-S", "--staged"],
+          description: "Use staging as the restore location",
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Quiet, suppress feedback messages",
+        },
+        {
+          name: "--progress",
+          description:
+            "Progress status is reported on the standard error stream by default when it is attached to a terminal",
+        },
+        {
+          name: "--no-progress",
+          description: "Disable progress status reporting",
+        },
+        {
+          name: ["-2", "--ours"],
+          description:
+            "When restoring paths from the index, check out stage #2 (ours) for unmerged paths",
+          exclusive: ["--theirs"],
+        },
+        {
+          name: ["-3", "--theirs"],
+          description:
+            "When re out paths from the index, check out stage #3 (theirs) for unmerged paths",
+          exclusive: ["--ours"],
+        },
+        {
+          name: ["-m", "--merge"],
+          description:
+            "When restoring files on the working tree from the index, recreate the conflicted merge in the unmerged paths",
+        },
+        {
+          name: "--conflict",
+          description:
+            "The same as --merge option, but changes the way the conflicting hunks are presented",
+          args: {
+            name: "style",
+            suggestions: ["merge", "diff3"],
+          },
+        },
+        {
+          name: "--ignore-unmerged",
+          description:
+            "When restoring files on the working tree from the index, do not abort the operation if there are unmerged entries",
+          exclusive: ["--ours", "--theirs", "--merge", "--conflict"],
+        },
+        {
+          name: "--ignore-skip-worktree-bits",
+          description:
+            "In sparse checkout mode, by default is to only update entries matched by <pathspec> and sparse patterns in $GIT_DIR/info/sparse-checkout",
+        },
+        {
+          name: "--recurse-submodules",
+          description:
+            "If <pathspec> names an active submodule and the restore location includes the working tree, the submodule will only be updated if this option is given, in which case its working tree will be restored to the commit recorded in the superproject, and any local modifications overwritten",
+          exclusive: ["--no-recurse-submodules"],
+        },
+        {
+          name: "--no-recurse-submodules",
+          description: "Submodules working trees will not be updated",
+          exclusive: ["--recurse-submodules"],
+        },
+        {
+          name: "--overlay",
+          description:
+            "In overlay mode, the command never removes files when restoring",
+          exclusive: ["--no-overlay"],
+        },
+        {
+          name: "--no-overlay",
+          description:
+            "In no-overlay mode, tracked files that do not appear in the --source tree are removed, to make them match <tree> exactly",
+          exclusive: ["--overlay"],
+        },
+        {
+          name: "--pathspec-from-file",
+          description:
+            "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used.",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "--pathspec-file-nul",
+          description:
+            "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes)",
+        },
+        {
+          name: "--",
+          description: "Do not interpret any more arguments as options.",
+        },
+      ],
+      args: {
+        name: "pathspec",
+        isOptional: true,
+        variadic: true,
+        generators: gitGenerators.files_for_staging,
+      },
+    },
+    {
+      name: "switch",
+      description: "Switch branches",
+      options: [
+        {
+          name: ["-c", "--create"],
+          description:
+            "Create a new branch named <new-branch> starting at <start-point> before switching to the branch",
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: ["-C", "--force-create"],
+          description:
+            "Similar to --create except that if <new-branch> already exists, it will be reset to <start-point>",
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: ["-d", "--detach"],
+          description:
+            "Switch to a commit for inspection and discardable experiments",
+        },
+        {
+          name: ["--guess"],
+          description:
+            "If <branch> is not found but there does exist a tracking branch in exactly one remote (call it <remote>) with a matching name",
+        },
+        {
+          name: ["--no-guess"],
+          description: "Disable --guess",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "An alias for --discard-changes",
+          isDangerous: true,
+        },
+        {
+          name: "--discard-changes",
+          description:
+            "Proceed even if the index or the working tree differs from HEAD. Both the index and working tree are restored to match the switching target",
+          isDangerous: true,
+        },
+        {
+          name: ["-m", "--merge"],
+          description:
+            "If you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context",
+        },
+        {
+          name: "--conflict",
+          description:
+            "The same as --merge option above, but changes the way the conflicting hunks are presented, overriding the merge.conflictStyle configuration variable",
+          args: {
+            name: "style",
+            suggestions: ["merge", "diff3"],
+            default: "merge",
+          },
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Quiet, suppress feedback messages",
+        },
+        {
+          name: "--progress",
+          description:
+            "Progress status is reported on the standard error stream by default when it is attached to a terminal",
+        },
+        {
+          name: "--no-progress",
+          description: "Disable progress status reporting",
+        },
+        {
+          name: ["-t", "--track"],
+          exclusive: ["--no-track"],
+          description:
+            "When creating a new branch, set up 'upstream' configuration.",
+          args: [
+            {
+              name: "branch",
+              generators: gitGenerators.branches,
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: "--no-track",
+          exclusive: ["--track", "-t"],
+          description:
+            "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
+          args: [
+            {
+              generators: gitGenerators.branches,
+            },
+            {
+              isOptional: true,
+              generators: gitGenerators.branches,
+            },
+          ],
+        },
+        {
+          name: "--orphan",
+          description: "Create a new orphan branch, named <new-branch>",
+          args: {
+            name: "new branch",
+          },
+        },
+        {
+          name: "--ignore-other-worktrees",
+          description:
+            "git switch refuses when the wanted ref is already checked out by another worktree",
+        },
+        {
+          name: "--recurse-submodules",
+          exclusive: ["--no-recurse-submodules"],
+          description:
+            "Updates the content of all active submodules according to the commit recorded in the superproject",
+        },
+        {
+          name: "--no-recurse-submodules",
+          exclusive: ["--recurse-submodules"],
+          description: "Submodules working trees will not be updated",
+        },
+      ],
+      args: [
+        {
+          name: "branch name",
+          description: "branch or commit to switch to",
+          generators: gitGenerators.branches,
+          suggestions: [
+            {
+              name: "-",
+              description: "switch to the last used branch",
+              icon: "fig://icon?type=git",
+            },
+          ],
+        },
+        {
+          name: "start point",
+          isOptional: true,
+          generators: gitGenerators.commits,
+        },
+      ],
     },
   ],
   additionalSuggestions: [

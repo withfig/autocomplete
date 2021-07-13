@@ -355,11 +355,11 @@ export const completion: Fig.Spec = {
     },
     {
       name: "package",
-      description: "Packages a Serverless service",
+      description: "Package a Serverless service",
     },
     {
       name: "plugin",
-      description: "Install/uninstall and add/remove a plugin to your service",
+      description: "Handle plugins",
     },
     {
       name: "print",
@@ -397,10 +397,6 @@ export const completion: Fig.Spec = {
     {
       name: "param",
       description: "Get/list value of dashboard service output",
-    },
-    {
-      name: "plugin",
-      description: "Lists/search plugins",
     },
     {
       name: "slstats",

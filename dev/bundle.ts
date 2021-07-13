@@ -455,7 +455,7 @@ export const completionSpec: Fig.Spec = {
           description: "Do not create a LICENSE.txt",
         },
         {
-          name: ["-t", "--test", "--test"],
+          name: ["-t", "--test"],
           description: "Specify the test framework that Bundler should use",
           args: {},
         },

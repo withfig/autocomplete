@@ -127,7 +127,16 @@ export const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = ["vue", "nuxt", "expo", "jest", "next", "electron"];
+    const cli = [
+      "vue",
+      "nuxt",
+      "expo",
+      "jest",
+      "next",
+      "electron",
+      "prisma",
+      "prettier",
+    ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
       .map((name) => ({
@@ -872,14 +881,28 @@ export const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists all of the owners of a package",
+          args: {
+            name: "package",
+          },
         },
         {
           name: "add",
           description: "Adds the user as an owner of the package",
+          args: {
+            name: "package",
+          },
         },
         {
-          name: "add",
+          name: "remove",
           description: "Removes the user as an owner of the package",
+          args: [
+            {
+              name: "user",
+            },
+            {
+              name: "package",
+            },
+          ],
         },
       ],
     },
