@@ -1,117 +1,211 @@
 import { stdout } from "node:process";
 
-// Global Options
-// const config = {
-//   name: "--config",
-//   description: "config file (default is path/config.yaml|json|toml)",
-//   insertValue: "--config {cursor}",
-//   args: {
-//     name: "file path",
-//     description: "default is path/config.yaml|json|toml",
-//     template: "filepaths",
-//   },
-// };
+const help = (name: string) => {
+  const help = {
+    name: ["-h", "--help"],
+    description: `help for ${name}`,
+    insertValue: "--help",
+  };
+  return help;
+};
 
-// const configDir = {
-//   name: "--configDir string",
-//   description: "config dir (default 'config')",
-//   args: {
-//     name: "directory path",
-//     description: "default is 'config'",
-//     template: "folders",
-//   },
-// };
+// global options
 
-// const debug = {
-//   name: "--debug",
-//   description: "debug output",
-// };
+const config = {
+  name: "--config",
+  description: "config file (default is path/config.yaml|json|toml)",
+  insertValue: "--config {cursor}",
+  args: {
+    name: "file",
+    description: "default is path/config.yaml|json|toml",
+    template: "filepaths",
+  },
+};
 
-// const environment = {
-//   name: "-e, --environment string",
-//   description: "build environment",
-// };
+const configDir = {
+  name: "--configDir",
+  description: "config dir (default 'config')",
+  insertValue: '--configDir="{cursor}"',
+  args: {
+    name: "directory path",
+    description: "default is 'config'",
+    template: "folders",
+  },
+};
 
-// const ignoreVendor = {
-//   name: "--ignoreVendor",
-//   description: "ignores any _vendor directory",
-// };
+const debug = {
+  name: "--debug",
+  description: "debug output (default false)",
+  insertValue: "--debug={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
 
-// const ignoreVendorPaths = {
-//   name: "--ignoreVendorPaths string",
-//   description: "ignores any _vendor for module paths matching the given Glob pattern",
-// };
+const environment = {
+  name: ["-e", "--environment"],
+  description: "build environment",
+  insertValue: '--environment="{cursor}"',
+  args: {
+    name: "environment",
+  },
+};
 
-// const log = {
-//   name: "--log",
-//   description: "enable Logging",
-// };
+const ignoreVendor = {
+  name: "--ignoreVendor",
+  description: "ignores any _vendor directory (default false)",
+  insertValue: "--ignoreVendor={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
 
-// const logFile = {
-//   name: "--logFile string",
-//   description: "log File path (if set, logging enabled automatically)",
-// };
+const ignoreVendorPaths = {
+  name: "--ignoreVendorPaths",
+  description:
+    "ignores any _vendor for module paths matching the given Glob pattern",
+  insertValue: '--ignoreVendorPaths="{cursor}"',
+  args: {
+    name: "glob pattern",
+  },
+};
 
-// const quiet = {
-//   name: "--quiet",
-//   description: "build in quiet mode",
-// };
+const log = {
+  name: "--log",
+  description: "enable Logging (default false)",
+  insertValue: "--log={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
 
-// const source = {
-//   name: "-s, --source string",
-//   description: "filesystem path to read files relative from",
-// };
+const logFile = {
+  name: "--logFile",
+  description: "log File path (if set, logging enabled automatically)",
+  insertValue: '--logFile="{cursor}"',
+  args: {
+    name: "file",
+    template: "filepaths",
+  },
+};
 
-// const themesDir = {
-//   name: "--themesDir",
-//   description: "filesystem path to themes directory",
-//   // args: {
-//   //   name: "file path",
-//   //   description: "default is path/config.yaml|json|toml",
-//   //   template: "filepaths",
-//   // },
-// };
+const quiet = {
+  name: "--quiet",
+  description: "build in quiet mode (default false)",
+  insertValue: "--quiet={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
 
-// const verbose = {
-//   name: "-v, --verbose",
-//   description: "verbose output",
-// };
+const source = {
+  name: ["-s", "--source"],
+  description: "filesystem path to read files relative from",
+  insertValue: '--source="{cursor}"',
+  args: {
+    name: "file",
+    template: "filepaths",
+  },
+};
 
-// const verboseLog = {
-//   name: "--verboseLog",
-//   description: "verbose logging",
-// };
+const themesDir = {
+  name: "--themesDir",
+  description: "filesystem path to themes directory",
+  insertValue: '--themesDir="{cursor}"',
+  args: {
+    name: "file",
+    description: "default is path/config.yaml|json|toml",
+    template: "filepaths",
+  },
+};
 
-// const includeGlobalOptions = [
-//   config,
-//   configDir,
-//   debug,
-//   environment,
-//   ignoreVendor,
-//   ignoreVendorPaths,
-//   log,
-//   logFile,
-//   quiet,
-//   source,
-//   themesDir,
-//   verbose,
-//   verboseLog
-// ];
+const verbose = {
+  name: "-v, --verbose",
+  description: "verbose output (default false)",
+  insertValue: "--verbose={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
 
-// mod and new options
+const verboseLog = {
+  name: "--verboseLog",
+  description: "verbose logging (default false)",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "false", icon: "❌", description: "default" },
+      { name: "true", icon: "✅" },
+    ],
+  },
+};
+
+const watch = {
+  name: ["-w", "--watch"],
+  description:
+    "watch filesystem for changes and recreate as needed (default true)",
+  insertValue: "--watch={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "true", icon: "✅", description: "default" },
+      { name: "false", icon: "❌" },
+    ],
+  },
+};
+
+const globalOptions = [
+  config,
+  configDir,
+  debug,
+  environment,
+  ignoreVendor,
+  ignoreVendorPaths,
+  log,
+  logFile,
+  quiet,
+  source,
+  themesDir,
+  verbose,
+  verboseLog,
+  watch,
+];
+
+// extra options
 
 const baseURL = {
   name: ["-b", "--baseURL"],
   description: "hostname (and path) to the root, e.g. http://spf13.com/",
-  insertValue: "--baseURL {cursor}",
+  insertValue: '--baseURL="{cursor}"',
   args: {
-    name: "hostname_and_path",
+    name: "hostname and path",
   },
 };
 
 const buildDrafts = {
   name: ["-D", "--buildDrafts"],
   description: "include content marked as draft (default false)",
+  insertValue: "--buildDrafts={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -124,6 +218,7 @@ const buildDrafts = {
 const buildExpired = {
   name: ["-E", "--buildExpired"],
   description: "include expired content (default false)",
+  insertValue: "--buildExpired={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -136,6 +231,7 @@ const buildExpired = {
 const buildFuture = {
   name: ["-F", "--buildFuture"],
   description: "include content with publishdate in the future (default false)",
+  insertValue: "--buildFuture={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -149,7 +245,7 @@ const cacheDir = {
   name: "--cacheDir",
   description:
     "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
-  insertValue: "--cacheDir {cursor}",
+  insertValue: '--cacheDir="{cursor}"',
   args: {
     name: "path",
     template: "folders",
@@ -160,6 +256,7 @@ const cleanDestinationDir = {
   name: "--cleanDestinationDir",
   description:
     "remove files from destination not found in static directories (default false)",
+  insertValue: "--cleanDestinationDir={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -172,7 +269,7 @@ const cleanDestinationDir = {
 const contentDir = {
   name: ["-c", "--contentDir"],
   description: "filesystem path to content directory",
-  insertValue: "--contentDir {cursor}",
+  insertValue: '--contentDir="{cursor}"',
   args: {
     name: "path",
     template: "folders",
@@ -182,7 +279,7 @@ const contentDir = {
 const destination = {
   name: ["-d", "--destination"],
   description: "filesystem path to write files to",
-  insertValue: "--destination {cursor}",
+  insertValue: '--destination="{cursor}"',
   args: {
     name: "path",
     template: "folders",
@@ -192,7 +289,7 @@ const destination = {
 const disableKinds = {
   name: "--disableKinds",
   description: "disable different kind of pages (home, RSS etc.)",
-  insertValue: "--disableKinds={cursor}",
+  insertValue: '--disableKinds="{cursor}"',
   args: {
     name: "kind,kind",
     suggestions: [
@@ -213,6 +310,7 @@ const enableGitInfo = {
   name: "--enableGitInfo",
   description:
     "add Git revision, date and author info to the pages (default false)",
+  insertValue: "--enableGitInfo={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -225,6 +323,7 @@ const enableGitInfo = {
 const forceSyncStatic = {
   name: "--forceSyncStatic",
   description: "copy all files when static is changed (default false)",
+  insertValue: "--forceSyncStatic={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -238,6 +337,7 @@ const gc = {
   name: "--gc",
   description:
     "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
+  insertValue: "--gc={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -250,6 +350,7 @@ const gc = {
 const i18nWarnings = {
   name: "--i18n-warnings",
   description: "print missing translations (default false)",
+  insertValue: "--i18n-warnings={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -262,6 +363,7 @@ const i18nWarnings = {
 const ignoreCache = {
   name: "--ignoreCache",
   description: "ignores the cache directory (default false)",
+  insertValue: "--ignoreCache={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -274,6 +376,7 @@ const ignoreCache = {
 const layoutDir = {
   name: ["-l", "--layoutDir"],
   description: "filesystem path to layout directory",
+  insertValue: '--layoutDir="{cursor}"',
   args: {
     name: "path",
     template: "folders",
@@ -284,6 +387,7 @@ const minify = {
   name: "--minify",
   description:
     "minify any supported output format (HTML, XML etc.) (default false)",
+  insertValue: "--minify={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -296,6 +400,7 @@ const minify = {
 const noChmod = {
   name: "--noChmod",
   description: "don't sync permission mode of files (default false)",
+  insertValue: "--noChmod={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -308,6 +413,7 @@ const noChmod = {
 const noTimes = {
   name: "--noTimes",
   description: "don't sync modification time of files (default false)",
+  insertValue: "--noTimes={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -320,6 +426,7 @@ const noTimes = {
 const pathWarnings = {
   name: "--path-warnings",
   description: "print warnings on duplicate target paths etc (default false)",
+  insertValue: "--path-warnings={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -333,6 +440,7 @@ const poll = {
   name: "--poll",
   description:
     "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+  insertValue: '--poll="{cursor}"',
   args: {
     name: "milliseconds",
   },
@@ -341,6 +449,7 @@ const poll = {
 const printMem = {
   name: "--print-mem",
   description: "print memory usage to screen at intervals (default false)",
+  insertValue: "--print-mem={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -353,6 +462,7 @@ const printMem = {
 const templateMetrics = {
   name: "--templateMetrics",
   description: "display metrics about template executions (default false)",
+  insertValue: "--templateMetrics={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -366,6 +476,7 @@ const templateMetricsHints = {
   name: "--templateMetricsHints",
   description:
     "calculate some improvement hints when combined with --templateMetrics (default false)",
+  insertValue: "--templateMetricsHints={cursor}",
   args: {
     name: "boolean",
     suggestions: [
@@ -378,19 +489,21 @@ const templateMetricsHints = {
 const theme = {
   name: ["-t", "--theme"],
   description: "themes to use (located in /themes/THEMENAME/)",
-  args: { name: "themename" },
+  insertValue: '--theme="{cursor}"',
+  args: { name: "theme name" },
 };
 
 const trace = {
   name: "--trace",
   description: "write trace to file (not useful in general)",
+  insertValue: '--trace="{cursor}"',
   args: {
     name: "file",
     template: "filepaths",
   },
 };
 
-const includeModNewServerOptions = [
+const extraOptions = [
   baseURL,
   buildDrafts,
   buildExpired,
@@ -418,11 +531,11 @@ const includeModNewServerOptions = [
   trace,
 ];
 
-const includeConvertSubcommandOptions: Fig.Option[] = [
+const convertOptions: Fig.Option[] = [
   {
     name: ["-o", "--output"],
     description: "filesystem path to write files to",
-    insertValue: "--output {cursor}",
+    insertValue: '--output="{cursor}"',
     args: {
       name: "path",
       template: "folders",
@@ -449,20 +562,10 @@ export const completion: Fig.Spec = {
         {
           name: "ulimit",
           description: "Check system ulimit settings",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for ulimit",
-            },
-          ],
+          options: [help("ulimit")],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for check",
-        },
-      ],
+      options: [help("check")],
     },
     {
       name: "config",
@@ -471,73 +574,44 @@ export const completion: Fig.Spec = {
         {
           name: "mounts",
           description: "Print the configured file mounts",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for mounts",
-            },
-          ],
+          options: [help("mounts")],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for config",
-        },
-      ],
+      options: [help("config")],
     },
     {
       name: "convert",
       description: "Convert your content to different formats",
+      args: {
+        name: "command",
+      },
       subcommands: [
         {
           name: "toJSON",
           description: "Convert front matter to JSON",
           isDangerous: true,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for toJSON",
-            },
-            ...includeConvertSubcommandOptions,
-          ],
+          options: [help("toJSON"), ...convertOptions],
         },
         {
           name: "toTOML",
           description: "Convert front matter to TOML",
           isDangerous: true,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for toTOML",
-            },
-            ...includeConvertSubcommandOptions,
-          ],
+          options: [help("toTOML"), ...convertOptions],
         },
         {
           name: "toYAML",
           description: "Convert front matter to YAML",
           isDangerous: true,
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for toYAML",
-            },
-            ...includeConvertSubcommandOptions,
-          ],
+          options: [help("toYAML"), ...convertOptions],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for convert",
-        },
-      ],
+      options: [help("convert")],
     },
     {
       name: "deploy",
       description: "Deploy your site to a Cloud provider",
       options: [
+        help("deploy"),
         {
           name: ["--confirm"],
           description:
@@ -550,10 +624,6 @@ export const completion: Fig.Spec = {
         {
           name: ["--force"],
           description: "force upload of all files",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "help for deploy",
         },
         {
           name: ["--invalidateCDN"],
@@ -584,10 +654,7 @@ export const completion: Fig.Spec = {
       name: "env",
       description: "Print Hugo version and environment info",
       options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for env",
-        },
+        help("env"),
         {
           name: ["-v"],
           description: "Get a full dependency list",
@@ -596,32 +663,33 @@ export const completion: Fig.Spec = {
     },
     {
       name: "gen",
-      description: "A collection of several useful generators.",
+      description: "A collection of several useful generators",
+      args: {
+        name: "command",
+      },
       subcommands: [
         {
           name: "autocomplete",
-          description: "Generate shell autocompletion script for Hugo",
+          description:
+            "Generate shell autocompletion script for Hugo (default outputs to stdout)",
           options: [
+            help("autocomplete"),
             {
               name: ["-f", "--completionfile"],
               description: "autocompletion file, defaults to stdout",
               insertValue: "--completionfile {cursor}",
               args: {
-                name: "file path",
+                name: "file",
                 template: "filepaths",
               },
-            },
-            {
-              name: ["-h", "--help"],
-              description: "help for autocomplete",
             },
             {
               name: ["-t", "--type"],
               description:
                 "autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
+              insertValue: "--type {cursor}",
               args: {
-                // ??? 'type' instead of 'string' ???
-                name: "string",
+                name: "type",
                 suggestions: [
                   { name: "bash", description: "default" },
                   { name: "zsh" },
@@ -635,12 +703,9 @@ export const completion: Fig.Spec = {
         {
           name: "chromastyles",
           description:
-            "Generate CSS stylesheet for the Chroma code highlighter",
+            "Generate CSS stylesheet for the Chroma code highlighter (default outputs to stdout)",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for chromastyles",
-            },
+            help("chromastyles"),
             {
               name: ["--highlightStyle"],
               description:
@@ -715,26 +780,14 @@ export const completion: Fig.Spec = {
                 ],
               },
             },
-            {
-              name: [">"],
-              description: "filesystem path to write syntax.css to",
-              insertValue: "> {cursor}",
-              // args: {
-              //   name: "path",
-              //   description: "filesystem path to write syntax.css to",
-              //   template: "folders",
-              // },
-            },
           ],
         },
         {
           name: "doc",
-          description: "Generate Markdown documentation for the Hugo CLI",
+          description:
+            "Generate Markdown documentation for the Hugo CLI (default '/tmp/hugodoc/')",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for doc",
-            },
+            help("doc"),
             {
               name: ["--dir"],
               description:
@@ -749,12 +802,9 @@ export const completion: Fig.Spec = {
         },
         {
           name: "man",
-          description: "Generate man pages for the Hugo CLI",
+          description: "Generate man pages for the Hugo CLI (default 'man/')",
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for man",
-            },
+            help("man"),
             {
               name: ["--dir"],
               description:
@@ -768,20 +818,36 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for gen",
-        },
-      ],
+      options: [help("gen")],
     },
     {
       name: "help",
       description: "Help about any command",
+      args: {
+        name: "command",
+        suggestions: [
+          { name: "check" },
+          { name: "config" },
+          { name: "convert" },
+          { name: "deploy" },
+          { name: "env" },
+          { name: "gen" },
+          { name: "help" },
+          { name: "import" },
+          { name: "list" },
+          { name: "mod" },
+          { name: "new" },
+          { name: "server" },
+          { name: "version" },
+        ],
+      },
     },
     {
       name: "import",
       description: "Import your site from others",
+      args: {
+        name: "command",
+      },
       subcommands: [
         {
           name: "jekyll",
@@ -798,10 +864,7 @@ export const completion: Fig.Spec = {
             },
           ],
           options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for jekyll",
-            },
+            help("jekyll"),
             {
               name: ["--force"],
               description: "allow import into non-empty target directory",
@@ -810,80 +873,53 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for import",
-        },
-      ],
+      options: [help("import")],
     },
     {
       name: "list",
       description: "Listing out various types of content",
+      args: {
+        name: "command",
+      },
       subcommands: [
         {
           name: "drafts",
           description: "List all drafts",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for drafts",
-            },
-          ],
+          options: [help("drafts")],
         },
         {
           name: "future",
           description: "List all posts dated in the future",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for future",
-            },
-          ],
+          options: [help("future")],
         },
         {
           name: "expired",
           description: "List all posts already expired",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for expired",
-            },
-          ],
+          options: [help("expired")],
         },
         {
           name: "all",
           description: "List all posts",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for all",
-            },
-          ],
+          options: [help("all")],
         },
       ],
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for list",
-        },
-      ],
+      options: [help("list")],
     },
     {
       name: "mod",
-      description: "Various Hugo Modules helpers.",
+      description: "Various Hugo Modules helpers",
+      args: {
+        name: "command",
+      },
       subcommands: [
         {
           name: "clean",
           description: "Delete the Hugo Module cache for the current project",
           options: [
+            help("clean"),
             {
               name: "--all",
               description: "clean entire module cache",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "help for clean",
             },
             {
               name: "--pattern",
@@ -897,9 +933,10 @@ export const completion: Fig.Spec = {
         },
         {
           name: "get",
-          description: "resolves dependencies in your current Hugo Project",
+          description: "Resolves dependencies in your current Hugo Project",
           // Run `go help get` for more information. All flags available for `go get` are also relevant here.
           options: [
+            help("get"),
             {
               name: ["-d"],
               description: "download packages only and do not install",
@@ -913,10 +950,6 @@ export const completion: Fig.Spec = {
               name: ["-fix"],
               description:
                 "run the fix tool on downloaded packages before resolving dependencies or building the code",
-            },
-            {
-              name: ["-h", "--help"],
-              description: "help for get",
             },
             {
               name: ["-insecure"],
@@ -943,22 +976,12 @@ export const completion: Fig.Spec = {
           name: "graph",
           description:
             "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status.",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for graph",
-            },
-          ],
+          options: [help("graph")],
         },
         {
           name: "init",
           description: "Initialize this project as a Hugo Module",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for init",
-            },
-          ],
+          options: [help("init")],
         },
         {
           name: "npm",
@@ -968,65 +991,36 @@ export const completion: Fig.Spec = {
               name: "pack",
               description:
                 "Experimental: Prepares and writes a composite package.json file for your project.",
-              options: [
-                {
-                  name: ["-h", "--help"],
-                  description: "help for pack",
-                },
-              ],
+              options: [help("pack")],
             },
           ],
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for npm",
-            },
-          ],
+          options: [help("npm")],
         },
         {
           name: "tidy",
           description: "Remove unused entries in go.mod and go.sum",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for tidy",
-            },
-          ],
+          options: [help("tidy")],
         },
         {
           name: "vendor",
           description:
             "Vendor all module dependencies into the _vendor directory",
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for vendor",
-            },
-          ],
+          options: [help("vendor")],
         },
         {
           name: "verify",
-          description: "Verify dependencie",
+          description: "Verify dependencies",
           options: [
+            help("verify"),
             {
               name: "--clean",
               description:
                 "delete module cache for dependencies that fail verification",
             },
-            {
-              name: ["-h", "--help"],
-              description: "help for verify",
-            },
           ],
         },
       ],
-      options: [
-        ...includeModNewServerOptions,
-        {
-          name: ["-h", "--help"],
-          description: "help for mod",
-        },
-      ],
+      options: [help("mod"), ...extraOptions],
     },
     {
       name: "new",
@@ -1043,6 +1037,7 @@ export const completion: Fig.Spec = {
             template: "folders",
           },
           options: [
+            help("site"),
             {
               name: "--force",
               description: "init inside non-empty directory",
@@ -1056,10 +1051,6 @@ export const completion: Fig.Spec = {
                 name: "format",
               },
             },
-            {
-              name: ["-h", "--help"],
-              description: "help for site",
-            },
           ],
         },
         {
@@ -1068,16 +1059,12 @@ export const completion: Fig.Spec = {
           args: {
             name: "name",
           },
-          options: [
-            {
-              name: ["-h", "--help"],
-              description: "help for theme",
-            },
-          ],
+          options: [help("theme")],
         },
       ],
       options: [
-        ...includeModNewServerOptions,
+        help("new"),
+        ...extraOptions,
         {
           name: ["-k", "--kind"],
           description: "content type to create",
@@ -1098,20 +1085,19 @@ export const completion: Fig.Spec = {
             name: "editor",
           },
         },
-        {
-          name: ["-h", "--help"],
-          description: "help for new",
-        },
       ],
     },
     {
       name: "server",
       description: "A high performance webserver",
       options: [
-        ...includeModNewServerOptions,
+        help("server"),
+        ...extraOptions,
+        watch,
         {
           name: ["--appendPort"],
           description: "append port to baseURL (default true)",
+          insertValue: "--appendPort={cursor}",
           args: {
             name: "boolean",
             suggestions: [
@@ -1121,73 +1107,132 @@ export const completion: Fig.Spec = {
           },
         },
         {
+          name: "--bind",
+          description:
+            "interface to which the server will bind (default '127.0.0.1')",
+          insertValue: "--liveReloadPort={cursor}",
+          args: {
+            name: "ip address",
+          },
+        },
+        {
           name: "--disableBrowserError",
-          description: "do not show build errors in the browser",
+          description:
+            "do not show build errors in the browser (default false)",
+          insertValue: "--disableBrowserError={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
         {
           name: "--disableFastRender",
-          description: "enables full re-renders on changes",
+          description: "enables full re-renders on changes (default false)",
+          insertValue: "--disableFastRender={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
         {
           name: "--disableLiveReload",
-          description: "watch without enabling live browser reload on rebuild",
+          description:
+            "watch without enabling live browser reload on rebuild (default false)",
+          insertValue: "--disableLiveReload={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
         {
           name: "--liveReloadPort",
           description:
             "port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
-          // int
+          insertValue: "--liveReloadPort={cursor}",
+          args: {
+            name: "port",
+          },
         },
         {
           name: "--meminterval",
           description:
-            'interval to poll memory usage (requires --memstats)", "valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". (default "100ms")',
-          // string
+            "interval to poll memory usage (requires --memstats), valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. (default '100ms')",
+          insertValue: "--meminterval={cursor}",
+          args: {
+            name: "time unit",
+          },
         },
         {
           name: "--memstats",
           description: "log memory usage to this file",
-          // string
+          insertValue: "--memstats {cursor}",
+          args: {
+            name: "file",
+            template: "filepaths",
+          },
         },
         {
           name: "--navigateToChanged",
           description:
-            "navigate to changed content file on live browser reload",
+            "navigate to changed content file on live browser reload (default false)",
+          insertValue: "--navigateToChanged={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
         {
           name: "--noHTTPCache",
-          description: "prevent HTTP caching",
+          description: "prevent HTTP caching (default false)",
+          insertValue: "--noHTTPCache={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
         {
           name: ["-p", "--port"],
           description: "port on which the server will listen (default 1313)",
-          // int
+          insertValue: "--port={cursor}",
+          args: {
+            name: "port",
+          },
         },
         {
           name: "--renderToDisk",
           description:
-            "render to Destination path (default is render to memory & serve from there)",
-        },
-        {
-          name: ["-w", "--watch"],
-          description:
-            "watch filesystem for changes and recreate as needed (default true)",
-        },
-        {
-          name: ["-h", "--help"],
-          description: "help for server",
+            "render to Destination path (default is false: render to memory & serve from there)",
+          insertValue: "--renderToDisk={cursor}",
+          args: {
+            name: "boolean",
+            suggestions: [
+              { name: "false", icon: "❌", description: "default" },
+              { name: "true", icon: "✅" },
+            ],
+          },
         },
       ],
     },
     {
       name: "version",
       description: "Print the version number of Hugo",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "help for version",
-        },
-      ],
+      options: [help("version")],
     },
   ],
+  options: [help("hugo"), ...globalOptions, ...extraOptions],
 };
