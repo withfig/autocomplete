@@ -1087,10 +1087,20 @@ export const completion: Fig.Spec = {
         {
           name: ["-k", "--kind"],
           description: "content type to create",
+          insertValue: "--kind={cursor}",
           args: [
             {
-              // TODO: generate list of any existing archetypes
               name: "archetype|default",
+              generators: [
+                {
+                  script: "ls ./archetypes/",
+                  postProcess: (output) =>
+                    output.split("\n").map((fileName) => ({
+                      name: fileName,
+                      icon: "fig://icon?type=string",
+                    })),
+                },
+              ],
             },
             {
               name: "content-section/file-name.md",
