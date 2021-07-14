@@ -9,524 +9,447 @@ const help = (name: string) => {
   return help;
 };
 
-// global options
-
-const config = {
-  name: "--config",
-  description: "config file (default is path/config.yaml|json|toml)",
-  insertValue: "--config {cursor}",
-  priority: 50,
-  args: {
-    name: "file",
-    description: "default is path/config.yaml|json|toml",
-    template: "filepaths",
+const globalOptions: Fig.Option[] = [
+  {
+    name: "--config",
+    description: "config file (default is path/config.yaml|json|toml)",
+    insertValue: "--config {cursor}",
+    priority: 50,
+    args: {
+      name: "file",
+      description: "default is path/config.yaml|json|toml",
+      template: "filepaths",
+    },
   },
-};
-
-const configDir = {
-  name: "--configDir",
-  description: "config dir (default 'config')",
-  insertValue: '--configDir="{cursor}"',
-  priority: 50,
-  args: {
-    name: "directory path",
-    description: "default is 'config'",
-    template: "folders",
+  {
+    name: "--configDir",
+    description: "config dir (default 'config')",
+    insertValue: '--configDir="{cursor}"',
+    priority: 50,
+    args: {
+      name: "directory path",
+      description: "default is 'config'",
+      template: "folders",
+    },
   },
-};
-
-const debug = {
-  name: "--debug",
-  description: "debug output (default false)",
-  insertValue: "--debug={cursor}",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--debug",
+    description: "debug output (default false)",
+    insertValue: "--debug={cursor}",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const environment = {
-  name: ["-e", "--environment"],
-  description: "build environment",
-  insertValue: '--environment="{cursor}"',
-  priority: 50,
-  args: {
-    name: "environment",
+  {
+    name: ["-e", "--environment"],
+    description: "build environment",
+    insertValue: '--environment="{cursor}"',
+    priority: 50,
+    args: {
+      name: "environment",
+    },
   },
-};
-
-const ignoreVendor = {
-  name: "--ignoreVendor",
-  description: "ignores any _vendor directory (default false)",
-  insertValue: "--ignoreVendor={cursor}",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--ignoreVendor",
+    description: "ignores any _vendor directory (default false)",
+    insertValue: "--ignoreVendor={cursor}",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const ignoreVendorPaths = {
-  name: "--ignoreVendorPaths",
-  description:
-    "ignores any _vendor for module paths matching the given Glob pattern",
-  insertValue: '--ignoreVendorPaths="{cursor}"',
-  priority: 50,
-  args: {
-    name: "glob pattern",
+  {
+    name: "--ignoreVendorPaths",
+    description:
+      "ignores any _vendor for module paths matching the given Glob pattern",
+    insertValue: '--ignoreVendorPaths="{cursor}"',
+    priority: 50,
+    args: {
+      name: "glob pattern",
+    },
   },
-};
-
-const log = {
-  name: "--log",
-  description: "enable Logging (default false)",
-  insertValue: "--log={cursor}",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--log",
+    description: "enable Logging (default false)",
+    insertValue: "--log={cursor}",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const logFile = {
-  name: "--logFile",
-  description: "log File path (if set, logging enabled automatically)",
-  insertValue: '--logFile="{cursor}"',
-  priority: 50,
-  args: {
-    name: "file",
-    template: "filepaths",
+  {
+    name: "--logFile",
+    description: "log File path (if set, logging enabled automatically)",
+    insertValue: '--logFile="{cursor}"',
+    priority: 50,
+    args: {
+      name: "file",
+      template: "filepaths",
+    },
   },
-};
-
-const quiet = {
-  name: "--quiet",
-  description: "build in quiet mode (default false)",
-  insertValue: "--quiet={cursor}",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--quiet",
+    description: "build in quiet mode (default false)",
+    insertValue: "--quiet={cursor}",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const source = {
-  name: ["-s", "--source"],
-  description: "filesystem path to read files relative from",
-  insertValue: '--source="{cursor}"',
-  priority: 50,
-  args: {
-    name: "file",
-    template: "filepaths",
+  {
+    name: ["-s", "--source"],
+    description: "filesystem path to read files relative from",
+    insertValue: '--source="{cursor}"',
+    priority: 50,
+    args: {
+      name: "file",
+      template: "filepaths",
+    },
   },
-};
-
-const themesDir = {
-  name: "--themesDir",
-  description: "filesystem path to themes directory",
-  insertValue: '--themesDir="{cursor}"',
-  priority: 50,
-  args: {
-    name: "file",
-    description: "default is path/config.yaml|json|toml",
-    template: "filepaths",
+  {
+    name: "--themesDir",
+    description: "filesystem path to themes directory",
+    insertValue: '--themesDir="{cursor}"',
+    priority: 50,
+    args: {
+      name: "file",
+      description: "default is path/config.yaml|json|toml",
+      template: "filepaths",
+    },
   },
-};
-
-const verbose = {
-  name: "-v, --verbose",
-  description: "verbose output (default false)",
-  insertValue: "--verbose={cursor}",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "-v, --verbose",
+    description: "verbose output (default false)",
+    insertValue: "--verbose={cursor}",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const verboseLog = {
-  name: "--verboseLog",
-  description: "verbose logging (default false)",
-  priority: 50,
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--verboseLog",
+    description: "verbose logging (default false)",
+    priority: 50,
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const globalOptions = [
-  config,
-  configDir,
-  debug,
-  environment,
-  ignoreVendor,
-  ignoreVendorPaths,
-  log,
-  logFile,
-  quiet,
-  source,
-  themesDir,
-  verbose,
-  verboseLog,
 ];
 
 // options common to 'hugo', 'hugo mod', 'hugo new', and 'hugo server' commands
 
-const baseURL = {
-  name: ["-b", "--baseURL"],
-  description: "hostname (and path) to the root, e.g. http://spf13.com/",
-  insertValue: '--baseURL="{cursor}"',
-  args: {
-    name: "hostname and path",
+const commonOptions: Fig.Option[] = [
+  {
+    name: ["-b", "--baseURL"],
+    description: "hostname (and path) to the root, e.g. http://spf13.com/",
+    insertValue: '--baseURL="{cursor}"',
+    args: {
+      name: "hostname and path",
+    },
   },
-};
-
-const buildDrafts = {
-  name: ["-D", "--buildDrafts"],
-  description: "include content marked as draft (default false)",
-  insertValue: "--buildDrafts={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: ["-D", "--buildDrafts"],
+    description: "include content marked as draft (default false)",
+    insertValue: "--buildDrafts={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const buildExpired = {
-  name: ["-E", "--buildExpired"],
-  description: "include expired content (default false)",
-  insertValue: "--buildExpired={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: ["-E", "--buildExpired"],
+    description: "include expired content (default false)",
+    insertValue: "--buildExpired={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const buildFuture = {
-  name: ["-F", "--buildFuture"],
-  description: "include content with publishdate in the future (default false)",
-  insertValue: "--buildFuture={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: ["-F", "--buildFuture"],
+    description:
+      "include content with publishdate in the future (default false)",
+    insertValue: "--buildFuture={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const cacheDir = {
-  name: "--cacheDir",
-  description:
-    "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
-  insertValue: '--cacheDir="{cursor}"',
-  args: {
-    name: "path",
-    template: "folders",
+  {
+    name: "--cacheDir",
+    description:
+      "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
+    insertValue: '--cacheDir="{cursor}"',
+    args: {
+      name: "path",
+      template: "folders",
+    },
   },
-};
-
-const cleanDestinationDir = {
-  name: "--cleanDestinationDir",
-  description:
-    "remove files from destination not found in static directories (default false)",
-  insertValue: "--cleanDestinationDir={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--cleanDestinationDir",
+    description:
+      "remove files from destination not found in static directories (default false)",
+    insertValue: "--cleanDestinationDir={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const contentDir = {
-  name: ["-c", "--contentDir"],
-  description: "filesystem path to content directory",
-  insertValue: '--contentDir="{cursor}"',
-  args: {
-    name: "path",
-    template: "folders",
+  {
+    name: ["-c", "--contentDir"],
+    description: "filesystem path to content directory",
+    insertValue: '--contentDir="{cursor}"',
+    args: {
+      name: "path",
+      template: "folders",
+    },
   },
-};
-
-const destination = {
-  name: ["-d", "--destination"],
-  description: "filesystem path to write files to",
-  insertValue: '--destination="{cursor}"',
-  args: {
-    name: "path",
-    template: "folders",
+  {
+    name: ["-d", "--destination"],
+    description: "filesystem path to write files to",
+    insertValue: '--destination="{cursor}"',
+    args: {
+      name: "path",
+      template: "folders",
+    },
   },
-};
-
-const disableKinds = {
-  name: "--disableKinds",
-  description: "disable different kind of pages (home, RSS etc.)",
-  insertValue: '--disableKinds="{cursor}"',
-  args: {
-    name: "kind,kind",
-    suggestions: [
-      "page",
-      "home",
-      "section",
-      "taxonomy",
-      "term",
-      "RSS",
-      "sitemap",
-      "robotsTXT",
-      "404",
-    ],
+  {
+    name: "--disableKinds",
+    description: "disable different kind of pages (home, RSS etc.)",
+    insertValue: '--disableKinds="{cursor}"',
+    args: {
+      name: "kind,kind",
+      suggestions: [
+        "page",
+        "home",
+        "section",
+        "taxonomy",
+        "term",
+        "RSS",
+        "sitemap",
+        "robotsTXT",
+        "404",
+      ],
+    },
   },
-};
-
-const enableGitInfo = {
-  name: "--enableGitInfo",
-  description:
-    "add Git revision, date and author info to the pages (default false)",
-  insertValue: "--enableGitInfo={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--enableGitInfo",
+    description:
+      "add Git revision, date and author info to the pages (default false)",
+    insertValue: "--enableGitInfo={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const forceSyncStatic = {
-  name: "--forceSyncStatic",
-  description: "copy all files when static is changed (default false)",
-  insertValue: "--forceSyncStatic={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--forceSyncStatic",
+    description: "copy all files when static is changed (default false)",
+    insertValue: "--forceSyncStatic={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const gc = {
-  name: "--gc",
-  description:
-    "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
-  insertValue: "--gc={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--gc",
+    description:
+      "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
+    insertValue: "--gc={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const i18nWarnings = {
-  name: "--i18n-warnings",
-  description: "print missing translations (default false)",
-  insertValue: "--i18n-warnings={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--i18n-warnings",
+    description: "print missing translations (default false)",
+    insertValue: "--i18n-warnings={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const ignoreCache = {
-  name: "--ignoreCache",
-  description: "ignores the cache directory (default false)",
-  insertValue: "--ignoreCache={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--ignoreCache",
+    description: "ignores the cache directory (default false)",
+    insertValue: "--ignoreCache={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const layoutDir = {
-  name: ["-l", "--layoutDir"],
-  description: "filesystem path to layout directory",
-  insertValue: '--layoutDir="{cursor}"',
-  args: {
-    name: "path",
-    template: "folders",
+  {
+    name: ["-l", "--layoutDir"],
+    description: "filesystem path to layout directory",
+    insertValue: '--layoutDir="{cursor}"',
+    args: {
+      name: "path",
+      template: "folders",
+    },
   },
-};
-
-const minify = {
-  name: "--minify",
-  description:
-    "minify any supported output format (HTML, XML etc.) (default false)",
-  insertValue: "--minify={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--minify",
+    description:
+      "minify any supported output format (HTML, XML etc.) (default false)",
+    insertValue: "--minify={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const noChmod = {
-  name: "--noChmod",
-  description: "don't sync permission mode of files (default false)",
-  insertValue: "--noChmod={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--noChmod",
+    description: "don't sync permission mode of files (default false)",
+    insertValue: "--noChmod={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const noTimes = {
-  name: "--noTimes",
-  description: "don't sync modification time of files (default false)",
-  insertValue: "--noTimes={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--noTimes",
+    description: "don't sync modification time of files (default false)",
+    insertValue: "--noTimes={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const pathWarnings = {
-  name: "--path-warnings",
-  description: "print warnings on duplicate target paths etc (default false)",
-  insertValue: "--path-warnings={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--path-warnings",
+    description: "print warnings on duplicate target paths etc (default false)",
+    insertValue: "--path-warnings={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const poll = {
-  name: "--poll",
-  description:
-    "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
-  insertValue: '--poll="{cursor}"',
-  args: {
-    name: "milliseconds",
+  {
+    name: "--poll",
+    description:
+      "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
+    insertValue: '--poll="{cursor}"',
+    args: {
+      name: "milliseconds",
+    },
   },
-};
-
-const printMem = {
-  name: "--print-mem",
-  description: "print memory usage to screen at intervals (default false)",
-  insertValue: "--print-mem={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--print-mem",
+    description: "print memory usage to screen at intervals (default false)",
+    insertValue: "--print-mem={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const templateMetrics = {
-  name: "--templateMetrics",
-  description: "display metrics about template executions (default false)",
-  insertValue: "--templateMetrics={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--templateMetrics",
+    description: "display metrics about template executions (default false)",
+    insertValue: "--templateMetrics={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const templateMetricsHints = {
-  name: "--templateMetricsHints",
-  description:
-    "calculate some improvement hints when combined with --templateMetrics (default false)",
-  insertValue: "--templateMetricsHints={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "false", icon: "❌", description: "default" },
-      { name: "true", icon: "✅" },
-    ],
+  {
+    name: "--templateMetricsHints",
+    description:
+      "calculate some improvement hints when combined with --templateMetrics (default false)",
+    insertValue: "--templateMetricsHints={cursor}",
+    args: {
+      name: "boolean",
+      suggestions: [
+        { name: "false", icon: "❌", description: "default" },
+        { name: "true", icon: "✅" },
+      ],
+    },
   },
-};
-
-const theme = {
-  name: ["-t", "--theme"],
-  description: "themes to use (located in /themes/THEMENAME/)",
-  insertValue: '--theme="{cursor}"',
-  args: { name: "theme name" },
-};
-
-const trace = {
-  name: "--trace",
-  description: "write trace to file (not useful in general)",
-  insertValue: '--trace="{cursor}"',
-  args: {
-    name: "file",
-    template: "filepaths",
+  {
+    name: ["-t", "--theme"],
+    description: "themes to use (located in /themes/THEMENAME/)",
+    insertValue: '--theme="{cursor}"',
+    args: { name: "theme name" },
   },
-};
-
-const commonOptions = [
-  baseURL,
-  buildDrafts,
-  buildExpired,
-  buildFuture,
-  cacheDir,
-  cleanDestinationDir,
-  contentDir,
-  destination,
-  disableKinds,
-  enableGitInfo,
-  forceSyncStatic,
-  gc,
-  i18nWarnings,
-  ignoreCache,
-  layoutDir,
-  minify,
-  noChmod,
-  noTimes,
-  pathWarnings,
-  poll,
-  printMem,
-  templateMetrics,
-  templateMetricsHints,
-  theme,
-  trace,
+  {
+    name: "--trace",
+    description: "write trace to file (not useful in general)",
+    insertValue: '--trace="{cursor}"',
+    args: {
+      name: "file",
+      template: "filepaths",
+    },
+  },
 ];
 
 // options common to 'hugo' and 'hugo server' commands
