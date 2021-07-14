@@ -160,20 +160,6 @@ const verboseLog = {
   },
 };
 
-const watch = {
-  name: ["-w", "--watch"],
-  description:
-    "watch filesystem for changes and recreate as needed (default true)",
-  insertValue: "--watch={cursor}",
-  args: {
-    name: "boolean",
-    suggestions: [
-      { name: "true", icon: "✅", description: "default" },
-      { name: "false", icon: "❌" },
-    ],
-  },
-};
-
 const globalOptions = [
   config,
   configDir,
@@ -188,10 +174,9 @@ const globalOptions = [
   themesDir,
   verbose,
   verboseLog,
-  watch,
 ];
 
-// extra options
+// options common to 'hugo', 'hugo mod', 'hugo new', and 'hugo server' commands
 
 const baseURL = {
   name: ["-b", "--baseURL"],
@@ -503,7 +488,7 @@ const trace = {
   },
 };
 
-const extraOptions = [
+const commonOptions = [
   baseURL,
   buildDrafts,
   buildExpired,
@@ -530,6 +515,24 @@ const extraOptions = [
   theme,
   trace,
 ];
+
+// options common to 'hugo' and 'hugo server' commands
+
+const watch = {
+  name: ["-w", "--watch"],
+  description:
+    "watch filesystem for changes and recreate as needed (default true)",
+  insertValue: "--watch={cursor}",
+  args: {
+    name: "boolean",
+    suggestions: [
+      { name: "true", icon: "✅", description: "default" },
+      { name: "false", icon: "❌" },
+    ],
+  },
+};
+
+// options common to 'toJSON', 'toTOML', 'toYAML' commands
 
 const convertOptions: Fig.Option[] = [
   {
@@ -565,7 +568,7 @@ export const completion: Fig.Spec = {
           options: [help("ulimit")],
         },
       ],
-      options: [help("check")],
+      options: [help("check"), ...globalOptions],
     },
     {
       name: "config",
@@ -577,7 +580,7 @@ export const completion: Fig.Spec = {
           options: [help("mounts")],
         },
       ],
-      options: [help("config")],
+      options: [help("config"), ...globalOptions],
     },
     {
       name: "convert",
@@ -605,13 +608,14 @@ export const completion: Fig.Spec = {
           options: [help("toYAML"), ...convertOptions],
         },
       ],
-      options: [help("convert")],
+      options: [help("convert"), ...globalOptions],
     },
     {
       name: "deploy",
       description: "Deploy your site to a Cloud provider",
       options: [
         help("deploy"),
+        ...globalOptions,
         {
           name: ["--confirm"],
           description:
@@ -655,6 +659,7 @@ export const completion: Fig.Spec = {
       description: "Print Hugo version and environment info",
       options: [
         help("env"),
+        ...globalOptions,
         {
           name: ["-v"],
           description: "Get a full dependency list",
@@ -818,7 +823,7 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
-      options: [help("gen")],
+      options: [help("gen"), ...globalOptions],
     },
     {
       name: "help",
@@ -873,7 +878,7 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
-      options: [help("import")],
+      options: [help("import"), ...globalOptions],
     },
     {
       name: "list",
@@ -903,7 +908,7 @@ export const completion: Fig.Spec = {
           options: [help("all")],
         },
       ],
-      options: [help("list")],
+      options: [help("list"), ...globalOptions],
     },
     {
       name: "mod",
@@ -1020,7 +1025,7 @@ export const completion: Fig.Spec = {
           ],
         },
       ],
-      options: [help("mod"), ...extraOptions],
+      options: [help("mod"), ...commonOptions, ...globalOptions],
     },
     {
       name: "new",
@@ -1064,7 +1069,8 @@ export const completion: Fig.Spec = {
       ],
       options: [
         help("new"),
-        ...extraOptions,
+        ...commonOptions,
+        ...globalOptions,
         {
           name: ["-k", "--kind"],
           description: "content type to create",
@@ -1092,7 +1098,8 @@ export const completion: Fig.Spec = {
       description: "A high performance webserver",
       options: [
         help("server"),
-        ...extraOptions,
+        ...commonOptions,
+        ...globalOptions,
         watch,
         {
           name: ["--appendPort"],
@@ -1231,8 +1238,17 @@ export const completion: Fig.Spec = {
     {
       name: "version",
       description: "Print the version number of Hugo",
-      options: [help("version")],
+      options: [help("version"), ...globalOptions],
     },
   ],
-  options: [help("hugo"), ...globalOptions, ...extraOptions],
+  options: [
+    help("hugo"),
+    ...commonOptions,
+    ...globalOptions,
+    watch,
+    {
+      name: "--renderToMemory",
+      description: "render to memory (only useful for benchmark testing)",
+    },
+  ],
 };
