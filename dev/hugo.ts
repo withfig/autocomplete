@@ -566,7 +566,7 @@ const convertOptions: Fig.Option[] = [
 
 export const completion: Fig.Spec = {
   name: "hugo",
-  description: "Hugo framework CLI for building websites",
+  description: "hugo builds your site",
   subcommands: [
     {
       name: "check",
@@ -730,7 +730,7 @@ export const completion: Fig.Spec = {
                 "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
               insertValue: "--highlightStyle #{cursor}",
               args: {
-                name: "hex_digits",
+                name: "hex triplet",
               },
             },
             {
@@ -739,7 +739,7 @@ export const completion: Fig.Spec = {
                 "style used for line numbers (see https://github.com/alecthomas/chroma)",
               insertValue: "--linesStyle #{cursor}",
               args: {
-                name: "hex_digits",
+                name: "hex triplet",
               },
             },
             {
@@ -748,7 +748,7 @@ export const completion: Fig.Spec = {
                 "highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
               insertValue: "--style {cursor}",
               args: {
-                name: "style_name",
+                name: "style name",
                 suggestions: [
                   { name: "friendly", description: "default" },
                   { name: "abap" },
