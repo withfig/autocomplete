@@ -15,6 +15,7 @@ const config = {
   name: "--config",
   description: "config file (default is path/config.yaml|json|toml)",
   insertValue: "--config {cursor}",
+  priority: 50,
   args: {
     name: "file",
     description: "default is path/config.yaml|json|toml",
@@ -26,6 +27,7 @@ const configDir = {
   name: "--configDir",
   description: "config dir (default 'config')",
   insertValue: '--configDir="{cursor}"',
+  priority: 50,
   args: {
     name: "directory path",
     description: "default is 'config'",
@@ -37,6 +39,7 @@ const debug = {
   name: "--debug",
   description: "debug output (default false)",
   insertValue: "--debug={cursor}",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
@@ -50,6 +53,7 @@ const environment = {
   name: ["-e", "--environment"],
   description: "build environment",
   insertValue: '--environment="{cursor}"',
+  priority: 50,
   args: {
     name: "environment",
   },
@@ -59,6 +63,7 @@ const ignoreVendor = {
   name: "--ignoreVendor",
   description: "ignores any _vendor directory (default false)",
   insertValue: "--ignoreVendor={cursor}",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
@@ -73,6 +78,7 @@ const ignoreVendorPaths = {
   description:
     "ignores any _vendor for module paths matching the given Glob pattern",
   insertValue: '--ignoreVendorPaths="{cursor}"',
+  priority: 50,
   args: {
     name: "glob pattern",
   },
@@ -82,6 +88,7 @@ const log = {
   name: "--log",
   description: "enable Logging (default false)",
   insertValue: "--log={cursor}",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
@@ -95,6 +102,7 @@ const logFile = {
   name: "--logFile",
   description: "log File path (if set, logging enabled automatically)",
   insertValue: '--logFile="{cursor}"',
+  priority: 50,
   args: {
     name: "file",
     template: "filepaths",
@@ -105,6 +113,7 @@ const quiet = {
   name: "--quiet",
   description: "build in quiet mode (default false)",
   insertValue: "--quiet={cursor}",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
@@ -118,6 +127,7 @@ const source = {
   name: ["-s", "--source"],
   description: "filesystem path to read files relative from",
   insertValue: '--source="{cursor}"',
+  priority: 50,
   args: {
     name: "file",
     template: "filepaths",
@@ -128,6 +138,7 @@ const themesDir = {
   name: "--themesDir",
   description: "filesystem path to themes directory",
   insertValue: '--themesDir="{cursor}"',
+  priority: 50,
   args: {
     name: "file",
     description: "default is path/config.yaml|json|toml",
@@ -139,6 +150,7 @@ const verbose = {
   name: "-v, --verbose",
   description: "verbose output (default false)",
   insertValue: "--verbose={cursor}",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
@@ -151,6 +163,7 @@ const verbose = {
 const verboseLog = {
   name: "--verboseLog",
   description: "verbose logging (default false)",
+  priority: 50,
   args: {
     name: "boolean",
     suggestions: [
