@@ -104,11 +104,7 @@ const scriptList: Fig.Generator = {
       const packageContent = JSON.parse(out);
       const scripts = packageContent["scripts"];
       if (scripts) {
-        const scriptKeys = [];
-        for (let i = 0; i < Object.keys(scripts).length; i++) {
-          scriptKeys.push({ name: Object.keys(scripts)[i] });
-        }
-        return scriptKeys;
+        return Object.keys(scripts).map((script) => ({ name: script }));
       }
     } catch (e) {}
     return [];
@@ -1049,41 +1045,43 @@ export const completionSpec: Fig.Spec = {
           const packageContent = JSON.parse(out);
           const workspaces = packageContent["workspaces"];
 
-          for (const workspace of workspaces) {
-            if (workspace.includes("*")) {
-              const out = await executeShellCommand(
-                `ls ${workspace.slice(0, -1)}`
-              );
-              const workspaceList = out.split("\n");
+          if (workspaces) {
+            for (const workspace of workspaces) {
+              if (workspace.includes("*")) {
+                const out = await executeShellCommand(
+                  `ls ${workspace.slice(0, -1)}`
+                );
+                const workspaceList = out.split("\n");
 
-              for (const space of workspaceList) {
+                for (const space of workspaceList) {
+                  subcommands.push({
+                    name: space,
+                    description: "Workspaces",
+                    args: {
+                      name: "script",
+                      generators: {
+                        script: `cat ${workspace.slice(
+                          0,
+                          -1
+                        )}/${space}/package.json`,
+                        postProcess,
+                      },
+                    },
+                  });
+                }
+              } else {
                 subcommands.push({
-                  name: space,
+                  name: workspace,
                   description: "Workspaces",
                   args: {
                     name: "script",
                     generators: {
-                      script: `cat ${workspace.slice(
-                        0,
-                        -1
-                      )}/${space}/package.json`,
+                      script: `cat ${workspace}/package.json`,
                       postProcess,
                     },
                   },
                 });
               }
-            } else {
-              subcommands.push({
-                name: workspace,
-                description: "Workspaces",
-                args: {
-                  name: "script",
-                  generators: {
-                    script: `cat ${workspace}/package.json`,
-                    postProcess,
-                  },
-                },
-              });
             }
           }
         } catch (e) {
@@ -1093,7 +1091,7 @@ export const completionSpec: Fig.Spec = {
         return {
           name: "workspace",
           subcommands,
-        } as Fig.Spec;
+        };
       },
     },
     {
