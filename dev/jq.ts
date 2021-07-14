@@ -173,11 +173,21 @@ const sharedOptions: Fig.Option[] = [
     },
   },
 ];
+
 export const completion: Fig.Spec = {
   name: "jq",
-  description: "",
-  subcommands: [],
+  description: "Command-line JSON processor",
   options: sharedOptions,
-  // Only uncomment if jq takes an argument
-  // args: {}
+  args: [
+    {
+      name: "filter",
+      description: "Must be enclosed in single quotes",
+    },
+    {
+      name: "files",
+      template: "filepaths",
+      isOptional: true,
+      variadic: true,
+    },
+  ],
 };
