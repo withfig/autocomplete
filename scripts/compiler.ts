@@ -23,10 +23,6 @@ function invalidateCache() {
     "fig settings autocomplete.developerModeNPMInvalidateCache true",
     (error, stdout, stderr) => {
       if (error) {
-        SpecLogger.log(
-          `node error setting Fig to NPM dev mode: ${error.message}`,
-          Level.ERROR
-        );
         return;
       }
       if (stderr) {
