@@ -67,6 +67,7 @@ export const completion: Fig.Spec = {
     {
       name: "input",
       isOptional: true,
+      template: ["filepaths", "folders"],
     },
     {
       name: "output",
