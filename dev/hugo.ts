@@ -992,6 +992,11 @@ export const completion: Fig.Spec = {
               insertValue: "--format '{cursor}'",
               args: {
                 name: "format",
+                suggestions: [
+                  { name: "toml", description: "default" },
+                  { name: "yaml" },
+                  { name: "json" },
+                ],
               },
             },
           ],
