@@ -33,10 +33,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -55,10 +51,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -78,10 +70,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -101,10 +89,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -135,10 +119,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -148,10 +128,6 @@ const globalOptions: Fig.Option[] = [
     priority: 50,
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
 ];
@@ -173,10 +149,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--buildDrafts=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -185,10 +157,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--buildExpired=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -198,10 +166,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--buildFuture=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -221,10 +185,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--cleanDestinationDir=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -271,10 +231,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--enableGitInfo=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -283,10 +239,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--forceSyncStatic=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -296,10 +248,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--gc=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -308,10 +256,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--i18n-warnings=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -320,10 +264,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--ignoreCache=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -342,10 +282,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--minify=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -354,10 +290,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--noChmod=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -366,10 +298,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--noTimes=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -378,10 +306,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--path-warnings=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -399,10 +323,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--print-mem=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -411,10 +331,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--templateMetrics=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -424,10 +340,6 @@ const commonOptions: Fig.Option[] = [
     insertValue: "--templateMetricsHints=",
     args: {
       name: "boolean",
-      suggestions: [
-        { name: "false", icon: "❌", description: "default" },
-        { name: "true", icon: "✅" },
-      ],
     },
   },
   {
@@ -456,10 +368,6 @@ const watch = {
   insertValue: "--watch=",
   args: {
     name: "boolean",
-    suggestions: [
-      { name: "true", icon: "✅", description: "default" },
-      { name: "false", icon: "❌" },
-    ],
   },
 };
 
@@ -1057,10 +965,6 @@ export const completion: Fig.Spec = {
           insertValue: "--appendPort=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "true", icon: "✅", description: "default" },
-              { name: "false", icon: "❌" },
-            ],
           },
         },
         {
@@ -1079,10 +983,6 @@ export const completion: Fig.Spec = {
           insertValue: "--disableBrowserError=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
         {
@@ -1091,10 +991,6 @@ export const completion: Fig.Spec = {
           insertValue: "--disableFastRender=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
         {
@@ -1104,10 +1000,6 @@ export const completion: Fig.Spec = {
           insertValue: "--disableLiveReload=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
         {
@@ -1144,10 +1036,6 @@ export const completion: Fig.Spec = {
           insertValue: "--navigateToChanged=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
         {
@@ -1156,10 +1044,6 @@ export const completion: Fig.Spec = {
           insertValue: "--noHTTPCache=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
         {
@@ -1177,10 +1061,6 @@ export const completion: Fig.Spec = {
           insertValue: "--renderToDisk=",
           args: {
             name: "boolean",
-            suggestions: [
-              { name: "false", icon: "❌", description: "default" },
-              { name: "true", icon: "✅" },
-            ],
           },
         },
       ],
