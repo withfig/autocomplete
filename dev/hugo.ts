@@ -1,5 +1,3 @@
-import { stdout } from "node:process";
-
 const help = (name: string): Fig.Option => ({
   name: ["-h", "--help"],
   description: `help for ${name}`,
