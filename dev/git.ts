@@ -171,10 +171,24 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       const files = output.split("\n").map((file) => {
+        let alreadyAdded = false;
+        // From "git status --short"
+        // M  dev/github.ts // test file that was added
+        //  M dev/kubectl.ts // test file that was not added
+        // A  test2.txt // new added and tracked file
+        // ?? test.txt // new untracked file
+        if (file.charAt(0) === "M" || file.charAt(0) === "A") {
+          alreadyAdded = true;
+        }
+
         file = file.trim();
         const arr = file.split(" ");
 
-        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
+        return {
+          working: arr[0],
+          file: arr.slice(1).join(" ").trim(),
+          alreadyAdded: alreadyAdded,
+        };
       });
 
       const paths = output.split("\n").map((file) => {
@@ -211,6 +225,9 @@ const gitGenerators: Record<string, Fig.Generator> = {
           };
         }),
         ...files.map((item) => {
+          if (item.alreadyAdded) {
+            return;
+          }
           const file = item.file.replace(/^"|"$/g, "");
           let ext = "";
 
