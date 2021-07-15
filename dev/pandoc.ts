@@ -20,7 +20,7 @@ const pandocGenerators: Record<string, Fig.Generator> = {
   formats: {
     script: "pandoc --list-input-formats && pandoc --list-output-formats",
     postProcess: function (out) {
-      var uniqueFormats = Array.from(new Set(out.split("\n")));
+      const uniqueFormats = Array.from(new Set(out.split("\n")));
       return uniqueFormats.map((format) => ({
         name: format,
         icon: `fig://icon?type=${format}`,
@@ -175,14 +175,14 @@ export const completion: Fig.Spec = {
       description: "Show usage message",
     },
     {
-      name: "--shift-heading-level-by=NUMBER",
+      name: "--shift-heading-level-by",
       description: "Shift heading levels by a positive or negative integer",
       args: {
         name: "number",
       },
     },
     {
-      name: "--indented-code-classes=CLASSES",
+      name: "--indented-code-classes",
       description:
         "Specify classes to use for indented code blocks–for example, perl,numberLines or haskell. Multiple classes may be separated by spaces or commas",
       args: {
@@ -190,7 +190,7 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: "--default-image-extension=EXTENSION",
+      name: "--default-image-extension",
       description:
         "Specify a default extension to use when image paths/URLs have no extension. This allows you to use the same source for formats that require different kinds of images. Currently this option only affects the Markdown and LaTeX readers",
       args: {
@@ -674,8 +674,8 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: "--pdf-engine=PROGRAM",
-      description: "",
+      name: "--pdf-engine",
+      description: "Use the specified engine when producing PDF output",
       args: {
         name: "program",
         suggestions: [
