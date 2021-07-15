@@ -64,9 +64,15 @@ export const completion: Fig.Spec = {
 
           options: Object.keys(command.definition.options).map(optionKey => {
             const option = command.definition.options[optionKey];
+            const names = [option.name];
+           
+            const shortCut = option.shortcut;
+            if (shortCut.trim().length > 0) {
+              names.push(shortCut);
+            }
 
             return {
-              name: [option.name, option.shortcut],
+              name: names,
               description: option.description,
               required: option.is_value_required,
               args: option.accept_value ? {} : undefined,
@@ -75,12 +81,11 @@ export const completion: Fig.Spec = {
         });
       }
     } catch (err) {
-      //
+      console.error(err);
     }
 
     return {
       name: 'composer',
-      debounce: true,
       subcommands
     };
   }
