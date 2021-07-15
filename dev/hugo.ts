@@ -1,12 +1,11 @@
 import { stdout } from "node:process";
 
 const help = (name: string) => {
-  const help = {
+  return {
     name: ["-h", "--help"],
     description: `help for ${name}`,
     insertValue: "--help",
   };
-  return help;
 };
 
 const globalOptions: Fig.Option[] = [
