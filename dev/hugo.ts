@@ -7,7 +7,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--config",
     description: "config file (default is path/config.yaml|json|toml)",
-    insertValue: "--config=",
     priority: 50,
     args: {
       name: "file",
@@ -18,7 +17,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--configDir",
     description: "config dir (default 'config')",
-    insertValue: "--configDir=",
     priority: 50,
     args: {
       name: "directory path",
@@ -29,7 +27,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--debug",
     description: "debug output (default false)",
-    insertValue: "--debug=",
     priority: 50,
     args: {
       name: "boolean",
@@ -38,7 +35,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: ["-e", "--environment"],
     description: "build environment",
-    insertValue: "--environment=",
     priority: 50,
     args: {
       name: "environment",
@@ -47,7 +43,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--ignoreVendor",
     description: "ignores any _vendor directory (default false)",
-    insertValue: "--ignoreVendor=",
     priority: 50,
     args: {
       name: "boolean",
@@ -57,7 +52,6 @@ const globalOptions: Fig.Option[] = [
     name: "--ignoreVendorPaths",
     description:
       "ignores any _vendor for module paths matching the given Glob pattern",
-    insertValue: "--ignoreVendorPaths=",
     priority: 50,
     args: {
       name: "glob pattern",
@@ -66,7 +60,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--log",
     description: "enable Logging (default false)",
-    insertValue: "--log=",
     priority: 50,
     args: {
       name: "boolean",
@@ -75,7 +68,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--logFile",
     description: "log File path (if set, logging enabled automatically)",
-    insertValue: "--logFile=",
     priority: 50,
     args: {
       name: "file",
@@ -85,7 +77,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--quiet",
     description: "build in quiet mode (default false)",
-    insertValue: "--quiet=",
     priority: 50,
     args: {
       name: "boolean",
@@ -94,7 +85,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: ["-s", "--source"],
     description: "filesystem path to read files relative from",
-    insertValue: "--source=",
     priority: 50,
     args: {
       name: "file",
@@ -104,7 +94,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--themesDir",
     description: "filesystem path to themes directory",
-    insertValue: "--themesDir=",
     priority: 50,
     args: {
       name: "file",
@@ -115,7 +104,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-v, --verbose",
     description: "verbose output (default false)",
-    insertValue: "--verbose=",
     priority: 50,
     args: {
       name: "boolean",
@@ -124,7 +112,6 @@ const globalOptions: Fig.Option[] = [
   {
     name: "--verboseLog",
     description: "verbose logging (default false)",
-    insertValue: "--verboseLog=",
     priority: 50,
     args: {
       name: "boolean",
@@ -138,7 +125,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-b", "--baseURL"],
     description: "hostname (and path) to the root, e.g. http://spf13.com/",
-    insertValue: "--baseURL=",
     args: {
       name: "hostname and path",
     },
@@ -146,7 +132,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-D", "--buildDrafts"],
     description: "include content marked as draft (default false)",
-    insertValue: "--buildDrafts=",
     args: {
       name: "boolean",
     },
@@ -154,7 +139,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-E", "--buildExpired"],
     description: "include expired content (default false)",
-    insertValue: "--buildExpired=",
     args: {
       name: "boolean",
     },
@@ -163,7 +147,6 @@ const commonOptions: Fig.Option[] = [
     name: ["-F", "--buildFuture"],
     description:
       "include content with publishdate in the future (default false)",
-    insertValue: "--buildFuture=",
     args: {
       name: "boolean",
     },
@@ -172,7 +155,6 @@ const commonOptions: Fig.Option[] = [
     name: "--cacheDir",
     description:
       "filesystem path to cache directory. Defaults: $TMPDIR/hugo_cache/",
-    insertValue: "--cacheDir=",
     args: {
       name: "path",
       template: "folders",
@@ -182,7 +164,6 @@ const commonOptions: Fig.Option[] = [
     name: "--cleanDestinationDir",
     description:
       "remove files from destination not found in static directories (default false)",
-    insertValue: "--cleanDestinationDir=",
     args: {
       name: "boolean",
     },
@@ -190,7 +171,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-c", "--contentDir"],
     description: "filesystem path to content directory",
-    insertValue: "--contentDir=",
     args: {
       name: "path",
       template: "folders",
@@ -199,7 +179,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-d", "--destination"],
     description: "filesystem path to write files to",
-    insertValue: "--destination=",
     args: {
       name: "path",
       template: "folders",
@@ -208,7 +187,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--disableKinds",
     description: "disable different kind of pages (home, RSS etc.)",
-    insertValue: "--disableKinds=",
     args: {
       name: "kind,kind",
       suggestions: [
@@ -228,7 +206,6 @@ const commonOptions: Fig.Option[] = [
     name: "--enableGitInfo",
     description:
       "add Git revision, date and author info to the pages (default false)",
-    insertValue: "--enableGitInfo=",
     args: {
       name: "boolean",
     },
@@ -236,7 +213,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--forceSyncStatic",
     description: "copy all files when static is changed (default false)",
-    insertValue: "--forceSyncStatic=",
     args: {
       name: "boolean",
     },
@@ -245,7 +221,6 @@ const commonOptions: Fig.Option[] = [
     name: "--gc",
     description:
       "enable to run some cleanup tasks (remove unused cache files) after the build (default false)",
-    insertValue: "--gc=",
     args: {
       name: "boolean",
     },
@@ -253,7 +228,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--i18n-warnings",
     description: "print missing translations (default false)",
-    insertValue: "--i18n-warnings=",
     args: {
       name: "boolean",
     },
@@ -261,7 +235,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--ignoreCache",
     description: "ignores the cache directory (default false)",
-    insertValue: "--ignoreCache=",
     args: {
       name: "boolean",
     },
@@ -269,7 +242,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-l", "--layoutDir"],
     description: "filesystem path to layout directory",
-    insertValue: "--layoutDir=",
     args: {
       name: "path",
       template: "folders",
@@ -279,7 +251,6 @@ const commonOptions: Fig.Option[] = [
     name: "--minify",
     description:
       "minify any supported output format (HTML, XML etc.) (default false)",
-    insertValue: "--minify=",
     args: {
       name: "boolean",
     },
@@ -287,7 +258,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--noChmod",
     description: "don't sync permission mode of files (default false)",
-    insertValue: "--noChmod=",
     args: {
       name: "boolean",
     },
@@ -295,7 +265,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--noTimes",
     description: "don't sync modification time of files (default false)",
-    insertValue: "--noTimes=",
     args: {
       name: "boolean",
     },
@@ -303,7 +272,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--path-warnings",
     description: "print warnings on duplicate target paths etc (default false)",
-    insertValue: "--path-warnings=",
     args: {
       name: "boolean",
     },
@@ -312,7 +280,6 @@ const commonOptions: Fig.Option[] = [
     name: "--poll",
     description:
       "set this to a poll interval, e.g --poll 700ms, to use a poll based approach to watch for file system changes",
-    insertValue: "--poll=",
     args: {
       name: "milliseconds",
     },
@@ -320,7 +287,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--print-mem",
     description: "print memory usage to screen at intervals (default false)",
-    insertValue: "--print-mem=",
     args: {
       name: "boolean",
     },
@@ -328,7 +294,6 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--templateMetrics",
     description: "display metrics about template executions (default false)",
-    insertValue: "--templateMetrics=",
     args: {
       name: "boolean",
     },
@@ -337,7 +302,6 @@ const commonOptions: Fig.Option[] = [
     name: "--templateMetricsHints",
     description:
       "calculate some improvement hints when combined with --templateMetrics (default false)",
-    insertValue: "--templateMetricsHints=",
     args: {
       name: "boolean",
     },
@@ -345,13 +309,11 @@ const commonOptions: Fig.Option[] = [
   {
     name: ["-t", "--theme"],
     description: "themes to use (located in /themes/THEMENAME/)",
-    insertValue: "--theme=",
     args: { name: "theme name" },
   },
   {
     name: "--trace",
     description: "write trace to file (not useful in general)",
-    insertValue: "--trace=",
     args: {
       name: "file",
       template: "filepaths",
@@ -365,7 +327,6 @@ const watch = {
   name: ["-w", "--watch"],
   description:
     "watch filesystem for changes and recreate as needed (default true)",
-  insertValue: "--watch=",
   args: {
     name: "boolean",
   },
@@ -377,7 +338,6 @@ const convertOptions: Fig.Option[] = [
   {
     name: ["-o", "--output"],
     description: "filesystem path to write files to",
-    insertValue: "--output=",
     args: {
       name: "path",
       template: "folders",
@@ -477,7 +437,6 @@ export const completion: Fig.Spec = {
           name: ["--maxDeletes"],
           description:
             "maximum # of files to delete, or -1 to disable (default 256)",
-          insertValue: "--maxDeletes=",
           args: {
             name: "int",
           },
@@ -486,7 +445,6 @@ export const completion: Fig.Spec = {
           name: ["--target"],
           description:
             "target deployment from deployments section in config file; defaults to the first one",
-          insertValue: "--target=",
           args: {
             name: "target",
           },
@@ -521,7 +479,6 @@ export const completion: Fig.Spec = {
             {
               name: ["-f", "--completionfile"],
               description: "autocompletion file, defaults to stdout",
-              insertValue: "--completionfile=",
               args: {
                 name: "file",
                 template: "filepaths",
@@ -531,7 +488,6 @@ export const completion: Fig.Spec = {
               name: ["-t", "--type"],
               description:
                 "autocompletion type (bash, zsh, fish, or powershell) (default 'bash')",
-              insertValue: "--type=",
               args: {
                 name: "type",
                 default: "bash",
@@ -555,7 +511,6 @@ export const completion: Fig.Spec = {
               name: ["--highlightStyle"],
               description:
                 "style used for highlighting lines (see https://github.com/alecthomas/chroma) (default 'bg:#ffffcc')",
-              insertValue: "--highlightStyle=#{cursor}",
               args: {
                 name: "hex triplet",
               },
@@ -564,7 +519,6 @@ export const completion: Fig.Spec = {
               name: ["--linesStyle"],
               description:
                 "style used for line numbers (see https://github.com/alecthomas/chroma)",
-              insertValue: "--linesStyle=#{cursor}",
               args: {
                 name: "hex triplet",
               },
@@ -573,7 +527,6 @@ export const completion: Fig.Spec = {
               name: ["--style"],
               description:
                 "highlighter style (see https://help.farbox.com/pygments.html) (default 'friendly')",
-              insertValue: "--style=",
               args: {
                 name: "style name",
                 suggestions: [
@@ -637,7 +590,6 @@ export const completion: Fig.Spec = {
               name: ["--dir"],
               description:
                 "the directory to write the doc. (default '/tmp/hugodoc/')",
-              insertValue: "--dir=",
               args: {
                 name: "path",
                 template: "folders",
@@ -654,7 +606,6 @@ export const completion: Fig.Spec = {
               name: ["--dir"],
               description:
                 "the directory to write the man pages. (default 'man/')",
-              insertValue: "--dir=",
               args: {
                 name: "path",
                 template: "folders",
@@ -771,7 +722,6 @@ export const completion: Fig.Spec = {
               name: "--pattern",
               description:
                 'pattern matching module paths to clean (all if not set)", "e.g. "**hugo*"',
-              insertValue: "--pattern=",
               args: {
                 name: "path",
               },
@@ -893,7 +843,6 @@ export const completion: Fig.Spec = {
             {
               name: ["-f", "--format"],
               description: 'config & frontmatter format (default "toml")',
-              insertValue: "--format=",
               args: {
                 name: "format",
                 suggestions: [
@@ -921,7 +870,6 @@ export const completion: Fig.Spec = {
         {
           name: ["-k", "--kind"],
           description: "content type to create",
-          insertValue: "--kind=",
           args: [
             {
               name: "archetype|default",
@@ -944,7 +892,6 @@ export const completion: Fig.Spec = {
         {
           name: "--editor",
           description: "edit new content with this editor, if provided",
-          insertValue: "--editor=",
           args: {
             name: "editor",
           },
@@ -962,7 +909,6 @@ export const completion: Fig.Spec = {
         {
           name: ["--appendPort"],
           description: "append port to baseURL (default true)",
-          insertValue: "--appendPort=",
           args: {
             name: "boolean",
           },
@@ -971,7 +917,6 @@ export const completion: Fig.Spec = {
           name: "--bind",
           description:
             "interface to which the server will bind (default '127.0.0.1')",
-          insertValue: "--bind=",
           args: {
             name: "ip address",
           },
@@ -980,7 +925,6 @@ export const completion: Fig.Spec = {
           name: "--disableBrowserError",
           description:
             "do not show build errors in the browser (default false)",
-          insertValue: "--disableBrowserError=",
           args: {
             name: "boolean",
           },
@@ -988,7 +932,6 @@ export const completion: Fig.Spec = {
         {
           name: "--disableFastRender",
           description: "enables full re-renders on changes (default false)",
-          insertValue: "--disableFastRender=",
           args: {
             name: "boolean",
           },
@@ -997,7 +940,6 @@ export const completion: Fig.Spec = {
           name: "--disableLiveReload",
           description:
             "watch without enabling live browser reload on rebuild (default false)",
-          insertValue: "--disableLiveReload=",
           args: {
             name: "boolean",
           },
@@ -1006,7 +948,6 @@ export const completion: Fig.Spec = {
           name: "--liveReloadPort",
           description:
             "port for live reloading (i.e. 443 in HTTPS proxy situations) (default -1)",
-          insertValue: "--liveReloadPort=",
           args: {
             name: "port",
           },
@@ -1015,7 +956,6 @@ export const completion: Fig.Spec = {
           name: "--meminterval",
           description:
             "interval to poll memory usage (requires --memstats), valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'. (default '100ms')",
-          insertValue: "--meminterval=",
           args: {
             name: "time unit",
           },
@@ -1023,7 +963,6 @@ export const completion: Fig.Spec = {
         {
           name: "--memstats",
           description: "log memory usage to this file",
-          insertValue: "--memstats=",
           args: {
             name: "file",
             template: "filepaths",
@@ -1033,7 +972,6 @@ export const completion: Fig.Spec = {
           name: "--navigateToChanged",
           description:
             "navigate to changed content file on live browser reload (default false)",
-          insertValue: "--navigateToChanged=",
           args: {
             name: "boolean",
           },
@@ -1041,7 +979,6 @@ export const completion: Fig.Spec = {
         {
           name: "--noHTTPCache",
           description: "prevent HTTP caching (default false)",
-          insertValue: "--noHTTPCache=",
           args: {
             name: "boolean",
           },
@@ -1049,7 +986,6 @@ export const completion: Fig.Spec = {
         {
           name: ["-p", "--port"],
           description: "port on which the server will listen (default 1313)",
-          insertValue: "--port=",
           args: {
             name: "port",
           },
@@ -1058,7 +994,6 @@ export const completion: Fig.Spec = {
           name: "--renderToDisk",
           description:
             "render to Destination path (default is false: render to memory & serve from there)",
-          insertValue: "--renderToDisk=",
           args: {
             name: "boolean",
           },
