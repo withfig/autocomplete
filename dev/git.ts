@@ -162,7 +162,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // Files for staging
   files_for_staging: {
-    script: "git status --short",
+    script: "git status --porcelain",
     postProcess: (out, context) => {
       const output = filterMessages(out);
 
@@ -236,12 +236,56 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script: "git diff --name-only --cached",
+    script: "git status --porcelain | sed -ne '/^M */s///p'",
     splitOn: "\n",
   },
   getUnstagedFiles: {
-    script: "git diff --name-only",
+    script: "git status --porcelain | sed -ne '/^ M */s///p'",
     splitOn: "\n",
+  },
+  getChangedTrackedFiles: {
+    // git status --porcelain | sed -ne '/M  */s///p'
+    script: "git status --porcelain | sed -ne '/^M */s///p'",
+    postProcess: (out, context) => {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
+        return [];
+      }
+
+      const files = output.split("\n").map((file) => {
+        file = file.trim();
+        const arr = file.split(" ");
+
+        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
+      });
+
+      return [
+        ...files.map((item) => {
+          const file = item.file.replace(/^"|"$/g, "");
+          let ext = "";
+
+          try {
+            ext = file.split(".").slice(-1)[0];
+          } catch (e) {}
+
+          if (file.endsWith("/")) {
+            ext = "folder";
+          }
+
+          if (item.working.endsWith("M")) {
+            return {
+              name: file,
+              icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+              description: item.working,
+              // If the current file already is already added
+              // we want to lower the priority
+              priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+            };
+          }
+        }),
+      ];
+    },
   },
 };
 
@@ -2171,20 +2215,34 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--staged",
-
           description:
             "Show difference between the files in the staging area and the latest version",
+          args: {
+            name: "commit or file",
+            isOptional: true,
+            suggestions: [{ name: "HEAD" }],
+            generators: [gitGenerators.commits, gitGenerators.getStagedFiles],
+          },
         },
         {
           name: "--cached",
           description: "Show difference between staged changes and last commit",
+          args: {
+            name: "commit or file",
+            isOptional: true,
+            suggestions: [{ name: "HEAD" }],
+            generators: [gitGenerators.commits, gitGenerators.getStagedFiles],
+          },
         },
       ],
       args: {
-        name: "commit",
+        name: "commit or file",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: gitGenerators.commits,
+        generators: [
+          gitGenerators.commits,
+          gitGenerators.getChangedTrackedFiles,
+        ],
       },
     },
     {
