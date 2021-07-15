@@ -626,6 +626,7 @@ export const completion: Fig.Spec = {
               insertValue: "--type=",
               args: {
                 name: "type",
+                default: "bash",
                 suggestions: [
                   { name: "bash", description: "default" },
                   { name: "zsh" },
