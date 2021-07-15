@@ -225,9 +225,6 @@ const gitGenerators: Record<string, Fig.Generator> = {
           };
         }),
         ...files.map((item) => {
-          if (item.alreadyAdded) {
-            return;
-          }
           const file = item.file.replace(/^"|"$/g, "");
           let ext = "";
 
@@ -239,14 +236,25 @@ const gitGenerators: Record<string, Fig.Generator> = {
             ext = "folder";
           }
 
-          return {
-            name: file,
-            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-            description: "Changed file",
-            // If the current file already is already added
-            // we want to lower the priority
-            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-          };
+          if (item.alreadyAdded) {
+            return {
+              name: file,
+              icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+              description: "Changed file",
+              // If the current file already is already added
+              // we want to lower the priority
+              priority: 50,
+            };
+          } else {
+            return {
+              name: file,
+              icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+              description: "Changed file",
+              // If the current file already is already added
+              // we want to lower the priority
+              priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+            };
+          }
         }),
       ];
     },
