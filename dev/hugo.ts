@@ -799,9 +799,11 @@ export const completion: Fig.Spec = {
           args: [
             {
               name: "jekyll_root_path",
+              template: "folders",
             },
             {
               name: "target_path",
+              template: "folders",
             },
           ],
           options: [
