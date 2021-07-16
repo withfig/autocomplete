@@ -65,9 +65,9 @@ export const completion: Fig.Spec = {
               const currentToken = [ctx[ctx.length - 1]][0];
 
               // Return suggestions minus those that have already been entered
-              return suggestions.filter(
-                (sugg) => !currentToken.split(",").includes(sugg)
-              );
+              return suggestions
+                .filter((sugg) => !currentToken.split(",").includes(sugg))
+                .map((sugg) => ({ name: sugg }));
             },
           },
         ],
