@@ -22,10 +22,10 @@ body:
   attributes:
     label: Which statement makes the most sense?
     options:
-    - label: "There is a bug with this completion spec"
-    - label: "There are errors with this completion spec"
-    - label: "This completion spec does not exit"
-    - label: "Something else"
+    - "There is a bug with this completion spec"
+    - "There are errors with this completion spec"
+    - "This completion spec does not exit"
+    - "Something else"
   validations:
     required: true
 - type: textarea
