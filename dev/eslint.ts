@@ -166,7 +166,7 @@ export const completion: Fig.Spec = {
     {
       name: "--ignore-pattern",
       description:
-        "Pattern of files to ignore (in addition to those in .eslintignore",
+        "Pattern of files to ignore (in addition to those in .eslintignore)",
       args: {},
     },
     {
