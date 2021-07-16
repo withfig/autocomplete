@@ -7,7 +7,7 @@ body:
   attributes:
     label: Sanity checks
     options:
-     - label: "My issue relates to a specific CLI completion spec (e.g. `git checkout` is missing options in `git` completion spec). If your issue is more general, please create your issue here: [withfig/fig](https://github.com/withfig/fig/issues/new?assignees=&labels=NEED_TO_LABEL&template=main_issue_template.yml)"
+    - label: "My issue relates to a specific CLI completion spec (e.g. `git checkout` is missing options in `git` completion spec). If your issue is more general, please create your issue here: [withfig/fig](https://github.com/withfig/fig/issues/new?assignees=&labels=NEED_TO_LABEL&template=main_issue_template.yml)"
       required: true
     - label: "I have searched [github.com/withfig/autocomplete/issues](https://github.com/withfig/autocomplete/issues?q=) and there are no duplicates of my issue"
       required: true
