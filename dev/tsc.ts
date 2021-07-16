@@ -174,7 +174,7 @@ export const completion: Fig.Spec = {
         "Specify the base directory to resolve non-relative module names",
       args: {
         name: "directory",
-        templq: "filepaths",
+        template: "filepaths",
       },
     },
     {
@@ -364,7 +364,7 @@ export const completion: Fig.Spec = {
         "Specify a set of bundled library declaration files that describe the target runtime environment",
       args: {
         name: "list",
-        template: "files",
+        template: "filepaths",
         variadic: true,
       },
     },
@@ -389,7 +389,7 @@ export const completion: Fig.Spec = {
       name: "--maxNodeModuleJsDepth",
       description:
         "Specify the maximum folder depth used for checking JavaScript files from node_modules. Only applicable with allowJs",
-      dependsOn: "--allowJs",
+      dependsOn: ["--allowJs"],
       args: {
         name: "number",
         default: "0",
@@ -559,14 +559,12 @@ export const completion: Fig.Spec = {
         "Enable color and formatting in output to make compiler errors easier to read",
     },
     {
-      name: "--reactNamespace	string",
+      name: "--reactNamespace",
       description:
         "Specify the object invoked for createElement. This only applies when targeting react JSX emit",
       args: {
         name: "object",
-        args: {
-          default: "React",
-        },
+        default: "React",
       },
     },
     {
