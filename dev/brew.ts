@@ -135,15 +135,18 @@ export const completionSpec: Fig.Spec = {
         variadic: true,
         name: "formula",
         generators: {
-          script: "brew list -1 --formulae",
+          script: "brew list -1",
           postProcess: function (out) {
-            return out.split("\n").map((formula) => {
-              return {
-                name: formula,
-                icon: "🍺",
-                description: "Installed formula",
-              };
-            });
+            return out
+              .split("\n")
+              .filter((line) => !line.includes("="))
+              .map((formula) => {
+                return {
+                  name: formula,
+                  icon: "🍺",
+                  description: "Installed formula",
+                };
+              });
           },
         },
       },
