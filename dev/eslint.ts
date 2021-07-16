@@ -99,7 +99,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "--resolve-plugins-relative-to",
-      description: "A folder where plugis should be resolved from",
+      description: "A folder where plugins should be resolved from",
       args: {
         template: ["folders"],
         default: "CWD",
