@@ -21,7 +21,6 @@ export const completion: Fig.Spec = {
         generators: [
           {
             // dummy script to get postProcess to execute
-            script: "sleep 0",
             /*
              * Multiple envs can be set with a ',' seperator.
              * We want to filter over this static list of suggestions
@@ -29,7 +28,7 @@ export const completion: Fig.Spec = {
              * */
             filterTerm: ",",
             trigger: ",",
-            postProcess: (_, ctx) => {
+            custom: async (ctx) => {
               const suggestions = [
                 "browser",
                 "node",
