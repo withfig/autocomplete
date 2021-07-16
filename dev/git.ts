@@ -235,9 +235,10 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
           // If the current file is already added
           // we want to lower the priority
-          const priority = item.alreadyAdded || context.some(ctx => ctx.includes(file))
-            ? 50
-            : 100;
+          const priority =
+            item.alreadyAdded || context.some((ctx) => ctx.includes(file))
+              ? 50
+              : 100;
           return {
             name: file,
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
