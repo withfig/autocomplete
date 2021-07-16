@@ -33,6 +33,11 @@ export const completionSpec: Fig.Spec = {
       icon: "https://eslint.org/assets/img/favicon.512x512.png",
       loadSpec: "eslint",
     },
+    {
+      name: "prettier",
+      icon: "https://prettier.io/icon.png",
+      loadSpec: "prettier",
+    },
   ],
   options: [
     {
