@@ -20,7 +20,6 @@ export const completion: Fig.Spec = {
       args: {
         generators: [
           {
-            // dummy script to get postProcess to execute
             /*
              * Multiple envs can be set with a ',' seperator.
              * We want to filter over this static list of suggestions
