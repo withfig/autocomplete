@@ -1,5 +1,5 @@
 name: Completion Spec Issue
-title: "[CLI_NAME] 
+title: "[CLI_NAME]"
 description: All issues relating to specific CLI tools (e.g. `git`, `kubectl`, `chmod`)
 labels: [NEED_TO_LABEL]
 body:
