@@ -139,7 +139,7 @@ export const completionSpec: Fig.Spec = {
           postProcess: function (out) {
             return out
               .split("\n")
-              .filter((ea) => !ea.includes("="))
+              .filter((line) => !line.includes("="))
               .map((formula) => {
                 return {
                   name: formula,
