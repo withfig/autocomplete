@@ -33,6 +33,11 @@ export const completionSpec: Fig.Spec = {
       icon: "https://prettier.io/icon.png",
       loadSpec: "prettier",
     },
+    {
+      name: "tsc",
+      icon: "",
+      loadSpec: "tsc",
+    },
   ],
   options: [
     {
