@@ -184,7 +184,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return {
           working: arr[0],
           file: arr.slice(1).join(" ").trim(),
-          alreadyAdded: alreadyAdded,
+          alreadyAdded,
         };
       });
 
@@ -233,7 +233,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
             ext = "folder";
           }
 
-          // If the current file already is already added
+          // If the current file is already added
           // we want to lower the priority
           const priority = item.alreadyAdded || context.some(ctx => ctx.includes(file))
             ? 50
@@ -242,7 +242,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
             name: file,
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
             description: "Changed file",
-            priority: priority,
+            priority,
           };
         }),
       ];
