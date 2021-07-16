@@ -1,5 +1,3 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
-
 export const completion: Fig.Spec = {
   name: "eslint",
   description: "Pluggable JavaScript linter",
@@ -20,13 +18,66 @@ export const completion: Fig.Spec = {
       name: "--env",
       description: "Specify environments",
       args: {
-        default: ".js",
+        generators: [
+          {
+            // dummy script to get postProcess to execute
+            script: "sleep 0",
+            /*
+             * Multiple envs can be set with a ',' seperator.
+             * We want to filter over this static list of suggestions
+             * so we don't suggest envs that have already been entered.
+             * */
+            filterTerm: ",",
+            trigger: ",",
+            postProcess: (_, ctx) => {
+              const suggestions = [
+                "browser",
+                "node",
+                "commonjs",
+                "shared-node-browser",
+                "es6",
+                "ecmaVersion",
+                "es2017",
+                "es2020",
+                "es2021",
+                "worker",
+                "amd",
+                "mocha",
+                "jasmine",
+                "jest",
+                "phantomjs",
+                "protractor",
+                "qunit",
+                "jquery",
+                "prototypejs",
+                "shelljs",
+                "meteor",
+                "mongo",
+                "applescript",
+                "nashorn",
+                "servicerworker",
+                "atomtest",
+                "embertest",
+                "webextensions",
+                "greasemonkey",
+              ];
+
+              const currentToken = [ctx[ctx.length - 1]][0];
+
+              // Return suggestions minus those that have already been entered
+              return suggestions.filter(
+                (sugg) => !currentToken.split(",").includes(sugg)
+              );
+            },
+          },
+        ],
       },
     },
     {
       name: "--ext",
       description: "Specify JavaScript file extensions",
       args: {
+        name: "Extension",
         default: ".js",
       },
     },
@@ -127,7 +178,7 @@ export const completion: Fig.Spec = {
       name: "--stdin-filename",
       description: "Specify filename to process STDIN as",
       args: {
-        template: ["folders"],
+        template: ["filepaths"],
       },
     },
     {
@@ -172,10 +223,12 @@ export const completion: Fig.Spec = {
     {
       name: "--color",
       description: "Force enabling of color",
+      exclusive: ["--no-color"],
     },
     {
       name: "--no-color",
       description: "Force disabling of color",
+      exclusive: ["--color"],
     },
     {
       name: "--no-inline-config",
