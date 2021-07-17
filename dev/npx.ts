@@ -33,13 +33,7 @@ export const completionSpec: Fig.Spec = {
       postProcess: function (out) {
         out.split("\n");
 
-        const cli = [
-          "react-native",
-          "tailwindcss",
-          "next",
-          "gltfjsx",
-          "prisma",
-        ];
+        const cli = [...suggestions].reduce((acc, { name }) => [...acc, name], []);
         return out
           .split("\n")
           .filter((name) => !cli.includes(name))
