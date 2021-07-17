@@ -70,6 +70,47 @@ const searchDependenciesGenerator: Fig.Generator = {
   },
 };
 
+const filterMessages = (out: string): string => {
+  return out.startsWith("warning:") || out.startsWith("error:")
+    ? out.split("\n").slice(1).join("\n")
+    : out;
+};
+
+const searchBranches: Fig.Generator = {
+  script: "git branch --no-color",
+  postProcess: function (out) {
+    const output = filterMessages(out);
+
+    if (output.startsWith("fatal:")) {
+      return [];
+    }
+
+    return output.split("\n").map((elm) => {
+      let name = elm.trim();
+      const parts = elm.match(/\S+/g);
+      if (parts.length > 1) {
+        if (parts[0] == "*") {
+          // Current branch.
+          return {
+            name: elm.replace("*", "").trim(),
+            description: "current branch",
+            icon: "⭐️",
+          };
+        } else if (parts[0] == "+") {
+          // Branch checked out in another worktree.
+          name = elm.replace("+", "").trim();
+        }
+      }
+
+      return {
+        name,
+        description: "branch",
+        icon: "fig://icon?type=git",
+      };
+    });
+  },
+};
+
 const searchScriptsGenerator: Fig.Generator = {
   script: () => `cat package.json`,
   postProcess: function (out) {
@@ -727,6 +768,12 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
     \nWhen publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
     \nYou may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
     \nWhen running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
+    args: [
+      {
+        name: "Branch",
+        generators: searchBranches,
+      },
+    ],
     options: [
       {
         name: "--tag",
