@@ -155,6 +155,7 @@ export const completionSpec: Fig.Spec = {
       "next",
       "electron",
       "prisma",
+      "eslint",
       "prettier",
     ];
     const subcommands = packages
