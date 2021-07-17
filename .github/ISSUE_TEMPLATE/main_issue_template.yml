@@ -24,7 +24,8 @@ body:
     options:
     - "There is a bug with this completion spec"
     - "There are errors with this completion spec"
-    - "This completion spec does not exit"
+    - "This completion spec does not exist"
+    - "This completion spec isn't complete"
     - "Something else"
   validations:
     required: true
