@@ -38,6 +38,12 @@ export const completionSpec: Fig.Spec = {
       icon: "https://prettier.io/icon.png",
       loadSpec: "prettier",
     },
+    {
+      name: "tsc",
+      icon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
+      loadSpec: "tsc",
+    },
   ],
   options: [
     {
