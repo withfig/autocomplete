@@ -21,7 +21,8 @@ const searchGenerator: Fig.Generator = {
 };
 
 const searchDependenciesGenerator: Fig.Generator = {
-  script: () => `cat package.json`,
+  script: () =>
+    `until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json`,
   postProcess: function (out) {
     if (out.trim() === "") {
       return [];
