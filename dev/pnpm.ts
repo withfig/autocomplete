@@ -102,8 +102,8 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       \n By default, any new package is installed as a production dependency.`,
     args: {
       name: "Package",
+      debounce: true,
       generators: searchGenerator,
-      variadic: true,
     },
     options: [
       {
