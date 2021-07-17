@@ -35,7 +35,8 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "tsc",
-      icon: "",
+      icon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
       loadSpec: "tsc",
     },
   ],

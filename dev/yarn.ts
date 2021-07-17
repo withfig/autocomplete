@@ -136,6 +136,7 @@ export const completionSpec: Fig.Spec = {
       "electron",
       "prisma",
       "prettier",
+      "tsc",
     ];
     const subcommands = packages
       .filter((name) => cli.includes(name))

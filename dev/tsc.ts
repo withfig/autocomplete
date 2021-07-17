@@ -1,7 +1,6 @@
 export const completion: Fig.Spec = {
   name: "tsc",
-  description: "",
-  subcommands: [],
+  description: "CLI tool for TypeScript compiler",
   options: [
     {
       name: "--all",
@@ -71,7 +70,7 @@ export const completion: Fig.Spec = {
       description: "Enable verbose logging",
     },
     {
-      name: "--excludeDirectories	list",
+      name: "--excludeDirectories",
       description: "Remove a list of directories from the watch process",
       args: {
         name: "dir",
@@ -273,7 +272,7 @@ export const completion: Fig.Spec = {
         "Output more detailed compiler performance information after building",
     },
     {
-      name: "--forceConsistentCasingInFileNames	",
+      name: "--forceConsistentCasingInFileNames",
       description: "Ensure that casing is correct in imports",
     },
     {
@@ -354,7 +353,7 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name: "--keyofStringsOnly	",
+      name: "--keyofStringsOnly",
       description:
         "Make keyof only return strings instead of string, numbers or symbols. Legacy option",
     },
@@ -396,8 +395,7 @@ export const completion: Fig.Spec = {
       },
     },
     {
-      name:
-        "--module	`CommonJS` (default if `target` is `ES3` or `ES5`), , `ES6`, `ES2015`, `ES2020`, , `None`, `UMD`, `AMD`, `System`, or `ESNext`	",
+      name: "--module",
       description: "Specify what module code is generated",
       args: {
         name: "module",
@@ -426,7 +424,9 @@ export const completion: Fig.Spec = {
     {
       name: "--newLine",
       description: "Set the newline character for emitting files",
-      args: {},
+      args: {
+        name: "character",
+      },
     },
     {
       name: "--noEmit",
@@ -481,7 +481,7 @@ export const completion: Fig.Spec = {
         "Disable including any library files, including the default lib.d.ts",
     },
     {
-      name: "--noPropertyAccessFromIndexSignature	",
+      name: "--noPropertyAccessFromIndexSignature",
       description:
         "Enforces using indexed accessors for keys declared using an indexed type",
     },
@@ -711,7 +711,7 @@ export const completion: Fig.Spec = {
       description: "Emit ECMAScript-standard-compliant class fields",
     },
     {
-      name: "--useUnknownInCatchVariables	",
+      name: "--useUnknownInCatchVariables",
       description: "Default catch clause variables as unknown instead of any",
     },
   ],
@@ -733,12 +733,10 @@ export const completion: Fig.Spec = {
               typeof file.name === "string" && file.name.endsWith(".ts");
             return {
               ...file,
-              priority: isTsFile && 76,
+              priority: isTsFile ? 76 : 70,
             };
           });
       },
     },
   },
-  // Only uncomment if tsc takes an argument
-  // args: {}
 };
