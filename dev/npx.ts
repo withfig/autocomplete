@@ -31,9 +31,10 @@ export const completionSpec: Fig.Spec = {
     generators: {
       script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
       postProcess: function (out) {
-        out.split("\n");
-
-        const cli = [...suggestions].reduce((acc, { name }) => [...acc, name], []);
+        const cli = [...suggestions].reduce(
+          (acc, { name }) => [...acc, name],
+          []
+        );
         return out
           .split("\n")
           .filter((name) => !cli.includes(name))
