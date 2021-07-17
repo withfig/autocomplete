@@ -1,62 +1,84 @@
+const suggestions: Fig.Suggestion[] = [
+  {
+    name: "react-native",
+    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+  },
+  {
+    name: "tailwindcss",
+    icon: "https://tailwindcss.com/favicon-32x32.png",
+  },
+  {
+    name: "next",
+    icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+  },
+  {
+    name: "gltfjsx",
+    icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
+  },
+  {
+    name: "prisma",
+    icon:
+      "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+  },
+];
 export const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
-  generateSpec: async (_context, executeShellCommand) => {
-    const commands = (
-      await executeShellCommand(
-        `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
-      )
-    ).split("\n");
+  // generateSpec: async (_context, executeShellCommand) => {
+  //   const commands = (
+  //     await executeShellCommand(
+  //       `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
+  //     )
+  //   ).split("\n");
 
-    if (commands[0] === "") {
-      return {
-        name: "npx",
-      } as Fig.Spec;
-    }
+  //   if (commands[0] === "") {
+  //     return {
+  //       name: "npx",
+  //     } as Fig.Spec;
+  //   }
 
-    const cli = ["react-native", "tailwindcss", "next", "gltfjsx", "prisma"];
-    const subcommands = commands
-      .filter((name) => !cli.includes(name))
-      .map((name) => ({
-        name,
-        loadSpec: name,
-        icon: "fig://icon?type=command",
-      }));
+  //   const cli = ["react-native", "tailwindcss", "next", "gltfjsx", "prisma"];
+  //   const subcommands = commands
+  //     .filter((name) => !cli.includes(name))
+  //     .map((name) => ({
+  //       name,
+  //       loadSpec: name,
+  //       icon: "fig://icon?type=command",
+  //     }));
 
-    return {
-      name: "npx",
-      subcommands,
-    } as Fig.Spec;
+  //   return {
+  //     name: "npx",
+  //     subcommands,
+  //   } as Fig.Spec;
+  // },
+
+  args: {
+    name: "command",
+    isCommand: true,
+    generators: {
+      script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+      postProcess: function (out) {
+        out.split("\n");
+
+        const cli = [
+          "react-native",
+          "tailwindcss",
+          "next",
+          "gltfjsx",
+          "prisma",
+        ];
+        return out
+          .split("\n")
+          .filter((name) => !cli.includes(name))
+          .map((name) => ({
+            name,
+            icon: "fig://icon?type=command",
+            loadSpec: name,
+          }));
+      },
+    },
+    suggestions: [...suggestions],
   },
-
-  subcommands: [
-    {
-      name: "react-native",
-      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-      loadSpec: "react-native",
-    },
-    {
-      name: "tailwindcss",
-      icon: "https://tailwindcss.com/favicon-32x32.png",
-      loadSpec: "tailwindcss",
-    },
-    {
-      name: "next",
-      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
-      loadSpec: "next",
-    },
-    {
-      name: "gltfjsx",
-      icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
-      loadSpec: "gltfjsx",
-    },
-    {
-      name: "prisma",
-      icon:
-        "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
-      loadSpec: "prisma",
-    },
-  ],
   options: [
     {
       name: ["--package", "-p"],
