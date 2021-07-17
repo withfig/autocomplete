@@ -6,7 +6,7 @@ contact_links:
     url: "https://github.com/withfig/fig/issues/new/choose"
   - about: "Find detailed guides about common support issues in our forum"
     name: "💬  GitHub Discussions"
-    url: "https://github.com/withfig/fig/discussion"
+    url: "https://github.com/withfig/fig/discussions"
   - about: "Get instant support from the Fig Community Discord"
     name: "👋  Discord"
     url: "https://fig.io/community"
