@@ -78,6 +78,7 @@ export const completionSpec: Fig.Spec = {
       },
     },
     suggestions: [...suggestions],
+    isOptional: true,
   },
   options: [
     {
