@@ -142,11 +142,11 @@ const INSTALL_SUBCOMMAND: Fig.Subcommand = {
     },
     {
       name: "--reporter",
-      description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.
-      \n silent - no output is logged to the console, except fatal errors
-      \n default - the default reporter when the stdout is TTY
-      \n append-only (Added in v1.29.1) - the output is always appended to the end. No cursor manipulations are performed
-      \n ndjson - the most verbose reporter. Prints all logs in ndjson format`,
+      description: `Allows you to choose the reporter that will log debug info to the terminal about the installation progress.`,
+      args: {
+        name: "Reporter Type",
+        suggestions: ["silent", "default", "append-only", "ndjson"],
+      },
     },
     {
       name: ["--use-store-server"],
@@ -169,9 +169,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       \n By default, any new package is installed as a production dependency.`,
     args: {
       name: "Package",
-      isOptional: true,
       generators: searchGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -207,7 +205,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
         For instance, pnpm add debug -W.`,
       },
       {
-        name: ["--global"],
+        name: ["--global", "-g"],
         description: `Install a package globally`,
       },
       {
@@ -226,7 +224,6 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       name: "Package",
       isOptional: true,
       generators: searchDependenciesGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -274,9 +271,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     description: `Removes packages from node_modules and from the project's package.json.`,
     args: {
       name: "Package",
-      isOptional: true,
       generators: searchDependenciesGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -310,9 +305,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        isOptional: true,
         generators: searchDependenciesGenerator,
-        debounce: true,
         variadic: true,
       },
       { template: "filepaths" },
@@ -337,9 +330,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        isOptional: true,
         generators: searchDependenciesGenerator,
-        debounce: true,
         variadic: true,
       },
       { template: "filepaths" },
@@ -363,9 +354,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
     args: [
       {
         name: "Package",
-        isOptional: true,
         generators: searchDependenciesGenerator,
-        debounce: true,
         variadic: true,
       },
       { template: "filepaths" },
@@ -381,16 +370,6 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "prune",
     description: `Removes unnecessary packages.`,
-    args: [
-      {
-        name: "Package",
-        isOptional: true,
-        generators: searchDependenciesGenerator,
-        debounce: true,
-        variadic: true,
-      },
-      { template: "filepaths" },
-    ],
     options: [
       {
         name: "--prod",
@@ -431,7 +410,6 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     args: {
       name: "Scripts",
       generators: searchScriptsGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -464,7 +442,6 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
     args: {
       name: "Scripts",
       generators: searchDependenciesGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -506,10 +483,10 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
         name: "--audit-level",
         description: `Only print advisories with severity greater than or equal to <severity>.`,
         args: [
-          { name: "low" },
-          { name: "moderate" },
-          { name: "high" },
-          { name: "critical" },
+          {
+            name: "Audit Level",
+            suggestions: ["low", "moderate", "high", "critical"],
+          },
         ],
       },
       {
@@ -624,7 +601,6 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
     args: {
       name: "Scripts",
       generators: searchDependenciesGenerator,
-      debounce: true,
       variadic: true,
     },
     options: [
@@ -672,12 +648,21 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       {
         name: "--tag",
         description: `Publishes the package with the given tag. By default, pnpm publish updates the latest tag.`,
-        args: [{ name: "<tag>" }],
+        args: [
+          {
+            name: "<tag>",
+          },
+        ],
       },
       {
         name: "--access",
         description: `Tells the registry whether the published package should be public or restricted.`,
-        args: [{ name: "<public|restricted>" }],
+        args: [
+          {
+            name: "Type",
+            suggestions: ["public", "private"],
+          },
+        ],
       },
       {
         name: "--force",
@@ -699,7 +684,12 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
         description: `Link locally available packages in workspaces of a monorepo into node_modules instead of re-downloading them from the registry. This emulates functionality similar to yarn workspaces.
         \nWhen this is set to deep, local packages can also be linked to subdependencies.
         \nBe advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
-        args: [{ name: "bool or `deep`" }],
+        args: [
+          {
+            name: "bool or `deep`",
+            suggestions: ["dee["],
+          },
+        ],
       },
       {
         name: "--workspace-concurrency",
@@ -741,7 +731,6 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
           {
             name: "--background",
             description: `Runs the server in the background, similar to daemonizing on UNIX systems.`,
-            args: [{ name: "bool" }],
           },
           {
             name: "--network-concurrency",
@@ -751,11 +740,16 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
           {
             name: "--protocol",
             description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
-            args: [{ name: "<auto | tcp | ipc>" }],
+            args: [
+              {
+                name: "Type",
+                suggestions: ["auto", "tcp", "ipc"],
+              },
+            ],
           },
           {
             name: "--port",
-            description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
+            description: `The port number to use when TCP is used for communication. If a port is specified and the protocol is set to auto, regardless of system type, the protocol is automatically set to use TCP.`,
             args: [{ name: "port number" }],
           },
           {
@@ -766,12 +760,10 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
           {
             name: "--lock",
             description: `Set to make the package store immutable to external processes while the server is running or not.`,
-            args: [{ name: "bool" }],
           },
           {
             name: "--no-lock",
             description: `Set to make the package store mutable to external processes while the server is running or not.`,
-            args: [{ name: "bool" }],
           },
           {
             name: "--ignore-stop-requests",
@@ -829,6 +821,7 @@ const subcommands = [
   ...SUBCOMMANDS_RUN_SCRIPTS,
   ...SUBCOMMANDS_MISC,
 ];
+
 const recursiveSubcommandsNames = [
   "add",
   "exec",
@@ -844,6 +837,7 @@ const recursiveSubcommandsNames = [
   "update",
   "why",
 ];
+
 const recursiveSubcommands = subcommands.filter((subcommand) => {
   if (Array.isArray(subcommand.name)) {
     return subcommand.name.some((name) =>
@@ -863,7 +857,6 @@ export const completionSpec: Fig.Spec = {
   args: {
     name: "Scripts",
     generators: searchScriptsGenerator,
-    debounce: true,
     variadic: true,
   },
   subcommands,
