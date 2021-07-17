@@ -24,33 +24,6 @@ const suggestions: Fig.Suggestion[] = [
 export const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
-  // generateSpec: async (_context, executeShellCommand) => {
-  //   const commands = (
-  //     await executeShellCommand(
-  //       `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`
-  //     )
-  //   ).split("\n");
-
-  //   if (commands[0] === "") {
-  //     return {
-  //       name: "npx",
-  //     } as Fig.Spec;
-  //   }
-
-  //   const cli = ["react-native", "tailwindcss", "next", "gltfjsx", "prisma"];
-  //   const subcommands = commands
-  //     .filter((name) => !cli.includes(name))
-  //     .map((name) => ({
-  //       name,
-  //       loadSpec: name,
-  //       icon: "fig://icon?type=command",
-  //     }));
-
-  //   return {
-  //     name: "npx",
-  //     subcommands,
-  //   } as Fig.Spec;
-  // },
 
   args: {
     name: "command",
