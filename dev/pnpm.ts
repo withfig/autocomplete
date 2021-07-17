@@ -9,8 +9,8 @@ const FILTER_OPTION: Fig.Option = {
     },
   ],
   description: `Filtering allows you to restrict commands to specific subsets of packages.
-    \n pnpm supports a rich selector syntax for picking packages by name or by relation.
-    \n More details: https://pnpm.io/filtering`,
+     pnpm supports a rich selector syntax for picking packages by name or by relation.
+     More details: https://pnpm.io/filtering`,
 };
 
 // GENERATORS
@@ -139,8 +139,7 @@ const searchScriptsGenerator: Fig.Generator = {
 const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "add",
-    description: `Installs a package and any packages that it depends on. 
-      \n By default, any new package is installed as a production dependency.`,
+    description: `Installs a package and any packages that it depends on. By default, any new package is installed as a production dependency.`,
     args: {
       name: "Package",
       debounce: true,
@@ -191,9 +190,10 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   },
   {
     name: ["install", "i"],
-    description: `pnpm install is used to install all dependencies for a project.
-    \n In a CI environment, installation fails if a lockfile is present but needs an update.
-    \n Inside a workspace, pnpm install installs all dependencies in all the projects. If you want to disable this behavior, set the recursive-install setting to false.`,
+    description: `pnpm install is used to install all dependencies for a project. 
+      In a CI environment, installation fails if a lockfile is present but needs an update. 
+      Inside a workspace, pnpm install installs all dependencies in all the projects. 
+      If you want to disable this behavior, set the recursive-install setting to false.`,
     options: [
       {
         name: ["--offline"],
@@ -212,8 +212,8 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: ["-P", "--save-prod"],
-        description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production. 
-          \n Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
+        description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production.
+          Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
       },
       {
         name: ["-D", "--save-dev"],
@@ -263,8 +263,8 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
           },
         ],
         description: `Filtering allows you to restrict commands to specific subsets of packages.
-          \n pnpm supports a rich selector syntax for picking packages by name or by relation.
-          \n More details: https://pnpm.io/filtering`,
+           pnpm supports a rich selector syntax for picking packages by name or by relation.
+           More details: https://pnpm.io/filtering`,
       },
     ],
   },
@@ -291,7 +291,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["-P", "--save-prod"],
         description: `pnpm will not install any package listed in devDependencies if the NODE_ENV environment variable is set to production. 
-            \n Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
+             Use this flag to instruct pnpm to ignore NODE_ENV and take its production status from this flag instead.`,
       },
       {
         name: ["-D", "--save-dev"],
@@ -336,7 +336,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: ["update", "up"],
     description: `pnpm update updates packages to their latest version based on the specified range.
-      \nWhen used without arguments, updates all dependencies. You can use patterns to update specific dependencies.`,
+      When used without arguments, updates all dependencies. You can use patterns to update specific dependencies.`,
     args: {
       name: "Package",
       isOptional: true,
@@ -378,7 +378,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--workspace",
         description: `Tries to link all packages from the workspace. Versions are updated to match the versions of packages inside the workspace.
-          \nIf specific packages are updated, the command will fail if any of the updated dependencies are not found inside the workspace. For instance, the following command fails if express is not a workspace package: pnpm up -r --workspace express`,
+          If specific packages are updated, the command will fail if any of the updated dependencies are not found inside the workspace. For instance, the following command fails if express is not a workspace package: pnpm up -r --workspace express`,
       },
       {
         name: ["--filter"],
@@ -391,8 +391,8 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
           },
         ],
         description: `Filtering allows you to restrict commands to specific subsets of packages.
-            \n pnpm supports a rich selector syntax for picking packages by name or by relation.
-            \n More details: https://pnpm.io/filtering`,
+             pnpm supports a rich selector syntax for picking packages by name or by relation.
+             More details: https://pnpm.io/filtering`,
       },
     ],
   },
@@ -408,7 +408,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["--recursive", "-r"],
         description: `When used inside a workspace, removes a dependency (or dependencies) from every workspace package.
-          \nWhen used not inside a workspace, removes a dependency (or dependencies) from every package found in subdirectories.`,
+          When used not inside a workspace, removes a dependency (or dependencies) from every package found in subdirectories.`,
       },
       {
         name: "--global",
@@ -455,8 +455,8 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "unlink",
     description: `Unlinks a system-wide package (inverse of pnpm link).
-      \nIf called without arguments, all linked dependencies will be unlinked.
-      \nThis is similar to yarn unlink, except pnpm re-installs the dependency after removing the external link.`,
+      If called without arguments, all linked dependencies will be unlinked.
+      This is similar to yarn unlink, except pnpm re-installs the dependency after removing the external link.`,
     args: [
       {
         name: "Package",
@@ -562,7 +562,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   {
     name: "exec",
     description: `Execute a shell command in scope of a project.
-      \nnode_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies.`,
+      node_modules/.bin is added to the PATH, so pnpm exec allows executing commands of dependencies.`,
     args: {
       name: "Scripts",
       generators: searchDependenciesGenerator,
@@ -572,7 +572,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
       {
         name: ["-r", "--recursive"],
         description: `Execute the shell command in every project of the workspace.
-          \nThe name of the current package is available through the environment variable PNPM_PACKAGE_NAME (supported from pnpm v2.22.0 onwards).`,
+          The name of the current package is available through the environment variable PNPM_PACKAGE_NAME (supported from pnpm v2.22.0 onwards).`,
       },
       {
         name: "--parallel",
@@ -585,12 +585,12 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   {
     name: ["test", "t", "tst"],
     description: `Runs an arbitrary command specified in the package's test property of its scripts object.
-      \nThe intended usage of the property is to specify a command that runs unit or integration testing for your program.`,
+      The intended usage of the property is to specify a command that runs unit or integration testing for your program.`,
   },
   {
     name: ["start"],
     description: `Runs an arbitrary command specified in the package's start property of its scripts object. If no start property is specified on the scripts object, it will attempt to run node server.js as a default, failing if neither are present.
-      \nThe intended usage of the property is to specify a command that starts your program.`,
+      The intended usage of the property is to specify a command that starts your program.`,
   },
 ];
 
@@ -598,10 +598,10 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
   {
     name: "audit",
     description: `Checks for known security issues with the installed packages.
-      \nIf security issues are found, try to update your dependencies via pnpm update. 
-      \nIf a simple update does not fix all the issues, use overrides to force versions that are not vulnerable. 
-      \nFor instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0. 
-      \nDetails at: https://pnpm.io/cli/audit`,
+      If security issues are found, try to update your dependencies via pnpm update. 
+      If a simple update does not fix all the issues, use overrides to force versions that are not vulnerable. 
+      For instance, if lodash@<2.1.0 is vulnerable, use overrides to force lodash@^2.1.0. 
+      Details at: https://pnpm.io/cli/audit`,
     options: [
       {
         name: "--audit-level",
@@ -638,7 +638,7 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
   {
     name: ["list", "ls"],
     description: `This command will output all the versions of packages that are installed, as well as their dependencies, in a tree-structure.
-      \nPositional arguments are name-pattern@version-range identifiers, which will limit the results to only the packages named. For example, pnpm list "babel-*" "eslint-*" semver@5.`,
+      Positional arguments are name-pattern@version-range identifiers, which will limit the results to only the packages named. For example, pnpm list "babel-*" "eslint-*" semver@5.`,
     options: [
       {
         name: ["--recursive", "-r"],
@@ -663,7 +663,7 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
       {
         name: "--depth",
         description: `Max display depth of the dependency tree.
-          \npnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will list projects only. Useful inside a workspace when used with the -r option.`,
+          pnpm ls --depth 0 will list direct dependencies only. pnpm ls --depth -1 will list projects only. Useful inside a workspace when used with the -r option.`,
         args: { name: "number" },
       },
       {
@@ -765,9 +765,9 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
   {
     name: "publish",
     description: `Publishes a package to the registry.
-    \nWhen publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
-    \nYou may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
-    \nWhen running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
+    When publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
+    You may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
+    When running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
     args: [
       {
         name: "Branch",
@@ -812,8 +812,8 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       {
         name: "--link-workspace-packages",
         description: `Link locally available packages in workspaces of a monorepo into node_modules instead of re-downloading them from the registry. This emulates functionality similar to yarn workspaces.
-        \nWhen this is set to deep, local packages can also be linked to subdependencies.
-        \nBe advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
+        When this is set to deep, local packages can also be linked to subdependencies.
+        Be advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
         args: [
           {
             name: "bool or `deep`",
@@ -922,20 +922,20 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       {
         name: "status",
         description: `Checks for modified packages in the store.
-          \nReturns exit code 0 if the content of the package is the same as it was at the time of unpacking.`,
+          Returns exit code 0 if the content of the package is the same as it was at the time of unpacking.`,
       },
       {
         name: "add",
         description: `Functionally equivalent to pnpm add, 
-          \nexcept this adds new packages to the store directly without modifying any projects or files outside of the store.`,
+          except this adds new packages to the store directly without modifying any projects or files outside of the store.`,
       },
       {
         name: "prune",
         description: `Removes orphan packages from the store.
-          \nPruning the store will save disk space, however may slow down future installations involving pruned packages. 
-          \nUltimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
-          \nPlease read the FAQ for more information on unreferenced packages and best practices.
-          \nPlease note that this is prohibited when a store server is running.`,
+          Pruning the store will save disk space, however may slow down future installations involving pruned packages. 
+          Ultimately, it is a safe operation, however not recommended if you have orphaned packages from a package you intend to reinstall.
+          Please read the FAQ for more information on unreferenced packages and best practices.
+          Please note that this is prohibited when a store server is running.`,
       },
       {
         name: "path",
