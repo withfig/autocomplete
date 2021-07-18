@@ -36,7 +36,7 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
       return {
         name: file,
         icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-        description: `${output}`,
+        description: "Changed tracked files",
         // If the current file already is already added
         // we want to lower the priority
         priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
