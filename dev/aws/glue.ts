@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "glue",
   description: "AWS Glue Defines the public endpoint for the AWS Glue service.",
   subcommands: [
@@ -8116,3 +8116,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "s3api",
   description: "",
   subcommands: [
@@ -7054,3 +7054,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

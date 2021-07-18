@@ -13,7 +13,7 @@ const sourceDestArgs: Fig.Arg[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ln",
   description: "Create (default hard) symbolic links to files",
   args: sourceDestArgs,
@@ -53,3 +53,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

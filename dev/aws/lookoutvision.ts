@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "lookoutvision",
   description:
     "This is the Amazon Lookout for Vision API Reference. It provides descriptions of actions, data types, common parameters, and common errors. Amazon Lookout for Vision enables you to find visual defects in industrial products, accurately and at scale. It uses computer vision to identify missing components in an industrial product, damage to vehicles or structures, irregularities in production lines, and even minuscule defects in silicon wafers \u2014 or any other physical item where quality is important such as a missing capacitor on printed circuit boards.",
@@ -995,3 +995,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

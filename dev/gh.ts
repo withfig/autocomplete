@@ -16,7 +16,7 @@ const ghGenerators: Record<string, Fig.Generator> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "gh",
   description: "Github's CLI tool",
   subcommands: [
@@ -526,3 +526,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "source",
   description: "Source files in shell",
   args: [
@@ -9,3 +9,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

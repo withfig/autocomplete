@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "less",
   description: "opposite of more",
   args: {
@@ -6,3 +6,5 @@ export const completionSpec: Fig.Spec = {
     template: "filepaths",
   },
 };
+
+export default completionSpec;

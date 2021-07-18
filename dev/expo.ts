@@ -28,7 +28,7 @@ const runOptions: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "expo",
   description: "",
   subcommands: [
@@ -1625,3 +1625,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

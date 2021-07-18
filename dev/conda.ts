@@ -287,7 +287,7 @@ const update_options: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "conda",
   description: "Conda package manager",
   subcommands: [
@@ -1282,3 +1282,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

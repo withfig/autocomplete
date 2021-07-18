@@ -9,7 +9,7 @@
     "copy:all": "rsync -a --include '*/' --include '*.js' --exclude '*' $(pwd)/specs/ ~/.fig/autocomplete/",
     "create-boilerplate": "./scripts/create-boilerplate.sh",
     "create-example": "./scripts/create-example.sh",
-    "build": "ts-node-script scripts/compiler.ts",
+    "build": "esbuild dev/*.ts dev/**/*.ts --outdir=specs --minify --format=esm --bundle",
     "lint": "eslint '**/*.ts' && npx prettier --check '**/*.ts'",
     "lint:fix": "eslint '**/*.ts' --fix && npx prettier --write '**/*.ts'",
     "prepare": "husky install"
@@ -69,6 +69,7 @@
     "chalk": "^4.1.0",
     "chokidar": "^3.5.1",
     "danger": "^10.6.4",
+    "esbuild": "^0.12.15",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-fig-linter": "file:scripts/eslint-plugin-fig-linter",
@@ -80,5 +81,6 @@
     "progress": "^2.0.3",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "policy-troubleshoot",
   description: "Troubleshoot Google Cloud Platform policies.",
   subcommands: [
@@ -288,3 +288,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

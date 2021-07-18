@@ -10,7 +10,7 @@ const projectAliasesGenerator: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "firebase",
   description: "",
   subcommands: [
@@ -1449,3 +1449,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

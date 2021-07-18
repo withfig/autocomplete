@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ps",
   description: "report a snapshot of the current processes",
   options: [
@@ -148,3 +148,5 @@ export const completionSpec: Fig.Spec = {
     { name: ["--version"], description: "Print the procps version." },
   ],
 };
+
+export default completionSpec;

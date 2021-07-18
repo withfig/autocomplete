@@ -9,7 +9,7 @@ const getServices: Fig.Generator = {
   splitOn: "\n",
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "down",
   description:
     "Stops containers and removes containers, networks, volumes, and images",
@@ -42,3 +42,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

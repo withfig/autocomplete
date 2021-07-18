@@ -26,7 +26,7 @@ const OPTION_VERBOSE: Fig.Option = {
 /* DOCS: 
 https://developers.cloudflare.com/workers/cli-wrangler/commands 
 */
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "wrangler",
   description: "Wrangler CLI for Cloudflare Workers",
   subcommands: [
@@ -511,3 +511,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

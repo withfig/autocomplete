@@ -9,8 +9,10 @@ const getServices: Fig.Generator = {
   splitOn: "\n",
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "start",
   description: "Start existing containers.",
   args: [{ generators: getServices }],
 };
+
+export default completionSpec;

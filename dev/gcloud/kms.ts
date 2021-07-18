@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "kms",
   description: "Manage cryptographic keys in the cloud.",
   subcommands: [
@@ -8141,3 +8141,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

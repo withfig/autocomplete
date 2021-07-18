@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "cat",
   description: "concatenate and print files",
   args: {
@@ -6,3 +6,5 @@ export const completionSpec: Fig.Spec = {
     template: "filepaths",
   },
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pubsub",
   description: "Manage Cloud Pub/Sub topics, subscriptions, and snapshots.",
   subcommands: [
@@ -7905,3 +7905,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

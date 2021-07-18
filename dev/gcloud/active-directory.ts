@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "active-directory",
   description: "Manage Managed Microsoft AD resources.",
   subcommands: [
@@ -3022,3 +3022,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

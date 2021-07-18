@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "amplifybackend",
   description: "AWS Amplify Admin API",
   subcommands: [
@@ -1129,3 +1129,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

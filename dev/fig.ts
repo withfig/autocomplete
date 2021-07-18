@@ -59,7 +59,7 @@ const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
   "autocomplete.disableForCommands": disableForCommandsGenerator,
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "fig",
   description: "Autocomplete for your terminal",
   subcommands: [
@@ -200,3 +200,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

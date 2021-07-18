@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "docker",
   description:
     "*(DEPRECATED)*  Enable Docker CLI access to Google Container Registry.",
@@ -157,3 +157,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

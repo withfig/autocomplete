@@ -137,7 +137,7 @@ var customArgument = {
   },
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "trigger_example",
   description: "",
   subcommands: [
@@ -150,3 +150,5 @@ export const completion: Fig.Spec = {
   // Only uncomment if abc takes an argument
   // args: {}
 };
+
+export default completionSpec;

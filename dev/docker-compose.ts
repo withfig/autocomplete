@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "docker-compose",
   description: "Define and run multi-container applications with Docker.",
   subcommands: [
@@ -274,3 +274,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

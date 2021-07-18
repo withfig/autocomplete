@@ -1698,3 +1698,5 @@ const completionSpec = {
   ],
   options: globalOpts,
 };
+
+export default completionSpec;

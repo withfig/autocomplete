@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "sagemaker-edge",
   description:
     "SageMaker Edge Manager dataplane service for communicating with active agents.",
@@ -104,3 +104,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

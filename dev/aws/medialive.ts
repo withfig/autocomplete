@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "medialive",
   description: "API for AWS Elemental MediaLive",
   subcommands: [
@@ -3094,3 +3094,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "route53",
   description:
     "Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service.",
@@ -2940,3 +2940,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

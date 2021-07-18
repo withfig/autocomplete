@@ -9,7 +9,7 @@ const versionOptions: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rbenv",
   description:
     "Pick a Ruby version for your application and guarantee that your development environment matches production",
@@ -85,3 +85,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

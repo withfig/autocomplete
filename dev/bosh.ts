@@ -23,7 +23,7 @@ const deployments: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "bosh",
   description: "bosh cli to managed your bosh deployment",
   subcommands: [
@@ -641,3 +641,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

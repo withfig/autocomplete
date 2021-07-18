@@ -258,7 +258,7 @@ const listSubCommand: Fig.Subcommand = {
   ],
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "lerna",
   description:
     "A tool for managing JavaScript projects with multiple packages.",
@@ -782,3 +782,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

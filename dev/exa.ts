@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "exa",
   description: "a modern replacement for ls",
   args: {
@@ -249,3 +249,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

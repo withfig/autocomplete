@@ -9,7 +9,7 @@ const getServices: Fig.Generator = {
   splitOn: "\n",
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pull",
   description:
     "Pulls images for services defined in a Compose file, but does not start the containers.",
@@ -37,3 +37,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

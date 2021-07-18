@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "psql",
   description: "psql is a terminal-based front-end to PostgreSQL",
   args: [
@@ -225,3 +225,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

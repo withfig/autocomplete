@@ -21,7 +21,7 @@ const skipOptions: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "prisma",
   description:
     "Prisma is a modern DB toolkit to query, migrate and model your database",
@@ -268,3 +268,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

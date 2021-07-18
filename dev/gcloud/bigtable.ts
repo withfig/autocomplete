@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "bigtable",
   description: "Manage your Cloud Bigtable storage.",
   subcommands: [
@@ -7345,3 +7345,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

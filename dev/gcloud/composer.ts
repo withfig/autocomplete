@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Create and manage Cloud Composer Environments.",
   subcommands: [
@@ -4912,3 +4912,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "fsx",
   description:
     "Amazon FSx is a fully managed service that makes it easy for storage and application administrators to launch and use shared file storage.",
@@ -1092,3 +1092,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

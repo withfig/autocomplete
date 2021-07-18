@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "location",
   description:
     "Suite of geospatial services including Maps, Places, Tracking, and Geofencing",
@@ -1581,3 +1581,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

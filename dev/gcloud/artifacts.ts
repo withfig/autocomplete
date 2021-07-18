@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "artifacts",
   description: "Manage Artifact Registry resources.",
   subcommands: [
@@ -6365,3 +6365,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

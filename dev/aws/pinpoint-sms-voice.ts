@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pinpoint-sms-voice",
   description: "Pinpoint SMS and Voice Messaging public facing APIs",
   subcommands: [
@@ -286,3 +286,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

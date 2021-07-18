@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "man",
   description: "format and display the on-line manual pages",
   args: {
@@ -25,3 +25,5 @@ export const completionSpec: Fig.Spec = {
     ],
   },
 };
+
+export default completionSpec;

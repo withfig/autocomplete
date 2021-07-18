@@ -8,7 +8,7 @@ const envNameGenerator: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "amplify",
   description:
     "A set of tools and services to help front-end web and mobile developers build scalable full stack applications",
@@ -116,3 +116,4 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+export default completionSpec;

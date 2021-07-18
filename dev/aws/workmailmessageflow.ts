@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "workmailmessageflow",
   description:
     "The WorkMail Message Flow API provides access to email messages as they are being sent and received by a WorkMail organization.",
@@ -65,3 +65,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

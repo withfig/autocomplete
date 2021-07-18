@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "appsync",
   description:
     "AWS AppSync provides API actions for creating and interacting with data sources using GraphQL from your application.",
@@ -2275,3 +2275,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

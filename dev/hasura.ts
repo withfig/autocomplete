@@ -75,7 +75,7 @@ const actionsSharedOptions: Fig.Option[] = [
   insecureSkipTLSVerifyOption,
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "hasura",
   description: "Hasura GraphQL engine command line tool",
   subcommands: [
@@ -735,3 +735,5 @@ export const completion: Fig.Spec = {
   ],
   options: sharedOptions,
 };
+
+export default completionSpec;

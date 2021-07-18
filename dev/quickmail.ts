@@ -12,7 +12,7 @@ const bodyTempalates: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "quickmail",
   description: "quickmail is a terminal-based solution to send mails",
   posixNoncompliantFlags: true,
@@ -168,3 +168,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

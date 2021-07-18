@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "resourcegroupstaggingapi",
   description: "Resource Groups Tagging API",
   subcommands: [
@@ -464,3 +464,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

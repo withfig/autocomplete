@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "grep",
   description:
     "Matches patterns in input text. Supports simple patterns and regular expressions.",
@@ -127,3 +127,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -18,7 +18,7 @@ const toolArgs: Fig.Arg = {
   name: "tool@version",
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "volta",
   description: "The JavaScript Launcher",
   subcommands: [
@@ -190,3 +190,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

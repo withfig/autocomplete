@@ -223,7 +223,7 @@ const affectedOptions: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "nx",
   description: "fig completions for Nx by Nrwl",
   subcommands: [
@@ -482,3 +482,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

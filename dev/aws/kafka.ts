@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "kafka",
   description: "The operations for managing an Amazon MSK cluster.",
   subcommands: [
@@ -1484,3 +1484,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

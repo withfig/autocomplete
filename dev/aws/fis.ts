@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "fis",
   description:
     "AWS Fault Injection Simulator is a managed service that enables you to perform fault injection experiments on your AWS workloads. For more information, see the AWS Fault Injection Simulator User Guide.",
@@ -561,3 +561,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

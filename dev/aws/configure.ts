@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "configure",
   description:
     "Configure AWS CLI options. If this command is run with no\narguments, you will be prompted for configuration values such as your AWS\nAccess Key Id and your AWS Secret Access Key.  You can configure a named\nprofile using the ``--profile`` argument.  If your config file does not exist\n(the default location is ``~/.aws/config``), the AWS CLI will create it\nfor you.  To keep an existing value, hit enter when prompted for the value.\nWhen you are prompted for information, the current value will be displayed in\n``[brackets]``.  If the config item has no value, it be displayed as\n``[None]``.  Note that the ``configure`` command only works with values from the\nconfig file.  It does not use any configuration values from environment\nvariables or the IAM role.\n\nNote: the values you provide for the AWS Access Key ID and the AWS Secret\nAccess Key will be written to the shared credentials file\n(``~/.aws/credentials``).\n\n\n=======================\nConfiguration Variables\n=======================\n\nThe following configuration variables are supported in the config file:\n\n* **aws_access_key_id** - The AWS access key part of your credentials\n* **aws_secret_access_key** - The AWS secret access key part of your credentials\n* **aws_session_token** - The session token part of your credentials (session tokens only)\n* **metadata_service_timeout** - The number of seconds to wait until the metadata service\n  request times out.  This is used if you are using an IAM role to provide\n  your credentials.\n* **metadata_service_num_attempts** - The number of attempts to try to retrieve\n  credentials.  If you know for certain you will be using an IAM role on an\n  Amazon EC2 instance, you can set this value to ensure any intermittent\n  failures are retried.  By default this value is 1.\n\nFor more information on configuration options, see `Configuring the AWS Command Line Interface`_ in the *AWS CLI User Guide*.\n\n.. _`Configuring the AWS Command Line Interface`: http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html\n",
@@ -58,3 +58,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

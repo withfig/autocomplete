@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "apigatewayv2",
   description: "Amazon API Gateway V2",
   subcommands: [
@@ -4225,3 +4225,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

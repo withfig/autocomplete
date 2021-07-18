@@ -9,7 +9,7 @@ const appGenerator = (path: string): Fig.Generator => ({
   },
 });
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "open",
   description: "open files using default application",
   options: [
@@ -90,3 +90,5 @@ export const completionSpec: Fig.Spec = {
     variadic: true,
   },
 };
+
+export default completionSpec;

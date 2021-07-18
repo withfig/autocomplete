@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "gcloud",
   description: "Manage Google Cloud Platform resources and developer workflow.",
   subcommands: [
@@ -357,3 +357,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

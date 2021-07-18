@@ -118,7 +118,7 @@ const configList: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
   generateSpec: async (_context, executeShellCommand) => {
@@ -1064,3 +1064,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

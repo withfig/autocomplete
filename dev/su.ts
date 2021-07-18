@@ -1,7 +1,6 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "su",
   description: "",
-  subcommands: [],
   options: [
     {
       name: "-f",
@@ -28,3 +27,5 @@ export const completion: Fig.Spec = {
     { name: "ARGS", isOptional: true },
   ],
 };
+
+export default completionSpec;

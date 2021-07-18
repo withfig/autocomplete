@@ -18,7 +18,7 @@ const tests: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "phpunit-watcher",
   description: "Automatically rerun PHPUnit tests when source code changes",
   subcommands: [
@@ -39,3 +39,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

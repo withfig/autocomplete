@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "electron",
   description:
     "Build cross platform desktop apps with JavaScript, HTML and CSS",
@@ -30,3 +30,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rustc",
   description: "CLI for rustc",
   args: {
@@ -355,3 +355,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

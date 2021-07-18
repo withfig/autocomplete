@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "marketplacecommerceanalytics",
   description: "Provides AWS Marketplace business intelligence data on-demand.",
   subcommands: [
@@ -164,3 +164,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

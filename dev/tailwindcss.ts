@@ -53,7 +53,7 @@ const buildOptions: Fig.Option[] = [
   ...commonOptions,
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tailwindcss",
   description: "tailwindcss CLI tools",
   icon: "https://tailwindcss.com/favicon-32x32.png",
@@ -89,3 +89,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

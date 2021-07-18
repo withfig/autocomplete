@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "components",
   description: "List, install, update, or remove Google Cloud SDK components.",
   subcommands: [
@@ -1836,3 +1836,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

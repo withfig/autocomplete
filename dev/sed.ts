@@ -12,7 +12,7 @@ const filenameArg: Fig.Arg = {
   template: "filepaths",
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "sed",
   description: "Stream editor",
   subcommands: [
@@ -258,3 +258,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

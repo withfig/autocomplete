@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "redis",
   description: "Manage Cloud Memorystore Redis resources.",
   subcommands: [
@@ -3302,3 +3302,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

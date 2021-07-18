@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "vi",
   description:
     "Vi[m] is an one of two powerhouse text editors in the Unix world, the other being EMACS",
@@ -6,3 +6,5 @@ export const completionSpec: Fig.Spec = {
     template: "filepaths",
   },
 };
+
+export default completionSpec;

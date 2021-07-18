@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tasks",
   description: "Manage Cloud Tasks queues and tasks.",
   subcommands: [
@@ -3899,3 +3899,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

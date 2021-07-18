@@ -172,7 +172,7 @@ const options: Record<string, Fig.Option> = {
   },
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "serverless",
   description: "zero-friction serverless development",
   options: [
@@ -404,3 +404,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

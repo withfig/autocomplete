@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "mediapackage-vod",
   description: "AWS Elemental MediaPackage VOD",
   subcommands: [
@@ -774,3 +774,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

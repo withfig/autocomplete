@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "uniq",
   description: "Report or omit repeated line",
   options: [
@@ -75,3 +75,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

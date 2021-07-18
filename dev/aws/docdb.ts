@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "docdb",
   description: "Amazon DocumentDB API documentation",
   subcommands: [
@@ -3372,3 +3372,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

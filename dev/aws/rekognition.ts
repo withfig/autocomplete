@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rekognition",
   description: "This is the Amazon Rekognition API reference.",
   subcommands: [
@@ -2797,3 +2797,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

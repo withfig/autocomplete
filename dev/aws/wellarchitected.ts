@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "wellarchitected",
   description:
     "AWS Well-Architected Tool This is the AWS Well-Architected Tool API Reference. The AWS Well-Architected Tool API provides programmatic access to the AWS Well-Architected Tool in the AWS Management Console. For information about the AWS Well-Architected Tool, see the AWS Well-Architected Tool User Guide.",
@@ -1640,3 +1640,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;
