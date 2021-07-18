@@ -4,6 +4,47 @@ const filterMessages = (out: string): string => {
     : out;
 };
 
+const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
+  out,
+  context
+) => {
+  const output = filterMessages(out);
+
+  if (output.startsWith("fatal:")) {
+    return [];
+  }
+
+  const files = output.split("\n").map((file) => {
+    const arr = file.trim().split(" ");
+
+    return { working: arr[0], file: arr.slice(1).join(" ").trim() };
+  });
+
+  return [
+    ...files.map((item) => {
+      const file = item.file.replace(/^"|"$/g, "");
+      let ext = "";
+
+      try {
+        ext = file.split(".").slice(-1)[0];
+      } catch (e) {}
+
+      if (file.endsWith("/")) {
+        ext = "folder";
+      }
+
+      return {
+        name: file,
+        icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+        description: `${output}`,
+        // If the current file already is already added
+        // we want to lower the priority
+        priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+      };
+    }),
+  ];
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
@@ -236,92 +277,24 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script: "git status --porcelain | sed -ne '/^M */s///p' -e '/A /p'",
-    postProcess: (out, context) => {
-      const output = filterMessages(out);
-
-      if (output.startsWith("fatal:")) {
-        return [];
-      }
-
-      const files = output.split("\n").map((file) => {
-        file = file.trim();
-        const arr = file.split(" ");
-
-        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
-      });
-
-      return [
-        ...files.map((item) => {
-          const file = item.file.replace(/^"|"$/g, "");
-          let ext = "";
-
-          try {
-            ext = file.split(".").slice(-1)[0];
-          } catch (e) {}
-
-          if (file.endsWith("/")) {
-            ext = "folder";
-          }
-
-          return {
-            name: file,
-            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-            description: "Staged file",
-            // If the current file already is already added
-            // we want to lower the priority
-            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-          };
-        }),
-      ];
-    },
+    script: "git status --short | sed -ne '/^M /p' -e '/A /p'",
+    postProcess: postProcessTrackedFiles,
   },
+
   getUnstagedFiles: {
     script: "git diff --name-only",
     splitOn: "\n",
   },
 
   getChangedTrackedFiles: {
-    // git status --porcelain | sed -ne '/M  */s///p'
-    script: "git status --short | sed -ne '/M /p' -e '/A /p'",
-    postProcess: (out, context) => {
-      const output = filterMessages(out);
-
-      if (output.startsWith("fatal:")) {
-        return [];
+    script: function (context) {
+      if (context.includes("--staged") || context.includes("--cached")) {
+        return `git status --short | sed -ne '/^M /p' -e '/A /p'`;
+      } else {
+        return `git status --short | sed -ne '/M /p' -e '/A /p'`;
       }
-
-      const files = output.split("\n").map((file) => {
-        file = file.trim();
-        const arr = file.split(" ");
-
-        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
-      });
-
-      return [
-        ...files.map((item) => {
-          const file = item.file.replace(/^"|"$/g, "");
-          let ext = "";
-
-          try {
-            ext = file.split(".").slice(-1)[0];
-          } catch (e) {}
-
-          if (file.endsWith("/")) {
-            ext = "folder";
-          }
-
-          return {
-            name: file,
-            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-            description: "Changed file",
-            // If the current file already is already added
-            // we want to lower the priority
-            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-          };
-        }),
-      ];
     },
+    postProcess: postProcessTrackedFiles,
   },
 };
 
@@ -2253,25 +2226,10 @@ export const completionSpec: Fig.Spec = {
           name: "--staged",
           description:
             "Show difference between the files in the staging area and the latest version",
-          args: {
-            name: "commit or file",
-            isOptional: true,
-            suggestions: [{ name: "HEAD" }],
-            generators: [gitGenerators.commits, gitGenerators.getStagedFiles],
-          },
         },
         {
           name: "--cached",
           description: "Show difference between staged changes and last commit",
-          args: {
-            name: "commit or file",
-            isOptional: true,
-            suggestions: [{ name: "HEAD" }],
-            generators: [
-              gitGenerators.getChangedTrackedFiles,
-              gitGenerators.getStagedFiles,
-            ],
-          },
         },
       ],
       args: {
