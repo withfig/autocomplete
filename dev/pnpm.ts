@@ -981,7 +981,7 @@ const recursiveSubcommands = subcommands.filter((subcommand) => {
 SUBCOMMANDS_MISC[1].subcommands = recursiveSubcommands;
 
 // SPEC
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pnpm",
   description: "Fast, disk space efficient package manager",
   args: {
@@ -991,3 +991,5 @@ export const completionSpec: Fig.Spec = {
   },
   subcommands,
 };
+
+export default completionSpec;

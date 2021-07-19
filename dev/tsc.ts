@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tsc",
   description: "CLI tool for TypeScript compiler",
   options: [
@@ -740,3 +740,5 @@ export const completion: Fig.Spec = {
     },
   },
 };
+
+export default completionSpec;

@@ -33,7 +33,7 @@ interface ComposerListOutput {
   commands: ComposerCommand[];
 }
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Composer Command",
 
@@ -94,3 +94,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

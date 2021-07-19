@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dotslash",
   args: {
     // This was previously just "filepaths", however, we added folders so
