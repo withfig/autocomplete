@@ -170,36 +170,71 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      const items = output.split("\n").map((file) => {
+      const files = output.split("\n").map((file) => {
         file = file.trim();
         const arr = file.split(" ");
 
         return { working: arr[0], file: arr.slice(1).join(" ").trim() };
       });
 
-      return items.map((item) => {
-        const file = item.file.replace(/^"|"$/g, "");
-        let ext = "";
-
-        try {
-          ext = file.split(".").slice(-1)[0];
-        } catch (e) {}
-
-        if (file.endsWith("/")) {
-          ext = "folder";
-        }
-
-        return {
-          name: file,
-          icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-          description: "Changed file",
-          // If the current file already is already added
-          // we want to lower the priority
-          priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
-        };
+      const paths = output.split("\n").map((file) => {
+        const arr = file
+          .slice(0, file.lastIndexOf("/") + 1)
+          .trim()
+          .split(" ");
+        return arr.slice(1).join(" ").trim();
       });
+
+      const dirArr = [];
+      if (paths.length >= 2) {
+        let currentDir = paths[0];
+        let count = 1;
+        for (let i = 1; i < paths.length; i++) {
+          if (paths[i].includes(currentDir) && i + 1 !== paths.length) {
+            count++;
+          } else {
+            if (count >= 2) {
+              dirArr.push(currentDir);
+            }
+            count = 1;
+          }
+          currentDir = paths[i];
+        }
+      }
+
+      return [
+        ...dirArr.map((name) => {
+          return {
+            name: name + "*",
+            description: "Wildcard",
+            icon: "fig://icon?type=asterisk",
+          };
+        }),
+        ...files.map((item) => {
+          const file = item.file.replace(/^"|"$/g, "");
+          let ext = "";
+
+          try {
+            ext = file.split(".").slice(-1)[0];
+          } catch (e) {}
+
+          if (file.endsWith("/")) {
+            ext = "folder";
+          }
+
+          return {
+            name: file,
+            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+            description: "Changed file",
+            // If the current file already is already added
+            // we want to lower the priority
+            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+          };
+        }),
+      ];
     },
   },
+
   getStagedFiles: {
     script: "git diff --name-only --cached",
     splitOn: "\n",
@@ -4715,6 +4750,169 @@ export const completionSpec: Fig.Spec = {
         variadic: true,
         generators: gitGenerators.files_for_staging,
       },
+    },
+    {
+      name: "switch",
+      description: "Switch branches",
+      options: [
+        {
+          name: ["-c", "--create"],
+          description:
+            "Create a new branch named <new-branch> starting at <start-point> before switching to the branch",
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: ["-C", "--force-create"],
+          description:
+            "Similar to --create except that if <new-branch> already exists, it will be reset to <start-point>",
+          args: [
+            {
+              name: "new branch",
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: ["-d", "--detach"],
+          description:
+            "Switch to a commit for inspection and discardable experiments",
+        },
+        {
+          name: ["--guess"],
+          description:
+            "If <branch> is not found but there does exist a tracking branch in exactly one remote (call it <remote>) with a matching name",
+        },
+        {
+          name: ["--no-guess"],
+          description: "Disable --guess",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "An alias for --discard-changes",
+          isDangerous: true,
+        },
+        {
+          name: "--discard-changes",
+          description:
+            "Proceed even if the index or the working tree differs from HEAD. Both the index and working tree are restored to match the switching target",
+          isDangerous: true,
+        },
+        {
+          name: ["-m", "--merge"],
+          description:
+            "If you have local modifications to one or more files that are different between the current branch and the branch to which you are switching, the command refuses to switch branches in order to preserve your modifications in context",
+        },
+        {
+          name: "--conflict",
+          description:
+            "The same as --merge option above, but changes the way the conflicting hunks are presented, overriding the merge.conflictStyle configuration variable",
+          args: {
+            name: "style",
+            suggestions: ["merge", "diff3"],
+            default: "merge",
+          },
+        },
+        {
+          name: ["-q", "--quiet"],
+          description: "Quiet, suppress feedback messages",
+        },
+        {
+          name: "--progress",
+          description:
+            "Progress status is reported on the standard error stream by default when it is attached to a terminal",
+        },
+        {
+          name: "--no-progress",
+          description: "Disable progress status reporting",
+        },
+        {
+          name: ["-t", "--track"],
+          exclusive: ["--no-track"],
+          description:
+            "When creating a new branch, set up 'upstream' configuration.",
+          args: [
+            {
+              name: "branch",
+              generators: gitGenerators.branches,
+            },
+            {
+              name: "start point",
+              isOptional: true,
+              generators: gitGenerators.commits,
+            },
+          ],
+        },
+        {
+          name: "--no-track",
+          exclusive: ["--track", "-t"],
+          description:
+            "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
+          args: [
+            {
+              generators: gitGenerators.branches,
+            },
+            {
+              isOptional: true,
+              generators: gitGenerators.branches,
+            },
+          ],
+        },
+        {
+          name: "--orphan",
+          description: "Create a new orphan branch, named <new-branch>",
+          args: {
+            name: "new branch",
+          },
+        },
+        {
+          name: "--ignore-other-worktrees",
+          description:
+            "git switch refuses when the wanted ref is already checked out by another worktree",
+        },
+        {
+          name: "--recurse-submodules",
+          exclusive: ["--no-recurse-submodules"],
+          description:
+            "Updates the content of all active submodules according to the commit recorded in the superproject",
+        },
+        {
+          name: "--no-recurse-submodules",
+          exclusive: ["--recurse-submodules"],
+          description: "Submodules working trees will not be updated",
+        },
+      ],
+      args: [
+        {
+          name: "branch name",
+          description: "branch or commit to switch to",
+          generators: gitGenerators.branches,
+          suggestions: [
+            {
+              name: "-",
+              description: "switch to the last used branch",
+              icon: "fig://icon?type=git",
+            },
+          ],
+        },
+        {
+          name: "start point",
+          isOptional: true,
+          generators: gitGenerators.commits,
+        },
+      ],
     },
   ],
   additionalSuggestions: [

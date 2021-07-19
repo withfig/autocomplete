@@ -20,7 +20,12 @@ const suggestions: Fig.Suggestion[] = [
     icon:
       "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
   },
+  {
+    name: "prettier",
+    icon: "https://prettier.io/icon.png",
+  },
 ];
+
 export const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
@@ -48,6 +53,7 @@ export const completionSpec: Fig.Spec = {
     suggestions: [...suggestions],
     isOptional: true,
   },
+
   options: [
     {
       name: ["--package", "-p"],
