@@ -21,8 +21,17 @@ const suggestions: Fig.Suggestion[] = [
       "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
   },
   {
+    name: "eslint",
+    icon: "https://eslint.org/assets/img/favicon.512x512.png",
+  },
+  {
     name: "prettier",
     icon: "https://prettier.io/icon.png",
+  },
+  {
+    name: "tsc",
+    icon:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
   },
 ];
 
