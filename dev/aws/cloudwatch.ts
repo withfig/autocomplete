@@ -1,3 +1,322 @@
+const statistics = ["SampleCount", "Average", "Sum", "Minimum", "Maximum"];
+
+const unit = [
+  "Seconds",
+  "Microseconds",
+  "Milliseconds",
+  "Bytes",
+  "Kilobytes",
+  "Megabytes",
+  "Gigabytes",
+  "Terabytes",
+  "Bits",
+  "Kilobits",
+  "Megabits",
+  "Gigabits",
+  "Terabits",
+  "Percent",
+  "Count",
+  "Bytes/Second",
+  "Kilobytes/Second",
+  "Megabytes/Second",
+  "Gigabytes/Second",
+  "Terabytes/Second",
+  "Bits/Second",
+  "Kilobits/Second",
+  "Megabits/Second",
+  "Gigabits/Second",
+  "Terabits/Second",
+  "Count/Second",
+  "None",
+];
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const listCustomGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws lambda ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        continue;
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((elm) => {
+      const name = (childKey ? elm[childKey] : elm) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dotsArr = [];
+    const otherArr = [];
+
+    arr.map((elm) => {
+      if (elm.toLowerCase() == ".ds_store") return;
+      if (elm.slice(0, 1) === ".") dotsArr.push(elm);
+      else otherArr.push(elm);
+    });
+
+    return [
+      ...otherArr.sort(sortFnStrings),
+      "../",
+      ...dotsArr.sort(sortFnStrings),
+    ];
+  };
+
+  const tempArr = alphabeticalSortFilesAndFolders(out.split("\n"));
+
+  const finalArr = [];
+  tempArr.forEach((item) => {
+    if (!(item === "" || item === null || item === undefined)) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      finalArr.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return finalArr;
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listAlarms: {
+    script: "aws cloudwatch describe-alarms",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "CompositeAlarms", "AlarmName");
+    },
+  },
+
+  listNamespaces: {
+    script: "aws cloudwatch describe-anomaly-detectors",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "AnomalyDetectors", "Namespace");
+    },
+  },
+
+  listMetricsForNamespace: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-metrics",
+        ["--namespace"],
+        "Metrics",
+        "MetricName"
+      );
+    },
+  },
+
+  listMetricDimensions: {
+    custom: async function (context, executeShellCommand) {
+      try {
+        const idx = context.indexOf("--namespace");
+        if (idx < 0) {
+          return [];
+        }
+        const cmd = `aws cloudwatch list-metrics --namespace ${
+          context[idx + 1]
+        }`;
+
+        const out = await executeShellCommand(cmd);
+
+        const metrics = JSON.parse(out)["Metrics"];
+
+        const dimensions: Fig.Suggestion[] = [];
+
+        metrics.map((metric) => {
+          metric["Dimensions"].map((dimension) => {
+            const composite = `Name=${dimension.Name},Value=${dimension.Value}`;
+
+            dimensions.push({
+              name: dimension.Name,
+              displayName: composite,
+              insertValue: composite,
+              icon: "fig://icon?type=aws",
+            });
+          });
+        });
+
+        return dimensions;
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    },
+  },
+
+  listAssociatedStats: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "get-metric-statistics",
+        ["--namespace", "--metric-name"],
+        "Label"
+      );
+    },
+  },
+
+  listDashboards: {
+    script: "aws cloudwatch list-dashboards",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "DashboardEntries", "DashboardName");
+    },
+  },
+
+  listInsightRules: {
+    script: "aws cloudwatch describe-insight-rules",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "InsightRules", "Name");
+    },
+  },
+
+  listMetricStreams: {
+    script: "aws cloudwatch list-metric-streams",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Entries", "Name");
+    },
+  },
+  // TODO create listMetrics
+};
+
 export const completionSpec: Fig.Spec = {
   name: "cloudwatch",
   description:
@@ -13,6 +332,8 @@ export const completionSpec: Fig.Spec = {
           description: "The alarms to be deleted.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listAlarms,
           },
         },
         {
@@ -21,6 +342,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -45,6 +367,7 @@ export const completionSpec: Fig.Spec = {
             "The namespace associated with the anomaly detection model to delete.",
           args: {
             name: "string",
+            generators: generators.listNamespaces,
           },
         },
         {
@@ -53,6 +376,7 @@ export const completionSpec: Fig.Spec = {
             "The metric name associated with the anomaly detection model to delete.",
           args: {
             name: "string",
+            generators: generators.listMetricsForNamespace,
           },
         },
         {
@@ -61,6 +385,8 @@ export const completionSpec: Fig.Spec = {
             "The metric dimensions associated with the anomaly detection model to delete.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -69,6 +395,7 @@ export const completionSpec: Fig.Spec = {
             "The statistic associated with the anomaly detection model to delete.",
           args: {
             name: "string",
+            generators: generators.listAssociatedStats,
           },
         },
         {
@@ -77,6 +404,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -101,6 +429,7 @@ export const completionSpec: Fig.Spec = {
             "The dashboards to be deleted. This parameter is required.",
           args: {
             name: "list",
+            generators: generators.listDashboards,
           },
         },
         {
@@ -109,6 +438,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -133,6 +463,8 @@ export const completionSpec: Fig.Spec = {
             "An array of the rule names to delete. If you need to find out the names of your rules, use DescribeInsightRules.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listInsightRules,
           },
         },
         {
@@ -141,6 +473,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -163,6 +496,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric stream to delete.",
           args: {
             name: "string",
+            generators: generators.listMetricStreams,
           },
         },
         {
@@ -171,6 +505,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -194,6 +529,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the alarm.",
           args: {
             name: "string",
+            generators: generators.listAlarms,
           },
         },
         {
@@ -202,6 +538,8 @@ export const completionSpec: Fig.Spec = {
             "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: ["CompositeAlarm", "MetricAlarm"],
           },
         },
         {
@@ -209,6 +547,7 @@ export const completionSpec: Fig.Spec = {
           description: "The type of alarm histories to retrieve.",
           args: {
             name: "string",
+            suggestions: ["ConfigurationUpdate", "StateUpdate", "Action"],
           },
         },
         {
@@ -247,6 +586,7 @@ export const completionSpec: Fig.Spec = {
             "Specified whether to return the newest or oldest alarm history first. Specify TimestampDescending to have the newest event history returned first, and specify TimestampAscending to have the oldest history returned first.",
           args: {
             name: "string",
+            suggestions: ["TimestampDescending", "TimestampAscending"],
           },
         },
         {
@@ -255,6 +595,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -302,6 +643,8 @@ export const completionSpec: Fig.Spec = {
           description: "The names of the alarms to retrieve information about.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listAlarms,
           },
         },
         {
@@ -318,6 +661,8 @@ export const completionSpec: Fig.Spec = {
             "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: ["CompositeAlarm", "MetricAlarm"],
           },
         },
         {
@@ -342,6 +687,7 @@ export const completionSpec: Fig.Spec = {
             "Specify this parameter to receive information only about alarms that are currently in the state that you specify.",
           args: {
             name: "string",
+            suggestions: ["OK", "ALARM", "INSUFFICIENT_DATA"],
           },
         },
         {
@@ -373,6 +719,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -420,6 +767,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric.",
           args: {
             name: "string",
+            generators: generators.ListMetrics,
           },
         },
         {
@@ -427,6 +775,7 @@ export const completionSpec: Fig.Spec = {
           description: "The namespace of the metric.",
           args: {
             name: "string",
+            generators: generators.listNamespaces,
           },
         },
         {
@@ -435,6 +784,7 @@ export const completionSpec: Fig.Spec = {
             "The statistic for the metric, other than percentiles. For percentile statistics, use ExtendedStatistics.",
           args: {
             name: "string",
+            suggestions: statistics,
           },
         },
         {
@@ -451,6 +801,8 @@ export const completionSpec: Fig.Spec = {
             "The dimensions associated with the metric. If the metric has any associated dimensions, you must specify them in order for the call to succeed.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -466,6 +818,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unit for the metric.",
           args: {
             name: "string",
+            suggestions: unit,
           },
         },
         {
@@ -474,6 +827,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -514,6 +868,7 @@ export const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified namespace.",
           args: {
             name: "string",
+            generators: generators.listNamespaces,
           },
         },
         {
@@ -522,6 +877,7 @@ export const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified metric name. If there are multiple metrics with this name in different namespaces that have anomaly detection models, they're all returned.",
           args: {
             name: "string",
+            generators: generators.ListMetrics,
           },
         },
         {
@@ -530,6 +886,8 @@ export const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified metric dimensions. If there are multiple metrics that have these dimensions and have anomaly detection models associated, they're all returned.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -538,6 +896,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -578,6 +937,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -601,6 +961,8 @@ export const completionSpec: Fig.Spec = {
           description: "The names of the alarms.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listAlarms,
           },
         },
         {
@@ -609,6 +971,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -633,6 +996,7 @@ export const completionSpec: Fig.Spec = {
             "An array of the rule names to disable. If you need to find out the names of your rules, use DescribeInsightRules.",
           args: {
             name: "list",
+            generators: generators.listInsightRules,
           },
         },
         {
@@ -641,6 +1005,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -663,6 +1028,7 @@ export const completionSpec: Fig.Spec = {
           description: "The names of the alarms.",
           args: {
             name: "list",
+            generators: generators.listAlarms,
           },
         },
         {
@@ -671,6 +1037,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -695,6 +1062,7 @@ export const completionSpec: Fig.Spec = {
             "An array of the rule names to enable. If you need to find out the names of your rules, use DescribeInsightRules.",
           args: {
             name: "list",
+            generators: generators.listInsightRules,
           },
         },
         {
@@ -703,6 +1071,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -726,6 +1095,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the dashboard to be described.",
           args: {
             name: "string",
+            generators: generators.listDashboards,
           },
         },
         {
@@ -734,6 +1104,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -757,6 +1128,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the rule that you want to see data from.",
           args: {
             name: "string",
+            generators: generators.listInsightRules,
           },
         },
         {
@@ -789,6 +1161,9 @@ export const completionSpec: Fig.Spec = {
             "The maximum number of contributors to include in the report. The range is 1 to 100. If you omit this, the default of 10 is used.",
           args: {
             name: "integer",
+            suggestions: Array.from({ length: 101 - 1 }, (v, k) =>
+              String(k + 1)
+            ),
           },
         },
         {
@@ -797,6 +1172,16 @@ export const completionSpec: Fig.Spec = {
             "Specifies which metrics to use for aggregation of contributor values for the report. You can specify one or more of the following metrics:    UniqueContributors -- the number of unique contributors for each data point.    MaxContributorValue -- the value of the top contributor for each data point. The identity of the contributor might change for each data point in the graph. If this rule aggregates by COUNT, the top contributor for each data point is the contributor with the most occurrences in that period. If the rule aggregates by SUM, the top contributor is the contributor with the highest sum in the log field specified by the rule's Value, during that period.    SampleCount -- the number of data points matched by the rule.    Sum -- the sum of the values from all contributors during the time period represented by that data point.    Minimum -- the minimum value from a single observation during the time period represented by that data point.    Maximum -- the maximum value from a single observation during the time period represented by that data point.    Average -- the average value from all contributors during the time period represented by that data point.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "UniqueContributors",
+              "MaxContributorValue",
+              "SampleCount",
+              "Sum",
+              "Minimum",
+              "Maximum",
+              "Average",
+            ],
           },
         },
         {
@@ -805,6 +1190,7 @@ export const completionSpec: Fig.Spec = {
             "Determines what statistic to use to rank the contributors. Valid values are SUM and MAXIMUM.",
           args: {
             name: "string",
+            suggestions: ["SUM", "MAXIMUM"],
           },
         },
         {
@@ -813,6 +1199,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -837,6 +1224,7 @@ export const completionSpec: Fig.Spec = {
             "The metric queries to be returned. A single GetMetricData call can include as many as 500 MetricDataQuery structures. Each of these structures can specify either a metric to retrieve, or a math expression to perform on retrieved data.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -869,6 +1257,7 @@ export const completionSpec: Fig.Spec = {
             "The order in which data points should be returned. TimestampDescending returns the newest data first and paginates when the MaxDatapoints limit is reached. TimestampAscending returns the oldest data first and paginates when the MaxDatapoints limit is reached.",
           args: {
             name: "string",
+            suggestions: ["TimestampDescending", "TimestampAscending"],
           },
         },
         {
@@ -885,6 +1274,7 @@ export const completionSpec: Fig.Spec = {
             "This structure includes the Timezone parameter, which you can use to specify your time zone so that the labels of returned data display the correct time for your time zone.",
           args: {
             name: "structure",
+            description: "Timezone=string",
           },
         },
         {
@@ -893,6 +1283,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -940,6 +1331,7 @@ export const completionSpec: Fig.Spec = {
           description: "The namespace of the metric, with or without spaces.",
           args: {
             name: "string",
+            generators: generators.listNamespaces,
           },
         },
         {
@@ -947,6 +1339,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric, with or without spaces.",
           args: {
             name: "string",
+            generators: generators.ListMetrics,
           },
         },
         {
@@ -955,6 +1348,8 @@ export const completionSpec: Fig.Spec = {
             "The dimensions. If the metric contains multiple dimensions, you must include a value for each dimension. CloudWatch treats each unique combination of dimensions as a separate metric. If a specific combination of dimensions was not published, you can't retrieve statistics for it. You must specify the same dimensions that were used when the metrics were created. For an example, see Dimension Combinations in the Amazon CloudWatch User Guide. For more information about specifying dimensions, see Publishing Metrics in the Amazon CloudWatch User Guide.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -987,6 +1382,8 @@ export const completionSpec: Fig.Spec = {
             "The metric statistics, other than percentile. For percentile statistics, use ExtendedStatistics. When calling GetMetricStatistics, you must specify either Statistics or ExtendedStatistics, but not both.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: statistics,
           },
         },
         {
@@ -995,6 +1392,7 @@ export const completionSpec: Fig.Spec = {
             "The percentile statistics. Specify values between p0.0 and p100. When calling GetMetricStatistics, you must specify either Statistics or ExtendedStatistics, but not both. Percentile statistics are not available for metrics when any of the metric values are negative numbers.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -1003,6 +1401,7 @@ export const completionSpec: Fig.Spec = {
             "The unit for a given metric. If you omit Unit, all data that was collected with any unit is returned, along with the corresponding units that were specified when the data was reported to CloudWatch. If you specify a unit, the operation returns only data that was collected with that unit specified. If you specify a unit that does not match the data collected, the results of the operation are null. CloudWatch does not perform unit conversions.",
           args: {
             name: "string",
+            suggestions: unit,
           },
         },
         {
@@ -1011,6 +1410,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1035,6 +1435,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the metric stream to retrieve information about.",
           args: {
             name: "string",
+            generators: generators.listMetricStreams,
           },
         },
         {
@@ -1043,6 +1444,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1075,6 +1477,7 @@ export const completionSpec: Fig.Spec = {
             "The format of the resulting image. Only PNG images are supported. The default is png. If you specify png, the API returns an HTTP response with the content-type set to text/xml. The image data is in a MetricWidgetImage field. For example:   &lt;GetMetricWidgetImageResponse xmlns=&lt;URLstring&gt;&gt;    &lt;GetMetricWidgetImageResult&gt;    &lt;MetricWidgetImage&gt;    iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQEAYAAAAip...    &lt;/MetricWidgetImage&gt;    &lt;/GetMetricWidgetImageResult&gt;    &lt;ResponseMetadata&gt;    &lt;RequestId&gt;6f0d4192-4d42-11e8-82c1-f539a07e0e3b&lt;/RequestId&gt;    &lt;/ResponseMetadata&gt;   &lt;/GetMetricWidgetImageResponse&gt;  The image/png setting is intended only for custom HTTP requests. For most use cases, and all actions using an AWS SDK, you should use png. If you specify image/png, the HTTP response has a content-type set to image/png, and the body of the response is a PNG image.",
           args: {
             name: "string",
+            suggestions: ["png"],
           },
         },
         {
@@ -1083,6 +1486,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1123,6 +1527,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1178,6 +1583,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1202,6 +1608,7 @@ export const completionSpec: Fig.Spec = {
             "The metric namespace to filter against. Only the namespace that matches exactly will be returned.",
           args: {
             name: "string",
+            generators: generators.listNamespaces,
           },
         },
         {
@@ -1210,6 +1617,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the metric to filter against. Only the metrics with names that match exactly will be returned.",
           args: {
             name: "string",
+            // TODO
           },
         },
         {
@@ -1218,6 +1626,8 @@ export const completionSpec: Fig.Spec = {
             "The dimensions to filter against. Only the dimensions that match exactly will be returned.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -1234,6 +1644,7 @@ export const completionSpec: Fig.Spec = {
             "To filter the results to show only metrics that have had data points published in the past three hours, specify this parameter with a value of PT3H. This is the only valid value for this parameter. The results that are returned are an approximation of the value you specify. There is a low probability that the returned results include metrics with last published data as much as 40 minutes more than the specified time interval.",
           args: {
             name: "string",
+            suggestions: ["PT3H"],
           },
         },
         {
@@ -1242,6 +1653,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1627,6 +2039,7 @@ export const completionSpec: Fig.Spec = {
             "The statistic for the metric specified in MetricName, other than percentile. For percentile statistics, use ExtendedStatistic. When you call PutMetricAlarm and specify a MetricName, you must specify either Statistic or ExtendedStatistic, but not both.",
           args: {
             name: "string",
+            suggestions: statistics,
           },
         },
         {
@@ -1658,6 +2071,7 @@ export const completionSpec: Fig.Spec = {
             "The unit of measure for the statistic. For example, the units for the Amazon EC2 NetworkIn metric are Bytes because NetworkIn tracks the number of bytes that an instance receives on all network interfaces. You can also specify a unit when you create a custom metric. Units help provide conceptual meaning to your data. Metric data points that specify a unit of measure, such as Percent, are aggregated separately. If you don't specify Unit, CloudWatch retrieves all unit types that have been published for the metric and attempts to evaluate the alarm. Usually, metrics are published with only one unit, so the alarm works as intended. However, if the metric is published with multiple types of units and you don't specify a unit, the alarm's behavior is not defined and it behaves predictably. We recommend omitting Unit so that you don't inadvertently specify an incorrect unit that is not published for this metric. Doing so causes the alarm to be stuck in the INSUFFICIENT DATA state.",
           args: {
             name: "string",
+            suggestions: unit,
           },
         },
         {
@@ -1792,6 +2206,7 @@ export const completionSpec: Fig.Spec = {
           description: "The unit of metric.",
           args: {
             name: "string",
+            suggestions: unit,
           },
         },
         {
