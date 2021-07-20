@@ -1,5 +1,6 @@
 const statistics = ["SampleCount", "Average", "Sum", "Minimum", "Maximum"];
-
+const alarmStates = ["OK", "ALARM", "INSUFFICIENT_DATA"];
+const metricTypes = ["CompositeAlarm", "MetricAlarm"];
 const unit = [
   "Seconds",
   "Microseconds",
@@ -29,6 +30,118 @@ const unit = [
   "Count/Second",
   "None",
 ];
+const namespaces = [
+  "AWS/AmplifyHosting",
+  "AWS/ApiGateway",
+  "AWS/AppRunner",
+  "AWS/AppStream",
+  "AWS/AppSync",
+  "AWS/Athena",
+  "Backup",
+  "AWS/Billing",
+  "AWS/CertificateManager",
+  "AWS/ACMPrivateCA",
+  "AWS/Chatbot",
+  "AWS/ClientVPN",
+  "AWS/CloudFront",
+  "AWS/CloudHSM",
+  "AWS/CloudSearch",
+  "AWS/Logs",
+  "AWS/CodeBuild",
+  "AWS/CodeGuruProfiler",
+  "AWS/Cognito",
+  "AWS/Connect",
+  "AWS/DataSync",
+  "AWS/DMS",
+  "AWS/DX",
+  "AWS/DocDB",
+  "AWS/DynamoDB",
+  "AWS/DAX",
+  "AWS/EC2",
+  "AWS/ElasticGPUs",
+  "AWS/EC2Spot",
+  "AWS/AutoScaling",
+  "AWS/ElasticBeanstalk",
+  "AWS/EBS",
+  "AWS/ECS",
+  "AWS/ECS/ManagedScaling",
+  "AWS/EFS",
+  "AWS/ElasticInference",
+  "AWS/ApplicationELB",
+  "AWS/NetworkELB",
+  "AWS/GatewayELB",
+  "AWS/ELB",
+  "AWS/ElasticTranscoder",
+  "AWS/ElastiCache",
+  "AWS/ElastiCache",
+  "AWS/ES",
+  "AWS/ElasticMapReduce",
+  "AWS/MediaConnect",
+  "AWS/MediaConvert",
+  "AWS/MediaLive",
+  "AWS/MediaPackage",
+  "AWS/MediaStore",
+  "AWS/MediaTailor",
+  "AWS/Events",
+  "AWS/FSx",
+  "AWS/FSx",
+  "AWS/GameLift",
+  "AWS/GlobalAccelerator",
+  "Glue",
+  "AWS/GroundStation",
+  "AWS/Inspector",
+  "AWS/IVS",
+  "AWS/IoT",
+  "AWS/IoTAnalytics",
+  "AWS/IoTSiteWise",
+  "AWS/ThingsGraph",
+  "AWS/KMS",
+  "AWS/Cassandra",
+  "AWS/KinesisAnalytics",
+  "AWS/Firehose",
+  "AWS/Kinesis",
+  "AWS/KinesisVideo",
+  "AWS/Lambda",
+  "AWS/Lex",
+  "AWS/Location",
+  "AWS/LookoutMetrics",
+  "AWS/ML",
+  "AWS/Kafka",
+  "AWS/AmazonMQ",
+  "AWS/Neptune",
+  "AWS/NetworkFirewall",
+  "AWS/OpsWorks",
+  "AWS/Polly",
+  "AWS/QLDB",
+  "AWS/Redshift",
+  "AWS/RDS",
+  "AWS/Robomaker",
+  "AWS/Route53",
+  "AWS/SageMaker",
+  "AWS/SDKMetrics",
+  "AWS/ServiceCatalog",
+  "AWS/DDoSProtection",
+  "AWS/SES",
+  "AWS/SNS",
+  "AWS/SQS",
+  "AWS/S3",
+  "AWS/SWF",
+  "AWS/States",
+  "AWS/StorageGateway",
+  "AWS/SSM-RunCommand",
+  "AWS/Textract",
+  "AWS/Timestream",
+  "AWS/Transfer",
+  "AWS/Translate",
+  "AWS/TrustedAdvisor",
+  "AWS/NATGateway",
+  "AWS/TransitGateway",
+  "AWS/VPN",
+  "AWS/WAFV2",
+  "WAF",
+  "AWS/WorkMail",
+  "AWS/WorkSpaces",
+];
 
 const postPrecessGenerator = (
   out: string,
@@ -47,13 +160,18 @@ const postPrecessGenerator = (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
-      return {
-        name,
-        icon: "fig://icon?type=aws",
-      };
-    });
+    return list
+      .map((elm) => {
+        const name = (childKey ? elm[childKey] : elm) as string;
+        return {
+          name,
+          icon: "fig://icon?type=aws",
+        };
+      })
+      .filter(
+        (value, index, self) =>
+          self.map((x) => x.name).indexOf(value.name) === index
+      );
   } catch (e) {
     console.log(e);
   }
@@ -69,7 +187,7 @@ const listCustomGenerator = async (
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    let cmd = `aws lambda ${command}`;
+    let cmd = `aws cloudwatch ${command}`;
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
@@ -94,17 +212,102 @@ const listCustomGenerator = async (
       ];
     }
 
-    return list.map((elm) => {
-      const name = (childKey ? elm[childKey] : elm) as string;
-      return {
-        name,
-        icon: "fig://icon?type=aws",
-      };
-    });
+    return list
+      .map((elm) => {
+        const name = (childKey ? elm[childKey] : elm) as string;
+        return {
+          name,
+          icon: "fig://icon?type=aws",
+        };
+      })
+      .filter(
+        (value, index, self) =>
+          self.map((x) => x.name).indexOf(value.name) === index
+      );
   } catch (e) {
     console.log(e);
   }
   return [];
+};
+
+const listDimensionTypes = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  option: string,
+  parentKey: string,
+  childKey: string
+): Promise<Fig.Suggestion[]> => {
+  try {
+    const idx = context.indexOf(option);
+    if (idx < 0) {
+      return [];
+    }
+    const cmd = `aws cloudwatch ${command} ${option} ${context[idx + 1]}`;
+
+    const out = await executeShellCommand(cmd);
+
+    const metrics = JSON.parse(out)[parentKey];
+
+    // traverse JSON & compose key-value style suggestion
+    return metrics
+      .map((metric) => {
+        return metric[childKey].map((dimension) => {
+          const composite = `Name=${dimension.Name},Value=${dimension.Value}`;
+          return {
+            name: composite,
+            insertValue: composite,
+            icon: "fig://icon?type=aws",
+          };
+        });
+      })
+      .flat()
+      .filter(
+        (value, index, self) =>
+          self.map((x) => x.name).indexOf(value.name) === index
+      );
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const MultiSuggestionsGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  enabled: Record<string, string>[]
+) => {
+  try {
+    const list: Fig.Suggestion[][] = [];
+    const promises: Promise<string>[] = [];
+    for (let i = 0; i < enabled.length; i++) {
+      promises[i] = executeShellCommand(enabled[i]["command"]);
+    }
+    const result = await Promise.all(promises);
+
+    for (let i = 0; i < enabled.length; i++) {
+      list[i] = postPrecessGenerator(
+        result[i],
+        enabled[i]["parentKey"],
+        enabled[i]["childKey"]
+      );
+    }
+
+    return list.flat();
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const getResultList = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  key: string
+): Promise<Fig.Suggestion[]> => {
+  const out = await executeShellCommand(command);
+  return JSON.parse(out)[key];
 };
 
 const _prefixFile = "file://";
@@ -220,14 +423,28 @@ const generators: Record<string, Fig.Generator> = {
   listAlarms: {
     script: "aws cloudwatch describe-alarms",
     postProcess: (out) => {
-      return postPrecessGenerator(out, "CompositeAlarms", "AlarmName");
+      return postPrecessGenerator(out, "MetricAlarms", "AlarmName");
     },
   },
 
-  listNamespaces: {
+  listAlarmArns: {
+    script: "aws cloudwatch describe-alarms",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "MetricAlarms", "AlarmArn");
+    },
+  },
+
+  listAdNamespaces: {
     script: "aws cloudwatch describe-anomaly-detectors",
     postProcess: (out) => {
       return postPrecessGenerator(out, "AnomalyDetectors", "Namespace");
+    },
+  },
+
+  listMetricNamespaces: {
+    script: "aws cloudwatch list-metrics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Metrics", "Namespace");
     },
   },
 
@@ -246,39 +463,27 @@ const generators: Record<string, Fig.Generator> = {
 
   listMetricDimensions: {
     custom: async function (context, executeShellCommand) {
-      try {
-        const idx = context.indexOf("--namespace");
-        if (idx < 0) {
-          return [];
-        }
-        const cmd = `aws cloudwatch list-metrics --namespace ${
-          context[idx + 1]
-        }`;
+      return listDimensionTypes(
+        context,
+        executeShellCommand,
+        "list-metrics",
+        "--namespace",
+        "Metrics",
+        "Dimensions"
+      );
+    },
+  },
 
-        const out = await executeShellCommand(cmd);
-
-        const metrics = JSON.parse(out)["Metrics"];
-
-        const dimensions: Fig.Suggestion[] = [];
-
-        metrics.map((metric) => {
-          metric["Dimensions"].map((dimension) => {
-            const composite = `Name=${dimension.Name},Value=${dimension.Value}`;
-
-            dimensions.push({
-              name: dimension.Name,
-              displayName: composite,
-              insertValue: composite,
-              icon: "fig://icon?type=aws",
-            });
-          });
-        });
-
-        return dimensions;
-      } catch (e) {
-        console.log(e);
-      }
-      return [];
+  listAdDimensions: {
+    custom: async function (context, executeShellCommand) {
+      return listDimensionTypes(
+        context,
+        executeShellCommand,
+        "describe-anomaly-detectors",
+        "--namespace",
+        "AnomalyDetectors",
+        "Dimensions"
+      );
     },
   },
 
@@ -287,9 +492,10 @@ const generators: Record<string, Fig.Generator> = {
       return listCustomGenerator(
         context,
         executeShellCommand,
-        "get-metric-statistics",
+        "describe-anomaly-detectors",
         ["--namespace", "--metric-name"],
-        "Label"
+        "AnomalyDetectors",
+        "Stat"
       );
     },
   },
@@ -314,7 +520,58 @@ const generators: Record<string, Fig.Generator> = {
       return postPrecessGenerator(out, "Entries", "Name");
     },
   },
-  // TODO create listMetrics
+
+  listMetrics: {
+    script: "aws cloudwatch list-metrics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Metrics", "MetricName");
+    },
+  },
+
+  listSNSTopics: {
+    script: "aws sns list-topics",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Topics", "TopicArn");
+    },
+  },
+
+  listFirehoseArns: {
+    // AWS is dumb, and firehose cli works totally different than other CLIs.
+    // First we need to get a list of stream names, then we have to describe each
+    // individually, to get an ARN
+    custom: async function (context, executeShellCommand) {
+      // get list of stream names
+      const result = await Promise.all([
+        getResultList(
+          context,
+          executeShellCommand,
+          "aws firehose list-delivery-streams",
+          "DeliveryStreamNames"
+        ),
+      ]);
+
+      // construct "query"
+      const objects = result.flat().map((stream) => {
+        return {
+          command: `aws firehose describe-delivery-stream --delivery-stream-name ${stream}`,
+          parentKey: "DeliveryStreamDescription",
+          childKey: "DeliveryStreamARN",
+        };
+      });
+
+      // Fire up multiple API calls
+      return MultiSuggestionsGenerator(context, executeShellCommand, [
+        ...objects,
+      ]);
+    },
+  },
+
+  listRoles: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "Arn");
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -367,7 +624,7 @@ export const completionSpec: Fig.Spec = {
             "The namespace associated with the anomaly detection model to delete.",
           args: {
             name: "string",
-            generators: generators.listNamespaces,
+            generators: generators.listAdNamespaces,
           },
         },
         {
@@ -386,7 +643,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            generators: generators.listMetricDimensions,
+            generators: generators.listAdDimensions,
           },
         },
         {
@@ -539,7 +796,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: ["CompositeAlarm", "MetricAlarm"],
+            suggestions: metricTypes,
           },
         },
         {
@@ -662,7 +919,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            suggestions: ["CompositeAlarm", "MetricAlarm"],
+            suggestions: metricTypes,
           },
         },
         {
@@ -687,7 +944,7 @@ export const completionSpec: Fig.Spec = {
             "Specify this parameter to receive information only about alarms that are currently in the state that you specify.",
           args: {
             name: "string",
-            suggestions: ["OK", "ALARM", "INSUFFICIENT_DATA"],
+            suggestions: alarmStates,
           },
         },
         {
@@ -767,7 +1024,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric.",
           args: {
             name: "string",
-            generators: generators.ListMetrics,
+            generators: generators.listMetricsForNamespace,
           },
         },
         {
@@ -775,7 +1032,7 @@ export const completionSpec: Fig.Spec = {
           description: "The namespace of the metric.",
           args: {
             name: "string",
-            generators: generators.listNamespaces,
+            generators: generators.listMetricNamespaces,
           },
         },
         {
@@ -868,7 +1125,7 @@ export const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified namespace.",
           args: {
             name: "string",
-            generators: generators.listNamespaces,
+            generators: generators.listAdNamespaces,
           },
         },
         {
@@ -877,7 +1134,7 @@ export const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified metric name. If there are multiple metrics with this name in different namespaces that have anomaly detection models, they're all returned.",
           args: {
             name: "string",
-            generators: generators.ListMetrics,
+            generators: generators.listMetrics,
           },
         },
         {
@@ -887,7 +1144,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             variadic: true,
-            generators: generators.listMetricDimensions,
+            generators: generators.listAdDimensions,
           },
         },
         {
@@ -1331,7 +1588,7 @@ export const completionSpec: Fig.Spec = {
           description: "The namespace of the metric, with or without spaces.",
           args: {
             name: "string",
-            generators: generators.listNamespaces,
+            generators: generators.listMetricNamespaces,
           },
         },
         {
@@ -1339,7 +1596,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric, with or without spaces.",
           args: {
             name: "string",
-            generators: generators.ListMetrics,
+            generators: generators.listMetricsForNamespace,
           },
         },
         {
@@ -1608,7 +1865,7 @@ export const completionSpec: Fig.Spec = {
             "The metric namespace to filter against. Only the namespace that matches exactly will be returned.",
           args: {
             name: "string",
-            generators: generators.listNamespaces,
+            generators: generators.listMetricNamespaces,
           },
         },
         {
@@ -1617,7 +1874,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the metric to filter against. Only the metrics with names that match exactly will be returned.",
           args: {
             name: "string",
-            // TODO
+            generators: generators.listMetrics,
           },
         },
         {
@@ -1626,7 +1883,7 @@ export const completionSpec: Fig.Spec = {
             "The dimensions to filter against. Only the dimensions that match exactly will be returned.",
           args: {
             name: "list",
-            variadic: true,
+            //variadic: true,
             generators: generators.listMetricDimensions,
           },
         },
@@ -1694,6 +1951,8 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the CloudWatch resource that you want to view tags for. The ARN format of an alarm is arn:aws:cloudwatch:Region:account-id:alarm:alarm-name   The ARN format of a Contributor Insights rule is arn:aws:cloudwatch:Region:account-id:insight-rule:insight-rule-name   For more information about ARN format, see  Resource Types Defined by Amazon CloudWatch in the Amazon Web Services General Reference.",
           args: {
             name: "string",
+            // API does not return ARN for insight-rules just yet
+            generators: generators.listAlarmArns,
           },
         },
         {
@@ -1702,6 +1961,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1726,6 +1986,7 @@ export const completionSpec: Fig.Spec = {
             "The namespace of the metric to create the anomaly detection model for.",
           args: {
             name: "string",
+            suggestions: namespaces,
           },
         },
         {
@@ -1734,6 +1995,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the metric to create the anomaly detection model for.",
           args: {
             name: "string",
+            generators: generators.listMetrics,
           },
         },
         {
@@ -1742,6 +2004,8 @@ export const completionSpec: Fig.Spec = {
             "The metric dimensions to create the anomaly detection model for.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listAdDimensions,
           },
         },
         {
@@ -1750,6 +2014,7 @@ export const completionSpec: Fig.Spec = {
             "The statistic to use for the metric and the anomaly detection model.",
           args: {
             name: "string",
+            generators: generators.listAssociatedStats,
           },
         },
         {
@@ -1758,6 +2023,8 @@ export const completionSpec: Fig.Spec = {
             "The configuration specifies details about how the anomaly detection model is to be trained, including time ranges to exclude when training and updating the model. You can specify as many as 10 time ranges. The configuration can also include the time zone to use for the metric.",
           args: {
             name: "structure",
+            description:
+              "ExcludedTimeRanges=[{StartTime=timestamp,EndTime=timestamp},{StartTime=timestamp,EndTime=timestamp}],MetricTimezone=string",
           },
         },
         {
@@ -1766,6 +2033,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1800,6 +2068,8 @@ export const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to the ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name  | arn:aws:ssm:region:account-id:opsitem:severity",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -1831,6 +2101,8 @@ export const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -1839,6 +2111,8 @@ export const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listSNSTopics,
           },
         },
         {
@@ -1847,6 +2121,8 @@ export const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the composite alarm. You can associate as many as 50 tags with an alarm. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -1855,6 +2131,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1887,6 +2164,7 @@ export const completionSpec: Fig.Spec = {
             "The detailed information about the dashboard in JSON format, including the widgets to include and their location on the dashboard. This parameter is required. For more information about the syntax, see Dashboard Body Structure and Syntax.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1895,6 +2173,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1926,6 +2205,7 @@ export const completionSpec: Fig.Spec = {
             "The state of the rule. Valid values are ENABLED and DISABLED.",
           args: {
             name: "string",
+            suggestions: ["ENABLES", "DISABLED"],
           },
         },
         {
@@ -1934,6 +2214,7 @@ export const completionSpec: Fig.Spec = {
             "The definition of the rule, as a JSON object. For details on the valid syntax, see Contributor Insights Rule Syntax.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1942,6 +2223,8 @@ export const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the Contributor Insights rule. You can associate as many as 50 tags with a rule. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values. To be able to associate tags with a rule, you must have the cloudwatch:TagResource permission in addition to the cloudwatch:PutInsightRule permission. If you are using this operation to update an existing Contributor Insights rule, any tags you specify in this parameter are ignored. To change the tags of an existing rule, use TagResource.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -1950,6 +2233,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2023,6 +2307,7 @@ export const completionSpec: Fig.Spec = {
             "The name for the metric associated with the alarm. For each PutMetricAlarm operation, you must specify either MetricName or a Metrics array. If you are creating an alarm based on a math expression, you cannot specify this parameter, or any of the Dimensions, Period, Namespace, Statistic, or ExtendedStatistic parameters. Instead, you specify all this information in the Metrics array.",
           args: {
             name: "string",
+            generators: generators.listMetrics,
           },
         },
         {
@@ -2031,6 +2316,7 @@ export const completionSpec: Fig.Spec = {
             "The namespace for the metric associated specified in MetricName.",
           args: {
             name: "string",
+            generators: generators.listMetricNamespaces,
           },
         },
         {
@@ -2055,6 +2341,7 @@ export const completionSpec: Fig.Spec = {
           description: "The dimensions for the metric specified in MetricName.",
           args: {
             name: "list",
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -2104,6 +2391,15 @@ export const completionSpec: Fig.Spec = {
             "The arithmetic operation to use when comparing the specified statistic and threshold. The specified statistic value is used as the first operand. The values LessThanLowerOrGreaterThanUpperThreshold, LessThanLowerThreshold, and GreaterThanUpperThreshold are used only for alarms based on anomaly detection models.",
           args: {
             name: "string",
+            suggestions: [
+              "GreaterThanOrEqualToThreshold",
+              "GreaterThanThreshold",
+              "LessThanThreshold",
+              "LessThanOrEqualToThreshold",
+              "LessThanLowerOrGreaterThanUpperThreshold",
+              "LessThanLowerThreshold",
+              "GreaterThanUpperThreshold",
+            ],
           },
         },
         {
@@ -2112,6 +2408,7 @@ export const completionSpec: Fig.Spec = {
             "Sets how this alarm is to handle missing data points. If TreatMissingData is omitted, the default behavior of missing is used. For more information, see Configuring How CloudWatch Alarms Treats Missing Data. Valid Values: breaching | notBreaching | ignore | missing",
           args: {
             name: "string",
+            suggestions: ["breaching", "notBreaching", "ignore", "missing"],
           },
         },
         {
@@ -2120,6 +2417,7 @@ export const completionSpec: Fig.Spec = {
             "Used only for alarms based on percentiles. If you specify ignore, the alarm state does not change during periods with too few data points to be statistically significant. If you specify evaluate or omit this parameter, the alarm is always evaluated and possibly changes state no matter how many data points are available. For more information, see Percentile-Based CloudWatch Alarms and Low Data Samples. Valid Values: evaluate | ignore",
           args: {
             name: "string",
+            suggestions: ["evaluate", "ignore"],
           },
         },
         {
@@ -2136,6 +2434,8 @@ export const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the alarm. You can associate as many as 50 tags with an alarm. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. If you are using this operation to update an existing alarm, any tags you specify in this parameter are ignored. To change the tags of an existing alarm, use TagResource or UntagResource.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -2152,6 +2452,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2176,6 +2477,7 @@ export const completionSpec: Fig.Spec = {
             "The namespace for the metric data. To avoid conflicts with AWS service namespaces, you should not specify a namespace that begins with AWS/",
           args: {
             name: "string",
+            suggestions: namespaces,
           },
         },
         {
@@ -2191,6 +2493,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the metric.",
           args: {
             name: "string",
+            generators: generators.listMetrics,
           },
         },
         {
@@ -2223,6 +2526,7 @@ export const completionSpec: Fig.Spec = {
             "The --dimensions argument further expands on the identity of a metric using a Name=Value pair, separated by commas, for example: --dimensions InstanceID=1-23456789,InstanceType=m1.small. Note that the --dimensions argument has a different format when used in get-metric-data, where for the same example you would use the format --dimensions Name=InstanceID,Value=i-aaba32d4 Name=InstanceType,value=m1.small .",
           args: {
             name: "string",
+            generators: generators.listMetricDimensions,
           },
         },
         {
@@ -2230,6 +2534,7 @@ export const completionSpec: Fig.Spec = {
           description: "A set of statistical values describing the metric.",
           args: {
             name: "string",
+            suggestions: statistics,
           },
         },
         {
@@ -2238,6 +2543,7 @@ export const completionSpec: Fig.Spec = {
             "Valid values are 1 and 60. Setting this to 1 specifies this metric as a high-resolution metric, so that CloudWatch stores the metric with sub-minute resolution down to one second. Setting this to 60 specifies this metric as a regular-resolution metric, which CloudWatch stores at 1-minute resolution. Currently, high resolution is available only for custom metrics. For more information about high-resolution metrics, see High-Resolution Metrics in the Amazon CloudWatch User Guide.  This field is optional, if you do not specify it the default of 60 is used.",
           args: {
             name: "string",
+            suggestions: ["1", "60"],
           },
         },
         {
@@ -2246,6 +2552,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2278,6 +2585,8 @@ export const completionSpec: Fig.Spec = {
             "If you specify this parameter, the stream sends only the metrics from the metric namespaces that you specify here. You cannot include IncludeFilters and ExcludeFilters in the same operation.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Namespace=string",
           },
         },
         {
@@ -2286,6 +2595,8 @@ export const completionSpec: Fig.Spec = {
             "If you specify this parameter, the stream sends metrics from all metric namespaces except for the namespaces that you specify here. You cannot include ExcludeFilters and IncludeFilters in the same operation.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Namespace=string",
           },
         },
         {
@@ -2294,6 +2605,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the Amazon Kinesis Firehose delivery stream to use for this metric stream. This Amazon Kinesis Firehose delivery stream must already exist and must be in the same account as the metric stream.",
           args: {
             name: "string",
+            generators: generators.listFirehoseArns,
           },
         },
         {
@@ -2302,6 +2614,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of an IAM role that this metric stream will use to access Amazon Kinesis Firehose resources. This IAM role must already exist and must be in the same account as the metric stream. This IAM role must include the following permissions:   firehose:PutRecord   firehose:PutRecordBatch",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -2310,6 +2623,7 @@ export const completionSpec: Fig.Spec = {
             "The output format for the stream. Valid values are json and opentelemetry0.7. For more information about metric stream output formats, see  Metric streams output formats.",
           args: {
             name: "string",
+            suggestions: ["opentelemetry0.7", "json"],
           },
         },
         {
@@ -2318,6 +2632,8 @@ export const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the metric stream. You can associate as many as 50 tags with a metric stream. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -2326,6 +2642,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2349,6 +2666,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the alarm.",
           args: {
             name: "string",
+            generators: generators.listAlarms,
           },
         },
         {
@@ -2356,6 +2674,7 @@ export const completionSpec: Fig.Spec = {
           description: "The value of the state.",
           args: {
             name: "string",
+            suggestions: alarmStates,
           },
         },
         {
@@ -2372,6 +2691,7 @@ export const completionSpec: Fig.Spec = {
             "The reason that this alarm is set to this specific state, in JSON format. For SNS or EC2 alarm actions, this is just informational. But for EC2 Auto Scaling or application Auto Scaling alarm actions, the Auto Scaling policy uses the information in this field to take the correct action.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2380,6 +2700,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2404,6 +2725,8 @@ export const completionSpec: Fig.Spec = {
             'The array of the names of metric streams to start streaming. This is an "all or nothing" operation. If you do not have permission to access all of the metric streams that you list here, then none of the streams that you list in the operation will start streaming.',
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricStreams,
           },
         },
         {
@@ -2412,6 +2735,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2436,6 +2760,8 @@ export const completionSpec: Fig.Spec = {
             'The array of the names of metric streams to stop streaming. This is an "all or nothing" operation. If you do not have permission to access all of the metric streams that you list here, then none of the streams that you list in the operation will stop streaming.',
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listMetricStreams,
           },
         },
         {
@@ -2444,6 +2770,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2468,6 +2795,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the CloudWatch resource that you're adding tags to. The ARN format of an alarm is arn:aws:cloudwatch:Region:account-id:alarm:alarm-name   The ARN format of a Contributor Insights rule is arn:aws:cloudwatch:Region:account-id:insight-rule:insight-rule-name   For more information about ARN format, see  Resource Types Defined by Amazon CloudWatch in the Amazon Web Services General Reference.",
           args: {
             name: "string",
+            generators: generators.listAlarmArns,
           },
         },
         {
@@ -2476,6 +2804,8 @@ export const completionSpec: Fig.Spec = {
             "The list of key-value pairs to associate with the alarm.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -2484,6 +2814,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2507,6 +2838,7 @@ export const completionSpec: Fig.Spec = {
             "The ARN of the CloudWatch resource that you're removing tags from. The ARN format of an alarm is arn:aws:cloudwatch:Region:account-id:alarm:alarm-name   The ARN format of a Contributor Insights rule is arn:aws:cloudwatch:Region:account-id:insight-rule:insight-rule-name   For more information about ARN format, see  Resource Types Defined by Amazon CloudWatch in the Amazon Web Services General Reference.",
           args: {
             name: "string",
+            generators: generators.listAlarmArns,
           },
         },
         {
@@ -2514,6 +2846,8 @@ export const completionSpec: Fig.Spec = {
           description: "The list of tag keys to remove from the resource.",
           args: {
             name: "list",
+            variadic: true,
+            description: "Key=string,Value=string",
           },
         },
         {
@@ -2522,6 +2856,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2551,6 +2886,8 @@ export const completionSpec: Fig.Spec = {
                 "The names of the alarms to retrieve information about.",
               args: {
                 name: "list",
+                variadic: true,
+                generators: generators.listAlarms,
               },
             },
             {
@@ -2567,6 +2904,8 @@ export const completionSpec: Fig.Spec = {
                 "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: metricTypes,
               },
             },
             {
@@ -2591,6 +2930,7 @@ export const completionSpec: Fig.Spec = {
                 "Specify this parameter to receive information only about alarms that are currently in the state that you specify.",
               args: {
                 name: "string",
+                suggestions: alarmStates,
               },
             },
             {
@@ -2623,6 +2963,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2671,6 +3012,8 @@ export const completionSpec: Fig.Spec = {
                 "The names of the alarms to retrieve information about.",
               args: {
                 name: "list",
+                variadic: true,
+                generators: generators.listAlarms,
               },
             },
             {
@@ -2687,6 +3030,8 @@ export const completionSpec: Fig.Spec = {
                 "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: metricTypes,
               },
             },
             {
@@ -2711,6 +3056,7 @@ export const completionSpec: Fig.Spec = {
                 "Specify this parameter to receive information only about alarms that are currently in the state that you specify.",
               args: {
                 name: "string",
+                suggestions: alarmStates,
               },
             },
             {
@@ -2743,6 +3089,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
