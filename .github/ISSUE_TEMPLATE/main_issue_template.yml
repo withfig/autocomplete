@@ -21,17 +21,11 @@ body:
 - type: dropdown
   attributes:
     label: Which statement makes the most sense?
-    options:
-    - "There is a bug with this completion spec"
-    - "There are errors with this completion spec"
-    - "This completion spec does not exit"
-    - "Something else"
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: Issue Details
-    description: Tell us more about the issue
-    placeholder: What subcommands / options / arguments are relevant? If a generator needs to be written, please specifiy the desired output.
-  validations:
-    required: true
+     options:
+     - "There is a bug with this completion spec"
+     - "There are errors with this completion spec"
+     - "This completion spec does not exist"
+     - "This completion spec isn't complete"
+     - "Something else"
+   validations:
+     required: true
