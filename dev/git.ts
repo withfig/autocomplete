@@ -212,10 +212,21 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       const files = output.split("\n").map((file) => {
+        // From "git status --short"
+        // M  dev/github.ts // test file that was added
+        //  M dev/kubectl.ts // test file that was not added
+        // A  test2.txt // new added and tracked file
+        // ?? test.txt // new untracked file
+        const alreadyAdded = ["M", "A"].includes(file.charAt(0));
+
         file = file.trim();
         const arr = file.split(" ");
 
-        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
+        return {
+          working: arr[0],
+          file: arr.slice(1).join(" ").trim(),
+          alreadyAdded,
+        };
       });
 
       const paths = output.split("\n").map((file) => {
@@ -263,13 +274,17 @@ const gitGenerators: Record<string, Fig.Generator> = {
             ext = "folder";
           }
 
+          // If the current file is already added
+          // we want to lower the priority
+          const priority =
+            item.alreadyAdded || context.some((ctx) => ctx.includes(file))
+              ? 50
+              : 100;
           return {
             name: file,
             icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
             description: "Changed file",
-            // If the current file already is already added
-            // we want to lower the priority
-            priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+            priority,
           };
         }),
       ];
