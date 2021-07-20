@@ -625,11 +625,11 @@ export const completion: Fig.Spec = {
     }
 
     const helpText = await executeShellCommand("rails -T");
-    const defaultCommandNames = defaultCommands.map((c) => c.name);
+    const defaultCommandNames = new Set(defaultCommands.map((c) => c.name));
     const matches = Array.from(helpText.matchAll(/rails ([^ ]+)/g));
     const commands: Fig.Subcommand[] = matches
       .map((match) => ({ name: match[1] }))
-      .filter((cmd) => !defaultCommandNames.includes(cmd.name));
+      .filter((cmd) => !defaultCommandNames.has(cmd.name));
 
     return {
       name: "rails",

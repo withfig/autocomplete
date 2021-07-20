@@ -147,7 +147,7 @@ export const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = [
+    const cli = new Set([
       "vue",
       "nuxt",
       "expo",
@@ -158,9 +158,9 @@ export const completionSpec: Fig.Spec = {
       "eslint",
       "prettier",
       "tsc",
-    ];
+    ]);
     const subcommands = packages
-      .filter((name) => cli.includes(name))
+      .filter((name) => cli.has(name))
       .map((name) => ({
         name,
         loadSpec: name,

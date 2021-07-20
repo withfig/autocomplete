@@ -45,13 +45,10 @@ export const completionSpec: Fig.Spec = {
     generators: {
       script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
       postProcess: function (out) {
-        const cli = [...suggestions].reduce(
-          (acc, { name }) => [...acc, name],
-          []
-        );
+        const cli = new Set(suggestions.map(({ name }) => name));
         return out
           .split("\n")
-          .filter((name) => !cli.includes(name))
+          .filter((name) => !cli.has(name))
           .map((name) => ({
             name,
             icon: "fig://icon?type=command",

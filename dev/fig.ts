@@ -126,12 +126,12 @@ export const completionSpec: Fig.Spec = {
             console.log(data);
             const out = data.split("\n").reduce((acc, curr) => {
               if (
-                [
+                new Set([
                   ".gitignore",
                   "README.md",
                   "package.json",
                   "package-lock.json",
-                ].includes(curr)
+                ]).has(curr)
               )
                 return acc;
               else {

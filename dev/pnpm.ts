@@ -952,7 +952,7 @@ const subcommands = [
   ...SUBCOMMANDS_MISC,
 ];
 
-const recursiveSubcommandsNames = [
+const recursiveSubcommandsNames = new Set([
   "add",
   "exec",
   "install",
@@ -966,15 +966,13 @@ const recursiveSubcommandsNames = [
   "unlink",
   "update",
   "why",
-];
+]);
 
 const recursiveSubcommands = subcommands.filter((subcommand) => {
   if (Array.isArray(subcommand.name)) {
-    return subcommand.name.some((name) =>
-      recursiveSubcommandsNames.includes(name)
-    );
+    return subcommand.name.some((name) => recursiveSubcommandsNames.has(name));
   }
-  return recursiveSubcommandsNames.includes(subcommand.name);
+  return recursiveSubcommandsNames.has(subcommand.name);
 });
 
 // RECURSIVE SUBCOMMAND INDEX

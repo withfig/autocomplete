@@ -217,7 +217,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
         //  M dev/kubectl.ts // test file that was not added
         // A  test2.txt // new added and tracked file
         // ?? test.txt // new untracked file
-        const alreadyAdded = ["M", "A"].includes(file.charAt(0));
+        const alreadyAdded = new Set(["M", "A"]).has(file.charAt(0));
 
         file = file.trim();
         const arr = file.split(" ");
