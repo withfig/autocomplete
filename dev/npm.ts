@@ -24,6 +24,64 @@ const searchGenerator: Fig.Generator = {
   // },
 };
 
+const dependenciesGenerator: Fig.Generator = {
+  script: "cat package.json",
+  postProcess: function (out, context) {
+    if (out.trim() === "") {
+      return [];
+    }
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencies = packageContent["dependencies"];
+      if (dependencies) {
+        const dps = Object.keys(dependencies);
+        return dps
+          .filter(function (pkg) {
+            let isListed = false;
+            for (let i = 3; i <= context.length; i++) {
+              if (pkg == context[i - 2]) {
+                isListed = true;
+              }
+            }
+            return !isListed;
+          })
+          .map((pkg) => {
+            const scope = pkg.indexOf("/") + 1;
+            const version = pkg.indexOf("@");
+            const displayName =
+              (scope !== -1 ? pkg.substring(scope) : pkg) ||
+              (version !== -1 ? pkg.substring(version) : pkg);
+            return {
+              name: pkg,
+              displayName: displayName,
+              description: "dependency",
+            };
+          });
+      }
+    } catch (e) {}
+    return [];
+  },
+};
+
+const npmInstallOptions = [
+  {
+    name: ["-S", "--save"],
+    description: " Package will be removed from your dependencies",
+  },
+  {
+    name: ["-D", "--save-dev"],
+    description: "Package will appear in your `devDependencies`",
+  },
+  {
+    name: ["-O", "--save-optional"],
+    description: "Package will appear in your `optionalDependencies`",
+  },
+  {
+    name: "--no-save",
+    description: "Prevents saving to `dependencies`",
+  },
+];
+
 export const completionSpec: Fig.Spec = {
   name: "npm",
   description: "Node package manager",
@@ -265,61 +323,52 @@ export const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "r",
+      description: "uninstall a package",
+      args: [
+        {
+          name: "package",
+          generators: dependenciesGenerator,
+          variadic: true,
+        },
+      ],
+      options: npmInstallOptions,
+    },
+    {
+      name: "rm",
+      description: "uninstall a package",
+      args: [
+        {
+          name: "package",
+          generators: dependenciesGenerator,
+          variadic: true,
+        },
+      ],
+      options: npmInstallOptions,
+    },
+    {
+      name: "remove",
+      description: "uninstall a package",
+      args: [
+        {
+          name: "package",
+          generators: dependenciesGenerator,
+          variadic: true,
+        },
+      ],
+      options: npmInstallOptions,
+    },
+    {
       name: "uninstall",
       description: "remove a package",
       args: [
         {
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() === "") {
-                return [];
-              }
-              try {
-                const packageContent = JSON.parse(out);
-                const dependencies = packageContent["dependencies"];
-                if (dependencies) {
-                  const dps = Object.keys(dependencies);
-                  return dps.map((pkg) => {
-                    const scope = pkg.indexOf("/") + 1;
-                    if (scope !== -1) {
-                      pkg = pkg.substring(scope);
-                    }
-                    const version = pkg.indexOf("@");
-                    if (version !== -1) {
-                      pkg = pkg.substring(version);
-                    }
-                    return {
-                      name: pkg,
-                      icon: `fig://icon?type=file`,
-                      description: "dependency file",
-                    };
-                  });
-                }
-              } catch (e) {}
-              return [];
-            },
-          },
+          name: "package",
+          generators: dependenciesGenerator,
+          variadic: true,
         },
       ],
-      options: [
-        {
-          name: ["-S", "--save"],
-          description: " Package will be removed from your dependencies",
-        },
-        {
-          name: ["-D", "--save-dev"],
-          description: "Package will appear in your `devDependencies`",
-        },
-        {
-          name: ["-O", "--save-optional"],
-          description: "Package will appear in your `optionalDependencies`",
-        },
-        {
-          name: "--no-save",
-          description: "Prevents saving to `dependencies`",
-        },
-      ],
+      options: npmInstallOptions,
     },
     { name: "unpublish", description: "remove a package from the registry" },
     { name: "unstar", description: "unmark your package" },
