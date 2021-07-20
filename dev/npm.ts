@@ -34,26 +34,20 @@ const dependenciesGenerator: Fig.Generator = {
       const packageContent = JSON.parse(out);
       const dependencies = packageContent["dependencies"];
       if (dependencies) {
-        const dps = Object.keys(dependencies);
-        return dps
+        return Object.keys(dependencies)
           .filter(function (pkg) {
-            let isListed = false;
-            for (let i = 3; i <= context.length; i++) {
-              if (pkg == context[i - 2]) {
-                isListed = true;
-              }
-            }
+            const isListed = context.some((current) => current === pkg);
             return !isListed;
           })
-          .map((pkg) => {
-            const scope = pkg.indexOf("/") + 1;
-            const version = pkg.indexOf("@");
+          .map((name) => {
+            const scope = name.indexOf("/") + 1;
+            const version = name.indexOf("@");
             const displayName =
-              (scope !== -1 ? pkg.substring(scope) : pkg) ||
-              (version !== -1 ? pkg.substring(version) : pkg);
+              (scope !== -1 ? name.substring(scope) : name) ||
+              (version !== -1 ? name.substring(version) : name);
             return {
-              name: pkg,
-              displayName: displayName,
+              name,
+              displayName,
               description: "dependency",
             };
           });
@@ -63,7 +57,7 @@ const dependenciesGenerator: Fig.Generator = {
   },
 };
 
-const npmInstallOptions = [
+const npmInstallOptions: Fig.Option[] = [
   {
     name: ["-S", "--save"],
     description: " Package will be removed from your dependencies",
