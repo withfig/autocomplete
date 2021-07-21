@@ -168,10 +168,7 @@ const postPrecessGenerator = (
           icon: "fig://icon?type=aws",
         };
       })
-      .filter(
-        (value, index, self) =>
-          self.map((x) => x.name).indexOf(value.name) === index
-      );
+      .filter(uniqueNames);
   } catch (e) {
     console.log(e);
   }
@@ -220,10 +217,7 @@ const listCustomGenerator = async (
           icon: "fig://icon?type=aws",
         };
       })
-      .filter(
-        (value, index, self) =>
-          self.map((x) => x.name).indexOf(value.name) === index
-      );
+      .filter(uniqueNames);
   } catch (e) {
     console.log(e);
   }
@@ -262,10 +256,7 @@ const listDimensionTypes = async (
         });
       })
       .flat()
-      .filter(
-        (value, index, self) =>
-          self.map((x) => x.name).indexOf(value.name) === index
-      );
+      .filter(uniqueNames);
   } catch (e) {
     console.log(e);
   }
@@ -382,6 +373,9 @@ const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
 
   return finalArr;
 };
+
+const uniqueNames = (value, index, self) =>
+  self.map((x) => x.name).indexOf(value.name) === index;
 
 const triggerPrefix = (
   newToken: string,
