@@ -56,14 +56,14 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
     let name = elm.trim();
     const parts = elm.match(/\S+/g);
     if (parts.length > 1) {
-      if (parts[0] == "*") {
+      if (parts[0] === "*") {
         // Current branch.
         return {
           name: elm.replace("*", "").trim(),
           description: "current branch",
           icon: "⭐️",
         };
-      } else if (parts[0] == "+") {
+      } else if (parts[0] === "+") {
         // Branch checked out in another worktree.
         name = elm.replace("+", "").trim();
       }
