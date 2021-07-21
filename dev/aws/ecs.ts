@@ -1,3 +1,230 @@
+const launchTypes = ["EC2", "FARGATE", "EXTERNAL"];
+
+const postPrecessGenerator = (
+  out: string,
+  parentKey: string,
+  childKey = ""
+): Fig.Suggestion[] => {
+  try {
+    const list = JSON.parse(out)[parentKey];
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const customGenerator = async (
+  context: string[],
+  executeShellCommand: Fig.ExecuteShellCommandFunction,
+  command: string,
+  options: string[],
+  parentKey: string,
+  childKey = ""
+): Promise<Fig.Suggestion[]> => {
+  try {
+    let cmd = `aws ecs ${command}`;
+
+    for (let i = 0; i < options.length; i++) {
+      const option = options[i];
+      const idx = context.indexOf(option);
+      if (idx < 0) {
+        continue;
+      }
+      const param = context[idx + 1];
+      cmd += ` ${option} ${param}`;
+    }
+
+    const out = await executeShellCommand(cmd);
+
+    const list = JSON.parse(out)[parentKey];
+
+    if (!Array.isArray(list)) {
+      return [
+        {
+          name: list[childKey],
+          icon: "fig://icon?type=aws",
+        },
+      ];
+    }
+
+    return list.map((resource) => {
+      const name = (childKey ? resource[childKey] : resource) as string;
+      return {
+        name,
+        icon: "fig://icon?type=aws",
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  return [];
+};
+
+const _prefixFile = "file://";
+
+const appendFolderPath = (tokens: string[], prefix: string): string => {
+  const baseLSCommand = "\\ls -1ApL ";
+  let whatHasUserTyped = tokens[tokens.length - 1];
+
+  if (!whatHasUserTyped.startsWith(prefix)) {
+    return `echo '${prefix}'`;
+  }
+  whatHasUserTyped = whatHasUserTyped.slice(prefix.length);
+
+  let folderPath = "";
+  const lastSlashIndex = whatHasUserTyped.lastIndexOf("/");
+
+  if (lastSlashIndex > -1) {
+    if (whatHasUserTyped.startsWith("/") && lastSlashIndex === 0) {
+      folderPath = "/";
+    } else {
+      folderPath = whatHasUserTyped.slice(0, lastSlashIndex + 1);
+    }
+  }
+
+  return baseLSCommand + folderPath;
+};
+
+const postProcessFiles = (out: string, prefix: string): Fig.Suggestion[] => {
+  if (out.trim() === prefix) {
+    return [
+      {
+        name: prefix,
+        insertValue: prefix,
+      },
+    ];
+  }
+  return sortSuggestions(out.split("\n"), false);
+};
+
+const triggerPrefix = (
+  newToken: string,
+  oldToken: string,
+  prefix: string
+): boolean => {
+  if (!newToken.startsWith(prefix)) {
+    if (!oldToken) return false;
+
+    return oldToken.startsWith(prefix);
+  }
+
+  return newToken.lastIndexOf("/") !== oldToken.lastIndexOf("/");
+};
+
+const filterWithPrefix = (token: string, prefix: string): string => {
+  if (!token.startsWith(prefix)) return token;
+  return token.slice(token.lastIndexOf("/") + 1);
+};
+
+const sortSuggestions = (arr: string[], isS3?: boolean): Fig.Suggestion[] => {
+  const sortFnStrings = (a, b) => {
+    return a.localeCompare(b);
+  };
+
+  const alphabeticalSortFilesAndFolders = (arr) => {
+    const dots_arr = [];
+    const other_arr = [];
+
+    arr.map((fsObject) => {
+      if (fsObject.toLowerCase() == ".ds_store") return;
+      if (fsObject.slice(0, 1) === ".") {
+        dots_arr.push(fsObject);
+      } else {
+        other_arr.push(fsObject);
+      }
+    });
+
+    if (isS3) {
+      return [
+        ...other_arr.sort(sortFnStrings),
+        ...dots_arr.sort(sortFnStrings),
+      ];
+    }
+
+    return [
+      ...other_arr.sort(sortFnStrings),
+      "../",
+      ...dots_arr.sort(sortFnStrings),
+    ];
+  };
+
+  const temp_array = alphabeticalSortFilesAndFolders(arr);
+
+  const final_array = [];
+
+  temp_array.forEach((item) => {
+    if (item !== "" && item !== null) {
+      const outputType = item.slice(-1) === "/" ? "folder" : "file";
+
+      final_array.push({
+        type: outputType,
+        name: item,
+        insertValue: item,
+      });
+    }
+  });
+
+  return final_array;
+};
+
+const generators: Record<string, Fig.Generator> = {
+  listFiles: {
+    script: (tokens) => {
+      return appendFolderPath(tokens, _prefixFile);
+    },
+    postProcess: (out) => {
+      return postProcessFiles(out, _prefixFile);
+    },
+
+    trigger: (newToken, oldToken) => {
+      return triggerPrefix(newToken, oldToken, _prefixFile);
+    },
+
+    filterTerm: (token) => {
+      return filterWithPrefix(token, _prefixFile);
+    },
+  },
+
+  listCapacityProviders: {
+    script: "aws ecs describe-capacity-providers",
+    postProcess: (out) =>
+      postPrecessGenerator(out, "capacityProviders", "name"),
+  },
+
+  listClusters: {
+    script: "aws ecs list-clusters",
+    postProcess: (out) => postPrecessGenerator(out, "clusterArns"),
+  },
+
+  listTaskDefinitions: {
+    script: "aws ecs list-task-definitions",
+    postProcess: (out) => postPrecessGenerator(out, "taskDefinitionArns"),
+  },
+
+  listRoles: {
+    script: "aws iam list-roles",
+    postProcess: (out) => {
+      return postPrecessGenerator(out, "Roles", "RoleName");
+    },
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "ecs",
   description:
@@ -30,6 +257,8 @@ export const completionSpec: Fig.Spec = {
             "The metadata that you apply to the capacity provider to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -38,6 +267,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -70,6 +300,8 @@ export const completionSpec: Fig.Spec = {
             "The metadata that you apply to the cluster to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -78,6 +310,11 @@ export const completionSpec: Fig.Spec = {
             "The setting to use when creating a cluster. This parameter is used to enable CloudWatch Container Insights for a cluster. If this value is specified, it will override the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "name=containerInsights,value=enabled",
+              "name=containerInsights,value=disabled",
+            ],
           },
         },
         {
@@ -93,6 +330,8 @@ export const completionSpec: Fig.Spec = {
             "The short name of one or more capacity providers to associate with the cluster. A capacity provider must be associated with a cluster before it can be included as part of the default capacity provider strategy of the cluster or used in a capacity provider strategy when calling the CreateService or RunTask actions. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created and not already associated with another cluster. New Auto Scaling group capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used. The PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listCapacityProviders,
           },
         },
         {
@@ -101,6 +340,8 @@ export const completionSpec: Fig.Spec = {
             "The capacity provider strategy to set as the default for the cluster. When a default capacity provider strategy is set for a cluster, when calling the RunTask or CreateService APIs wtih no capacity provider strategy or launch type specified, the default capacity provider strategy for the cluster is used. If a default capacity provider strategy is not defined for a cluster during creation, it can be defined later with the PutClusterCapacityProviders API operation.",
           args: {
             name: "list",
+            variadic: true,
+            description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -109,6 +350,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -133,6 +375,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster on which to run your service. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listlistClusters,
           },
         },
         {
@@ -149,6 +392,7 @@ export const completionSpec: Fig.Spec = {
             "The family and revision (family:revision) or full ARN of the task definition to run in your service. If a revision is not specified, the latest ACTIVE revision is used. A task definition must be specified if the service is using either the ECS or CODE_DEPLOY deployment controllers.",
           args: {
             name: "string",
+            generators: generators.listTaskDefinitions,
           },
         },
         {
@@ -157,6 +401,9 @@ export const completionSpec: Fig.Spec = {
             "A load balancer object representing the load balancers to use with your service. For more information, see Service Load Balancing in the Amazon Elastic Container Service Developer Guide. If the service is using the rolling update (ECS) deployment controller and using either an Application Load Balancer or Network Load Balancer, you must specify one or more target group ARNs to attach to the service. The service-linked role is required for services that make use of multiple target groups. For more information, see Using service-linked roles for Amazon ECS in the Amazon Elastic Container Service Developer Guide. If the service is using the CODE_DEPLOY deployment controller, the service is required to use either an Application Load Balancer or Network Load Balancer. When creating an AWS CodeDeploy deployment group, you specify two target groups (referred to as a targetGroupPair). During a deployment, AWS CodeDeploy determines which task set in your service has the status PRIMARY and associates one target group with it, and then associates the other target group with the replacement task set. The load balancer can also have up to two listeners: a required listener for production traffic and an optional listener that allows you perform validation tests with Lambda functions before routing production traffic to it. After you create a service using the ECS deployment controller, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable. If you are using the CODE_DEPLOY deployment controller, these values can be changed when updating the service. For Application Load Balancers and Network Load Balancers, this object must contain the load balancer target group ARN, the container name (as it appears in a container definition), and the container port to access from the load balancer. The load balancer name parameter must be omitted. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified here. For Classic Load Balancers, this object must contain the load balancer name, the container name (as it appears in a container definition), and the container port to access from the load balancer. The target group ARN parameter must be omitted. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified here. Services with tasks that use the awsvpc network mode (for example, those with the Fargate launch type) only support Application Load Balancers and Network Load Balancers. Classic Load Balancers are not supported. Also, when you create any target groups for these services, you must choose ip as the target type, not instance, because tasks that use the awsvpc network mode are associated with an elastic network interface, not an Amazon EC2 instance.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "targetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
           },
         },
         {
@@ -165,6 +412,9 @@ export const completionSpec: Fig.Spec = {
             "The details of the service discovery registries to assign to this service. For more information, see Service discovery.  Service discovery is supported for Fargate tasks if you are using platform version v1.1.0 or later. For more information, see AWS Fargate platform versions.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "registryArn=string,port=integer,containerName=string,containerPort=integer",
           },
         },
         {
@@ -189,6 +439,7 @@ export const completionSpec: Fig.Spec = {
             "The launch type on which to run your service. The accepted values are FARGATE and EC2. For more information, see Amazon ECS launch types in the Amazon Elastic Container Service Developer Guide. When a value of FARGATE is specified, your tasks are launched on AWS Fargate On-Demand infrastructure. To use Fargate Spot, you must use a capacity provider strategy with the FARGATE_SPOT capacity provider. When a value of EC2 is specified, your tasks are launched on Amazon EC2 instances registered to your cluster. If a launchType is specified, the capacityProviderStrategy parameter must be omitted.",
           args: {
             name: "string",
+            suggestions: launchTypes,
           },
         },
         {
@@ -197,6 +448,8 @@ export const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use for the service. If a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.",
           args: {
             name: "list",
+            variadic: true,
+            description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -213,6 +466,7 @@ export const completionSpec: Fig.Spec = {
             "The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf. This parameter is only permitted if you are using a load balancer with your service and your task definition does not use the awsvpc network mode. If you specify the role parameter, you must also specify a load balancer object with the loadBalancers parameter.  If your account has already created the Amazon ECS service-linked role, that role is used by default for your service unless you specify a role here. The service-linked role is required if your task definition uses the awsvpc network mode or if the service is configured to use service discovery, an external deployment controller, multiple target groups, or Elastic Inference accelerators in which case you should not specify a role here. For more information, see Using service-linked roles for Amazon ECS in the Amazon Elastic Container Service Developer Guide.  If your specified role has a path other than /, then you must either specify the full role ARN (this is recommended) or prefix the role name with the path. For example, if a role with the name bar has a path of /foo/ then you would specify /foo/bar as the role name. For more information, see Friendly names and paths in the IAM User Guide.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
         {
@@ -221,6 +475,7 @@ export const completionSpec: Fig.Spec = {
             "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks.",
           args: {
             name: "structure",
+            variadic: true,
           },
         },
         {
@@ -229,6 +484,8 @@ export const completionSpec: Fig.Spec = {
             "An array of placement constraint objects to use for tasks in your service. You can specify a maximum of 10 constraints per task (this limit includes constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
+            variadic: true,
+            description: "type=distinctInstance|memberOf,expression=string",
           },
         },
         {
@@ -237,6 +494,8 @@ export const completionSpec: Fig.Spec = {
             "The placement strategy objects to use for tasks in your service. You can specify a maximum of five strategy rules per service.",
           args: {
             name: "list",
+            variadic: true,
+            description: "type=random|spread|binpack,field=string",
           },
         },
         {
@@ -245,6 +504,8 @@ export const completionSpec: Fig.Spec = {
             "The network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own elastic network interface, and it is not supported for other network modes. For more information, see Task networking in the Amazon Elastic Container Service Developer Guide.",
           args: {
             name: "structure",
+            description:
+              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=ENABLED|DISABLED}",
           },
         },
         {
@@ -261,6 +522,7 @@ export const completionSpec: Fig.Spec = {
             "The scheduling strategy to use for the service. For more information, see Services. There are two service scheduler strategies available:    REPLICA-The replica scheduling strategy places and maintains the desired number of tasks across your cluster. By default, the service scheduler spreads tasks across Availability Zones. You can use task placement strategies and constraints to customize task placement decisions. This scheduler strategy is required if the service is using the CODE_DEPLOY or EXTERNAL deployment controller types.    DAEMON-The daemon scheduling strategy deploys exactly one task on each active container instance that meets all of the task placement constraints that you specify in your cluster. The service scheduler also evaluates the task placement constraints for running tasks and will stop tasks that do not meet the placement constraints. When you're using this strategy, you don't need to specify a desired number of tasks, a task placement strategy, or use Service Auto Scaling policies.  Tasks using the Fargate launch type or the CODE_DEPLOY or EXTERNAL deployment controller types don't support the DAEMON scheduling strategy.",
           args: {
             name: "string",
+            suggestions: ["REPLICA", "DAEMON"],
           },
         },
         {
@@ -268,6 +530,7 @@ export const completionSpec: Fig.Spec = {
           description: "The deployment controller to use for the service.",
           args: {
             name: "structure",
+            suggestions: ["type=ECS", "type=CODE_DEPLOY", "type=EXTERNAL"],
           },
         },
         {
@@ -276,6 +539,8 @@ export const completionSpec: Fig.Spec = {
             "The metadata that you apply to the service to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -294,6 +559,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether to propagate the tags from the task definition or the service to the tasks in the service. If no value is specified, the tags are not propagated. Tags can only be propagated to the tasks within the service during service creation. To add tags to a task after service creation, use the TagResource API action.",
           args: {
             name: "string",
+            suggestions: ["TASK_DEFINITION", "SERVICE"],
           },
         },
         {
@@ -312,6 +578,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
