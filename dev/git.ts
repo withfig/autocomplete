@@ -45,6 +45,38 @@ const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
   ];
 };
 
+const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
+  const output = filterMessages(out);
+
+  if (output.startsWith("fatal:")) {
+    return [];
+  }
+
+  return output.split("\n").map((elm) => {
+    let name = elm.trim();
+    const parts = elm.match(/\S+/g);
+    if (parts.length > 1) {
+      if (parts[0] == "*") {
+        // Current branch.
+        return {
+          name: elm.replace("*", "").trim(),
+          description: "current branch",
+          icon: "⭐️",
+        };
+      } else if (parts[0] == "+") {
+        // Branch checked out in another worktree.
+        name = elm.replace("+", "").trim();
+      }
+    }
+
+    return {
+      name,
+      description: "branch",
+      icon: "fig://icon?type=git",
+    };
+  });
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
@@ -125,39 +157,14 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   // All branches
-  branches: {
+  remoteLocalBranches: {
+    script: "git branch -a --no-color",
+    postProcess: postProcessBranches,
+  },
+
+  localBranches: {
     script: "git branch --no-color",
-    postProcess: function (out) {
-      const output = filterMessages(out);
-
-      if (output.startsWith("fatal:")) {
-        return [];
-      }
-
-      return output.split("\n").map((elm) => {
-        let name = elm.trim();
-        const parts = elm.match(/\S+/g);
-        if (parts.length > 1) {
-          if (parts[0] == "*") {
-            // Current branch.
-            return {
-              name: elm.replace("*", "").trim(),
-              description: "current branch",
-              icon: "⭐️",
-            };
-          } else if (parts[0] == "+") {
-            // Branch checked out in another worktree.
-            name = elm.replace("+", "").trim();
-          }
-        }
-
-        return {
-          name,
-          description: "branch",
-          icon: "fig://icon?type=git",
-        };
-      });
-    },
+    postProcess: postProcessBranches,
   },
 
   remotes: {
@@ -1334,12 +1341,12 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "base",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           isOptional: true,
         },
         {
           name: "new base",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           isOptional: true,
         },
       ],
@@ -1786,7 +1793,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
       ],
     },
@@ -2214,7 +2221,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
       ],
     },
@@ -2633,7 +2640,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
         {
           name: "refspec",
@@ -3073,7 +3080,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "stash",
@@ -3546,14 +3553,14 @@ export const completionSpec: Fig.Spec = {
           name: ["-d", "--delete"],
           description: "delete fully merged branch",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
           name: "-D",
           description: "delete branch (even if not merged)",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3561,10 +3568,10 @@ export const completionSpec: Fig.Spec = {
           description: "move/rename a branch and its reflog",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3573,10 +3580,10 @@ export const completionSpec: Fig.Spec = {
           description: "move/rename a branch, even if target exists",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3591,7 +3598,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--edit-description"],
           description: "edit the description for the branch",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3678,7 +3685,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "start point",
@@ -3695,11 +3702,11 @@ export const completionSpec: Fig.Spec = {
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               isOptional: true,
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3709,7 +3716,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "upstream",
             isOptional: true,
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3718,7 +3725,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "upstream",
             isOptional: true,
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3945,7 +3952,7 @@ export const completionSpec: Fig.Spec = {
           name: "branch",
           description: "branch or commit to switch to",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.remoteLocalBranches,
           suggestions: [
             {
               name: "-",
@@ -4345,7 +4352,7 @@ export const completionSpec: Fig.Spec = {
       description: "Join two or more development histories together",
       args: {
         name: "branch",
-        generators: gitGenerators.branches,
+        generators: gitGenerators.localBranches,
         variadic: true,
         isOptional: true,
       },
@@ -4901,7 +4908,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "start point",
@@ -4917,11 +4924,11 @@ export const completionSpec: Fig.Spec = {
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               isOptional: true,
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -4953,7 +4960,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch name",
           description: "branch or commit to switch to",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           suggestions: [
             {
               name: "-",
