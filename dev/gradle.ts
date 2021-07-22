@@ -351,7 +351,8 @@ const sharedOptions: Fig.Option[] = [
 
 export const completion: Fig.Spec = {
   // ./gradlew doesn't work
-  name: ["gradle", "./gradlew"],
+  // name: ["gradle", "./gradlew"],
+  name: "gradle",
   description: "",
   subcommands: [
     {
