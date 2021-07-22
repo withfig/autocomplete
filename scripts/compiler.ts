@@ -3,6 +3,7 @@ import * as esbuild from "esbuild";
 import { DESTINATION_FOLDER_NAME, SOURCE_FOLDER_NAME } from "./constants";
 import { exec } from "child_process";
 import chokidar from "chokidar";
+import glob from "fast-glob";
 
 function invalidateCache() {
   exec(
@@ -26,11 +27,11 @@ function invalidateCache() {
   );
 }
 
-async function processFile(fileName: string) {
-  SpecLogger.log(`Building ${fileName}`);
+async function processFiles(files: string | string[]) {
+  const fileName = typeof files === "string" ? files : "all specs";
   await esbuild
     .build({
-      entryPoints: [fileName],
+      entryPoints: [].concat(files),
       outdir: DESTINATION_FOLDER_NAME,
       bundle: true,
       format: "esm",
@@ -39,13 +40,25 @@ async function processFile(fileName: string) {
     .catch((e) =>
       SpecLogger.log(`Error building ${fileName}: ${e.message}`, Level.ERROR)
     );
+  SpecLogger.log(`Built ${fileName}`);
   invalidateCache();
 }
 
-const watcher = chokidar.watch(`${SOURCE_FOLDER_NAME}/**/*.ts`, {
-  ignoreInitial: true,
-});
+async function runCompiler() {
+  const SOURCE_FILE_GLOB = `${SOURCE_FOLDER_NAME}/**/*.ts`;
+  const args = process.argv.slice(2);
+  if (args.includes("--watch")) {
+    const watcher = chokidar.watch(SOURCE_FILE_GLOB, {
+      ignoreInitial: true,
+    });
 
-// Process the changed file
-watcher.on("change", processFile);
-watcher.on("add", processFile);
+    // Process the changed file
+    watcher.on("change", processFiles);
+    watcher.on("add", processFiles);
+  } else {
+    const files = await glob(SOURCE_FILE_GLOB);
+    await processFiles(files);
+  }
+}
+
+runCompiler();
