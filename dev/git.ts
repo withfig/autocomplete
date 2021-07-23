@@ -61,6 +61,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
         return {
           name: elm.replace("*", "").trim(),
           description: "current branch",
+          priority: 100,
           icon: "⭐️",
         };
       } else if (parts[0] === "+") {
