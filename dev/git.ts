@@ -3965,10 +3965,13 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "branch",
-          description: "branch or commit to switch to",
+          name: "branch or file",
+          description: "branch, file or commit to switch to",
           isOptional: true,
-          generators: gitGenerators.remoteLocalBranches,
+          generators: [
+            gitGenerators.remoteLocalBranches,
+            { template: "filepaths" },
+          ],
           suggestions: [
             {
               name: "-",
