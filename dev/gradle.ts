@@ -20,7 +20,7 @@ const consoleModeArg: Fig.Arg = {
     {
       name: "verbose",
       description:
-        "enable color and other rich output like the rich, but output task names and outcomes at the lifecycle log level, as is done by default in Gradle 3.5 and earlier",
+        "Enables color and other rich output like the rich, but output task names and outcomes at the lifecycle log level, as is done by default in Gradle 3.5 and earlier",
     },
   ],
 };
@@ -350,8 +350,6 @@ const sharedOptions: Fig.Option[] = [
 ];
 
 export const completion: Fig.Spec = {
-  // ./gradlew doesn't work
-  // name: ["gradle", "./gradlew"],
   name: "gradle",
   description:
     "Gradle is an open-source build automation tool that is designed to be flexible enough to build almost any type of software",
