@@ -46,7 +46,6 @@ export const completion: Fig.Spec = {
       args: {
         name: "index expressions",
         description: "non-zero integer or range expression ([BEGIN]..[END])",
-        variadic: true,
       },
     },
     {
@@ -56,11 +55,10 @@ export const completion: Fig.Spec = {
       args: {
         name: "index expressions",
         description: "non-zero integer or range expression ([BEGIN]..[END])",
-        variadic: true,
       },
     },
     {
-      name: "-d, --delimiter=STR",
+      name: ["-d", "--delimiter"],
       description: "Field delimiter regex (default: AWK-style)",
       args: {
         name: "STR",
@@ -87,7 +85,6 @@ export const completion: Fig.Spec = {
         name: "criteria",
         default: "length",
         suggestions: ["length", "begin", "end", "index"],
-        variadic: true,
       },
     },
     {
@@ -353,7 +350,6 @@ export const completion: Fig.Spec = {
       description: "Comma-separated list of keys to complete fzf",
       args: {
         name: "keys",
-        variadic: true,
       },
     },
     {
