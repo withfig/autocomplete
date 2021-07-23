@@ -3,8 +3,8 @@ const postProcessDockerPs: Fig.Generator["postProcess"] = (out) => {
     try {
       const parsedJSON: Record<string, string> = JSON.parse(i);
       return {
-        name: parsedJSON.ID,
-        displayName: `${parsedJSON.ID} (${parsedJSON.Image})`,
+        name: parsedJSON.Names,
+        displayName: `${parsedJSON.Names} (${parsedJSON.Image})`,
         icon: "fig://icon?type=docker",
       };
     } catch (error) {
