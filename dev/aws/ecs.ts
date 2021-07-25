@@ -1,6 +1,8 @@
 const tags = ["TAGS"];
 const launchTypes = ["EC2", "FARGATE", "EXTERNAL"];
 const schedulingStrategy = ["REPLICA", "DAEMON"];
+const tagsToPropagate = ["TASK_DEFINITION", "SERVICE"];
+
 const clusterInformation = [
   "ATTACHMENTS",
   "CONFIGURATIONS",
@@ -64,8 +66,7 @@ const customGenerator = async (
   try {
     let cmd = `aws ecs ${command}`;
 
-    for (let i = 0; i < options.length; i++) {
-      const option = options[i];
+    for (const option of options) {
       const idx = context.indexOf(option);
       if (idx < 0) {
         continue;
@@ -330,7 +331,7 @@ const generators: Record<string, Fig.Generator> = {
 
   listStartedBy: {
     custom: async (context, executeShellCommand) => {
-      const out = await executeShellCommand("aws ecs list-tasks ");
+      const out = await executeShellCommand("aws ecs list-tasks");
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
         command: `aws ecs describe-tasks --tasks ${arn}`,
@@ -340,6 +341,71 @@ const generators: Record<string, Fig.Generator> = {
       return MultiSuggestionsGenerator(context, executeShellCommand, [
         ...tasks,
       ]);
+    },
+  },
+
+  listTaskGroups: {
+    custom: async (context, executeShellCommand) => {
+      const idx = context.indexOf("--cluster");
+      if (idx < 0) {
+        return;
+      }
+      const param = context[idx + 1];
+
+      const out = await executeShellCommand(
+        `aws ecs list-tasks --cluster ${param}`
+      );
+      const list = JSON.parse(out)["taskArns"];
+      const tasks = list.map((arn) => ({
+        command: `aws ecs describe-tasks --tasks ${arn}`,
+        parentKey: "tasks",
+        childKey: "group",
+      }));
+      return MultiSuggestionsGenerator(context, executeShellCommand, [
+        ...tasks,
+      ]);
+    },
+  },
+
+  listTagsForResource: {
+    custom: (out, executeShellCommand) =>
+      customGenerator(
+        out,
+        executeShellCommand,
+        "aws ecs list-tags-for-resource",
+        ["--resource-arn"],
+        "tags",
+        "key"
+      ),
+  },
+
+  listCodedeployApplications: {
+    script: "aws deploy list-applications",
+    postProcess: (out) => postPrecessGenerator(out, "applications"),
+  },
+
+  listCodedeployDeploymentGroups: {
+    custom: async (context, executeShellCommand) => {
+      try {
+        const idx = context.indexOf("--codedeploy-application");
+        if (idx < 0) {
+          return;
+        }
+        const param = context[idx + 1];
+
+        const out = await executeShellCommand(
+          `aws deploy list-deployment-groups --application-name ${param}`
+        );
+        const list = JSON.parse(out)["deploymentGroups"];
+        return list.map((group) => {
+          return {
+            group,
+            icon: "fig://icon?type=aws",
+          };
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
@@ -2954,6 +3020,8 @@ export const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use for the task. If a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.",
           args: {
             name: "list",
+            variadic: true,
+            description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -2962,6 +3030,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster on which to run your task. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2970,6 +3039,10 @@ export const completionSpec: Fig.Spec = {
             "The number of instantiations of the specified task to place on your cluster. You can specify up to 10 tasks per call.",
           args: {
             name: "integer",
+            suggestions: Array.from(
+              { length: 10 },
+              (_, i) => i + 1
+            ).map((number) => number.toString()),
           },
         },
         {
@@ -2993,6 +3066,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the task group to associate with the task. The default value is the family name of the task definition (for example, family:my-family-name).",
           args: {
             name: "string",
+            generators: generators.listTaskGroups,
           },
         },
         {
@@ -3001,6 +3075,7 @@ export const completionSpec: Fig.Spec = {
             "The launch type on which to run your task. The accepted values are FARGATE and EC2. For more information, see Amazon ECS Launch Types in the Amazon Elastic Container Service Developer Guide. When a value of FARGATE is specified, your tasks are launched on AWS Fargate On-Demand infrastructure. To use Fargate Spot, you must use a capacity provider strategy with the FARGATE_SPOT capacity provider. When a value of EC2 is specified, your tasks are launched on Amazon EC2 instances registered to your cluster. If a launchType is specified, the capacityProviderStrategy parameter must be omitted.",
           args: {
             name: "string",
+            suggestions: launchTypes,
           },
         },
         {
@@ -3009,6 +3084,8 @@ export const completionSpec: Fig.Spec = {
             "The network configuration for the task. This parameter is required for task definitions that use the awsvpc network mode to receive their own elastic network interface, and it is not supported for other network modes. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide.",
           args: {
             name: "structure",
+            description:
+              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -3017,6 +3094,7 @@ export const completionSpec: Fig.Spec = {
             "A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a command override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an environment override.  A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.",
           args: {
             name: "structure",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3025,6 +3103,11 @@ export const completionSpec: Fig.Spec = {
             "An array of placement constraint objects to use for the task. You can specify up to 10 constraints per task (including constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "type=distinctInstance,expression=string",
+              "type=memberOf,expression=string",
+            ],
           },
         },
         {
@@ -3033,6 +3116,12 @@ export const completionSpec: Fig.Spec = {
             "The placement strategy objects to use for the task. You can specify a maximum of five strategy rules per task.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "type=random,field=string",
+              "type=spread,field=string",
+              "type=binpack,field=string",
+            ],
           },
         },
         {
@@ -3049,6 +3138,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags are not propagated. Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use the TagResource API action.  An error will be received if you specify the SERVICE option when running a task.",
           args: {
             name: "string",
+            suggestions: tagsToPropagate,
           },
         },
         {
@@ -3064,6 +3154,7 @@ export const completionSpec: Fig.Spec = {
             "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed. If a task is started by an Amazon ECS service, then the startedBy parameter contains the deployment ID of the service that starts it.",
           args: {
             name: "string",
+            generators: generators.startedBy,
           },
         },
         {
@@ -3072,6 +3163,8 @@ export const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -3080,6 +3173,7 @@ export const completionSpec: Fig.Spec = {
             "The family and revision (family:revision) or full ARN of the task definition to run. If a revision is not specified, the latest ACTIVE revision is used.",
           args: {
             name: "string",
+            generators: generators.listTaskDefinitions,
           },
         },
         {
@@ -3093,6 +3187,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3117,6 +3212,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster on which to start your task. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3125,6 +3221,8 @@ export const completionSpec: Fig.Spec = {
             "The container instance IDs or full ARN entries for the container instances on which you would like to place your task. You can specify up to 10 container instances.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listContainerInstances,
           },
         },
         {
@@ -3148,6 +3246,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the task group to associate with the task. The default value is the family name of the task definition (for example, family:my-family-name).",
           args: {
             name: "string",
+            generators: generators.listTaskGroups,
           },
         },
         {
@@ -3156,6 +3255,8 @@ export const completionSpec: Fig.Spec = {
             "The VPC subnet and security group configuration for tasks that receive their own elastic network interface by using the awsvpc networking mode.",
           args: {
             name: "structure",
+            description:
+              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -3164,6 +3265,7 @@ export const completionSpec: Fig.Spec = {
             "A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a command override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an environment override.  A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.",
           args: {
             name: "structure",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3172,6 +3274,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies whether to propagate the tags from the task definition or the service to the task. If no value is specified, the tags are not propagated.",
           args: {
             name: "string",
+            suggestions: tagsToPropagate,
           },
         },
         {
@@ -3187,6 +3290,7 @@ export const completionSpec: Fig.Spec = {
             "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed. If a task is started by an Amazon ECS service, then the startedBy parameter contains the deployment ID of the service that starts it.",
           args: {
             name: "string",
+            generators: generators.listStartedBy,
           },
         },
         {
@@ -3195,6 +3299,8 @@ export const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -3203,6 +3309,7 @@ export const completionSpec: Fig.Spec = {
             "The family and revision (family:revision) or full ARN of the task definition to start. If a revision is not specified, the latest ACTIVE revision is used.",
           args: {
             name: "string",
+            generators: generators.listTaskDefinitions,
           },
         },
         {
@@ -3216,6 +3323,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3240,6 +3348,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task to stop. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3248,6 +3357,7 @@ export const completionSpec: Fig.Spec = {
             "The task ID or full Amazon Resource Name (ARN) of the task to stop.",
           args: {
             name: "string",
+            generators: generators.listTasks,
           },
         },
         {
@@ -3264,6 +3374,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3288,6 +3399,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full ARN of the cluster that hosts the container instance the attachment belongs to.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3296,6 +3408,8 @@ export const completionSpec: Fig.Spec = {
             "Any attachments associated with the state change request.",
           args: {
             name: "list",
+            variadic: true,
+            description: "attachmentArn=string,status=string",
           },
         },
         {
@@ -3304,6 +3418,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3328,6 +3443,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full ARN of the cluster that hosts the container.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3336,6 +3452,7 @@ export const completionSpec: Fig.Spec = {
             "The task ID or full Amazon Resource Name (ARN) of the task that hosts the container.",
           args: {
             name: "string",
+            generators: generators.listTasks,
           },
         },
         {
@@ -3378,6 +3495,11 @@ export const completionSpec: Fig.Spec = {
           description: "The network bindings of the container.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "bindIP=string,containerPort=integer,hostPort=integer,protocol=tcp",
+              "bindIP=string,containerPort=integer,hostPort=integer,protocol=udp",
+            ],
           },
         },
         {
@@ -3386,6 +3508,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3410,6 +3533,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3418,6 +3542,7 @@ export const completionSpec: Fig.Spec = {
             "The task ID or full ARN of the task in the state change request.",
           args: {
             name: "string",
+            generators: generators.listTasks,
           },
         },
         {
@@ -3456,6 +3581,9 @@ export const completionSpec: Fig.Spec = {
             "The details for the managed agent associated with the task.",
           args: {
             name: "list",
+            variadic: true,
+            description:
+              "containerName=string,managedAgentName=string,status=string,reason=string",
           },
         },
         {
@@ -3488,6 +3616,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3512,6 +3641,13 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the resource to which to add tags. Currently, the supported resources are Amazon ECS capacity providers, tasks, services, task definitions, clusters, and container instances.",
           args: {
             name: "string",
+            generators: [
+              generators.listTasks,
+              generators.ListTaskDefinitions,
+              generators.listClusters,
+              generators.listServices,
+              generators.listContainerInstances,
+            ],
           },
         },
         {
@@ -3520,6 +3656,8 @@ export const completionSpec: Fig.Spec = {
             "The tags to add to the resource. A tag is an array of key-value pairs. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
+            variadic: true,
+            description: "key=string,value=string",
           },
         },
         {
@@ -3528,6 +3666,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3551,6 +3690,13 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of the resource from which to delete tags. Currently, the supported resources are Amazon ECS capacity providers, tasks, services, task definitions, clusters, and container instances.",
           args: {
             name: "string",
+            generators: [
+              generators.listTasks,
+              generators.ListTaskDefinitions,
+              generators.listClusters,
+              generators.listServices,
+              generators.listContainerInstances,
+            ],
           },
         },
         {
@@ -3558,6 +3704,8 @@ export const completionSpec: Fig.Spec = {
           description: "The keys of the tags to be removed.",
           args: {
             name: "list",
+            variadic: true,
+            generators: generators.listTagsForResource,
           },
         },
         {
@@ -3566,6 +3714,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3596,6 +3745,8 @@ export const completionSpec: Fig.Spec = {
             "An object representing the parameters to update for the Auto Scaling group capacity provider.",
           args: {
             name: "structure",
+            description:
+              "managedScaling={status=string,targetCapacity=integer,minimumScalingStepSize=integer,maximumScalingStepSize=integer,instanceWarmupPeriod=integer},managedTerminationProtection=string",
           },
         },
         {
@@ -3604,6 +3755,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3626,6 +3778,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster to modify the settings for.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3633,6 +3786,11 @@ export const completionSpec: Fig.Spec = {
           description: "The cluster settings for your cluster.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "name=containerInsights,value=enabled",
+              "name=containerInsights,value=disabled",
+            ],
           },
         },
         {
@@ -3648,6 +3806,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3670,6 +3829,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster to modify the settings for.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3678,6 +3838,11 @@ export const completionSpec: Fig.Spec = {
             "The setting to use by default for a cluster. This parameter is used to enable CloudWatch Container Insights for a cluster. If this value is specified, it will override the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "name=containerInsights,value=enabled",
+              "name=containerInsights,value=disabled",
+            ],
           },
         },
         {
@@ -3686,6 +3851,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3710,6 +3876,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that your container instance is running on. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3718,6 +3885,7 @@ export const completionSpec: Fig.Spec = {
             "The container instance ID or full ARN entries for the container instance on which you would like to update the Amazon ECS container agent.",
           args: {
             name: "string",
+            generators: generators.listContainerInstances,
           },
         },
         {
@@ -3726,6 +3894,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3750,6 +3919,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance to update. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3757,6 +3927,7 @@ export const completionSpec: Fig.Spec = {
           description: "A list of container instance IDs or full ARN entries.",
           args: {
             name: "list",
+            generators: generators.listContainerInstances,
           },
         },
         {
@@ -3765,6 +3936,7 @@ export const completionSpec: Fig.Spec = {
             "The container instance state with which to update the container instance. The only valid values for this action are ACTIVE and DRAINING. A container instance can only be updated to DRAINING status once it has reached an ACTIVE state. If a container instance is in REGISTERING, DEREGISTERING, or REGISTRATION_FAILED state you can describe the container instance but will be unable to update the container instance state.",
           args: {
             name: "string",
+            suggestions: status,
           },
         },
         {
@@ -3773,6 +3945,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3797,6 +3970,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that your service is running on. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3804,6 +3978,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the service to update.",
           args: {
             name: "string",
+            generators: generators.listServices,
           },
         },
         {
@@ -3820,6 +3995,7 @@ export const completionSpec: Fig.Spec = {
             "The family and revision (family:revision) or full ARN of the task definition to run in your service. If a revision is not specified, the latest ACTIVE revision is used. If you modify the task definition with UpdateService, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running.",
           args: {
             name: "string",
+            generators: generators.listTaskDefinitions,
           },
         },
         {
@@ -3828,6 +4004,8 @@ export const completionSpec: Fig.Spec = {
             "The capacity provider strategy to update the service to use. If the service is using the default capacity provider strategy for the cluster, the service can be updated to use one or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using a capacity provider strategy that is not the default capacity provider strategy, the service cannot be updated to use the cluster's default capacity provider strategy. A capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used. The PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
           args: {
             name: "list",
+            variadic: true,
+            description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
         {
@@ -3836,6 +4014,12 @@ export const completionSpec: Fig.Spec = {
             "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks.",
           args: {
             name: "structure",
+            suggestions: [
+              "deploymentCircuitBreaker={enable=true,rollback=true},maximumPercent=integer,minimumHealthyPercent=integer",
+              "deploymentCircuitBreaker={enable=true,rollback=false},maximumPercent=integer,minimumHealthyPercent=integer",
+              "deploymentCircuitBreaker={enable=false,rollback=true},maximumPercent=integer,minimumHealthyPercent=integer",
+              "deploymentCircuitBreaker={enable=false,rollback=false},maximumPercent=integer,minimumHealthyPercent=integer",
+            ],
           },
         },
         {
@@ -3844,6 +4028,8 @@ export const completionSpec: Fig.Spec = {
             "An object representing the network configuration for a task or service.",
           args: {
             name: "structure",
+            description:
+              "awsvpcConfiguration={subnets=[string,string],securityGroups=[string,string],assignPublicIp=string}",
           },
         },
         {
@@ -3852,6 +4038,11 @@ export const completionSpec: Fig.Spec = {
             "An array of task placement constraint objects to update the service to use. If no value is specified, the existing placement constraints for the service will remain unchanged. If this value is specified, it will override any existing placement constraints defined for the service. To remove all existing placement constraints, specify an empty array. You can specify a maximum of 10 constraints per task (this limit includes constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "type=distinctInstance,expression=string",
+              "type=memberOf,expression=string",
+            ],
           },
         },
         {
@@ -3860,6 +4051,12 @@ export const completionSpec: Fig.Spec = {
             "The task placement strategy objects to update the service to use. If no value is specified, the existing placement strategy for the service will remain unchanged. If this value is specified, it will override the existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty object. You can specify a maximum of five strategy rules per service.",
           args: {
             name: "list",
+            variadic: true,
+            suggestions: [
+              "type=random,field=string",
+              "type=spread,field=string",
+              "type=binpack,field=string",
+            ],
           },
         },
         {
@@ -3904,6 +4101,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3928,6 +4126,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task set exists in.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3936,6 +4135,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the service that the task set exists in.",
           args: {
             name: "string",
+            generators: generators.listServices,
           },
         },
         {
@@ -3944,6 +4144,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the task set to set as the primary task set in the deployment.",
           args: {
             name: "string",
+            generators: generators.listTaskSets,
           },
         },
         {
@@ -3952,6 +4153,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -3976,6 +4178,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task set exists in.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -3984,6 +4187,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the service that the task set exists in.",
           args: {
             name: "string",
+            generators: generators.listServices,
           },
         },
         {
@@ -3992,6 +4196,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the task set to update.",
           args: {
             name: "string",
+            generators: generators.listTaskSets,
           },
         },
         {
@@ -4000,6 +4205,7 @@ export const completionSpec: Fig.Spec = {
             "A floating-point percentage of the desired number of tasks to place and keep running in the task set.",
           args: {
             name: "structure",
+            description: "value=double,unit=string",
           },
         },
         {
@@ -4008,6 +4214,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4032,6 +4239,7 @@ export const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of the service to update",
           args: {
             name: "string",
+            generators: generators.listServices,
           },
         },
         {
@@ -4040,6 +4248,7 @@ export const completionSpec: Fig.Spec = {
             "The file path where your task definition file is located. The format of the file must be the same as the JSON output of: aws ecs register-task-definition --generate-cli-skeleton",
           args: {
             name: "string",
+            generators: generators.listTaskDefinitions,
           },
         },
         {
@@ -4048,6 +4257,7 @@ export const completionSpec: Fig.Spec = {
             "The file path where your AWS CodeDeploy appspec file is located. The appspec file may be in JSON or YAML format. The TaskDefinition property will be updated within the appspec with the newly registered task definition ARN, overwriting any placeholder values in the file.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -4056,6 +4266,7 @@ export const completionSpec: Fig.Spec = {
             'The short name or full Amazon Resource Name (ARN) of the cluster that your service is running within. If you do not specify a cluster, the "default" cluster is assumed.',
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -4064,6 +4275,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the AWS CodeDeploy application to use for the deployment. The specified application must use the 'ECS' compute platform. If you do not specify an application, the application name AppECS-[CLUSTER_NAME]-[SERVICE_NAME] is assumed.",
           args: {
             name: "string",
+            generators: generators.listCodedeployApplications,
           },
         },
         {
@@ -4072,6 +4284,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the AWS CodeDeploy deployment group to use for the deployment. The specified deployment group must be associated with the specified ECS service and cluster. If you do not specify a deployment group, the deployment group name DgpECS-[CLUSTER_NAME]-[SERVICE_NAME] is assumed.",
           args: {
             name: "string",
+            generators: generators.listCodedeployDeploymentGroups,
           },
         },
       ],
@@ -4223,6 +4436,7 @@ export const completionSpec: Fig.Spec = {
                 "The short name or full Amazon Resource Name (ARN)the cluster that hosts the service to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the service or services you are describing were launched in any cluster other than the default cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -4231,6 +4445,7 @@ export const completionSpec: Fig.Spec = {
                 "A list of services to describe. You may specify up to 10 services to describe in a single operation.",
               args: {
                 name: "list",
+                generators: generators.listServices,
               },
             },
             {
@@ -4239,6 +4454,8 @@ export const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: tags,
               },
             },
             {
@@ -4247,6 +4464,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4271,6 +4489,7 @@ export const completionSpec: Fig.Spec = {
                 "The short name or full Amazon Resource Name (ARN)the cluster that hosts the service to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the service or services you are describing were launched in any cluster other than the default cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -4279,6 +4498,7 @@ export const completionSpec: Fig.Spec = {
                 "A list of services to describe. You may specify up to 10 services to describe in a single operation.",
               args: {
                 name: "list",
+                generators: generators.listServices,
               },
             },
             {
@@ -4287,6 +4507,8 @@ export const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: tags,
               },
             },
             {
@@ -4295,6 +4517,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4319,6 +4542,7 @@ export const completionSpec: Fig.Spec = {
                 "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task or tasks to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the task or tasks you are describing were launched in any cluster other than the default cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -4326,6 +4550,8 @@ export const completionSpec: Fig.Spec = {
               description: "A list of up to 100 task IDs or full ARN entries.",
               args: {
                 name: "list",
+                variadic: true,
+                generators: generators.listTasks,
               },
             },
             {
@@ -4334,6 +4560,8 @@ export const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: tags,
               },
             },
             {
@@ -4342,6 +4570,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -4366,6 +4595,7 @@ export const completionSpec: Fig.Spec = {
                 "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task or tasks to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the task or tasks you are describing were launched in any cluster other than the default cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -4373,6 +4603,7 @@ export const completionSpec: Fig.Spec = {
               description: "A list of up to 100 task IDs or full ARN entries.",
               args: {
                 name: "list",
+                generators: generators.listTasks,
               },
             },
             {
@@ -4381,6 +4612,8 @@ export const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
+                variadic: true,
+                suggestions: tags,
               },
             },
             {
@@ -4389,6 +4622,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
