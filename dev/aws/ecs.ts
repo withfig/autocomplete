@@ -399,7 +399,7 @@ const generators: Record<string, Fig.Generator> = {
         const list = JSON.parse(out)["deploymentGroups"];
         return list.map((group) => {
           return {
-            group,
+            name: group,
             icon: "fig://icon?type=aws",
           };
         });
