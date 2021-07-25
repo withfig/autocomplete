@@ -240,6 +240,18 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
 
+  listAddonsForCluster: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-addons",
+        ["--cluster-name"],
+        "addons"
+      );
+    },
+  },
+
   listAddons: {
     script: "aws eks describe-addon-versions",
     postProcess: (out) => postPrecessGenerator(out, "addons", "addonName"),
@@ -908,6 +920,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster to delete the add-on from.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -916,6 +929,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the add-on. The name must match one of the names returned by  ListAddons .",
           args: {
             name: "string",
+            generators: generators.listAddonsForCluster,
           },
         },
         {
@@ -924,6 +938,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
