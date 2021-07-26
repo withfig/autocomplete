@@ -57,6 +57,10 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
     const parts = elm.match(/\S+/g);
     if (parts.length > 1) {
       if (parts[0] === "*") {
+        // We are in a detached HEAD state
+        if (elm.includes("HEAD detached")) {
+          return {};
+        }
         // Current branch.
         return {
           name: elm.replace("*", "").trim(),
@@ -206,7 +210,12 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   tags: {
     script: "git tag --list",
-    splitOn: "\n",
+    postProcess: function (output) {
+      return output.split("\n").map((tag) => ({
+        name: tag,
+        icon: "🏷️",
+      }));
+    },
   },
 
   // Files for staging
@@ -3966,10 +3975,11 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "branch or file",
-          description: "branch, file or commit to switch to",
+          description: "branch, file, tag or commit to switch to",
           isOptional: true,
           generators: [
             gitGenerators.remoteLocalBranches,
+            gitGenerators.tags,
             { template: "filepaths" },
           ],
           suggestions: [
@@ -4978,7 +4988,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "branch name",
-          description: "branch or commit to switch to",
+          description: "branch, commit, or tag to switch to",
           generators: gitGenerators.localBranches,
           suggestions: [
             {
