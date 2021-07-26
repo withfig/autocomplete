@@ -19,8 +19,8 @@ export const completionSpec: Fig.Spec = {
       description: "Pass custom header(s) to serve",
       args: {
         suggestions: [
-          { name: "'Content-Type: application/json'" },
-          { name: "'Content-Type: application/x-www-form-urlencoded'" },
+          { name: "Content-Type: application/json" },
+          { name: "Content-Type: application/x-www-form-urlencoded" },
         ],
       },
     },
