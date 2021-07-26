@@ -140,6 +140,7 @@ export const completion: Fig.Spec = {
     {
       name: "--json",
       description: "Output in JSON format; implies --noprompt",
+      dependsOn: ["--noprompt"],
     },
     {
       name: "--url-handler",
@@ -182,7 +183,6 @@ export const completion: Fig.Spec = {
       description: "Enable debugging",
     },
   ],
-  // Only uncomment if googler takes an argument
   args: {
     name: "keyword",
     description: "Search keywords",
