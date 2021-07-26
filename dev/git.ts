@@ -78,6 +78,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
       name,
       description: "branch",
       icon: "fig://icon?type=git",
+      priority: 75,
     };
   });
 };
