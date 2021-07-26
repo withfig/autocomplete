@@ -4988,7 +4988,7 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "branch name",
-          description: "branch, commit, or tag to switch to",
+          description: "branch or commit to switch to",
           generators: gitGenerators.localBranches,
           suggestions: [
             {
