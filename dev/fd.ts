@@ -16,7 +16,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: ["-i", "--ignore-case"],
-      description: "  Case-insensitive search (default: smart case)",
+      description: "Case-insensitive search (default: smart case)",
     },
     {
       name: ["-g", "--glob"],
@@ -27,19 +27,19 @@ export const completion: Fig.Spec = {
       description: "Show absolute instead of relative paths",
     },
     {
-      name: ["-l", " --list-details"],
+      name: ["-l", "--list-details"],
       description: "Use a long listing format with file metadata",
     },
     {
-      name: ["-L", " --follow"],
+      name: ["-L", "--follow"],
       description: "Follow symbolic links",
     },
     {
-      name: ["-p", " --full-path"],
+      name: ["-p", "--full-path"],
       description: "Search full path (default: file-/dirname only)",
     },
     {
-      name: ["-0", " --print0"],
+      name: ["-0", "--print0"],
       description: "Separate results by the null character",
     },
     {
