@@ -500,6 +500,10 @@ export const completionSpec: Fig.Spec = {
       description: "Do not use replacement refs",
     },
     {
+      name: "--no-optional-locks",
+      description: "Do not perform optional operations that require locks",
+    },
+    {
       name: "--bare",
       description: "Treat the repository as a bare repository",
     },
