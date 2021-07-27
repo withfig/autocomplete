@@ -264,57 +264,12 @@ export const completionSpec: Fig.Spec = {
       description: "uninstall a package",
       args: [
         {
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() === "") {
-                return [];
-              }
-              try {
-                const packageContent = JSON.parse(out);
-                const dependencies = packageContent["dependencies"];
-                if (dependencies) {
-                  const dps = Object.keys(dependencies);
-                  return dps.map((pkg) => {
-                    const scope = pkg.indexOf("/") + 1;
-                    if (scope !== -1) {
-                      pkg = pkg.substring(scope);
-                    }
-                    const version = pkg.indexOf("@");
-                    if (version !== -1) {
-                      pkg = pkg.substring(version);
-                    }
-                    return {
-                      name: pkg,
-                      icon: `fig://icon?type=file`,
-                      description: "dependency file",
-                    };
-                  });
-                }
-              } catch (e) {}
-              return [];
-            },
-          },
+          name: "package",
+          generators: dependenciesGenerator,
+          variadic: true,
         },
       ],
-      options: [
-        {
-          name: ["-S", "--save"],
-          description: " Package will be removed from your dependencies",
-        },
-        {
-          name: ["-D", "--save-dev"],
-          description: "Package will appear in your `devDependencies`",
-        },
-        {
-          name: ["-O", "--save-optional"],
-          description: "Package will appear in your `optionalDependencies`",
-        },
-        {
-          name: "--no-save",
-          description: "Prevents saving to `dependencies`",
-        },
-      ],
+      options: npmInstallOptions,
     },
     {
       name: "r",
