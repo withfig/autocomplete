@@ -3975,7 +3975,7 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "branch or file",
+          name: "branch, file, tag or commit",
           description: "branch, file, tag or commit to switch to",
           isOptional: true,
           generators: [
