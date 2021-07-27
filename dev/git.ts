@@ -501,7 +501,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "--no-optional-locks",
-      description: "Do not perform optional operations that require locks",
+      description: "Do not perform optional operations that require lock files",
     },
     {
       name: "--bare",
