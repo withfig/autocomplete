@@ -221,7 +221,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // Files for staging
   files_for_staging: {
-    script: "git status --short",
+    script: "git --no-optional-locks status --short",
     postProcess: (out, context) => {
       const output = filterMessages(out);
 
@@ -230,7 +230,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       const files = output.split("\n").map((file) => {
-        // From "git status --short"
+        // From "git --no-optional-locks status --short"
         // M  dev/github.ts // test file that was added
         //  M dev/kubectl.ts // test file that was not added
         // A  test2.txt // new added and tracked file
@@ -310,7 +310,8 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script: "git status --short | sed -ne '/^M /p' -e '/A /p'",
+    script:
+      "git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'",
     postProcess: postProcessTrackedFiles,
   },
 
@@ -322,9 +323,9 @@ const gitGenerators: Record<string, Fig.Generator> = {
   getChangedTrackedFiles: {
     script: function (context) {
       if (context.includes("--staged") || context.includes("--cached")) {
-        return `git status --short | sed -ne '/^M /p' -e '/A /p'`;
+        return `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`;
       } else {
-        return `git status --short | sed -ne '/M /p' -e '/A /p'`;
+        return `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`;
       }
     },
     postProcess: postProcessTrackedFiles,
