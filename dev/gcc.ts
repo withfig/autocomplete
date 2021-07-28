@@ -139,7 +139,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--cuda-path",
       description: "CUDA installation path",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "value", template: "folders" },
     },
     {
       name: "-cxx-isystem",
@@ -163,12 +163,17 @@ export const completionSpec: Fig.Spec = {
     {
       name: "-dependency-dot",
       description: "Filename to write DOT-formatted header dependencies to",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "value", template: "filepaths" },
     },
     {
       name: "-dependency-file",
       description: "Filename (or -) to write dependency output to",
-      args: { name: "value", description: "value", suggestions: ["-"] },
+      args: {
+        name: "value",
+        description: "value",
+        suggestions: ["-"],
+        template: "filepaths",
+      },
     },
     {
       name: "-dI",
@@ -415,7 +420,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "-fdebug-compilation-dir",
       description: "The compilation directory to embed in the debug info.",
-      args: { name: "value", description: "value" },
+      args: { name: "value", description: "value", template: "folders" },
     },
     {
       name: "-fdebug-default-version",
