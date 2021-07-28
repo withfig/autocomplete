@@ -1,3 +1,12 @@
+const kubernetesVersions = [
+  "1.21.2",
+  "1.20.4",
+  "1.19.8",
+  "1.18.16",
+  "1.17.17",
+  "1.16.15",
+];
+
 const postPrecessGenerator = (
   out: string,
   parentKey: string,
@@ -327,6 +336,30 @@ const generators: Record<string, Fig.Generator> = {
       }
     },
   },
+
+  listFargateProfilesForCluster: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-fargate-profiles",
+        ["--cluster-name"],
+        "fargateProfileNames"
+      );
+    },
+  },
+
+  listNodeGroupsForCluster: {
+    custom: async function (context, executeShellCommand) {
+      return listCustomGenerator(
+        context,
+        executeShellCommand,
+        "list-nodegroups",
+        ["--cluster-name"],
+        "nodegroups"
+      );
+    },
+  },
 };
 
 export const completionSpec: Fig.Spec = {
@@ -609,7 +642,7 @@ export const completionSpec: Fig.Spec = {
             "The desired Kubernetes version for your cluster. If you don't specify a value here, the latest version available in Amazon EKS is used.",
           args: {
             name: "string",
-            suggestions: ["1.16", "1.17", "1.18", "1.19", "1.20", "1.21"],
+            suggestions: kubernetesVersions,
           },
         },
         {
@@ -887,7 +920,7 @@ export const completionSpec: Fig.Spec = {
             "The Kubernetes version to use for your managed nodes. By default, the Kubernetes version of the cluster is used, and this is the only accepted specified value. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify version, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support in the Amazon EKS User Guide.",
           args: {
             name: "string",
-            suggestions: ["1.16", "1.17", "1.18", "1.19", "1.20", "1.21"],
+            suggestions: kubernetesVersions,
           },
         },
         {
@@ -962,6 +995,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster to delete.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -970,6 +1004,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -994,6 +1029,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster associated with the Fargate profile to delete.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1001,6 +1037,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the Fargate profile to delete.",
           args: {
             name: "string",
+            generators: generators.listFargateProfilesForCluster,
           },
         },
         {
@@ -1009,6 +1046,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1032,6 +1070,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster that is associated with your node group.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1039,6 +1078,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the node group to delete.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -1047,6 +1087,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1069,6 +1110,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1077,6 +1119,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the add-on. The name must match one of the names returned by  ListAddons .",
           args: {
             name: "string",
+            generators: generators.listAddonsForCluster,
           },
         },
         {
@@ -1085,6 +1128,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1109,6 +1153,7 @@ export const completionSpec: Fig.Spec = {
             "The Kubernetes versions that the add-on can be used with.",
           args: {
             name: "string",
+            suggestions: kubernetesVersions,
           },
         },
         {
@@ -1132,6 +1177,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the add-on. The name must match one of the names returned by  ListAddons .",
           args: {
             name: "string",
+            generators: generators.listAddons,
           },
         },
         {
@@ -1140,6 +1186,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1187,6 +1234,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster to describe.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1195,6 +1243,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1219,6 +1268,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster associated with the Fargate profile.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1226,6 +1276,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the Fargate profile to describe.",
           args: {
             name: "string",
+            generators: generators.ListFargateProfiles,
           },
         },
         {
@@ -1234,6 +1285,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1258,6 +1310,7 @@ export const completionSpec: Fig.Spec = {
             "The cluster name that the identity provider configuration is associated to.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1266,6 +1319,7 @@ export const completionSpec: Fig.Spec = {
             "An object that represents an identity provider configuration.",
           args: {
             name: "structure",
+            description: "type=string,name=string",
           },
         },
         {
@@ -1274,6 +1328,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1298,6 +1353,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster associated with the node group.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1305,6 +1361,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the node group to describe.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -1313,6 +1370,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1337,6 +1395,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster associated with the update.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1352,6 +1411,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS node group associated with the update.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -1360,6 +1420,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the add-on. The name must match one of the names returned by  ListAddons .",
           args: {
             name: "string",
+            generators: generators.listAddonsForCluster,
           },
         },
         {
@@ -1368,6 +1429,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1392,6 +1454,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the cluster to disassociate an identity provider from.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1400,6 +1463,7 @@ export const completionSpec: Fig.Spec = {
             "An object that represents an identity provider configuration.",
           args: {
             name: "structure",
+            description: "type=string,name=string",
           },
         },
         {
@@ -1416,6 +1480,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1438,6 +1503,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1462,6 +1528,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1526,6 +1593,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1574,6 +1642,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster that you would like to listFargate profiles in.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1598,6 +1667,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1645,6 +1715,7 @@ export const completionSpec: Fig.Spec = {
             "The cluster name that you want to list identity provider configurations for.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1669,6 +1740,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1717,6 +1789,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster that you would like to list node groups in.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1741,6 +1814,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1796,6 +1870,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1820,6 +1895,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster to list updates for.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1828,6 +1904,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS managed node group to list updates for.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -1836,6 +1913,7 @@ export const completionSpec: Fig.Spec = {
             "The names of the installed add-ons that have available updates.",
           args: {
             name: "string",
+            generators: generators.listAddonsForCluster,
           },
         },
         {
@@ -1860,6 +1938,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1916,6 +1995,7 @@ export const completionSpec: Fig.Spec = {
             "The tags to add to the resource. A tag is an array of key-value pairs.",
           args: {
             name: "map",
+            description: "Key1=string,Key2=string",
           },
         },
         {
@@ -1924,6 +2004,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1954,6 +2035,7 @@ export const completionSpec: Fig.Spec = {
           description: "The keys of the tags to be removed.",
           args: {
             name: "list",
+            variadic: true,
           },
         },
         {
@@ -1962,6 +2044,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -1984,6 +2067,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the cluster.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -1992,6 +2076,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the add-on. The name must match one of the names returned by  ListAddons .",
           args: {
             name: "string",
+            generators: generators.listAddonsForCluster,
           },
         },
         {
@@ -2000,6 +2085,7 @@ export const completionSpec: Fig.Spec = {
             "The version of the add-on. The version must match one of the versions returned by  DescribeAddonVersions .",
           args: {
             name: "string",
+            generators: generators.listAddonVersions,
           },
         },
         {
@@ -2008,6 +2094,7 @@ export const completionSpec: Fig.Spec = {
             "The Amazon Resource Name (ARN) of an existing IAM role to bind to the add-on's service account. The role must be assigned the IAM permissions required by the add-on. If you don't specify an existing IAM role, then the add-on uses the permissions assigned to the node IAM role. For more information, see Amazon EKS node IAM role in the Amazon EKS User Guide.  To specify an existing IAM role, you must have an IAM OpenID Connect (OIDC) provider created for your cluster. For more information, see Enabling IAM roles for service accounts on your cluster in the Amazon EKS User Guide.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupRoles,
           },
         },
         {
@@ -2016,6 +2103,7 @@ export const completionSpec: Fig.Spec = {
             "How to resolve parameter value conflicts when applying the new version of the add-on to the cluster.",
           args: {
             name: "string",
+            suggestions: ["OVERWRITE", "NONE"],
           },
         },
         {
@@ -2032,6 +2120,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2055,6 +2144,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the Amazon EKS cluster to update.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2063,6 +2153,8 @@ export const completionSpec: Fig.Spec = {
             "An object representing the VPC configuration to use for an Amazon EKS cluster.",
           args: {
             name: "structure",
+            description:
+              "subnetIds=string,string,securityGroupIds=string,string,endpointPublicAccess=boolean,endpointPrivateAccess=boolean,publicAccessCidrs=string,string",
           },
         },
         {
@@ -2087,6 +2179,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2110,6 +2203,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the Amazon EKS cluster to update.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2126,6 +2220,7 @@ export const completionSpec: Fig.Spec = {
             "The desired Kubernetes version following a successful update.",
           args: {
             name: "string",
+            suggestions: kubernetesVersions,
           },
         },
         {
@@ -2134,6 +2229,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2158,6 +2254,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster that the managed node group resides in.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2165,6 +2262,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the managed node group to update.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -2173,6 +2271,8 @@ export const completionSpec: Fig.Spec = {
             "The Kubernetes labels to be applied to the nodes in the node group after the update.",
           args: {
             name: "structure",
+            description:
+              "addOrUpdateLabels={Key1=string,Key2=string},removeLabels=string,string",
           },
         },
         {
@@ -2181,6 +2281,7 @@ export const completionSpec: Fig.Spec = {
             "The scaling configuration details for the Auto Scaling group after the update.",
           args: {
             name: "structure",
+            description: "minSize=integer,maxSize=integer,desiredSize=integer",
           },
         },
         {
@@ -2197,6 +2298,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2221,6 +2323,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the Amazon EKS cluster that is associated with the managed node group to update.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2228,6 +2331,7 @@ export const completionSpec: Fig.Spec = {
           description: "The name of the managed node group to update.",
           args: {
             name: "string",
+            generators: generators.listNodeGroupsForCluster,
           },
         },
         {
@@ -2244,6 +2348,7 @@ export const completionSpec: Fig.Spec = {
             "An object representing a node group's launch template specification. You can only update a node group using a launch template if the node group was originally deployed with a launch template.",
           args: {
             name: "structure",
+            description: "name=string,version=string,id=string",
           },
         },
         {
@@ -2270,6 +2375,7 @@ export const completionSpec: Fig.Spec = {
             "The Kubernetes version to update to. If no version is specified, then the Kubernetes version of the node group does not change. You can specify the Kubernetes version of the cluster to update the node group to the latest AMI version of the cluster's Kubernetes version. If you specify launchTemplate, and your launch template uses a custom AMI, then don't specify version, or the node group update will fail. For more information about using launch templates with Amazon EKS, see Launch template support in the Amazon EKS User Guide.",
           args: {
             name: "string",
+            suggestions: kubernetesVersions,
           },
         },
         {
@@ -2278,6 +2384,7 @@ export const completionSpec: Fig.Spec = {
             "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2302,6 +2409,7 @@ export const completionSpec: Fig.Spec = {
             "The name of the cluster for which to create a kubeconfig entry. This cluster must exist in your account and in the specified or configured default Region for your AWS CLI installation.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2310,6 +2418,7 @@ export const completionSpec: Fig.Spec = {
             "Optionally specify a kubeconfig file to append with your configuration. By default, the configuration is written to the first file path in the KUBECONFIG environment variable (if it is set) or the default kubeconfig path (.kube/config) in your home directory.",
           args: {
             name: "string",
+            generators: generators.listFiles,
           },
         },
         {
@@ -2318,6 +2427,7 @@ export const completionSpec: Fig.Spec = {
             "To assume a role for cluster authentication, specify an IAM role ARN with this option. For example, if you created a cluster while assuming an IAM role, then you must also assume that role to connect to the cluster the first time.",
           args: {
             name: "string",
+            generators: generators.listEKSClusterRoles,
           },
         },
         {
@@ -2351,6 +2461,7 @@ export const completionSpec: Fig.Spec = {
             "Specify the name of the Amazon EKS cluster to create a token for.",
           args: {
             name: "string",
+            generators: generators.listClusters,
           },
         },
         {
@@ -2359,6 +2470,7 @@ export const completionSpec: Fig.Spec = {
             "Assume this role for credentials when signing the token.",
           args: {
             name: "string",
+            generators: generators.listRoles,
           },
         },
       ],
@@ -2378,6 +2490,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2386,6 +2499,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the add-on. The name must match one of the names returned by  ListAddons .",
               args: {
                 name: "string",
+                generators: generators.listAddonsForCluster,
               },
             },
             {
@@ -2394,6 +2508,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2417,6 +2532,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the cluster.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2425,6 +2541,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the add-on. The name must match one of the names returned by  ListAddons .",
               args: {
                 name: "string",
+                generators: generators.listAddonsForCluster,
               },
             },
             {
@@ -2433,6 +2550,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2456,6 +2574,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the cluster to describe.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2464,6 +2583,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2487,6 +2607,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the cluster to describe.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2495,6 +2616,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2519,6 +2641,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the Amazon EKS cluster associated with the node group.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2526,6 +2649,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the node group to describe.",
               args: {
                 name: "string",
+                generators: generators.listNodeGroupsForCluster,
               },
             },
             {
@@ -2534,6 +2658,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
@@ -2558,6 +2683,7 @@ export const completionSpec: Fig.Spec = {
                 "The name of the Amazon EKS cluster associated with the node group.",
               args: {
                 name: "string",
+                generators: generators.listClusters,
               },
             },
             {
@@ -2565,6 +2691,7 @@ export const completionSpec: Fig.Spec = {
               description: "The name of the node group to describe.",
               args: {
                 name: "string",
+                generators: generators.listNodeGroupsForCluster,
               },
             },
             {
@@ -2573,6 +2700,7 @@ export const completionSpec: Fig.Spec = {
                 "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
               args: {
                 name: "string",
+                generators: generators.listFiles,
               },
             },
             {
