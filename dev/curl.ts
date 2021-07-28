@@ -242,7 +242,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--alt-svc",
       description: "name> Enable alt-svc with this cache file",
-      args: { name: "fil" },
+      args: { name: "file", template: "filepaths" },
     },
     { name: "--anyauth", description: "Pick any authentication method" },
     { name: "--basic", description: "Use HTTP Basic Authentication" },
@@ -271,7 +271,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--ciphers",
       description: "of ciphers> SSL ciphers to use",
-      args: { name: "lis" },
+      args: { name: "list" },
     },
     { name: "--compressed", description: "Request compressed response" },
     { name: "--compressed-ssh", description: "Enable SSH compression" },
@@ -355,7 +355,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--egd-file",
       description: "EGD socket path for random data",
-      args: { name: "file" },
+      args: { name: "file", template: "filepaths" },
     },
     {
       name: "--engine",
@@ -719,7 +719,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--pubkey",
       description: "SSH Public key file name",
-      args: { name: "key" },
+      args: { name: "key", template: "filepaths" },
     },
     {
       name: "--random-file",
@@ -840,7 +840,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "--tls13-ciphers",
       description: "of TLS 1.3 ciphersuites> TLS 1.3 cipher suites to use",
-      args: { name: "lis" },
+      args: { name: "list" },
     },
     {
       name: "--tlsauthtype",
