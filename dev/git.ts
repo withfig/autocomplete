@@ -86,7 +86,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
-    script: "git log --oneline",
+    script: "git --no-optional-locks log --oneline",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -106,7 +106,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // user aliases
   aliases: {
-    script: "git config --get-regexp '^alias' |cut -d. -f2",
+    script: "git --no-optional-locks config --get-regexp '^alias' |cut -d. -f2",
     postProcess: function (out) {
       return out.split("\n").map((aliasLine) => {
         const splitted = aliasLine.match(/^(\S+)\s(.*)/);
@@ -118,7 +118,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // Saved stashes
   // TODO: maybe only print names of stashes
   stashes: {
-    script: "git stash list",
+    script: "git --no-optional-locks stash list",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -143,7 +143,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // https://mirrors.edge.kernel.org/pub/software/scm/git/docs/#_identifier_terminology
 
   treeish: {
-    script: "git diff --cached --name-only",
+    script: "git --no-optional-locks diff --cached --name-only",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -164,17 +164,17 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // All branches
   remoteLocalBranches: {
-    script: "git branch -a --no-color",
+    script: "git --no-optional-locks branch -a --no-color",
     postProcess: postProcessBranches,
   },
 
   localBranches: {
-    script: "git branch --no-color",
+    script: "git --no-optional-locks branch --no-color",
     postProcess: postProcessBranches,
   },
 
   remotes: {
-    script: "git remote -v",
+    script: "git --no-optional-locks remote -v",
     postProcess: function (out) {
       const remoteURLs = out.split("\n").reduce((dict, line) => {
         const pair = line.split("\t");
@@ -210,7 +210,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   tags: {
-    script: "git tag --list",
+    script: "git --no-optional-locks tag --list",
     postProcess: function (output) {
       return output.split("\n").map((tag) => ({
         name: tag,
@@ -316,7 +316,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getUnstagedFiles: {
-    script: "git diff --name-only",
+    script: "git --no-optional-locks diff --name-only",
     splitOn: "\n",
   },
 
