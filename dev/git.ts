@@ -4,6 +4,85 @@ const filterMessages = (out: string): string => {
     : out;
 };
 
+const postProcessTrackedFiles: Fig.Generator["postProcess"] = (
+  out,
+  context
+) => {
+  const output = filterMessages(out);
+
+  if (output.startsWith("fatal:")) {
+    return [];
+  }
+
+  const files = output.split("\n").map((file) => {
+    const arr = file.trim().split(" ");
+
+    return { working: arr[0], file: arr.slice(1).join(" ").trim() };
+  });
+
+  return [
+    ...files.map((item) => {
+      const file = item.file.replace(/^"|"$/g, "");
+      let ext = "";
+
+      try {
+        ext = file.split(".").slice(-1)[0];
+      } catch (e) {}
+
+      if (file.endsWith("/")) {
+        ext = "folder";
+      }
+
+      return {
+        name: file,
+        icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+        description: "Changed tracked files",
+        // If the current file already is already added
+        // we want to lower the priority
+        priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+      };
+    }),
+  ];
+};
+
+const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
+  const output = filterMessages(out);
+
+  if (output.startsWith("fatal:")) {
+    return [];
+  }
+
+  return output.split("\n").map((elm) => {
+    let name = elm.trim();
+    const parts = elm.match(/\S+/g);
+    if (parts.length > 1) {
+      if (parts[0] === "*") {
+        // We are in a detached HEAD state
+        if (elm.includes("HEAD detached")) {
+          return {};
+        }
+        // Current branch.
+        return {
+          name: elm.replace("*", "").trim(),
+          description: "current branch",
+          priority: 100,
+          icon: "⭐️",
+        };
+      } else if (parts[0] === "+") {
+        // Branch checked out in another worktree.
+        name = elm.replace("+", "").trim();
+      }
+    }
+
+    return {
+      name,
+      description: "branch",
+      icon: "fig://icon?type=git",
+      priority: 75,
+    };
+  });
+};
+
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
@@ -84,39 +163,14 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   // All branches
-  branches: {
+  remoteLocalBranches: {
+    script: "git branch -a --no-color",
+    postProcess: postProcessBranches,
+  },
+
+  localBranches: {
     script: "git branch --no-color",
-    postProcess: function (out) {
-      const output = filterMessages(out);
-
-      if (output.startsWith("fatal:")) {
-        return [];
-      }
-
-      return output.split("\n").map((elm) => {
-        let name = elm.trim();
-        const parts = elm.match(/\S+/g);
-        if (parts.length > 1) {
-          if (parts[0] == "*") {
-            // Current branch.
-            return {
-              name: elm.replace("*", "").trim(),
-              description: "current branch",
-              icon: "⭐️",
-            };
-          } else if (parts[0] == "+") {
-            // Branch checked out in another worktree.
-            name = elm.replace("+", "").trim();
-          }
-        }
-
-        return {
-          name,
-          description: "branch",
-          icon: "fig://icon?type=git",
-        };
-      });
-    },
+    postProcess: postProcessBranches,
   },
 
   remotes: {
@@ -157,7 +211,12 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   tags: {
     script: "git tag --list",
-    splitOn: "\n",
+    postProcess: function (output) {
+      return output.split("\n").map((tag) => ({
+        name: tag,
+        icon: "🏷️",
+      }));
+    },
   },
 
   // Files for staging
@@ -170,43 +229,105 @@ const gitGenerators: Record<string, Fig.Generator> = {
         return [];
       }
 
-      const items = output.split("\n").map((file) => {
+      const files = output.split("\n").map((file) => {
+        // From "git status --short"
+        // M  dev/github.ts // test file that was added
+        //  M dev/kubectl.ts // test file that was not added
+        // A  test2.txt // new added and tracked file
+        // ?? test.txt // new untracked file
+        const alreadyAdded = ["M", "A"].includes(file.charAt(0));
+
         file = file.trim();
         const arr = file.split(" ");
 
-        return { working: arr[0], file: arr.slice(1).join(" ").trim() };
-      });
-
-      return items.map((item) => {
-        const file = item.file.replace(/^"|"$/g, "");
-        let ext = "";
-
-        try {
-          ext = file.split(".").slice(-1)[0];
-        } catch (e) {}
-
-        if (file.endsWith("/")) {
-          ext = "folder";
-        }
-
         return {
-          name: file,
-          icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
-          description: "Changed file",
-          // If the current file already is already added
-          // we want to lower the priority
-          priority: context.some((ctx) => ctx.includes(file)) ? 50 : 100,
+          working: arr[0],
+          file: arr.slice(1).join(" ").trim(),
+          alreadyAdded,
         };
       });
+
+      const paths = output.split("\n").map((file) => {
+        const arr = file
+          .slice(0, file.lastIndexOf("/") + 1)
+          .trim()
+          .split(" ");
+        return arr.slice(1).join(" ").trim();
+      });
+
+      const dirArr = [];
+      if (paths.length >= 2) {
+        let currentDir = paths[0];
+        let count = 1;
+        for (let i = 1; i < paths.length; i++) {
+          if (paths[i].includes(currentDir) && i + 1 !== paths.length) {
+            count++;
+          } else {
+            if (count >= 2) {
+              dirArr.push(currentDir);
+            }
+            count = 1;
+          }
+          currentDir = paths[i];
+        }
+      }
+
+      return [
+        ...dirArr.map((name) => {
+          return {
+            name: name + "*",
+            description: "Wildcard",
+            icon: "fig://icon?type=asterisk",
+          };
+        }),
+        ...files.map((item) => {
+          const file = item.file.replace(/^"|"$/g, "");
+          let ext = "";
+
+          try {
+            ext = file.split(".").slice(-1)[0];
+          } catch (e) {}
+
+          if (file.endsWith("/")) {
+            ext = "folder";
+          }
+
+          // If the current file is already added
+          // we want to lower the priority
+          const priority =
+            item.alreadyAdded || context.some((ctx) => ctx.includes(file))
+              ? 50
+              : 100;
+          return {
+            name: file,
+            icon: `fig://icon?type=${ext}&color=ff0000&badge=${item.working}`,
+            description: "Changed file",
+            priority,
+          };
+        }),
+      ];
     },
   },
+
   getStagedFiles: {
-    script: "git diff --name-only --cached",
-    splitOn: "\n",
+    script: "git status --short | sed -ne '/^M /p' -e '/A /p'",
+    postProcess: postProcessTrackedFiles,
   },
+
   getUnstagedFiles: {
     script: "git diff --name-only",
     splitOn: "\n",
+  },
+
+  getChangedTrackedFiles: {
+    script: function (context) {
+      if (context.includes("--staged") || context.includes("--cached")) {
+        return `git status --short | sed -ne '/^M /p' -e '/A /p'`;
+      } else {
+        return `git status --short | sed -ne '/M /p' -e '/A /p'`;
+      }
+    },
+    postProcess: postProcessTrackedFiles,
   },
 };
 
@@ -1246,12 +1367,12 @@ export const completionSpec: Fig.Spec = {
       args: [
         {
           name: "base",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           isOptional: true,
         },
         {
           name: "new base",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           isOptional: true,
         },
       ],
@@ -1698,7 +1819,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
       ],
     },
@@ -2126,7 +2247,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
       ],
     },
@@ -2136,7 +2257,6 @@ export const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--staged",
-
           description:
             "Show difference between the files in the staging area and the latest version",
         },
@@ -2146,10 +2266,13 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       args: {
-        name: "commit",
+        name: "commit or file",
         isOptional: true,
         suggestions: [{ name: "HEAD" }],
-        generators: gitGenerators.commits,
+        generators: [
+          gitGenerators.commits,
+          gitGenerators.getChangedTrackedFiles,
+        ],
       },
     },
     {
@@ -2543,7 +2666,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
         },
         {
           name: "refspec",
@@ -2983,7 +3106,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "stash",
@@ -3456,14 +3579,14 @@ export const completionSpec: Fig.Spec = {
           name: ["-d", "--delete"],
           description: "delete fully merged branch",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
           name: "-D",
           description: "delete branch (even if not merged)",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3471,10 +3594,10 @@ export const completionSpec: Fig.Spec = {
           description: "move/rename a branch and its reflog",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3483,10 +3606,10 @@ export const completionSpec: Fig.Spec = {
           description: "move/rename a branch, even if target exists",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3501,7 +3624,7 @@ export const completionSpec: Fig.Spec = {
           name: ["--edit-description"],
           description: "edit the description for the branch",
           args: {
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3588,7 +3711,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "start point",
@@ -3605,11 +3728,11 @@ export const completionSpec: Fig.Spec = {
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               isOptional: true,
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -3619,7 +3742,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "upstream",
             isOptional: true,
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3628,7 +3751,7 @@ export const completionSpec: Fig.Spec = {
           args: {
             name: "upstream",
             isOptional: true,
-            generators: gitGenerators.branches,
+            generators: gitGenerators.localBranches,
           },
         },
         {
@@ -3852,10 +3975,14 @@ export const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "branch",
-          description: "branch or commit to switch to",
+          name: "branch, file, tag or commit",
+          description: "branch, file, tag or commit to switch to",
           isOptional: true,
-          generators: gitGenerators.branches,
+          generators: [
+            gitGenerators.remoteLocalBranches,
+            gitGenerators.tags,
+            { template: "filepaths" },
+          ],
           suggestions: [
             {
               name: "-",
@@ -4255,7 +4382,7 @@ export const completionSpec: Fig.Spec = {
       description: "Join two or more development histories together",
       args: {
         name: "branch",
-        generators: gitGenerators.branches,
+        generators: gitGenerators.localBranches,
         variadic: true,
         isOptional: true,
       },
@@ -4811,7 +4938,7 @@ export const completionSpec: Fig.Spec = {
           args: [
             {
               name: "branch",
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               name: "start point",
@@ -4827,11 +4954,11 @@ export const completionSpec: Fig.Spec = {
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
             {
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
             {
               isOptional: true,
-              generators: gitGenerators.branches,
+              generators: gitGenerators.localBranches,
             },
           ],
         },
@@ -4863,7 +4990,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "branch name",
           description: "branch or commit to switch to",
-          generators: gitGenerators.branches,
+          generators: gitGenerators.localBranches,
           suggestions: [
             {
               name: "-",

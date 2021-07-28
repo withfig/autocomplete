@@ -91,6 +91,26 @@ const packageList: Fig.Generator = {
   },
 };
 
+// generate workspace argument completion
+const scriptList: Fig.Generator = {
+  script: function (context) {
+    return `cat ${context[context.length - 2]}/package.json`;
+  },
+  postProcess: function (out) {
+    if (out.trim() == "") {
+      return [];
+    }
+    try {
+      const packageContent = JSON.parse(out);
+      const scripts = packageContent["scripts"];
+      if (scripts) {
+        return Object.keys(scripts).map((script) => ({ name: script }));
+      }
+    } catch (e) {}
+    return [];
+  },
+};
+
 const configList: Fig.Generator = {
   script: "yarn config list",
   postProcess: function (out) {
@@ -127,7 +147,18 @@ export const completionSpec: Fig.Spec = {
       await executeShellCommand(script as string)
     ).map(({ name }) => name as string);
 
-    const cli = ["vue", "nuxt", "expo", "jest", "next", "electron", "prisma"];
+    const cli = [
+      "vue",
+      "nuxt",
+      "expo",
+      "jest",
+      "next",
+      "electron",
+      "prisma",
+      "eslint",
+      "prettier",
+      "tsc",
+    ];
     const subcommands = packages
       .filter((name) => cli.includes(name))
       .map((name) => ({
@@ -1012,29 +1043,67 @@ export const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
+      generateSpec: async (_context, executeShellCommand) => {
+        const { postProcess } = scriptList;
+        const subcommands = [];
 
-      args: [
-        {
-          name: "name",
-          generators: {
-            script: "cat package.json",
-            postProcess: function (out) {
-              if (out.trim() == "") {
-                return [];
-              }
-              try {
-                const packageContent = JSON.parse(out);
-                const workspaces = packageContent["workspaces"];
-                if (workspaces) {
-                  return workspaces;
+        try {
+          const out = await executeShellCommand("cat package.json");
+
+          if (out.trim() == "") {
+            return { name: "workspaces" };
+          }
+          const packageContent = JSON.parse(out);
+          const workspaces = packageContent["workspaces"];
+
+          if (workspaces) {
+            for (const workspace of workspaces) {
+              if (workspace.includes("*")) {
+                const out = await executeShellCommand(
+                  `ls ${workspace.slice(0, -1)}`
+                );
+                const workspaceList = out.split("\n");
+
+                for (const space of workspaceList) {
+                  subcommands.push({
+                    name: space,
+                    description: "Workspaces",
+                    args: {
+                      name: "script",
+                      generators: {
+                        script: `cat ${workspace.slice(
+                          0,
+                          -1
+                        )}/${space}/package.json`,
+                        postProcess,
+                      },
+                    },
+                  });
                 }
-              } catch (e) {}
-              return [];
-            },
-          },
-        },
-        // TODO arg 1 is script suggestion from the workspace specified in arg 0.
-      ],
+              } else {
+                subcommands.push({
+                  name: workspace,
+                  description: "Workspaces",
+                  args: {
+                    name: "script",
+                    generators: {
+                      script: `cat ${workspace}/package.json`,
+                      postProcess,
+                    },
+                  },
+                });
+              }
+            }
+          }
+        } catch (e) {
+          return { name: "workspaces" };
+        }
+
+        return {
+          name: "workspace",
+          subcommands,
+        };
+      },
     },
     {
       name: "workspaces",

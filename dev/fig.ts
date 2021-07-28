@@ -65,12 +65,12 @@ export const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "source",
-      description: "(re)connect fig to the current shell session",
+      description: "(Re)connect fig to the current shell session",
     },
-    { name: "update", description: "update completion specs and app" },
+    { name: "update", description: "Update completion specs and app" },
     {
       name: "settings",
-      description: "update preferences",
+      description: "Update preferences",
       generateSpec: async (_, executeShellCommand) => {
         const settings: Settings[] = JSON.parse(
           await executeShellCommand(`cat ${SETTINGS_PATH}`)
@@ -116,7 +116,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "remove",
-      description: "remove a completion spec",
+      description: "Remove a completion spec",
       args: {
         name: "spec",
         description: "The CLI completion spec to remove",
@@ -149,36 +149,36 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "invite",
-      description: "share Fig with a teammate ⭐",
+      description: "Share Fig with a teammate ⭐",
       icon: "fig://icon?type=invite",
     },
-    { name: "report", description: "report an issue" },
+    { name: "report", description: "Report an issue" },
     {
       name: "tweet",
-      description: "tweet about Fig",
+      description: "Tweet about Fig",
       icon: "fig://icon?type=twitter",
     },
-    { name: "docs", description: "view docs in browser" },
-    { name: "list", description: "list all available completion specs" },
-    { name: "onboarding", description: "re-run Fig's onboarding" },
-    { name: "diagnostic", description: "display diagnostic information" },
+    { name: "docs", description: "View docs in browser" },
+    { name: "list", description: "List all available completion specs" },
+    { name: "onboarding", description: "Re-run Fig's onboarding" },
+    { name: "diagnostic", description: "Display diagnostic information" },
     {
       name: "issue",
-      description: "create a new Github issue in withfig/fig",
+      description: "Create a new Github issue in withfig/fig",
       icon: "fig://icon?type=github",
     },
 
-    { name: "quit", description: "quit the Fig application" },
+    { name: "quit", description: "Quit the Fig application" },
 
     {
       name: "team:upload",
-      description: "share an completion spec with your team",
+      description: "Share an completion spec with your team",
       args: {
         name: "spec",
         template: "filepaths",
       },
     },
-    { name: "team:download", description: "download your team's spec" },
+    { name: "team:download", description: "Download your team's spec" },
     {
       name: "integrations:iterm",
       description: "Install the iTerm tab integration",
