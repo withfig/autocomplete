@@ -59,6 +59,47 @@ const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
   "autocomplete.disableForCommands": disableForCommandsGenerator,
 };
 
+interface GithubApiResult {
+  tree: Array<{
+    path: string;
+    type: "blob" | "tree";
+  }>;
+}
+
+const themeGenerator: Fig.Generator = {
+  custom: async (_, executeShellCommand) => {
+    try {
+      const output = await executeShellCommand(
+        'curl -s -H "Accept: application/json" "https://api.github.com/repos/withfig/themes/git/trees/main?recursive=1"'
+      );
+      const builtInThemes = ((JSON.parse(
+        await executeShellCommand(`cat ${SETTINGS_PATH}`)
+      ) as Settings[])?.find((e) => e.settingName === "autocomplete.theme")
+        ?.options ?? []) as string[];
+
+      const result = JSON.parse(output) as GithubApiResult;
+      const themes = result.tree.filter(
+        (item) => item.type === "blob" && item.path.startsWith("themes/")
+      );
+      return [
+        ...themes.map((theme) => {
+          const name = theme.path.replace("themes/", "").replace(".json", "");
+          return {
+            name,
+            icon: "fig://icon?type=box",
+          };
+        }),
+        ...builtInThemes.map((theme) => ({
+          name: theme,
+          icon: "fig://icon?type=box",
+        })),
+      ];
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 export const completionSpec: Fig.Spec = {
   name: "fig",
   description: "Autocomplete for your terminal",
@@ -68,6 +109,14 @@ export const completionSpec: Fig.Spec = {
       description: "(Re)connect fig to the current shell session",
     },
     { name: "update", description: "Update completion specs and app" },
+    {
+      name: "theme",
+      description: "Set the theme",
+      args: {
+        name: "theme",
+        generators: themeGenerator,
+      },
+    },
     {
       name: "settings",
       description: "Update preferences",
