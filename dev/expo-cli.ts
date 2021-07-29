@@ -68,7 +68,7 @@ const _gen: Record<string, Fig.Generator> = {
 };
 
 export const completionSpec: Fig.Spec = {
-  name: "expo",
+  name: "expo-cli",
   icon: "https://static.expo.dev/static/favicon-dark-16x16.png",
   description:
     "Tools for creating, running, and deploying Universal Expo and React Native apps",
