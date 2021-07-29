@@ -1,20 +1,17 @@
-var remotegenerators = {
-  servicesgenerators: {
-    script: "tfenv list-remote",
-    postProcess: function (out) {
-      return out.split("\n").map(function (line) {
-        return { name: line, type: "option" };
-      });
-    },
-  },
-};
-
-var localgenerators = {
-  servicesgenerators: {
+const generators: Record<string, Fig.Generator> = {
+  installedVersions: {
     script: "tfenv list",
     postProcess: function (out) {
       return out.split("\n").map((tfversion) => {
         return { name: tfversion, description: "Version" };
+      });
+    },
+  },
+  allVersions: {
+    script: "tfenv list-remote",
+    postProcess: function (out) {
+      return out.split("\n").map(function (line) {
+        return { name: line, type: "option" };
       });
     },
   },
@@ -32,7 +29,7 @@ export const completion: Fig.Spec = {
           name: "version",
           description: "Possible Terraform Version",
           suggestions: ["latest", "min-required"],
-          generators: remotegenerators.servicesgenerators,
+          generators: generators.allVersions,
         },
       ],
     },
@@ -42,7 +39,7 @@ export const completion: Fig.Spec = {
       args: {
         name: "version",
         description: "Installed Terraform Version",
-        generators: localgenerators.servicesgenerators,
+        generators: generators.installedVersions,
       },
     },
     {
@@ -51,7 +48,7 @@ export const completion: Fig.Spec = {
       args: {
         name: "version",
         description: "Installed Terraform Version",
-        generators: localgenerators.servicesgenerators,
+        generators: generators.installedVersions,
       },
     },
     {
