@@ -124,7 +124,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--clear-dist-cert"],
@@ -144,7 +143,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--clear-push-key"],
@@ -163,7 +161,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--clear-push-cert"],
@@ -183,7 +180,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--clear-provisioning-profile"],
@@ -202,7 +198,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-r", "--revoke-credentials"],
@@ -222,7 +217,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--apple-id"],
@@ -233,7 +227,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["-t", "--type"],
@@ -242,7 +235,6 @@ export const completionSpec: Fig.Spec = {
             name: "build",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--release-channel"],
@@ -252,7 +244,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--no-publish"],
@@ -272,7 +263,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--no-wait"],
@@ -292,7 +282,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--team-id"],
@@ -301,7 +290,6 @@ export const completionSpec: Fig.Spec = {
             name: "apple-teamId",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--dist-p12-path"],
@@ -321,7 +309,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--push-id"],
@@ -330,7 +317,6 @@ export const completionSpec: Fig.Spec = {
             name: "push-id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--push-p8-path"],
@@ -349,7 +335,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--provisioning-profile-path"],
@@ -368,7 +353,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--public-url"],
@@ -378,7 +362,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--skip-credentials-check"],
@@ -397,7 +380,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--skip-workflow-check"],
@@ -417,7 +399,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -429,7 +410,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -472,7 +452,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--release-channel"],
@@ -482,7 +461,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--no-publish"],
@@ -502,7 +480,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--no-wait"],
@@ -522,7 +499,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--keystore-path"],
@@ -541,7 +517,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--keystore-alias"],
@@ -550,7 +525,6 @@ export const completionSpec: Fig.Spec = {
             name: "alias",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--generate-keystore"],
@@ -569,7 +543,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--public-url"],
@@ -579,7 +552,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--skip-workflow-check"],
@@ -599,7 +571,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-t", "--type"],
@@ -608,7 +579,6 @@ export const completionSpec: Fig.Spec = {
             name: "build",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -620,7 +590,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -662,7 +631,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--no-pwa"],
@@ -683,7 +651,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["-d", "--dev"],
@@ -702,7 +669,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -714,7 +680,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon:
@@ -748,7 +713,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -760,7 +724,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "ℹ️",
@@ -793,7 +756,6 @@ export const completionSpec: Fig.Spec = {
             name: "dest",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--platform"],
@@ -812,7 +774,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--config"],
@@ -824,7 +785,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
     },
@@ -858,7 +818,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -870,7 +829,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -905,7 +863,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -941,7 +898,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
       ],
       icon: "fig://icon?type=android",
@@ -974,7 +930,6 @@ export const completionSpec: Fig.Spec = {
             name: "type",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--full"],
@@ -993,7 +948,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -1005,7 +959,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=commandkey",
@@ -1047,7 +1000,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--config"],
@@ -1059,7 +1011,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🔑",
@@ -1101,7 +1052,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--offline"],
@@ -1120,7 +1070,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -1132,7 +1081,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🎨",
@@ -1167,7 +1115,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "📊",
@@ -1202,7 +1149,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🥼",
@@ -1246,7 +1192,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--npm"],
@@ -1267,7 +1212,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=npm",
-          priority: 70,
         },
         {
           name: ["-p", "--platform"],
@@ -1289,7 +1233,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--config"],
@@ -1301,7 +1244,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=⏏",
@@ -1335,7 +1277,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-c", "--clear"],
@@ -1354,7 +1295,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--output-dir"],
@@ -1365,7 +1305,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
             template: "folders",
           },
-          priority: 70,
         },
         {
           name: ["-a", "--asset-url"],
@@ -1375,7 +1314,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-d", "--dump-assetmap"],
@@ -1394,7 +1332,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--dev"],
@@ -1414,7 +1351,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-s", "--dump-sourcemap"],
@@ -1433,7 +1369,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-q", "--quiet"],
@@ -1452,7 +1387,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-t", "--target"],
@@ -1462,7 +1396,6 @@ export const completionSpec: Fig.Spec = {
             name: "env",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--merge-src-dir"],
@@ -1472,7 +1405,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
             template: "folders",
           },
-          priority: 70,
         },
         {
           name: ["--merge-src-url"],
@@ -1481,7 +1413,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--max-workers"],
@@ -1492,7 +1423,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "🧵",
-          priority: 70,
         },
         {
           name: ["--experimental-bundle"],
@@ -1511,7 +1441,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -1523,7 +1452,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon:
@@ -1560,7 +1488,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -1595,7 +1522,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -1630,7 +1556,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -1665,7 +1590,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -1698,7 +1622,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://icon?type=box",
-          priority: 70,
         },
         {
           name: ["--npm"],
@@ -1719,7 +1642,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=npm",
-          priority: 70,
         },
         {
           name: ["--yarn"],
@@ -1740,7 +1662,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=yarn",
-          priority: 70,
         },
         {
           name: ["--no-install"],
@@ -1760,7 +1681,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--name"],
@@ -1770,7 +1690,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--yes"],
@@ -1791,7 +1710,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://template?color=2ecc71&badge=✓",
-          priority: 70,
         },
       ],
       icon: "🌟",
@@ -1836,7 +1754,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=npm",
-          priority: 70,
         },
         {
           name: ["--yarn"],
@@ -1857,7 +1774,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=yarn",
-          priority: 70,
         },
       ],
       icon: "fig://icon?type=npm",
@@ -1882,7 +1798,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["-p", "--password"],
@@ -1892,7 +1807,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--otp"],
@@ -1902,7 +1816,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
       ],
       icon: "fig://icon?type=commandkey",
@@ -1961,7 +1874,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--clean"],
@@ -1981,7 +1893,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--npm"],
@@ -2002,7 +1913,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=npm",
-          priority: 70,
         },
         {
           name: ["--template"],
@@ -2013,7 +1923,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=box",
-          priority: 70,
         },
         {
           name: ["-p", "--platform"],
@@ -2035,7 +1944,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--skip-dependency-update"],
@@ -2045,7 +1953,6 @@ export const completionSpec: Fig.Spec = {
             name: "dependencies",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2057,7 +1964,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🛠",
@@ -2099,7 +2005,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--skipXcodeConfig"],
@@ -2108,7 +2013,6 @@ export const completionSpec: Fig.Spec = {
             name: "bool",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2120,7 +2024,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
     },
@@ -2161,7 +2064,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-s", "--send-to"],
@@ -2170,7 +2072,6 @@ export const completionSpec: Fig.Spec = {
             name: "dest",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["-c", "--clear"],
@@ -2189,7 +2090,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-t", "--target"],
@@ -2199,7 +2099,6 @@ export const completionSpec: Fig.Spec = {
             name: "env",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--max-workers"],
@@ -2210,7 +2109,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "🧵",
-          priority: 70,
         },
         {
           name: ["--release-channel"],
@@ -2230,7 +2128,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2242,7 +2139,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=☁️",
@@ -2275,7 +2171,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["-p", "--publish-id"],
@@ -2285,7 +2180,6 @@ export const completionSpec: Fig.Spec = {
             name: "publish-id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2297,7 +2191,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=☁️",
@@ -2329,7 +2222,6 @@ export const completionSpec: Fig.Spec = {
             name: "channel-id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-c", "--release-channel"],
@@ -2339,7 +2231,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["-s", "--sdk-version"],
@@ -2348,7 +2239,6 @@ export const completionSpec: Fig.Spec = {
             name: "version",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-p", "--platform"],
@@ -2367,7 +2257,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["--config"],
@@ -2379,7 +2268,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=☁️",
@@ -2413,7 +2301,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--count"],
@@ -2422,7 +2309,6 @@ export const completionSpec: Fig.Spec = {
             name: "number-of-logs",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-p", "--platform"],
@@ -2442,7 +2328,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 71,
         },
         {
           name: ["-s", "--sdk-version"],
@@ -2451,7 +2336,6 @@ export const completionSpec: Fig.Spec = {
             name: "version",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-r", "--raw"],
@@ -2470,7 +2354,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2482,7 +2365,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=☁️",
@@ -2514,7 +2396,6 @@ export const completionSpec: Fig.Spec = {
             name: "publish-id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["-r", "--raw"],
@@ -2533,7 +2414,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2545,7 +2425,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://template?color=3E89F7&badge=☁️",
@@ -2577,7 +2456,6 @@ export const completionSpec: Fig.Spec = {
             name: "api-key",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2589,7 +2467,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -2625,7 +2502,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -2660,7 +2536,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -2718,7 +2593,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["-d", "--device"],
@@ -2728,7 +2602,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon: "fig://template?color=fff&badge=📱",
-          priority: 70,
         },
         {
           name: ["-p", "--port"],
@@ -2738,7 +2611,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "#️⃣",
-          priority: 70,
         },
         {
           name: ["--variant"],
@@ -2747,7 +2619,6 @@ export const completionSpec: Fig.Spec = {
             name: "name",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2759,7 +2630,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -2802,7 +2672,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["-d", "--device"],
@@ -2810,10 +2679,9 @@ export const completionSpec: Fig.Spec = {
           args: {
             generators: _gen[`xcode-devices`],
             name: "device",
-            isOptional: true,
+            isOptional: false,
           },
           icon: "fig://template?color=fff&badge=📱",
-          priority: 71,
         },
         {
           name: ["-p", "--port"],
@@ -2823,7 +2691,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "#️⃣",
-          priority: 70,
         },
         {
           name: ["--scheme"],
@@ -2833,7 +2700,6 @@ export const completionSpec: Fig.Spec = {
             name: "scheme",
             isOptional: true,
           },
-          priority: 72,
         },
         {
           name: ["--configuration"],
@@ -2844,7 +2710,6 @@ export const completionSpec: Fig.Spec = {
             name: "configuration",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -2856,7 +2721,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon:
@@ -2889,7 +2753,6 @@ export const completionSpec: Fig.Spec = {
             name: "dest",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--dev-client"],
@@ -2909,7 +2772,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--scheme"],
@@ -2919,7 +2781,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://template?color=3E89F7&badge=://",
-          priority: 70,
         },
         {
           name: ["-a", "--android"],
@@ -2940,7 +2801,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=android",
-          priority: 70,
         },
         {
           name: ["-i", "--ios"],
@@ -2961,7 +2821,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["-w", "--web"],
@@ -2980,7 +2839,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-m", "--host"],
@@ -2990,7 +2848,6 @@ export const completionSpec: Fig.Spec = {
             name: "mode",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--tunnel"],
@@ -3009,7 +2866,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--lan"],
@@ -3028,7 +2884,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--localhost"],
@@ -3047,7 +2902,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -3059,7 +2913,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=invite",
@@ -3091,7 +2944,6 @@ export const completionSpec: Fig.Spec = {
             name: "dest",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["-c", "--clear"],
@@ -3110,7 +2962,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--max-workers"],
@@ -3121,7 +2972,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "🧵",
-          priority: 70,
         },
         {
           name: ["--dev"],
@@ -3140,7 +2990,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--no-dev"],
@@ -3160,7 +3009,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--minify"],
@@ -3179,7 +3027,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--no-minify"],
@@ -3199,7 +3046,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--https"],
@@ -3219,7 +3065,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "🔒",
-          priority: 70,
         },
         {
           name: ["-p", "--port"],
@@ -3230,7 +3075,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "#️⃣",
-          priority: 70,
         },
         {
           name: ["--no-https"],
@@ -3250,7 +3094,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--dev-client"],
@@ -3270,7 +3113,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--scheme"],
@@ -3280,7 +3122,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://template?color=3E89F7&badge=://",
-          priority: 70,
         },
         {
           name: ["-a", "--android"],
@@ -3301,7 +3142,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=android",
-          priority: 70,
         },
         {
           name: ["-i", "--ios"],
@@ -3322,7 +3162,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["-w", "--web"],
@@ -3341,7 +3180,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-m", "--host"],
@@ -3351,7 +3189,6 @@ export const completionSpec: Fig.Spec = {
             name: "mode",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--tunnel"],
@@ -3370,7 +3207,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--lan"],
@@ -3389,7 +3225,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--localhost"],
@@ -3408,7 +3243,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--offline"],
@@ -3427,7 +3261,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -3439,7 +3272,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🚀",
@@ -3481,7 +3313,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--no-dev"],
@@ -3501,7 +3332,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--minify"],
@@ -3520,7 +3350,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--no-minify"],
@@ -3540,7 +3369,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["--https"],
@@ -3560,7 +3388,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "🔒",
-          priority: 70,
         },
         {
           name: ["--no-https"],
@@ -3580,7 +3407,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "⏭",
-          priority: 70,
         },
         {
           name: ["-p", "--port"],
@@ -3590,7 +3416,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "#️⃣",
-          priority: 70,
         },
         {
           name: ["-s", "--send-to"],
@@ -3599,7 +3424,6 @@ export const completionSpec: Fig.Spec = {
             name: "dest",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--dev-client"],
@@ -3619,7 +3443,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--scheme"],
@@ -3629,7 +3452,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://template?color=3E89F7&badge=://",
-          priority: 70,
         },
         {
           name: ["-a", "--android"],
@@ -3650,7 +3472,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=android",
-          priority: 70,
         },
         {
           name: ["-i", "--ios"],
@@ -3671,7 +3492,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["-w", "--web"],
@@ -3690,7 +3510,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-m", "--host"],
@@ -3700,7 +3519,6 @@ export const completionSpec: Fig.Spec = {
             name: "mode",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--tunnel"],
@@ -3719,7 +3537,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--lan"],
@@ -3738,7 +3555,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--localhost"],
@@ -3757,7 +3573,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--offline"],
@@ -3776,7 +3591,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -3788,7 +3602,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon:
@@ -3833,7 +3646,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=npm",
-          priority: 70,
         },
         {
           name: ["--yarn"],
@@ -3854,7 +3666,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=yarn",
-          priority: 70,
         },
       ],
       icon: "⬆️",
@@ -3896,7 +3707,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--id"],
@@ -3905,7 +3715,6 @@ export const completionSpec: Fig.Spec = {
             name: "id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--path"],
@@ -3915,7 +3724,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
             template: "filepaths",
           },
-          priority: 70,
         },
         {
           name: ["--url"],
@@ -3924,7 +3732,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--key"],
@@ -3934,7 +3741,6 @@ export const completionSpec: Fig.Spec = {
             name: "key",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--android-package"],
@@ -3945,7 +3751,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=android",
-          priority: 70,
         },
         {
           name: ["--type"],
@@ -3954,7 +3759,6 @@ export const completionSpec: Fig.Spec = {
             name: "archive-type",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--track"],
@@ -3964,7 +3768,6 @@ export const completionSpec: Fig.Spec = {
             name: "track",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--release-status"],
@@ -3974,7 +3777,6 @@ export const completionSpec: Fig.Spec = {
             name: "release-status",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--use-submission-service"],
@@ -3994,7 +3796,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--verbose"],
@@ -4013,7 +3814,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4025,7 +3825,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -4067,7 +3866,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--id"],
@@ -4076,7 +3874,6 @@ export const completionSpec: Fig.Spec = {
             name: "id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--path"],
@@ -4086,7 +3883,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
             template: "filepaths",
           },
-          priority: 70,
         },
         {
           name: ["--url"],
@@ -4095,7 +3891,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--apple-id"],
@@ -4106,7 +3901,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["--itc-team-id"],
@@ -4116,7 +3910,6 @@ export const completionSpec: Fig.Spec = {
             name: "itc-team-id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--apple-id-password"],
@@ -4127,7 +3920,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["--app-name"],
@@ -4138,7 +3930,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--company-name"],
@@ -4149,7 +3940,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://icon?type=string",
-          priority: 70,
         },
         {
           name: ["--sku"],
@@ -4159,7 +3949,6 @@ export const completionSpec: Fig.Spec = {
             name: "sku",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--language"],
@@ -4169,7 +3958,6 @@ export const completionSpec: Fig.Spec = {
             name: "language",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--public-url"],
@@ -4179,7 +3967,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4191,7 +3978,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -4234,7 +4020,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--scheme"],
@@ -4244,7 +4029,6 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon: "fig://template?color=3E89F7&badge=://",
-          priority: 70,
         },
         {
           name: ["-a", "--android"],
@@ -4265,7 +4049,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=android",
-          priority: 70,
         },
         {
           name: ["-i", "--ios"],
@@ -4286,7 +4069,6 @@ export const completionSpec: Fig.Spec = {
             ],
           },
           icon: "fig://icon?type=apple",
-          priority: 70,
         },
         {
           name: ["-w", "--web"],
@@ -4305,7 +4087,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["-m", "--host"],
@@ -4315,7 +4096,6 @@ export const completionSpec: Fig.Spec = {
             name: "mode",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--tunnel"],
@@ -4334,7 +4114,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--lan"],
@@ -4353,7 +4132,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--localhost"],
@@ -4372,7 +4150,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--offline"],
@@ -4391,7 +4168,6 @@ export const completionSpec: Fig.Spec = {
               },
             ],
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4403,7 +4179,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "🔗",
@@ -4436,7 +4211,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4448,7 +4222,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=apple",
@@ -4481,7 +4254,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4493,7 +4265,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=android",
@@ -4528,7 +4299,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=slack",
@@ -4560,7 +4330,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--event"],
@@ -4570,7 +4339,6 @@ export const completionSpec: Fig.Spec = {
             name: "event-type",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--secret"],
@@ -4580,7 +4348,6 @@ export const completionSpec: Fig.Spec = {
             name: "secret",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4592,7 +4359,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=slack&color=2ecc71&badge=✓",
@@ -4624,7 +4390,6 @@ export const completionSpec: Fig.Spec = {
             name: "id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4636,7 +4401,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=slack&color=EB1414&badge=x",
@@ -4668,7 +4432,6 @@ export const completionSpec: Fig.Spec = {
             name: "id",
             isOptional: false,
           },
-          priority: 70,
         },
         {
           name: ["--url"],
@@ -4677,7 +4440,6 @@ export const completionSpec: Fig.Spec = {
             name: "url",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--event"],
@@ -4686,7 +4448,6 @@ export const completionSpec: Fig.Spec = {
             name: "event-type",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--secret"],
@@ -4696,7 +4457,6 @@ export const completionSpec: Fig.Spec = {
             name: "secret",
             isOptional: true,
           },
-          priority: 70,
         },
         {
           name: ["--config"],
@@ -4708,7 +4468,6 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon: "fig://icon?type=alert",
-          priority: 69,
         },
       ],
       icon: "fig://icon?type=slack&color=3E89F7",
