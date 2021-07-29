@@ -35,7 +35,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "use",
-      description: "Swith to a version to use",
+      description: "Switch to a version to use",
       args: {
         name: "version",
         description: "Installed Terraform Version",
