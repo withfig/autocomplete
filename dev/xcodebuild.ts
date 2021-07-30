@@ -81,6 +81,7 @@ export const completion: Fig.Spec = {
         "Build each target for the architecture ARCH; this will override architectures defined in the project",
       args: {
         name: "ARCH",
+        suggestions: ["x86_64", "arm64", "armv7"],
       },
     },
     {
@@ -396,6 +397,7 @@ export const completion: Fig.Spec = {
       name: "-only-testing",
       description:
         "Constrains testing by specifying tests to include, and excluding other tests",
+      exclusive: ["-skip-testing"],
     },
     {
       name: "-only-testing:",
@@ -405,11 +407,13 @@ export const completion: Fig.Spec = {
       args: {
         name: "Test Identifier",
       },
+      exclusive: ["-skip-testing"],
     },
     {
       name: "-skip-testing",
       description:
         "Constrains testing by specifying tests to exclude, but including other tests",
+      exclusive: ["-only-testing"],
     },
     {
       name: "-skip-testing:",
@@ -419,6 +423,7 @@ export const completion: Fig.Spec = {
       args: {
         name: "Test Identifier",
       },
+      exclusive: ["-only-testing"],
     },
     {
       name: "-test-timeouts-enabled",
@@ -492,6 +497,10 @@ export const completion: Fig.Spec = {
       name: "-scmProvider",
       description:
         "Which implementation to use for Git operations (system/xcode)",
+      args: {
+        name: "Implementation",
+        suggestions: ["system", "xcode"],
+      },
     },
     {
       name: "-showBuildTimingSummary",
