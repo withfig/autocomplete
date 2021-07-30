@@ -70,7 +70,7 @@ const _gen: Record<string, Fig.Generator> = {
 export const completionSpec: Fig.Spec = {
   name: "expo-cli",
   icon:
-    "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/expo.png",
+    "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
   description:
     "Tools for creating, running, and deploying Universal Expo and React Native apps",
   options: [
@@ -79,13 +79,13 @@ export const completionSpec: Fig.Spec = {
       priority: 1,
       description: "Output usage information",
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
     },
     {
       name: ["-V", "--version"],
       description: "Output the version number",
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/info.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/info.png",
       priority: 1,
     },
   ],
@@ -109,7 +109,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-c", "--clear-credentials"],
@@ -121,17 +121,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--clear-dist-cert"],
@@ -144,17 +144,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--clear-push-key"],
@@ -166,17 +166,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--clear-push-cert"],
@@ -189,17 +189,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--clear-provisioning-profile"],
@@ -211,17 +211,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["-r", "--revoke-credentials"],
@@ -234,17 +234,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--apple-id"],
@@ -255,7 +255,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["-t", "--type"],
@@ -265,7 +265,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--release-channel"],
@@ -275,7 +275,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--no-publish"],
@@ -287,17 +287,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--no-wait"],
@@ -309,17 +309,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--team-id"],
@@ -329,7 +329,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--dist-p12-path"],
@@ -342,17 +342,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--push-id"],
@@ -362,7 +362,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--push-p8-path"],
@@ -374,17 +374,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--provisioning-profile-path"],
@@ -396,17 +396,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--public-url"],
@@ -417,7 +417,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--skip-credentials-check"],
@@ -429,17 +429,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--skip-workflow-check"],
@@ -452,17 +452,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--config"],
@@ -474,12 +474,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
     },
     {
       name: ["build:android", "ba"],
@@ -501,7 +501,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-c", "--clear-credentials"],
@@ -513,17 +513,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--release-channel"],
@@ -533,7 +533,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--no-publish"],
@@ -545,17 +545,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--no-wait"],
@@ -567,17 +567,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--keystore-path"],
@@ -589,17 +589,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/key.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
         },
         {
           name: ["--keystore-alias"],
@@ -609,7 +609,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/key.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
         },
         {
           name: ["--generate-keystore"],
@@ -621,17 +621,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/key.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
         },
         {
           name: ["--public-url"],
@@ -642,7 +642,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--skip-workflow-check"],
@@ -655,17 +655,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["-t", "--type"],
@@ -675,7 +675,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -687,12 +687,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["build:web"],
@@ -713,7 +713,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-c", "--clear"],
@@ -725,17 +725,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--no-pwa"],
@@ -748,17 +748,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["-d", "--dev"],
@@ -770,17 +770,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--config"],
@@ -792,12 +792,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/webpack.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/webpack.png",
     },
     {
       name: ["build:status", "bs"],
@@ -818,7 +818,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--public-url"],
@@ -829,7 +829,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -841,12 +841,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/info.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/info.png",
     },
     {
       name: ["bundle-assets"],
@@ -868,7 +868,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--dest"],
@@ -878,7 +878,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--platform"],
@@ -890,17 +890,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--config"],
@@ -912,7 +912,7 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
@@ -937,7 +937,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--apple-id"],
@@ -948,7 +948,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["--config"],
@@ -960,12 +960,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/download.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/download.png",
     },
     {
       name: ["client:install:ios"],
@@ -978,7 +978,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--latest"],
@@ -991,21 +991,21 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/latest.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
     },
     {
       name: ["client:install:android"],
@@ -1019,7 +1019,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--latest"],
@@ -1032,21 +1032,21 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/latest.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["config"],
@@ -1067,7 +1067,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-t", "--type"],
@@ -1078,7 +1078,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--full"],
@@ -1090,17 +1090,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -1112,12 +1112,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/config.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/config.png",
     },
     {
       name: ["credentials:manager"],
@@ -1138,7 +1138,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-p", "--platform"],
@@ -1150,17 +1150,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--config"],
@@ -1172,12 +1172,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/list.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/list.png",
     },
     {
       name: ["customize:web"],
@@ -1198,7 +1198,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-f", "--force"],
@@ -1210,17 +1210,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/force.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/force.png",
         },
         {
           name: ["--offline"],
@@ -1232,17 +1232,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/offline.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
         },
         {
           name: ["--config"],
@@ -1254,12 +1254,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/customize.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/customize.png",
     },
     {
       name: ["diagnostics"],
@@ -1280,7 +1280,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1292,12 +1292,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/diagnostics.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/diagnostics.png",
     },
     {
       name: ["doctor"],
@@ -1318,7 +1318,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1330,12 +1330,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/doctor.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/doctor.png",
     },
     {
       name: ["eject"],
@@ -1357,7 +1357,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--no-install"],
@@ -1369,17 +1369,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--npm"],
@@ -1392,12 +1392,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -1416,17 +1416,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--config"],
@@ -1438,12 +1438,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/eject.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/eject.png",
     },
     {
       name: ["export"],
@@ -1465,7 +1465,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-p", "--public-url"],
@@ -1476,7 +1476,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-c", "--clear"],
@@ -1488,17 +1488,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--output-dir"],
@@ -1510,7 +1510,7 @@ export const completionSpec: Fig.Spec = {
             template: "folders",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["-a", "--asset-url"],
@@ -1521,7 +1521,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-d", "--dump-assetmap"],
@@ -1533,17 +1533,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/export.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
         },
         {
           name: ["--dev"],
@@ -1556,17 +1556,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["-s", "--dump-sourcemap"],
@@ -1578,17 +1578,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/export.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
         },
         {
           name: ["-q", "--quiet"],
@@ -1600,17 +1600,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/quiet.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/quiet.png",
         },
         {
           name: ["-t", "--target"],
@@ -1621,7 +1621,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
         {
@@ -1633,7 +1633,7 @@ export const completionSpec: Fig.Spec = {
             template: "folders",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--merge-src-url"],
@@ -1643,7 +1643,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--max-workers"],
@@ -1654,7 +1654,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--experimental-bundle"],
@@ -1666,17 +1666,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -1688,12 +1688,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/export.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
     },
     {
       name: ["fetch:ios:certs"],
@@ -1715,7 +1715,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1727,12 +1727,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
     },
     {
       name: ["fetch:android:keystore"],
@@ -1753,7 +1753,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1765,12 +1765,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["fetch:android:hashes"],
@@ -1791,7 +1791,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1803,12 +1803,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["fetch:android:upload-cert"],
@@ -1829,7 +1829,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -1841,12 +1841,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["init", "i"],
@@ -1866,7 +1866,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-t", "--template"],
@@ -1877,7 +1877,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/export.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
         },
         {
           name: ["--npm"],
@@ -1890,12 +1890,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -1912,12 +1912,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -1933,17 +1933,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--name"],
@@ -1953,7 +1953,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--yes"],
@@ -1966,21 +1966,21 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/init.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/init.png",
     },
     {
       name: ["install", "add"],
@@ -2002,7 +2002,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--npm"],
@@ -2015,12 +2015,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -2037,12 +2037,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -2062,7 +2062,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-u", "--username"],
@@ -2072,7 +2072,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-p", "--password"],
@@ -2082,7 +2082,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--otp"],
@@ -2092,11 +2092,11 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/login.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/login.png",
     },
     {
       name: ["logout"],
@@ -2109,11 +2109,11 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/logout.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/logout.png",
     },
     {
       name: ["prebuild"],
@@ -2135,7 +2135,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--no-install"],
@@ -2147,17 +2147,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--clean"],
@@ -2170,17 +2170,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--npm"],
@@ -2193,12 +2193,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -2213,7 +2213,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/export.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/export.png",
         },
         {
           name: ["-p", "--platform"],
@@ -2228,17 +2228,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--skip-dependency-update"],
@@ -2249,7 +2249,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--config"],
@@ -2261,12 +2261,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/prebuild.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/prebuild.png",
     },
     {
       name: ["prepare-detached-build"],
@@ -2287,7 +2287,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--platform"],
@@ -2299,17 +2299,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--skipXcodeConfig"],
@@ -2319,7 +2319,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -2331,7 +2331,7 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
@@ -2355,7 +2355,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-q", "--quiet"],
@@ -2367,17 +2367,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/quiet.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/quiet.png",
         },
         {
           name: ["-s", "--send-to"],
@@ -2387,7 +2387,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/send.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/send.png",
         },
         {
           name: ["-c", "--clear"],
@@ -2399,17 +2399,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["-t", "--target"],
@@ -2420,7 +2420,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
         {
@@ -2432,7 +2432,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--release-channel"],
@@ -2445,17 +2445,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -2467,12 +2467,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/publish.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/publish.png",
     },
     {
       name: ["publish:set", "ps"],
@@ -2493,7 +2493,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-c", "--release-channel"],
@@ -2503,7 +2503,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-p", "--publish-id"],
@@ -2514,7 +2514,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -2526,12 +2526,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/publish.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/publish.png",
     },
     {
       name: ["publish:rollback", "pr"],
@@ -2552,7 +2552,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--channel-id"],
@@ -2562,7 +2562,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-c", "--release-channel"],
@@ -2572,7 +2572,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-s", "--sdk-version"],
@@ -2582,7 +2582,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/expo.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
         },
         {
           name: ["-p", "--platform"],
@@ -2594,17 +2594,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["--config"],
@@ -2616,12 +2616,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/publish.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/publish-rollback.png",
     },
     {
       name: ["publish:history", "ph"],
@@ -2642,7 +2642,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-c", "--release-channel"],
@@ -2653,7 +2653,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--count"],
@@ -2663,7 +2663,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["-p", "--platform"],
@@ -2676,17 +2676,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "android",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
               },
               {
                 name: "ios",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["-s", "--sdk-version"],
@@ -2696,7 +2696,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/expo.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
         },
         {
           name: ["-r", "--raw"],
@@ -2708,17 +2708,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -2730,12 +2730,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/publish.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/publish.png",
     },
     {
       name: ["publish:details", "pd"],
@@ -2756,7 +2756,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--publish-id"],
@@ -2766,7 +2766,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["-r", "--raw"],
@@ -2778,17 +2778,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -2800,12 +2800,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/publish.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/publish.png",
     },
     {
       name: ["push:android:upload"],
@@ -2826,7 +2826,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--api-key"],
@@ -2836,7 +2836,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/key.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
         },
         {
           name: ["--config"],
@@ -2848,12 +2848,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/push.png",
     },
     {
       name: ["push:android:show"],
@@ -2875,7 +2875,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -2887,12 +2887,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/push.png",
     },
     {
       name: ["push:android:clear"],
@@ -2913,7 +2913,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -2925,12 +2925,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/push-clear.png",
     },
     {
       name: ["register"],
@@ -2943,11 +2943,11 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/register.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/register.png",
     },
     {
       name: ["run:android"],
@@ -2968,7 +2968,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--no-bundler"],
@@ -2980,17 +2980,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/metro.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/metro.png",
         },
         {
           name: ["-d", "--device"],
@@ -3000,7 +3000,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["-p", "--port"],
@@ -3010,7 +3010,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--variant"],
@@ -3020,7 +3020,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -3032,12 +3032,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
     },
     {
       name: ["run:ios"],
@@ -3058,7 +3058,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--no-bundler"],
@@ -3070,17 +3070,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/metro.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/metro.png",
         },
         {
           name: ["-d", "--device"],
@@ -3091,7 +3091,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/devices.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/devices.png",
         },
         {
           name: ["-p", "--port"],
@@ -3101,7 +3101,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--scheme"],
@@ -3112,7 +3112,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--configuration"],
@@ -3124,7 +3124,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -3136,12 +3136,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
     },
     {
       name: ["send"],
@@ -3162,7 +3162,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-s", "--send-to"],
@@ -3172,7 +3172,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/send.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/send.png",
         },
         {
           name: ["--dev-client"],
@@ -3185,17 +3185,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--scheme"],
@@ -3205,7 +3205,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/scheme.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
         },
         {
           name: ["-a", "--android"],
@@ -3218,17 +3218,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
         },
         {
           name: ["-i", "--ios"],
@@ -3241,17 +3241,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["-w", "--web"],
@@ -3263,17 +3263,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/web.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
         },
         {
           name: ["-m", "--host"],
@@ -3284,7 +3284,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--tunnel"],
@@ -3296,17 +3296,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/tunnel.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
         },
         {
           name: ["--lan"],
@@ -3318,17 +3318,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--localhost"],
@@ -3340,17 +3340,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/localhost.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
         },
         {
           name: ["--config"],
@@ -3362,12 +3362,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/send.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/send.png",
     },
     {
       name: ["start", "r"],
@@ -3388,7 +3388,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["-s", "--send-to"],
@@ -3398,7 +3398,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/send.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/send.png",
         },
         {
           name: ["-c", "--clear"],
@@ -3410,17 +3410,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/clear.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/clear.png",
         },
         {
           name: ["--max-workers"],
@@ -3431,7 +3431,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--dev"],
@@ -3443,17 +3443,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--no-dev"],
@@ -3465,17 +3465,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--minify"],
@@ -3487,17 +3487,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/minify.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/minify.png",
         },
         {
           name: ["--no-minify"],
@@ -3509,17 +3509,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--https"],
@@ -3531,17 +3531,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lock.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
         },
         {
           name: ["-p", "--port"],
@@ -3552,7 +3552,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["--no-https"],
@@ -3564,17 +3564,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--dev-client"],
@@ -3587,17 +3587,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--scheme"],
@@ -3607,7 +3607,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/scheme.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
         },
         {
           name: ["-a", "--android"],
@@ -3620,17 +3620,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
         },
         {
           name: ["-i", "--ios"],
@@ -3643,17 +3643,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["-w", "--web"],
@@ -3665,17 +3665,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/web.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
         },
         {
           name: ["-m", "--host"],
@@ -3686,7 +3686,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--tunnel"],
@@ -3698,17 +3698,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/tunnel.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
         },
         {
           name: ["--lan"],
@@ -3720,17 +3720,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--localhost"],
@@ -3742,17 +3742,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/localhost.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
         },
         {
           name: ["--offline"],
@@ -3764,17 +3764,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/offline.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
         },
         {
           name: ["--config"],
@@ -3786,12 +3786,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/play.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/play.png",
     },
     {
       name: ["start:web", "web"],
@@ -3812,7 +3812,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--dev"],
@@ -3824,17 +3824,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--no-dev"],
@@ -3846,17 +3846,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--minify"],
@@ -3868,17 +3868,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/minify.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/minify.png",
         },
         {
           name: ["--no-minify"],
@@ -3890,17 +3890,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["--https"],
@@ -3912,17 +3912,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lock.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
         },
         {
           name: ["--no-https"],
@@ -3934,17 +3934,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/skip.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/skip.png",
         },
         {
           name: ["-p", "--port"],
@@ -3954,7 +3954,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/number.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/number.png",
         },
         {
           name: ["-s", "--send-to"],
@@ -3964,7 +3964,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/send.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/send.png",
         },
         {
           name: ["--dev-client"],
@@ -3977,17 +3977,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--scheme"],
@@ -3997,7 +3997,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/scheme.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
         },
         {
           name: ["-a", "--android"],
@@ -4010,17 +4010,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
         },
         {
           name: ["-i", "--ios"],
@@ -4033,17 +4033,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["-w", "--web"],
@@ -4055,17 +4055,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/web.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
         },
         {
           name: ["-m", "--host"],
@@ -4076,7 +4076,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--tunnel"],
@@ -4088,17 +4088,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/tunnel.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
         },
         {
           name: ["--lan"],
@@ -4110,17 +4110,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--localhost"],
@@ -4132,17 +4132,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/localhost.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
         },
         {
           name: ["--offline"],
@@ -4154,17 +4154,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/offline.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
         },
         {
           name: ["--config"],
@@ -4176,12 +4176,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/web.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
     },
     {
       name: ["upgrade", "update"],
@@ -4202,7 +4202,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--npm"],
@@ -4215,12 +4215,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -4237,12 +4237,12 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
@@ -4250,7 +4250,7 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/upgrade.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/upgrade.png",
     },
     {
       name: ["upload:android", "ua"],
@@ -4271,7 +4271,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--latest"],
@@ -4283,17 +4283,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/latest.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
         },
         {
           name: ["--id"],
@@ -4303,7 +4303,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--path"],
@@ -4314,7 +4314,7 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--url"],
@@ -4324,7 +4324,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--key"],
@@ -4335,7 +4335,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/key.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
         },
         {
           name: ["--android-package"],
@@ -4346,7 +4346,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
         },
         {
           name: ["--type"],
@@ -4356,7 +4356,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--track"],
@@ -4367,7 +4367,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--release-status"],
@@ -4378,7 +4378,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--use-submission-service"],
@@ -4391,17 +4391,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--verbose"],
@@ -4413,17 +4413,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/verbose.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/verbose.png",
         },
         {
           name: ["--config"],
@@ -4435,12 +4435,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/play-store.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/play-store.png",
     },
     {
       name: ["upload:ios", "ui"],
@@ -4461,7 +4461,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--latest"],
@@ -4473,17 +4473,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/latest.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/latest.png",
         },
         {
           name: ["--id"],
@@ -4493,7 +4493,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--path"],
@@ -4504,7 +4504,7 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/path.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
         },
         {
           name: ["--url"],
@@ -4514,7 +4514,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--apple-id"],
@@ -4525,7 +4525,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["--itc-team-id"],
@@ -4536,7 +4536,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--apple-id-password"],
@@ -4547,7 +4547,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["--app-name"],
@@ -4558,7 +4558,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--company-name"],
@@ -4569,7 +4569,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--sku"],
@@ -4580,7 +4580,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--language"],
@@ -4591,7 +4591,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--public-url"],
@@ -4602,7 +4602,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -4614,12 +4614,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/app-store.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/app-store.png",
     },
     {
       name: ["url", "u"],
@@ -4640,7 +4640,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--dev-client"],
@@ -4653,17 +4653,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/dev.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/dev.png",
         },
         {
           name: ["--scheme"],
@@ -4673,7 +4673,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/scheme.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/scheme.png",
         },
         {
           name: ["-a", "--android"],
@@ -4686,17 +4686,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/android.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/android.png",
         },
         {
           name: ["-i", "--ios"],
@@ -4709,17 +4709,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/apple.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/apple.png",
         },
         {
           name: ["-w", "--web"],
@@ -4731,17 +4731,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/web.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/web.png",
         },
         {
           name: ["-m", "--host"],
@@ -4752,7 +4752,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--tunnel"],
@@ -4764,17 +4764,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/tunnel.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/tunnel.png",
         },
         {
           name: ["--lan"],
@@ -4786,17 +4786,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lan.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lan.png",
         },
         {
           name: ["--localhost"],
@@ -4808,17 +4808,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/localhost.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/localhost.png",
         },
         {
           name: ["--offline"],
@@ -4830,17 +4830,17 @@ export const completionSpec: Fig.Spec = {
               {
                 name: "true",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/true.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
               },
               {
                 name: "false",
                 icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/false.png",
+                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
               },
             ],
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/offline.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/offline.png",
         },
         {
           name: ["--config"],
@@ -4852,12 +4852,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/url.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/url.png",
     },
     {
       name: ["url:ipa"],
@@ -4878,7 +4878,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--public-url"],
@@ -4889,7 +4889,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -4901,12 +4901,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/app-store.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/app-store.png",
     },
     {
       name: ["url:apk"],
@@ -4927,7 +4927,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--public-url"],
@@ -4938,7 +4938,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -4950,12 +4950,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/play-store.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/play-store.png",
     },
     {
       name: ["webhooks"],
@@ -4976,7 +4976,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--config"],
@@ -4988,12 +4988,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/webhook.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/webhook.png",
     },
     {
       name: ["webhooks:add"],
@@ -5014,7 +5014,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--url"],
@@ -5024,7 +5024,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--event"],
@@ -5035,7 +5035,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--secret"],
@@ -5046,7 +5046,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lock.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
         },
         {
           name: ["--config"],
@@ -5058,12 +5058,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/webhook-add.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/webhook-add.png",
     },
     {
       name: ["webhooks:remove"],
@@ -5084,7 +5084,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--id"],
@@ -5094,7 +5094,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--config"],
@@ -5106,12 +5106,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/webhook-remove.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/webhook-remove.png",
     },
     {
       name: ["webhooks:update"],
@@ -5132,7 +5132,7 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
         {
           name: ["--id"],
@@ -5142,7 +5142,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: false,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--url"],
@@ -5152,7 +5152,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--event"],
@@ -5162,7 +5162,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/string.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/string.png",
         },
         {
           name: ["--secret"],
@@ -5173,7 +5173,7 @@ export const completionSpec: Fig.Spec = {
             isOptional: true,
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/lock.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/lock.png",
         },
         {
           name: ["--config"],
@@ -5185,12 +5185,12 @@ export const completionSpec: Fig.Spec = {
             template: "filepaths",
           },
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/block.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/block.png",
           priority: 2,
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/webhook-update.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/webhook-update.png",
     },
     {
       name: ["whoami", "w"],
@@ -5203,11 +5203,11 @@ export const completionSpec: Fig.Spec = {
           priority: 1,
           description: "Output usage information",
           icon:
-            "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/help.png",
+            "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/help.png",
         },
       ],
       icon:
-        "https://raw.githubusercontent.com/expo/expo-cli/@evanbacon/expo-cli/added-fig-icons/assets/fig/info.png",
+        "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/info.png",
     },
   ],
 };
