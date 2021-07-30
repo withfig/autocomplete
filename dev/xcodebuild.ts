@@ -314,7 +314,7 @@ export const completion: Fig.Spec = {
     {
       name: "-exportOptionsPlist",
       description:
-        "specifies a path to a plist file that configures archive exporting",
+        "Specifies a path to a plist file that configures archive exporting",
       args: {
         name: "PATH",
         template: "filepaths",
@@ -322,7 +322,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "-enableCodeCoverage",
-      description: "turn code coverage on or off when testing",
+      description: "Turn code coverage on or off when testing",
       args: {
         name: "mode",
         suggestions: ["YES", "NO"],
