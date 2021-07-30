@@ -358,20 +358,9 @@ export const completionSpec: Fig.Spec = {
           description:
             "Path to your Distribution Certificate P12 (set password as EXPO_IOS_DIST_P12_PASSWORD environment variable).",
           args: {
-            name: "boolean",
-            isOptional: true,
-            suggestions: [
-              {
-                name: "true",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
-              },
-              {
-                name: "false",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-              },
-            ],
+            name: "path",
+            isOptional: false,
+            template: "filepaths",
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
@@ -402,20 +391,9 @@ export const completionSpec: Fig.Spec = {
           name: ["--push-p8-path"],
           description: "Path to your Push Key .p8 file.",
           args: {
-            name: "boolean",
-            isOptional: true,
-            suggestions: [
-              {
-                name: "true",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
-              },
-              {
-                name: "false",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-              },
-            ],
+            name: "path",
+            isOptional: false,
+            template: "filepaths",
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
@@ -424,20 +402,9 @@ export const completionSpec: Fig.Spec = {
           name: ["--provisioning-profile-path"],
           description: "Path to your Provisioning Profile.",
           args: {
-            name: "boolean",
-            isOptional: true,
-            suggestions: [
-              {
-                name: "true",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
-              },
-              {
-                name: "false",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-              },
-            ],
+            name: "path",
+            isOptional: false,
+            template: "filepaths",
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/path.png",
@@ -615,22 +582,11 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: ["--keystore-path"],
-          description: "Path to your Keystore.",
+          description: "Path to your Keystore: *.jks.",
           args: {
-            name: "boolean",
-            isOptional: true,
-            suggestions: [
-              {
-                name: "true",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/true.png",
-              },
-              {
-                name: "false",
-                icon:
-                  "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/false.png",
-              },
-            ],
+            name: "path",
+            isOptional: false,
+            template: "filepaths",
           },
           icon:
             "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/key.png",
