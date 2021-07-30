@@ -3,6 +3,11 @@ export const completionSpec: Fig.Spec = {
   description: "Execute binaries from npm packages",
   subcommands: [
     {
+      name: "create-react-native-app",
+      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+      loadSpec: "create-react-native-app",
+    },
+    {
       name: "react-native",
       icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
       loadSpec: "react-native",
