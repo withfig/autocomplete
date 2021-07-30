@@ -51,6 +51,7 @@ export const completionSpec: Fig.Spec = {
         isOptional: false,
       },
       icon: ICONS.template,
+      priority: 76,
     },
     {
       name: ["--template-path"],
@@ -60,6 +61,7 @@ export const completionSpec: Fig.Spec = {
         isOptional: false,
       },
       icon: ICONS.path,
+      priority: 76,
     },
     // bool
     {
@@ -67,12 +69,14 @@ export const completionSpec: Fig.Spec = {
       description: "Use the default options for creating a project",
       args: boolArg,
       icon: ICONS.skip,
+      priority: 76,
     },
     {
       name: ["--no-install"],
       description: "Skip installing npm packages or CocoaPods.",
       args: boolArg,
       icon: ICONS.skip,
+      priority: 76,
     },
     {
       name: ["--use-npm"],
@@ -80,6 +84,7 @@ export const completionSpec: Fig.Spec = {
         "Use npm to install dependencies. (default when Yarn is not installed)",
       args: boolArg,
       icon: ICONS.npm,
+      priority: 76,
     },
 
     // Info
