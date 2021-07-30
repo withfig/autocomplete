@@ -228,7 +228,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "-enableAddressSanitizer",
-      description: "turn the address sanitizer on or off",
+      description: "Turn the address sanitizer on or off",
       args: {
         name: "mode",
         suggestions: ["YES", "NO"],
@@ -236,7 +236,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "-enableThreadSanitizer",
-      description: "turn the thread sanitizer on or off",
+      description: "Turn the thread sanitizer on or off",
       args: {
         name: "mode",
         suggestions: ["YES", "NO"],
@@ -244,7 +244,7 @@ export const completion: Fig.Spec = {
     },
     {
       name: "-enableUndefinedBehaviorSanitizer",
-      description: "turn the undefined behavior sanitizer on or off",
+      description: "Turn the undefined behavior sanitizer on or off",
       args: {
         name: "mode",
         suggestions: ["YES", "NO"],
