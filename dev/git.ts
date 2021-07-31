@@ -462,9 +462,12 @@ export const completionSpec: Fig.Spec = {
       description: "Run as if git was started in &lt;path&gt;",
     },
     {
-      name: "-c name=value",
+      name: "-c",
       insertValue: "-c ",
       description: "Pass a config parameter to the command",
+      args: {
+        name: "name=value"
+      }
     },
     {
       name: "--exec-path",
@@ -1977,7 +1980,7 @@ export const completionSpec: Fig.Spec = {
         },
 
         {
-          name: ["-s ", "--strategy"],
+          name: ["-s", "--strategy"],
           description:
             "Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise).",
           args: {
