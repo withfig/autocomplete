@@ -1,5 +1,9 @@
 const suggestions: Fig.Suggestion[] = [
   {
+    name: "create-react-native-app",
+    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+  },
+  {
     name: "react-native",
     icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
   },
