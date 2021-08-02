@@ -27,7 +27,7 @@ function invalidateCache() {
   );
 }
 
-async function processFiles(files: string | string[]) {
+async function processFiles(files: string | string[], isDev?: boolean) {
   const fileName = typeof files === "string" ? files : "all specs";
   await esbuild
     .build({
@@ -36,6 +36,7 @@ async function processFiles(files: string | string[]) {
       bundle: true,
       format: "esm",
       minify: true,
+      ...(isDev && { sourcemap: "inline" }),
     })
     .catch((e) =>
       SpecLogger.log(`Error building ${fileName}: ${e.message}`, Level.ERROR)
@@ -53,8 +54,8 @@ async function runCompiler() {
     });
 
     // Process the changed file
-    watcher.on("change", processFiles);
-    watcher.on("add", processFiles);
+    watcher.on("change", (file) => processFiles(file, true));
+    watcher.on("add", (file) => processFiles(file, true));
   } else {
     const files = await glob(SOURCE_FILE_GLOB);
     await processFiles(files);
