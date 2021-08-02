@@ -231,7 +231,9 @@ const packagesArg: Fig.Arg = {
 export const completionSpec: Fig.Spec = {
   name: "go",
   description: "Go is a tool for managing Go source code.",
-  posixNoncompliantFlags: true,
+  parserDirectives: {
+    posixNoncompliantFlags: true,
+  },
   subcommands: [
     {
       name: "bug",

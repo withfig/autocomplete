@@ -411,6 +411,8 @@ export const completionSpec: Fig.Spec = {
   name: "terraform",
   description: "Terraform CLI",
   options: globalOptions,
-  posixNoncompliantFlags: true,
+  parserDirectives: {
+    posixNoncompliantFlags: true,
+  },
   subcommands: [...mainCommands, ...otherCommands, ...extraCommands],
 };

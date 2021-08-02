@@ -26,16 +26,7 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export interface Spec extends Subcommand {
-    /**
-     * This flag allows options to have multiple characters
-     * even if they only have one hyphen
-     *
-     * @example
-     * -longflag
-     */
-    posixNoncompliantFlags?: boolean;
-  }
+  export type Spec = Subcommand;
 
   // Execute shell command function inside generators
   export type ExecuteShellCommandFunction = (
@@ -193,7 +184,16 @@ declare namespace Fig {
       executeShellCommand?: ExecuteShellCommandFunction
     ) => Promise<Spec>;
 
-    // Function<string[], Promise<Spec>>;
+    parserDirectives?: {
+      /**
+       * This flag allows options to have multiple characters
+       * even if they only have one hyphen
+       *
+       * @example
+       * -longflag
+       */
+      posixNoncompliantFlags?: boolean;
+    };
   }
 
   export interface Option extends BaseSuggestion {
