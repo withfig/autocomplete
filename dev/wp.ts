@@ -2,7 +2,7 @@
 // wp-cli version 2.5.0
 // 19 June 2021
 
-// To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 const global_parameter_path: Fig.Option = {
   name: "--path",
   insertValue: "--path=",

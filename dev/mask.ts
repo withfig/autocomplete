@@ -1,4 +1,4 @@
-// To learn more about FIg's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 // var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
