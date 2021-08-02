@@ -2,7 +2,7 @@
 // wp-cli version 2.5.0
 // 19 June 2021
 
-// To learn more about Fig"s autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 const global_parameter_path: Fig.Option = {
   name: "--path",
   insertValue: "--path=",
@@ -177,7 +177,7 @@ export const completion: Fig.Spec = {
     //   description: "Open /wp-admin/ in a browser.",
 
     //   // If a subcommand or option takes an argument, you must include the args prop, even if it"s an empty object (like below)
-    //   // If you want to build custom suggestions for arguments check out: https://fig.io/docs/autocomplete/building-a-spec#making-advanced-suggestions
+    //   // If you want to build custom suggestions for arguments check out: https://fig.io/docs/concepts/dynamic-suggestions
     //   args: [{}],
     //   options: global_parameters,
     // },
