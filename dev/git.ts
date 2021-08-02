@@ -463,11 +463,11 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "-c",
-      insertValue: "-c ",
+      insertValue: "-c {cursor}",
       description: "Pass a config parameter to the command",
       args: {
-        name: "name=value"
-      }
+        name: "name=value",
+      },
     },
     {
       name: "--exec-path",
