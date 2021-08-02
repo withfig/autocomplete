@@ -253,7 +253,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "file",
       template: "filepaths",
-      variadic: true,
+      isVariadic: true,
       isOptional: true,
     },
   ],

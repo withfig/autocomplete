@@ -40,7 +40,7 @@ const completion: Fig.Spec = {
             "Build <tgt> instead of the default target. Multiple targets may be given, separated by spaces",
           args: {
             name: "target",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -153,7 +153,7 @@ const completion: Fig.Spec = {
           args: {
             name: "files",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -199,7 +199,7 @@ const completion: Fig.Spec = {
             {
               name: "file",
               template: "filepaths",
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "destination",
@@ -215,7 +215,7 @@ const completion: Fig.Spec = {
             {
               name: "dir",
               template: "folders",
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "destination",
@@ -231,7 +231,7 @@ const completion: Fig.Spec = {
             {
               name: "file",
               template: "filepaths",
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "destination",
@@ -287,7 +287,7 @@ const completion: Fig.Spec = {
               name: "key value pair",
               description: "Format: NAME=VALUE",
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "command",
@@ -317,7 +317,7 @@ const completion: Fig.Spec = {
           args: {
             name: "dir",
             template: "folders",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -327,7 +327,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -337,7 +337,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -347,7 +347,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -357,7 +357,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -367,7 +367,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -377,7 +377,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -387,7 +387,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -404,7 +404,7 @@ const completion: Fig.Spec = {
           args: {
             name: "dir",
             template: "folders",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -414,12 +414,12 @@ const completion: Fig.Spec = {
             {
               name: "file",
               template: "filepaths",
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "dir",
               template: "folders",
-              variadic: true,
+              isVariadic: true,
             },
           ],
           options: [
@@ -444,7 +444,7 @@ const completion: Fig.Spec = {
           description: "Sleep for given number of seconds",
           args: {
             name: "number",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -537,7 +537,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -547,7 +547,7 @@ const completion: Fig.Spec = {
           args: {
             name: "file",
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

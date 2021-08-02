@@ -88,7 +88,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: searchGenerator,
         debounce: true,
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -203,7 +203,7 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
         generators: searchGenerator,
         debounce: true,
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -266,7 +266,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           generators: dependenciesGenerator,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: npmInstallOptions,
@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           generators: dependenciesGenerator,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: npmInstallOptions,
@@ -290,7 +290,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           generators: dependenciesGenerator,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: npmInstallOptions,
@@ -302,7 +302,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           generators: dependenciesGenerator,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: npmInstallOptions,
@@ -314,7 +314,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "package",
           generators: dependenciesGenerator,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: npmInstallOptions,

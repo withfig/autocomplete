@@ -125,7 +125,7 @@ const completionSpec: Fig.Spec = {
       name: "--cuda-include-ptx",
       description:
         "Include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once.",
-      args: { name: "value", description: "value", variadic: true },
+      args: { name: "value", description: "value", isVariadic: true },
     },
     {
       name: "--cuda-noopt-device-debug",
@@ -2911,7 +2911,7 @@ const completionSpec: Fig.Spec = {
       name: "--no-cuda-include-ptx",
       description:
         "Do not include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once.",
-      args: { name: "value", description: "value", variadic: true },
+      args: { name: "value", description: "value", isVariadic: true },
     },
     { name: "--no-cuda-version-check", description: "Don't" },
     {
@@ -3258,7 +3258,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-working-directory",
       description: "Resolve file paths relative to the specified directory",
-      args: { name: "value", description: "value", variadic: true },
+      args: { name: "value", description: "value", isVariadic: true },
     },
     { name: "-w", description: "Suppress all warnings" },
     {

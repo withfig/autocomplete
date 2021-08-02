@@ -33,7 +33,7 @@ const completionSpec: Fig.Spec = {
       description: "Sets a local application-specific Python version",
       args: {
         name: "python version",
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {

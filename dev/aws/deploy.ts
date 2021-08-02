@@ -2481,7 +2481,7 @@ const completionSpec: Fig.Spec = {
             "Optional. The list of key/value pairs to tag the on-premises instance.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

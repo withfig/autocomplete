@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "Source files in shell",
   args: [
     {
-      variadic: true,
+      isVariadic: true,
       name: "File to source",
       template: "filepaths",
     },

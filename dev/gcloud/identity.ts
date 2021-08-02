@@ -207,7 +207,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "EMAIL",
               description: "The email address of the group to be created.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -347,7 +347,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "EMAIL",
               description: "The email address of the group being deleted.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -487,7 +487,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "EMAIL",
               description: "The email address of the group being described.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1840,7 +1840,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "EMAIL",
               description: "The email address of the group to be updated.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

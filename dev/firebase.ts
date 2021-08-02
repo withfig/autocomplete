@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
           description:
             "a comma separated list of tester emails to distribute to",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -55,7 +55,7 @@ const completionSpec: Fig.Spec = {
           description:
             "a comma separated list of group aliases to distribute to",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -63,7 +63,7 @@ const completionSpec: Fig.Spec = {
           description:
             "path to file with a comma separated list of group aliases to distribute to",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -783,7 +783,7 @@ const completionSpec: Fig.Spec = {
       description: "set environment config with key=value syntax",
       args: {
         name: "values",
-        variadic: true,
+        isVariadic: true,
         description: "key=value",
       },
       options: [
@@ -1368,7 +1368,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "resources",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [

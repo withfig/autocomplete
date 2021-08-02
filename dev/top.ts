@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
       description: "Monitor pids",
       args: {
         name: "process ids",
-        variadic: true,
+        isVariadic: true,
       },
     },
   ],

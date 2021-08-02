@@ -128,8 +128,8 @@ var customArgument = {
     },
 
     // Function that is used to determine what part of the user's input to use to filter over all the generated suggestions
-    // We use this in cd. e.g if a user types `cd ~/d`, the filterTerm function outputs "d" and we use "d" to filter over the list of suggestions
-    filterTerm: (token) => {
+    // We use this in cd. e.g if a user types `cd ~/d`, the getQueryTerm function outputs "d" and we use "d" to filter over the list of suggestions
+    getQueryTerm: (token) => {
       if (!token.startsWith(_prefix_string_for_file_and_folder_suggestions))
         return token;
       return token.slice(token.lastIndexOf("/") + 1);

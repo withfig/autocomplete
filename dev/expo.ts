@@ -1955,7 +1955,7 @@ const completionSpec: Fig.Spec = {
           generators: _gen[`npm`],
           isOptional: true,
           name: "packages",
-          variadic: true,
+          isVariadic: true,
           debounce: true,
         },
       ],

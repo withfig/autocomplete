@@ -37,7 +37,7 @@ const completionSpec: Fig.Spec = {
   name: "composer",
   description: "Composer Command",
 
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const jsonList = await executeShellCommand("composer list --format=json");
     const subcommands: Fig.Subcommand[] = [];
 
@@ -62,7 +62,7 @@ const completionSpec: Fig.Spec = {
               description: arg.description,
               isOptional: !arg.is_required,
               default: argDefault,
-              variadic: arg.is_array,
+              isVariadic: arg.is_array,
             };
           }),
 
