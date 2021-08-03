@@ -51,6 +51,10 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "xcodebuild",
+      loadSpec: "xcodebuild",
+    },
   ],
   options: [
     {

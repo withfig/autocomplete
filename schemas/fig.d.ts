@@ -69,7 +69,7 @@ declare namespace Fig {
     /**
      * The icon that is rendered is based on the type, unless overwritten. Icon
      * can be a 1 character string, a URL, or Fig's icon protocol (fig://) which lets you generate
-     * colorful and fun systems icons: https://fig.io/docs/autocomplete/reference/icon-api
+     * colorful and fun systems icons: https://fig.io/docs/reference/suggestion/icon-api
      *
      * @example
      * `A`, `😊`
@@ -361,7 +361,7 @@ declare namespace Fig {
   }
 
   /**
-   * @see https://fig.io/docs/autocomplete/api#generator-object
+   * @see https://fig.io/docs/reference/generator
    */
   export interface Generator {
     /**

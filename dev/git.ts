@@ -57,10 +57,15 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
     const parts = elm.match(/\S+/g);
     if (parts.length > 1) {
       if (parts[0] === "*") {
+        // We are in a detached HEAD state
+        if (elm.includes("HEAD detached")) {
+          return {};
+        }
         // Current branch.
         return {
           name: elm.replace("*", "").trim(),
           description: "current branch",
+          priority: 100,
           icon: "⭐️",
         };
       } else if (parts[0] === "+") {
@@ -73,6 +78,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
       name,
       description: "branch",
       icon: "fig://icon?type=git",
+      priority: 75,
     };
   });
 };
@@ -80,7 +86,7 @@ const postProcessBranches: Fig.Generator["postProcess"] = (out) => {
 const gitGenerators: Record<string, Fig.Generator> = {
   // Commit history
   commits: {
-    script: "git log --oneline",
+    script: "git --no-optional-locks log --oneline",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -100,7 +106,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // user aliases
   aliases: {
-    script: "git config --get-regexp '^alias' |cut -d. -f2",
+    script: "git --no-optional-locks config --get-regexp '^alias' |cut -d. -f2",
     postProcess: function (out) {
       return out.split("\n").map((aliasLine) => {
         const splitted = aliasLine.match(/^(\S+)\s(.*)/);
@@ -112,7 +118,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // Saved stashes
   // TODO: maybe only print names of stashes
   stashes: {
-    script: "git stash list",
+    script: "git --no-optional-locks stash list",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -137,7 +143,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
   // https://mirrors.edge.kernel.org/pub/software/scm/git/docs/#_identifier_terminology
 
   treeish: {
-    script: "git diff --cached --name-only",
+    script: "git --no-optional-locks diff --cached --name-only",
     postProcess: function (out) {
       const output = filterMessages(out);
 
@@ -158,17 +164,17 @@ const gitGenerators: Record<string, Fig.Generator> = {
 
   // All branches
   remoteLocalBranches: {
-    script: "git branch -a --no-color",
+    script: "git --no-optional-locks branch -a --no-color",
     postProcess: postProcessBranches,
   },
 
   localBranches: {
-    script: "git branch --no-color",
+    script: "git --no-optional-locks branch --no-color",
     postProcess: postProcessBranches,
   },
 
   remotes: {
-    script: "git remote -v",
+    script: "git --no-optional-locks remote -v",
     postProcess: function (out) {
       const remoteURLs = out.split("\n").reduce((dict, line) => {
         const pair = line.split("\t");
@@ -204,13 +210,18 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   tags: {
-    script: "git tag --list",
-    splitOn: "\n",
+    script: "git --no-optional-locks tag --list",
+    postProcess: function (output) {
+      return output.split("\n").map((tag) => ({
+        name: tag,
+        icon: "🏷️",
+      }));
+    },
   },
 
   // Files for staging
   files_for_staging: {
-    script: "git status --short",
+    script: "git --no-optional-locks status --short",
     postProcess: (out, context) => {
       const output = filterMessages(out);
 
@@ -219,7 +230,7 @@ const gitGenerators: Record<string, Fig.Generator> = {
       }
 
       const files = output.split("\n").map((file) => {
-        // From "git status --short"
+        // From "git --no-optional-locks status --short"
         // M  dev/github.ts // test file that was added
         //  M dev/kubectl.ts // test file that was not added
         // A  test2.txt // new added and tracked file
@@ -299,21 +310,22 @@ const gitGenerators: Record<string, Fig.Generator> = {
   },
 
   getStagedFiles: {
-    script: "git status --short | sed -ne '/^M /p' -e '/A /p'",
+    script:
+      "git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'",
     postProcess: postProcessTrackedFiles,
   },
 
   getUnstagedFiles: {
-    script: "git diff --name-only",
+    script: "git --no-optional-locks diff --name-only",
     splitOn: "\n",
   },
 
   getChangedTrackedFiles: {
     script: function (context) {
       if (context.includes("--staged") || context.includes("--cached")) {
-        return `git status --short | sed -ne '/^M /p' -e '/A /p'`;
+        return `git --no-optional-locks status --short | sed -ne '/^M /p' -e '/A /p'`;
       } else {
-        return `git status --short | sed -ne '/M /p' -e '/A /p'`;
+        return `git --no-optional-locks status --short | sed -ne '/M /p' -e '/A /p'`;
       }
     },
     postProcess: postProcessTrackedFiles,
@@ -450,9 +462,12 @@ const completionSpec: Fig.Spec = {
       description: "Run as if git was started in &lt;path&gt;",
     },
     {
-      name: "-c name=value",
-      insertValue: "-c ",
+      name: "-c",
+      insertValue: "-c {cursor}",
       description: "Pass a config parameter to the command",
+      args: {
+        name: "name=value",
+      },
     },
     {
       name: "--exec-path",
@@ -486,6 +501,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-replace-objects",
       description: "Do not use replacement refs",
+    },
+    {
+      name: "--no-optional-locks",
+      description: "Do not perform optional operations that require lock files",
     },
     {
       name: "--bare",
@@ -1961,7 +1980,7 @@ const completionSpec: Fig.Spec = {
         },
 
         {
-          name: ["-s ", "--strategy"],
+          name: ["-s", "--strategy"],
           description:
             "Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise).",
           args: {
@@ -3964,10 +3983,14 @@ const completionSpec: Fig.Spec = {
       ],
       args: [
         {
-          name: "branch",
-          description: "branch or commit to switch to",
+          name: "branch, file, tag or commit",
+          description: "branch, file, tag or commit to switch to",
           isOptional: true,
-          generators: gitGenerators.remoteLocalBranches,
+          generators: [
+            gitGenerators.remoteLocalBranches,
+            gitGenerators.tags,
+            { template: "filepaths" },
+          ],
           suggestions: [
             {
               name: "-",

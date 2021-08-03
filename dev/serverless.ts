@@ -1,4 +1,4 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 
 const options: Record<string, Fig.Option> = {
   awsProfile: {

@@ -10,13 +10,13 @@ const completionSpec: Fig.Spec = {
         return paths
           .filter((file) => {
             if (typeof file.name === "string") {
-              return file.name.endsWith(".js") || file.name.endsWith("/");
+              return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
             }
             return false;
           })
           .map((file) => {
             const isJsFile =
-              typeof file.name === "string" && file.name.endsWith(".js");
+              typeof file.name === "string" && file.name.match(/.*\.m?js/g);
 
             return {
               ...file,

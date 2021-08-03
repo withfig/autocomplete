@@ -2113,6 +2113,15 @@ const completionSpec: Fig.Spec = {
       ],
     },
   ],
+  additionalSuggestions: [
+    {
+      name: "new -S 'name'",
+      description: "Create a new session shortcut",
+      insertValue: "new -S '{cursor}'",
+      icon: "fig://template?color=2ecc71&badge=🔥",
+      // type: "shortcut",
+    },
+  ],
 };
 
 export default completionSpec;

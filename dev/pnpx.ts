@@ -1,76 +1,43 @@
-const suggestions: Fig.Suggestion[] = [
-  {
-    name: "create-react-native-app",
-    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-  },
-  {
-    name: "react-native",
-    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-  },
-  {
-    name: "tailwindcss",
-    icon: "https://tailwindcss.com/favicon-32x32.png",
-  },
-  {
-    name: "next",
-    icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
-  },
-  {
-    name: "gltfjsx",
-    icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
-  },
-  {
-    name: "prisma",
-    icon:
-      "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
-  },
-  {
-    name: "eslint",
-    icon: "https://eslint.org/assets/img/favicon.512x512.png",
-  },
-  {
-    name: "prettier",
-    icon: "https://prettier.io/icon.png",
-  },
-  {
-    name: "tsc",
-    icon:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
-  },
-];
-
-const completionSpec: Fig.Spec = {
-  name: "npx",
+export const completionSpec: Fig.Spec = {
+  name: "pnpx",
   description: "Execute binaries from npm packages",
-
-  args: {
-    name: "command",
-    isCommand: true,
-    generators: {
-      script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
-      postProcess: function (out) {
-        const cli = [...suggestions].reduce(
-          (acc, { name }) => [...acc, name],
-          []
-        );
-        return out
-          .split("\n")
-          .filter((name) => !cli.includes(name))
-          .map((name) => ({
-            name,
-            icon: "fig://icon?type=command",
-            loadSpec: name,
-          }));
-      },
+  subcommands: [
+    {
+      name: "create-react-native-app",
+      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+      loadSpec: "create-react-native-app",
     },
-    suggestions: [...suggestions],
-    isOptional: true,
-  },
-
+    {
+      name: "react-native",
+      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+      loadSpec: "react-native",
+    },
+    {
+      name: "tailwindcss",
+      icon: "https://tailwindcss.com/favicon-32x32.png",
+      loadSpec: "tailwindcss",
+    },
+    {
+      name: "next",
+      icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+      loadSpec: "next",
+    },
+    {
+      name: "gltfjsx",
+      icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
+      loadSpec: "gltfjsx",
+    },
+    {
+      name: "prisma",
+      icon:
+        "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+      loadSpec: "prisma",
+    },
+  ],
   options: [
     {
       name: ["--package", "-p"],
-      description: "Package to be installed.",
+      description: "Package to be executed.",
       args: [
         {
           name: "package",
@@ -153,17 +120,17 @@ const completionSpec: Fig.Spec = {
       ],
       name: ["--shell-auto-fallback"],
       description:
-        'Generate shell code to use npx as the "command not found" fallback.',
+        'Generate shell code to use pnpx as the "command not found" fallback.',
     },
     {
       name: ["--ignore-existing"],
       description:
-        "Ignores existing binaries in $PATH, or in the localproject. This forces npx to do a temporary install and use the latest version.",
+        "Ignores existing binaries in $PATH, or in the localproject. This forces pnpx to do a temporary install and use the latest version.",
     },
     {
       name: ["--quiet", "-q"],
       description:
-        "Suppress output from npx itself. Subcommands will not be affected.",
+        "Suppress output from pnpx itself. Subcommands will not be affected.",
     },
     {
       name: ["--npm"],
@@ -190,5 +157,3 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-
-export default completionSpec;
