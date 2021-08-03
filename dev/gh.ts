@@ -25,7 +25,6 @@ const ghGenerators: Record<string, Fig.Generator> = {
 
       return aliases.map(({ name, content }) => ({
         name,
-        displayName: name,
         description: content,
         icon: "fig://icon?type=command",
       }));
@@ -149,7 +148,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "editor",
               description: "The text editor program to use for authoring text",
-              args: { name: "editor" },
+              args: { name: "editor", suggestions: ["vim", "nano"] },
             },
             {
               name: "prompt",
