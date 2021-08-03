@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "xcrun",
   description:
     "Find and execute the named command line tool from the active xCode developer directory.",
@@ -122,3 +122,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

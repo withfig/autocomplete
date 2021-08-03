@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "python3",
   description: "Run the python interpretor",
   generateSpec: async (context, executeShellCommand) => {
@@ -177,3 +177,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

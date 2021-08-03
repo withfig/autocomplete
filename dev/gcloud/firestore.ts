@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "firestore",
   description: "Manage your Cloud Firestore resources.",
   subcommands: [
@@ -2991,3 +2991,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

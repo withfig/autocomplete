@@ -76,7 +76,7 @@ const npmInstallOptions: Fig.Option[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "npm",
   description: "Node package manager",
   subcommands: [
@@ -329,3 +329,5 @@ export const completionSpec: Fig.Spec = {
     { name: "whoami", description: "display npm username" },
   ],
 };
+
+export default completionSpec;

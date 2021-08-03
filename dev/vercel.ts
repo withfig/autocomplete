@@ -61,7 +61,7 @@ const teamList: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "vercel",
   description: "CLI Interface for Vercel.com",
   args: {
@@ -689,3 +689,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

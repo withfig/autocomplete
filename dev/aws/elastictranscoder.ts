@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "elastictranscoder",
   description:
     "AWS Elastic Transcoder Service The AWS Elastic Transcoder Service.",
@@ -944,3 +944,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

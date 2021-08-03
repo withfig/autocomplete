@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "artisan",
   description: "Laravel Artisan Command",
   generateSpec: async (context, executeShellCommand) => {
@@ -49,3 +49,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

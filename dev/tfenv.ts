@@ -17,7 +17,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tfenv",
   description: "Terraform version manager",
   subcommands: [
@@ -79,3 +79,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

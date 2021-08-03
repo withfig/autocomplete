@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "robomaker",
   description:
     "This section provides documentation for the AWS RoboMaker API operations.",
@@ -2702,3 +2702,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

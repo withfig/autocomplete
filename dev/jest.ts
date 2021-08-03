@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "jest",
   description:
     "A delightful JavaScript Testing Framework with a focus on simplicity",
@@ -388,3 +388,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "xray",
   description:
     "AWS X-Ray provides APIs for managing debug traces and retrieving service maps and other data created by processing those traces.",
@@ -1333,3 +1333,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

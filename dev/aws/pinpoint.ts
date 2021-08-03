@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pinpoint",
   description: "Doc Engage API - Amazon Pinpoint API",
   subcommands: [
@@ -4625,3 +4625,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

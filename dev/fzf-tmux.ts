@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "fzf-tmux",
   description: "Opens a fuzzy finder in a tmux pane",
   options: [
@@ -370,3 +370,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "aws",
   async generateSpec(_, executeShellCommand) {
     const check = await executeShellCommand(
@@ -1582,3 +1582,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "access-context-manager",
   description: "Manage Access Context Manager resources.",
   subcommands: [
@@ -6431,3 +6431,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

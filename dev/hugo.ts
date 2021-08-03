@@ -350,7 +350,7 @@ const convertOptions: Fig.Option[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "hugo",
   description: "hugo builds your site",
   subcommands: [
@@ -1017,3 +1017,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

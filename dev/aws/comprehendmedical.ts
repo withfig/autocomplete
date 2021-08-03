@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "comprehendmedical",
   description:
     "Amazon Comprehend Medical extracts structured information from unstructured clinical text. Use these actions to gain insight in your documents.",
@@ -911,3 +911,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

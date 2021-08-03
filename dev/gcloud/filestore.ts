@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "filestore",
   description: "Create and manipulate Cloud Filestore resources.",
   subcommands: [
@@ -2767,3 +2767,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

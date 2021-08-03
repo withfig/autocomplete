@@ -67,7 +67,7 @@ const _gen: Record<string, Fig.Generator> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "expo",
   icon:
     "https://raw.githubusercontent.com/expo/expo-cli/master/assets/fig/expo.png",
@@ -5249,3 +5249,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

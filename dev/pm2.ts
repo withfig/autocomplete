@@ -344,7 +344,7 @@ const sharedOptions: Fig.Option[] = [
   { name: ["-h, –-help"], description: "Outputs usage information" },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pm2",
   description: "Daemon process manager",
   subcommands: [
@@ -801,3 +801,5 @@ export const completion: Fig.Spec = {
   ],
   options: sharedOptions,
 };
+
+export default completionSpec;

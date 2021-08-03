@@ -19,7 +19,7 @@
 
 // <arg1> [arg2...] -> This is just one argument that is NOT optional and is variadic
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "git_push_example",
   description: "",
 
@@ -58,3 +58,5 @@ export const completion: Fig.Spec = {
     // [--[no-]signed|--signed=(true|false|if-asked)]
   ],
 };
+
+export default completionSpec;

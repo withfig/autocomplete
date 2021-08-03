@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "asset",
   description: "Manage the Cloud Asset Inventory.",
   subcommands: [
@@ -2777,3 +2777,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -19,7 +19,7 @@ const sharedOptions: Fig.Option[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "gatsby",
   description: "Gatsby CLI",
   subcommands: [
@@ -112,3 +112,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

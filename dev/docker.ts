@@ -1801,7 +1801,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "docker",
   description: "A self-sufficient runtime for containers",
   subcommands: [
@@ -5374,3 +5374,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1284,7 +1284,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
   };
 });
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "django-admin",
   description: "Utility script for the Django Web framework",
   icon: DJANGO_ICON_URL,
@@ -1307,3 +1307,5 @@ export const completion: Fig.Spec = {
     ...DJANGO_NATIVE_COMMANDS,
   ],
 };
+
+export default completionSpec;

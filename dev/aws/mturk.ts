@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "mturk",
   description: "Amazon Mechanical Turk API Reference",
   subcommands: [
@@ -2323,3 +2323,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

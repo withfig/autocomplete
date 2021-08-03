@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dns",
   description: "Manage your Cloud DNS managed-zones and record-sets.",
   subcommands: [
@@ -5843,3 +5843,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

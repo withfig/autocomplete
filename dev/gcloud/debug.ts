@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "debug",
   description: "Commands for interacting with the Cloud Debugger.",
   subcommands: [
@@ -2522,3 +2522,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

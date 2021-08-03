@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "forecast",
   description:
     "Provides APIs for creating and managing Amazon Forecast resources.",
@@ -1661,3 +1661,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

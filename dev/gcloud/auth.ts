@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "auth",
   description: "Manage oauth2 credentials for the Google Cloud SDK.",
   subcommands: [
@@ -2667,3 +2667,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

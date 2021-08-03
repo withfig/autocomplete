@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "runtime.sagemaker",
   description: "The Amazon SageMaker runtime API.",
   subcommands: [
@@ -89,3 +89,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

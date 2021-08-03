@@ -148,7 +148,7 @@ const reverseConnectionSuggestions: Fig.Suggestion[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "adb",
   description: "Android Debug Bridge",
   subcommands: [
@@ -780,3 +780,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

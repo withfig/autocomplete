@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "prettier",
   description: "Run Prettier from the command line",
   icon: "https://prettier.io/icon.png",
@@ -332,3 +332,5 @@ export const completion: Fig.Spec = {
     variadic: true,
   },
 };
+
+export default completionSpec;

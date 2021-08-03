@@ -54,7 +54,7 @@ const globalOptions: Fig.Option[] = [
   noInteraction,
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "poetry",
   description: "Python package manager",
   subcommands: [
@@ -601,3 +601,5 @@ export const completion: Fig.Spec = {
   // Only uncomment if poetry takes an argument
   // args: {}
 };
+
+export default completionSpec;

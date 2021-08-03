@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "survey",
   description: "Invoke a customer satisfaction survey for Cloud SDK.",
 
@@ -124,3 +124,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

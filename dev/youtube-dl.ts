@@ -50,7 +50,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "youtube-dl",
   description: "Download videos from YouTube",
   args: {
@@ -193,3 +193,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

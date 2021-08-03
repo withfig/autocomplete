@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "transcribe",
   description: "Operations and objects for transcribing speech to text.",
   subcommands: [
@@ -1310,3 +1310,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

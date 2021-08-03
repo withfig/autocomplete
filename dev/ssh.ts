@@ -21,7 +21,7 @@ const pastConnections: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ssh",
   description: "Log into a remote machine",
   args: [
@@ -378,3 +378,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

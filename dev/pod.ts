@@ -12,7 +12,7 @@ const getPodspecsAndFolders = (paths) => {
   });
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pod",
   description: "CocoaPods, the Cocoa library package manager.",
   subcommands: [
@@ -1452,3 +1452,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

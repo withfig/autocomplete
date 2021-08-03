@@ -33,7 +33,7 @@ const boolArg: Fig.Arg = {
   ],
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "create-react-native-app",
   description: "Creates a new React Native project",
   args: {
@@ -102,3 +102,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

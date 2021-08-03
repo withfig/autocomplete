@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "redshift-data",
   description:
     "You can use the Amazon Redshift Data API to run queries on Amazon Redshift tables. You can run individual SQL statements, which are committed if the statement succeeds.  For more information about the Amazon Redshift Data API, see Using the Amazon Redshift Data API in the Amazon Redshift Cluster Management Guide.",
@@ -744,3 +744,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

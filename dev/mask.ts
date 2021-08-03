@@ -2,7 +2,7 @@
 // var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "mask",
   generateSpec: async (context, executeShellCommand) => {
     // See if use specified a maskfile location
@@ -31,3 +31,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

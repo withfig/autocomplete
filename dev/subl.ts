@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "subl",
   description: "Sublime Text",
   args: {
@@ -6,3 +6,5 @@ export const completionSpec: Fig.Spec = {
     template: ["folders", "filepaths"],
   },
 };
+
+export default completionSpec;

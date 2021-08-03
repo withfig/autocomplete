@@ -68,7 +68,7 @@ const styleFileArg: Fig.Arg = {
   ],
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pandoc",
   description: "A universal document converter",
 
@@ -795,3 +795,5 @@ export const completion: Fig.Spec = {
     variadic: true,
   },
 };
+
+export default completionSpec;

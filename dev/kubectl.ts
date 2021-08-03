@@ -278,7 +278,7 @@ const sharedOpts: Record<string, Fig.Option> = {
 
 const sharedOptsArray = Object.values(sharedOpts);
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "kubectl",
   description: "",
   subcommands: [
@@ -3804,3 +3804,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

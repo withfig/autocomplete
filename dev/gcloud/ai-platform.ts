@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ai-platform",
   description: "Manage AI Platform jobs and models.",
   subcommands: [
@@ -6622,3 +6622,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

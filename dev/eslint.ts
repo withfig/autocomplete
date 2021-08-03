@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "eslint",
   description: "Pluggable JavaScript linter",
   options: [
@@ -294,3 +294,5 @@ export const completion: Fig.Spec = {
     variadic: true,
   },
 };
+
+export default completionSpec;

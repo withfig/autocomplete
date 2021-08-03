@@ -39,7 +39,7 @@ const suggestions: Fig.Suggestion[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
 
@@ -190,3 +190,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

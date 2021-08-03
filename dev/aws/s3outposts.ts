@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "s3outposts",
   description:
     "Amazon S3 on Outposts provides access to S3 on Outposts operations.",
@@ -151,3 +151,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -97,7 +97,7 @@ const valueArgs = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "defaults",
   description: "Command line interface to a user's defaults.",
 
@@ -197,3 +197,5 @@ export const completionSpec: Fig.Spec = {
 //   -array-add <value1> <value2> ...
 //   -dict <key1> <value1> <key2> <value2> ...
 //   -dict-add <key1> <value1> ...
+
+export default completionSpec;

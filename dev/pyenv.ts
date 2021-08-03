@@ -13,7 +13,7 @@ const versionList: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pyenv",
   description: "pyenv",
   args: {},
@@ -147,3 +147,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -228,7 +228,7 @@ const packagesArg: Fig.Arg = {
   isOptional: true,
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "go",
   description: "Go is a tool for managing Go source code.",
   posixNoncompliantFlags: true,
@@ -817,3 +817,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

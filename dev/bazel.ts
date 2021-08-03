@@ -34,7 +34,7 @@ const bazelBuildFiles: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "bazel",
   description: "Bazel the build system!",
   subcommands: [
@@ -64,3 +64,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

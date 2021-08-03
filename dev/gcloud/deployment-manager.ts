@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "deployment-manager",
   description: "Manage deployments of cloud resources.",
   subcommands: [
@@ -3367,3 +3367,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

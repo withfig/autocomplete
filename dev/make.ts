@@ -15,7 +15,7 @@ const listTargets: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "make",
   args: {
     name: "target",
@@ -56,3 +56,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

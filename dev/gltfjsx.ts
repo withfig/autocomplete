@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "gltfjsx",
   description: "GLTF to JSX converter",
   args: {
@@ -58,3 +58,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

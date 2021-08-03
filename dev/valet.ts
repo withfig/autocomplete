@@ -62,7 +62,7 @@ const global_option_secure: Fig.Option = {
   name: "--secure",
 };
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "valet",
   description:
     "Valet is a Laravel development environment for macOS minimalists.",
@@ -744,3 +744,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dataproc",
   description: "Create and manage Google Cloud Dataproc clusters and jobs.",
   subcommands: [
@@ -13451,3 +13451,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

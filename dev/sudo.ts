@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "sudo",
   description: "execute a command as the superuser or another user",
   options: [
@@ -30,3 +30,5 @@ export const completion: Fig.Spec = {
     isCommand: true,
   },
 };
+
+export default completionSpec;

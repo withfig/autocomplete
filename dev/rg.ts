@@ -27,7 +27,7 @@ const sortbyArg: Fig.Arg = {
     },
   ],
 };
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rg",
   description:
     "recursively searches current directory for lines matching a pattern",
@@ -613,3 +613,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

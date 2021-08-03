@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "identity",
   description: "Manage Cloud Identity Groups and Memberships resources.",
   subcommands: [
@@ -2097,3 +2097,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

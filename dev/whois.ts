@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "whois",
   args: {
     name: "name",
@@ -10,3 +10,5 @@ export const completionSpec: Fig.Spec = {
     { name: ["--help"], description: "Display online help." },
   ],
 };
+
+export default completionSpec;

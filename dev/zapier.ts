@@ -12,7 +12,7 @@ const debugFlag: Fig.Option = {
   description: "Show extra debugging output.",
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "zapier-platform-cli",
   description:
     "The Zapier CLI is a developer-focused way to create and maintain Zapier integrations. See more at https://github.com/zapier/zapier-platform.",
@@ -560,3 +560,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

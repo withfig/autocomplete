@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "container",
   description: "Deploy and manage clusters of machines for running containers.",
   subcommands: [
@@ -12564,3 +12564,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

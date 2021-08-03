@@ -20,7 +20,7 @@ const dirArgument: Fig.Arg = {
   isOptional: true,
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "next",
   description: "Next.js CLI to start, build and export your application",
   options: [
@@ -99,3 +99,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

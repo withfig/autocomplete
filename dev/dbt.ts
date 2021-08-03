@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dbt",
   description: "",
   subcommands: [
@@ -371,3 +371,5 @@ export const completion: Fig.Spec = {
   // Only uncomment if dbt takes an argument
   // args: {}
 };
+
+export default completionSpec;
