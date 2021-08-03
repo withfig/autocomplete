@@ -2,6 +2,7 @@
   "name": "linter",
   "version": "1.0.0",
   "description": "Fig Autocomplete Spec Linter",
+  "schemaVersion": "v7",
   "scripts": {
     "dev": "\"$npm_execpath\" run build && source scripts/dev.sh",
     "test": "tsc --noEmit && echo 'All specs passed validation. You are ready to push!'",
