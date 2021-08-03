@@ -1,6 +1,6 @@
 {
   "name": "linter",
-  "version": "1.0.0",
+  "version": "v7",
   "description": "Fig Autocomplete Spec Linter",
   "scripts": {
     "dev": "\"$npm_execpath\" run build && source scripts/dev.sh",
