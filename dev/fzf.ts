@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "fzf",
   description: "A general-purpose command-line fuzzy finder",
   options: [
@@ -370,3 +370,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

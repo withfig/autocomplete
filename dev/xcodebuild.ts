@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "xcodebuild",
   description: "Build Xcode projects",
   options: [
@@ -534,3 +534,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

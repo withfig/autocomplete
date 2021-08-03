@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "googler",
   description: "Google from the command-line",
   options: [
@@ -190,3 +190,5 @@ export const completion: Fig.Spec = {
     isOptional: true,
   },
 };
+
+export default completionSpec;
