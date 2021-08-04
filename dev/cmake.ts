@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completion: Fig.Spec = {
   name: "cmake",
   description:
     "Command-line interface of the cross-platform buildsystem generator CMake",
@@ -827,3 +827,5 @@ export const completion: Fig.Spec = {
     template: "folders",
   },
 };
+
+export default completion;
