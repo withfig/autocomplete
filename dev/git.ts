@@ -115,6 +115,25 @@ const gitGenerators: Record<string, Fig.Generator> = {
     },
   },
 
+  revs: {
+    script: "git rev-list --all --oneline",
+    postProcess: function (out) {
+      const output = filterMessages(out);
+
+      if (output.startsWith("fatal:")) {
+        return [];
+      }
+
+      return output.split("\n").map((line) => {
+        return {
+          name: line.substring(0, 7),
+          icon: "fig://icon?type=node",
+          description: line.substring(7),
+        };
+      });
+    },
+  },
+
   // Saved stashes
   // TODO: maybe only print names of stashes
   stashes: {
@@ -3571,6 +3590,201 @@ const completionSpec: Fig.Spec = {
     {
       name: "bisect",
       description: "Use binary search to find the commit that introduced a bug",
+      subcommands: [
+        {
+          name: "start",
+          description: "Reset bisect state and start bisection",
+          args: [
+            {
+              name: "bad",
+              isOptional: true,
+              generators: gitGenerators.revs,
+              suggestions: ["HEAD"],
+            },
+            {
+              name: "good",
+              isOptional: true,
+              generators: [gitGenerators.revs, gitGenerators.revs],
+              suggestions: ["HEAD"],
+              variadic: true,
+            },
+          ],
+          options: [
+            {
+              name: "--term-new",
+              description:
+                "Specify the alias to mark commits as new during the bisect process",
+              args: {
+                name: "term",
+                description:
+                  "Specifying: fixed, would require using git bisect fixed instead of git bisect new",
+              },
+            },
+            {
+              name: "--term-bad",
+              description:
+                "Specify the alias to mark commits as bad during the bisect process",
+              args: {
+                name: "term",
+                description:
+                  "Specifying: broken, would require using git bisect broken instead of git bisect bad",
+              },
+            },
+            {
+              name: "--term-good",
+              description:
+                "Specify the alias to mark commits as good during the bisect process",
+              args: {
+                name: "term",
+                description:
+                  "Specifying: fixed, would require using git bisect fixed instead of git bisect good",
+              },
+            },
+            {
+              name: "--term-old",
+              description:
+                "Specify the alias to mark commits as old during the bisect process",
+              args: {
+                name: "term",
+                description:
+                  "Specifying: broken, would require using git bisect broken instead of git bisect old",
+              },
+            },
+            {
+              name: "--no-checkout",
+              description:
+                "Do not checkout the new working tree at each iteration of the bisection process. Instead just update a special reference named BISECT_HEAD to make it point to the commit that should be tested",
+            },
+            {
+              name: "--first-parent",
+              description:
+                "Follow only the first parent commit upon seeing a merge commit. In detecting regressions introduced through the merging of a branch, the merge commit will be identified as introduction of the bug and its ancestors will be ignored",
+            },
+            {
+              name: "--",
+              description:
+                "Stop taking subcommand arguments and options. Starts taking paths to bisect",
+            },
+          ],
+        },
+        {
+          name: "bad",
+          description: "Mark commits as bad",
+          args: {
+            name: "rev",
+            isOptional: true,
+            generators: gitGenerators.revs,
+            suggestions: ["HEAD"],
+          },
+        },
+        {
+          name: "new",
+          description: "Mark commits as new",
+          args: {
+            name: "rev",
+            isOptional: true,
+            generators: gitGenerators.revs,
+            suggestions: ["HEAD"],
+          },
+        },
+        {
+          name: "old",
+          description: "Mark commits as old",
+          args: {
+            name: "rev",
+            isOptional: true,
+            generators: gitGenerators.revs,
+            suggestions: ["HEAD"],
+            variadic: true,
+          },
+        },
+        {
+          name: "good",
+          description: "Mark commits as good",
+          args: {
+            name: "rev",
+            isOptional: true,
+            generators: gitGenerators.revs,
+            suggestions: ["HEAD"],
+            variadic: true,
+          },
+        },
+        {
+          name: "next",
+          description: "Find next bisection to test and check it out",
+        },
+        {
+          name: "terms",
+          description:
+            "Show the terms used for old and new commits (default: bad, good)",
+          options: [
+            {
+              name: "--term-old",
+              description: "You can get just the old (respectively new) term",
+            },
+            {
+              name: "--term-good",
+              description: "You can get just the old (respectively new) term",
+            },
+          ],
+        },
+        {
+          name: "skip",
+          description: "Mark <rev>... untestable revisions",
+          args: {
+            name: "rev | range",
+            variadic: true,
+            isOptional: true,
+            generators: gitGenerators.revs,
+            suggestions: ["HEAD"],
+          },
+        },
+        {
+          name: "reset",
+          description: "Finish bisection search and go back to commit",
+          args: {
+            name: "commit",
+            isOptional: true,
+            generators: gitGenerators.commits,
+            suggestions: ["HEAD"],
+          },
+        },
+        {
+          name: ["visualize", "view"],
+          description: "See the currently remaining suspects in gitk",
+        },
+        {
+          name: "replay",
+          description: "Replay bisection log",
+          args: {
+            name: "logfile",
+            template: "filepaths",
+          },
+        },
+        {
+          name: "log",
+          description: "Show bisect log",
+        },
+        {
+          name: "run",
+          description: "Use <cmd>... to automatically bisect",
+          args: {
+            name: "cmd",
+            variadic: true,
+            isCommand: true,
+          },
+        },
+        {
+          name: "help",
+          args: {
+            name: "Get help text",
+          },
+        },
+      ],
+      args: {
+        name: "paths",
+        template: ["filepaths", "folders"],
+      },
     },
     { name: "grep", description: "Print lines matching a pattern" },
     { name: "show", description: "Show various types of objects" },
