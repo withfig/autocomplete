@@ -23,7 +23,7 @@ export const completion: Fig.Spec = {
         {
           name: "--list-presets",
           description:
-            "Use a build preset to specify build options. The project binary directory is inferred from the configurePreset key",
+            "Lists the available presets. If no option is specified only configure presets will be listed. The current working directory must contain CMake preset files",
         },
         {
           name: ["--parallel", "-j"],
@@ -172,7 +172,7 @@ export const completion: Fig.Spec = {
         {
           name: "compare_files",
           description:
-            "Checkif file1 is same as file2. If fails are the same, then returns 0, if not returns 1. In case of invalid arguments, it returns 2",
+            "Check if file1 is the same as file2. If fails are the same, then returns 0, if not returns 1. In case of invalid arguments, it returns 2",
           args: [
             {
               name: "file1",
@@ -527,6 +527,7 @@ export const completion: Fig.Spec = {
           description: "Run command and display elapsed time",
           args: {
             name: "command",
+            isCommand: true,
           },
         },
         {
@@ -821,6 +822,8 @@ export const completion: Fig.Spec = {
       },
     },
   ],
-  // Only uncomment if cmake takes an argument
-  // args: {}
+  args: {
+    name: "path-to-source | path-to-existing-build",
+    template: "folders",
+  },
 };
