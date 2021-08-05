@@ -2115,9 +2115,9 @@ const completionSpec: Fig.Spec = {
   ],
   additionalSuggestions: [
     {
-      name: "new -S 'name'",
+      name: "new -s 'name'",
       description: "Create a new session shortcut",
-      insertValue: "new -S '{cursor}'",
+      insertValue: "new -s '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },
