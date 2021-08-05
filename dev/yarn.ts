@@ -101,21 +101,19 @@ const getGlobalPackagesGenerator: Fig.Generator = {
       const packageContent = JSON.parse(out);
       const dependencyScripts = packageContent["dependencies"] || {};
       const devDependencyScripts = packageContent["devDependencies"] || {};
-      if (dependencyScripts || devDependencyScripts) {
-        const dependencies = [
-          ...Object.keys(dependencyScripts),
-          ...Object.keys(devDependencyScripts),
-        ];
+      const dependencies = [
+        ...Object.keys(dependencyScripts),
+        ...Object.keys(devDependencyScripts),
+      ];
 
-        const filteredDependencies = dependencies.filter((dependencyName) => {
-          return !context.includes(dependencyName);
-        });
+      const filteredDependencies = dependencies.filter(
+        (dependency) => !context.includes(dependency)
+      );
 
-        return filteredDependencies.map((dependencyName) => ({
-          name: dependencyName,
-          icon: "📦",
-        }));
-      }
+      return filteredDependencies.map((dependencyName) => ({
+        name: dependencyName,
+        icon: "📦",
+      }));
     } catch (e) {
       console.log(e);
     }
