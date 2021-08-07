@@ -54,9 +54,16 @@ const disableForCommandsGenerator: Fig.Generator = {
   },
 };
 
+const themesGenerator: Fig.Generator = {
+  script: "ls -1 ~/.fig/themes",
+  postProcess: (output) =>
+    output.split("\n").map((theme) => ({ name: theme.replace(".json", "") })),
+};
+
 const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
   "autocomplete.devCompletionsFolder": devCompletionsFolderGenerator,
   "autocomplete.disableForCommands": disableForCommandsGenerator,
+  "autocomplete.theme": themesGenerator,
 };
 
 const completionSpec: Fig.Spec = {
@@ -95,6 +102,7 @@ const completionSpec: Fig.Spec = {
                     }));
               const insertValue =
                 type === "multiselect" ? `${name} '{cursor}'` : undefined;
+
               const generators = SETTINGS_GENERATOR[name];
 
               return {
@@ -105,7 +113,7 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: type,
                   default: defaultValue,
-                  suggestions,
+                  suggestions: generators !== undefined ? [] : suggestions,
                   generators,
                 },
               };
