@@ -74,15 +74,13 @@ const packageList: Fig.Generator = {
       const packageContent = JSON.parse(out);
       const dependencyScripts = packageContent["dependencies"] || {};
       const devDependencyScripts = packageContent["devDependencies"] || {};
-      if (dependencyScripts || devDependencyScripts) {
-        return [
-          ...Object.keys(dependencyScripts),
-          ...Object.keys(devDependencyScripts),
-        ].map((dependencyName) => ({
-          name: dependencyName,
-          icon: "📦",
-        }));
-      }
+      return [
+        ...Object.keys(dependencyScripts),
+        ...Object.keys(devDependencyScripts),
+      ].map((dependencyName) => ({
+        name: dependencyName,
+        icon: "📦",
+      }));
     } catch (e) {
       console.log(e);
     }
