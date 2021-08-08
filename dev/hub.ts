@@ -1,2 +1,1 @@
-import git from "./git";
-export default git;
+export { default } from "./git";

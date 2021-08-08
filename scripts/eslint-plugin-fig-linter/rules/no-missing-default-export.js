@@ -9,12 +9,15 @@ module.exports = {
       ExportDefaultDeclaration(node) {
         hasExport = true;
       },
+      'ExportSpecifier[exported.name="default"]'(node) {
+        hasExport = true;
+      },
       "Program:exit"(node) {
         if (!hasExport) {
           context.report({
             node,
-            message: "File must contain one `export default` declaration."
-          })
+            message: "File must contain one default export.",
+          });
         }
       },
     };
