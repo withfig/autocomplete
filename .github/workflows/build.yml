@@ -2,6 +2,8 @@ name: Build and release specs
 
 on:
   push:
+    paths:
+      - "!package.json"
     branches:
       # We only want to create a new release when
       # - a pr is merged to master
