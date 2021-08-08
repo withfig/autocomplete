@@ -900,7 +900,11 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--async",
                   description:
-                    "(DEPRECATED) Display information about the operation in progress without waiting for the operation to complete. Enabled by default and can be omitted; use `--stream-logs` to run synchronously",
+                    "Display information about the operation in progress without waiting for the operation to complete.",
+                  deprecated: {
+                    message:
+                      "Enabled by default, use `--stream-logs` to run synchronously",
+                  },
                 },
                 {
                   name: "--billing-project",

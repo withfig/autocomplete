@@ -199,14 +199,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       args: {
-        name: "(never|always|auto)",
+        name: "print",
+        suggestions: ["never", "always", "auto"],
       },
       description: "Control when to print ANSI control characters",
       name: "--ansi",
     },
     {
-      description: "Do not print ANSI control characters (DEPRECATED)",
+      description: "Do not print ANSI control characters",
       name: "--no-ansi",
+      deprecated: {
+        alternative: "docker-compose --ansi never",
+      },
     },
     {
       description: "Print version and exit",

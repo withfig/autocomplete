@@ -4215,7 +4215,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--gce-zone",
               description:
-                "(DEPRECATED) Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.).\n+\nFlag `--gce-zone` is deprecated and will be removed by release 255.0.0. Use `--zone` instead",
+                "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.)",
+              deprecated: {
+                alternative: "Use the `--zone` flag",
+                message: "It will be removed by release 255.0.0",
+              },
               args: {
                 name: "GCE_ZONE",
                 description: "String",
@@ -4764,7 +4768,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "export",
-          description: "*(DEPRECATED)*  Exports data from a Cloud SQL instance",
+          description: "Exports data from a Cloud SQL instance.",
+          deprecated: true,
 
           options: [
             {
@@ -5080,7 +5085,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "import",
           description:
-            "*(DEPRECATED)*  Imports data into a Cloud SQL instance from Google Cloud Storage",
+            "Imports data into a Cloud SQL instance from Google Cloud Storage.",
+          deprecated: true,
 
           options: [
             {
@@ -5649,7 +5655,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--gce-zone",
               description:
-                "(DEPRECATED) Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.). WARNING: Instance may be restarted.\n+\nFlag `--gce-zone` is deprecated and will be removed by release 255.0.0. Use `--zone` instead",
+                "Preferred Compute Engine zone (e.g. us-central1-a, us-central1-b, etc.). WARNING: Instance may be restarted.",
+              deprecated: {
+                alternative: "Use the `--zone` flag",
+                message: "It will be removed by release 255.0.0",
+              },
               args: {
                 name: "GCE_ZONE",
                 description: "String",
@@ -8309,13 +8319,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "ssl-certs",
       description:
-        "*(DEPRECATED)*  Provide commands for managing SSL certificates of Cloud SQL instances",
+        "Provide commands for managing SSL certificates of Cloud SQL instances",
+      deprecated: true,
       subcommands: [
         {
           name: "create",
-          description:
-            "*(DEPRECATED)*  Creates an SSL certificate for a Cloud SQL instance",
-
+          description: "Creates an SSL certificate for a Cloud SQL instance.",
+          deprecated: true,
           options: [
             {
               name: "--account",
@@ -8471,8 +8481,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "delete",
-          description:
-            "*(DEPRECATED)*  Deletes an SSL certificate for a Cloud SQL instance",
+          description: "Deletes an SSL certificate for a Cloud SQL instance.",
+          deprecated: true,
 
           options: [
             {
@@ -8627,8 +8637,8 @@ const completionSpec: Fig.Spec = {
         {
           name: "describe",
           description:
-            "*(DEPRECATED)*  Retrieves information about an SSL cert for a Cloud SQL instance",
-
+            "Retrieves information about an SSL cert for a Cloud SQL instance.",
+          deprecated: true,
           options: [
             {
               name: "--account",
@@ -8776,9 +8786,8 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "list",
-          description:
-            "*(DEPRECATED)*  Lists all SSL certs for a Cloud SQL instance",
-
+          description: "Lists all SSL certs for a Cloud SQL instance.",
+          deprecated: true,
           options: [
             {
               name: "--account",

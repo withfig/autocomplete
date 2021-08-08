@@ -20,8 +20,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--parallel",
-      description:
-        "Deprecated, pull multiple images in parallel (enabled by default)",
+      description: "Pull multiple images in parallel",
+      deprecated: {
+        message: "Enabled by default",
+      },
     },
     {
       name: "--no-parallel",

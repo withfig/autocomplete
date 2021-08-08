@@ -548,8 +548,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--full",
-              description:
-                "(DEPRECATED) This flag is deprecated.\n+\nThis flag is deprecated",
+              deprecated: true,
               args: {
                 name: "FULL",
                 description: "Int",

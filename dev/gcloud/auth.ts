@@ -334,7 +334,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "--add-quota-project",
               description:
-                "(DEPRECATED) Read the project from the context of the gcloud command-line tool and write it to application default credentials as the quota project. It is the default behavior.\n+\nThe --add-quota-project flag is deprecated. Enabled by default, use *--no-add-quota-project* to disable",
+                "Read the project from the context of the gcloud command-line tool and write it to application default credentials as the quota project. It is the default behavior",
+              deprecated: {
+                message:
+                  "Enabled by default, use --no-add-quota-project to disable",
+              },
             },
             {
               name: "--billing-project",
