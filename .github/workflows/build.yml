@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
         # Install all dependencies
       - name: install
         run: npm install
@@ -43,7 +45,7 @@ jobs:
       - name: Checkout Cache
         uses: actions/checkout@v2
         with:
-          repository: 'withfig/core-backend'
+          repository: "withfig/core-backend"
           token: ${{ secrets.CACHE_SPECS_TOKEN }}
           ref: master
           path: backend
@@ -56,15 +58,14 @@ jobs:
           git add .
           git commit -m "Updates specs to latest"
           git push origin master
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
         with:
-          skip-tag:  'true'       
+          skip-tag: "true"
       - name: Publish to npm
         uses: JS-DevTools/npm-publish@v1
         with:
           access: public
           token: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
