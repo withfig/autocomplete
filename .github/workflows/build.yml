@@ -56,4 +56,15 @@ jobs:
           git add .
           git commit -m "Updates specs to latest"
           git push origin master
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          skip-tag:  'true'       
+      - name: Publish to npm
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          token: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
