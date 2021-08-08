@@ -3,6 +3,7 @@ name: Build and release specs
 on:
   push:
     paths:
+      - "dev/**/*.ts"
       - "!package.json"
     branches:
       # We only want to create a new release when
