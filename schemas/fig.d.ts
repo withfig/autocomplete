@@ -100,6 +100,30 @@ declare namespace Fig {
      * The "-" suggestion is hidden in the `cd` spec. You will only see it if you type `cd -`
      */
     hidden?: boolean;
+
+    /**
+     *
+     * Specifies whether a suggestion is deprecated.
+     * It is possible to optionally specify a deprecation message and an alternative command to run.
+     *
+     * `deprecated: true` and `deprecated: { }` will just display the option as deprecated.
+     *
+     */
+    deprecated?:
+      | boolean
+      | {
+          /**
+           * Provide an alternative to the deprecated command.
+           *
+           * @example
+           * alternative: 'npm install'
+           */
+          alternative?: string;
+          /**
+           * Provide a warning or additional info about the deprecation.
+           */
+          message?: string;
+        };
   }
 
   export interface Suggestion extends BaseSuggestion {
