@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          token: ${{ secrets.ACTION_GITHUB_TOKEN }}
         # Install all dependencies
       - name: install
         run: npm install
@@ -61,7 +61,7 @@ jobs:
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         env:
-          GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTION_GITHUB_TOKEN }}
         with:
           skip-tag: "true"
       - name: Publish to npm
