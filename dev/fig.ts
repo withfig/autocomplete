@@ -76,6 +76,14 @@ const completionSpec: Fig.Spec = {
     },
     { name: "update", description: "Update completion specs and app" },
     {
+      name: "theme",
+      description: "Set the Theme of fig",
+      args: {
+        name: "Theme Name",
+        generators: themesGenerator,
+      },
+    },
+    {
       name: "settings",
       description: "Update preferences",
       generateSpec: async (_, executeShellCommand) => {
