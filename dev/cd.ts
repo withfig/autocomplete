@@ -4,6 +4,7 @@ const completionSpec: Fig.Spec = {
   args: {
     template: "folders",
     // Add an additional hidden suggestion so users can execute on it if they want to
+
     suggestions: [
       {
         name: "-",
