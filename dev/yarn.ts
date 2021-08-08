@@ -954,6 +954,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
+          variadic: true,
         },
       ],
     },
@@ -1005,6 +1006,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
+          variadic: true,
         },
       ],
     },
