@@ -1,1 +1,2 @@
-export { default as Hub } from "./git";
+import git from "./git";
+export default git;
