@@ -13,6 +13,18 @@ const versionList: Fig.Generator = {
   },
 };
 
+const globalList: Fig.Generator = {
+  script: "pyenv versions",
+  postProcess: function (out) {
+    return out.split("\n").map((l) => {
+      const sel = l.match(/\s*\*/) != null;
+      const name = sel ? l.replace("*", "").trim() : l.trim();
+      const icon = sel ? "🌟" : "🐍";
+      return { name, icon };
+    });
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "pyenv",
   description: "pyenv",
@@ -46,6 +58,7 @@ const completionSpec: Fig.Spec = {
       description: "Sets the global version of Python to be used in all shells",
       args: {
         name: "python version",
+        generators: globalList,
       },
     },
     {
