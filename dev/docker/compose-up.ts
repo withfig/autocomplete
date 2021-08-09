@@ -21,51 +21,51 @@ const completionSpec: Fig.Spec = {
         "Detached mode: Run containers in the background, print new container names. Incompatible with",
     },
     {
-      name: ["--no-color"],
+      name: "--no-color",
       description: "Produce monochrome output.",
     },
     {
-      name: ["--quiet-pull"],
+      name: "--quiet-pull",
       description: "Pull without printing progress information",
     },
     {
-      name: ["--no-deps"],
+      name: "--no-deps",
       description: "Don't start linked services.",
     },
     {
-      name: ["--force-recreate"],
+      name: "--force-recreate",
       description:
         "Recreate containers even if their configuration and image haven't changed.",
     },
     {
-      name: ["--always-recreate-deps"],
+      name: "--always-recreate-deps",
       description:
         "Recreate dependent containers. Incompatible with --no-recreate.",
     },
     {
-      name: ["--no-recreate"],
+      name: "--no-recreate",
       description:
         "If containers already exist, don't recreate them. Incompatible with --force-recreate and -V.",
     },
     {
-      name: ["--no-build"],
+      name: "--no-build",
       description: "Don't build an image, even if it's missing.",
     },
     {
-      name: ["--no-start"],
+      name: "--no-start",
       description: "Don't start the services after creating them.",
     },
     {
-      name: ["--build"],
+      name: "--build",
       description: "Build images before starting containers.",
     },
     {
-      name: ["--abort-on-container-exit"],
+      name: "--abort-on-container-exit",
       description:
         "Stops all containers if any container was stopped. Incompatible with -d.",
     },
     {
-      name: ["--attach-dependencies"],
+      name: "--attach-dependencies",
       description: "Attach to dependent containers.",
     },
     {
@@ -82,12 +82,12 @@ const completionSpec: Fig.Spec = {
         "Recreate anonymous volumes instead of retrieving data from the previous containers.",
     },
     {
-      name: ["--remove-orphans"],
+      name: "--remove-orphans",
       description:
         "Remove containers for services not defined in the Compose file.",
     },
     {
-      name: ["--exit-code-from"],
+      name: "--exit-code-from",
       description:
         "Return the exit code of the selected service container. Implies --abort-on-container-exit.",
       args: {
@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--scale"],
+      name: "--scale",
       description:
         "Scale SERVICE to NUM instances. Overrides the `scale` setting in the Compose file if present.",
       args: {

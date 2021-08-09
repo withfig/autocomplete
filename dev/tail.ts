@@ -7,11 +7,11 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      name: ["-f"],
+      name: "-f",
       description: "wait for additional data to be appended",
     },
     {
-      name: ["-r"],
+      name: "-r",
       description: "display in reverse order",
     },
   ],

@@ -19,11 +19,11 @@ const completionSpec: Fig.Spec = {
       description: "Only display IDs",
     },
     {
-      name: ["--services"],
+      name: "--services",
       description: "Display services",
     },
     {
-      name: ["--filter"],
+      name: "--filter",
       description: "Filter services by a property",
       args: {
         name: "KEY=VAL",

@@ -11,7 +11,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["-R"],
+      name: "-R",
       description: "recursive",
     },
     {

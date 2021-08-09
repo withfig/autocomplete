@@ -885,7 +885,7 @@ const completionSpec: Fig.Spec = {
           description: "Creates a new comment.",
           options: [
             {
-              name: ["--field=value"],
+              name: "--field=value",
               insertValue: "--",
               description:
                 "Associative args for the new comment. See wp_insert_comment().",

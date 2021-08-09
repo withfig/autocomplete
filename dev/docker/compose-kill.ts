@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
   args: [{ generators: getServices }],
   options: [
     {
-      name: ["-s"],
+      name: "-s",
       description:
         "SIGNAL to send to the container. Default signal is SIGKILL.",
     },

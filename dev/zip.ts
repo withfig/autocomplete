@@ -13,15 +13,15 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["-r"],
+      name: "-r",
       description:
         "Package and compress a directory and its contents, recursively",
     },
     {
-      name: ["-e"],
+      name: "-e",
     },
     {
-      name: ["-s"],
+      name: "-s",
       args: [
         {
           name: "split size",
@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-d"],
+      name: "-d",
       args: [
         {
           name: "file",

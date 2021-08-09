@@ -24,9 +24,9 @@ const completionSpec: Fig.Spec = {
         "set the SELinux security context of each created directory to CTX",
       args: { name: "CTX" },
     },
-    { name: ["--help"], description: "display this help and exit" },
+    { name: "--help", description: "display this help and exit" },
     {
-      name: ["--version"],
+      name: "--version",
       description: "output version information and exit",
     },
   ],

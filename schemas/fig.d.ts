@@ -120,7 +120,7 @@ declare namespace Fig {
      * @example
      * For `npm install`, the subcommand `install` would have "name: install"
      */
-    name: string | string[];
+    name: SingleOrArray<string>;
 
     /**
      * A list of subcommands for this spec.

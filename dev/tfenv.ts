@@ -74,7 +74,7 @@ const completionSpec: Fig.Spec = {
       description: "View your current tfenv version",
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "View commands",
     },
   ],

@@ -6,11 +6,11 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--auto-rehash"],
+      name: "--auto-rehash",
       description: "Enable automatic rehashing",
     },
     {
-      name: ["--auto-vertical-output"],
+      name: "--auto-vertical-output",
       description: "Enable automatic vertical result set display",
     },
     {
@@ -18,23 +18,23 @@ const completionSpec: Fig.Spec = {
       description: "Do not use history file",
     },
     {
-      name: ["--binary-as-hex"],
+      name: "--binary-as-hex",
       description: "Display binary values in hexadecimal notation",
     },
     {
-      name: ["--binary-mode"],
+      name: "--binary-mode",
       description:
         "Disable \\r\\n - to - \\n translation and treatment of \\0 as end-of-query",
     },
     {
-      name: ["--bind-address"],
+      name: "--bind-address",
       description: "Use specified network interface to connect to MySQL Server",
       args: {
         name: "ip_address",
       },
     },
     {
-      name: ["--character-sets-dir"],
+      name: "--character-sets-dir",
       description: "Directory where character sets are installed",
       args: {
         name: "dir_name",
@@ -43,11 +43,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--column-names"],
+      name: "--column-names",
       description: "Write column names in results",
     },
     {
-      name: ["--column-type-info"],
+      name: "--column-type-info",
       description: "Display result set metadata",
     },
     {
@@ -60,7 +60,7 @@ const completionSpec: Fig.Spec = {
       description: "Compress all information sent between client and server",
     },
     {
-      name: ["--compression-algorithms"],
+      name: "--compression-algorithms",
       description: "Permitted compression algorithms for connections to server",
       args: {
         name: "value",
@@ -72,12 +72,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--connect-expired-password"],
+      name: "--connect-expired-password",
       description:
         "Indicate to server that client can handle expired-password sandbox mode",
     },
     {
-      name: ["--connect-timeout"],
+      name: "--connect-timeout",
       description: "Number of seconds before connection timeout",
       args: {
         name: "value",
@@ -91,12 +91,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--debug"],
+      name: "--debug",
       description:
         "Write debugging log; supported only if MySQL was built with debugging support",
     },
     {
-      name: ["--debug-check"],
+      name: "--debug-check",
       description: "Print debugging information when program exits",
     },
     {
@@ -105,21 +105,21 @@ const completionSpec: Fig.Spec = {
         "Print debugging information, memory, and CPU statistics when program exits",
     },
     {
-      name: ["--default-auth"],
+      name: "--default-auth",
       description: "Authentication plugin to use",
       args: {
         name: "plugin",
       },
     },
     {
-      name: ["--default-character-set"],
+      name: "--default-character-set",
       description: "Specify default character set",
       args: {
         name: "charset_name",
       },
     },
     {
-      name: ["--defaults-extra-file"],
+      name: "--defaults-extra-file",
       description: "Read named option file in addition to usual option files",
       args: {
         name: "file_name",
@@ -127,7 +127,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--defaults-file"],
+      name: "--defaults-file",
       description: "Read only named option file",
       args: {
         name: "file_name",
@@ -135,33 +135,33 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--defaults-group-suffix"],
+      name: "--defaults-group-suffix",
       description: "Option group suffix value",
       args: {
         name: "str",
       },
     },
     {
-      name: ["--delimiter"],
+      name: "--delimiter",
       description: "Set the statement delimiter",
       args: {
         name: "str",
       },
     },
     {
-      name: ["--disable-named-commands"],
+      name: "--disable-named-commands",
       description:
         "Disable named commands. Use the \\* form only, or use named commands only at the beginning of a line ending with a semicolon (;). mysql starts with this option enabled by default. However, even with this option, long-format commands still work from the first line.",
     },
     {
-      name: ["--dns-srv-name"],
+      name: "--dns-srv-name",
       description: "Use DNS SRV lookup for host information",
       args: {
         name: "name",
       },
     },
     {
-      name: ["--enable-cleartext-plugin"],
+      name: "--enable-cleartext-plugin",
       description: "Enable cleartext authentication plugin",
     },
     {
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
       description: "Continue even if an SQL error occurs",
     },
     {
-      name: ["--get-server-public-key"],
+      name: "--get-server-public-key",
       description: "Request RSA public key from server",
     },
     {
@@ -184,7 +184,7 @@ const completionSpec: Fig.Spec = {
       description: "Display help message and exit",
     },
     {
-      name: ["--histignore"],
+      name: "--histignore",
       description: "Patterns specifying which statements to ignore for logging",
     },
     {
@@ -203,7 +203,7 @@ const completionSpec: Fig.Spec = {
       description: "Ignore spaces after function names",
     },
     {
-      name: ["--init-command"],
+      name: "--init-command",
       description: "SQL statement to execute after connecting",
       args: {
         name: "command",
@@ -211,11 +211,11 @@ const completionSpec: Fig.Spec = {
       insertValue: "{cursor}'",
     },
     {
-      name: ["--line-numbers"],
+      name: "--line-numbers",
       description: "Write line numbers for errors",
     },
     {
-      name: ["--load-data-local-dir"],
+      name: "--load-data-local-dir",
       description: "Directory for files named in LOAD DATA LOCAL statements",
       args: {
         name: "dir_name",
@@ -223,7 +223,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--local-infile"],
+      name: "--local-infile",
       description: "Enable or disable for LOCAL capability for LOAD DATA",
       args: {
         name: "is-local-inflie",
@@ -240,21 +240,21 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--login-path"],
+      name: "--login-path",
       description: "Read login path options from .mylogin.cnf	",
       args: {
         name: "name",
       },
     },
     {
-      name: ["--max-allowed-packet"],
+      name: "--max-allowed-packet",
       description: "Maximum packet length to send to or receive from server",
       args: {
         name: "value",
       },
     },
     {
-      name: ["--max-join-size"],
+      name: "--max-join-size",
       description:
         "The automatic limit for rows in a join when using --safe-updates",
       args: {
@@ -266,14 +266,14 @@ const completionSpec: Fig.Spec = {
       description: "Enable named mysql commands",
     },
     {
-      name: ["--net-buffer-length"],
+      name: "--net-buffer-length",
       description: "Buffer size for TCP/IP and socket communication",
       args: {
         name: "value",
       },
     },
     {
-      name: ["--network-namespace"],
+      name: "--network-namespace",
       description: "Specify network namespace",
       args: {
         name: "name",
@@ -288,7 +288,7 @@ const completionSpec: Fig.Spec = {
       description: "Do not beep when errors occur",
     },
     {
-      name: ["--no-defaults"],
+      name: "--no-defaults",
       description: "Read no option files",
     },
     {
@@ -297,7 +297,7 @@ const completionSpec: Fig.Spec = {
         "Ignore statements except those for the default database named on the command line",
     },
     {
-      name: ["--pager"],
+      name: "--pager",
       description: "Use the given command for paging query output",
       args: {
         name: "command",
@@ -315,7 +315,7 @@ const completionSpec: Fig.Spec = {
       description: "Connect to server using named pipe (Windows only)",
     },
     {
-      name: ["--plugin-dir"],
+      name: "--plugin-dir",
       description: "Directory where plugins are installed",
       args: {
         name: "dir_name",
@@ -330,18 +330,18 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--print-defaults"],
+      name: "--print-defaults",
       description: "Print default options",
     },
     {
-      name: ["--prompt"],
+      name: "--prompt",
       description: "Set the prompt to the specified format",
       args: {
         name: "format_str",
       },
     },
     {
-      name: ["--protocol"],
+      name: "--protocol",
       description: "Transport protocol to use",
       args: {
         name: "format_str",
@@ -362,7 +362,7 @@ const completionSpec: Fig.Spec = {
       description: "Write column values without escape conversion",
     },
     {
-      name: ["--reconnect"],
+      name: "--reconnect",
       description:
         "If the connection to the server is lost, automatically try to reconnect",
     },
@@ -372,7 +372,7 @@ const completionSpec: Fig.Spec = {
         "Allow only UPDATE and DELETE statements that specify key values",
     },
     {
-      name: ["--select-limit"],
+      name: "--select-limit",
       description:
         "The automatic limit for SELECT statements when using --safe-updates",
       args: {
@@ -380,7 +380,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--server-public-key-path"],
+      name: "--server-public-key-path",
       description: "Path name to file containing RSA public key",
       args: {
         name: "filename",
@@ -388,7 +388,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--shared-memory-base-name"],
+      name: "--shared-memory-base-name",
       description:
         "Shared-memory name for shared-memory connections (Windows only)",
       args: {
@@ -396,11 +396,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--show-warnings"],
+      name: "--show-warnings",
       description: "Show warnings after each statement if there are any",
     },
     {
-      name: ["--sigint-ignore"],
+      name: "--sigint-ignore",
       description:
         "Ignore SIGINT signals (typically the result of typing Control+C)",
     },
@@ -410,7 +410,7 @@ const completionSpec: Fig.Spec = {
         "Silent mode.  Produce less output. This option can be given multiple times to produce less and less output.",
     },
     {
-      name: ["--skip-auto-rehash"],
+      name: "--skip-auto-rehash",
       description: "Disable automatic rehashing",
     },
     {
@@ -422,15 +422,15 @@ const completionSpec: Fig.Spec = {
       description: "Skip line numbers for errors",
     },
     {
-      name: ["--skip-named-commands"],
+      name: "--skip-named-commands",
       description: "Disable named mysql commands",
     },
     {
-      name: ["--skip-pager"],
+      name: "--skip-pager",
       description: "Disable paging",
     },
     {
-      name: ["--skip-reconnect"],
+      name: "--skip-reconnect",
       description: "Disable reconnecting",
     },
     {
@@ -442,7 +442,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-ca"],
+      name: "--ssl-ca",
       description:
         "File that contains list of trusted SSL Certificate Authorities",
       args: {
@@ -451,7 +451,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-capath"],
+      name: "--ssl-capath",
       description:
         "Directory that contains trusted SSL Certificate Authority certificate files",
       args: {
@@ -460,7 +460,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-cert"],
+      name: "--ssl-cert",
       description: "File that contains X.509 certificate",
       args: {
         name: "filename",
@@ -468,11 +468,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-cipher"],
+      name: "--ssl-cipher",
       description: "Permissible ciphers for connection encryption",
     },
     {
-      name: ["--ssl-crl"],
+      name: "--ssl-crl",
       description: "File that contains certificate revocation lists",
       args: {
         name: "filename",
@@ -480,7 +480,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-crlpath"],
+      name: "--ssl-crlpath",
       description: "Directory that contains certificate revocation-list files",
       args: {
         name: "dirname",
@@ -488,7 +488,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-fips-mode"],
+      name: "--ssl-fips-mode",
       description: "Whether to enable FIPS mode on client side",
       args: {
         name: "mode",
@@ -496,7 +496,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-key"],
+      name: "--ssl-key",
       description: "File that contains X.509 key",
       args: {
         name: "filename",
@@ -504,7 +504,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ssl-mode"],
+      name: "--ssl-mode",
       description: "Desired security state of connection to server",
     },
     {
@@ -516,7 +516,7 @@ const completionSpec: Fig.Spec = {
       description: "Display output in tabular format",
     },
     {
-      name: ["--tee"],
+      name: "--tee",
       description: "Append a copy of output to named file",
       args: {
         name: "file_name",
@@ -524,7 +524,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--tls-ciphersuites"],
+      name: "--tls-ciphersuites",
       description: "Permissible TLSv1.3 ciphersuites for encrypted connections",
       args: {
         name: "ciphersuite_list",
@@ -532,7 +532,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--tls-version"],
+      name: "--tls-version",
       description: "Permissible TLS protocols for encrypted connections",
       args: {
         name: "protocol_list",
@@ -572,7 +572,7 @@ const completionSpec: Fig.Spec = {
       description: "Produce XML output",
     },
     {
-      name: ["--zstd-compression-level"],
+      name: "--zstd-compression-level",
       description:
         "Compression level for connections to server that use zstd compression",
       args: {

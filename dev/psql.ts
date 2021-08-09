@@ -31,7 +31,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--csv"],
+      name: "--csv",
       description:
         "Switches to CSV (Comma-Separated Values) output mode. This is equivalent to \\pset format csv.",
     },

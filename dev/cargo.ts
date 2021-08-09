@@ -40,15 +40,15 @@ const completionSpec: Fig.Spec = {
           description: "output usage info",
         },
         {
-          name: ["--bins"],
+          name: "--bins",
           description: "build all binaries",
         },
         {
-          name: ["--all-targets"],
+          name: "--all-targets",
           description: "activate all available features",
         },
         {
-          name: ["--all"],
+          name: "--all",
           description: "alias for workspace",
         },
         {
@@ -56,8 +56,8 @@ const completionSpec: Fig.Spec = {
           description: "build in release mode, with optimizations",
         },
         {
-          name: ["-j, --jobs"],
-          description: "number of CPUS",
+          name: ["-j", "--jobs"],
+          description: "number of CPUs",
           insertValue: "-j {cursor}",
         },
       ],
@@ -87,11 +87,11 @@ const completionSpec: Fig.Spec = {
           description: "output usage info",
         },
         {
-          name: ["--bin"],
+          name: "--bin",
           description: "Use a binary (application) template [default]",
         },
         {
-          name: ["--offline"],
+          name: "--offline",
           description: "run without network",
         },
       ],

@@ -1433,21 +1433,21 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--silent"],
+      name: "--silent",
       icon: "🔇",
       description: "Show nothing",
     },
     {
-      name: ["--verbose"],
+      name: "--verbose",
       icon: "🔊",
       description: "Show more debugging information",
     },
     {
-      name: ["--no-ansi"],
+      name: "--no-ansi",
       description: "Show output without ANSI codes",
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "Show help banner of specified command",
     },
   ],

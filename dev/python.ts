@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      name: ["-c"],
+      name: "-c",
       insertValue: "-c '{cursor}'",
       description:
         "Execute the Python code in command. command can be one or more statements separated by newlines, with significant leading whitespace as in normal module code.",
@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-m"],
+      name: "-m",
       description: "module",
       args: {
         name: "python module",
@@ -68,17 +68,17 @@ const completionSpec: Fig.Spec = {
       description: "Print the Python version number and exit.",
     },
     {
-      name: ["-b"],
+      name: "-b",
       description:
         "Issue a warning when comparing bytes or bytearray with str or bytes with int. Issue an error when the option is given twice (-bb)",
     },
     {
-      name: ["-B"],
+      name: "-B",
       description:
         "If given, Python won’t try to write .pyc files on the import of source modules.",
     },
     {
-      name: ["--check-hash-based-pycs"],
+      name: "--check-hash-based-pycs",
       description:
         "Control the validation behavior of hash-based .pyc files. See Cached bytecode invalidation.",
       args: {
@@ -90,76 +90,76 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-d"],
+      name: "-d",
       description:
         "Turn on parser debugging output (for expert only, depending on compilation options).",
     },
     {
-      name: ["-E"],
+      name: "-E",
       description:
         "Ignore all PYTHON* environment variables, e.g. PYTHONPATH and PYTHONHOME, that might be set.",
     },
     {
-      name: ["-i"],
+      name: "-i",
       description:
         "When a script is passed as first argument or the -c option is used, enter interactive mode after executing the script or the command, even when sys.stdin does not appear to be a terminal.",
     },
     {
-      name: ["-I"],
+      name: "-I",
       description:
         "Run Python in isolated mode. This also implies -E and -s. In isolated mode sys.path contains neither the script’s directory nor the user’s site-packages directory.",
     },
     {
-      name: ["-O"],
+      name: "-O",
       description:
         "Remove assert statements and any code conditional on the value of __debug__.",
     },
     {
-      name: ["-OO"],
+      name: "-OO",
       description: "Do -O and also discard docstrings.",
     },
     {
-      name: ["-g"],
+      name: "-g",
       description:
         "Don’t display the copyright and version messages even in interactive mode.",
     },
     {
-      name: ["-R"],
+      name: "-R",
       description:
         "Turn on hash randomization. This option only has an effect if the PYTHONHASHSEED environment variable is set to 0, since hash randomization is enabled by default.",
     },
     {
-      name: ["-s"],
+      name: "-s",
       description: "Don’t add the user site-packages directory to sys.path.",
     },
     {
-      name: ["-S"],
+      name: "-S",
       description:
         "Disable the import of the module site and the site-dependent manipulations of sys.path that it entails.",
     },
     {
-      name: ["-u"],
+      name: "-u",
       description:
         "Force the stdout and stderr streams to be unbuffered. This option has no effect on the stdin stream.",
     },
     {
-      name: ["-v"],
+      name: "-v",
       description:
         "Print a message each time a module is initialized, showing the place (filename or built-in module) from which it is loaded.",
     },
     {
-      name: ["-W"],
+      name: "-W",
       description:
         "Warning control. Python’s warning machinery by default prints warning messages to sys.stderr.",
       args: {},
     },
     {
-      name: ["-x"],
+      name: "-x",
       description:
         "Skip the first line of the source, allowing use of non-Unix forms of #!cmd. This is intended for a DOS specific hack only.",
     },
     {
-      name: ["-X"],
+      name: "-X",
       description: "Reserved for various implementation-specific options.",
       args: {
         suggestions: [

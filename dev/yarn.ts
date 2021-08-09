@@ -817,7 +817,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["-2"],
+          name: "-2",
           description: "generates the project using Yarn 2",
         },
         {
@@ -1094,15 +1094,15 @@ const completionSpec: Fig.Spec = {
       description: "update version of your package",
       options: [
         {
-          name: ["--major"],
+          name: "--major",
           description: "auto-increment major version number",
         },
         {
-          name: ["--minor"],
+          name: "--minor",
           description: "auto-increment minor version number",
         },
         {
-          name: ["--patch"],
+          name: "--patch",
           description: "auto-increment patch version number",
         },
       ],

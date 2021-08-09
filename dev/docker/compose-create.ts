@@ -15,21 +15,21 @@ const completionSpec: Fig.Spec = {
   args: [{ generators: getServices }],
   options: [
     {
-      name: ["--force-recreate"],
+      name: "--force-recreate",
       description:
         "Recreate containers even if their configuration and image haven't changed. Incompatible with --no-recreate.",
     },
     {
-      name: ["--no-recreate"],
+      name: "--no-recreate",
       description:
         "If containers already exist, don't recreate them. Incompatible with --force-recreate.",
     },
     {
-      name: ["--no-build"],
+      name: "--no-build",
       description: "Don't build an image, even if it's missing.",
     },
     {
-      name: ["--build"],
+      name: "--build",
       description: "Build images before creating containers.",
     },
   ],

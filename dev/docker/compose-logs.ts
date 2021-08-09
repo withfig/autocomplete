@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
   args: [{ generators: getServices }],
   options: [
     {
-      name: ["--no-color"],
+      name: "--no-color",
       description: "Produce monochrome output.",
     },
     {
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
       description: "Show timestamps.",
     },
     {
-      name: ["--tail"],
+      name: "--tail",
       description:
         "Number of lines to show from the end of the logs for each container.",
       args: {

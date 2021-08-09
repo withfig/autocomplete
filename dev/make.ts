@@ -23,32 +23,32 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      name: ["-j"],
+      name: "-j",
       args: [{ name: "number" }, { name: "target", generators: listTargets }],
     },
     {
-      name: ["--file"],
+      name: "--file",
       args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-      name: ["--directory"],
+      name: "--directory",
       args: {
         name: "directory",
         template: "folders",
       },
     },
     {
-      name: ["--always-make"],
+      name: "--always-make",
       args: {
         name: "target",
         generators: listTargets,
       },
     },
     {
-      name: ["--environment-overrides"],
+      name: "--environment-overrides",
       args: {
         name: "target",
         generators: listTargets,

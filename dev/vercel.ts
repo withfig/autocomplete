@@ -108,7 +108,7 @@ const completionSpec: Fig.Spec = {
       description: "Force a new deployment even if nothing has changed",
     },
     {
-      name: ["-with-cache"],
+      name: "-with-cache",
       description: "Retain build cache when using --force",
     },
     {
@@ -151,11 +151,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--regions"],
+      name: "--regions",
       description: "Set default regions to enable the deployment on",
     },
     {
-      name: ["--prod"],
+      name: "--prod",
       description: "Create a production deployment",
     },
     {
@@ -176,7 +176,7 @@ const completionSpec: Fig.Spec = {
       description: "Start a local development server",
       options: [
         {
-          name: ["--listen"],
+          name: "--listen",
           description: "Specifies which port to run on",
         },
       ],
@@ -544,21 +544,21 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["--challenge-only"],
+          name: "--challenge-only",
           description: "Show challenges needed to issue a certificate",
         },
         {
-          name: ["--crt"],
+          name: "--crt",
           description: "Include path to .crt",
           args: [{ template: "filepaths" }],
         },
         {
-          name: ["--key"],
+          name: "--key",
           description: "Include path to .key",
           args: [{ template: "filepaths" }],
         },
         {
-          name: ["--ca"],
+          name: "--ca",
           description: "Include path to .ca",
           args: [{ template: "filepaths" }],
         },
@@ -643,7 +643,7 @@ const completionSpec: Fig.Spec = {
           args: [{}],
         },
         {
-          name: ["--since"],
+          name: "--since",
           description: "Return logs after a specific ISO 8601 date",
           args: [{}],
         },
@@ -653,7 +653,7 @@ const completionSpec: Fig.Spec = {
           args: [{}],
         },
         {
-          name: ["--until"],
+          name: "--until",
           description: "Return logs up to a specific ISO 8601 date",
           args: [{}],
         },

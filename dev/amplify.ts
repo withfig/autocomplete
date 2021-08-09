@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
           description: "Pulls the current env from the cloud.",
           options: [
             {
-              name: ["--restore"],
+              name: "--restore",
               description: "Overwrite your local changes.",
             },
           ],
@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: ["--restore"],
+              name: "--restore",
               description: "Overwrite your local changes.",
             },
           ],

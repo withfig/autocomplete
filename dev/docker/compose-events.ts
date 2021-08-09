@@ -15,7 +15,7 @@ const completionSpec: Fig.Spec = {
   args: [{ generators: getServices }],
   options: [
     {
-      name: ["--json"],
+      name: "--json",
       description: "Output events as a stream of json objects",
     },
   ],

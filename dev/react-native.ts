@@ -133,11 +133,11 @@ const completionSpec: Fig.Spec = {
       name: "doctor",
       options: [
         {
-          name: ["--fix"],
+          name: "--fix",
           description: "Attempt to fix all diagnosed issues.",
         },
         {
-          name: ["--contributor"],
+          name: "--contributor",
           description:
             "Add healthchecks required to installations required for contributing to React Native.",
         },
@@ -152,7 +152,7 @@ const completionSpec: Fig.Spec = {
       name: "bundle",
       options: [
         {
-          name: ["--entry-file"],
+          name: "--entry-file",
           description:
             "Path to the root JS file, either absolute or relative to JS root",
           args: [
@@ -166,7 +166,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: 'Either "ios" or "android" (default: "ios")',
           args: [
             {
@@ -185,7 +185,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
           args: [
             {
@@ -194,7 +194,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--dev"],
+          name: "--dev",
           description:
             "If false, warnings are disabled and the bundle is minified (default: true)",
           args: [
@@ -209,7 +209,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--minify"],
+          name: "--minify",
           description:
             "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
           args: [
@@ -224,7 +224,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--bundle-output"],
+          name: "--bundle-output",
           description:
             "File name where to store the resulting bundle, ex. /tmp/groups.bundle",
           args: [
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--bundle-encoding"],
+          name: "--bundle-encoding",
           description:
             'Encoding the bundle should be written in (https://nodejs.org/api/buffer.html#buffer_buffer). (default: "utf8")',
           args: [
@@ -255,7 +255,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
             "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
           args: [
@@ -266,7 +266,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-output"],
+          name: "--sourcemap-output",
           description:
             "File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map",
           args: [
@@ -276,7 +276,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-sources-root"],
+          name: "--sourcemap-sources-root",
           description:
             "Path to make sourcemap's sources entries relative to, ex. /root/dir",
           args: [
@@ -287,11 +287,11 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-use-absolute-path"],
+          name: "--sourcemap-use-absolute-path",
           description: "Report SourceMapURL using its full path",
         },
         {
-          name: ["--assets-dest"],
+          name: "--assets-dest",
           description:
             "Directory name where to store assets referenced in the bundle",
           args: [
@@ -302,7 +302,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--unstable-transform-profile"],
+          name: "--unstable-transform-profile",
           description:
             "Experimental, transform JS for a specific JS engine. Currently supported: hermes, hermes-canary, default",
           args: [
@@ -325,16 +325,16 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--reset-cache"],
+          name: "--reset-cache",
           description: "Removes cached files",
         },
         {
-          name: ["--read-global-cache"],
+          name: "--read-global-cache",
           description:
             "Try to fetch transformed JS code from the global cache, if configured.",
         },
         {
-          name: ["--config"],
+          name: "--config",
           description: "Path to the CLI configuration file",
           icon: "🛠",
           args: [
@@ -356,7 +356,7 @@ const completionSpec: Fig.Spec = {
       name: "init",
       options: [
         {
-          name: ["--version"],
+          name: "--version",
           description: "Shortcut for `--template react-native@version`",
           args: [
             {
@@ -365,7 +365,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--template"],
+          name: "--template",
           description:
             "Uses a custom template. Valid arguments are the ones supported by `yarn add [package]` or `npm install [package]`, if you are using `--npm` option",
           args: [
@@ -375,13 +375,13 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--npm"],
+          name: "--npm",
           description: "Forces using npm for initialization",
           icon:
             "https://img.pngio.com/publishing-to-npm-from-kentcdodds-on-eggheadio-npm-png-800_800.png",
         },
         {
-          name: ["--directory"],
+          name: "--directory",
           description: "Uses a custom directory instead of `<projectName>`.",
           args: [
             {
@@ -391,7 +391,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--title"],
+          name: "--title",
           description: "Uses a custom app title name for application",
           args: [
             {
@@ -400,7 +400,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--skip-install"],
+          name: "--skip-install",
           description: "Skips dependencies installation step",
           icon: "⏭️",
         },
@@ -435,7 +435,7 @@ const completionSpec: Fig.Spec = {
       name: "start",
       options: [
         {
-          name: ["--port"],
+          name: "--port",
           description: "port on which to listen to",
           args: [
             {
@@ -444,7 +444,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--host"],
+          name: "--host",
           description: "change the default host",
           args: [
             {
@@ -453,7 +453,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--projectRoot"],
+          name: "--projectRoot",
           description: "Path to a custom project root",
           args: [
             {
@@ -463,7 +463,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--watchFolders"],
+          name: "--watchFolders",
           description:
             "Specify any additional folders to be added to the watch list",
           args: [
@@ -474,7 +474,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--assetPlugins"],
+          name: "--assetPlugins",
           description:
             "Specify any additional asset plugins to be used by the packager by full filepath",
           args: [
@@ -485,7 +485,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourceExts"],
+          name: "--sourceExts",
           description:
             "Specify any additional source extensions to be used by the packager",
           args: [
@@ -509,7 +509,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
             "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
           args: [
@@ -520,7 +520,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
           args: [
             {
@@ -547,17 +547,17 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--verbose"],
+          name: "--verbose",
           icon: "🔊",
           description: "Enables logging",
         },
         {
-          name: ["--https"],
+          name: "--https",
           icon: "🌐",
           description: "Enables https connections to the server",
         },
         {
-          name: ["--key"],
+          name: "--key",
           description: "Path to custom SSL key",
           args: [
             {
@@ -567,7 +567,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--cert"],
+          name: "--cert",
           description: "Path to custom SSL cert",
           args: [
             {
@@ -577,7 +577,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--config"],
+          name: "--config",
           icon: "🛠",
           description: "Path to the CLI configuration file",
           args: [
@@ -587,7 +587,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--no-interactive"],
+          name: "--no-interactive",
           description: "Disables interactive mode",
         },
         {
@@ -602,7 +602,7 @@ const completionSpec: Fig.Spec = {
       name: "ram-bundle",
       options: [
         {
-          name: ["--entry-file"],
+          name: "--entry-file",
           description:
             "Path to the root JS file, either absolute or relative to JS root",
           args: [
@@ -616,7 +616,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: 'Either "ios" or "android" (default: "ios")',
           args: [
             {
@@ -635,7 +635,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--transformer"],
+          name: "--transformer",
           description: "Specify a custom transformer to be used",
           args: [
             {
@@ -644,7 +644,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--dev"],
+          name: "--dev",
           description:
             "If false, warnings are disabled and the bundle is minified (default: true)",
           args: [
@@ -659,7 +659,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--minify"],
+          name: "--minify",
           description:
             "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
           args: [
@@ -674,7 +674,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--bundle-output"],
+          name: "--bundle-output",
           description:
             "File name where to store the resulting bundle, ex. /tmp/groups.bundle",
           args: [
@@ -684,7 +684,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--bundle-encoding"],
+          name: "--bundle-encoding",
           description:
             'Encoding the bundle should be written in (https://nodejs.org/api/buffer.html#buffer_buffer). (default: "utf8")',
           args: [
@@ -705,7 +705,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--max-workers"],
+          name: "--max-workers",
           description:
             "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
           args: [
@@ -716,7 +716,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-output"],
+          name: "--sourcemap-output",
           description:
             "File name where to store the sourcemap file for resulting bundle, ex. /tmp/groups.map",
           args: [
@@ -726,7 +726,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-sources-root"],
+          name: "--sourcemap-sources-root",
           description:
             "Path to make sourcemap's sources entries relative to, ex. /root/dir",
           args: [
@@ -737,11 +737,11 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--sourcemap-use-absolute-path"],
+          name: "--sourcemap-use-absolute-path",
           description: "Report SourceMapURL using its full path",
         },
         {
-          name: ["--assets-dest"],
+          name: "--assets-dest",
           description:
             "Directory name where to store assets referenced in the bundle",
           args: [
@@ -752,7 +752,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--unstable-transform-profile"],
+          name: "--unstable-transform-profile",
           description:
             "Experimental, transform JS for a specific JS engine. Currently supported: hermes, hermes-canary, default",
           args: [
@@ -775,16 +775,16 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--reset-cache"],
+          name: "--reset-cache",
           description: "Removes cached files",
         },
         {
-          name: ["--read-global-cache"],
+          name: "--read-global-cache",
           description:
             "Try to fetch transformed JS code from the global cache, if configured.",
         },
         {
-          name: ["--config"],
+          name: "--config",
           icon: "🛠",
           description: "Path to the CLI configuration file",
           args: [
@@ -794,7 +794,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--indexed-ram-bundle"],
+          name: "--indexed-ram-bundle",
           description:
             'Force the "Indexed RAM" bundle file format, even when building for android',
         },
@@ -809,7 +809,7 @@ const completionSpec: Fig.Spec = {
       name: "link",
       options: [
         {
-          name: ["--platforms"],
+          name: "--platforms",
           description: "Scope linking to specified platforms",
           args: [
             {
@@ -819,7 +819,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--all"],
+          name: "--all",
           description: "Link all native modules and assets",
         },
         {
@@ -893,7 +893,7 @@ const completionSpec: Fig.Spec = {
       name: "unlink",
       options: [
         {
-          name: ["--platforms"],
+          name: "--platforms",
           description: "Scope unlinking to specified platforms",
           args: [
             {
@@ -929,7 +929,7 @@ const completionSpec: Fig.Spec = {
       name: "profile-hermes",
       options: [
         {
-          name: ["--filename"],
+          name: "--filename",
           description:
             "File name of the profile to be downloaded, eg. sampling-profiler-trace8593107139682635366.cpuprofile",
           args: [
@@ -940,12 +940,12 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "Pulls the original Hermes tracing profile without any transformation",
         },
         {
-          name: ["--sourcemap-path"],
+          name: "--sourcemap-path",
           description:
             "The local path to your source map file, eg. /tmp/sourcemap.json",
           args: [
@@ -956,11 +956,11 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--generate-sourcemap"],
+          name: "--generate-sourcemap",
           description: "Generates the JS bundle and source map",
         },
         {
-          name: ["--port"],
+          name: "--port",
           description: 'default: "8081"',
           args: [
             {
@@ -997,7 +997,7 @@ const completionSpec: Fig.Spec = {
       name: "run-android",
       options: [
         {
-          name: ["--root"],
+          name: "--root",
           description:
             '[DEPRECATED - root is discovered automatically] Override the root directory for the android build (which contains the android directory) (default: "")',
           args: [
@@ -1008,7 +1008,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--variant"],
+          name: "--variant",
           description: 'Specify your app\'s build variant (default: "debug")',
           args: [
             {
@@ -1025,7 +1025,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--appFolder"],
+          name: "--appFolder",
           description:
             '[DEPRECATED – use "project.android.appName" in react-native.config.js] Specify a different application folder name for the android source. If not, we assume is "app"',
           args: [
@@ -1036,7 +1036,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--appId"],
+          name: "--appId",
           description:
             'Specify an applicationId to launch after build. If not specified, `package` from AndroidManifest.xml will be used. (default: "")',
           args: [
@@ -1046,7 +1046,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--appIdSuffix"],
+          name: "--appIdSuffix",
           description:
             'Specify an applicationIdSuffix to launch after build. (default: "")',
           args: [
@@ -1056,7 +1056,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--main-activity"],
+          name: "--main-activity",
           description:
             'Name of the activity to start (default: "MainActivity")',
           args: [
@@ -1066,7 +1066,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--deviceId"],
+          name: "--deviceId",
           icon: ANDROID_ICON,
           description:
             'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line).',
@@ -1078,11 +1078,11 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--no-packager"],
+          name: "--no-packager",
           description: "Do not launch packager while building",
         },
         {
-          name: ["--port"],
+          name: "--port",
           description: "default: 8081",
           args: [
             {
@@ -1091,7 +1091,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--terminal"],
+          name: "--terminal",
           description:
             'Launches the Metro Bundler in a new window using the specified terminal path. (default: "Apple_Terminal")',
           args: [
@@ -1101,7 +1101,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--tasks"],
+          name: "--tasks",
           description:
             'Run custom Gradle tasks. By default it\'s "installDebug"',
           icon: GRADLE_ICON,
@@ -1114,7 +1114,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--no-jetifier"],
+          name: "--no-jetifier",
           description:
             'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier.',
         },
@@ -1129,7 +1129,7 @@ const completionSpec: Fig.Spec = {
       name: "run-ios",
       options: [
         {
-          name: ["--simulator"],
+          name: "--simulator",
           description:
             'Explicitly set simulator to use. Optionally include iOS version between parenthesis at the end to match an exact version: "iPhone 6 (10.0)" (default: "iPhone 12")',
           args: [
@@ -1140,7 +1140,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--configuration"],
+          name: "--configuration",
           icon: "🛠",
           description:
             'Explicitly set the scheme configuration to use (default: "Debug")',
@@ -1153,7 +1153,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--scheme"],
+          name: "--scheme",
           description: "Explicitly set Xcode scheme to use",
           args: [
             {
@@ -1163,7 +1163,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--project-path"],
+          name: "--project-path",
           description:
             'Path relative to project root where the Xcode project (.xcodeproj) lives. (default: "ios")',
           args: [
@@ -1174,7 +1174,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--device"],
+          name: "--device",
           description: "Explicitly set device to use by name.",
           args: [
             {
@@ -1185,7 +1185,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--udid"],
+          name: "--udid",
           description: "Explicitly set device to use by udid",
           args: [
             {
@@ -1195,16 +1195,16 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--no-packager"],
+          name: "--no-packager",
           description: "Do not launch packager while building",
         },
         {
-          name: ["--verbose"],
+          name: "--verbose",
           icon: "🔊",
           description: "Do not use xcpretty even if installed",
         },
         {
-          name: ["--port"],
+          name: "--port",
           description: "default: 8081",
           args: [
             {
@@ -1213,7 +1213,7 @@ const completionSpec: Fig.Spec = {
           ],
         },
         {
-          name: ["--terminal"],
+          name: "--terminal",
           description:
             'Launches the Metro Bundler in a new window using the specified terminal path. (default: "Apple_Terminal")',
           args: [
@@ -1231,11 +1231,11 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version "],
+      name: "--version ",
       description: "Print CLI version",
     },
     {
-      name: ["--verbose"],
+      name: "--verbose",
       icon: "🔊",
       description: "Increase logging verbosity",
     },

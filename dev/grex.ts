@@ -41,7 +41,7 @@ const completionSpec: Fig.Spec = {
         "Replaces all non-ASCII characters with unicode escape sequences",
     },
     {
-      name: ["--with-surrogates"],
+      name: "--with-surrogates",
       description:
         "Converts astral code points to surrogate pairs if --escape is set",
     },
@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--min-repetitions"],
+      name: "--min-repetitions",
       description:
         "Specifies the minimum quantity of substring repetitions to be converted if --repetitions is set [default: 1]",
       args: [
@@ -97,7 +97,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["--min-substring-length"],
+      name: "--min-substring-length",
       description:
         "Specifies the minimum length a repeated substring must have in order to be converted if --repetitions is set [default: 1]",
       args: [

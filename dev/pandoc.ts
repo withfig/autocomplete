@@ -98,7 +98,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--data-dir"],
+      name: "--data-dir",
       description:
         "Specify the user data directory to search for pandoc data files",
       args: {

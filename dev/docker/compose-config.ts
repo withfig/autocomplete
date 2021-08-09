@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
       description: "Print the volume names, one per line.",
     },
     {
-      name: ["--hash"],
+      name: "--hash",
       description:
         'Print the service config hash, one per line. Set "service1,service2" for a list of specified services or use the wildcard symbol to display all services.',
       args: {

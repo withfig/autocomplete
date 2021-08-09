@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
       description: "Search case sensitively",
     },
     {
-      name: ["--color"],
+      name: "--color",
       description: "Controls when to use colors",
       args: {
         name: "when",
@@ -510,7 +510,7 @@ const completionSpec: Fig.Spec = {
       description: "Search in compressed files",
     },
     {
-      name: ["-S, --smart-case"],
+      name: "-S, --smart-case",
       description:
         "Searches case insensitively if the pattern is all lowercase",
     },

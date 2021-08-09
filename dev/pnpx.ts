@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["--cache"],
+      name: "--cache",
       args: [
         {
           name: "path",
@@ -55,12 +55,12 @@ const completionSpec: Fig.Spec = {
       description: "Location of the npm cache.",
     },
     {
-      name: ["--always-spawn"],
+      name: "--always-spawn",
       description: "Always spawn a child process to execute the command.",
     },
     {
       description: "Skip installation if a package is missing.",
-      name: ["--no-install"],
+      name: "--no-install",
     },
     {
       args: [
@@ -70,7 +70,7 @@ const completionSpec: Fig.Spec = {
         },
       ],
       description: "Path to user npmrc.",
-      name: ["--userconfig"],
+      name: "--userconfig",
     },
     {
       name: ["--call", "-c"],
@@ -118,12 +118,12 @@ const completionSpec: Fig.Spec = {
           ],
         },
       ],
-      name: ["--shell-auto-fallback"],
+      name: "--shell-auto-fallback",
       description:
         'Generate shell code to use pnpx as the "command not found" fallback.',
     },
     {
-      name: ["--ignore-existing"],
+      name: "--ignore-existing",
       description:
         "Ignores existing binaries in $PATH, or in the localproject. This forces pnpx to do a temporary install and use the latest version.",
     },
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
         "Suppress output from pnpx itself. Subcommands will not be affected.",
     },
     {
-      name: ["--npm"],
+      name: "--npm",
       args: [
         {
           name: "path to binary",

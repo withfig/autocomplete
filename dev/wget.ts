@@ -35,7 +35,7 @@ const completionSpec: Fig.Spec = {
       description: "turn off verboseness, without being quiet",
     },
     {
-      name: ["--report-speed=TYPE"],
+      name: "--report-speed=TYPE",
       description: "output bandwidth as TYPE.  TYPE can be bits",
     },
     {
@@ -47,10 +47,10 @@ const completionSpec: Fig.Spec = {
       name: ["-B", "--base=URL"],
       description: "resolves HTML input-file links (-i -F) relative to URL",
     },
-    { name: ["--config=FILE"], description: "specify config file to use" },
-    { name: ["--no-config"], description: "do not read any config file" },
+    { name: "--config=FILE", description: "specify config file to use" },
+    { name: "--no-config", description: "do not read any config file" },
     {
-      name: ["--rejected-log=FILE"],
+      name: "--rejected-log=FILE",
       description: "log reasons for URL rejection to FILE",
     },
     {
@@ -58,11 +58,11 @@ const completionSpec: Fig.Spec = {
       description: "set number of retries to NUMBER (0 unlimits)",
     },
     {
-      name: ["--retry-connrefused"],
+      name: "--retry-connrefused",
       description: "retry even if connection is refused",
     },
     {
-      name: ["--retry-on-http-error="],
+      name: "--retry-on-http-error",
       description: "    comma-separated list of HTTP errors to retry",
     },
     {
@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
         "skip downloads that would download to existing files (overwriting them)",
     },
     {
-      name: ["--no-netrc"],
+      name: "--no-netrc",
       description: "don't try to obtain credentials from .netrc",
     },
     {
@@ -83,12 +83,12 @@ const completionSpec: Fig.Spec = {
       description: "resume getting a partially-downloaded file",
     },
     {
-      name: ["--start-pos=OFFSET"],
+      name: "--start-pos=OFFSET",
       description: "start downloading from zero-based position OFFSET",
     },
-    { name: ["--progress=TYPE"], description: "select progress gauge type" },
+    { name: "--progress=TYPE", description: "select progress gauge type" },
     {
-      name: ["--show-progress"],
+      name: "--show-progress",
       description: "display the progress bar in any verbosity mode",
     },
     {
@@ -96,21 +96,21 @@ const completionSpec: Fig.Spec = {
       description: "don't re-retrieve files unless newer than local",
     },
     { name: ["-S", "--server-response"], description: "print server response" },
-    { name: ["--spider"], description: "don't download anything" },
+    { name: "--spider", description: "don't download anything" },
     {
       name: ["-T", "--timeout=SECONDS"],
       description: "set all timeout values to SECONDS",
     },
     {
-      name: ["--dns-timeout=SECS"],
+      name: "--dns-timeout=SECS",
       description: "set the DNS lookup timeout to SECS",
     },
     {
-      name: ["--connect-timeout=SECS"],
+      name: "--connect-timeout=SECS",
       description: "set the connect timeout to SECS",
     },
     {
-      name: ["--read-timeout=SECS"],
+      name: "--read-timeout=SECS",
       description: "set the read timeout to SECS",
     },
     {
@@ -118,30 +118,30 @@ const completionSpec: Fig.Spec = {
       description: "wait SECONDS between retrievals",
     },
     {
-      name: ["--waitretry=SECONDS"],
+      name: "--waitretry=SECONDS",
       description: "wait 1..SECONDS between retries of a retrieval",
     },
     {
-      name: ["--random-wait"],
+      name: "--random-wait",
       description: "wait from 0.5*WAIT...1.5*WAIT secs between retrievals",
     },
-    { name: ["--no-proxy"], description: "explicitly turn off proxy" },
+    { name: "--no-proxy", description: "explicitly turn off proxy" },
     {
       name: ["-Q", "--quota=NUMBER"],
       description: "set retrieval quota to NUMBER",
     },
     {
-      name: ["--bind-address=ADDRESS"],
+      name: "--bind-address=ADDRESS",
       description: "bind to ADDRESS (hostname or IP) on local host",
     },
-    { name: ["--limit-rate=RATE"], description: "limit download rate to RATE" },
-    { name: ["--no-dns-cache"], description: "disable caching DNS lookups" },
+    { name: "--limit-rate=RATE", description: "limit download rate to RATE" },
+    { name: "--no-dns-cache", description: "disable caching DNS lookups" },
     {
-      name: ["--restrict-file-names=OS"],
+      name: "--restrict-file-names=OS",
       description: "restrict chars in file names to ones OS allows",
     },
     {
-      name: ["--ignore-case"],
+      name: "--ignore-case",
       description: "ignore case when matching files/directories",
     },
     {
@@ -153,26 +153,26 @@ const completionSpec: Fig.Spec = {
       description: "connect only to IPv6 addresses",
     },
     {
-      name: ["--user=USER"],
+      name: "--user=USER",
       description: "set both ftp and http user to USER",
     },
     {
-      name: ["--password=PASS"],
+      name: "--password=PASS",
       description: "set both ftp and http password to PASS",
     },
-    { name: ["--ask-password"], description: "prompt for passwords" },
-    { name: ["--no-iri"], description: "turn off IRI support" },
+    { name: "--ask-password", description: "prompt for passwords" },
+    { name: "--no-iri", description: "turn off IRI support" },
     {
-      name: ["--local-encoding=ENC"],
+      name: "--local-encoding=ENC",
       description: "use ENC as the local encoding for IRIs",
     },
     {
-      name: ["--remote-encoding=ENC"],
+      name: "--remote-encoding=ENC",
       description: "use ENC as the default remote encoding",
     },
-    { name: ["--unlink"], description: "remove file before clobber" },
+    { name: "--unlink", description: "remove file before clobber" },
     {
-      name: ["--xattr"],
+      name: "--xattr",
       description: "turn on storage of metadata in extended file attributes",
     },
     {
@@ -188,7 +188,7 @@ const completionSpec: Fig.Spec = {
       description: "don't create host directories",
     },
     {
-      name: ["--protocol-directories"],
+      name: "--protocol-directories",
       description: "use protocol name in directories",
     },
     {
@@ -196,121 +196,121 @@ const completionSpec: Fig.Spec = {
       description: "save files to PREFIX/..",
     },
     {
-      name: ["--cut-dirs=NUMBER"],
+      name: "--cut-dirs=NUMBER",
       description: "ignore NUMBER remote directory components",
     },
-    { name: ["--http-user=USER"], description: "set http user to USER" },
+    { name: "--http-user=USER", description: "set http user to USER" },
     {
-      name: ["--http-password=PASS"],
+      name: "--http-password=PASS",
       description: "set http password to PASS",
     },
-    { name: ["--no-cache"], description: "disallow server-cached data" },
+    { name: "--no-cache", description: "disallow server-cached data" },
     {
       name: ["-E", "--adjust-extension"],
       description: "save HTML/CSS documents with proper extensions",
     },
     {
-      name: ["--ignore-length"],
+      name: "--ignore-length",
       description: "ignore 'Content-Length' header field",
     },
     {
-      name: ["--header=STRING"],
+      name: "--header=STRING",
       description: "insert STRING among the headers",
     },
     {
-      name: ["--compression=TYPE"],
+      name: "--compression=TYPE",
       description:
         "choose compression, one of auto, gzip and none. (default: none)",
     },
     {
-      name: ["--max-redirect"],
+      name: "--max-redirect",
       description: "maximum redirections allowed per page",
     },
-    { name: ["--proxy-user=USER"], description: "set USER as proxy username" },
+    { name: "--proxy-user=USER", description: "set USER as proxy username" },
     {
-      name: ["--proxy-password=PASS"],
+      name: "--proxy-password=PASS",
       description: "set PASS as proxy password",
     },
     {
-      name: ["--referer=URL"],
+      name: "--referer=URL",
       description: "include 'Referer: URL' header in HTTP request",
     },
-    { name: ["--save-headers"], description: "save the HTTP headers to file" },
+    { name: "--save-headers", description: "save the HTTP headers to file" },
     {
       name: ["-U", "--user-agent=AGENT"],
       description: "identify as AGENT instead of Wget/VERSION",
     },
     {
-      name: ["--no-http-keep-alive"],
+      name: "--no-http-keep-alive",
       description: "disable HTTP keep-alive (persistent connections)",
     },
-    { name: ["--no-cookies"], description: "don't use cookies" },
+    { name: "--no-cookies", description: "don't use cookies" },
     {
-      name: ["--load-cookies=FILE"],
+      name: "--load-cookies=FILE",
       description: "load cookies from FILE before session",
     },
     {
-      name: ["--save-cookies=FILE"],
+      name: "--save-cookies=FILE",
       description: "save cookies to FILE after session",
     },
     {
-      name: ["--keep-session-cookies"],
+      name: "--keep-session-cookies",
       description: "load and save session (non-permanent) cookies",
     },
     {
-      name: ["--post-data=STRING"],
+      name: "--post-data=STRING",
       description: "use the POST method; send STRING as the data",
     },
     {
-      name: ["--post-file=FILE"],
+      name: "--post-file=FILE",
       description: "use the POST method; send contents of FILE",
     },
     {
-      name: ["--method=HTTPMethod"],
+      name: "--method=HTTPMethod",
       description: 'use method "HTTPMethod" in the request',
     },
     {
-      name: ["--body-data=STRING"],
+      name: "--body-data=STRING",
       description: "send STRING as data. --method MUST be set",
     },
     {
-      name: ["--body-file=FILE"],
+      name: "--body-file=FILE",
       description: "send contents of FILE. --method MUST be set",
     },
     {
-      name: ["--content-on-error"],
+      name: "--content-on-error",
       description: "output the received content on server errors",
     },
     {
-      name: ["--secure-protocol=PR"],
+      name: "--secure-protocol=PR",
       description: "choose secure protocol, one of auto, SSLv2,",
     },
-    { name: ["--https-only"], description: "only follow secure HTTPS links" },
+    { name: "--https-only", description: "only follow secure HTTPS links" },
     {
-      name: ["--no-check-certificate"],
+      name: "--no-check-certificate",
       description: "don't validate the server's certificate",
     },
-    { name: ["--certificate=FILE"], description: "client certificate file" },
+    { name: "--certificate=FILE", description: "client certificate file" },
     {
-      name: ["--certificate-type=TYPE"],
+      name: "--certificate-type=TYPE",
       description: "client certificate type, PEM or DER",
     },
-    { name: ["--private-key=FILE"], description: "private key file" },
+    { name: "--private-key=FILE", description: "private key file" },
     {
-      name: ["--private-key-type=TYPE"],
+      name: "--private-key-type=TYPE",
       description: "private key type, PEM or DER",
     },
     {
-      name: ["--ca-certificate=FILE"],
+      name: "--ca-certificate=FILE",
       description: "file with the bundle of CAs",
     },
     {
-      name: ["--ca-directory=DIR"],
+      name: "--ca-directory=DIR",
       description: "directory where hash list of CAs is stored",
     },
-    { name: ["--crl-file=FILE"], description: "file with bundle of CRLs" },
+    { name: "--crl-file=FILE", description: "file with bundle of CRLs" },
     {
-      name: ["--ciphers=STR"],
+      name: "--ciphers=STR",
       description:
         "Set the priority string (GnuTLS) or cipher list string (OpenSSL) directly.",
     },
@@ -320,7 +320,7 @@ const completionSpec: Fig.Spec = {
       description: "maximum recursion depth (inf or 0 for infinite)",
     },
     {
-      name: ["--delete-after"],
+      name: "--delete-after",
       description: "delete files locally after downloading them",
     },
     {
@@ -348,32 +348,32 @@ const completionSpec: Fig.Spec = {
       description: "comma-separated list of rejected extensions",
     },
     {
-      name: ["--accept-regex=REGEX"],
+      name: "--accept-regex=REGEX",
       description: "regex matching accepted URLs",
     },
     {
-      name: ["--reject-regex=REGEX"],
+      name: "--reject-regex=REGEX",
       description: "regex matching rejected URLs",
     },
-    { name: ["--regex-type=TYPE"], description: "regex type (posix)" },
+    { name: "--regex-type=TYPE", description: "regex type (posix)" },
     {
       name: ["-D", "--domains=LIST"],
       description: "comma-separated list of accepted domains",
     },
     {
-      name: ["--exclude-domains=LIST"],
+      name: "--exclude-domains=LIST",
       description: "comma-separated list of rejected domains",
     },
     {
-      name: ["--follow-ftp"],
+      name: "--follow-ftp",
       description: "follow FTP links from HTML documents",
     },
     {
-      name: ["--follow-tags=LIST"],
+      name: "--follow-tags=LIST",
       description: "comma-separated list of followed HTML tags",
     },
     {
-      name: ["--ignore-tags=LIST"],
+      name: "--ignore-tags=LIST",
       description: "comma-separated list of ignored HTML tags",
     },
     {

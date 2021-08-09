@@ -22,11 +22,11 @@ const completionSpec: Fig.Spec = {
       args: [{ name: "weight", isOptional: true }],
     },
     {
-      name: ["--complete"],
+      name: "--complete",
       description: "used for tab completion",
     },
     {
-      name: ["--purge"],
+      name: "--purge",
       description: "remove non-existent paths from database",
     },
     {

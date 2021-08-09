@@ -4,80 +4,80 @@ const completionSpec: Fig.Spec = {
   options: [
     { name: ["-A", "-e"], description: "Select all processes." },
     {
-      name: ["-a"],
+      name: "-a",
       description: "Select all processes except both session leaders",
       args: { name: "getsid" },
     },
     {
-      name: ["-d"],
+      name: "-d",
       description: "Select all processes except session leaders.",
     },
     {
-      name: ["--deselect"],
+      name: "--deselect",
       description:
         "Select all processes except those that fulfill the specified conditions",
     },
     {
-      name: ["-N"],
+      name: "-N",
       description:
         "Select all processes except those that fulfill the specified conditions (negates the selection).",
     },
     {
-      name: ["--pid"],
+      name: "--pid",
       description: "Select by process ID.",
       args: { name: "pidlist" },
     },
     {
-      name: ["--ppid"],
+      name: "--ppid",
       description:
         "Select by parent process ID. This selects the processes with a parent process ID in pidlist.",
       args: { name: "pidlist" },
     },
     {
-      name: ["--sid"],
+      name: "--sid",
       description: "Select by session ID.",
       args: { name: "sesslist" },
     },
     {
-      name: ["--tty"],
+      name: "--tty",
       description: "Select by terminal.",
       args: { name: "ttylist" },
     },
     {
-      name: ["U"],
+      name: "U",
       description: "Select by effective user ID (EUID) or name.",
       args: { name: "userlist" },
     },
     {
-      name: ["-U"],
+      name: "-U",
       description: "Select by real user ID (RUID) or name.",
       args: { name: "userlist" },
     },
     {
-      name: ["-u"],
+      name: "-u",
       description: "Select by effective user ID (EUID) or name.",
       args: { name: "userlist" },
     },
     {
-      name: ["--User"],
+      name: "--User",
       description: "Select by real user ID (RUID) or name.",
       args: { name: "userlist" },
     },
     {
-      name: ["--user"],
+      name: "--user",
       description: "Select by effective user ID (EUID) or name",
       args: { name: "userlist" },
     },
     {
-      name: ["-c"],
+      name: "-c",
       description: "Show different scheduler information for the -l option",
     },
     {
-      name: ["--context"],
+      name: "--context",
       description: "Display security context format (for SE Linux).",
     },
-    { name: ["-f"], description: "Do full-format listing." },
-    { name: ["-F"], description: "Extra full format." },
+    { name: "-f", description: "Do full-format listing." },
+    { name: "-F", description: "Extra full format." },
     {
       name: ["--format", "-o", "o"],
       description: ".",
@@ -86,33 +86,33 @@ const completionSpec: Fig.Spec = {
     { name: ["-M", "Z"], description: "(for SE Linux)." },
     { name: ["-y", "-l"], description: "." },
     {
-      name: ["--cols"],
+      name: "--cols",
       description: "Set screen width",
       args: { name: "n" },
     },
     {
-      name: ["--columns"],
+      name: "--columns",
       description: "Set screen width",
       args: { name: "n" },
     },
     {
-      name: ["--cumulative"],
+      name: "--cumulative",
       description:
         "Include some dead child process data (as a sum with the parent)",
     },
-    { name: ["--forest"], description: "ASCII art process tree." },
-    { name: ["-H"], description: "Show process hierarchy (forest)." },
+    { name: "--forest", description: "ASCII art process tree." },
+    { name: "-H", description: "Show process hierarchy (forest)." },
     {
-      name: ["--headers"],
+      name: "--headers",
       description: "Repeat header lines, one per page of output.",
     },
     {
-      name: ["-n"],
+      name: "-n",
       description: "Set namelist file.",
       args: { name: "namelist" },
     },
     {
-      name: ["--lines"],
+      name: "--lines",
       description: "Set screen height.",
       args: { name: "n" },
     },
@@ -121,31 +121,31 @@ const completionSpec: Fig.Spec = {
       description: "Print no header line at all.",
     },
     {
-      name: ["--rows"],
+      name: "--rows",
       description: "Set screen height.",
       args: { name: "n" },
     },
     {
-      name: ["--sort"],
+      name: "--sort",
       description: "Specify sorting order.",
       args: { name: "spec" },
     },
     {
-      name: ["--width"],
+      name: "--width",
       description: "set screen width",
       args: { name: "n" },
     },
     {
-      name: ["-L"],
+      name: "-L",
       description: "Show threads, possibly with LWP and NLWP columns.",
     },
     {
-      name: ["-T"],
+      name: "-T",
       description: "Show threads, possibly with SPID column.",
     },
-    { name: ["--help"], description: "Print a help message." },
-    { name: ["--info"], description: "Print debugging info." },
-    { name: ["--version"], description: "Print the procps version." },
+    { name: "--help", description: "Print a help message." },
+    { name: "--info", description: "Print debugging info." },
+    { name: "--version", description: "Print the procps version." },
   ],
 };
 

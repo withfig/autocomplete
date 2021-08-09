@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
       description: "Pushes images for services.",
       options: [
         {
-          name: ["--ignore-push-failures"],
+          name: "--ignore-push-failures",
           description:
             "Push what it can and ignores images with push failures.",
           args: {},
@@ -140,7 +140,7 @@ const completionSpec: Fig.Spec = {
       description: "Show version information and quit.",
       options: [
         {
-          name: ["--short"],
+          name: "--short",
           description: "Shows only Compose's version number.",
           args: {},
         },
@@ -178,7 +178,7 @@ const completionSpec: Fig.Spec = {
         name: "string",
       },
       description: "Specify a profile to enable",
-      name: ["--profile"],
+      name: "--profile",
     },
     {
       args: {
@@ -189,25 +189,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "Show more output",
-      name: ["--verbose"],
+      name: "--verbose",
     },
     {
       args: {
         name: "LEVEL",
       },
       description: "Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
-      name: ["--log-level"],
+      name: "--log-level",
     },
     {
       args: {
         name: "(never|always|auto)",
       },
       description: "Control when to print ANSI control characters",
-      name: ["--ansi"],
+      name: "--ansi",
     },
     {
       description: "Do not print ANSI control characters (DEPRECATED)",
-      name: ["--no-ansi"],
+      name: "--no-ansi",
     },
     {
       description: "Print version and exit",
@@ -222,47 +222,47 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "Use TLS; implied by --tlsverify",
-      name: ["--tls"],
+      name: "--tls",
     },
     {
       args: {
         name: "CA_PATH",
       },
       description: "Trust certs signed only by this CA",
-      name: ["--tlscacert"],
+      name: "--tlscacert",
     },
     {
       args: {
         name: "CLIENT_CERT_PATH",
       },
       description: "Path to TLS certificate file",
-      name: ["--tlscert"],
+      name: "--tlscert",
     },
     {
       args: {
         name: "TLS_KEY_PATH",
       },
       description: "Path to TLS key file",
-      name: ["--tlskey"],
+      name: "--tlskey",
     },
     {
       description: "Use TLS and verify the remote",
-      name: ["--tlsverify"],
+      name: "--tlsverify",
     },
     {
       description: "Don't check the daemon's hostname against the",
-      name: ["--skip-hostname-check"],
+      name: "--skip-hostname-check",
     },
     {
       args: {
         name: "PATH",
       },
       description: "Specify an alternate working directory",
-      name: ["--project-directory"],
+      name: "--project-directory",
     },
     {
       description: "If set, Compose will attempt to convert keys",
-      name: ["--compatibility"],
+      name: "--compatibility",
     },
     {
       args: {
@@ -270,7 +270,7 @@ const completionSpec: Fig.Spec = {
         template: "filepaths",
       },
       description: "Specify an alternate environment file",
-      name: ["--env-file"],
+      name: "--env-file",
     },
   ],
 };

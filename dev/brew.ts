@@ -354,7 +354,7 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "The current Homebrew version",
     },
   ],
