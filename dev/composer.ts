@@ -78,7 +78,7 @@ const completionSpec: Fig.Spec = {
             return {
               name: names,
               description: option.description,
-              required: option.is_value_required,
+              isRequired: option.is_value_required,
               args: option.accept_value ? {} : undefined,
             };
           }),

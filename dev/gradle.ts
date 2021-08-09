@@ -405,7 +405,7 @@ export const completion: Fig.Spec = {
       options: [
         {
           name: "--task",
-          required: true,
+          isRequired: true,
           args: {
             name: "task",
           },
