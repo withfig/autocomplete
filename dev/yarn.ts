@@ -28,7 +28,6 @@ const searchGenerator: Fig.Generator = {
 const getScriptsGenerator: Fig.Generator = {
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-  // splitOn: "\n",
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
