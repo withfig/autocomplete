@@ -560,7 +560,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pathspec",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
       options: [
@@ -839,7 +839,7 @@ const completionSpec: Fig.Spec = {
           name: "--local",
           description: "Default: write to the repository .git/config file",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               {
                 name: "user.name",
@@ -860,7 +860,7 @@ const completionSpec: Fig.Spec = {
           description:
             "For writing options: write to global ~/.gitconfig file rather than the repository .git/config",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               {
                 name: "user.name",
@@ -1168,7 +1168,7 @@ const completionSpec: Fig.Spec = {
             "Use the given merge strategy. If there is no -s option git merge-recursive is used instead. This implies --merge. Because git rebase replays each commit from the working branch on top of the <upstream> branch using the given strategy, using the ours strategy simply empties all patches from the <branch>, which makes little sense.",
           args: {
             name: "strategy",
-            variadic: true,
+            isVariadic: true,
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
@@ -1410,7 +1410,7 @@ const completionSpec: Fig.Spec = {
       options: addOptions,
       args: {
         name: "pathspec",
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
 
         // We have a special setting for dot in the vuejs app
@@ -1432,7 +1432,7 @@ const completionSpec: Fig.Spec = {
       options: addOptions,
       args: {
         name: "pathspec",
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
 
         // We have a special setting for dot in the vuejs app
@@ -1592,7 +1592,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "pathspec",
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
 
         // We have a special setting for dot in the vuejs app
@@ -2004,7 +2004,7 @@ const completionSpec: Fig.Spec = {
             "Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise).",
           args: {
             name: "strategy",
-            variadic: true,
+            isVariadic: true,
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
@@ -2312,7 +2312,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Safe: files which are different between the current HEAD and the given commit. Will abort if there are uncommitted changes",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [head],
             generators: gitGenerators.commits,
           },
@@ -2333,7 +2333,7 @@ const completionSpec: Fig.Spec = {
           description:
             "⚠️WARNING: you will lose all uncommitted changes in addition to the changes introduced in the last commit",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               {
                 name: "HEAD~<N>",
@@ -2350,7 +2350,7 @@ const completionSpec: Fig.Spec = {
           description:
             "keep the changes in your working tree but not on the index",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               {
                 name: "HEAD~[insert # of commits]",
@@ -2368,7 +2368,7 @@ const completionSpec: Fig.Spec = {
             "Resets the index and updates the files in the working tree that are different" +
             " between 'commit' and HEAD",
           args: {
-            variadic: true,
+            isVariadic: true,
             suggestions: [head],
             generators: gitGenerators.commits,
           },
@@ -2376,7 +2376,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
         suggestions: [],
         generators: gitGenerators.treeish,
       },
@@ -2541,7 +2541,7 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "branch",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -2620,7 +2620,7 @@ const completionSpec: Fig.Spec = {
           description: "Gives some information about the remote [name]",
           args: {
             name: "name",
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2636,7 +2636,7 @@ const completionSpec: Fig.Spec = {
             "Equivalent to git fetch --prune [name], except that no new references will be fetched",
           args: {
             name: "name",
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2663,12 +2663,12 @@ const completionSpec: Fig.Spec = {
             {
               name: "group",
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
             {
               name: "remote",
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -3562,7 +3562,7 @@ const completionSpec: Fig.Spec = {
       name: "rm",
       description: "Remove files from the working tree and from the index",
       args: {
-        variadic: true,
+        isVariadic: true,
         suggestions: [
           {
             name: ".",
@@ -3606,7 +3606,7 @@ const completionSpec: Fig.Spec = {
               isOptional: true,
               generators: [gitGenerators.revs, gitGenerators.revs],
               suggestions: ["HEAD"],
-              variadic: true,
+              isVariadic: true,
             },
           ],
           options: [
@@ -3695,7 +3695,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             generators: gitGenerators.revs,
             suggestions: ["HEAD"],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -3706,7 +3706,7 @@ const completionSpec: Fig.Spec = {
             isOptional: true,
             generators: gitGenerators.revs,
             suggestions: ["HEAD"],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -3733,7 +3733,7 @@ const completionSpec: Fig.Spec = {
           description: "Mark <rev>... untestable revisions",
           args: {
             name: "rev | range",
-            variadic: true,
+            isVariadic: true,
             isOptional: true,
             generators: gitGenerators.revs,
             suggestions: ["HEAD"],
@@ -3770,7 +3770,7 @@ const completionSpec: Fig.Spec = {
           description: "Use <cmd>... to automatically bisect",
           args: {
             name: "cmd",
-            variadic: true,
+            isVariadic: true,
             isCommand: true,
           },
         },
@@ -3794,7 +3794,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-a", "--all"],
-          exclusive: ["-r", "--remotes"],
+          exclusiveOn: ["-r", "--remotes"],
           description: "list both remote-tracking and local branches",
         },
         {
@@ -3865,12 +3865,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--column",
-          exclusive: ["--no-column"],
+          exclusiveOn: ["--no-column"],
           description: "list branches in columns [=<style>]",
         },
         {
           name: "--no-column",
-          exclusive: ["--column"],
+          exclusiveOn: ["--column"],
           description: "Doesn't display branch listing in columns",
         },
         {
@@ -3894,7 +3894,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-r", "--remotes"],
-          exclusive: ["-a", "--all"],
+          exclusiveOn: ["-a", "--all"],
           description:
             "Lists or deletes (if used with -d) the remote-tracking branches.",
         },
@@ -3915,19 +3915,19 @@ const completionSpec: Fig.Spec = {
           name: "--abbrev",
           description:
             "Shows the shortest prefix that is at least <n> hexdigits long that uniquely refers the object",
-          exclusive: ["--no-abbrev"],
+          exclusiveOn: ["--no-abbrev"],
           args: {
             name: "Number",
           },
         },
         {
           name: "--no-abbrev",
-          exclusive: ["--abbrev"],
+          exclusiveOn: ["--abbrev"],
           description: "Displays the full sha1s in the output listing",
         },
         {
           name: ["-t", "--track"],
-          exclusive: ["--no-track"],
+          exclusiveOn: ["--no-track"],
           description:
             "When creating a new branch, set up 'upstream' configuration.",
           args: [
@@ -3945,7 +3945,7 @@ const completionSpec: Fig.Spec = {
 
         {
           name: ["--no-track"],
-          exclusive: ["--track", "-t"],
+          exclusiveOn: ["--track", "-t"],
           description:
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
@@ -3999,7 +3999,7 @@ const completionSpec: Fig.Spec = {
           name: "--color",
           description:
             "Color branches to highlight current, local, and remote-tracking branches",
-          exclusive: ["--no-color"],
+          exclusiveOn: ["--no-color"],
           args: {
             name: "when",
             isOptional: true,
@@ -4009,7 +4009,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-color",
           description: "Turns off branch colors",
-          exclusive: ["--color"],
+          exclusiveOn: ["--color"],
         },
       ],
     },
@@ -4217,7 +4217,7 @@ const completionSpec: Fig.Spec = {
           name: "pathspec",
           description: "Limits the paths affected by the operation.",
           isOptional: true,
-          variadic: true,
+          isVariadic: true,
           template: "filepaths",
         },
       ],
@@ -4307,7 +4307,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             template: "filepaths",
           },
         },
@@ -4323,7 +4323,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             template: "filepaths",
           },
         },
@@ -4348,7 +4348,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             template: "filepaths",
           },
         },
@@ -4442,7 +4442,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             template: "filepaths",
           },
         },
@@ -4540,7 +4540,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "path",
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               template: "filepaths",
             },
           ],
@@ -4578,7 +4578,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "path",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             template: "filepaths",
           },
         },
@@ -4605,7 +4605,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "branch",
         generators: gitGenerators.localBranches,
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
       },
       options: [
@@ -4747,7 +4747,7 @@ const completionSpec: Fig.Spec = {
             "Use the given merge strategy; can be supplied more than once to specify them in the order they should be tried. If there is no -s option, a built-in list of strategies is used instead (git merge-recursive when merging a single head, git merge-octopus otherwise).",
           args: {
             name: "strategy",
-            variadic: true,
+            isVariadic: true,
             suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
           },
         },
@@ -4983,13 +4983,13 @@ const completionSpec: Fig.Spec = {
           name: ["-2", "--ours"],
           description:
             "When restoring paths from the index, check out stage #2 (ours) for unmerged paths",
-          exclusive: ["--theirs"],
+          exclusiveOn: ["--theirs"],
         },
         {
           name: ["-3", "--theirs"],
           description:
             "When re out paths from the index, check out stage #3 (theirs) for unmerged paths",
-          exclusive: ["--ours"],
+          exclusiveOn: ["--ours"],
         },
         {
           name: ["-m", "--merge"],
@@ -5009,7 +5009,7 @@ const completionSpec: Fig.Spec = {
           name: "--ignore-unmerged",
           description:
             "When restoring files on the working tree from the index, do not abort the operation if there are unmerged entries",
-          exclusive: ["--ours", "--theirs", "--merge", "--conflict"],
+          exclusiveOn: ["--ours", "--theirs", "--merge", "--conflict"],
         },
         {
           name: "--ignore-skip-worktree-bits",
@@ -5020,24 +5020,24 @@ const completionSpec: Fig.Spec = {
           name: "--recurse-submodules",
           description:
             "If <pathspec> names an active submodule and the restore location includes the working tree, the submodule will only be updated if this option is given, in which case its working tree will be restored to the commit recorded in the superproject, and any local modifications overwritten",
-          exclusive: ["--no-recurse-submodules"],
+          exclusiveOn: ["--no-recurse-submodules"],
         },
         {
           name: "--no-recurse-submodules",
           description: "Submodules working trees will not be updated",
-          exclusive: ["--recurse-submodules"],
+          exclusiveOn: ["--recurse-submodules"],
         },
         {
           name: "--overlay",
           description:
             "In overlay mode, the command never removes files when restoring",
-          exclusive: ["--no-overlay"],
+          exclusiveOn: ["--no-overlay"],
         },
         {
           name: "--no-overlay",
           description:
             "In no-overlay mode, tracked files that do not appear in the --source tree are removed, to make them match <tree> exactly",
-          exclusive: ["--overlay"],
+          exclusiveOn: ["--overlay"],
         },
         {
           name: "--pathspec-from-file",
@@ -5061,7 +5061,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pathspec",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
         generators: gitGenerators.files_for_staging,
       },
     },
@@ -5154,7 +5154,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-t", "--track"],
-          exclusive: ["--no-track"],
+          exclusiveOn: ["--no-track"],
           description:
             "When creating a new branch, set up 'upstream' configuration.",
           args: [
@@ -5171,7 +5171,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--no-track",
-          exclusive: ["--track", "-t"],
+          exclusiveOn: ["--track", "-t"],
           description:
             "Do not set up 'upstream' configuration, even if the branch.autoSetupMerge configuration variable is true.",
           args: [
@@ -5198,13 +5198,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--recurse-submodules",
-          exclusive: ["--no-recurse-submodules"],
+          exclusiveOn: ["--no-recurse-submodules"],
           description:
             "Updates the content of all active submodules according to the commit recorded in the superproject",
         },
         {
           name: "--no-recurse-submodules",
-          exclusive: ["--recurse-submodules"],
+          exclusiveOn: ["--recurse-submodules"],
           description: "Submodules working trees will not be updated",
         },
       ],

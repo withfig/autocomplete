@@ -289,7 +289,7 @@ const completionSpec: Fig.Spec = {
       name: "invoke",
       description: "Invoke a deployed function",
       options: [
-        { ...options.function, ...{ required: true } },
+        { ...options.function, ...{ isRequired: true } },
         options.path,
         options.data,
         options.raw,
@@ -309,7 +309,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "local",
           options: [
-            { ...options.function, ...{ required: true } },
+            { ...options.function, ...{ isRequired: true } },
             options.path,
             options.data,
             options.raw,

@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "addon",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -134,7 +134,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "addon",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -163,7 +163,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "addon",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -192,7 +192,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "addon",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1274,7 +1274,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "confi",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1294,7 +1294,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "confi",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1642,7 +1642,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "p",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1719,7 +1719,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "p",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1739,7 +1739,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "dyn",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1759,7 +1759,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "scal",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1893,7 +1893,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "p",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1913,7 +1913,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "p",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1933,7 +1933,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "resiz",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1953,7 +1953,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "dyn",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1973,7 +1973,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "dyn",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2382,7 +2382,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "cert",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2462,7 +2462,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "cert",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2581,7 +2581,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "cert",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2653,7 +2653,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "cert",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2856,7 +2856,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "c",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -2882,7 +2882,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "c",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -3401,7 +3401,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "sharin",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -3429,7 +3429,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "sharin",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -3458,7 +3458,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "sharin",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -3609,7 +3609,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "sharin",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -3857,7 +3857,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "p",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -6028,7 +6028,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "rak",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },

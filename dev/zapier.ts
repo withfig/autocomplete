@@ -142,7 +142,7 @@ const completionSpec: Fig.Spec = {
           description:
             "The key-value pairs to set. Keys are case-insensitive. Each pair should be space separated and pairs should be separated by an `=`. For example: `A=123 B=456`",
           isOptional: true,
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -159,7 +159,7 @@ const completionSpec: Fig.Spec = {
           name: "keys...",
           description: "The keys to unset. Keys are case-insensitive.",
           isOptional: true,
-          variadic: true,
+          isVariadic: true,
         },
       ],
       isDangerous: true,

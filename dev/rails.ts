@@ -515,7 +515,7 @@ const defaultCommands: Fig.Subcommand[] = [
       },
       {
         name: "args",
-        variadic: true,
+        isVariadic: true,
       },
     ],
     options: [

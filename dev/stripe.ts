@@ -261,7 +261,7 @@ const completionSpec: Fig.Spec = {
       name: "login",
       description: "Connects to your Stripe account",
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "tool | tool@version",
       },
       options: [
@@ -336,7 +336,7 @@ const completionSpec: Fig.Spec = {
             "Filters request logs by the source and destination account",
           args: {
             name: "values",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               {
                 name: "connect_in",
@@ -357,7 +357,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-http-method",
           description: "Filters request logs by HTTP method",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             suggestions: [
               {
@@ -379,7 +379,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-ip-address",
           description: "Filters request logs by IP address",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
           },
         },
@@ -388,7 +388,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Filters request logs that directly match any Stripe path",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
           },
         },
@@ -396,7 +396,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-request-status",
           description: "Filters request logs by the response status",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             suggestions: [
               {
@@ -414,7 +414,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-source",
           description: "Filters request logs by the source of each request",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             suggestions: [
               {
@@ -432,7 +432,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-status-code",
           description: "Filters request logs by HTTP status code",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
           },
         },
@@ -440,7 +440,7 @@ const completionSpec: Fig.Spec = {
           name: "--filter-status-code-type",
           description: "Filters request logs by the type of HTTP status code",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             suggestions: [
               {
@@ -585,7 +585,7 @@ const completionSpec: Fig.Spec = {
           description:
             "A comma-seperated list of custom HTTP headers to any connected accounts",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             description: "Key1:Value1, Key2:Value2",
           },
@@ -594,7 +594,7 @@ const completionSpec: Fig.Spec = {
           name: ["-e", "--events"],
           description: "A comma-seperated list of which events to listen for",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "events types",
             suggestions: [
               {
@@ -1250,7 +1250,7 @@ const completionSpec: Fig.Spec = {
           description:
             "A comma-separated list of custom HTTP headers to forward",
           args: {
-            variadic: true,
+            isVariadic: true,
             name: "values",
             description: "Key1:Value1, Key2:Value2",
           },

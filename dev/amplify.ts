@@ -67,7 +67,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--name",
               description: "Mandatory flag.",
-              required: true,
+              isRequired: true,
               args: {
                 name: "env-name",
                 description: "Env name",
@@ -83,7 +83,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--name",
               description: "Mandatory flag.",
-              required: true,
+              isRequired: true,
               args: {
                 name: "env-name",
                 description: "Env name",
@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--config",
               description: "Specify provider configs.",
-              required: true,
+              isRequired: true,
               args: {},
             },
             {

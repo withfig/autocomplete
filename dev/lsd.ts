@@ -2,7 +2,7 @@ const completionSpec: Fig.Spec = {
   name: "lsd",
   description: "list directory contents",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "folders",
   },
   options: [

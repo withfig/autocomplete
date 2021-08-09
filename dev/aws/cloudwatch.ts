@@ -176,7 +176,7 @@ const postPrecessGenerator = (
 };
 
 const listCustomGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -188,11 +188,11 @@ const listCustomGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -225,7 +225,7 @@ const listCustomGenerator = async (
 };
 
 const listDimensionTypes = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   option: string,
@@ -233,11 +233,11 @@ const listDimensionTypes = async (
   childKey: string
 ): Promise<Fig.Suggestion[]> => {
   try {
-    const idx = context.indexOf(option);
+    const idx = tokens.indexOf(option);
     if (idx < 0) {
       return [];
     }
-    const cmd = `aws cloudwatch ${command} ${option} ${context[idx + 1]}`;
+    const cmd = `aws cloudwatch ${command} ${option} ${tokens[idx + 1]}`;
 
     const out = await executeShellCommand(cmd);
 
@@ -264,7 +264,7 @@ const listDimensionTypes = async (
 };
 
 const MultiSuggestionsGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   enabled: Record<string, string>[]
 ) => {
@@ -292,7 +292,7 @@ const MultiSuggestionsGenerator = async (
 };
 
 const getResultList = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   key: string
@@ -409,7 +409,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -443,9 +443,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listMetricsForNamespace: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-metrics",
         ["--namespace"],
@@ -456,9 +456,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listMetricDimensions: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listDimensionTypes(
-        context,
+        tokens,
         executeShellCommand,
         "list-metrics",
         "--namespace",
@@ -469,9 +469,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAdDimensions: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listDimensionTypes(
-        context,
+        tokens,
         executeShellCommand,
         "describe-anomaly-detectors",
         "--namespace",
@@ -482,9 +482,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAssociatedStats: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "describe-anomaly-detectors",
         ["--namespace", "--metric-name"],
@@ -533,11 +533,11 @@ const generators: Record<string, Fig.Generator> = {
     // AWS is dumb, and firehose cli works totally different than other CLIs.
     // First we need to get a list of stream names, then we have to describe each
     // individually, to get an ARN
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       // get list of stream names
       const result = await Promise.all([
         getResultList(
-          context,
+          tokens,
           executeShellCommand,
           "aws firehose list-delivery-streams",
           "DeliveryStreamNames"
@@ -554,7 +554,7 @@ const generators: Record<string, Fig.Generator> = {
       });
 
       // Fire up multiple API calls
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         ...objects,
       ]);
     },
@@ -583,7 +583,7 @@ const completionSpec: Fig.Spec = {
           description: "The alarms to be deleted.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAlarms,
           },
         },
@@ -636,7 +636,7 @@ const completionSpec: Fig.Spec = {
             "The metric dimensions associated with the anomaly detection model to delete.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAdDimensions,
           },
         },
@@ -714,7 +714,7 @@ const completionSpec: Fig.Spec = {
             "An array of the rule names to delete. If you need to find out the names of your rules, use DescribeInsightRules.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listInsightRules,
           },
         },
@@ -789,7 +789,7 @@ const completionSpec: Fig.Spec = {
             "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: metricTypes,
           },
         },
@@ -894,7 +894,7 @@ const completionSpec: Fig.Spec = {
           description: "The names of the alarms to retrieve information about.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAlarms,
           },
         },
@@ -912,7 +912,7 @@ const completionSpec: Fig.Spec = {
             "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: metricTypes,
           },
         },
@@ -1052,7 +1052,7 @@ const completionSpec: Fig.Spec = {
             "The dimensions associated with the metric. If the metric has any associated dimensions, you must specify them in order for the call to succeed.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listMetricDimensions,
           },
         },
@@ -1137,7 +1137,7 @@ const completionSpec: Fig.Spec = {
             "Limits the results to only the anomaly detection models that are associated with the specified metric dimensions. If there are multiple metrics that have these dimensions and have anomaly detection models associated, they're all returned.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAdDimensions,
           },
         },
@@ -1212,7 +1212,7 @@ const completionSpec: Fig.Spec = {
           description: "The names of the alarms.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAlarms,
           },
         },
@@ -1423,7 +1423,7 @@ const completionSpec: Fig.Spec = {
             "Specifies which metrics to use for aggregation of contributor values for the report. You can specify one or more of the following metrics:    UniqueContributors -- the number of unique contributors for each data point.    MaxContributorValue -- the value of the top contributor for each data point. The identity of the contributor might change for each data point in the graph. If this rule aggregates by COUNT, the top contributor for each data point is the contributor with the most occurrences in that period. If the rule aggregates by SUM, the top contributor is the contributor with the highest sum in the log field specified by the rule's Value, during that period.    SampleCount -- the number of data points matched by the rule.    Sum -- the sum of the values from all contributors during the time period represented by that data point.    Minimum -- the minimum value from a single observation during the time period represented by that data point.    Maximum -- the maximum value from a single observation during the time period represented by that data point.    Average -- the average value from all contributors during the time period represented by that data point.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "UniqueContributors",
               "MaxContributorValue",
@@ -1475,7 +1475,7 @@ const completionSpec: Fig.Spec = {
             "The metric queries to be returned. A single GetMetricData call can include as many as 500 MetricDataQuery structures. Each of these structures can specify either a metric to retrieve, or a math expression to perform on retrieved data.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1599,7 +1599,7 @@ const completionSpec: Fig.Spec = {
             "The dimensions. If the metric contains multiple dimensions, you must include a value for each dimension. CloudWatch treats each unique combination of dimensions as a separate metric. If a specific combination of dimensions was not published, you can't retrieve statistics for it. You must specify the same dimensions that were used when the metrics were created. For an example, see Dimension Combinations in the Amazon CloudWatch User Guide. For more information about specifying dimensions, see Publishing Metrics in the Amazon CloudWatch User Guide.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listMetricDimensions,
           },
         },
@@ -1633,7 +1633,7 @@ const completionSpec: Fig.Spec = {
             "The metric statistics, other than percentile. For percentile statistics, use ExtendedStatistics. When calling GetMetricStatistics, you must specify either Statistics or ExtendedStatistics, but not both.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: statistics,
           },
         },
@@ -1643,7 +1643,7 @@ const completionSpec: Fig.Spec = {
             "The percentile statistics. Specify values between p0.0 and p100. When calling GetMetricStatistics, you must specify either Statistics or ExtendedStatistics, but not both. Percentile statistics are not available for metrics when any of the metric values are negative numbers.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1877,7 +1877,7 @@ const completionSpec: Fig.Spec = {
             "The dimensions to filter against. Only the dimensions that match exactly will be returned.",
           args: {
             name: "list",
-            //variadic: true,
+            //isVariadic: true,
             generators: generators.listMetricDimensions,
           },
         },
@@ -1998,7 +1998,7 @@ const completionSpec: Fig.Spec = {
             "The metric dimensions to create the anomaly detection model for.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listAdDimensions,
           },
         },
@@ -2062,7 +2062,7 @@ const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to the ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name  | arn:aws:ssm:region:account-id:opsitem:severity",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSNSTopics,
           },
         },
@@ -2095,7 +2095,7 @@ const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSNSTopics,
           },
         },
@@ -2105,7 +2105,7 @@ const completionSpec: Fig.Spec = {
             "The actions to execute when this alarm transitions to an OK state from any other state. Each action is specified as an Amazon Resource Name (ARN). Valid Values: arn:aws:sns:region:account-id:sns-topic-name",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSNSTopics,
           },
         },
@@ -2115,7 +2115,7 @@ const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the composite alarm. You can associate as many as 50 tags with an alarm. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2217,7 +2217,7 @@ const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the Contributor Insights rule. You can associate as many as 50 tags with a rule. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values. To be able to associate tags with a rule, you must have the cloudwatch:TagResource permission in addition to the cloudwatch:PutInsightRule permission. If you are using this operation to update an existing Contributor Insights rule, any tags you specify in this parameter are ignored. To change the tags of an existing rule, use TagResource.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2428,7 +2428,7 @@ const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the alarm. You can associate as many as 50 tags with an alarm. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. If you are using this operation to update an existing alarm, any tags you specify in this parameter are ignored. To change the tags of an existing alarm, use TagResource or UntagResource.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2579,7 +2579,7 @@ const completionSpec: Fig.Spec = {
             "If you specify this parameter, the stream sends only the metrics from the metric namespaces that you specify here. You cannot include IncludeFilters and ExcludeFilters in the same operation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Namespace=string",
           },
         },
@@ -2589,7 +2589,7 @@ const completionSpec: Fig.Spec = {
             "If you specify this parameter, the stream sends metrics from all metric namespaces except for the namespaces that you specify here. You cannot include ExcludeFilters and IncludeFilters in the same operation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Namespace=string",
           },
         },
@@ -2626,7 +2626,7 @@ const completionSpec: Fig.Spec = {
             "A list of key-value pairs to associate with the metric stream. You can associate as many as 50 tags with a metric stream. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2719,7 +2719,7 @@ const completionSpec: Fig.Spec = {
             'The array of the names of metric streams to start streaming. This is an "all or nothing" operation. If you do not have permission to access all of the metric streams that you list here, then none of the streams that you list in the operation will start streaming.',
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listMetricStreams,
           },
         },
@@ -2754,7 +2754,7 @@ const completionSpec: Fig.Spec = {
             'The array of the names of metric streams to stop streaming. This is an "all or nothing" operation. If you do not have permission to access all of the metric streams that you list here, then none of the streams that you list in the operation will stop streaming.',
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listMetricStreams,
           },
         },
@@ -2798,7 +2798,7 @@ const completionSpec: Fig.Spec = {
             "The list of key-value pairs to associate with the alarm.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2840,7 +2840,7 @@ const completionSpec: Fig.Spec = {
           description: "The list of tag keys to remove from the resource.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -2880,7 +2880,7 @@ const completionSpec: Fig.Spec = {
                 "The names of the alarms to retrieve information about.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listAlarms,
               },
             },
@@ -2898,7 +2898,7 @@ const completionSpec: Fig.Spec = {
                 "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: metricTypes,
               },
             },
@@ -3006,7 +3006,7 @@ const completionSpec: Fig.Spec = {
                 "The names of the alarms to retrieve information about.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listAlarms,
               },
             },
@@ -3024,7 +3024,7 @@ const completionSpec: Fig.Spec = {
                 "Use this parameter to specify whether you want the operation to return metric alarms or composite alarms. If you omit this parameter, only metric alarms are returned.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: metricTypes,
               },
             },

@@ -622,13 +622,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "DIRECTORY_NAME",
               description:
                 "Directory name for the cloned repo. Defaults to the repository name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -769,7 +769,7 @@ const completionSpec: Fig.Spec = {
               name: "REPOSITORY_NAME",
               description:
                 "Name of the repository. May contain between 3 and 63 (inclusive)\nlowercase letters, digits, and hyphens. Must start with a letter, and\nmay not end with a hyphen.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -914,7 +914,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1054,7 +1054,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1235,7 +1235,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1548,13 +1548,13 @@ const completionSpec: Fig.Spec = {
             {
               name: "REPOSITORY_NAME",
               description: "Name of the repository.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "JSON or YAML file with IAM policy. See https://cloud.google.com/resource-manager/reference/rest/Shared.Types/Policy",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1758,7 +1758,7 @@ const completionSpec: Fig.Spec = {
               name: "REPO",
               description:
                 "ID of the repo or fully qualified identifier for the repo.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

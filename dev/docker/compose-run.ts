@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       description: "Set an environment variable (can be used multiple times)",
       args: {
         name: "KEY=VAL",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
       description: "Add or override a label (can be used multiple times)",
       args: {
         name: "KEY=VAL",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {

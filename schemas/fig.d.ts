@@ -26,16 +26,7 @@ declare namespace Fig {
   // both set to void by default
   export type StringOrFunction<T = void, R = void> = string | Function<T, R>;
 
-  export interface Spec extends Subcommand {
-    /**
-     * This flag allows options to have multiple characters
-     * even if they only have one hyphen
-     *
-     * @example
-     * -longflag
-     */
-    posixNoncompliantFlags?: boolean;
-  }
+  export type Spec = Subcommand;
 
   // Execute shell command function inside generators
   export type ExecuteShellCommandFunction = (
@@ -180,7 +171,7 @@ declare namespace Fig {
     /**
      * Dynamically generate a completion spec to be merged in at the same level as the current subcommand. This is useful when a CLI is generated dynamically.
      * This function takes two params:
-     * 1. Context: an array of strings (the tokens the user has typed)
+     * 1. Tokens: an array of strings (the tokens the user has typed)
      * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
      *
      * It outputs a completion spec object
@@ -189,11 +180,20 @@ declare namespace Fig {
      * Laravel artisan has its own subcommands but also lets you define your own completion spec.
      */
     generateSpec?: (
-      context?: string[],
+      tokens?: string[],
       executeShellCommand?: ExecuteShellCommandFunction
     ) => Promise<Spec>;
 
-    // Function<string[], Promise<Spec>>;
+    parserDirectives?: {
+      /**
+       * This flag allows options to have multiple characters
+       * even if they only have one hyphen
+       *
+       * @example
+       * -longflag
+       */
+      flagsArePosixNoncompliant?: boolean;
+    };
   }
 
   export interface Option extends BaseSuggestion {
@@ -228,7 +228,7 @@ declare namespace Fig {
      * The "-m" option of git commit is required
      *
      */
-    required?: boolean;
+    isRequired?: boolean;
     /**
      *
      * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
@@ -242,7 +242,7 @@ declare namespace Fig {
      *
      *
      */
-    exclusive?: string[];
+    exclusiveOn?: string[];
     /**
      *
      * Signals whether an option depends other options. Define this as an array of strings of the option names.
@@ -288,7 +288,7 @@ declare namespace Fig {
     /**
      * An array of strings or Suggestion objects. Use this prop to specify custom suggestions
      * that are static (ie you know of in advance and don't have to be statically generated).
-     * If suggestions are dependent upon the user's input or context, you most likely will
+     * If suggestions are dependent upon the user's input or tokens, you most likely will
      * want to use a Generator object in this Arg's generator prop.
      */
     suggestions?: string[] | Suggestion[];
@@ -314,7 +314,7 @@ declare namespace Fig {
      * @example
      * `echo` takes a variadic argument (`echo hello world ...`) so does `git add`
      */
-    variadic?: boolean;
+    isVariadic?: boolean;
 
     /**
      * True if an argument is optional. It is important you include this for our parsing. If you don't, Fig will assume the argument is mandatory and will not offer suggestions for a user.
@@ -383,7 +383,7 @@ declare namespace Fig {
      * In order to generate contextual suggestions for arguments, Fig lets you execute a shell command on the users local device as if it were done in their current working directory.
      * You can either specify
      * 1. a string to be executed (like `ls` or `git branch`)
-     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a kubernetes context etc)
+     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a kubernetes tokens etc)
      * After executing the script, the output will be passed to one of `splitOn` or `postProcess` for further processing to produce suggestion objects.
      *
      * @example
@@ -401,7 +401,7 @@ declare namespace Fig {
     /**
      * This function takes one parameter: the output of `script`. You can do whatever processing you want, but you must return an array of Suggestion objects.
      */
-    postProcess?: (out: string, context?: string[]) => Suggestion[];
+    postProcess?: (out: string, tokens?: string[]) => Suggestion[];
 
     /**
      * Fig performs numerous optimizations to avoid running expensive shell functions many times. For instance, after you type `cd[space]` we load up a list of folders (the suggestions). After you start typing, we instead filter over this list of folders (the filteredSuggestions).
@@ -423,12 +423,12 @@ declare namespace Fig {
      *
      * @example
      * You can see the trigger in action every time you use file and folder completions (e.g. with `cd`). When you type a `/`, Fig will regenerate its list of file and folder suggestions by appending the path of what you've already typed to your current working directory.
-     * e.g. If I had already typed "desktop". The current list of suggestions is from the ~ directory and the filterTerm is "desktop". Then I type "/" so it says "desktop/", the trigger would return true, Fig will generate suggestions for the directory `~/desktop/` and the filterTerm will become an empty string.
+     * e.g. If I had already typed "desktop". The current list of suggestions is from the ~ directory and getQueryTerm is "desktop". Then I type "/" so it says "desktop/", the trigger would return true, Fig will generate suggestions for the directory `~/desktop/` and the query term will become an empty string.
      *
      */
     trigger?: string | ((newToken: string, oldToken?: string) => boolean);
     /**
-     * Read the note above about how triggers work. Triggers and filterTerm may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The filterTerm defines what characters we should use to filter over these suggestions.
+     * Read the note above about how triggers work. Triggers and query term may seem similar but are actually different. The trigger defines when to regenerate new suggestions. The query term defines what characters we should use to filter over these suggestions.
      *
      * It can be a function: this takes in what the user has currently typed as a string and outputs a separate string that is used for filtering
      * It can also be a string: this is syntactic sugar that takes everything in the string after the character(s) you choose.
@@ -439,15 +439,16 @@ declare namespace Fig {
      * cd has a filter term of "/". If an argument to `cd` includes a "/" Fig will filter over all of the suggestions generated using the string AFTER the last "/"
      *
      */
-    filterTerm?: StringOrFunction<string, string>;
+    getQueryTerm?: StringOrFunction<string, string>;
     /**
      * Custom function is a bit like script as a function, however, it gives you full control.
      *
      * It is an async function.
      *
-     * It takes two arguments:
-     * 1. Context: an array of tokens of what the user has typed
+     * It takes two or three arguments:
+     * 1. Tokens: an array of tokens of what the user has typed
      * 2. executeShellCommand: a function that takes a string as input. It executes this string as a shell command on the user's device from the same current working directory as their terminal. It outputs a text blob. It is also async.
+     * 3. shellContext: information about the shell session the user is currently working in
      *
      * It must return an array of suggestion objects.
      *
@@ -455,7 +456,7 @@ declare namespace Fig {
      * @example
      * ```
      * const generator: Fig.Generator = {
-     *   custom: (context) => {
+     *   custom: (tokens) => {
      *     const out = await executeShellCommand("ls");
      *     return out.split("\n").map((elm) => ({ name: elm }));
      *   },
@@ -463,8 +464,12 @@ declare namespace Fig {
      * ```
      */
     custom?: (
-      context: string[],
-      executeShellCommand: ExecuteShellCommandFunction
+      tokens: string[],
+      executeShellCommand: ExecuteShellCommandFunction,
+      shellContext?: {
+        currentWorkingDirectory: string;
+        sshPrefix: string;
+      }
     ) => Promise<Suggestion[]>;
     /**
      * For commands that take a long time to run, Fig gives you the option to cache their response. You can cache the response globally or just by the directory they were run in

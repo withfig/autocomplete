@@ -2,7 +2,7 @@ const completionSpec: Fig.Spec = {
   name: "wget",
   description: "a non-interactive network retriever",
   args: {
-    variadic: true,
+    isVariadic: true,
     name: "url",
     description: "The url(s) to retrieve",
   },

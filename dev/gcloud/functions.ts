@@ -170,7 +170,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -331,7 +331,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -482,7 +482,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -935,7 +935,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1086,7 +1086,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1551,7 +1551,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1979,7 +1979,7 @@ const completionSpec: Fig.Spec = {
               name: "NAME",
               description:
                 "Name of the function which logs are to be displayed. If no name is specified, logs from all functions are displayed.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2594,7 +2594,7 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -2745,13 +2745,13 @@ const completionSpec: Fig.Spec = {
           name: "NAME",
           description:
             "ID of the function or fully qualified identifier for the function.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },

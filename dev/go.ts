@@ -110,7 +110,7 @@ const globalOptions: Fig.Option[] = [
     description: "arguments to pass on each go tool asm invocation.",
     args: {
       name: "flag",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -135,7 +135,7 @@ const globalOptions: Fig.Option[] = [
     description: "arguments to pass on each gccgo compiler/linker invocation.",
     args: {
       name: "flag",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -144,7 +144,7 @@ const globalOptions: Fig.Option[] = [
     description: "arguments to pass on each go tool compile invocation.",
     args: {
       name: "flag",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -161,7 +161,7 @@ const globalOptions: Fig.Option[] = [
     description: "arguments to pass on each go tool link invocation..",
     args: {
       name: "flag",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -224,14 +224,16 @@ const globalOptions: Fig.Option[] = [
 
 const packagesArg: Fig.Arg = {
   name: "packages",
-  variadic: true,
+  isVariadic: true,
   isOptional: true,
 };
 
 const completionSpec: Fig.Spec = {
   name: "go",
   description: "Go is a tool for managing Go source code.",
-  posixNoncompliantFlags: true,
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   subcommands: [
     {
       name: "bug",
@@ -336,7 +338,7 @@ const completionSpec: Fig.Spec = {
           description:
             "unset the default setting for the named environment variables",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -344,7 +346,7 @@ const completionSpec: Fig.Spec = {
           description:
             "change the default settings of the named environment variables to the given values.",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -441,7 +443,7 @@ const completionSpec: Fig.Spec = {
       options: [...globalOptions],
       args: {
         name: "packages",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -528,7 +530,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "modules",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -697,7 +699,7 @@ const completionSpec: Fig.Spec = {
           ],
           args: {
             name: "packages",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -728,7 +730,7 @@ const completionSpec: Fig.Spec = {
           description:
             "pass the remainder of the command line to the test binary",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

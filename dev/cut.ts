@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
   args: {
     template: "filepaths",
     isOptional: true,
-    variadic: true,
+    isVariadic: true,
   },
   options: [
     {

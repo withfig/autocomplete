@@ -84,14 +84,14 @@ const valueArgs = [
   {
     name: "-array",
     args: {
-      variadic: true,
+      isVariadic: true,
       name: "array_item",
     },
   },
   {
     name: "-array-add",
     args: {
-      variadic: true,
+      isVariadic: true,
       name: "array_item",
     },
   },

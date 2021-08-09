@@ -98,7 +98,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "action name",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -462,7 +462,7 @@ const completionSpec: Fig.Spec = {
               description: "Name of Postgres schema to export as a migration",
               args: {
                 name: "strings",
-                variadic: true,
+                isVariadic: true,
               },
             },
             {

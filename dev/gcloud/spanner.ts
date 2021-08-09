@@ -173,7 +173,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -359,7 +359,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -509,7 +509,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -659,7 +659,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -849,7 +849,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1213,7 +1213,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1363,13 +1363,13 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1539,7 +1539,7 @@ const completionSpec: Fig.Spec = {
               name: "BACKUP",
               description:
                 "ID of the backup or fully qualified identifier for the backup.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1844,7 +1844,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2019,7 +2019,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2218,7 +2218,7 @@ const completionSpec: Fig.Spec = {
                   name: "DATABASE",
                   description:
                     "ID of the database or fully qualified identifier for the database.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2393,7 +2393,7 @@ const completionSpec: Fig.Spec = {
                   name: "DATABASE",
                   description:
                     "ID of the database or fully qualified identifier for the database.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2673,7 +2673,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2823,7 +2823,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3009,7 +3009,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3199,7 +3199,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3559,7 +3559,7 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3900,7 +3900,7 @@ const completionSpec: Fig.Spec = {
                   name: "SESSION",
                   description:
                     "ID of the session or fully qualified identifier for the session.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -4389,12 +4389,12 @@ const completionSpec: Fig.Spec = {
               name: "DATABASE",
               description:
                 "ID of the database or fully qualified identifier for the database.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "Name of JSON or YAML file with the IAM policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4668,7 +4668,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE_CONFIG",
               description: "Cloud Spanner instance config.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5142,7 +5142,7 @@ const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5318,7 +5318,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE",
               description: "Cloud Spanner instance ID.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5458,7 +5458,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE",
               description: "Cloud Spanner instance ID.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5598,7 +5598,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE",
               description: "Cloud Spanner instance ID.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5779,7 +5779,7 @@ const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6119,7 +6119,7 @@ const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6260,13 +6260,13 @@ const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6429,7 +6429,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "INSTANCE",
               description: "Cloud Spanner instance ID.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6734,7 +6734,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION-ID",
               description: "ID of the operation",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6905,7 +6905,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION-ID",
               description: "ID of the operation",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

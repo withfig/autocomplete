@@ -89,25 +89,25 @@ const sharedOptions: Fig.Option[] = [
     name: "--build-cache",
     description:
       "Toggles the Gradle build cache. Gradle will try to reuse outputs from previous builds. Default is off",
-    exclusive: ["--no-build-cache"],
+    exclusiveOn: ["--no-build-cache"],
   },
   {
     name: "--no-build-cache",
     description:
       "Toggles the Gradle build cache. Gradle will try to reuse outputs from previous builds. Default is off",
-    exclusive: ["--build-cache"],
+    exclusiveOn: ["--build-cache"],
   },
   {
     name: "--configure-on-demand",
     description:
       "Toggles Configure-on-demand. Only relevant projects are configured in this build run. Default is off",
-    exclusive: ["--configure-on-demand"],
+    exclusiveOn: ["--configure-on-demand"],
   },
   {
     name: "--no-configure-on-demand",
     description:
       "Toggles Configure-on-demand. Only relevant projects are configured in this build run. Default is off",
-    exclusive: ["--configure-on-demand"],
+    exclusiveOn: ["--configure-on-demand"],
   },
   {
     name: "--max-workers",
@@ -121,12 +121,12 @@ const sharedOptions: Fig.Option[] = [
     name: "--parallel",
     description:
       "Build projects in parallel. For limitations of this option, see Parallel Project Execution. Default is off",
-    exclusive: ["--no-parallel"],
+    exclusiveOn: ["--no-parallel"],
   },
   {
     name: "--no-parallel",
     description: "Disables --parallel",
-    exclusive: ["--parallel"],
+    exclusiveOn: ["--parallel"],
   },
   {
     name: "--priority",
@@ -151,24 +151,24 @@ const sharedOptions: Fig.Option[] = [
     name: "--watch-fs",
     description:
       "Toggles watching the file system. When enabled Gradle re-uses information it collects about the file system between builds. Enabled by default on operating systems where Gradle supports this feature",
-    exclusive: ["--no-watch-fs"],
+    exclusiveOn: ["--no-watch-fs"],
   },
   {
     name: "--no-watch-fs",
     description:
       "Toggles watching the file system. When enabled Gradle re-uses information it collects about the file system between builds. Enabled by default on operating systems where Gradle supports this feature",
-    exclusive: ["--watch-fs"],
+    exclusiveOn: ["--watch-fs"],
   },
   {
     name: "--daemon",
     description:
       "Use the Gradle Daemon to run the build. Starts the daemon if not running or existing daemon busy. Default is on",
-    exclusive: ["--no-daemon"],
+    exclusiveOn: ["--no-daemon"],
   },
   {
     name: "--no-daemon",
     description: "Disables --daemon",
-    exclusive: ["--daemon"],
+    exclusiveOn: ["--daemon"],
   },
   {
     name: "--foreground",
@@ -257,7 +257,7 @@ const sharedOptions: Fig.Option[] = [
       "Indicates that versions for the specified modules have to be updated in the lock file",
     args: {
       name: "group:name",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -405,7 +405,7 @@ export const completion: Fig.Spec = {
       options: [
         {
           name: "--task",
-          required: true,
+          isRequired: true,
           args: {
             name: "task",
           },
@@ -530,7 +530,7 @@ export const completion: Fig.Spec = {
   // There isn't a generator for gradle tasks (takes too long)
   args: {
     name: "task name",
-    variadic: true,
+    isVariadic: true,
     isOptional: true,
   },
 };

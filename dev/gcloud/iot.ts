@@ -1403,7 +1403,7 @@ const completionSpec: Fig.Spec = {
               name: "DEVICE",
               description:
                 "ID of the device or fully qualified identifier for the device.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1941,7 +1941,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "The index (zero-based) of the credential to delete.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2111,7 +2111,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "The index (zero-based) of the credential to describe.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2483,7 +2483,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "The index (zero-based) of the credential to update.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2772,7 +2772,7 @@ const completionSpec: Fig.Spec = {
               name: "DEVICE",
               description:
                 "ID of the device or fully qualified identifier for the device.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2931,7 +2931,7 @@ const completionSpec: Fig.Spec = {
               name: "DEVICE",
               description:
                 "ID of the device or fully qualified identifier for the device.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4401,7 +4401,7 @@ const completionSpec: Fig.Spec = {
               name: "DEVICE",
               description:
                 "ID of the device or fully qualified identifier for the device.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4737,7 +4737,7 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5219,7 +5219,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "The index (zero-based) of the credential to delete.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -5380,7 +5380,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "The index (zero-based) of the credential to describe.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -5843,7 +5843,7 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5993,7 +5993,7 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6183,7 +6183,7 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6522,12 +6522,12 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the IAM policy",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6717,7 +6717,7 @@ const completionSpec: Fig.Spec = {
               name: "REGISTRY",
               description:
                 "ID of the registry or fully qualified identifier for the registry.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
