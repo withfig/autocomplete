@@ -1,6 +1,6 @@
 {
   "name": "@withfig/autocomplete",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Fig Autocomplete Spec Linter",
   "schemaVersion": "v7",
   "scripts": {
@@ -54,14 +54,9 @@
     "printWidth": 80
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "pretty-quick --staged"
-    ]
+    "*.ts": ["eslint --fix", "pretty-quick --staged"]
   },
-  "files": [
-    "specs/**/*.js"
-  ],
+  "files": ["specs/**/*.js"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
