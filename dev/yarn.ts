@@ -1024,6 +1024,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
+          variadic: true,
         },
       ],
     },
@@ -1072,6 +1073,12 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrades packages to their latest version based on the specified range",
+      args: [
+        {
+          generators: packageList,
+          variadic: true,
+        },
+      ],
     },
     {
       name: "upgrade-interactive",
