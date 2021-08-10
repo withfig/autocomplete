@@ -67,7 +67,6 @@ const completionSpec: Fig.Spec = {
       name: "--debug-init",
     },
     {
-      
       description: "Load user's init file",
       name: ["-u", "--user"],
     },
@@ -75,12 +74,12 @@ const completionSpec: Fig.Spec = {
       description:
         "Use specified file as the terminal instead of using stdin/stdout.  This must be the first argument specified in the command line",
       name: ["-t", "--terminal"],
-      args: {template: "filepaths"},
+      args: { template: "filepaths" },
     },
     {
       description: "The same as specifying file directly as an argument",
       name: ["--file", "--find-file", "--visit"],
-      args: {template: "filepaths"},
+      args: { template: "filepaths" },
     },
   ],
 };
