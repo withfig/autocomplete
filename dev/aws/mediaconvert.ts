@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "mediaconvert",
   description: "AWS Elemental MediaConvert",
   subcommands: [
@@ -1399,3 +1399,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

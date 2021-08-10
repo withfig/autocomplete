@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "psql",
   description: "psql is a terminal-based front-end to PostgreSQL",
   args: [
@@ -215,7 +215,7 @@ export const completionSpec: Fig.Spec = {
         "Set the record separator for unaligned output to a zero byte. This is useful for interfacing, for example, with xargs -0. This is equivalent to pset recordsep_zero.",
     },
     {
-      name: ["-l", "--single-transaction"],
+      name: ["-1", "--single-transaction"],
       description:
         "This option can only be used in combination with one or more -c and/or -f options. It causes psql to issue a BEGIN command before the first such option and a COMMIT command after the last one, thereby wrapping all the commands into a single transaction. This ensures that either all the commands complete successfully, or no changes are applied. If the commands themselves contain BEGIN, COMMIT, or ROLLBACK, this option will not have the desired effects. Also, if an individual command cannot be executed inside a transaction block, specifying this option will cause the whole transaction to fail.",
     },
@@ -225,3 +225,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

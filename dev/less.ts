@@ -1,8 +1,10 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "less",
   description: "opposite of more",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "filepaths",
   },
 };
+
+export default completionSpec;

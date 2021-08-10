@@ -26,4 +26,4 @@ DISABLE_DEV_MODE() {
 
 trap DISABLE_DEV_MODE SIGINT SIGTERM SIGQUIT;
 
-fig settings autocomplete.developerModeNPM true && fig settings autocomplete.devCompletionsFolder "$(pwd)"/specs && ts-node-script scripts/compiler.ts 'INVALIDATE_CACHE' --watch
+fig settings autocomplete.developerModeNPM true && fig settings autocomplete.devCompletionsFolder "$(pwd)"/specs && ts-node-script scripts/compiler.ts --watch

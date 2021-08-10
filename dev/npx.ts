@@ -1,13 +1,72 @@
-export const completionSpec: Fig.Spec = {
+const suggestions: Fig.Suggestion[] = [
+  {
+    name: "create-react-native-app",
+    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+  },
+  {
+    name: "react-native",
+    icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
+  },
+  {
+    name: "tailwindcss",
+    icon: "https://tailwindcss.com/favicon-32x32.png",
+  },
+  {
+    name: "next",
+    icon: "https://nextjs.org/static/favicon/favicon-16x16.png",
+  },
+  {
+    name: "gltfjsx",
+    icon: "https://raw.githubusercontent.com/pmndrs/branding/master/logo.svg",
+  },
+  {
+    name: "prisma",
+    icon:
+      "https://raw.githubusercontent.com/prisma/docs/main/src/images/favicon-16x16.png",
+  },
+  {
+    name: "eslint",
+    icon: "https://eslint.org/assets/img/favicon.512x512.png",
+  },
+  {
+    name: "prettier",
+    icon: "https://prettier.io/icon.png",
+  },
+  {
+    name: "tsc",
+    icon:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
+  },
+];
+
+const completionSpec: Fig.Spec = {
   name: "npx",
   description: "Execute binaries from npm packages",
-  subcommands: [
-    {
-      name: "react-native",
-      icon: "https://reactnative.dev/img/pwa/manifest-icon-512.png",
-      loadSpec: "react-native",
+
+  args: {
+    name: "command",
+    isCommand: true,
+    generators: {
+      script: `until [[ -d node_modules/ ]] || [[ $PWD = '/' ]]; do cd ..; done; ls -1 node_modules/.bin/`,
+      postProcess: function (out) {
+        const cli = [...suggestions].reduce(
+          (acc, { name }) => [...acc, name],
+          []
+        );
+        return out
+          .split("\n")
+          .filter((name) => !cli.includes(name))
+          .map((name) => ({
+            name,
+            icon: "fig://icon?type=command",
+            loadSpec: name,
+          }));
+      },
     },
-  ],
+    suggestions: [...suggestions],
+    isOptional: true,
+  },
+
   options: [
     {
       name: ["--package", "-p"],
@@ -131,3 +190,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

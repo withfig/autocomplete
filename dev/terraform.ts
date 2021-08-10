@@ -14,6 +14,22 @@ const workspaceList: Fig.Generator = {
   },
 };
 
+const addressList: Fig.Generator = {
+  script: "terraform state list",
+  postProcess: function (out) {
+    if (out.includes("No state file was found!") || out.includes("Error")) {
+      return [];
+    }
+    return out.split("\n").map((addresses) => {
+      return {
+        name: addresses.replace("* ", "").trim(),
+        icon: "fig://icon?type=terraform",
+        description: "address",
+      };
+    });
+  },
+};
+
 const generalSubCommandOptions: Fig.Option[] = [
   {
     name: "-lock",
@@ -263,7 +279,45 @@ const otherCommands: Fig.Subcommand[] = [
   {
     name: "taint",
     description: "Mark a resource instance as not fully functional",
-    options: [...globalOptions],
+    options: [
+      {
+        name: "-allow-missing",
+        description:
+          "If specified, the command will succeed (exit code 0) even if the resource is missing. The command might still return an error for other situations, such as if there is a problem reading or writing the state.",
+      },
+      {
+        name: "-lock",
+        insertValue: "-lock=",
+        description:
+          "Disables Terraform's default behavior of attempting to take a read/write lock on the state for the duration of the operation if set to false. Defaults to true.",
+        args: {
+          name: "true or false",
+          suggestions: ["true", "false"],
+        },
+      },
+      {
+        name: "-lock-timeout",
+        insertValue: "-lock-timeout=",
+        description:
+          "Unless locking is disabled with -lock=false, instructs Terraform to retry acquiring a lock for a period of time before returning an error. The duration syntax is a number followed by a time unit letter, such as 3s for three seconds.",
+        args: {
+          name: "seconds",
+        },
+      },
+      {
+        name: "-ignore-remote-version",
+        description:
+          "When using the enhanced remote backend with Terraform Cloud, continue even if remote and local Terraform versions differ. This may result in an unusable Terraform Cloud workspace, and should be used with extreme caution.",
+        args: {
+          name: "seconds",
+        },
+      },
+      ...globalOptions,
+    ],
+    args: {
+      generators: addressList,
+      name: "address",
+    },
   },
   {
     name: "untaint",
@@ -309,8 +363,8 @@ const otherCommands: Fig.Subcommand[] = [
               template: "filepaths",
             },
           },
+          ...globalOptions,
         ],
-        ...globalOptions,
       },
       {
         name: "show",
@@ -353,10 +407,14 @@ const extraCommands: Fig.Subcommand[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "terraform",
   description: "Terraform CLI",
   options: globalOptions,
-  posixNoncompliantFlags: true,
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   subcommands: [...mainCommands, ...otherCommands, ...extraCommands],
 };
+
+export default completionSpec;

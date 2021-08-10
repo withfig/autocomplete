@@ -1,9 +1,9 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rake",
   description: "a ruby build program with capabilities similar to make",
   args: {
     name: "targets",
-    variadic: true,
+    isVariadic: true,
     isOptional: true,
   },
   options: [
@@ -80,3 +80,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "braket",
   description:
     "The Amazon Braket API Reference provides information about the operations and structures supported in Amazon Braket.",
@@ -429,3 +429,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

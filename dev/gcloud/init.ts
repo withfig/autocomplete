@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "init",
   description: "Initialize or reinitialize gcloud.",
 
@@ -136,7 +136,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "OBSOLETE_PROJECT_ARG",
       description: "THIS ARGUMENT NEEDS HELP TEXT.",
-      variadic: false,
+      isVariadic: false,
     },
   ],
 };
+
+export default completionSpec;

@@ -1,8 +1,8 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "exa",
   description: "a modern replacement for ls",
   args: {
-    variadic: true,
+    isVariadic: true,
     name: "files...",
     template: "filepaths",
   },
@@ -249,3 +249,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

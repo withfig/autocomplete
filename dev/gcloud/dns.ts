@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dns",
   description: "Manage your Cloud DNS managed-zones and record-sets.",
   subcommands: [
@@ -152,7 +152,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEY-ID",
               description: "The DNS key identifier.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -769,7 +769,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ZONE_NAME",
               description: "The name of the managed-zone to be created.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -909,7 +909,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ZONE_NAME",
               description: "The name of the empty managed-zone to be deleted.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1050,7 +1050,7 @@ export const completionSpec: Fig.Spec = {
               name: "ZONE",
               description:
                 "ID of the zone or fully qualified identifier for the zone.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1537,7 +1537,7 @@ export const completionSpec: Fig.Spec = {
               name: "ZONE",
               description:
                 "ID of the zone or fully qualified identifier for the zone.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1821,7 +1821,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "OPERATION_ID",
               description: "The id of the operation to display.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2321,7 +2321,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2462,7 +2462,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2603,7 +2603,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2971,7 +2971,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3246,7 +3246,7 @@ export const completionSpec: Fig.Spec = {
               name: "PROJECT_ID",
               description:
                 "The identifier for the project you want DNS related info for.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3536,7 +3536,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "CHANGE_ID",
                   description: "The ID of the change you want details for.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -4022,7 +4022,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "RECORDS_FILE",
               description: "File to which record-sets should be exported.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4189,7 +4189,7 @@ export const completionSpec: Fig.Spec = {
               name: "RECORDS_FILE",
               description:
                 "File from which record-sets should be imported. For examples of YAML-formatted and BIND zone-formatted records files, refer to https://cloud.google.com/dns/records#importing_and_exporting_record_sets",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4749,7 +4749,7 @@ export const completionSpec: Fig.Spec = {
                   name: "DATA",
                   description:
                     "DNS data (Address/CNAME/MX info, etc.) of the record-set to add. This is RDATA; the format of this information varies depending on the type and class of the resource record.",
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -5293,7 +5293,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "DATA",
                   description: "DNS name of the record-set to be removed.",
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -5843,3 +5843,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

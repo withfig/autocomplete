@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dataflow",
   description: "Manage Google Cloud Dataflow resources.",
   subcommands: [
@@ -225,7 +225,7 @@ export const completionSpec: Fig.Spec = {
               name: "TEMPLATE_FILE_GCS_PATH",
               description:
                 "The Google Cloud Storage location of the flex template file.Overrides if file already exists.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -517,7 +517,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_NAME",
               description: "Unique name to assign to the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -802,7 +802,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_ID",
               description: "The job IDs to operate on.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -956,7 +956,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_ID",
               description: "The job ID to operate on.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1106,7 +1106,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_ID",
               description: "The job IDs to operate on.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -1604,7 +1604,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_NAME",
               description: "The unique name to assign to the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1762,7 +1762,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "JOB_ID",
               description: "The job ID to operate on.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2251,7 +2251,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "QUERY",
               description: "The SQL query to execute.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2508,3 +2508,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

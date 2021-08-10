@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "s3control",
   description:
     "AWS S3 Control provides access to Amazon S3 control plane actions.",
@@ -2260,3 +2260,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

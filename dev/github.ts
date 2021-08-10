@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "github",
   description: "Open a git repository in GitHub Desktop",
   args: {
@@ -21,7 +21,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "clone",
       description: "Clone a repository",
-      insertValue: "clone ",
+
       args: {
         name: "url|slug",
         suggestions: [
@@ -50,7 +50,7 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "open",
-      insertValue: "open ",
+
       description: "Open a git repository in GitHub Desktop",
       args: {
         name: "path",
@@ -69,3 +69,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

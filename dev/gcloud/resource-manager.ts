@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "resource-manager",
   description: "Manage Cloud Resources.",
   subcommands: [
@@ -184,7 +184,7 @@ export const completionSpec: Fig.Spec = {
               name: "FOLDER",
               description:
                 "ID of the folder or fully qualified identifier for the folder.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -490,7 +490,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder you want to delete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -630,7 +630,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder you want to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -811,7 +811,7 @@ export const completionSpec: Fig.Spec = {
               name: "FOLDER_ID",
               description:
                 "ID of the folder or fully qualified identifier for the folder.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -991,7 +991,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder whose policy you want to get.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1351,7 +1351,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder you want to move.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1538,7 +1538,7 @@ export const completionSpec: Fig.Spec = {
               name: "FOLDER",
               description:
                 "ID of the folder or fully qualified identifier for the folder.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1678,12 +1678,12 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder whose policy you want to set.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the IAM policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1823,7 +1823,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder you want to undelete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1974,7 +1974,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FOLDER_ID",
               description: "ID for the folder you want to update.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2257,13 +2257,13 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "ALLOWED_VALUE",
               description:
                 "The values to add to the allowed_values list policy.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -2411,7 +2411,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2560,13 +2560,13 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "DENIED_VALUE",
               description:
                 "The values to add to the denied_values list policy.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -2718,7 +2718,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2867,7 +2867,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3016,7 +3016,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "ORG_POLICY_ID",
               description: "The Org Policy constraint name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3356,7 +3356,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the Organization Policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3613,3 +3613,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

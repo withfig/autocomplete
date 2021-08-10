@@ -13,7 +13,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "brew",
   description: "Package manager for macOS",
   subcommands: [
@@ -104,9 +104,9 @@ export const completionSpec: Fig.Spec = {
     {
       name: "install",
       description: "Install <formula>",
-      insertValue: "install ",
+
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "formula",
         description: "Formula or cask to install",
         generators: {
@@ -132,31 +132,34 @@ export const completionSpec: Fig.Spec = {
       name: "uninstall",
       description: "Uninstall <formula>",
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "formula",
         generators: {
-          script: "brew list -1 --formulae",
+          script: "brew list -1",
           postProcess: function (out) {
-            return out.split("\n").map((formula) => {
-              return {
-                name: formula,
-                icon: "🍺",
-                description: "Installed formula",
-              };
-            });
+            return out
+              .split("\n")
+              .filter((line) => !line.includes("="))
+              .map((formula) => {
+                return {
+                  name: formula,
+                  icon: "🍺",
+                  description: "Installed formula",
+                };
+              });
           },
         },
       },
     },
     {
       name: "cask",
-      insertValue: "cask ",
+
       description:
         "Homebrew Cask provides a friendly CLI workflow for the administration of macOS applications distributed as binaries.",
       subcommands: [
         {
           name: "install",
-          insertValue: "install ",
+
           description: "Installs the given cask",
           args: {
             name: "cask",
@@ -165,10 +168,10 @@ export const completionSpec: Fig.Spec = {
         },
         {
           name: "uninstall",
-          insertValue: "uninstall ",
+
           description: "Uninstalls the given cask",
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: {
               script: "brew list -1 --cask",
               postProcess: function (out) {
@@ -187,7 +190,6 @@ export const completionSpec: Fig.Spec = {
     },
     {
       name: "cleanup",
-      insertValue: "cleanup ",
       description:
         "Remove stale lock files and outdated downloads for all formulae and casks and remove old versions of installed formulae.",
       options: [
@@ -212,7 +214,7 @@ export const completionSpec: Fig.Spec = {
         },
       ],
       args: {
-        variadic: true,
+        isVariadic: true,
         generators: generators.servicesGenerator,
       },
     },
@@ -241,79 +243,79 @@ export const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "cleanup",
-          insertValue: "cleanup",
+
           description: "Remove all unused services.",
         },
         {
           name: "list",
-          insertValue: "list",
+
           description: "List all services.",
         },
         {
           name: "run",
-          insertValue: "run ",
+
           description:
             "Run the service formula without registering to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: generators.servicesGenerator,
           },
         },
         {
           name: "start",
-          insertValue: "start ",
+
           description:
             "Start the service formula immediately and register it to launch at login",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: generators.servicesGenerator,
           },
         },
         {
           name: "stop",
-          insertValue: "stop ",
+
           description:
             "Stop the service formula immediately and unregister it from launching at",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: generators.servicesGenerator,
           },
         },
         {
           name: "restart",
-          insertValue: "restart ",
+
           description:
             "Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).",
           options: [
             {
               name: "--all",
-              insertValue: "--all",
+
               description: "Start all services",
             },
           ],
           args: {
-            variadic: true,
+            isVariadic: true,
             generators: generators.servicesGenerator,
           },
         },
@@ -337,6 +339,18 @@ export const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "autoremove",
+      description:
+        "Uninstall formulae that were only installed as a dependency of another formula and are now no longer needed.",
+      options: [
+        {
+          name: ["-n", "--dry-run"],
+          description:
+            "List what would be uninstalled, but do not actually uninstall anything.",
+        },
+      ],
+    },
   ],
   options: [
     {
@@ -345,3 +359,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

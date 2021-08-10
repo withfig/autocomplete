@@ -1,8 +1,8 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tar",
   description: "Manipulating archive files",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "folders",
   },
   options: [
@@ -10,7 +10,7 @@ export const completionSpec: Fig.Spec = {
       name: ["-c", "--create"],
       description: "Create a new archive",
       args: {
-        variadic: true,
+        isVariadic: true,
         template: "folders",
       },
     },
@@ -42,3 +42,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

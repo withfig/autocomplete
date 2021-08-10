@@ -1,9 +1,9 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "rm",
   description: "remove directory entries",
   args: [
     {
-      variadic: true,
+      isVariadic: true,
       template: ["folders", "filepaths"],
     },
   ],
@@ -38,3 +38,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

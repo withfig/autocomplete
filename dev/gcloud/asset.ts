@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "asset",
   description: "Manage the Cloud Asset Inventory.",
   subcommands: [
@@ -949,7 +949,7 @@ export const completionSpec: Fig.Spec = {
               name: "FEED_ID",
               description:
                 "Asset feed identifier being created, it must be unique under the specified parent resource project/folder/organization.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1097,7 +1097,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FEED_ID",
               description: "Asset feed identifier to delete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1245,7 +1245,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "FEED_ID",
               description: "Asset feed identifier to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1656,7 +1656,7 @@ export const completionSpec: Fig.Spec = {
               name: "FEED_ID",
               description:
                 "Identifier of the asset feed to update, which must be unique in its parent resource. Parent resource can be a project, folder, or an organization.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2112,7 +2112,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "OPERATION_NAME",
               description: "Name of the operation to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2777,3 +2777,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

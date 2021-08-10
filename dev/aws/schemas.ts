@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "schemas",
   description: "Amazon EventBridge Schema Registry",
   subcommands: [
@@ -1491,3 +1491,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

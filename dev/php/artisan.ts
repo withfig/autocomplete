@@ -1,7 +1,7 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "artisan",
   description: "Laravel Artisan Command",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     var out = await executeShellCommand("php artisan list --format=json");
     const subcommands = [];
 
@@ -49,3 +49,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

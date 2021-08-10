@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "filestore",
   description: "Create and manipulate Cloud Filestore resources.",
   subcommands: [
@@ -218,7 +218,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -383,7 +383,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -543,7 +543,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -950,7 +950,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1226,7 +1226,7 @@ export const completionSpec: Fig.Spec = {
               name: "ZONE",
               description:
                 "ID of the zone or fully qualified identifier for the zone.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1698,7 +1698,7 @@ export const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2767,3 +2767,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "lakeformation",
   description:
     "AWS Lake Formation Defines the public endpoint for the AWS Lake Formation service.",
@@ -607,3 +607,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

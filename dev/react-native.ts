@@ -122,7 +122,7 @@ const gradleTasksGenerator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "react-native",
   description:
     "Command line tools that ship with react-native in form of the @react-native-community/cli package",
@@ -1245,3 +1245,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

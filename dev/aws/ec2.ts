@@ -137,7 +137,7 @@ const awsGenerators: Record<string, Fig.Generator> = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ec2",
   description:
     "Amazon Elastic Compute Cloud Amazon Elastic Compute Cloud (Amazon EC2) provides secure and resizable computing capacity in the AWS Cloud. Using Amazon EC2 eliminates the need to invest in hardware up front, so you can develop and deploy applications faster. Amazon Virtual Private Cloud (Amazon VPC) enables you to provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you've defined. Amazon Elastic Block Store (Amazon EBS) provides block level storage volumes for use with EC2 instances. EBS volumes are highly available and reliable storage volumes that can be attached to any running instance and used like a hard drive. To learn more, see the following resources:   Amazon EC2: AmazonEC2 product page, Amazon EC2 documentation    Amazon EBS: Amazon EBS product page, Amazon EBS documentation    Amazon VPC: Amazon VPC product page, Amazon VPC documentation    AWS VPN: AWS VPN product page, AWS VPN documentation",
@@ -167,7 +167,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -230,7 +230,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -382,7 +382,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.vpc_endpoint_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -1138,7 +1138,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -1240,7 +1240,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -6631,7 +6631,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -6949,7 +6949,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.route_table_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -6965,7 +6965,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -8793,7 +8793,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -9570,7 +9570,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.service_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -9619,7 +9619,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.vpc_endpoint_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -9961,7 +9961,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -10025,7 +10025,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -10303,7 +10303,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.zone_name,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -10319,7 +10319,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.zone_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -10694,7 +10694,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.instances,
             },
           ],
@@ -12769,7 +12769,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.image_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -13067,7 +13067,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.instances,
             },
           ],
@@ -13188,7 +13188,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.instances,
             },
           ],
@@ -13472,7 +13472,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.instances,
             },
           ],
@@ -13579,7 +13579,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.internet_gateway_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -13753,7 +13753,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.key_pair,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -15245,7 +15245,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -15636,7 +15636,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.region_name,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -16145,7 +16145,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.route_table_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -16658,7 +16658,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.snapshot_ids,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -17288,7 +17288,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.image_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -17391,7 +17391,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -17823,7 +17823,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.transit_gateway_attachment_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18005,7 +18005,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.transit_gateway_attachment_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18188,7 +18188,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.transit_gateway_attachment_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18372,7 +18372,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.transit_gateway_attachment_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18631,7 +18631,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.volume_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18712,7 +18712,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.volume_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -18811,7 +18811,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.volume_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -19244,7 +19244,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.service_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -19517,7 +19517,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.vpc_endpoint_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -19622,7 +19622,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.vpc_peering_connection_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -20702,7 +20702,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -24850,7 +24850,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -26266,7 +26266,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.stop,
             },
           ],
@@ -26616,7 +26616,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.stop,
             },
           ],
@@ -26859,7 +26859,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -26924,7 +26924,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.reserved_instance_id,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -26988,7 +26988,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               generators: awsGenerators.subnet_ids,
-              variadic: true,
+              isVariadic: true,
               isOptional: true,
             },
           ],
@@ -27139,7 +27139,7 @@ export const completionSpec: Fig.Spec = {
             {
               generators: awsGenerators.vpc_endpoint_id,
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -29473,7 +29473,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.start,
             },
           ],
@@ -29635,7 +29635,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.stop,
             },
           ],
@@ -29762,7 +29762,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.instances,
             },
           ],
@@ -29891,7 +29891,7 @@ export const completionSpec: Fig.Spec = {
             },
             {
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
               generators: awsGenerators.stop,
             },
           ],
@@ -30418,7 +30418,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.image_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -30492,7 +30492,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.image_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -30557,7 +30557,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -30654,7 +30654,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -30751,7 +30751,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -30858,7 +30858,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -30955,7 +30955,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -31053,7 +31053,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.key_pair,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -31215,7 +31215,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   generators: awsGenerators.reserved_instance_id,
-                  variadic: true,
+                  isVariadic: true,
                   isOptional: true,
                 },
               ],
@@ -31474,7 +31474,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.snapshot_ids,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -31643,7 +31643,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   generators: awsGenerators.subnet_ids,
-                  variadic: true,
+                  isVariadic: true,
                   isOptional: true,
                 },
               ],
@@ -31740,7 +31740,7 @@ export const completionSpec: Fig.Spec = {
                 },
                 {
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                   generators: awsGenerators.instances,
                 },
               ],
@@ -31847,7 +31847,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.volume_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -31944,7 +31944,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.volume_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -32041,7 +32041,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.volume_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -32327,7 +32327,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.vpc_peering_connection_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -32424,7 +32424,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   generators: awsGenerators.vpc_peering_connection_id,
                   isOptional: true,
-                  variadic: true,
+                  isVariadic: true,
                 },
               ],
             },
@@ -32590,3 +32590,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

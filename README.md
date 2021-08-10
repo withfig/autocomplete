@@ -33,7 +33,7 @@ Completion specs are defined in a _declarative_ schema that specifies `subcomman
 
 ## 😎 Get Started
 
-Build your first spec in 3 or less min: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
+Build your first spec in 3 min or less: [fig.io/docs/getting-started](https://fig.io/docs/getting-started)
 
 **Prerequisites:**
 - Early access to the Fig macOS app. 
@@ -130,7 +130,7 @@ Yes! Check out our guide on how to [get started building autocomplete specs](htt
 
 #### Did we miss something?
 
-Get in touch at hello@fig.io or chat with us on [Discord](https://fig.io/community).
+Get in touch at hello@fig.io or chat with us in [Discord](https://fig.io/community).
 
 <br/>
 

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "accessanalyzer",
   description:
     "AWS IAM Access Analyzer helps identify potential resource-access risks by enabling you to identify any policies that grant access to an external principal. It does this by using logic-based reasoning to analyze resource-based policies in your AWS environment. An external principal can be another AWS account, a root user, an IAM user or role, a federated user, an AWS service, or an anonymous user. You can also use Access Analyzer to preview and validate public and cross-account access to your resources before deploying permissions changes. This guide describes the AWS IAM Access Analyzer operations that you can call programmatically. For general information about Access Analyzer, see AWS IAM Access Analyzer in the IAM User Guide. To start using Access Analyzer, you first need to create an analyzer.",
@@ -1474,3 +1474,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

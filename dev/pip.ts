@@ -16020,7 +16020,7 @@ const packageList: Array<Fig.Suggestion> = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "pip",
   description: "Python package manager",
   args: {},
@@ -16785,13 +16785,6 @@ export const completionSpec: Fig.Spec = {
             name: "implementation",
           },
         },
-        {
-          name: ["--platform"],
-          description: "Only use wheels compatible with platform.",
-          args: {
-            name: "platform",
-          },
-        },
       ],
     },
     {
@@ -16800,3 +16793,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

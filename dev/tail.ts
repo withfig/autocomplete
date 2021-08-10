@@ -1,8 +1,8 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "tail",
   description: "display the last part of a file",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "filepaths",
   },
   options: [
@@ -16,3 +16,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

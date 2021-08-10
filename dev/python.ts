@@ -1,18 +1,41 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "python",
   description: "Run the python interpretor",
+  generateSpec: async (tokens, executeShellCommand) => {
+    const isDjangoManagePyFilePresentCommand =
+      "cat manage.py | grep -q django; echo $?";
+
+    if (
+      (await executeShellCommand(isDjangoManagePyFilePresentCommand)) === "0"
+    ) {
+      return {
+        name: "python",
+        subcommands: [{ name: "manage.py", loadSpec: "django-admin" }],
+      };
+    }
+  },
   args: {
     name: "python script",
     isScript: true,
     generators: {
       template: "filepaths",
       filterTemplateSuggestions: function (paths) {
-        return paths.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(".py") || file.name.endsWith("/");
-          }
-          return false;
-        });
+        return paths
+          .filter((file) => {
+            if (typeof file.name === "string") {
+              return file.name.endsWith(".py") || file.name.endsWith("/");
+            }
+            return false;
+          })
+          .map((file) => {
+            const isPyFile =
+              typeof file.name === "string" && file.name.endsWith(".js");
+
+            return {
+              ...file,
+              priority: isPyFile && 76,
+            };
+          });
       },
     },
   },
@@ -153,3 +176,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

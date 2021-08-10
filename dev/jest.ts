@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "jest",
   description:
     "A delightful JavaScript Testing Framework with a focus on simplicity",
@@ -227,7 +227,7 @@ export const completionSpec: Fig.Spec = {
         "Run tests from one or more projects, found in the specified paths; also takes path globs",
       args: {
         name: "<path1> ... <pathN>",
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
     },
@@ -247,7 +247,7 @@ export const completionSpec: Fig.Spec = {
         "A list of paths to directories that Jest should use to search for files in",
       args: {
         name: "<path1> ... <pathN>",
-        variadic: true,
+        isVariadic: true,
         template: "folders",
       },
     },
@@ -388,3 +388,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "iot1click-projects",
   description: "The AWS IoT 1-Click Projects API Reference",
   subcommands: [
@@ -712,3 +712,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

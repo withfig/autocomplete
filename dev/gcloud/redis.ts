@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "redis",
   description: "Manage Cloud Memorystore Redis resources.",
   subcommands: [
@@ -274,7 +274,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -430,7 +430,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -581,7 +581,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -738,13 +738,13 @@ export const completionSpec: Fig.Spec = {
               name: "DESTINATION",
               description:
                 "The Cloud Storage object path to export the instance to. Must have\nthe redis DB file extension *.rdb*.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -912,7 +912,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1069,13 +1069,13 @@ export const completionSpec: Fig.Spec = {
               name: "SOURCE",
               description:
                 "The Cloud Storage object path to import the instance from. Must have\nthe redis DB file extension *.rdb*.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1483,7 +1483,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1651,7 +1651,7 @@ export const completionSpec: Fig.Spec = {
               name: "INSTANCE",
               description:
                 "ID of the instance or fully qualified identifier for the instance.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1936,7 +1936,7 @@ export const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2087,7 +2087,7 @@ export const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2550,7 +2550,7 @@ export const completionSpec: Fig.Spec = {
               name: "REGION",
               description:
                 "ID of the region or fully qualified identifier for the region.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3302,3 +3302,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

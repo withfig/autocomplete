@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dbt",
   description: "",
   subcommands: [
@@ -49,7 +49,7 @@ export const completion: Fig.Spec = {
             "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
           args: {
             name: "SELECTOR",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -95,12 +95,12 @@ export const completion: Fig.Spec = {
         {
           name: "--select",
           description: "",
-          args: { name: "SELECTOR", description: "", variadic: true },
+          args: { name: "SELECTOR", description: "", isVariadic: true },
         },
         {
           name: "--exclude",
           description: "",
-          args: { name: "EXCLUDE", description: "", variadic: true },
+          args: { name: "EXCLUDE", description: "", isVariadic: true },
         },
         { name: "--bypass-cache", description: "" },
       ],
@@ -196,7 +196,7 @@ export const completion: Fig.Spec = {
                 "This flag specifies one or more selection-type arguments used to filter the nodes returned by the dbt ls command",
               args: {
                 name: "SELECTION_ARG",
-                variadic: true,
+                isVariadic: true,
               },
             },
           ],
@@ -272,7 +272,7 @@ export const completion: Fig.Spec = {
             "This flag specifies one or more selection-type arguments used to filter the nodes returned by the dbt ls command",
           args: {
             name: "SELECTION_ARG",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -281,7 +281,7 @@ export const completion: Fig.Spec = {
             "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
           args: {
             name: "SELECTOR",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -290,7 +290,7 @@ export const completion: Fig.Spec = {
             "Specify selectors that should be excluded from the list of returned nodes.",
           args: {
             name: "SELECTOR",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -299,7 +299,7 @@ export const completion: Fig.Spec = {
             "This flag specifies one or more named selectors, defined in a selectors.yml file.",
           args: {
             name: "YML_SELECTOR_NAME",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -309,7 +309,7 @@ export const completion: Fig.Spec = {
           args: {
             name: "output",
             suggestions: ["json", "name", "path", "selector"],
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -371,3 +371,5 @@ export const completion: Fig.Spec = {
   // Only uncomment if dbt takes an argument
   // args: {}
 };
+
+export default completionSpec;

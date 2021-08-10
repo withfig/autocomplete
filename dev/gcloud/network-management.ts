@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "network-management",
   description: "Manage Network Management resources.",
   subcommands: [
@@ -285,7 +285,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONNECTIVITY_TEST",
               description:
                 "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -431,7 +431,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONNECTIVITY_TEST",
               description:
                 "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -572,7 +572,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONNECTIVITY_TEST",
               description:
                 "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -891,7 +891,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONNECTIVITY_TEST",
               description:
                 "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1190,7 +1190,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONNECTIVITY_TEST",
               description:
                 "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1465,7 +1465,7 @@ export const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1895,3 +1895,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

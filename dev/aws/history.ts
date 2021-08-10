@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "history",
   description:
     "Commands to interact with the history of AWS CLI commands ran over time. To record the history of AWS CLI commands set ``cli_history`` to ``enabled`` in the ``~/.aws/config`` file. This can be done by running:\n\n``$ aws configure set cli_history enabled``",
@@ -14,7 +14,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies which events to **only** include when showing the CLI command. This argument is mutually exclusive with ``--exclude``.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -23,7 +23,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies which events to exclude when showing the CLI command. This argument is mutually exclusive with ``--include``.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -51,3 +51,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

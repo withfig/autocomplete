@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "logging",
   description: "Manage Cloud Logging.",
   subcommands: [
@@ -142,7 +142,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "LOG_NAME",
               description: "Log name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -600,7 +600,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "METRIC_NAME",
               description: "The name of the new metric.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -740,7 +740,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "METRIC_NAME",
               description: "The name of the metric to delete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -880,7 +880,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "METRIC_NAME",
               description: "The name of the metric.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1203,7 +1203,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "METRIC_NAME",
               description: "The name of the log-based metric to update.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1522,7 +1522,7 @@ export const completionSpec: Fig.Spec = {
           name: "LOG_FILTER",
           description:
             "Filter expression that specifies the log entries to return. A detailed guide on basic and advanced filters can be found at: https://cloud.google.com/logging/docs/view/overview",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1996,12 +1996,12 @@ export const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name for the sink.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description: "The destination for the sink.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2159,7 +2159,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name of the sink to delete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2317,7 +2317,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name of the sink to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2665,13 +2665,13 @@ export const completionSpec: Fig.Spec = {
             {
               name: "SINK_NAME",
               description: "The name of the sink to update.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "DESTINATION",
               description:
                 "A new destination for the sink. If omitted, the sink's existing destination is unchanged.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2989,13 +2989,13 @@ export const completionSpec: Fig.Spec = {
         {
           name: "LOG_NAME",
           description: "Name of the log where the log entry will be written.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "MESSAGE",
           description:
             "Message to put in the log entry. It can be JSON if you include `--payload-type=json`.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -3122,3 +3122,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

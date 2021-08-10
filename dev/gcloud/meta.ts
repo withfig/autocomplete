@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "meta",
   description: "Cloud meta introspection commands.",
   subcommands: [
@@ -157,7 +157,7 @@ export const completionSpec: Fig.Spec = {
                   name: "COLLECTION",
                   description:
                     "The name of the collection to get the details of.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -804,7 +804,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "API_NAME",
               description: "The name of the API to show the details of.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -951,7 +951,7 @@ export const completionSpec: Fig.Spec = {
                   name: "API",
                   description:
                     "The api_name/api_version to show the details of.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1576,7 +1576,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "MESSAGE",
                   description: "The name of the message you want to describe.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1748,7 +1748,7 @@ export const completionSpec: Fig.Spec = {
                   name: "MESSAGE",
                   description:
                     "The name of the message to generate the YAML export schemas for.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2232,7 +2232,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "METHOD",
                   description: "The name of the API method to invoke.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2393,7 +2393,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "METHOD",
                   description: "The name of the method to get the details of.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2879,7 +2879,7 @@ export const completionSpec: Fig.Spec = {
               name: "API",
               description:
                 "The APIs to regenerate in api_name/api_version format. These can be filename glob expressions to regenerate multiple apis. For example */* to regegenerate all apis and versions, or */*beta* to only regenerate existing beta apis. Note that if discovery doc is supplied this cannot contain any wildcards.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3402,7 +3402,7 @@ export const completionSpec: Fig.Spec = {
                   name: "MODULE_PATH",
                   description:
                     'The completer module path. Run $ gcloud meta completers list` to list the module paths of the available completers. A completer module may declare additional flags. Specify `--help` after _MODULE_PATH_ for details on the module specific flags.\n+\nNOTE: To test resource argument completers, use the module path "googlecloudsdk.command_lib.util.completers:CompleterForAttribute". The flags `--resource-spec-path`, `--attribute`, and (if desired) `--resource-presentation-kwargs` must be provided BEFORE the positional. Unlike with most gcloud commands, the arguments are generated on the fly using the completer you provide, so all the information to create a resource completer needs to be provided up-front. For example:\n+\n  $ {command} --resource-spec-path MODULE_PATH:SPEC_OBJECT --attribute ATTRIBUTE_NAME --resource-presentation-kwargs flag_name_overrides=ATTRIBUTE1:FLAG1;ATTRIBUTE2:FLAG2 googlecloudsdk.command_lib.util.completers:CompleterForAttribute',
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -3683,7 +3683,7 @@ export const completionSpec: Fig.Spec = {
               name: "TABLES",
               description:
                 "The table names or name patterns to delete, where `?` matches any character and ```*``` matches any string of zero or more characters. If omitted then the entired cache is deleted.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3880,7 +3880,7 @@ export const completionSpec: Fig.Spec = {
               name: "TABLES",
               description:
                 "The table names or name patterns to list, where `?` matches any character and ```*``` matches any string of zero or more characters. If omitted then a table of all tables is displayed.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4754,7 +4754,7 @@ export const completionSpec: Fig.Spec = {
               name: "COMMAND/GROUP",
               description:
                 "Restrict the listing to these dotted command paths. For example: gcloud.alpha gcloud.beta.test",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5034,7 +5034,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "COLLECTION",
           description: "The name of the collection to generate commands for.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -5239,7 +5239,7 @@ export const completionSpec: Fig.Spec = {
           name: "COMMAND/GROUP",
           description:
             "Restrict document generation to these dotted command paths. For example: gcloud.alpha gcloud.beta.test",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -5380,7 +5380,7 @@ export const completionSpec: Fig.Spec = {
           name: "CHECKS",
           description:
             "A list of checks to apply to gcloud groups and commands.\nIf omitted will run all available checks.\nAvailable Checks:\n  BadLists          Verifies all flags implement lists properly.\n  WhitelistedNameCheck\n                    Verifies that every command is whitelisted.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -5539,7 +5539,7 @@ export const completionSpec: Fig.Spec = {
           name: "COMMAND/GROUP",
           description:
             "Restrict the listing to these dotted command paths. For example: gcloud.alpha gcloud.beta.test",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -5680,7 +5680,7 @@ export const completionSpec: Fig.Spec = {
           name: "DIRECTORY",
           description:
             "The directory in which to show what files would be uploaded",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -5861,7 +5861,7 @@ export const completionSpec: Fig.Spec = {
           name: "JSON-FILE",
           description:
             "A file containing JSON data for a single resource or a list of resources of the same type. If omitted then the standard input is read.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -6169,7 +6169,7 @@ export const completionSpec: Fig.Spec = {
           name: "MD_FILE",
           description:
             "The path to a file containing markdown to render, or `-` to read from stdin.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -6547,7 +6547,7 @@ export const completionSpec: Fig.Spec = {
               name: "RESOURCES_TO_PARSE",
               description:
                 "The list of resource URLs to parse. If not specified then *{command}* enters an interactive loop, prompting for URLs to parse.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6898,7 +6898,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "NAME",
           description: "command_lib.compute.TestCompleter instance name test.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -7038,13 +7038,13 @@ export const completionSpec: Fig.Spec = {
         {
           name: "SCHEMA_FILE",
           description: "The path to a file containing the JSON Schema.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "YAML_FILE",
           description:
             "The path to a file containing YAML / JSON data. Use `-` for the standard input.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -7171,3 +7171,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

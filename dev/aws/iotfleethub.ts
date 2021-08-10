@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "iotfleethub",
   description:
     "With Fleet Hub for AWS IoT Device Management you can build stand-alone web applications for monitoring the health of your device fleets.  Fleet Hub for AWS IoT Device Management is in public preview and is subject to change.",
@@ -345,3 +345,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

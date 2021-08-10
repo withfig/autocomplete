@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "machinelearning",
   description:
     "Definition of the public APIs exposed by Amazon Machine Learning",
@@ -2150,3 +2150,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

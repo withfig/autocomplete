@@ -1,21 +1,21 @@
-// To learn more about FIg's autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 // var executeShellCommand: Fig.ExecuteShellCommandFunction;
 
 // The below is a dummy example for git. Make sure to change the file name!
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "mask",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     // See if use specified a maskfile location
 
-    var maskfileLocationIdx = context.indexOf("--maskfile");
+    var maskfileLocationIdx = tokens.indexOf("--maskfile");
 
     var out;
     // mask --maskfile path/tp/thing build
-    if (maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > context.length) {
+    if (maskfileLocationIdx < 0 || maskfileLocationIdx + 3 > tokens.length) {
       out = await executeShellCommand("cat maskfile.md 2> /dev/null");
     } else {
       out = await executeShellCommand(
-        `cat ${context[maskfileLocationIdx + 1]} 2> /dev/null`
+        `cat ${tokens[maskfileLocationIdx + 1]} 2> /dev/null`
       );
     }
 
@@ -31,3 +31,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

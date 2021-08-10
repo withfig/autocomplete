@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "bundle",
   description: "Ruby Dependency Management",
   subcommands: [
@@ -455,7 +455,7 @@ export const completionSpec: Fig.Spec = {
           description: "Do not create a LICENSE.txt",
         },
         {
-          name: ["-t", "--test", "--test"],
+          name: ["-t", "--test"],
           description: "Specify the test framework that Bundler should use",
           args: {},
         },
@@ -517,3 +517,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

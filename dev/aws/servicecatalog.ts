@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "servicecatalog",
   description:
     "AWS Service Catalog  AWS Service Catalog enables organizations to create and manage catalogs of IT services that are approved for AWS. To get the most out of this documentation, you should be familiar with the terminology discussed in AWS Service Catalog Concepts.",
@@ -5178,7 +5178,7 @@ export const completionSpec: Fig.Spec = {
               description: "Tags to associate with the new product.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
               },
             },
             {
@@ -5299,3 +5299,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

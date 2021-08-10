@@ -61,7 +61,7 @@ const teamList: Fig.Generator = {
   },
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "vercel",
   description: "CLI Interface for Vercel.com",
   args: {
@@ -297,7 +297,7 @@ export const completionSpec: Fig.Spec = {
           name: ["-m", "--meta"],
           description: "Filters results based on project metadata",
           args: {
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -350,7 +350,7 @@ export const completionSpec: Fig.Spec = {
       args: {
         name: "deployment url",
         description: "URL of the deployment to remove",
-        // variadic: true,
+        // isVariadic: true,
         //generator: deploymentList
       },
       options: [
@@ -528,7 +528,7 @@ export const completionSpec: Fig.Spec = {
             description:
               "list of domains separated by commas to issue certificates for",
             // generator: domainList,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -689,3 +689,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

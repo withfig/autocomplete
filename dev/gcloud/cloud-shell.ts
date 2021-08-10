@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "cloud-shell",
   description: "Manage Google Cloud Shell.",
   subcommands: [
@@ -150,7 +150,7 @@ export const completionSpec: Fig.Spec = {
           name: "MOUNT_DIR",
           description:
             "Local directory onto which the Cloud Shell home directory should be\nmounted.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -319,12 +319,12 @@ export const completionSpec: Fig.Spec = {
         {
           name: "(cloudshell|localhost):SRC",
           description: "Specifies the files to copy.",
-          variadic: true,
+          isVariadic: true,
         },
         {
           name: "(cloudshell|localhost):DEST",
           description: "Specifies a destination for the source files.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -624,3 +624,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

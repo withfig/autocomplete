@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "kendra",
   description: "Amazon Kendra is a service for indexing large document sets.",
   subcommands: [
@@ -1570,3 +1570,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

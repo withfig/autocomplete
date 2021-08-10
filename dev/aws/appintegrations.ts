@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "appintegrations",
   description:
     "The Amazon AppIntegrations APIs are in preview release and are subject to change. The Amazon AppIntegrations service enables you to configure and reuse connections to external applications. For information about how you can use external applications with Amazon Connect, see Set up pre-built integrations in the Amazon Connect Administrator Guide.",
@@ -364,3 +364,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

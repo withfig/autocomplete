@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "access-context-manager",
   description: "Manage Access Context Manager resources.",
   subcommands: [
@@ -1465,7 +1465,7 @@ export const completionSpec: Fig.Spec = {
               name: "LEVEL",
               description:
                 "ID of the level or fully qualified identifier for the level.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1620,7 +1620,7 @@ export const completionSpec: Fig.Spec = {
               name: "LEVEL",
               description:
                 "ID of the level or fully qualified identifier for the level.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1770,7 +1770,7 @@ export const completionSpec: Fig.Spec = {
               name: "LEVEL",
               description:
                 "ID of the level or fully qualified identifier for the level.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2115,7 +2115,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2315,7 +2315,7 @@ export const completionSpec: Fig.Spec = {
               name: "LEVEL",
               description:
                 "ID of the level or fully qualified identifier for the level.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2680,7 +2680,7 @@ export const completionSpec: Fig.Spec = {
               name: "PERIMETER",
               description:
                 "ID of the perimeter or fully qualified identifier for the perimeter.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2835,7 +2835,7 @@ export const completionSpec: Fig.Spec = {
               name: "PERIMETER",
               description:
                 "ID of the perimeter or fully qualified identifier for the perimeter.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2985,7 +2985,7 @@ export const completionSpec: Fig.Spec = {
               name: "PERIMETER",
               description:
                 "ID of the perimeter or fully qualified identifier for the perimeter.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3267,7 +3267,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -3423,7 +3423,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -3574,7 +3574,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -3730,7 +3730,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -3886,7 +3886,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -4481,7 +4481,7 @@ export const completionSpec: Fig.Spec = {
                   name: "PERIMETER",
                   description:
                     "ID of the perimeter or fully qualified identifier for the perimeter.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -4956,7 +4956,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5265,7 +5265,7 @@ export const completionSpec: Fig.Spec = {
               name: "PERIMETER",
               description:
                 "ID of the perimeter or fully qualified identifier for the perimeter.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5699,7 +5699,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5840,7 +5840,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6174,7 +6174,7 @@ export const completionSpec: Fig.Spec = {
               name: "POLICY",
               description:
                 "ID of the policy or fully qualified identifier for the policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6431,3 +6431,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

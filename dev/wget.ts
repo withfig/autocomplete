@@ -1,8 +1,8 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "wget",
   description: "a non-interactive network retriever",
   args: {
-    variadic: true,
+    isVariadic: true,
     name: "url",
     description: "The url(s) to retrieve",
   },
@@ -600,3 +600,5 @@ export const completionSpec: Fig.Spec = {
 
 // Email bug reports, questions, discussions to <bug-wget@gnu.org>
 // and/or open issues at https://savannah.gnu.org/bugs/?func=additem&group=wget.
+
+export default completionSpec;

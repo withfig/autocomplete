@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "cloudfront",
   description:
     "Amazon CloudFront This is the Amazon CloudFront API Reference. This guide is for developers who need detailed information about CloudFront API actions, data types, and errors. For detailed information about CloudFront features, see the Amazon CloudFront Developer Guide.",
@@ -229,7 +229,7 @@ export const completionSpec: Fig.Spec = {
             "The space-separated paths to be invalidated. Note: --invalidation-batch and --paths are mututally exclusive.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -3125,3 +3125,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

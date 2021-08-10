@@ -1,10 +1,10 @@
-// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/autocomplete/building-a-spec#building-your-first-autocomplete-spec
+// To learn more about Fig's autocomplete standard visit: https://fig.io/docs/concepts/cli-skeleton
 
 // The below is a dummy example for git. Make sure to change the file name!
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "php",
   description: "Run the PHP interpreter",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const subcommands = [];
 
     if ((await executeShellCommand("ls -1 artisan")) === "artisan") {
@@ -30,3 +30,5 @@ export const completion: Fig.Spec = {
     };
   },
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "emr",
   description:
     "Amazon EMR is a web service that makes it easier to process large amounts of data efficiently. Amazon EMR uses Hadoop processing combined with several AWS services to do tasks such as web indexing, data mining, log file analysis, machine learning, scientific simulation, and data warehouse management.",
@@ -59,7 +59,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the number and type of Amazon EC2 instances to create for each node type in a cluster, using uniform instance groups. You can specify either --instance-groups or --instance-fleets but not both. For more information, see the following topic in the EMR Management Guide:https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.htmlYou can specify arguments individually using multiple InstanceGroupType argument blocks, one for the MASTER instance group, one for a CORE instance group, and optional, multiple TASK instance groups.If you specify inline JSON structures, enclose the entire InstanceGroupType argument block in single quotation marks.Each InstanceGroupType block takes the following inline arguments. Optional arguments are shown in [square brackets].[Name] - An optional friendly name for the instance group.InstanceGroupType - MASTER, CORE, or TASK.InstanceType - The type of EC2 instance, for example m4.large, to use for all nodes in the instance group.InstanceCount - The number of EC2 instances to provision in the instance group.[BidPrice] - If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice to set the amount equal to the On-Demand price, or specify an amount in USD.[EbsConfiguration] - Specifies additional Amazon EBS storage volumes attached to EC2 instances using an inline JSON structure.[AutoScalingPolicy] - Specifies an automatic scaling policy for the instance group using an inline JSON structure.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -83,7 +83,7 @@ export const completionSpec: Fig.Spec = {
             "A list of tags to associate with a cluster, which apply to each Amazon EC2 instance in the cluster. Tags are key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.You can specify tags in key=value format or you can add a tag without a value using only the key name, for example key. Use a space to separate multiple tags.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -762,7 +762,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies that only clusters in the states specified are listed. Alternatively, you can use the shorthand form for single states or a group of states.Takes the following state values:STARTINGBOOTSTRAPPINGRUNNINGWAITINGTERMINATINGTERMINATEDTERMINATED_WITH_ERRORS",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1878,7 +1878,7 @@ export const completionSpec: Fig.Spec = {
           description: "A list of clusters to terminate.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -1933,7 +1933,7 @@ export const completionSpec: Fig.Spec = {
             "The applications to be installed. Takes the following parameters: Name and Args.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -1965,7 +1965,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the number and type of Amazon EC2 instances to create for each node type in a cluster, using uniform instance groups. You can specify either --instance-groups or --instance-fleets but not both. For more information, see the following topic in the EMR Management Guide:https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.htmlYou can specify arguments individually using multiple InstanceGroupType argument blocks, one for the MASTER instance group, one for a CORE instance group, and optional, multiple TASK instance groups.If you specify inline JSON structures, enclose the entire InstanceGroupType argument block in single quotation marks.Each InstanceGroupType block takes the following inline arguments. Optional arguments are shown in [square brackets].[Name] - An optional friendly name for the instance group.InstanceGroupType - MASTER, CORE, or TASK.InstanceType - The type of EC2 instance, for example m4.large, to use for all nodes in the instance group.InstanceCount - The number of EC2 instances to provision in the instance group.[BidPrice] - If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice to set the amount equal to the On-Demand price, or specify an amount in USD.[EbsConfiguration] - Specifies additional Amazon EBS storage volumes attached to EC2 instances using an inline JSON structure.[AutoScalingPolicy] - Specifies an automatic scaling policy for the instance group using an inline JSON structure.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1998,7 +1998,7 @@ export const completionSpec: Fig.Spec = {
             "Applies only to Amazon EMR release version 5.0 and later. Specifies the number and type of Amazon EC2 instances to create for each node type in a cluster, using instance fleets. You can specify either --instance-fleets or --instance-groups but not both. For more information and examples, see the following topic in the Amazon EMR Management Guide:https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-fleet.htmlYou can specify arguments individually using multiple InstanceFleetType argument blocks, one for the MASTER instance fleet, one for a CORE instance fleet, and an optional TASK instance fleet.The following arguments can be specified for each instance fleet. Optional arguments are shown in [square brackets].[Name] - An optional friendly name for the instance fleet.InstanceFleetType - MASTER, CORE, or TASK.TargetOnDemandCapacity - The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand Instances to provision. The WeightedCapacity specified for an instance type within InstanceTypeConfigs counts toward this total when an instance type with the On-Demand purchasing option launches.TargetSpotCapacity - The target capacity of Spot units for the instance fleet, which determines how many Spot Instances to provision. The WeightedCapacity specified for an instance type within InstanceTypeConfigs counts toward this total when an instance type with the Spot purchasing option launches.[LaunchSpecifications] - When TargetSpotCapacity is specified, specifies the block duration and timeout action for Spot Instances.InstanceTypeConfigs - Specifies up to five EC2 instance types to use in the instance fleet, including details such as Spot price and Amazon EBS configuration.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2100,7 +2100,7 @@ export const completionSpec: Fig.Spec = {
             "A list of tags to associate with a cluster, which apply to each Amazon EC2 instance in the cluster. Tags are key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.You can specify tags in key=value format or you can add a tag without a value using only the key name, for example key. Use a space to separate multiple tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2109,7 +2109,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies a list of bootstrap actions to run on each EC2 instance when a cluster is created. Bootstrap actions run on each instance immediately after Amazon EMR provisions the EC2 instance and before Amazon EMR installs specified applications.You can specify a bootstrap action as an inline JSON structure enclosed in single quotation marks, or you can use a shorthand syntax, specifying multiple bootstrap actions, each separated by a space. When using the shorthand syntax, each bootstrap action takes the following parameters, separated by commas with no trailing space. Optional parameters are shown in [square brackets].Path - The path and file name of the script to run, which must be accessible to each instance in the cluster. For example, Path=s3://mybucket/myscript.sh.[Name] - A friendly name to help you identify the bootstrap action. For example, Name=BootstrapAction1[Args] - A comma-separated list of arguments to pass to the bootstrap action script. Arguments can be either a list of values (Args=arg1,arg2,arg3) or a list of key-value pairs, as well as optional values, enclosed in square brackets (Args=[arg1,arg2=arg2value,arg3]).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2118,7 +2118,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies the applications to install on the cluster. Available applications and their respective versions vary by Amazon EMR release. For more information, see the Amazon EMR Release Guide:https://docs.aws.amazon.com/emr/latest/ReleaseGuide/When using versions of Amazon EMR earlier than 4.0, some applications take optional arguments for configuration. Arguments should either be a comma-separated list of values (Args=arg1,arg2,arg3) or a bracket-enclosed list of values and key-value pairs (Args=[arg1,arg2=arg3,arg4]).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2135,7 +2135,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies a list of steps to be executed by the cluster. Steps run only on the master node after applications are installed and are used to submit work to a cluster. A step can be specified using the shorthand syntax, by referencing a JSON file or by specifying an inline JSON structure. Args supplied with steps should be a comma-separated list of values (Args=arg1,arg2,arg3) or a bracket-enclosed list of values and key-value pairs (Args=[arg1,arg2=value,arg4).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2216,7 +2216,7 @@ export const completionSpec: Fig.Spec = {
             "Placement group configuration for an Amazon EMR cluster. The configuration specifies the EC2 placement group strategy associated with each EMR Instance Role. Currently, we support placement group only for MASTER role with SPREAD strategy by default. You can opt-in by passing --placement-group-configs InstanceRole=MASTER during cluster creation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -2239,7 +2239,7 @@ export const completionSpec: Fig.Spec = {
             "Specifies a list of steps to be executed by the cluster. Steps run only on the master node after applications are installed and are used to submit work to a cluster. A step can be specified using the shorthand syntax, by referencing a JSON file or by specifying an inline JSON structure. Args supplied with steps should be a comma-separated list of values (Args=arg1,arg2,arg3) or a bracket-enclosed list of values and key-value pairs (Args=[arg1,arg2=value,arg4).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -2628,3 +2628,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

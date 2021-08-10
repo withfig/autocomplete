@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "top",
   description: "display Linux tasks",
   options: [
@@ -40,8 +40,10 @@ export const completionSpec: Fig.Spec = {
       description: "Monitor pids",
       args: {
         name: "process ids",
-        variadic: true,
+        isVariadic: true,
       },
     },
   ],
 };
+
+export default completionSpec;

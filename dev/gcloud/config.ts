@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "config",
   description: "View and edit Cloud SDK properties.",
   subcommands: [
@@ -292,7 +292,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "CONFIGURATION_NAME",
               description: "Name of the configuration to activate",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -437,7 +437,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "CONFIGURATION_NAME",
               description: "Name of the configuration to create",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -578,7 +578,7 @@ export const completionSpec: Fig.Spec = {
               name: "CONFIGURATION_NAMES",
               description:
                 "Name of the configuration to delete. Cannot be currently active configuration.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -723,7 +723,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "CONFIGURATION_NAME",
               description: "Name of the configuration to describe",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1157,7 +1157,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECTION/PROPERTY",
           description:
             "The property to be fetched. Note that `SECTION/` is optional while referring to properties in the core section.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1334,7 +1334,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECTION/PROPERTY",
           description:
             "Property to be listed. Note that SECTION/ is optional while referring to properties in the core section.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1480,12 +1480,12 @@ export const completionSpec: Fig.Spec = {
           name: "SECTION/PROPERTY",
           description:
             "Property to be set. Note that SECTION/ is optional while referring to properties in the core section, i.e., using either `core/project` or `project` is a valid way of setting a project. Using section names is required for setting other properties like `compute/region`. Consult the Available Properties section below for a comprehensive list of properties.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "VALUE",
           description: "Value to be set.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1631,7 +1631,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECTION/PROPERTY",
           description:
             "The property to be unset. Note that SECTION/ is optional while referring to properties in the core section.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1758,3 +1758,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

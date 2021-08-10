@@ -2,7 +2,7 @@ const sourceDestArgs: Fig.Arg[] = [
   {
     name: "source_file",
     template: ["filepaths", "folders"],
-    // variadic: true,
+    // isVariadic: true,
     // source_file is variadic but usability wise having it is less useful
     // because it keeps recommending "source_file" repeatedly and not "link_name or link_dirname"
     // and since most people won't need multiple files and those who do can look it up
@@ -13,7 +13,7 @@ const sourceDestArgs: Fig.Arg[] = [
   },
 ];
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ln",
   description: "Create (default hard) symbolic links to files",
   args: sourceDestArgs,
@@ -53,3 +53,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "cloudhsmv2",
   description:
     "For more information about AWS CloudHSM, see AWS CloudHSM and the AWS CloudHSM User Guide.",
@@ -744,3 +744,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

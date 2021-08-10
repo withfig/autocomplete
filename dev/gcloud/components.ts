@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "components",
   description: "List, install, update, or remove Google Cloud SDK components.",
   subcommands: [
@@ -271,7 +271,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "COMPONENT-IDS",
           description: "The IDs of the components to be installed.",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -850,7 +850,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "COMPONENT_ID",
           description: "The IDs of the components to be removed.",
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -996,7 +996,7 @@ export const completionSpec: Fig.Spec = {
               name: "URL",
               description:
                 "One or more URLs for the component repositories you want to add.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -1305,7 +1305,7 @@ export const completionSpec: Fig.Spec = {
               name: "URL",
               description:
                 "Zero or more URLs for the component repositories you want to remove.  If none are given, you will be prompted to choose which existing repository you want to remove.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1709,7 +1709,7 @@ export const completionSpec: Fig.Spec = {
         {
           name: "COMPONENT-IDS",
           description: "THIS ARGUMENT NEEDS HELP TEXT.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1836,3 +1836,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

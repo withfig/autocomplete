@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "kms",
   description: "Manage cryptographic keys in the cloud.",
   subcommands: [
@@ -937,7 +937,7 @@ export const completionSpec: Fig.Spec = {
               name: "IMPORT_JOB",
               description:
                 "ID of the import job or fully qualified identifier for the import job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1120,7 +1120,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "IMPORT_JOB",
               description: "Name of the import job to create.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1287,7 +1287,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "IMPORT_JOB",
               description: "Name of the import job to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1486,7 +1486,7 @@ export const completionSpec: Fig.Spec = {
               name: "IMPORT_JOB",
               description:
                 "ID of the import job or fully qualified identifier for the import job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1862,7 +1862,7 @@ export const completionSpec: Fig.Spec = {
               name: "IMPORT_JOB",
               description:
                 "ID of the import job or fully qualified identifier for the import job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2021,13 +2021,13 @@ export const completionSpec: Fig.Spec = {
               name: "IMPORT_JOB",
               description:
                 "ID of the import job or fully qualified identifier for the import job.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2352,7 +2352,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEYRING",
               description:
                 "ID of the keyring or fully qualified identifier for the keyring.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2502,7 +2502,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEYRING",
               description:
                 "ID of the keyring or fully qualified identifier for the keyring.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2652,7 +2652,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEYRING",
               description:
                 "ID of the keyring or fully qualified identifier for the keyring.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2841,7 +2841,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEYRING",
               description: "Name of the key ring whose IAM policy to fetch.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3226,7 +3226,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEYRING",
               description:
                 "ID of the keyring or fully qualified identifier for the keyring.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3375,12 +3375,12 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEYRING",
               description: "Name of the key ring whose IAM policy to update.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the IAM policy",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3714,7 +3714,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "ID of the key or fully qualified identifier for the key.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3961,7 +3961,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "ID of the key or fully qualified identifier for the key.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4120,7 +4120,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "ID of the key or fully qualified identifier for the key.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4318,7 +4318,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEY",
               description: "Name of the key whose IAM policy to fetch.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4721,7 +4721,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "ID of the key or fully qualified identifier for the key.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4880,7 +4880,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "Name of the key from which to clear the rotation schedule.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5038,12 +5038,12 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEY",
               description: "Name of the key whose IAM policy to update.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description: "JSON or YAML file with the IAM policy",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5201,7 +5201,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEY",
               description: "Name of the key to modify.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5380,7 +5380,7 @@ export const completionSpec: Fig.Spec = {
             {
               name: "KEY",
               description: "Name of the key to update the schedule of.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5625,7 +5625,7 @@ export const completionSpec: Fig.Spec = {
               name: "KEY",
               description:
                 "ID of the key or fully qualified identifier for the key.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5980,7 +5980,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to describe.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6147,7 +6147,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to destroy.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6314,7 +6314,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to disable.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6481,7 +6481,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to enable.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6657,7 +6657,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to get public key.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -7256,7 +7256,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to restore.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -7442,7 +7442,7 @@ export const completionSpec: Fig.Spec = {
                 {
                   name: "VERSION",
                   description: "Name of the version to describe.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -8141,3 +8141,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

@@ -1,11 +1,11 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "dig",
   description: "Domain Information Groper",
   subcommands: [
     {
       name: "A",
       description: "Query Domain A Record",
-      insertValue: "A ",
+
       options: [
         {
           name: ["+short", ""],
@@ -18,7 +18,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "MX",
       description: "Query Domain MX Record",
-      insertValue: "MX ",
+
       options: [
         {
           name: ["+short", ""],
@@ -31,7 +31,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "CNAME",
       description: "Query Domain CNAME Record",
-      insertValue: "CNAME ",
+
       options: [
         {
           name: ["+short", ""],
@@ -44,7 +44,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "TXT",
       description: "Query Domain TXT Record",
-      insertValue: "TXT ",
+
       options: [
         {
           name: ["+short", ""],
@@ -57,7 +57,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "NS",
       description: "Query MX Record",
-      insertValue: "NS ",
+
       options: [
         {
           name: ["+short", ""],
@@ -70,7 +70,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "SOA",
       description: "Query SOA Record",
-      insertValue: "SOA ",
+
       options: [
         {
           name: ["+short", ""],
@@ -83,7 +83,7 @@ export const completionSpec: Fig.Spec = {
     {
       name: "TTL",
       description: "Query TTL Record",
-      insertValue: "TTL ",
+
       options: [
         {
           name: ["+short", ""],
@@ -96,13 +96,12 @@ export const completionSpec: Fig.Spec = {
     {
       name: "ANY +noall +answer",
       description: "Query ALL DNS Records",
-      insertValue: "ANY +noall +answer ",
     },
     {
       name: "+nocomments +noquestion +noauthority +noadditional +nostats",
       description: "Query only answer section",
-      insertValue:
-        "+nocomments +noquestion +noauthority +noadditional +nostats ",
     },
   ],
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "nuxt",
   description: "",
   subcommands: [
@@ -45,3 +45,5 @@ export const completion: Fig.Spec = {
   // Only uncomment if nuxt takes an argument
   // args: {}
 };
+
+export default completionSpec;

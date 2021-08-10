@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "secrets",
   description: "Manage secrets on Google Cloud.",
   subcommands: [
@@ -180,7 +180,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -361,7 +361,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -502,7 +502,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -643,7 +643,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -824,7 +824,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1147,7 +1147,7 @@ export const completionSpec: Fig.Spec = {
               name: "LOCATION",
               description:
                 "ID of the location or fully qualified identifier for the location.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1642,7 +1642,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1783,13 +1783,13 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1955,7 +1955,7 @@ export const completionSpec: Fig.Spec = {
           name: "SECRET",
           description:
             "ID of the secret or fully qualified identifier for the secret.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -2109,7 +2109,7 @@ export const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2261,7 +2261,7 @@ export const completionSpec: Fig.Spec = {
               name: "SECRET",
               description:
                 "ID of the secret or fully qualified identifier for the secret.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2411,7 +2411,7 @@ export const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2561,7 +2561,7 @@ export const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2711,7 +2711,7 @@ export const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2861,7 +2861,7 @@ export const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3047,7 +3047,7 @@ export const completionSpec: Fig.Spec = {
               name: "SECRET",
               description:
                 "ID of the secret or fully qualified identifier for the secret.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3304,3 +3304,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

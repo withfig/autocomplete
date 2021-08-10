@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "policy-troubleshoot",
   description: "Troubleshoot Google Cloud Platform policies.",
   subcommands: [
@@ -161,7 +161,7 @@ export const completionSpec: Fig.Spec = {
           name: "RESOURCE",
           description:
             "Full resource name that access is checked against.\nSee: https://cloud.google.com/iam/docs/resource-names.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -288,3 +288,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

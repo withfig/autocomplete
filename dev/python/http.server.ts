@@ -1,6 +1,4 @@
-import { SIGUNUSED } from "node:constants";
-
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "http.server",
   description: "",
 
@@ -31,3 +29,5 @@ export const completion: Fig.Spec = {
     description: "port number",
   },
 };
+
+export default completionSpec;

@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "node",
   description: "Run the node interpretor",
   args: {
@@ -7,12 +7,22 @@ export const completionSpec: Fig.Spec = {
     generators: {
       template: "filepaths",
       filterTemplateSuggestions: function (paths) {
-        return paths.filter((file) => {
-          if (typeof file.name === "string") {
-            return file.name.endsWith(".js") || file.name.endsWith("/");
-          }
-          return false;
-        });
+        return paths
+          .filter((file) => {
+            if (typeof file.name === "string") {
+              return file.name.match(/.*\.m?js/g) || file.name.endsWith("/");
+            }
+            return false;
+          })
+          .map((file) => {
+            const isJsFile =
+              typeof file.name === "string" && file.name.match(/.*\.m?js/g);
+
+            return {
+              ...file,
+              priority: isJsFile && 76,
+            };
+          });
       },
     },
   },
@@ -42,3 +52,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

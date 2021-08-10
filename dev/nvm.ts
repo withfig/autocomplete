@@ -20,12 +20,12 @@ const version: Fig.Arg = {
 
 const command: Fig.Arg = {
   name: "command",
-  variadic: true,
+  isVariadic: true,
 };
 
 const args: Fig.Arg = {
   name: "args",
-  variadic: true,
+  isVariadic: true,
 };
 
 const pattern: Fig.Arg = {
@@ -73,7 +73,7 @@ const ltsWithName: Fig.Option = {
   args: [ltsName],
 };
 
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "nvm",
   description: "Node Package Manager",
   subcommands: [
@@ -314,3 +314,5 @@ export const completionSpec: Fig.Spec = {
     noColors,
   ],
 };
+
+export default completionSpec;

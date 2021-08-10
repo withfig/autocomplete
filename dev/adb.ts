@@ -148,7 +148,7 @@ const reverseConnectionSuggestions: Fig.Suggestion[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "adb",
   description: "Android Debug Bridge",
   subcommands: [
@@ -448,7 +448,7 @@ export const completion: Fig.Spec = {
         },
         {
           name: "[PARAMETER...]",
-          variadic: true,
+          isVariadic: true,
           isOptional: true,
         },
       ],
@@ -481,7 +481,7 @@ export const completion: Fig.Spec = {
         {
           name: "PACKAGE",
           template: "filepaths",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -500,7 +500,7 @@ export const completion: Fig.Spec = {
         {
           name: "PACKAGE",
           template: "filepaths",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -544,7 +544,7 @@ export const completion: Fig.Spec = {
       args: {
         isOptional: true,
         name: "COMMANDS ...",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -580,7 +580,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "LOCAL",
-          variadic: true,
+          isVariadic: true,
           template: "filepaths",
         },
         {
@@ -647,7 +647,7 @@ export const completion: Fig.Spec = {
       args: [
         {
           name: "REMOTE",
-          variadic: true,
+          isVariadic: true,
           template: "filepaths",
         },
         {
@@ -780,3 +780,5 @@ export const completion: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

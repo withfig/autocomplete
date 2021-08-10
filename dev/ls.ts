@@ -1,8 +1,8 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "ls",
   description: "list directory contents",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "folders",
   },
   options: [
@@ -231,3 +231,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;

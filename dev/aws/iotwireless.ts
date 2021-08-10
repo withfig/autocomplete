@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "iotwireless",
   description: "AWS IoT Wireless API documentation",
   subcommands: [
@@ -2059,3 +2059,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;
