@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
       name: "forkCacheSize",
       description:
         "The maximum size, in bytes, of the in-memory cache for queries on a chain fork. Defaults to 1_073_741_824 bytes (1 gigabyte).",
-      args: [{ name: "number" }],
+      args: { name: "number" },
     },
   ],
   options: [
@@ -160,13 +160,13 @@ const completionSpec: Fig.Spec = {
       name: "--account",
       description:
         "Specify any number of times passing arbitrary private keys and their associated balances to generate initial addresses.",
-      args: { name: "<privatekey>, balance", variadic: true },
+      args: { name: "<privatekey>, balance", isVariadic: true },
     },
     {
       name: ["-u", "--unlock"],
       description:
         "Specify any number of times passing either an address or an account index to unlock specific accounts.",
-      args: { name: "address or account index", variadic: true },
+      args: { name: "address or account index", isVariadic: true },
     },
   ],
 };
