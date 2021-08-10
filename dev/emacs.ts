@@ -13,7 +13,7 @@ export const completionSpec: Fig.Spec = {
   options: [
     {
       description: "do not do interactive display; implies -q",
-      name: ["--batch"],
+      name: "--batch",
     },
     {
       description: "change to directory",
