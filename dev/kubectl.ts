@@ -119,7 +119,7 @@ const sharedArgs: Record<string, Fig.Arg> = {
       },
       postProcess: sharedPostProcess,
       trigger: "/",
-      filterTerm: "/",
+      getQueryTerm: "/",
     },
   },
   listNodes: {
@@ -358,7 +358,7 @@ const completionSpec: Fig.Spec = {
         // * INFO: Fig doesn't display options if varidic is true
         {
           name: "KEY=VAL",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: sharedOptsArray,
@@ -2945,7 +2945,7 @@ const completionSpec: Fig.Spec = {
         sharedArgs.resourceSuggestionsFromResourceType,
         {
           name: "[LOCAL_PORT:REMOTE_PORT]",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -3466,7 +3466,7 @@ const completionSpec: Fig.Spec = {
             sharedArgs.resourceSuggestionsFromResourceType,
             {
               name: "KEY=VALUE",
-              variadic: true,
+              isVariadic: true,
             },
           ],
           options: [
@@ -3543,7 +3543,7 @@ const completionSpec: Fig.Spec = {
             sharedArgs.resourceSuggestionsFromResourceType,
             {
               name: "CONTAINER_NAME=IMAGE_NAME",
-              variadic: true,
+              isVariadic: true,
             },
           ],
           options: [

@@ -2,7 +2,7 @@ const completionSpec: Fig.Spec = {
   name: "tail",
   description: "display the last part of a file",
   args: {
-    variadic: true,
+    isVariadic: true,
     template: "filepaths",
   },
   options: [

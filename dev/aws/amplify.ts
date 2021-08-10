@@ -37,7 +37,7 @@ const postPrecessGenerator = (
 };
 
 const customGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -49,11 +49,11 @@ const customGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -188,7 +188,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -244,9 +244,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listEnvironemntNames: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-backend-environments",
         ["--app-id"],
@@ -257,9 +257,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listEnvironemntArns: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-backend-environments",
         ["--app-id"],
@@ -270,9 +270,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listBranchNames: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-branches",
         ["--app-id"],
@@ -283,9 +283,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listFrameworkForApp: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-branches",
         ["--app-id"],
@@ -296,9 +296,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listBuildSpecForApp: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-branches",
         ["--app-id"],
@@ -316,9 +316,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listDomainNames: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-domain-associations",
         ["--app-id"],
@@ -329,9 +329,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listJobIds: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-jobs",
         ["--app-id", "--branch-name"],
@@ -524,7 +524,7 @@ const completionSpec: Fig.Spec = {
             "The automated branch creation glob patterns for an Amplify app.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -863,7 +863,7 @@ const completionSpec: Fig.Spec = {
           description: "The setting for the subdomain.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "prefix=string,branchName=string",
           },
         },
@@ -873,7 +873,7 @@ const completionSpec: Fig.Spec = {
             "Sets the branch patterns for automatic subdomain creation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2251,7 +2251,7 @@ const completionSpec: Fig.Spec = {
           description: "The tag keys to use to untag a resource.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2367,7 +2367,7 @@ const completionSpec: Fig.Spec = {
             name: "list",
             description:
               "source=string,target=string,status=string,condition=string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2400,7 +2400,7 @@ const completionSpec: Fig.Spec = {
             "Describes the automated branch creation glob patterns for an Amplify app.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2649,7 +2649,7 @@ const completionSpec: Fig.Spec = {
           description: "Describes the settings for the subdomain.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "prefix=string,branchName=string",
           },
         },
@@ -2667,7 +2667,7 @@ const completionSpec: Fig.Spec = {
             "The required AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) for automatically creating subdomains.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listIamRoleArns,
           },
         },

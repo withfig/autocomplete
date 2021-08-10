@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
       description: "Specifies color settings for use in the output",
       args: {
         name: "Color Spec",
-        variadic: true,
+        isVariadic: true,
         description: "{type}:{attribute}:{value}, ex: `match:fg:magenta`",
       },
     },
@@ -178,7 +178,7 @@ const completionSpec: Fig.Spec = {
         "Searches for patterns from the given file, with one pattern per line",
       args: {
         name: "Patternfile",
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
     },
@@ -210,7 +210,7 @@ const completionSpec: Fig.Spec = {
         "Includes or excludes files and directories for searching thtat match the given glob",
       args: {
         name: "GLOB",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -234,7 +234,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "GLOB",
         template: ["filepaths", "folders"],
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -244,7 +244,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "Path",
         template: "filepaths",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
         "Only files that match the given set of globs will be handed to the command specified by the `--pre flag`",
       args: {
         name: "GLOB",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -494,7 +494,7 @@ const completionSpec: Fig.Spec = {
       description: "A pattern to search for",
       args: {
         name: "Pattern",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -548,7 +548,7 @@ const completionSpec: Fig.Spec = {
       description: "Only searches files matching TYPE",
       args: {
         name: "Type",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -556,7 +556,7 @@ const completionSpec: Fig.Spec = {
       description: "Add a new glob for a particular file type",
       args: {
         name: "Type Spec",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -564,7 +564,7 @@ const completionSpec: Fig.Spec = {
       description: "Clear the file type globs previously defined for type",
       args: {
         name: "type",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -577,7 +577,7 @@ const completionSpec: Fig.Spec = {
       description: "Do not search files matching type",
       args: {
         name: "type",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -608,7 +608,7 @@ const completionSpec: Fig.Spec = {
       name: "Path",
       description: "A file or directory to search",
       isOptional: true,
-      variadic: true,
+      isVariadic: true,
       template: ["filepaths", "folders"],
     },
   ],

@@ -287,7 +287,7 @@ const filterWithPrefix = (token: string, prefix: string): string => {
 };
 
 const listCustomGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   option: string,
@@ -295,11 +295,11 @@ const listCustomGenerator = async (
   childKey = ""
 ): Promise<Fig.Suggestion[]> => {
   try {
-    const idx = context.indexOf(option);
+    const idx = tokens.indexOf(option);
     if (idx < 0) {
       return [];
     }
-    const param = context[idx + 1];
+    const param = tokens[idx + 1];
     const out = await executeShellCommand(
       `aws iam ${command} ${option} ${param}`
     );
@@ -327,7 +327,7 @@ const postPrecessGenerator = (
 };
 
 const MultiSuggestionsGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   enabled: Identity[]
 ) => {
@@ -358,7 +358,7 @@ const MultiSuggestionsGenerator = async (
 const generators: Record<string, Fig.Generator> = {
   getAccountArn: {
     script: "aws sts get-caller-identity",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         const accountId = JSON.parse(out)["Account"];
         return [{ name: `arn:aws:iam::${accountId}-ID:root` }];
@@ -383,9 +383,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listOpenIdClientsForProvider: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-open-id-connect-provider",
         "--open-id-connect-provider-arn",
@@ -398,9 +398,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listOpenIdThumbprintsForProvider: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-open-id-connect-provider",
         "--open-id-connect-provider-arn",
@@ -427,13 +427,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listInstancePorfileRoles: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
-        const idx = context.indexOf("--instance-profile-name");
+        const idx = tokens.indexOf("--instance-profile-name");
         if (idx < 0) {
           return [];
         }
-        const param = context[idx + 1];
+        const param = tokens[idx + 1];
         const out = await executeShellCommand(
           `aws iam get-instance-profile --instance-profile-name ${param}`
         );
@@ -475,9 +475,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listPoliciesForUser: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-user-policies",
         "--user-name",
@@ -500,9 +500,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listUsersInGroup: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-group",
         "--group-name",
@@ -526,9 +526,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listVersionsForPolicy: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-policy-versions",
         "--policy-arn",
@@ -542,9 +542,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listPoliciesForGroup: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-group-policies",
         "--group-name",
@@ -557,9 +557,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAttachedPolicyArnsForGroup: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-attached-group-policies",
         "--group-name",
@@ -573,9 +573,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAttachedPolicyNamesForGroup: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-attached-group-policies",
         "--group-name",
@@ -589,9 +589,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAttachedPolicyArnsForRole: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-attached-role-policies",
         "--role-name",
@@ -605,9 +605,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAttachedPolicyArnsUser: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-attached-user-policies",
         "--user-name",
@@ -631,9 +631,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listPoliciesForRole: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-role-policies",
         "--role-name",
@@ -660,7 +660,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -726,9 +726,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSSHPublicKeysForUser: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-ssh-public-keys",
         "--user-name",
@@ -756,9 +756,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listServiceSpecificCredentialsForUser: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-service-specific-credentials",
         "--user-name",
@@ -772,9 +772,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSigningCertificatesForUser: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-signing-certificates",
         "--user-name",
@@ -788,8 +788,8 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAllArns: {
-    custom: async function (context, executeShellCommand) {
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
+    custom: async function (tokens, executeShellCommand) {
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         ...identityStruct,
         {
           command: "aws iam list-policies --scope Local",
@@ -804,9 +804,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listIdentityArns: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return MultiSuggestionsGenerator(
-        context,
+        tokens,
         executeShellCommand,
         identityStruct
       );
@@ -817,9 +817,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listInstanceProfileTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-instance-profile-tags",
         "--instance-profile-name",
@@ -833,9 +833,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listMfaDeviceTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-mfa-device-tags",
         "--serial-number",
@@ -849,9 +849,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listOpenIdProviderTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-open-id-connect-provider-tags",
         "--open-id-connect-provider-arn",
@@ -865,9 +865,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listIamPolicyTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-policy-tags",
         "--policy-arn",
@@ -881,9 +881,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listRoleTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-role-tags",
         "--role-name",
@@ -897,9 +897,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSamlProviderTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-saml-provider-tags",
         "--saml-provider-arn",
@@ -913,9 +913,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listServerCertsKeys: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-server-certificate-tags",
         "--server-certificate-name",
@@ -929,9 +929,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listUserTags: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-user-tags",
         "--user-name",
@@ -1385,7 +1385,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the newly created IAM instance profile. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1497,7 +1497,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM OpenID Connect (OIDC) provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1566,7 +1566,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM customer managed policy. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1707,7 +1707,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new role. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1759,7 +1759,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM SAML provider. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1913,7 +1913,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -1965,7 +1965,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM virtual MFA device. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -3232,7 +3232,7 @@ const completionSpec: Fig.Spec = {
             "A list of entity types used to filter the results. Only the entities that match the types you specify are included in the output. Use the value LocalManagedPolicy to include customer managed policies. The format for this parameter is a comma-separated (if more than one) list of strings. Each string value in the list must be one of the valid values listed below.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "User",
               "Role",
@@ -3355,7 +3355,7 @@ const completionSpec: Fig.Spec = {
             "A list of policies for which you want the list of context keys referenced in those policies. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -3399,7 +3399,7 @@ const completionSpec: Fig.Spec = {
             "An optional list of additional policies for which you want the list of context keys that are referenced. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -6866,7 +6866,7 @@ const completionSpec: Fig.Spec = {
             'A list of policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. Do not include any resource-based policies in this parameter. Any resource-based policy must be submitted with the ResourcePolicy parameter. The policies cannot be "scope-down" policies, such as you could include in a call to GetFederationToken or one of the AssumeRole API operations. In other words, do not use policies designed to restrict what a user can do while using the temporary credentials. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)',
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -6876,7 +6876,7 @@ const completionSpec: Fig.Spec = {
             "The IAM permissions boundary policy to simulate. The permissions boundary sets the maximum permissions that an IAM entity can have. You can input only one permissions boundary when you pass a policy to this operation. For more information about permissions boundaries, see Permissions boundaries for IAM entities in the IAM User Guide. The policy input is specified as a string that contains the complete, valid JSON text of a permissions boundary policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -7011,7 +7011,7 @@ const completionSpec: Fig.Spec = {
             "An optional list of additional policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -7021,7 +7021,7 @@ const completionSpec: Fig.Spec = {
             "The IAM permissions boundary policy to simulate. The permissions boundary sets the maximum permissions that the entity can have. You can input only one permissions boundary when you pass a policy to this operation. An IAM entity can only have one permissions boundary in effect at a time. For example, if a permissions boundary is attached to an entity and you pass in a different permissions boundary policy using this parameter, then the new permissions boundary policy is used for the simulation. For more information about permissions boundaries, see Permissions boundaries for IAM entities in the IAM User Guide. The policy input is specified as a string containing the complete, valid JSON text of a permissions boundary policy. The regex pattern used to validate this parameter is a string of characters consisting of the following:   Any printable ASCII character ranging from the space character (\\u0020) through the end of the ASCII character range   The printable characters in the Basic Latin and Latin-1 Supplement character set (through \\u00FF)   The special characters tab (\\u0009), line feed (\\u000A), and carriage return (\\u000D)",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -7156,7 +7156,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM instance profile. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7200,7 +7200,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM virtual MFA device. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7244,7 +7244,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the OIDC identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7288,7 +7288,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM customer managed policy. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7332,7 +7332,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM role. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7376,7 +7376,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the SAML identity provider in IAM. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7420,7 +7420,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM server certificate. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -7464,7 +7464,7 @@ const completionSpec: Fig.Spec = {
             "The list of tags that you want to attach to the IAM user. Each tag consists of a key name and an associated value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },
@@ -8671,7 +8671,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags that you want to attach to the new IAM server certificate resource. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM resources in the IAM User Guide.  If any one of the tags is invalid or if you exceed the allowed maximum number of tags, then the entire request fails and the resource is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string...",
           },
         },

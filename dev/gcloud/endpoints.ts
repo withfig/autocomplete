@@ -153,7 +153,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "CONFIG_ID",
               description: "The configuration ID to retrieve.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -617,7 +617,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "The name of the operation to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -945,7 +945,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "The name of the operation on which to wait.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1241,7 +1241,7 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE",
               description:
                 "ID of the service or fully qualified identifier for the service.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1383,7 +1383,7 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE",
               description:
                 "The name of the service for which to check the IAM policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1528,7 +1528,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "SERVICE",
               description: "The name of the service to delete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1685,7 +1685,7 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE_CONFIG_FILE",
               description:
                 "The service configuration file (or files) containing the API specification to upload. Proto Descriptors, Open API (Swagger) specifications, and Google Service Configuration files in JSON and YAML formats are acceptable.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -1825,7 +1825,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "SERVICE",
               description: "The name of the service to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2006,7 +2006,7 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE",
               description:
                 "The name of the service whose IAM policy is to be described.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2341,7 +2341,7 @@ const completionSpec: Fig.Spec = {
               name: "SERVICE",
               description:
                 "ID of the service or fully qualified identifier for the service.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2487,7 +2487,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "SERVICE",
               description: "The name of the service to undelete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

@@ -47,7 +47,7 @@ const completionSpec: Fig.Spec = {
       description: "not supported in API < 1.25)",
       args: {
         name: "KEY=VAL",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {

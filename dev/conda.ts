@@ -346,7 +346,7 @@ const completionSpec: Fig.Spec = {
             "Remove temporary files that could not be deleted earlier due to being in-use. Argument is path(s) to prefix(es) where files should be found and removed.",
           args: {
             template: "filepaths",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -445,7 +445,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "Configuration values",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             generators: getCondaConfigs,
           },
         },
@@ -464,7 +464,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "Configuration values",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
             generators: getCondaConfigs,
           },
         },
@@ -480,7 +480,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "key",
               isOptional: true,
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -558,7 +558,7 @@ const completionSpec: Fig.Spec = {
         name: "package_spec",
         description: "Packages to install or update in the conda environment",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -722,7 +722,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "package spec",
         description: "Packages to install or update in the conda environment.",
-        variadic: true,
+        isVariadic: true,
         //generators: getAllCondaPackages,
       },
       options: [
@@ -938,7 +938,7 @@ const completionSpec: Fig.Spec = {
             "Given some PATH print which conda package the file came from.",
           args: {
             name: "Path",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -973,7 +973,7 @@ const completionSpec: Fig.Spec = {
         "Remove a list of packages from a specified conda environment.",
       args: {
         name: "package name",
-        variadic: true,
+        isVariadic: true,
         generators: getInstalledPackages,
       },
       options: [...remove_options],
@@ -983,7 +983,7 @@ const completionSpec: Fig.Spec = {
       description: "Alias for conda remove.",
       args: {
         name: "package name",
-        variadic: true,
+        isVariadic: true,
         generators: getInstalledPackages,
       },
       options: [...remove_options],
@@ -1106,7 +1106,7 @@ const completionSpec: Fig.Spec = {
       description: "Updates conda packages to the latest compatible version.",
       args: {
         name: "package",
-        variadic: true,
+        isVariadic: true,
         suggestions: [
           { name: "conda", description: "Update conda", icon: "⭐️" },
         ],
@@ -1119,7 +1119,7 @@ const completionSpec: Fig.Spec = {
       description: "Alias for conda update.",
       args: {
         name: "package",
-        variadic: true,
+        isVariadic: true,
         suggestions: [
           { name: "conda", description: "Update conda", icon: "⭐️" },
         ],
@@ -1140,7 +1140,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "files",
         description: "Package files to convert",
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
       options: [
@@ -1176,7 +1176,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "Dependencies",
             isOptional: true,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

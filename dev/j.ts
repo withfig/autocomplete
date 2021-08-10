@@ -6,7 +6,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "directory",
     description: "directory to jump to",
-    variadic: true,
+    isVariadic: true,
     generators: {
       script: 'cat "$HOME"/Library/autojump/autojump.txt',
       postProcess: (out, ctx) => {

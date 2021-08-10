@@ -20,12 +20,12 @@ const version: Fig.Arg = {
 
 const command: Fig.Arg = {
   name: "command",
-  variadic: true,
+  isVariadic: true,
 };
 
 const args: Fig.Arg = {
   name: "args",
-  variadic: true,
+  isVariadic: true,
 };
 
 const pattern: Fig.Arg = {

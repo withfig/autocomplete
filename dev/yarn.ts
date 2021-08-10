@@ -28,7 +28,6 @@ const searchGenerator: Fig.Generator = {
 const getScriptsGenerator: Fig.Generator = {
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-  // splitOn: "\n",
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -170,7 +169,7 @@ const configList: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_context, executeShellCommand) => {
+  generateSpec: async (_tokens, executeShellCommand) => {
     const { script, postProcess } = packageList;
     const packages = postProcess(
       await executeShellCommand(script as string)
@@ -485,7 +484,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         generators: searchGenerator,
         debounce: true,
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -538,7 +537,7 @@ const completionSpec: Fig.Spec = {
             "Only audit dependencies from listed groups. Default: devDependencies, dependencies, optionalDependencies",
           args: {
             name: "group_name",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -727,7 +726,7 @@ const completionSpec: Fig.Spec = {
             name: "package",
             generators: searchGenerator,
             debounce: true,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -753,7 +752,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "package",
             generators: getGlobalPackagesGenerator,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1024,7 +1023,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1076,7 +1075,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
-          variadic: true,
+          isVariadic: true,
         },
       ],
     },
@@ -1120,7 +1119,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
-      generateSpec: async (_context, executeShellCommand) => {
+      generateSpec: async (_tokens, executeShellCommand) => {
         const { postProcess } = scriptList;
         const subcommands = [];
 
