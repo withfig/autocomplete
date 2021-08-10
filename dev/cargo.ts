@@ -4,7 +4,13 @@ const testList: Fig.Generator = {
     return out
       .split("\n")
       .filter((l) => /: test/.test(l))
-      .map((name) => ({ name }));
+      .map((l) => {
+        const name = l.replace(/: test/, "");
+        const hierarchy = name.split("::");
+        const displayName = hierarchy[hierarchy.length - 1];
+
+        return { name, displayName };
+      });
   },
 };
 
