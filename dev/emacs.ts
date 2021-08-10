@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Do not do interactive display; implies -q",
       name: "--batch",
-      dependsOn: "-q",
+      dependsOn: ["-q"],
     },
     {
       description: "Change to directory",
