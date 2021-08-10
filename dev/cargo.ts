@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
           description: "alias for workspace",
         },
         {
-          name: ["--release"],
+          name: "--release",
           description: "build in release mode, with optimizations",
         },
         {
@@ -42,7 +42,7 @@ const completionSpec: Fig.Spec = {
           description: "output usage info",
         },
         {
-          name: ["--release"],
+          name: "--release",
           description: "build in release mode, with optimizations",
         },
       ],
@@ -77,7 +77,7 @@ const completionSpec: Fig.Spec = {
           description: "output usage info",
         },
         {
-          name: ["--release"],
+          name: "--release",
           description: "test in release mode, with optimizations",
         },
       ],
