@@ -76,6 +76,10 @@ const completionSpec: Fig.Spec = {
           name: ["-h", "--h"],
           description: "output usage info",
         },
+        {
+          name: ["--release"],
+          description: "test in release mode, with optimizations",
+        },
       ],
     },
     {
