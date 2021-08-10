@@ -3,7 +3,7 @@ Made by Yavko :)
 I made this for fun, I don't actually use emacs so if you do use it
 Here!
 */
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "emacs",
   description:
     "An extensible, customizable, free/libre text editor — and more.",
@@ -26,10 +26,6 @@ export const completionSpec: Fig.Spec = {
     {
       description: "start a server in the foreground",
       name: ["--fg-daemon"],
-    },
-    {
-      description: "enable Emacs Lisp debugger for init file",
-      name: ["--debug-init"],
     },
     {
       description: "Display Emacs version information and exit",
@@ -70,17 +66,21 @@ export const completionSpec: Fig.Spec = {
       name: ["--debug-init"],
     },
     {
+      
       description: "Load user's init file",
       name: ["-u", "--user"],
     },
     {
       description:
         "Use specified file as the terminal instead of using stdin/stdout.  This must be the first argument specified in the command line",
-      name: ["-t", "--terminal="],
+      name: ["-t", "--terminal"],
+      args: {template: "filepaths"},
     },
     {
       description: "The same as specifying file directly as an argument",
-      name: ["--file=", "--find-file=", "--visit="],
+      name: ["--file", "--find-file", "--visit"],
+      args: {template: "filepaths"},
     },
   ],
 };
+export default completionSpec```
