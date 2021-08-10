@@ -54,9 +54,14 @@
     "printWidth": 80
   },
   "lint-staged": {
-    "*.ts": ["eslint --fix", "pretty-quick --staged"]
+    "*.ts": [
+      "eslint --fix",
+      "pretty-quick --staged"
+    ]
   },
-  "files": ["specs/**/*.js"],
+  "files": [
+    "specs/**/*.js"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
