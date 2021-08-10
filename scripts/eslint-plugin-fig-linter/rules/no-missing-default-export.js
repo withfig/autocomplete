@@ -16,7 +16,7 @@ module.exports = {
         if (!hasExport) {
           context.report({
             node,
-            message: "File must contain one default export.",
+            message: "File must default export a completion spec object",
           });
         }
       },
