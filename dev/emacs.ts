@@ -12,28 +12,29 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      description: "do not do interactive display; implies -q",
+      description: "Do not do interactive display; implies -q",
       name: "--batch",
+      dependsOn: "-q",
     },
     {
-      description: "change to directory",
-      name: ["--chdir"],
+      description: "Change to directory",
+      name: "--chdir",
     },
     {
-      description: "start a server in the background",
+      description: "Start a server in the background",
       name: ["--daemon", "--bg-daemon"],
     },
     {
-      description: "start a server in the foreground",
-      name: ["--fg-daemon"],
+      description: "Start a server in the foreground",
+      name: "--fg-daemon",
     },
     {
       description: "Display Emacs version information and exit",
-      name: ["--version"],
+      name: "--version",
     },
     {
       description: "Display help and exit",
-      name: ["--help"],
+      name: "--help",
     },
     {
       description: "Do not load an init file",
@@ -49,7 +50,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "Do not load a saved desktop",
-      name: ["--no-desktop"],
+      name: "--no-desktop",
     },
     {
       description:
@@ -58,12 +59,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "Do not display a splash screen during start-u",
-      name: ["--no-splash"],
+      name: "--no-splash",
     },
     {
       description:
         "Enable Emacs Lisp debugger during the processing of the user init file ~/.emacs.  This is useful for debugging problems in the init file",
-      name: ["--debug-init"],
+      name: "--debug-init",
     },
     {
       
