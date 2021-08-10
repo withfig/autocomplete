@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "CLI Interface for Cargo",
   subcommands: [
     {
-      name: "build",
+      name: ["build", "b"],
       description: "compile local package and dependencies",
       options: [
         {
@@ -23,6 +23,10 @@ const completionSpec: Fig.Spec = {
           description: "alias for workspace",
         },
         {
+          name: ["--release"],
+          description: "build in release mode, with optimizations",
+        },
+        {
           name: ["-j, --jobs"],
           description: "number of CPUS",
           insertValue: "-j {cursor}",
@@ -30,12 +34,16 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "run",
+      name: ["run", "r"],
       description: "Run a binary or example of the local package",
       options: [
         {
           name: ["-h", "--help"],
           description: "output usage info",
+        },
+        {
+          name: ["--release"],
+          description: "build in release mode, with optimizations",
         },
       ],
     },
@@ -59,6 +67,16 @@ const completionSpec: Fig.Spec = {
       args: {
         template: "filepaths",
       },
+    },
+    {
+      name: ["test", "t"],
+      description: "run tests",
+      options: [
+        {
+          name: ["-h", "--h"],
+          description: "output usage info",
+        },
+      ],
     },
     {
       name: "rustc",
