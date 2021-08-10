@@ -1,3 +1,13 @@
+const testList: Fig.Generator = {
+  script: "cargo t -- --list",
+  postProcess: function (out) {
+    return out
+      .split("\n")
+      .filter((l) => /: test/.test(l))
+      .map((name) => ({ name }));
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "cargo",
   description: "CLI Interface for Cargo",
@@ -71,6 +81,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["test", "t"],
       description: "run tests",
+      args: {
+        name: "test name",
+        generators: testList,
+      },
       options: [
         {
           name: ["-h", "--h"],
