@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--release",
-          description: "build in release mode, with optimizations",
+          description: "run in release mode, with optimizations",
         },
       ],
     },

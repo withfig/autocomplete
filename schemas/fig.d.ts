@@ -184,14 +184,17 @@ declare namespace Fig {
       executeShellCommand?: ExecuteShellCommandFunction
     ) => Promise<Spec>;
 
+    /**
+     * These flags allow customization of how Fig parses tokens from the
+     * command line.
+     *
+     * Currently, the only parser option is flagsArePosixNoncompliant, which
+     * allows options to have multiple characters even if they only have one hyphen.
+     *
+     * @example
+     * `-longflag` is parsed as a single flag when `flagsArePosixNoncompliant: true`
+     */
     parserDirectives?: {
-      /**
-       * This flag allows options to have multiple characters
-       * even if they only have one hyphen
-       *
-       * @example
-       * -longflag
-       */
       flagsArePosixNoncompliant?: boolean;
     };
   }
@@ -232,23 +235,20 @@ declare namespace Fig {
     /**
      *
      * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
-     * The default is an option is NOT mutually exclusive with any other options
-     *
-     * Currently, signalling mutually exclusive options doesn't do anything in Fig, however, Fig will handle it in the future.
+     * The default is an option is NOT mutually exclusive with any other options.
+     * Options that are mutually exclusive with flags the user has already passed will not be shown in the suggestions list.
      *
      * @example
      * You might see `[-a | --interactive | --patch]` in a man page. This means each of these options are mutually exclusive on each other.
      * If we were defining the exclusive prop of the "-a" option, then we would have `exclusive: ["--interactive", "--patch"]`
-     *
      *
      */
     exclusiveOn?: string[];
     /**
      *
      * Signals whether an option depends other options. Define this as an array of strings of the option names.
-     * The default is an option does NOT depend on any other options
-     *
-     * Currently, signalling dependsOn doesn't do anything in Fig, however, Fig will handle it in the future.
+     * The default is an option does NOT depend on any other options.
+     * If the user has an unmet dependency for a flag they've already typed, this dependency will have boosted priority in the suggestion list.
      *
      * @example
      * In a tool like firebase, we may want to delete a specific extension. The command might be `firebase delete --project ABC --extension 123` This would mean we delete the 123 extension from the ABC project.
