@@ -1,5 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "ganache-cli",
+  description: "Fast Ethereum RPC client",
   subcommands: [
     {
       name: "forkCacheSize",
