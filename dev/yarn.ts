@@ -1,5 +1,5 @@
-import v1 from "./yarn@1";
-import v2 from "./yarn@2";
+import v1 from "./yarn/yarn@1";
+import v2 from "./yarn/yarn@2";
 
 // In dev mode, you need to refresh this file when you change any of the versions
 const completionSpec: Fig.Spec = {
