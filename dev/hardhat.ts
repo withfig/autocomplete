@@ -1,4 +1,4 @@
-export const completionSpec: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "hardhat",
   options: [
     { name: "config", description: "A Hardhat config file" },
@@ -96,3 +96,5 @@ export const completionSpec: Fig.Spec = {
     },
   ],
 };
+
+export default completionSpec;
