@@ -8,9 +8,9 @@ const completionSpec: Fig.Spec = {
   generateSpec: async (tokens, executeShellCommand) => {
     const version = parseFloat(await executeShellCommand("yarn --version"));
     if (version < 2) {
-      return v2;
-    } else {
       return v1;
+    } else {
+      return v2;
     }
   },
 };
