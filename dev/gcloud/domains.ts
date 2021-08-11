@@ -271,7 +271,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "DOMAIN",
           description: "The domain to be verified.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },

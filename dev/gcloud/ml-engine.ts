@@ -142,7 +142,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "JOB",
               description: "Name of the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "JOB",
               description: "Name of the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -629,7 +629,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "JOB",
               description: "Name of the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -886,7 +886,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "JOB",
                   description: "Name of the batch prediction job.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1327,13 +1327,13 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "JOB",
                   description: "Name of the job.",
-                  variadic: false,
+                  isVariadic: false,
                 },
                 {
                   name: "USER_ARGS",
                   description:
                     "Additional user arguments to be forwarded to user code\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1628,7 +1628,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "JOB",
               description: "Name of the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2171,7 +2171,7 @@ const completionSpec: Fig.Spec = {
               name: "USER_ARGS",
               description:
                 "Additional user arguments to be forwarded to user code. Any relative paths will\nbe relative to the *parent* directory of `--package-path`.\n+\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2490,7 +2490,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MODEL",
               description: "Name of the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2674,7 +2674,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MODEL",
               description: "Name of the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2838,7 +2838,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MODEL",
               description: "Name of the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3002,7 +3002,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MODEL",
               description: "Name of the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3207,7 +3207,7 @@ const completionSpec: Fig.Spec = {
               name: "MODEL",
               description:
                 "ID of the model or fully qualified identifier for the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3595,7 +3595,7 @@ const completionSpec: Fig.Spec = {
               name: "MODEL",
               description:
                 "ID of the model or fully qualified identifier for the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3760,13 +3760,13 @@ const completionSpec: Fig.Spec = {
               name: "MODEL",
               description:
                 "ID of the model or fully qualified identifier for the model.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3964,7 +3964,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MODEL",
               description: "Name of the model.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4262,7 +4262,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "Name of the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4426,7 +4426,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "Name of the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4792,7 +4792,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "Name of the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5412,7 +5412,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "VERSION",
               description: "Name of the model version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5586,7 +5586,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "VERSION",
               description: "Name of the model version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -5760,7 +5760,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "VERSION",
               description: "Name of the model version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6147,7 +6147,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "VERSION",
               description: "Name of the model version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -6365,7 +6365,7 @@ const completionSpec: Fig.Spec = {
               name: "VERSION",
               description:
                 "ID of the version or fully qualified identifier for the version.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

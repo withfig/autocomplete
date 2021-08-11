@@ -14,7 +14,7 @@ const defaultOptions: Fig.Option[] = [
 ];
 
 const toolArgs: Fig.Arg = {
-  variadic: true,
+  isVariadic: true,
   name: "tool@version",
 };
 
@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
       description: "Fetches a tool to the local machine",
 
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "tool | tool@version",
       },
       options: [...defaultOptions],
@@ -109,7 +109,7 @@ const completionSpec: Fig.Spec = {
       name: "which",
       description: "Locates the actual binary that will be called by Volta",
       args: {
-        variadic: true,
+        isVariadic: true,
         name: "binary",
         template: "filepaths",
       },

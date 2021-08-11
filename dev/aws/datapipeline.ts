@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
             "The JSON parameter values. You can specify these as\nkey-value pairs in the key=value format. Multiple parameters\nare separated by a space. For list type parameter values\nyou can use the same key name and specify each value as\na key value pair. e.g. arrayValue=value1 arrayValue=value2",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -534,7 +534,7 @@ const completionSpec: Fig.Spec = {
             "The JSON parameter values. You can specify these as\nkey-value pairs in the key=value format. Multiple parameters\nare separated by a space. For list type parameter values\nyou can use the same key name and specify each value as\na key value pair. e.g. arrayValue=value1 arrayValue=value2",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

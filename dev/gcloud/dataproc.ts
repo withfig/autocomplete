@@ -154,7 +154,7 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -305,7 +305,7 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -466,7 +466,7 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -617,7 +617,7 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -778,7 +778,7 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1117,13 +1117,13 @@ const completionSpec: Fig.Spec = {
               name: "AUTOSCALING_POLICY",
               description:
                 "ID of the autoscaling policy or fully qualified identifier for the autoscaling policy.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1979,7 +1979,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2135,7 +2135,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2286,7 +2286,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2437,7 +2437,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2598,7 +2598,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2789,7 +2789,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2955,7 +2955,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3289,13 +3289,13 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3565,7 +3565,7 @@ const completionSpec: Fig.Spec = {
               name: "CLUSTER",
               description:
                 "ID of the cluster or fully qualified identifier for the cluster.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -3850,7 +3850,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4001,7 +4001,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4192,7 +4192,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4343,7 +4343,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4696,13 +4696,13 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -4972,7 +4972,7 @@ const completionSpec: Fig.Spec = {
                   name: "JOB_ARGS",
                   description:
                     "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -5968,13 +5968,13 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "PY_FILE",
                   description: "Main .py file to run as the driver.",
-                  variadic: false,
+                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6240,7 +6240,7 @@ const completionSpec: Fig.Spec = {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -6475,13 +6475,13 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "R_FILE",
                   description: "Main .R file to run as the driver.",
-                  variadic: false,
+                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -7059,7 +7059,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -7211,7 +7211,7 @@ const completionSpec: Fig.Spec = {
               name: "JOB",
               description:
                 "ID of the job or fully qualified identifier for the job.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -7496,7 +7496,7 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -7647,7 +7647,7 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -7798,7 +7798,7 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -7989,7 +7989,7 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -8343,13 +8343,13 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -8750,7 +8750,7 @@ const completionSpec: Fig.Spec = {
                   name: "JOB_ARGS",
                   description:
                     "The arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -9734,13 +9734,13 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "PY_FILE",
                   description: "Main .py file to run as the driver.",
-                  variadic: false,
+                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -10003,7 +10003,7 @@ const completionSpec: Fig.Spec = {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -10235,13 +10235,13 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "R_FILE",
                   description: "Main .R file to run as the driver.",
-                  variadic: false,
+                  isVariadic: false,
                 },
                 {
                   name: "JOB_ARGS",
                   description:
                     "Arguments to pass to the driver.\n+\nThe '--' argument must be specified between gcloud specific args on the left and JOB_ARGS on the right.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -10776,7 +10776,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -10927,7 +10927,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -11078,7 +11078,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -11239,7 +11239,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -11390,7 +11390,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -11551,7 +11551,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -11717,7 +11717,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -12220,7 +12220,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -12380,7 +12380,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -12531,13 +12531,13 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -13194,7 +13194,7 @@ const completionSpec: Fig.Spec = {
               name: "TEMPLATE",
               description:
                 "ID of the template or fully qualified identifier for the template.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

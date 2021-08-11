@@ -1,7 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "python3",
   description: "Run the python interpretor",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const isDjangoManagePyFilePresentCommand =
       "cat manage.py | grep -q django; echo $?";
 

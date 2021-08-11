@@ -148,7 +148,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "SERVICE",
           description: "The name of the service(s) to disable.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -293,7 +293,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "SERVICE",
           description: "The name of the service(s) to enable.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -631,7 +631,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "The name of the operation to describe.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -772,7 +772,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION",
               description: "The name of the operation on which to wait.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

@@ -263,7 +263,7 @@ const postPrecessGenerator = (
 };
 
 const listCustomGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -275,11 +275,11 @@ const listCustomGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -310,7 +310,7 @@ const listCustomGenerator = async (
 };
 
 const getResultList = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   key: string
@@ -320,7 +320,7 @@ const getResultList = async (
 };
 
 const listCustomSIDGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[]
@@ -330,11 +330,11 @@ const listCustomSIDGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -355,7 +355,7 @@ const listCustomSIDGenerator = async (
 };
 
 const MultiSuggestionsGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   enabled: Record<string, string>[]
 ) => {
@@ -492,7 +492,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -509,7 +509,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixBlob);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixBlob);
     },
   },
@@ -525,9 +525,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLayerVersionNumber: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-layer-versions",
         ["--layer-name"],
@@ -542,7 +542,7 @@ const generators: Record<string, Fig.Generator> = {
 
   getPrincipal: {
     script: "aws sts get-caller-identity",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         const accountId = JSON.parse(out)["Account"];
         return [{ name: accountId }, { name: "*" }];
@@ -557,9 +557,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   getLayerVersionPolicyRevison: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-layer-version-policy",
         ["--layer-name", "--version-number"],
@@ -572,9 +572,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   getFunctionPolicyRevisionId: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-policy",
         ["--function-name"],
@@ -587,9 +587,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   getFunctionRevisionId: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-function",
         ["--function-name"],
@@ -619,9 +619,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAliases: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-aliases",
         ["--function-name"],
@@ -635,11 +635,11 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listVersions: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
-        const idx = context.indexOf("--function-name");
+        const idx = tokens.indexOf("--function-name");
         const cmd = `aws lambda list-versions-by-function --function-name ${
-          context[idx + 1]
+          tokens[idx + 1]
         }`;
 
         const out = await executeShellCommand(cmd);
@@ -668,13 +668,10 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSIDs: {
-    custom: async function (context, executeShellCommand) {
-      return listCustomSIDGenerator(
-        context,
-        executeShellCommand,
-        "get-policy",
-        ["--function-name"]
-      );
+    custom: async function (tokens, executeShellCommand) {
+      return listCustomSIDGenerator(tokens, executeShellCommand, "get-policy", [
+        "--function-name",
+      ]);
     },
     cache: {
       ttl: ttl,
@@ -682,9 +679,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLayerVersionSIDs: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomSIDGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "get-layer-version-policy",
         ["--layer-name", "--version-number"]
@@ -696,14 +693,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listEventSourceArns: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       // Getting sqs queues is implemented, altough it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
 
       // const result = await Promise.all([
-      //   getResultList(context, executeShellCommand, "aws sqs list-queues", "QueueUrls"),
-      //   getResultList(context, executeShellCommand, "aws kinesis list-streams", "StreamNames")
+      //   getResultList(tokens, executeShellCommand, "aws sqs list-queues", "QueueUrls"),
+      //   getResultList(tokens, executeShellCommand, "aws kinesis list-streams", "StreamNames")
       // ]);
 
       // const objects = result.flat().map((elm) => {
@@ -721,7 +718,7 @@ const generators: Record<string, Fig.Generator> = {
       //   })
       // });
 
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
           command: "aws dynamodbstreams list-streams",
           parentKey: "Streams",
@@ -741,7 +738,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listDestinationConfigArns: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       // Getting sqs queues is implemented, altough it has a huge performance toll.
       // It seems Fig rejects long-running promises after a time.
       // I am currently investigating if this is the case.
@@ -754,7 +751,7 @@ const generators: Record<string, Fig.Generator> = {
       //   childKey: "QueueArn",
       // }));
 
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [
         {
           command: "aws sns list-topics",
           parentKey: "Topics",
@@ -887,7 +884,7 @@ const generators: Record<string, Fig.Generator> = {
 
   listBuckets: {
     script: "aws s3 ls --page-size 1000",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         return out.split("\n").map((line) => {
           const parts = line.split(/\s+/);
@@ -910,11 +907,11 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listS3Objects: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
-        const idx = context.indexOf("--s3-bucket");
+        const idx = tokens.indexOf("--s3-bucket");
         const cmd = `aws s3 ls ${_prefixS3}${
-          context[idx + 1]
+          tokens[idx + 1]
         } --recursive --page-size 1000`;
 
         const out = await executeShellCommand(cmd);
@@ -953,13 +950,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listS3ObjectVersions: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
-        const bucketIdx = context.indexOf("--s3-bucket");
-        const objectIdx = context.indexOf("--s3-key");
+        const bucketIdx = tokens.indexOf("--s3-bucket");
+        const objectIdx = tokens.indexOf("--s3-key");
         const cmd = `aws s3api list-object-versions --bucket ${
-          context[bucketIdx + 1]
-        } --prefix ${context[objectIdx + 1]}`;
+          tokens[bucketIdx + 1]
+        } --prefix ${tokens[objectIdx + 1]}`;
 
         const out = await executeShellCommand(cmd);
 
@@ -1433,7 +1430,7 @@ const completionSpec: Fig.Spec = {
           description: "The name of the Kafka topic.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1442,7 +1439,7 @@ const completionSpec: Fig.Spec = {
             "(MQ) The name of the Amazon MQ broker destination queue to consume.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1451,7 +1448,7 @@ const completionSpec: Fig.Spec = {
             "An array of the authentication protocol, or the VPC components to secure your event source.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1468,7 +1465,7 @@ const completionSpec: Fig.Spec = {
             "(Streams) A list of current response type enums applied to the event source mapping.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1639,7 +1636,7 @@ const completionSpec: Fig.Spec = {
             "A list of function layers to add to the function's execution environment. Specify each layer by its ARN, including the version.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listLayerArnsWithVersion,
           },
         },
@@ -1648,7 +1645,7 @@ const completionSpec: Fig.Spec = {
           description: "Connection settings for an Amazon EFS file system.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFilesystemConfigs,
             description: "Arn=string,LocalMountPath=string ...",
           },
@@ -3429,7 +3426,7 @@ const completionSpec: Fig.Spec = {
             "A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: runtimes,
           },
         },
@@ -3908,7 +3905,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of tag keys to remove from the function.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -4174,7 +4171,7 @@ const completionSpec: Fig.Spec = {
             "(Streams) A list of current response type enums applied to the event source mapping.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -4432,7 +4429,7 @@ const completionSpec: Fig.Spec = {
           description: "Connection settings for an Amazon EFS file system.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFilesystemConfigs,
             description: "Arn=string,LocalMountPath=string ...",
           },

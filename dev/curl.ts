@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "certificate[:password]",
         generators: {
-          filterTerm: ":",
+          getQueryTerm: ":",
         },
       },
     },

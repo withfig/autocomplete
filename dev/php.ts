@@ -4,7 +4,7 @@
 const completionSpec: Fig.Spec = {
   name: "php",
   description: "Run the PHP interpreter",
-  generateSpec: async (context, executeShellCommand) => {
+  generateSpec: async (tokens, executeShellCommand) => {
     const subcommands = [];
 
     if ((await executeShellCommand("ls -1 artisan")) === "artisan") {

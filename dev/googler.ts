@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
       description: "Set output colors",
       args: {
         name: "colors",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -186,7 +186,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "keyword",
     description: "Search keywords",
-    variadic: true,
+    isVariadic: true,
     isOptional: true,
   },
 };

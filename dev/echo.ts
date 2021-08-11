@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     name: "operands",
     description:
       "Write any specified operands, separated by single blank characters and followed by a newline character, to the standard output",
-    variadic: true,
+    isVariadic: true,
   },
   options: [
     {
