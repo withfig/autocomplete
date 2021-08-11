@@ -1,5 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "hardhat",
+  description: "Ethereum development environment",
   options: [
     { name: "config", description: "A Hardhat config file" },
     { name: "--emoji", description: "Use emoji in messages" },
