@@ -1177,7 +1177,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
   kill: {
     name: "kill",
     description: "Kill one or more running containers",
-    args: { ...containersArg, variadic: true },
+    args: { ...containersArg, isVariadic: true },
     options: [
       {
         description: 'Signal to send to the container (default "KILL")',
@@ -1275,7 +1275,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     name: "rm",
     description: "Remove one or more containers",
     args: {
-      variadic: true,
+      isVariadic: true,
       name: "containers",
       suggestions: [
         {
@@ -1787,7 +1787,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
   removeImage: {
     name: "rmi",
     description: "Remove one or more images",
-    args: { ...imagesArg, variadic: true },
+    args: { ...imagesArg, isVariadic: true },
     options: [
       {
         name: ["-f", "--force"],
@@ -2120,7 +2120,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more configs",
           args: {
             name: "CONFIG",
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2165,7 +2165,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more configs",
           args: {
             name: "CONFIG",
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -2414,7 +2414,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "inspect",
           description: "Display detailed information on one or more contexts",
-          args: { ...contextsArg, variadic: true },
+          args: { ...contextsArg, isVariadic: true },
           options: [
             {
               name: "-f",
@@ -2455,7 +2455,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "rm",
           description: "Remove one or more contexts",
-          args: { ...contextsArg, variadic: true },
+          args: { ...contextsArg, isVariadic: true },
           options: [
             {
               name: ["-f", "--force"],
@@ -2547,7 +2547,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "inspect",
           description: "Display detailed information on one or more images",
-          args: { ...imagesArg, variadic: true },
+          args: { ...imagesArg, isVariadic: true },
           options: [
             {
               name: "-f",
@@ -2778,7 +2778,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NETWORK",
             generators: [dockerGenerators.listDockerNetworks],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2845,7 +2845,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NETWORK",
             generators: [dockerGenerators.listDockerNetworks],
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -2860,7 +2860,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2869,7 +2869,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2915,7 +2915,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2925,7 +2925,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2962,7 +2962,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -2977,7 +2977,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "NODE",
             generators: [dockerGenerators.listDockerSwarmNodes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3069,7 +3069,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "PLUGIN",
             generators: [dockerGenerators.listDockerPlugins],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3084,7 +3084,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Install a plugin",
-          args: [{ name: "PLUGIN" }, { name: "KEY=VALUE", variadic: true }],
+          args: [{ name: "PLUGIN" }, { name: "KEY=VALUE", isVariadic: true }],
           options: [
             {
               name: "--alias",
@@ -3152,7 +3152,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "PLUGIN",
             generators: [dockerGenerators.listDockerPlugins],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3169,7 +3169,7 @@ const completionSpec: Fig.Spec = {
               name: "PLUGIN",
               generators: [dockerGenerators.listDockerPlugins],
             },
-            { name: "KEY=VALUE", variadic: true },
+            { name: "KEY=VALUE", isVariadic: true },
           ],
         },
         {
@@ -3246,7 +3246,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SECRET",
             generators: [dockerGenerators.listDockerSecrets],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3292,7 +3292,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SECRET",
             generators: [dockerGenerators.listDockerSecrets],
-            variadic: true,
+            isVariadic: true,
           },
         },
       ],
@@ -3825,7 +3825,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             generators: [dockerGenerators.listDockerServices],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3925,7 +3925,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             generators: [dockerGenerators.listDockerServices],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -3962,7 +3962,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE",
             generators: [dockerGenerators.listDockerServices],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -3990,7 +3990,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "SERVICE=REPLICAS",
             generators: [dockerGenerators.listDockerServicesReplicas],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -4742,7 +4742,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "STACK",
             generators: [dockerGenerators.listDockerStacks],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -5224,7 +5224,7 @@ const completionSpec: Fig.Spec = {
           description: "Return low-level information about keys and signatures",
           args: {
             name: "IMAGE[:TAG]",
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -5297,7 +5297,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VOLUME",
             generators: [dockerGenerators.listDockerVolumes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {
@@ -5356,7 +5356,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "VOLUME",
             generators: [dockerGenerators.listDockerVolumes],
-            variadic: true,
+            isVariadic: true,
           },
           options: [
             {

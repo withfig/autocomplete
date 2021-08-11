@@ -448,7 +448,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "[PARAMETER...]",
-          variadic: true,
+          isVariadic: true,
           isOptional: true,
         },
       ],
@@ -481,7 +481,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PACKAGE",
           template: "filepaths",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -500,7 +500,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PACKAGE",
           template: "filepaths",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -544,7 +544,7 @@ const completionSpec: Fig.Spec = {
       args: {
         isOptional: true,
         name: "COMMANDS ...",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {
@@ -580,7 +580,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "LOCAL",
-          variadic: true,
+          isVariadic: true,
           template: "filepaths",
         },
         {
@@ -647,7 +647,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "REMOTE",
-          variadic: true,
+          isVariadic: true,
           template: "filepaths",
         },
         {

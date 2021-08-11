@@ -738,7 +738,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of package dependencies",
           args: {
             name: "dependencies",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -755,7 +755,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of package keywords",
           args: {
             name: "keywords",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

@@ -180,7 +180,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID",
           description:
             "ID of the project or fully qualified identifier for the project.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -368,7 +368,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID",
           description:
             "ID for the project you want to create.\n+\nProject IDs are immutable and can be set only during project creation. They must start with a lowercase letter and can have lowercase ASCII letters, digits or hyphens. Project IDs must be between 6 and 30 characters.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -508,7 +508,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT_ID_OR_NUMBER",
           description: "ID or number for the project you want to delete.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -648,7 +648,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT_ID_OR_NUMBER",
           description: "ID or number for the project you want to describe.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -789,7 +789,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID",
           description:
             "ID of the project or fully qualified identifier for the project.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -970,7 +970,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID",
           description:
             "ID of the project_id or fully qualified identifier for the project_id.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1151,7 +1151,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID_OR_NUMBER",
           description:
             "ID or number for the project you want to get IAM policy for.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1516,7 +1516,7 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID",
           description:
             "ID of the project or fully qualified identifier for the project.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1657,13 +1657,13 @@ const completionSpec: Fig.Spec = {
           name: "PROJECT_ID_OR_NUMBER",
           description:
             "ID or number for the project you want to set IAM policy for.",
-          variadic: false,
+          isVariadic: false,
         },
         {
           name: "POLICY_FILE",
           description:
             "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1803,7 +1803,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT_ID_OR_NUMBER",
           description: "ID or number for the project you want to undelete.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -1953,7 +1953,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "PROJECT_ID",
           description: "ID for the project you want to update.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },

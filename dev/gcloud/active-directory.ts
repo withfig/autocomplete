@@ -200,7 +200,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -346,7 +346,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -487,7 +487,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -669,7 +669,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -984,7 +984,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1125,13 +1125,13 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "POLICY_FILE",
               description:
                 "Path to a local JSON or YAML formatted file containing a valid policy.\n+\nThe output of the `get-iam-policy` command is a valid file, as is any\nJSON or YAML file conforming to the structure of a\n[Policy](https://cloud.google.com/iam/reference/rest/v1/Policy).",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1350,7 +1350,7 @@ const completionSpec: Fig.Spec = {
                   name: "DOMAIN",
                   description:
                     "ID of the domain or fully qualified identifier for the domain.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1508,7 +1508,7 @@ const completionSpec: Fig.Spec = {
                   name: "DOMAIN",
                   description:
                     "ID of the domain or fully qualified identifier for the domain.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1677,7 +1677,7 @@ const completionSpec: Fig.Spec = {
                   name: "DOMAIN",
                   description:
                     "ID of the domain or fully qualified identifier for the domain.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1835,7 +1835,7 @@ const completionSpec: Fig.Spec = {
                   name: "DOMAIN",
                   description:
                     "ID of the domain or fully qualified identifier for the domain.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2176,7 +2176,7 @@ const completionSpec: Fig.Spec = {
               name: "DOMAIN",
               description:
                 "ID of the domain or fully qualified identifier for the domain.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2451,7 +2451,7 @@ const completionSpec: Fig.Spec = {
               name: "NAME",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2592,7 +2592,7 @@ const completionSpec: Fig.Spec = {
               name: "OPERATION",
               description:
                 "ID of the operation or fully qualified identifier for the operation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

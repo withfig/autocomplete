@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
           name: "RESOURCE",
           description:
             "Full resource name that access is checked against.\nSee: https://cloud.google.com/iam/docs/resource-names.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },

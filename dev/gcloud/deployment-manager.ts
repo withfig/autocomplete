@@ -157,7 +157,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -371,7 +371,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -526,7 +526,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -666,7 +666,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1005,7 +1005,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1254,7 +1254,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "DEPLOYMENT_NAME",
               description: "Deployment name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1538,7 +1538,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "MANIFEST",
               description: "Manifest name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2005,7 +2005,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION_NAME",
               description: "Operation name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2329,7 +2329,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "OPERATION_NAME",
               description: "Operation name.",
-              variadic: true,
+              isVariadic: true,
             },
           ],
         },
@@ -2612,7 +2612,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "RESOURCE",
               description: "Resource name.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

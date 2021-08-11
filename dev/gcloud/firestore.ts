@@ -432,7 +432,7 @@ const completionSpec: Fig.Spec = {
           name: "OUTPUT_URI_PREFIX",
           description:
             "Location where the export files will be stored. Must be a valid\nGoogle Cloud Storage bucket with an optional path prefix.\n+\nFor example:\n+\n  $ {command} gs://mybucket/my/path\n+\nWill place the export in the `mybucket` bucket in objects prefixed with\n`my/path`.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -589,7 +589,7 @@ const completionSpec: Fig.Spec = {
           name: "INPUT_URI_PREFIX",
           description:
             "Location of the import files.\n+\nThis location is the 'output_uri_prefix' field of a previous export,\nand can be found via the '{parent_command} operations describe' command.",
-          variadic: false,
+          isVariadic: false,
         },
       ],
     },
@@ -899,7 +899,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "ID of the composite index or fully qualified identifier for the composite index.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1040,7 +1040,7 @@ const completionSpec: Fig.Spec = {
                   name: "INDEX",
                   description:
                     "ID of the composite index or fully qualified identifier for the composite index.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1503,7 +1503,7 @@ const completionSpec: Fig.Spec = {
                   name: "FIELD",
                   description:
                     "ID of the field or fully qualified identifier for the field.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -1866,7 +1866,7 @@ const completionSpec: Fig.Spec = {
                   name: "FIELD",
                   description:
                     "ID of the field or fully qualified identifier for the field.",
-                  variadic: false,
+                  isVariadic: false,
                 },
               ],
             },
@@ -2272,7 +2272,7 @@ const completionSpec: Fig.Spec = {
               name: "NAME",
               description:
                 "The unique name of the Operation to cancel, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2413,7 +2413,7 @@ const completionSpec: Fig.Spec = {
               name: "NAME",
               description:
                 "The unique name of the operation to delete, formatted as either the full\nor relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -2555,7 +2555,7 @@ const completionSpec: Fig.Spec = {
               name: "NAME",
               description:
                 "The unique name of the Operation to retrieve, formatted as either the\nfull or relative resource path:\n+\n  projects/my-app-id/databases/(default)/operations/foo\n+\nor:\n+\n  foo",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

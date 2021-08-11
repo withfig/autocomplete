@@ -38,7 +38,7 @@ const postPrecessGenerator = (
 };
 
 const listCustomGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -50,11 +50,11 @@ const listCustomGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -221,7 +221,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -250,9 +250,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listAddonsForCluster: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-addons",
         ["--cluster-name"],
@@ -312,13 +312,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listSubnetsForCluster: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       try {
-        const idx = context.indexOf("--cluster-name");
+        const idx = tokens.indexOf("--cluster-name");
         if (idx < 0) {
           return;
         }
-        const param = context[idx + 1];
+        const param = tokens[idx + 1];
 
         const out = await executeShellCommand(
           `aws eks describe-cluster --name ${param}`
@@ -338,9 +338,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listFargateProfilesForCluster: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-fargate-profiles",
         ["--cluster-name"],
@@ -350,9 +350,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listNodeGroupsForCluster: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return listCustomGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-nodegroups",
         ["--cluster-name"],
@@ -386,7 +386,7 @@ const completionSpec: Fig.Spec = {
           description: "The configuration you are using for encryption.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listKmsKeys,
           },
         },
@@ -632,7 +632,7 @@ const completionSpec: Fig.Spec = {
           description: "The encryption configuration for the cluster.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listKmsKeys,
           },
         },
@@ -701,7 +701,7 @@ const completionSpec: Fig.Spec = {
             "The IDs of subnets to launch your pods into. At this time, pods running on Fargate are not assigned public IP addresses, so only private subnets (with no direct route to an Internet Gateway) are accepted for this parameter.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSubnetsForCluster,
           },
         },
@@ -711,7 +711,7 @@ const completionSpec: Fig.Spec = {
             "The selectors to match for pods to use this Fargate profile. Each selector must have an associated namespace. Optionally, you can also specify labels for a namespace. You may specify up to five selectors in a Fargate profile.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "namespace=string,labels={KeyName1=string,KeyName2=string}",
           },
@@ -796,7 +796,7 @@ const completionSpec: Fig.Spec = {
             "The subnets to use for the Auto Scaling group that is created for your node group. These subnets must have the tag key kubernetes.io/cluster/CLUSTER_NAME with a value of shared, where CLUSTER_NAME is replaced with the name of your cluster. If you specify launchTemplate, then don't specify  SubnetId  in your launch template, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see Launch template support in the Amazon EKS User Guide.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSubnetsForCluster,
           },
         },
@@ -806,7 +806,7 @@ const completionSpec: Fig.Spec = {
             "Specify the instance types for a node group. If you specify a GPU instance type, be sure to specify AL2_x86_64_GPU with the amiType parameter. If you specify launchTemplate, then you can specify zero or one instance type in your launch template or you can specify 0-20 instance types for instanceTypes. If however, you specify an instance type in your launch template and specify any instanceTypes, the node group deployment will fail. If you don't specify an instance type in a launch template or for instanceTypes, then t3.medium is used, by default. If you specify Spot for capacityType, then we recommend specifying multiple values for instanceTypes. For more information, see Managed node group capacity types and Launch template support in the Amazon EKS User Guide.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -2035,7 +2035,7 @@ const completionSpec: Fig.Spec = {
           description: "The keys of the tags to be removed.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

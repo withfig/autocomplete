@@ -244,7 +244,7 @@ const completionSpec: Fig.Spec = {
         cryptedremote,
         {
           name: "encryptedfilename",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [

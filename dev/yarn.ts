@@ -28,7 +28,6 @@ const searchGenerator: Fig.Generator = {
 const getScriptsGenerator: Fig.Generator = {
   script:
     "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-  // splitOn: "\n",
   postProcess: function (out) {
     if (out.trim() == "") {
       return [];
@@ -74,15 +73,44 @@ const packageList: Fig.Generator = {
       const packageContent = JSON.parse(out);
       const dependencyScripts = packageContent["dependencies"] || {};
       const devDependencyScripts = packageContent["devDependencies"] || {};
-      if (dependencyScripts || devDependencyScripts) {
-        return [
-          ...Object.keys(dependencyScripts),
-          ...Object.keys(devDependencyScripts),
-        ].map((dependencyName) => ({
-          name: dependencyName,
-          icon: "📦",
-        }));
-      }
+      return [
+        ...Object.keys(dependencyScripts),
+        ...Object.keys(devDependencyScripts),
+      ].map((dependencyName) => ({
+        name: dependencyName,
+        icon: "📦",
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+
+    return [];
+  },
+};
+
+// generate global package list from global package.json file
+const getGlobalPackagesGenerator: Fig.Generator = {
+  script: 'cat "$(yarn global dir)/package.json"',
+  postProcess: (out, context) => {
+    if (out.trim() == "") return [];
+
+    try {
+      const packageContent = JSON.parse(out);
+      const dependencyScripts = packageContent["dependencies"] || {};
+      const devDependencyScripts = packageContent["devDependencies"] || {};
+      const dependencies = [
+        ...Object.keys(dependencyScripts),
+        ...Object.keys(devDependencyScripts),
+      ];
+
+      const filteredDependencies = dependencies.filter(
+        (dependency) => !context.includes(dependency)
+      );
+
+      return filteredDependencies.map((dependencyName) => ({
+        name: dependencyName,
+        icon: "📦",
+      }));
     } catch (e) {
       console.log(e);
     }
@@ -141,7 +169,7 @@ const configList: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "yarn",
   description: "Manage packages and run scripts",
-  generateSpec: async (_context, executeShellCommand) => {
+  generateSpec: async (_tokens, executeShellCommand) => {
     const { script, postProcess } = packageList;
     const packages = postProcess(
       await executeShellCommand(script as string)
@@ -456,7 +484,7 @@ const completionSpec: Fig.Spec = {
         name: "package",
         generators: searchGenerator,
         debounce: true,
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -509,7 +537,7 @@ const completionSpec: Fig.Spec = {
             "Only audit dependencies from listed groups. Default: devDependencies, dependencies, optionalDependencies",
           args: {
             name: "group_name",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -689,13 +717,54 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "global",
-      description: "Install packages globally on your operating system",
-      args: {
-        name: "package",
-        generators: searchGenerator,
-        debounce: true,
-        variadic: true,
-      },
+      description: "Manage yarn globally",
+      subcommands: [
+        {
+          name: "add",
+          description: "Install globally packages on your operating system",
+          args: {
+            name: "package",
+            generators: searchGenerator,
+            debounce: true,
+            isVariadic: true,
+          },
+        },
+        {
+          name: "bin",
+          description: "Displays the location of the yarn global bin folder",
+        },
+        {
+          name: "dir",
+          description:
+            "Displays the location of the global installation folder",
+        },
+        {
+          name: "ls",
+          description: "List globally installed packages (deprecated)",
+        },
+        {
+          name: "list",
+          description: "List globally installed packages",
+        },
+        {
+          name: "remove",
+          description: "Remove globally installed packages",
+          args: {
+            name: "package",
+            generators: getGlobalPackagesGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: "upgrade",
+          description: "Upgrade globally installed packages",
+        },
+        {
+          name: "upgrade-interactive",
+          description:
+            "Display the outdated packages before performing any upgrade",
+        },
+      ],
       options: [
         {
           name: "--prefix",
@@ -954,6 +1023,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           generators: packageList,
+          isVariadic: true,
         },
       ],
     },
@@ -1002,6 +1072,12 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrades packages to their latest version based on the specified range",
+      args: [
+        {
+          generators: packageList,
+          isVariadic: true,
+        },
+      ],
     },
     {
       name: "upgrade-interactive",
@@ -1043,7 +1119,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
-      generateSpec: async (_context, executeShellCommand) => {
+      generateSpec: async (_tokens, executeShellCommand) => {
         const { postProcess } = scriptList;
         const subcommands = [];
 

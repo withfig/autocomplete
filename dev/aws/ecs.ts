@@ -56,7 +56,7 @@ const postPrecessGenerator = (
 };
 
 const customGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -67,11 +67,11 @@ const customGenerator = async (
     let cmd = `aws ecs ${command}`;
 
     for (const option of options) {
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -102,7 +102,7 @@ const customGenerator = async (
 };
 
 const MultiSuggestionsGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   enabled: Record<string, string>[]
 ) => {
@@ -249,7 +249,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -330,7 +330,7 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listStartedBy: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       const out = await executeShellCommand("aws ecs list-tasks");
       const list = JSON.parse(out)["taskArns"];
       const tasks = list.map((arn) => ({
@@ -338,19 +338,17 @@ const generators: Record<string, Fig.Generator> = {
         parentKey: "tasks",
         childKey: "startedBy",
       }));
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
-        ...tasks,
-      ]);
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [...tasks]);
     },
   },
 
   listTaskGroups: {
-    custom: async (context, executeShellCommand) => {
-      const idx = context.indexOf("--cluster");
+    custom: async (tokens, executeShellCommand) => {
+      const idx = tokens.indexOf("--cluster");
       if (idx < 0) {
         return;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
 
       const out = await executeShellCommand(
         `aws ecs list-tasks --cluster ${param}`
@@ -361,9 +359,7 @@ const generators: Record<string, Fig.Generator> = {
         parentKey: "tasks",
         childKey: "group",
       }));
-      return MultiSuggestionsGenerator(context, executeShellCommand, [
-        ...tasks,
-      ]);
+      return MultiSuggestionsGenerator(tokens, executeShellCommand, [...tasks]);
     },
   },
 
@@ -385,13 +381,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listCodedeployDeploymentGroups: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       try {
-        const idx = context.indexOf("--codedeploy-application");
+        const idx = tokens.indexOf("--codedeploy-application");
         if (idx < 0) {
           return;
         }
-        const param = context[idx + 1];
+        const param = tokens[idx + 1];
 
         const out = await executeShellCommand(
           `aws deploy list-deployment-groups --application-name ${param}`
@@ -442,7 +438,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the capacity provider to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -485,7 +481,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the cluster to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -495,7 +491,7 @@ const completionSpec: Fig.Spec = {
             "The setting to use when creating a cluster. This parameter is used to enable CloudWatch Container Insights for a cluster. If this value is specified, it will override the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "name=containerInsights,value=enabled",
               "name=containerInsights,value=disabled",
@@ -515,7 +511,7 @@ const completionSpec: Fig.Spec = {
             "The short name of one or more capacity providers to associate with the cluster. A capacity provider must be associated with a cluster before it can be included as part of the default capacity provider strategy of the cluster or used in a capacity provider strategy when calling the CreateService or RunTask actions. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created and not already associated with another cluster. New Auto Scaling group capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used. The PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listCapacityProviders,
           },
         },
@@ -525,7 +521,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to set as the default for the cluster. When a default capacity provider strategy is set for a cluster, when calling the RunTask or CreateService APIs wtih no capacity provider strategy or launch type specified, the default capacity provider strategy for the cluster is used. If a default capacity provider strategy is not defined for a cluster during creation, it can be defined later with the PutClusterCapacityProviders API operation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -586,7 +582,7 @@ const completionSpec: Fig.Spec = {
             "A load balancer object representing the load balancers to use with your service. For more information, see Service Load Balancing in the Amazon Elastic Container Service Developer Guide. If the service is using the rolling update (ECS) deployment controller and using either an Application Load Balancer or Network Load Balancer, you must specify one or more target group ARNs to attach to the service. The service-linked role is required for services that make use of multiple target groups. For more information, see Using service-linked roles for Amazon ECS in the Amazon Elastic Container Service Developer Guide. If the service is using the CODE_DEPLOY deployment controller, the service is required to use either an Application Load Balancer or Network Load Balancer. When creating an AWS CodeDeploy deployment group, you specify two target groups (referred to as a targetGroupPair). During a deployment, AWS CodeDeploy determines which task set in your service has the status PRIMARY and associates one target group with it, and then associates the other target group with the replacement task set. The load balancer can also have up to two listeners: a required listener for production traffic and an optional listener that allows you perform validation tests with Lambda functions before routing production traffic to it. After you create a service using the ECS deployment controller, the load balancer name or target group ARN, container name, and container port specified in the service definition are immutable. If you are using the CODE_DEPLOY deployment controller, these values can be changed when updating the service. For Application Load Balancers and Network Load Balancers, this object must contain the load balancer target group ARN, the container name (as it appears in a container definition), and the container port to access from the load balancer. The load balancer name parameter must be omitted. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group specified here. For Classic Load Balancers, this object must contain the load balancer name, the container name (as it appears in a container definition), and the container port to access from the load balancer. The target group ARN parameter must be omitted. When a task from this service is placed on a container instance, the container instance is registered with the load balancer specified here. Services with tasks that use the awsvpc network mode (for example, those with the Fargate launch type) only support Application Load Balancers and Network Load Balancers. Classic Load Balancers are not supported. Also, when you create any target groups for these services, you must choose ip as the target type, not instance, because tasks that use the awsvpc network mode are associated with an elastic network interface, not an Amazon EC2 instance.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "targetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
           },
@@ -597,7 +593,7 @@ const completionSpec: Fig.Spec = {
             "The details of the service discovery registries to assign to this service. For more information, see Service discovery.  Service discovery is supported for Fargate tasks if you are using platform version v1.1.0 or later. For more information, see AWS Fargate platform versions.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "registryArn=string,port=integer,containerName=string,containerPort=integer",
           },
@@ -633,7 +629,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use for the service. If a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -660,7 +656,7 @@ const completionSpec: Fig.Spec = {
             "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks.",
           args: {
             name: "structure",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -669,7 +665,7 @@ const completionSpec: Fig.Spec = {
             "An array of placement constraint objects to use for tasks in your service. You can specify a maximum of 10 constraints per task (this limit includes constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "type=distinctInstance|memberOf,expression=string",
           },
         },
@@ -679,7 +675,7 @@ const completionSpec: Fig.Spec = {
             "The placement strategy objects to use for tasks in your service. You can specify a maximum of five strategy rules per service.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "type=random|spread|binpack,field=string",
           },
         },
@@ -724,7 +720,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the service to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -833,7 +829,7 @@ const completionSpec: Fig.Spec = {
             "A load balancer object representing the load balancer to use with the task set. The supported load balancer types are either an Application Load Balancer or a Network Load Balancer.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "targetGroupArn=string,loadBalancerName=string,containerName=string,containerPort=integer",
           },
@@ -844,7 +840,7 @@ const completionSpec: Fig.Spec = {
             "The details of the service discovery registries to assign to this task set. For more information, see Service Discovery.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "registryArn=string,port=integer,containerName=string,containerPort=integer",
           },
@@ -864,7 +860,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use for the task set. A capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used. If a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used. The PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -899,7 +895,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task set to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -986,7 +982,7 @@ const completionSpec: Fig.Spec = {
             "The attributes to delete from your resource. You can specify up to 10 attributes per request. For custom attributes, specify the attribute name and target ID, but do not specify the value. If you specify the target ID using the short form, you must also specify the target type.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "name=string,value=string,targetType=string,targetId=string",
           },
@@ -1290,7 +1286,7 @@ const completionSpec: Fig.Spec = {
             "The short name or full Amazon Resource Name (ARN) of one or more capacity providers. Up to 100 capacity providers can be described in an action.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listCapacityProviders,
           },
         },
@@ -1300,7 +1296,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether or not you want to see the resource tags for the capacity provider. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -1350,7 +1346,7 @@ const completionSpec: Fig.Spec = {
             "A list of up to 100 cluster names or full cluster Amazon Resource Name (ARN) entries. If you do not specify a cluster, the default cluster is assumed.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listClusters,
           },
         },
@@ -1360,7 +1356,7 @@ const completionSpec: Fig.Spec = {
             "Whether to include additional information about your clusters in the response. If this field is omitted, the attachments, statistics, and tags are not included. If ATTACHMENTS is specified, the attachments for the container instances or tasks within the cluster are included. If SETTINGS is specified, the settings for the cluster are included. If STATISTICS is specified, the following additional information, separated by launch type, is included:   runningEC2TasksCount   runningFargateTasksCount   pendingEC2TasksCount   pendingFargateTasksCount   activeEC2ServiceCount   activeFargateServiceCount   drainingEC2ServiceCount   drainingFargateServiceCount   If TAGS is specified, the metadata tags associated with the cluster are included.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: clusterInformation,
           },
         },
@@ -1404,7 +1400,7 @@ const completionSpec: Fig.Spec = {
             "A list of up to 100 container instance IDs or full Amazon Resource Name (ARN) entries.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listContainerInstances,
           },
         },
@@ -1414,7 +1410,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether you want to see the resource tags for the container instance. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -1457,7 +1453,7 @@ const completionSpec: Fig.Spec = {
             "A list of services to describe. You may specify up to 10 services to describe in a single operation.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listServices,
           },
         },
@@ -1467,7 +1463,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -1511,7 +1507,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether to see the resource tags for the task definition. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -1564,7 +1560,7 @@ const completionSpec: Fig.Spec = {
             "The ID or full Amazon Resource Name (ARN) of task sets to describe.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listTaskSets,
           },
         },
@@ -1574,7 +1570,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether to see the resource tags for the task set. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -1616,7 +1612,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of up to 100 task IDs or full ARN entries.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listTasks,
           },
         },
@@ -1626,7 +1622,7 @@ const completionSpec: Fig.Spec = {
             "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: tags,
           },
         },
@@ -2656,7 +2652,7 @@ const completionSpec: Fig.Spec = {
             "The attributes to apply to your resource. You can specify up to 10 custom attributes per resource. You can specify up to 10 attributes in a single call.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "name=string,value=string,targetType=string,targetId=string",
           },
@@ -2701,7 +2697,7 @@ const completionSpec: Fig.Spec = {
             "The name of one or more capacity providers to associate with the cluster. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listCapacityProviders,
           },
         },
@@ -2711,7 +2707,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use by default for the cluster. When creating a service or running a task on a cluster, if no capacity provider or launch type is specified then the default capacity provider strategy for the cluster is used. A capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -2770,7 +2766,7 @@ const completionSpec: Fig.Spec = {
           description: "The resources available on the instance.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "name=string,type=string,doubleValue=double,longValue=long,integerValue=integer,stringSetValue=string,string",
           },
@@ -2800,7 +2796,7 @@ const completionSpec: Fig.Spec = {
             "The container instance attributes that this container instance supports.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "name=string,value=string,targetType=string,targetId=string",
           },
@@ -2811,7 +2807,7 @@ const completionSpec: Fig.Spec = {
             "The devices that are available on the container instance. The only supported device type is a GPU.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "id=string,type=GPU",
           },
         },
@@ -2821,7 +2817,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the container instance to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -2892,7 +2888,7 @@ const completionSpec: Fig.Spec = {
             "A list of container definitions in JSON format that describe the different containers that make up your task.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -2902,7 +2898,7 @@ const completionSpec: Fig.Spec = {
             "A list of volume definitions in JSON format that containers in your task may use.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listFiles,
           },
         },
@@ -2912,7 +2908,7 @@ const completionSpec: Fig.Spec = {
             "An array of placement constraint objects to use for the task. You can specify a maximum of 10 constraints per task (this limit includes constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "type=string,expression=string",
           },
         },
@@ -2947,7 +2943,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task definition to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -2985,7 +2981,7 @@ const completionSpec: Fig.Spec = {
             "The Elastic Inference accelerators to use for the containers in the task.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "deviceName=string,deviceType=string",
           },
         },
@@ -3020,7 +3016,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to use for the task. If a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -3103,7 +3099,7 @@ const completionSpec: Fig.Spec = {
             "An array of placement constraint objects to use for the task. You can specify up to 10 constraints per task (including constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "type=distinctInstance,expression=string",
               "type=memberOf,expression=string",
@@ -3116,7 +3112,7 @@ const completionSpec: Fig.Spec = {
             "The placement strategy objects to use for the task. You can specify a maximum of five strategy rules per task.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "type=random,field=string",
               "type=spread,field=string",
@@ -3163,7 +3159,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -3221,7 +3217,7 @@ const completionSpec: Fig.Spec = {
             "The container instance IDs or full ARN entries for the container instances on which you would like to place your task. You can specify up to 10 container instances.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listContainerInstances,
           },
         },
@@ -3299,7 +3295,7 @@ const completionSpec: Fig.Spec = {
             "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -3408,7 +3404,7 @@ const completionSpec: Fig.Spec = {
             "Any attachments associated with the state change request.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "attachmentArn=string,status=string",
           },
         },
@@ -3495,7 +3491,7 @@ const completionSpec: Fig.Spec = {
           description: "The network bindings of the container.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "bindIP=string,containerPort=integer,hostPort=integer,protocol=tcp",
               "bindIP=string,containerPort=integer,hostPort=integer,protocol=udp",
@@ -3581,7 +3577,7 @@ const completionSpec: Fig.Spec = {
             "The details for the managed agent associated with the task.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "containerName=string,managedAgentName=string,status=string,reason=string",
           },
@@ -3656,7 +3652,7 @@ const completionSpec: Fig.Spec = {
             "The tags to add to the resource. A tag is an array of key-value pairs. The following basic restrictions apply to tags:   Maximum number of tags per resource - 50   For each resource, each tag key must be unique, and each tag key can have only one value.   Maximum key length - 128 Unicode characters in UTF-8   Maximum value length - 256 Unicode characters in UTF-8   If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.   Tag keys and values are case-sensitive.   Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for AWS use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "key=string,value=string",
           },
         },
@@ -3704,7 +3700,7 @@ const completionSpec: Fig.Spec = {
           description: "The keys of the tags to be removed.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listTagsForResource,
           },
         },
@@ -3786,7 +3782,7 @@ const completionSpec: Fig.Spec = {
           description: "The cluster settings for your cluster.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "name=containerInsights,value=enabled",
               "name=containerInsights,value=disabled",
@@ -3838,7 +3834,7 @@ const completionSpec: Fig.Spec = {
             "The setting to use by default for a cluster. This parameter is used to enable CloudWatch Container Insights for a cluster. If this value is specified, it will override the containerInsights value set with PutAccountSetting or PutAccountSettingDefault.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "name=containerInsights,value=enabled",
               "name=containerInsights,value=disabled",
@@ -4004,7 +4000,7 @@ const completionSpec: Fig.Spec = {
             "The capacity provider strategy to update the service to use. If the service is using the default capacity provider strategy for the cluster, the service can be updated to use one or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using a capacity provider strategy that is not the default capacity provider strategy, the service cannot be updated to use the cluster's default capacity provider strategy. A capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used. If specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the CreateCapacityProvider API operation. To use a AWS Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The AWS Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used. The PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "capacityProvider=string,weight=integer,base=integer",
           },
         },
@@ -4038,7 +4034,7 @@ const completionSpec: Fig.Spec = {
             "An array of task placement constraint objects to update the service to use. If no value is specified, the existing placement constraints for the service will remain unchanged. If this value is specified, it will override any existing placement constraints defined for the service. To remove all existing placement constraints, specify an empty array. You can specify a maximum of 10 constraints per task (this limit includes constraints in the task definition and those specified at runtime).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "type=distinctInstance,expression=string",
               "type=memberOf,expression=string",
@@ -4051,7 +4047,7 @@ const completionSpec: Fig.Spec = {
             "The task placement strategy objects to update the service to use. If no value is specified, the existing placement strategy for the service will remain unchanged. If this value is specified, it will override the existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty object. You can specify a maximum of five strategy rules per service.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "type=random,field=string",
               "type=spread,field=string",
@@ -4354,7 +4350,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. The list of key/value pairs to tag the on-premises instance.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
               },
             },
             {
@@ -4454,7 +4450,7 @@ const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: tags,
               },
             },
@@ -4507,7 +4503,7 @@ const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: tags,
               },
             },
@@ -4550,7 +4546,7 @@ const completionSpec: Fig.Spec = {
               description: "A list of up to 100 task IDs or full ARN entries.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listTasks,
               },
             },
@@ -4560,7 +4556,7 @@ const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: tags,
               },
             },
@@ -4612,7 +4608,7 @@ const completionSpec: Fig.Spec = {
                 "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags are not included in the response.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 suggestions: tags,
               },
             },

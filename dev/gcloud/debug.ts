@@ -184,13 +184,13 @@ const completionSpec: Fig.Spec = {
               name: "LOCATION",
               description:
                 "The logpoint location. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differentiate it\nfrom other files with the same name. It is an error to provide a\nfile name that is not unique in the debug target.",
-              variadic: false,
+              isVariadic: false,
             },
             {
               name: "LOG_FORMAT_STRING",
               description:
                 "A format string which will be logged every time the logpoint\nlocation is executed. If the string contains curly braces ('{' and\n'}'), any text within the curly braces will be interpreted as a\nrun-time expression in the debug target's language, which will be\nevaluated when the logpoint is hit.\n+\nThe value of the expression will then replace the {} expression in\nthe resulting log output. For example, if you specify the format\nstring \"a={a}, b={b}\", and the logpoint is hit when local variable\na is 1 and b is 2, the resulting log output would be \"a=1, b=2\".",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -362,7 +362,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more logpoint resource identifiers. The specified\nlogpoints will be deleted.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -569,7 +569,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more logpoint resource identifiers. The specified\nlogpoints will be listed.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -895,7 +895,7 @@ const completionSpec: Fig.Spec = {
               name: "LOCATION",
               description:
                 "The location where the snapshot should be taken. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differntiate it from\nother files with the same name. If the file name is not unique in\nthe debug target, the behavior is unspecified.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1067,7 +1067,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more snapshot resource identifiers. The specified\nsnapshots will be deleted.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1229,7 +1229,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1436,7 +1436,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1648,7 +1648,7 @@ const completionSpec: Fig.Spec = {
               name: "ID",
               description:
                 "Zero or more snapshot resource identifiers. The command will\nwait for any of the specified snapshots to complete.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

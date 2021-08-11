@@ -38,7 +38,7 @@ const postPrecessGenerator = (
 };
 
 const customGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -49,11 +49,11 @@ const customGenerator = async (
     let cmd = `aws elasticbeanstalk ${command}`;
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -83,7 +83,7 @@ const customGenerator = async (
 };
 
 const filterManagedAction = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -92,7 +92,7 @@ const filterManagedAction = async (
   filter: string
 ): Promise<Fig.Suggestion[]> => {
   return customGenerator(
-    context,
+    tokens,
     executeShellCommand,
     `${command} --status ${filter}`,
     options,
@@ -206,7 +206,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -226,9 +226,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listManagedActionsWithFilter: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return filterManagedAction(
-        context,
+        tokens,
         executeShellCommand,
         "describe-environment-managed-actions",
         ["--environment-name", "--environment-id"],
@@ -274,9 +274,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listApplicationVersionLabels: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "describe-application-versions",
         ["--application-name"],
@@ -596,7 +596,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the application. Elastic Beanstalk applies these tags only to the application. Environments that you create in the application don't inherit the tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -703,7 +703,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the application version. Elastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -798,7 +798,7 @@ const completionSpec: Fig.Spec = {
             "Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see Option Values in the AWS Elastic Beanstalk Developer Guide.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -809,7 +809,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the configuration template.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -894,7 +894,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the tags applied to resources in the environment.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -939,7 +939,7 @@ const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -950,7 +950,7 @@ const completionSpec: Fig.Spec = {
             "A list of custom user-defined configuration options to remove from the configuration set for this new environment.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string",
           },
@@ -1026,7 +1026,7 @@ const completionSpec: Fig.Spec = {
             "The configuration option settings to apply to the builder environment.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -1037,7 +1037,7 @@ const completionSpec: Fig.Spec = {
             "Specifies the tags applied to the new platform version. Elastic Beanstalk applies these tags only to the platform version. Environments that you create using the platform version don't inherit the tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -1341,7 +1341,7 @@ const completionSpec: Fig.Spec = {
             "Specify a version label to show a specific application version.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listApplicationVersionLabels,
           },
         },
@@ -1415,7 +1415,7 @@ const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listApplications,
           },
         },
@@ -1493,7 +1493,7 @@ const completionSpec: Fig.Spec = {
             "If specified, restricts the descriptions to only the specified options.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string",
           },
@@ -1818,7 +1818,7 @@ const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listEnvironmentIds,
           },
         },
@@ -1828,7 +1828,7 @@ const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listEnvironmentNames,
           },
         },
@@ -2229,7 +2229,7 @@ const completionSpec: Fig.Spec = {
             "Criteria for restricting the resulting list of platform branches. The filter is evaluated as a logical conjunction (AND) of the separate SearchFilter terms. The following list shows valid attribute values for each of the SearchFilter terms. Most operators take a single value. The in and not_in operators can take multiple values.    Attribute = BranchName:    Operator: = | != | begins_with | ends_with | contains | in | not_in       Attribute = LifecycleState:    Operator: = | != | in | not_in     Values: beta | supported | deprecated | retired       Attribute = PlatformName:    Operator: = | != | begins_with | ends_with | contains | in | not_in       Attribute = TierType:    Operator: = | !=     Values: WebServer/Standard | Worker/SQS/HTTP      Array size: limited to 10 SearchFilter objects. Within each SearchFilter item, the Values array is limited to 10 items.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "Attribute=string,Operator=string,Values=string,string",
           },
@@ -2857,7 +2857,7 @@ const completionSpec: Fig.Spec = {
             "A list of configuration option settings to update with the new specified option value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -2868,7 +2868,7 @@ const completionSpec: Fig.Spec = {
             "A list of configuration options to remove from the configuration set.  Constraint: You can remove only UserDefined configuration options.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string",
           },
@@ -2990,7 +2990,7 @@ const completionSpec: Fig.Spec = {
             "If specified, AWS Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -3001,7 +3001,7 @@ const completionSpec: Fig.Spec = {
             "A list of custom user-defined configuration options to remove from the configuration set for this environment.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string",
           },
@@ -3049,7 +3049,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags to add or update. If a key of an existing tag is added, the tag's value is updated. Specify at least one of these parameters: TagsToAdd, TagsToRemove.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -3059,7 +3059,7 @@ const completionSpec: Fig.Spec = {
             "A list of tag keys to remove. If a tag key doesn't exist, it is silently ignored. Specify at least one of these parameters: TagsToAdd, TagsToRemove.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -3119,7 +3119,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of the options and desired values to evaluate.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceName=string,Namespace=string,OptionName=string,Value=string",
           },
@@ -3178,7 +3178,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentIds,
               },
             },
@@ -3188,7 +3188,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentNames,
               },
             },
@@ -3299,7 +3299,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentIds,
               },
             },
@@ -3309,7 +3309,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentNames,
               },
             },
@@ -3420,7 +3420,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentIds,
               },
             },
@@ -3430,7 +3430,7 @@ const completionSpec: Fig.Spec = {
                 "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
                 generators: generators.listEnvironmentNames,
               },
             },

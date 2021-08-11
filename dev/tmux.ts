@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "arguments",
           description: "Arguments for the command",
-          variadic: true,
+          isVariadic: true,
           isOptional: true,
         },
       ],
@@ -446,7 +446,7 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "command",
         description: "The command to run",
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -557,7 +557,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "command",
           description: "Commands to execute",
-          variadic: true,
+          isVariadic: true,
         },
       ],
       options: [
@@ -1843,7 +1843,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute tmux commands from a file",
       args: {
         name: "path",
-        variadic: true,
+        isVariadic: true,
       },
       options: [
         {
@@ -2103,21 +2103,21 @@ const completionSpec: Fig.Spec = {
         {
           name: "-L",
           description: "Lock the channel",
-          exclusive: ["-U"],
+          exclusiveOn: ["-U"],
         },
         {
           name: "-U",
           description: "Unlock the channel",
-          exclusive: ["-L"],
+          exclusiveOn: ["-L"],
         },
       ],
     },
   ],
   additionalSuggestions: [
     {
-      name: "new -S 'name'",
+      name: "new -s 'name'",
       description: "Create a new session shortcut",
-      insertValue: "new -S '{cursor}'",
+      insertValue: "new -s '{cursor}'",
       icon: "fig://template?color=2ecc71&badge=🔥",
       // type: "shortcut",
     },

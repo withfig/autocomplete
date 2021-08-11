@@ -58,7 +58,7 @@ const postPrecessGenerator = (
 };
 
 const customGenerator = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -70,11 +70,11 @@ const customGenerator = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -105,7 +105,7 @@ const customGenerator = async (
 };
 
 const customGeneratorWithFilter = async (
-  context: string[],
+  tokens: string[],
   executeShellCommand: Fig.ExecuteShellCommandFunction,
   command: string,
   options: string[],
@@ -118,11 +118,11 @@ const customGeneratorWithFilter = async (
 
     for (let i = 0; i < options.length; i++) {
       const option = options[i];
-      const idx = context.indexOf(option);
+      const idx = tokens.indexOf(option);
       if (idx < 0) {
         continue;
       }
-      const param = context[idx + 1];
+      const param = tokens[idx + 1];
       cmd += ` ${option} ${param}`;
     }
 
@@ -265,7 +265,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -366,7 +366,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixS3);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       if (!token.startsWith(_prefixS3)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
     },
@@ -380,9 +380,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listLogicalResourceIds: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-stack-resources",
         ["--stack-name"],
@@ -393,9 +393,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listPhysicalResourceIds: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-stack-resources",
         ["--stack-name"],
@@ -406,9 +406,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listUpdateFailedResources: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGeneratorWithFilter(
-        context,
+        tokens,
         executeShellCommand,
         "list-stack-resources",
         ["--stack-name"],
@@ -420,9 +420,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listDeleteFailedResources: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGeneratorWithFilter(
-        context,
+        tokens,
         executeShellCommand,
         "list-stack-resources",
         ["--stack-name"],
@@ -489,9 +489,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listTypeVersionsByTypeName: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-type-versions",
         ["--type-name"],
@@ -502,9 +502,9 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listTypeVersionsByArn: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       return customGenerator(
-        context,
+        tokens,
         executeShellCommand,
         "list-type-versions",
         ["--arn"],
@@ -515,13 +515,13 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   getStackIdForChangeSet: {
-    custom: async (context, executeShellCommand) => {
+    custom: async (tokens, executeShellCommand) => {
       try {
-        const idx = context.indexOf("--change-set-name");
+        const idx = tokens.indexOf("--change-set-name");
         if (idx < 0) {
           return [];
         }
-        const param = context[idx + 1];
+        const param = tokens[idx + 1];
         const cmd = `aws cloudformation describe-change-set --change-set-name ${param}`;
         const out = await executeShellCommand(cmd);
 
@@ -549,7 +549,7 @@ const generators: Record<string, Fig.Generator> = {
 
   listBuckets: {
     script: "aws s3 ls --page-size 1000",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         return out.split("\n").map((line) => {
           const parts = line.split(/\s+/);
@@ -652,7 +652,7 @@ const completionSpec: Fig.Spec = {
             "A list of the logical IDs of the resources that AWS CloudFormation skips during the continue update rollback operation. You can specify only resources that are in the UPDATE_FAILED state because a rollback failed. You can't specify resources that are in the UPDATE_FAILED state for other reasons, for example, because an update was cancelled. To check why a resource update failed, use the DescribeStackResources action, and view the resource status reason.   Specify this property to skip rolling back resources that AWS CloudFormation can't successfully roll back. We recommend that you  troubleshoot resources before skipping them. AWS CloudFormation sets the status of the specified resources to UPDATE_COMPLETE and continues to roll back the stack. After the rollback is complete, the state of the skipped resources will be inconsistent with the state of the resources in the stack template. Before performing another stack update, you must update the stack or resources to be consistent with each other. If you don't, subsequent stack updates might fail, and the stack will become unrecoverable.   Specify the minimum number of resources required to successfully roll back your stack. For example, a failed resource update might cause dependent resources to fail. In this case, it might not be necessary to skip the dependent resources.  To skip resources that are part of nested stacks, use the following format: NestedStackName.ResourceLogicalID. If you want to specify the logical ID of a stack resource (Type: AWS::CloudFormation::Stack) in the ResourcesToSkip list, then its corresponding embedded stack must be in one of the following states: DELETE_IN_PROGRESS, DELETE_COMPLETE, or DELETE_FAILED.   Don't confuse a child stack's name with its corresponding logical ID defined in the parent stack. For an example of a continue update rollback operation with nested stacks, see Using ResourcesToSkip to recover a nested stacks hierarchy.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listUpdateFailedResources,
           },
         },
@@ -731,7 +731,7 @@ const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the change set. For more information, see the Parameter data type.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -742,7 +742,7 @@ const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to create the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually creating the stack. If your stack template contains one or more macros, and you choose to create a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.  This capacity does not apply to creating change sets, and specifying it when creating change sets has no effect. If you want to create a stack from a stack template that contains macros and nested stacks, you must create or update the stack directly from the template using the CreateStack or UpdateStack action, and specifying this capability.  For more information on macros, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CAPABILITY_IAM",
               "CAPABILITY_NAMED_IAM",
@@ -756,7 +756,7 @@ const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with if you execute this change set, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. If the list of resource types doesn't include a resource type that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for condition keys in IAM policies for AWS CloudFormation. For more information, see Controlling Access with AWS Identity and Access Management in the AWS CloudFormation User Guide.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -785,7 +785,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             generators: [generators.listSNSTopics],
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -794,7 +794,7 @@ const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to resources in the stack. You can specify a maximum of 50 tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -835,7 +835,7 @@ const completionSpec: Fig.Spec = {
           description: "The resources to import into your stack.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ResourceType=string,LogicalResourceId=string,ResourceIdentifier={Key1=string,Key2=string}",
           },
@@ -906,7 +906,7 @@ const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -945,7 +945,7 @@ const completionSpec: Fig.Spec = {
             "The Simple Notification Service (SNS) topic ARNs to publish stack related events. You can find your SNS topic ARNs using the SNS console or your Command Line Interface (CLI).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSNSTopics,
           },
         },
@@ -955,7 +955,7 @@ const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to create the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually creating the stack. If your stack template contains one or more macros, and you choose to create a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation. If you want to create a stack from a stack template that contains macros and nested stacks, you must create the stack directly from the template using this capability.  You should only create stacks directly from a stack template that contains macros if you know what processing the macro performs. Each macro relies on an underlying Lambda service function for processing stack templates. Be aware that the Lambda function owner can update the function operation without AWS CloudFormation being notified.  For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CAPABILITY_IAM",
               "CAPABILITY_NAMED_IAM",
@@ -969,7 +969,7 @@ const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with for this create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. Use the following syntax to describe template resource types: AWS::* (for all AWS resource), Custom::* (for all custom resources), Custom::logical_ID  (for a specific custom resource), AWS::service_name::* (for all resources of a particular AWS service), and AWS::service_name::resource_logical_ID  (for a specific AWS resource). If the list of resource types doesn't include a resource that you're creating, the stack creation fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with AWS Identity and Access Management.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1013,7 +1013,7 @@ const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -1076,7 +1076,7 @@ const completionSpec: Fig.Spec = {
           args: {
             name: "list",
             generators: generators.getAccountId,
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1095,7 +1095,7 @@ const completionSpec: Fig.Spec = {
             "The names of one or more Regions where you want to create stack instances using the specified AWS account(s).",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: awsRegions,
           },
         },
@@ -1105,7 +1105,7 @@ const completionSpec: Fig.Spec = {
             "A list of stack set parameters whose values you want to override in the selected stack instances. Any overridden parameter values will be applied to all stack instances in the specified accounts and Regions. When specifying parameters and their values, be aware of how AWS CloudFormation sets parameter values during stack instance operations:   To override the current value for a parameter, include the parameter and specify its value.   To leave a parameter set to its present value, you can do one of the following:   Do not include the parameter in the list.   Include the parameter and specify UsePreviousValue as true. (You cannot specify both a value and set UsePreviousValue to true.)     To set all overridden parameter back to the values specified in the stack set, specify a parameter list but do not include any parameters.   To leave all parameters set to their present values, do not specify this property at all.   During stack set updates, any parameter values overridden for a stack instance are not updated, but retain their overridden value. You can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -1197,7 +1197,7 @@ const completionSpec: Fig.Spec = {
           description: "The input parameters for the stack set template.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -1208,7 +1208,7 @@ const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for AWS CloudFormation to create the stack set and related stack instances.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stack sets, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some templates reference macros. If your stack set template references one or more macros, you must create the stack set directly from the processed template, without first reviewing the resulting changes in a change set. To create the stack set directly, you must acknowledge this capability. For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.  Stack sets with service-managed permissions do not currently support the use of macros in templates. (This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.) Even if you specify this capability for a stack set with service-managed permissions, if you reference a macro in your template the stack set operation will fail.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CAPABILITY_IAM",
               "CAPABILITY_NAMED_IAM",
@@ -1222,7 +1222,7 @@ const completionSpec: Fig.Spec = {
             "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified. If you specify tags as part of a CreateStackSet action, AWS CloudFormation checks to see if you have the required IAM permission to tag resources. If you don't, the entire CreateStackSet action fails with an access denied error, and the stack set is not created.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -1362,7 +1362,7 @@ const completionSpec: Fig.Spec = {
             "For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, AWS CloudFormation deletes the stack but does not delete the retained resources. Retaining resources is useful when you cannot delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listDeleteFailedResources,
           },
         },
@@ -1423,7 +1423,7 @@ const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The names of the AWS accounts that you want to delete stack instances for. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.getAccountId,
           },
         },
@@ -1443,7 +1443,7 @@ const completionSpec: Fig.Spec = {
             "The Regions where you want to delete stack set instances.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: awsRegions,
           },
         },
@@ -1939,7 +1939,7 @@ const completionSpec: Fig.Spec = {
             "The resource drift status values to use as filters for the resource drift results returned.    DELETED: The resource differs from its expected template configuration in that the resource has been deleted.    MODIFIED: One or more resource properties differ from their expected template values.    IN_SYNC: The resources's actual configuration matches its expected template configuration.    NOT_CHECKED: AWS CloudFormation does not currently return this value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: ["IN_SYNC", "MODIFIED", "DELETED", "NOT_CHECKED"],
           },
         },
@@ -2444,7 +2444,7 @@ const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -2866,7 +2866,7 @@ const completionSpec: Fig.Spec = {
           description: "The status that stack instances are filtered by.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Name=string,Values=string",
           },
         },
@@ -3274,7 +3274,7 @@ const completionSpec: Fig.Spec = {
             "Stack status to use as a filter. Specify one or more stack status codes to list only stacks with the specified status codes. For a complete list of stack status codes, see the StackStatus parameter of the Stack data type.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CREATE_IN_PROGRESS",
               "CREATE_FAILED",
@@ -4023,7 +4023,7 @@ const completionSpec: Fig.Spec = {
             "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -4034,7 +4034,7 @@ const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to update the stack.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some template contain macros. Macros perform custom processing on templates; this can include simple actions like find-and-replace operations, all the way to extensive transformations of entire templates. Because of this, users typically create a change set from the processed template, so that they can review the changes resulting from the macros before actually updating the stack. If your stack template contains one or more macros, and you choose to update a stack directly from the processed template, without first reviewing the resulting changes in a change set, you must acknowledge this capability. This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation. If you want to update a stack from a stack template that contains macros and nested stacks, you must update the stack directly from the template using this capability.  You should only update stacks directly from a stack template that contains macros if you know what processing the macro performs. Each macro relies on an underlying Lambda service function for processing stack templates. Be aware that the Lambda function owner can update the function operation without AWS CloudFormation being notified.  For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CAPABILITY_IAM",
               "CAPABILITY_NAMED_IAM",
@@ -4048,7 +4048,7 @@ const completionSpec: Fig.Spec = {
             "The template resource types that you have permissions to work with for this update stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. If the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, AWS CloudFormation grants permissions to all resource types. AWS Identity and Access Management (IAM) uses this parameter for AWS CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with AWS Identity and Access Management.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -4102,7 +4102,7 @@ const completionSpec: Fig.Spec = {
             "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to supported resources in the stack. You can specify a maximum number of 50 tags. If you don't specify this parameter, AWS CloudFormation doesn't modify the stack's tags. If you specify an empty value, AWS CloudFormation removes all associated tags.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -4154,7 +4154,7 @@ const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The names of one or more AWS accounts for which you want to update parameter values for stack instances. The overridden parameter values will be applied to all stack instances in the specified accounts and Regions. You can specify Accounts or DeploymentTargets, but not both.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.getAccountId,
           },
         },
@@ -4183,7 +4183,7 @@ const completionSpec: Fig.Spec = {
             "A list of input parameters whose values you want to update for the specified stack instances.  Any overridden parameter values will be applied to all stack instances in the specified accounts and Regions. When specifying parameters and their values, be aware of how AWS CloudFormation sets parameter values during stack instance update operations:   To override the current value for a parameter, include the parameter and specify its value.   To leave a parameter set to its present value, you can do one of the following:   Do not include the parameter in the list.   Include the parameter and specify UsePreviousValue as true. (You cannot specify both a value and set UsePreviousValue to true.)     To set all overridden parameter back to the values specified in the stack set, specify a parameter list but do not include any parameters.   To leave all parameters set to their present values, do not specify this property at all.   During stack set updates, any parameter values overridden for a stack instance are not updated, but retain their overridden value. You can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template. If you add a parameter to a template, before you can override the parameter value specified in the stack set you must first use UpdateStackSet to update all stack instances with the updated template and parameter value specified in the stack set. Once a stack instance has been updated with the new parameter, you can then override the parameter value using UpdateStackInstances.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -4286,7 +4286,7 @@ const completionSpec: Fig.Spec = {
           description: "A list of input parameters for the stack set template.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description:
               "ParameterKey=string,ParameterValue=string,UsePreviousValue=boolean,ResolvedValue=string",
           },
@@ -4297,7 +4297,7 @@ const completionSpec: Fig.Spec = {
             "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for AWS CloudFormation to update the stack set and its associated stack instances.    CAPABILITY_IAM and CAPABILITY_NAMED_IAM  Some stack templates might include resources that can affect permissions in your AWS account; for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks sets, you must explicitly acknowledge this by specifying one of these capabilities. The following IAM resources require you to specify either the CAPABILITY_IAM or CAPABILITY_NAMED_IAM capability.   If you have IAM resources, you can specify either capability.    If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM.    If you don't specify either of these capabilities, AWS CloudFormation returns an InsufficientCapabilities error.   If your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.     AWS::IAM::AccessKey      AWS::IAM::Group      AWS::IAM::InstanceProfile      AWS::IAM::Policy      AWS::IAM::Role      AWS::IAM::User      AWS::IAM::UserToGroupAddition    For more information, see Acknowledging IAM Resources in AWS CloudFormation Templates.    CAPABILITY_AUTO_EXPAND  Some templates reference macros. If your stack set template references one or more macros, you must update the stack set directly from the processed template, without first reviewing the resulting changes in a change set. To update the stack set directly, you must acknowledge this capability. For more information, see Using AWS CloudFormation Macros to Perform Custom Processing on Templates.  Stack sets with service-managed permissions do not currently support the use of macros in templates. (This includes the AWS::Include and AWS::Serverless transforms, which are macros hosted by AWS CloudFormation.) Even if you specify this capability for a stack set with service-managed permissions, if you reference a macro in your template the stack set operation will fail.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "CAPABILITY_IAM",
               "CAPABILITY_NAMED_IAM",
@@ -4311,7 +4311,7 @@ const completionSpec: Fig.Spec = {
             "The key-value pairs to associate with this stack set and the stacks created from it. AWS CloudFormation also propagates these tags to supported resources that are created in the stacks. You can specify a maximum number of 50 tags. If you specify tags for this parameter, those tags replace any list of tags that are currently associated with this stack set. This means:   If you don't specify this parameter, AWS CloudFormation doesn't modify the stack's tags.    If you specify any tags using this parameter, you must specify all the tags that you want associated with this stack set, even tags you've specifed before (for example, when creating the stack set or during a previous update of the stack set.). Any tags that you don't include in the updated list of tags are removed from the stack set, and therefore from the stacks and resources as well.    If you specify an empty value, AWS CloudFormation removes all currently associated tags.   If you specify new tags as part of an UpdateStackSet action, AWS CloudFormation checks to see if you have the required IAM permission to tag resources. If you omit tags that are currently associated with the stack set from the list of tags you specify, AWS CloudFormation assumes that you want to remove those tags from the stack set, and checks to see if you have permission to untag resources. If you don't have the necessary permission(s), the entire UpdateStackSet action fails with an access denied error, and the stack set is not updated.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -4383,7 +4383,7 @@ const completionSpec: Fig.Spec = {
             "[Self-managed permissions] The accounts in which to update associated stack instances. If you specify accounts, you must also specify the Regions in which to update stack set instances. To update all the stack instances associated with this stack set, do not specify the Accounts or Regions properties. If the stack set update includes changes to the template (that is, if the TemplateBody or TemplateURL properties are specified), or the Parameters property, AWS CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.getAccountId,
           },
         },
@@ -4641,7 +4641,7 @@ const completionSpec: Fig.Spec = {
             "A list of parameter structures that specify input parameters for your stack template. If you're updating a stack and you don't specify a parameter, the command uses the stack's existing value. For new stacks, you must specify parameters that don't have a default value. Syntax: ParameterKey1=ParameterValue1 ParameterKey2=ParameterValue2 ...",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -4650,7 +4650,7 @@ const completionSpec: Fig.Spec = {
             "A list of capabilities that you must specify before AWS Cloudformation can create certain stacks. Some stack templates might include resources that can affect permissions in your AWS account, for example, by creating new AWS Identity and Access Management (IAM) users. For those stacks, you must explicitly acknowledge their capabilities by specifying this parameter.  The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. If you have IAM resources, you can specify either capability. If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM. If you don't specify this parameter, this action returns an InsufficientCapabilities error.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"],
           },
         },
@@ -4674,7 +4674,7 @@ const completionSpec: Fig.Spec = {
             "Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that AWS CloudFormation associates with the stack.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.listSNSTopics,
           },
         },
@@ -4694,7 +4694,7 @@ const completionSpec: Fig.Spec = {
             "A list of tags to associate with the stack that is created or updated. AWS CloudFormation also propagates these tags to resources in the stack if the resource supports it. Syntax: TagKey1=TagValue1 TagKey2=TagValue2 ...",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Tag1=Value1 Tag2=Value2 ...",
           },
         },
@@ -4765,7 +4765,7 @@ const completionSpec: Fig.Spec = {
                 "Optional. The list of key/value pairs to tag the on-premises instance.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
               },
             },
             {
