@@ -192,6 +192,22 @@ const gitGenerators: Record<string, Fig.Generator> = {
     postProcess: postProcessBranches,
   },
 
+  // custom generator to display local branches by default or 
+  // remote branches if '-r' flag is used. See branch -d for use
+  localOrRemoteBranches: {
+    custom: async (tokens, executeShellCommand) => {
+      if (tokens.includes("-r")) {
+        return postProcessBranches(
+          await executeShellCommand("git --no-optional-locks branch -r --no-color")
+        );
+      } else {
+        return postProcessBranches(
+          await executeShellCommand("git --no-optional-locks branch --no-color")
+        );
+      }
+    },
+  },
+
   remotes: {
     script: "git --no-optional-locks remote -v",
     postProcess: function (out) {
@@ -3801,14 +3817,28 @@ const completionSpec: Fig.Spec = {
           name: ["-d", "--delete"],
           description: "delete fully merged branch",
           args: {
-            generators: gitGenerators.localBranches,
+            generators: gitGenerators.localOrRemoteBranches,
+            isVariadic: true,
+            suggestions: [
+              {
+                name: ["-r", "--remotes"],
+                description: "Deletes the remote-tracking branches.",
+              },
+            ],
           },
         },
         {
           name: "-D",
           description: "delete branch (even if not merged)",
           args: {
-            generators: gitGenerators.localBranches,
+            generators: gitGenerators.localOrRemoteBranches,
+            isVariadic: true,
+            suggestions: [
+              {
+                name: ["-r", "--remotes"],
+                description: "Deletes the remote-tracking branches.",
+              },
+            ],
           },
         },
         {
