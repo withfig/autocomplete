@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.ACTION_GITHUB_TOKEN }}
         # Install all dependencies
       - name: install
-        run: npm install
+        run: npm ci
         # Transpile all specs from ts to js
       - name: build
         run: npm run build
