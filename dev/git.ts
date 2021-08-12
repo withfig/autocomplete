@@ -192,13 +192,15 @@ const gitGenerators: Record<string, Fig.Generator> = {
     postProcess: postProcessBranches,
   },
 
-  // custom generator to display local branches by default or 
+  // custom generator to display local branches by default or
   // remote branches if '-r' flag is used. See branch -d for use
   localOrRemoteBranches: {
     custom: async (tokens, executeShellCommand) => {
       if (tokens.includes("-r")) {
         return postProcessBranches(
-          await executeShellCommand("git --no-optional-locks branch -r --no-color")
+          await executeShellCommand(
+            "git --no-optional-locks branch -r --no-color"
+          )
         );
       } else {
         return postProcessBranches(
