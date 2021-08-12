@@ -7,6 +7,7 @@ module.exports = {
     "no-empty-array-values": require("./rules/no-empty-array-values"),
     "no-useless-insertvalue": require("./rules/no-useless-insertvalue"),
     "no-duplicate-options-subcommands": require("./rules/no-duplicate-options-subcommands"),
+    "no-missing-default-export": require("./rules/no-missing-default-export"),
   },
   configs: {
     recommended: {
@@ -20,7 +21,16 @@ module.exports = {
         "fig-linter/no-invalid-option": "off",
         "fig-linter/no-invalid-name": "error",
         "fig-linter/no-duplicate-options-subcommands": "error",
+        "fig-linter/no-missing-default-export": "off",
       },
+      overrides: [
+        {
+          files: "dev/**/*.ts",
+          rules: {
+            "fig-linter/no-missing-default-export": "error",
+          },
+        },
+      ],
     },
   },
 };
