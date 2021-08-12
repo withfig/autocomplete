@@ -121,11 +121,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "url | filepath",
       template: "filepaths",
-      variadic: true,
+      isVariadic: true,
     },
     {
       name: "resolution",
-      variadic: true,
+      isVariadic: true,
     },
   ],
 };
