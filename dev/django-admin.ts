@@ -177,7 +177,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     args: [
       {
         name: "app_label",
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
       },
     ],
@@ -242,7 +242,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "table_name",
         description:
           "Optional table names. Otherwise, settings.CACHES is used to find cache tables.",
-        variadic: true,
+        isVariadic: true,
         isOptional: true,
       },
     ],
@@ -368,7 +368,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         description:
           "Restricts dumped data to the specified app_label or app_label.ModelName.",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -425,7 +425,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "table",
         description: "Selects what tables or views should be introspected.",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -478,7 +478,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "fixture",
         description: "Fixture labels.",
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -630,7 +630,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "app_label",
         description: "Specify the app label(s) to create migrations for.",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -724,7 +724,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         // But it is optional when either `--managers` or `--admins` are supplied as arguments,
         // so keeping it as `isOptional` for now to keep things simple.
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -791,7 +791,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
         name: "app_label",
         description: "App labels of applications to limit the output to.",
         isOptional: true,
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -872,7 +872,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       {
         name: "app_label",
         description: "One or more application label.",
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },
@@ -1231,7 +1231,7 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     args: [
       {
         name: "staticfile",
-        variadic: true,
+        isVariadic: true,
       },
     ],
   },

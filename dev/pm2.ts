@@ -279,7 +279,7 @@ const sharedOptions: Fig.Option[] = [
     args: {
       name: "paths",
       template: ["folders"],
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -288,7 +288,7 @@ const sharedOptions: Fig.Option[] = [
     args: {
       name: "Folder or Files",
       template: ["folders", "filepaths"],
-      variadic: true,
+      isVariadic: true,
     },
   },
   {
@@ -534,7 +534,7 @@ const completionSpec: Fig.Spec = {
       description: "multiset eg `key1 val1 key2 val2`",
       args: {
         name: "key value",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {

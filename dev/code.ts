@@ -19,7 +19,7 @@ const commonOptions: Fig.Option[] = [
     args: {
       name: "folder",
       template: "folders",
-      variadic: true,
+      isVariadic: true,
     },
   },
   {

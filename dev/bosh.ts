@@ -273,7 +273,7 @@ const completionSpec: Fig.Spec = {
       description: "SCP to/from instance(s)",
       args: {
         name: "PATH...",
-        variadic: true,
+        isVariadic: true,
         template: "filepaths",
       },
     },
@@ -620,7 +620,7 @@ const completionSpec: Fig.Spec = {
       description: "Filter to show only given column(s)",
       args: {
         name: "name",
-        variadic: true,
+        isVariadic: true,
       },
     },
     {

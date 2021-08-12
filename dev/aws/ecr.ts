@@ -1727,7 +1727,7 @@ const completionSpec: Fig.Spec = {
             "A list of AWS account IDs that correspond to the Amazon ECR registries that you want to log in to.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

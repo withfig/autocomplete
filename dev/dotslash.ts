@@ -51,7 +51,7 @@ const completionSpec: Fig.Spec = {
 //     });
 //   },
 //   trigger: "/",
-//   filterTerm: "/",
+//   getQueryTerm: "/",
 // };
 
 // export const completionSpec: Fig.Spec = {

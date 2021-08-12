@@ -5178,7 +5178,7 @@ const completionSpec: Fig.Spec = {
               description: "Tags to associate with the new product.",
               args: {
                 name: "list",
-                variadic: true,
+                isVariadic: true,
               },
             },
             {

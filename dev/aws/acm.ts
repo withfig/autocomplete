@@ -134,7 +134,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -151,7 +151,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixBlob);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixBlob);
     },
   },
@@ -200,7 +200,7 @@ const completionSpec: Fig.Spec = {
             "The key-value pair that defines the tag. The tag value is optional.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -439,7 +439,7 @@ const completionSpec: Fig.Spec = {
             "One or more resource tags to associate with the imported certificate.  Note: You cannot apply tags when reimporting a certificate.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -473,7 +473,7 @@ const completionSpec: Fig.Spec = {
           description: "Filter the certificate list by status value.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: [
               "PENDING_VALIDATION",
               "ISSUED",
@@ -642,7 +642,7 @@ const completionSpec: Fig.Spec = {
           description: "The key-value pair that defines the tag to remove.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -728,7 +728,7 @@ const completionSpec: Fig.Spec = {
             "Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, add the name www.example.net to a certificate for which the DomainName field is www.example.com if users can reach your site by using either name. The maximum number of domain names that you can add to an ACM certificate is 100. However, the initial quota is 10 domain names. If you need more than 10 names, you must request a quota increase. For more information, see Quotas.  The maximum length of a SAN DNS name is 253 octets. The name is made up of multiple labels separated by periods. No label can be longer than 63 octets. Consider the following examples:     (63 octets).(63 octets).(63 octets).(61 octets) is legal because the total length is 253 octets (63+1+63+1+63+1+61) and no label exceeds 63 octets.    (64 octets).(63 octets).(63 octets).(61 octets) is not legal because the total length exceeds 253 octets (64+1+63+1+63+1+61) and the first label exceeds 63 octets.    (63 octets).(63 octets).(63 octets).(62 octets) is not legal because the total length of the DNS name (63+1+63+1+63+1+62) exceeds 253 octets.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -745,7 +745,7 @@ const completionSpec: Fig.Spec = {
             "The domain name that you want ACM to use to send you emails so that you can validate domain ownership.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "DomainName=string,ValidationDomain=string",
           },
         },
@@ -773,7 +773,7 @@ const completionSpec: Fig.Spec = {
             "One or more resource tags to associate with the certificate.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },

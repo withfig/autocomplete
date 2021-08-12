@@ -32,7 +32,7 @@ const completionSpec: Fig.Spec = {
 
   args: [
     { name: "repository", isOptional: true },
-    { name: "refspec", isOptional: true, variadic: true },
+    { name: "refspec", isOptional: true, isVariadic: true },
   ],
   options: [
     // [--follow-tags]

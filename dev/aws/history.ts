@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
             "Specifies which events to **only** include when showing the CLI command. This argument is mutually exclusive with ``--exclude``.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
             "Specifies which events to exclude when showing the CLI command. This argument is mutually exclusive with ``--include``.",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

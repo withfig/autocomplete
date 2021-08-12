@@ -161,7 +161,7 @@ const completionSpec: Fig.Spec = {
               name: "INSIGHT",
               description:
                 "ID of the insight or fully qualified identifier for the insight.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -534,7 +534,7 @@ const completionSpec: Fig.Spec = {
               name: "INSIGHT",
               description:
                 "ID of the insight or fully qualified identifier for the insight.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -827,7 +827,7 @@ const completionSpec: Fig.Spec = {
               name: "RECOMMENDATION",
               description:
                 "ID of the recommendation or fully qualified identifier for the recommendation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1205,7 +1205,7 @@ const completionSpec: Fig.Spec = {
               name: "RECOMMENDATION",
               description:
                 "ID of the recommendation or fully qualified identifier for the recommendation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1385,7 +1385,7 @@ const completionSpec: Fig.Spec = {
               name: "RECOMMENDATION",
               description:
                 "ID of the recommendation or fully qualified identifier for the recommendation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },
@@ -1565,7 +1565,7 @@ const completionSpec: Fig.Spec = {
               name: "RECOMMENDATION",
               description:
                 "ID of the recommendation or fully qualified identifier for the recommendation.",
-              variadic: false,
+              isVariadic: false,
             },
           ],
         },

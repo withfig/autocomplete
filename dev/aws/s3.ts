@@ -171,7 +171,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       // if token is either s3:// or any substr permutation (e.g: "s", "s3", "s3:/")
       // simly return token
       if (!token.startsWith(_prefixS3) && _prefixS3.startsWith(token)) {
@@ -205,7 +205,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFileb);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       if (!token.startsWith(_prefixFileb)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
     },
@@ -308,7 +308,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixS3);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       if (!token.startsWith(_prefixS3)) return token;
       return token.slice(token.lastIndexOf("/") + 1);
     },
@@ -565,7 +565,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -840,7 +840,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {
@@ -1173,7 +1173,7 @@ const completionSpec: Fig.Spec = {
             "Grant specific permissions to individual users or groups. You can supply a list of grants of the form--grants Permission=Grantee_Type=Grantee_ID [Permission=Grantee_Type=Grantee_ID ...]To specify the same permission type for multiple grantees, specify the permission as such as --grants Permission=Grantee_Type=Grantee_ID,Grantee_Type=Grantee_ID,...Each value contains the following elements:Permission - Specifies the granted permissions, and can be set to read, readacl, writeacl, or full.Grantee_Type - Specifies how the grantee is to be identified, and can be set to uri or id.Grantee_ID - Specifies the grantee based on Grantee_Type. The Grantee_ID value can be one of:uri - The group's URI. For more information, see Who Is a Grantee?id - The account's canonical IDFor more information on Amazon S3 access control, see Access Control",
           args: {
             name: "string",
-            variadic: true,
+            isVariadic: true,
           },
         },
         {

@@ -174,7 +174,7 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFile);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFile);
     },
   },
@@ -194,13 +194,13 @@ const generators: Record<string, Fig.Generator> = {
       return triggerPrefix(newToken, oldToken, _prefixFileb);
     },
 
-    filterTerm: (token) => {
+    getQueryTerm: (token) => {
       return filterWithPrefix(token, _prefixFileb);
     },
   },
   getReplicaRegionsGenerator: {
     script: "aws kms list-keys --page-size 100",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         const list = JSON.parse(out)["Keys"];
         return list.flatMap((secret) => {
@@ -221,7 +221,7 @@ const generators: Record<string, Fig.Generator> = {
   },
   getLambdasGenerator: {
     script: "aws lambda list-functions --page-size 100",
-    postProcess: function (out, context) {
+    postProcess: function (out, tokens) {
       try {
         const list = JSON.parse(out)["Functions"];
         return list.map((item) => ({
@@ -237,14 +237,14 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
   getVersionIdGenerator: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
         // secret-id value
-        const idx = context.indexOf("--secret-id");
+        const idx = tokens.indexOf("--secret-id");
         if (idx < 0) {
           return [];
         }
-        const secretId = context[idx + 1];
+        const secretId = tokens[idx + 1];
         const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
@@ -260,14 +260,14 @@ const generators: Record<string, Fig.Generator> = {
     },
   },
   getVersionStageGenerator: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
         // secret-id value
-        const idx = context.indexOf("--secret-id");
+        const idx = tokens.indexOf("--secret-id");
         if (idx < 0) {
           return [];
         }
-        const secretId = context[idx + 1];
+        const secretId = tokens[idx + 1];
         const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
@@ -284,14 +284,14 @@ const generators: Record<string, Fig.Generator> = {
   },
 
   listTagKeys: {
-    custom: async function (context, executeShellCommand) {
+    custom: async function (tokens, executeShellCommand) {
       try {
         // secret-id value
-        const idx = context.indexOf("--secret-id");
+        const idx = tokens.indexOf("--secret-id");
         if (idx < 0) {
           return [];
         }
-        const secretId = context[idx + 1];
+        const secretId = tokens[idx + 1];
         const out = await executeShellCommand(
           `aws secretsmanager describe-secret --secret-id ${secretId}`
         );
@@ -413,7 +413,7 @@ const completionSpec: Fig.Spec = {
             '(Optional) Specifies a list of user-defined tags that are attached to the secret. Each tag is a "Key" and "Value" pair of strings. This operation only appends tags to the existing list of tags. To remove tags, you must use UntagResource.    Secrets Manager tag key names are case sensitive. A tag with the key "ABC" is a different tag from one with key "abc".   If you check tags in IAM policy Condition elements as part of your security strategy, then adding or removing a tag can change permissions. If the successful completion of this operation would result in you losing your permissions for this secret, then this operation is blocked and returns an Access Denied error.    This parameter requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide. For example:  [{"Key":"CostCenter","Value":"12345"},{"Key":"environment","Value":"production"}]  If your command-line tool or SDK requires quotation marks around the parameter, you should use single quotes to avoid confusion with the double quotes required in the JSON text.  The following basic restrictions apply to tags:   Maximum number of tags per secret\u201450   Maximum key length\u2014127 Unicode characters in UTF-8   Maximum value length\u2014255 Unicode characters in UTF-8   Tag keys and values are case sensitive.   Do not use the aws: prefix in your tag names or values because AWS reserves it for AWS use. You can\'t edit or delete tag names or values with this prefix. Tags with this prefix do not count against your tags per secret limit.   If you use your tagging schema across multiple services and resources, remember other services might have restrictions on allowed characters. Generally allowed characters: letters, spaces, and numbers representable in UTF-8, plus the following special characters: + - = . _ : / @.',
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -423,7 +423,7 @@ const completionSpec: Fig.Spec = {
             "(Optional) Add a list of regions to replicate secrets. Secrets Manager replicates the KMSKeyID objects to the list of regions specified in the parameter.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.getReplicaRegionsGenerator,
           },
         },
@@ -859,7 +859,7 @@ const completionSpec: Fig.Spec = {
           description: "Lists the secret request filters.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=string,Value=string",
           },
         },
@@ -1056,7 +1056,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove replication from specific Regions.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             suggestions: awsRegions,
           },
         },
@@ -1099,7 +1099,7 @@ const completionSpec: Fig.Spec = {
           description: "Add Regions to replicate the secret.",
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             generators: generators.getReplicaRegionsGenerator,
           },
         },
@@ -1285,7 +1285,7 @@ const completionSpec: Fig.Spec = {
             'The tags to attach to the secret. Each element in the list consists of a Key and a Value. This parameter to the API requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide. For the AWS CLI, you can also use the syntax: --Tags Key="Key1",Value="Value1" Key="Key2",Value="Value2"[,\u2026]',
           args: {
             name: "list",
-            variadic: true,
+            isVariadic: true,
             description: "Key=Key1,Value=Value1",
           },
         },

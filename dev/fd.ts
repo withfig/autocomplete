@@ -145,7 +145,7 @@ const completionSpec: Fig.Spec = {
       description: "The root directories for the filesystem search",
       template: ["folders"],
       isOptional: true,
-      variadic: true,
+      isVariadic: true,
     },
   ],
 };
