@@ -1,26 +1,32 @@
 const testList: Fig.Generator = {
-  script: "cargo t -- --list",
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .filter((l) => /: test/.test(l))
-      .map((l) => {
-        const name = l.replace(/: test/, "");
-        const hierarchy = name.split("::");
-        const displayName = hierarchy[hierarchy.length - 1];
-
-        return { name, displayName };
-      });
+  script: function (context) {
+    const base = context[context.length - 1];
+    const l = Math.max(base.split(/::?/).length, 1);
+    const hardSplit = base.split("::");
+    const last = hardSplit[hardSplit.length - 1];
+    const c = last[last.length - 1] == ":" ? ":" : "";
+    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${c}"$${l},int( NF / ${l} ) }'`;
   },
+  postProcess: function (out) {
+    return [...new Set(out.split("\n"))].map((line) => {
+      const [displayName, last] = line.split(" ");
+      const name = `${displayName}${+last ? "" : "::"}`;
+      return { name, displayName: displayName.replaceAll(":", "") };
+    });
+  },
+  trigger: ":",
+  getQueryTerm: ":",
 };
 
 const completionSpec: Fig.Spec = {
   name: "cargo",
+  icon: "📦",
   description: "CLI Interface for Cargo",
   subcommands: [
     {
       name: ["build", "b"],
       description: "compile local package and dependencies",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -52,6 +58,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["run", "r"],
       description: "Run a binary or example of the local package",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -66,6 +73,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "init",
       description: "creates new cargo pkg in directory",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -87,6 +95,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["test", "t"],
       description: "run tests",
+      icon: "📦",
       args: {
         name: "test name",
         generators: testList,
