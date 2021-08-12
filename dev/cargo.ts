@@ -1,17 +1,22 @@
 const testList: Fig.Generator = {
   script: function (context) {
     const base = context[context.length - 1];
-    const l = Math.max(base.split(/::?/).length, 1);
-    const hardSplit = base.split("::");
-    const last = hardSplit[hardSplit.length - 1];
-    const c = last[last.length - 1] == ":" ? ":" : "";
-    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${c}"$${l},int( NF / ${l} ) }'`;
+    // allow split by single colon so that it triggers on a::b:
+    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+    // split by :: so that tokens with a single colon are allowed
+    const moduleTokens = base.split("::");
+    const lastModule = moduleTokens.pop();
+    // check if the token has a : on the end
+    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
   },
   postProcess: function (out) {
     return [...new Set(out.split("\n"))].map((line) => {
-      const [displayName, last] = line.split(" ");
-      const name = `${displayName}${+last ? "" : "::"}`;
-      return { name, displayName: displayName.replaceAll(":", "") };
+      const [display, last] = line.split(" ");
+      const lastModule = parseInt(last);
+      const displayName = display.replaceAll(":", "");
+      const name = `${display}${lastModule ? "" : "::"}`;
+      return { name, displayName };
     });
   },
   trigger: ":",
