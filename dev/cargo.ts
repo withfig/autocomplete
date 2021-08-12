@@ -15,7 +15,9 @@ const testList: Fig.Generator = {
       const [display, last] = line.split(" ");
       const lastModule = parseInt(last);
       const displayName = display.replaceAll(":", "");
-      const name = `${display}${lastModule ? "" : "::"}`;
+      const name = displayName.length
+        ? `${display}${lastModule ? "" : "::"}`
+        : "";
       return { name, displayName };
     });
   },
