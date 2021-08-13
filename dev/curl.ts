@@ -42,6 +42,7 @@ const completionSpec: Fig.Spec = {
       description: "HTTP POST data",
       insertValue: "-d '{cursor}'",
       args: { name: "data" },
+      isRepeatable: true,
     },
     { name: ["-q", "--disable"], description: "Disable .curlrc" },
     {
@@ -57,6 +58,7 @@ const completionSpec: Fig.Spec = {
       name: ["-F", "--form"],
       description: "Specify multipart MIME data",
       args: { name: "content" },
+      isRepeatable: true,
     },
     {
       name: ["-P", "--ftp-port"],
