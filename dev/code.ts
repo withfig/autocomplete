@@ -245,6 +245,7 @@ const completionSpec: Fig.Spec = {
   description: "Visual Studio Code",
   args: {
     template: ["filepaths", "folders"],
+    isVariadic: true,
   },
   options: [
     ...commonOptions,
