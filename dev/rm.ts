@@ -13,7 +13,7 @@ const completionSpec: Fig.Spec = {
       name: ["-r", "-R"],
       description:
         "Recursive. Attempt to remove the file hierarchy rooted in each file argument.",
-        isDangerous: true,
+      isDangerous: true,
     },
     {
       name: "-P",
@@ -29,7 +29,7 @@ const completionSpec: Fig.Spec = {
       name: "-f",
       description:
         "⚠️ Attempt to remove the files without prompting for confirmation",
-        isDangerous: true,
+      isDangerous: true,
     },
     {
       name: "-i",
