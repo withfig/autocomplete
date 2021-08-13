@@ -13,39 +13,32 @@ const completionSpec: Fig.Spec = {
     {
       description: "Show this help message and exit.",
       name: ["-h", "--help"],
-      isOptional: true,
     },
     {
       description: "Show program's version number and exit.",
       name: ["-v", "--version"],
-      isOptional: true,
     },
     {
       description: "Wait for opened file to be closed.",
       name: ["-w", "--wait"],
-      isOptional: true,
     },
     {
       description: "Do not bring the application to the foreground.",
       name: ["-g", "--background"],
-      isOptional: true,
     },
     {
       description: "Create a new blank document.",
       name: ["-n", "--new"],
-      isOptional: true,
     },
     {
       description: "Jump to specific line in opened document.",
       name: ["-l", "--line"],
       insertValue: "--line '{cursor}'",
-      isOptional: true,
     },
     {
       description: "Jump to specific column in opened document.",
       name: ["-c", "--column"],
       insertValue: "--column '{cursor}'",
-      isOptional: true,
     },
   ],
 };
