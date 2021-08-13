@@ -18,6 +18,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-P",
       description: "Overwrite regular files before deleting them.",
+      isDangerous: true,
     },
     {
       name: "-d",
