@@ -1,1 +1,1 @@
-export { default as Hub } from "./git";
+export { default } from "./git";

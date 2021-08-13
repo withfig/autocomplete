@@ -349,7 +349,7 @@ const sharedOptions: Fig.Option[] = [
   },
 ];
 
-export const completion: Fig.Spec = {
+const completionSpec: Fig.Spec = {
   name: "gradle",
   description:
     "Gradle is an open-source build automation tool that is designed to be flexible enough to build almost any type of software",
@@ -534,3 +534,5 @@ export const completion: Fig.Spec = {
     isOptional: true,
   },
 };
+
+export default completionSpec;
