@@ -11,7 +11,7 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      description: "Show this help message and exit.",
+      description: "Show help message and exit.",
       name: ["-h", "--help"],
     },
     {
