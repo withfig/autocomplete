@@ -4,7 +4,7 @@ CotEditor is great I hope you use this!
 */
 const completionSpec: Fig.Spec = {
   name: "cot",
-  icon: "https://coteditor.com/img/appicon/512@2x.png",
+  icon: "view-source:https://coteditor.com/favicon@2x.png",
   description: "Command-line utility for CotEditor.",
   args: {
     template: "filepaths",
