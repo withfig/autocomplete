@@ -9,6 +9,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--crop", "-c"],
       description: "Crop to the set height",
+      exclusiveOn: ["--no-crop"],
     },
     {
       name: ["--delay", "-d"],
@@ -47,6 +48,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-crop",
       description: "Override a global crop option within a group",
+      exclusiveOn: ["--crop", "-c"],
     },
     {
       name: "--css",
@@ -54,6 +56,7 @@ const completionSpec: Fig.Spec = {
         "Apply custom CSS to the webpage. Specify some CSS or the path to a CSS file",
       args: {
         name: "string",
+        template: "filepaths",
       },
     },
     {
