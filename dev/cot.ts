@@ -38,7 +38,9 @@ const completionSpec: Fig.Spec = {
     {
       description: "Jump to specific column in opened document.",
       name: ["-c", "--column"],
-      insertValue: "--column '{cursor}'",
+      args: {
+        name: "column",
+      },
     },
   ],
 };
