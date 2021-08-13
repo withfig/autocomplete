@@ -56,8 +56,24 @@ const disableForCommandsGenerator: Fig.Generator = {
 
 const themesGenerator: Fig.Generator = {
   script: "ls -1 ~/.fig/themes",
-  postProcess: (output) =>
-    output.split("\n").map((theme) => ({ name: theme.replace(".json", "") })),
+  postProcess: (output) => {
+    const builtinThemes = [
+      {
+        name: "light",
+        icon: "fig://template?color=ffffff&badge=☀️",
+        priority: 51,
+      },
+      {
+        name: "dark",
+        icon: "fig://template?color=000000&badge=🌙",
+        priority: 51,
+      },
+    ];
+    return output
+      .split("\n")
+      .map((theme) => ({ name: theme.replace(".json", "") }))
+      .concat(builtinThemes);
+  },
 };
 
 const SETTINGS_GENERATOR: Record<string, Fig.Generator> = {
@@ -79,7 +95,7 @@ const completionSpec: Fig.Spec = {
       name: "theme",
       description: "Set the Theme of fig",
       args: {
-        name: "Theme Name",
+        name: "theme",
         generators: themesGenerator,
       },
     },
