@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
                 args: {
                   name: type,
                   default: defaultValue,
-                  suggestions: generators !== undefined ? [] : suggestions,
+                  suggestions: generators ? [] : suggestions,
                   generators,
                 },
               };
