@@ -234,6 +234,41 @@ declare namespace Fig {
     isRequired?: boolean;
     /**
      *
+     * Signals whether an option can be passed multiple times. The default is an
+     * option is NOT repeatable, meaning after you pass it, it will not be
+     * suggested again.
+     *
+     * Passing `isRepeatable: true` will allow an option to be passed any number
+     * of times, while passing `isRepeatable: 2` will allow it to be passed
+     * twice, etc. Passing `isRepeatable: false` is the same as passing
+     * `isRepeatable: 1`.
+     *
+     * If you explicitly specify the isRepeatable option in a spec, this
+     * constraint will be enforced at the parser level, meaning after the option
+     * (say `-o`) has been passed the maximum number of times, Fig's parser will
+     * not recognize `-o` as an option if the user types it again.
+     *
+     * @example
+     * In `npm install` doesn't specify `isRepeatable` for `{ name: ["-D", "--save-dev"] }`.
+     * When the user types `npm install -D`, Fig will no longer suggest `-D`.
+     * If the user types `npm install -D -D`. Fig will still parse the second
+     * `-D` as an option.
+     *
+     * Suppose `npm install` explicitly specified `{ name: ["-D", "--save-dev"], isRepeatable: false }`.
+     * Now if the user types `npm install -D -D`, Fig will instead parse the second
+     * `-D` as the argument to the `install` subcommand instead of as an option.
+     *
+     * @example
+     * SSH has `{ name: "-v", isRepeatable: 3 }`. When the user types `ssh -vv`, Fig
+     * will still suggest `-v`, when the user types `ssh -vvv` Fig will stop
+     * suggesting `-v` as an option. Finally if the user types `ssh -vvvv` Fig's
+     * parser will recognize that this is not a valid string of chained options
+     * and will treat this as an argument to `ssh`.
+     *
+     */
+    isRepeatable?: boolean | number;
+    /**
+     *
      * Signals whether an option is mutually exclusive with other options. Define this as an array of strings of the option names.
      * The default is an option is NOT mutually exclusive with any other options.
      * Options that are mutually exclusive with flags the user has already passed will not be shown in the suggestions list.
