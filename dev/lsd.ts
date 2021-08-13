@@ -82,7 +82,7 @@ const completionSpec: Fig.Spec = {
       description: "Sort by file extension"
     },
     {
-      name: "--extensionsort",
+      name: "--help",
       description: "Prints help information"
     },
     {
