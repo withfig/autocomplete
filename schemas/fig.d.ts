@@ -165,7 +165,7 @@ declare namespace Fig {
      *
      * If your CLI tool takes another CLI command (e.g. time , builtin) or a script
      * (e.g. python, node) and you would like Fig to continue to provide completions for this
-     * script, see `isCommand` and `isScript` in @link https://fig.io/docs/reference/arg | Args}.
+     * script, see `isCommand` and `isScript` in @link https://fig.io/docs/reference/arg | Arg}.
      */
     loadSpec?: string;
     /**
@@ -193,7 +193,7 @@ declare namespace Fig {
      *
      *
      * @example
-     * `-aux` is parsed as a single flag when `flagsArePosixNoncompliant: true`. Normally, this would be chained and parsed as `-a -u -x` if `flagsArePosixNoncompliant` is not set to true.
+     * `-work` from the go spec is parsed as a single flag when `parserDirectives.flagsArePosixNoncompliant` is set to true. Normally, this would be chained and parsed as `-w -o -r -k` if `flagsArePosixNoncompliant` is not set to true.
      */
     parserDirectives?: {
       flagsArePosixNoncompliant?: boolean;
@@ -226,7 +226,7 @@ declare namespace Fig {
      * Signalling that an option is required currently doesn't do anything. However, Fig will handle it in the future.
      *
      * @example
-     * The `"-m"` option of git commit is required
+     * The `-m` option of git commit is required
      *
      */
     isRequired?: boolean;
@@ -244,7 +244,7 @@ declare namespace Fig {
     exclusiveOn?: string[];
     /**
      *
-     * Signals whether an option depends other options. This is definedas an array of strings of the option names.
+     * Signals whether an option depends other options. This is defined as an array of strings of the option names.
      * The default behavior is that an option does NOT depend on any other options.
      * If the user has an unmet dependency for a flag they've already typed, this dependency will have boosted priority in the suggestion list.
      *
@@ -330,14 +330,14 @@ declare namespace Fig {
      */
     isCommand?: boolean;
     /**
-     * The same as the `isCommand` prop, except, you specify a string to prepend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the `~/.fig/autocomplete` folder.
+     * The same as the `isCommand` prop, except you specify a string to prepend to what the user inputs and fig will load the completion spec accordingly. if isModule: "python/", Fig would load up the python/USER_INPUT.js completion spec from the `~/.fig/autocomplete` folder.
      *
      * @example
      * For `python -m`, the user can input a specific module such as http.server. Each module is effectively a mini CLI tool that should have its own completions. Therefore the argument object for -m has `isModule: "python/"`. Whatever the modules user inputs, Fig will look under the `~/.fig/autocomplete/python/` directory for completion spec.
      */
     isModule?: string;
     /**
-     * The same as the `isCommand` prop ,except Fig will look for a completion spec in a .fig folder in the user's current working directory.
+     * The same as the `isCommand` prop, except Fig will look for a completion spec in a .fig folder in the user's current working directory.
      *
      * @example
      * `python` take one argument which is a `.py` file. If I have a `main.py` file on my desktop and my current working directory is my desktop, if I type `python main.py` Fig will look for a completion spec in `~/Desktop/.fig/main.py.js`
@@ -349,7 +349,7 @@ declare namespace Fig {
      * This will debounce every keystroke event for this particular arg. If there are no keystroke events after 100ms, Fig will execute all the generators in this arg and return the suggestions.
      *
      * @example
-     * Npm install and pip install send debounced network requests after inactive typing from users.
+     * `npm install` and `pip install` send debounced network requests after inactive typing from users.
      */
     debounce?: boolean;
     /**
@@ -382,7 +382,7 @@ declare namespace Fig {
      * In order to generate contextual suggestions for arguments, Fig lets you execute a shell command on the users local device as if it were done in their current working directory.
      * You can either specify
      * 1. a string to be executed (like `ls` or `git branch`)
-     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a kubernetes token etc)
+     * 2. a function to generate the string to be executed. The function takes in an array of tokens of the user input and should output a string. You use a function when the script you run is dependent upon one of the tokens the user has already input (for instance an app name, a Kubernetes token etc.)
      * After executing the script, the output will be passed to one of `splitOn` or `postProcess` for further processing to produce suggestion objects.
      *
      * @example
