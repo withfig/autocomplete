@@ -49,7 +49,7 @@ declare namespace Fig {
      * The default is the name prop.
      *
      * @example
-     * For `git commit` subcommand, the `-m` option has an insert value of `-m '{cursor}'`
+     * For the `git commit` subcommand, the `-m` option has an insert value of `-m '{cursor}'`
      */
     insertValue?: string;
     /**
