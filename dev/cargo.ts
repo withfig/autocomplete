@@ -1,20 +1,39 @@
 const testList: Fig.Generator = {
-  script: "cargo t -- --list",
-  postProcess: function (out) {
-    return out
-      .split("\n")
-      .filter((l) => /: test/.test(l))
-      .map((name) => ({ name }));
+  script: function (context) {
+    const base = context[context.length - 1];
+    // allow split by single colon so that it triggers on a::b:
+    const indexIntoModPath = Math.max(base.split(/::?/).length, 1);
+    // split by :: so that tokens with a single colon are allowed
+    const moduleTokens = base.split("::");
+    const lastModule = moduleTokens.pop();
+    // check if the token has a : on the end
+    const hasColon = lastModule[lastModule.length - 1] == ":" ? ":" : "";
+    return `cargo t -- --list | awk '/: test$/ { print substr($1, 1, length($1) - 1) }' | awk -F "::" '{ print "${hasColon}"$${indexIntoModPath},int( NF / ${indexIntoModPath} ) }'`;
   },
+  postProcess: function (out) {
+    return [...new Set(out.split("\n"))].map((line) => {
+      const [display, last] = line.split(" ");
+      const lastModule = parseInt(last);
+      const displayName = display.replaceAll(":", "");
+      const name = displayName.length
+        ? `${display}${lastModule ? "" : "::"}`
+        : "";
+      return { name, displayName };
+    });
+  },
+  trigger: ":",
+  getQueryTerm: ":",
 };
 
 const completionSpec: Fig.Spec = {
   name: "cargo",
+  icon: "📦",
   description: "CLI Interface for Cargo",
   subcommands: [
     {
       name: ["build", "b"],
       description: "compile local package and dependencies",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -46,6 +65,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["run", "r"],
       description: "Run a binary or example of the local package",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -60,6 +80,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "init",
       description: "creates new cargo pkg in directory",
+      icon: "📦",
       options: [
         {
           name: ["-h", "--help"],
@@ -81,6 +102,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["test", "t"],
       description: "run tests",
+      icon: "📦",
       args: {
         name: "test name",
         generators: testList,
