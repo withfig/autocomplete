@@ -1,4 +1,4 @@
-// Made by Yavko 🥺
+// Author: Yavko
 const completionSpec: Fig.Spec = {
   name: "cot",
   icon: "https://coteditor.com/favicon@2x.png",
