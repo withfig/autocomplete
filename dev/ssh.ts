@@ -332,6 +332,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-t"],
       description: "Force pseudo-tty allocation.",
+      isRepeatable: true,
     },
     {
       name: ["-V"],
@@ -341,6 +342,7 @@ const completionSpec: Fig.Spec = {
       name: ["-v"],
       description:
         "Verbose mode.  Causes ssh to print debugging messages about its progress.",
+      isRepeatable: 3,
     },
     {
       name: ["-W"],
