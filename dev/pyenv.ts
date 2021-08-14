@@ -1,15 +1,10 @@
 const versionList: Fig.Generator = {
   script: "pyenv install -l",
   postProcess: function (out) {
-    const lines = out.split("\n");
-    const versionList = [];
-    for (let i = 1; i < lines.length; i++) {
-      versionList.push({
-        name: lines[i],
-        icon: "🐍",
-      });
-    }
-    return versionList;
+    return out
+      .split("\n")
+      .slice(1)
+      .map((name) => ({ name, icon: "🐍" }));
   },
 };
 
