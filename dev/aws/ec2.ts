@@ -29080,6 +29080,7 @@ const completionSpec: Fig.Spec = {
           name: "--secondary-private-ip-addresses",
           description:
             "[EC2-VPC] A secondary private IP address for the network interface or instance. You can specify this multiple times to assign multiple secondary IP addresses.  If you want additional private IP addresses but do not need a specific address, use the --secondary-private-ip-address-count option.",
+          isRepeatable: true,
           args: {
             name: "string",
           },
@@ -29853,6 +29854,7 @@ const completionSpec: Fig.Spec = {
           name: "--private-ip-addresses",
           description:
             "The secondary private IP addresses to unassign from the network interface. You can specify this option multiple times to unassign more than one IP address.",
+          isRepeatable: true,
           args: {
             name: "list",
           },

@@ -408,6 +408,7 @@ const completionSpec: Fig.Spec = {
       name: ["-s", "--silent"],
       description:
         "Silent mode.  Produce less output. This option can be given multiple times to produce less and less output.",
+      isRepeatable: true,
     },
     {
       name: ["--skip-auto-rehash"],

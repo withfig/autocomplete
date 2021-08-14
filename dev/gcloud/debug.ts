@@ -288,6 +288,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against logpoint\nlocations. All logpoints matching this value will be\ndeleted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -485,6 +486,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against logpoint\nlocations. All logpoints matching this value will be\nlisted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -767,6 +769,7 @@ const completionSpec: Fig.Spec = {
               name: "--expression",
               description:
                 "An expression to evaluate when the snapshot is taken. You may\nspecify --expression multiple times.",
+              isRepeatable: true,
               args: {
                 name: "EXPRESSION",
                 description: "string",
@@ -993,6 +996,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndeleted.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1155,6 +1159,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndisplayed.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1352,6 +1357,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. All snapshots matching this value will be\ndisplayed.  You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n      --location foo.py:[1-3] --location bar.py:4",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",
@@ -1554,6 +1560,7 @@ const completionSpec: Fig.Spec = {
               name: "--location",
               description:
                 "A regular expression to match against snapshot\nlocations. The command will wait for any snapshots matching these\ncriteria to complete. You may specify --location multiple times.\n+\nEXAMPLE:\n+\n  {command} \\\n    --location foo.py:[1-3] --location bar.py:3",
+              isRepeatable: true,
               args: {
                 name: "LOCATION-REGEXP",
                 description: "string",

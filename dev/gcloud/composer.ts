@@ -3834,6 +3834,7 @@ const completionSpec: Fig.Spec = {
               name: "--update-pypi-package",
               description:
                 "A PyPI package to add to the environment. If a package exists, its\nvalue is updated; otherwise, a new package is installed.\n+\nThe value takes the form of: `PACKAGE[EXTRAS_LIST]VERSION_SPECIFIER`,\nas one would specify in a pip requirements file.\n+\nPACKAGE is specified as a package name, such as `numpy.` EXTRAS_LIST is\na comma-delimited list of PEP 508 distribution extras that may be\nempty, in which case the enclosing square brackets may be omitted.\nVERSION_SPECIFIER is an optional PEP 440 version specifier. If both\nEXTRAS_LIST and VERSION_SPECIFIER are omitted, the `=` and\neverything to the right may be left empty.\n+\nThis is a repeated argument that can be specified multiple times to\nupdate multiple packages. If PACKAGE appears more than once, the last\nvalue will be used.",
+              isRepeatable: true,
               args: {
                 name: "PACKAGE[EXTRAS_LIST]VERSION_SPECIFIER",
                 description: "string",

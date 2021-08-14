@@ -158,6 +158,7 @@ const remove_options: Fig.Option[] = [
     name: ["-v", "--verbose"],
     description:
       "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+    isRepeatable: true,
   },
   { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
 ];
@@ -273,6 +274,7 @@ const update_options: Fig.Option[] = [
     name: ["-v", "--verbose"],
     description:
       "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+    isRepeatable: true,
   },
   { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
   {
@@ -366,6 +368,7 @@ const completionSpec: Fig.Spec = {
           name: ["-v", "--verbose"],
           description:
             "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+          isRepeatable: true,
         },
         {
           name: ["-y", "--yes"],
@@ -658,6 +661,7 @@ const completionSpec: Fig.Spec = {
           name: ["-v, --verbose"],
           description:
             "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+          isRepeatable: true,
         },
         { name: ["-y, --yes"], description: "Do not ask for confirmation." },
         {
@@ -852,6 +856,7 @@ const completionSpec: Fig.Spec = {
           name: ["-v", "--verbose"],
           description:
             "Can be used multiple times. Once for INFO, twice for DEBUG, three times for TRACE.",
+          isRepeatable: true,
         },
         { name: ["-y", "--yes"], description: "Do not ask for confirmation." },
         {

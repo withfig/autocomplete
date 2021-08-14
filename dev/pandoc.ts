@@ -709,6 +709,7 @@ const completionSpec: Fig.Spec = {
       name: "--bibliography",
       description:
         "Set the bibliography field in the document’s metadata to FILE, overriding any value set in the metadata. If you supply this argument multiple times, each FILE will be added to bibliography. If FILE is a URL, it will be fetched via HTTP. If FILE is not found relative to the working directory, it will be sought in the resource path",
+      isRepeatable: true,
       args: {
         name: "file",
         template: "filepaths",
