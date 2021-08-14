@@ -21,12 +21,12 @@ const completionSpec = {
           },
         },
       ],
-      args: [],
+      description:
+        "Build web assets and prepare your app for any platform targets",
     },
     {
       name: "completion",
-      options: [],
-      args: [],
+      description: "Enables tab-completion for Ionic CLI commands.",
     },
     {
       name: "docs",
@@ -40,7 +40,7 @@ const completionSpec = {
           },
         },
       ],
-      args: [],
+      description: "Open the Ionic documentation website",
     },
     {
       name: "info",
@@ -50,7 +50,7 @@ const completionSpec = {
           description: "Print system/environment info in JSON format",
         },
       ],
-      args: [],
+      description: "Print project, system, and environment information",
     },
     {
       name: "init",
@@ -89,10 +89,10 @@ const completionSpec = {
           isOptional: true,
         },
       ],
+      description: "Initialize existing projects with Ionic",
     },
     {
       name: "link",
-      options: [],
       args: [
         {
           name: "id",
@@ -100,10 +100,10 @@ const completionSpec = {
           isOptional: true,
         },
       ],
+      description: "Connect local apps to Ionic",
     },
     {
       name: "login",
-      options: [],
       args: [
         {
           name: "email",
@@ -116,11 +116,11 @@ const completionSpec = {
           isOptional: true,
         },
       ],
+      description: "Log in to Ionic",
     },
     {
       name: "logout",
-      options: [],
-      args: [],
+      description: "Log out of Ionic",
     },
     {
       name: "repair",
@@ -131,7 +131,7 @@ const completionSpec = {
             "Only perform the repair steps for Cordova platforms and plugins.",
         },
       ],
-      args: [],
+      description: "Remove and recreate dependencies and generated files",
     },
     {
       name: "serve",
@@ -205,12 +205,11 @@ const completionSpec = {
             "Test your apps on multiple platform types in the browser",
         },
       ],
-      args: [],
+      description: "Start a local dev server for app dev/testing",
     },
     {
       name: "signup",
-      options: [],
-      args: [],
+      description: "Create an Ionic account",
     },
     {
       name: "start",
@@ -284,6 +283,7 @@ const completionSpec = {
           isOptional: false,
         },
       ],
+      description: "Create a new project",
     },
     {
       name: "config",
@@ -311,6 +311,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Print config values",
         },
         {
           name: "set",
@@ -344,6 +345,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Set config values",
         },
         {
           name: "unset",
@@ -364,6 +366,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Delete config values",
         },
       ],
     },
@@ -372,7 +375,6 @@ const completionSpec = {
       subcommands: [
         {
           name: "add",
-          options: [],
           args: [
             {
               name: "platform",
@@ -380,6 +382,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Add a native platform to your Ionic project",
         },
         {
           name: "build",
@@ -400,6 +403,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Build an Ionic project for a given platform",
         },
         {
           name: "copy",
@@ -416,10 +420,10 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Copy web assets to native platforms",
         },
         {
           name: "open",
-          options: [],
           args: [
             {
               name: "platform",
@@ -427,6 +431,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Open the IDE for a given native platform project",
         },
         {
           name: "run",
@@ -496,6 +501,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Run an Ionic project on a connected device",
         },
         {
           name: "sync",
@@ -512,10 +518,10 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Sync (copy + update) an Ionic project",
         },
         {
           name: "update",
-          options: [],
           args: [
             {
               name: "platform",
@@ -523,6 +529,8 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description:
+            "Update Capacitor native platforms, install Capacitor/Cordova plugins",
         },
       ],
     },
@@ -571,7 +579,7 @@ const completionSpec = {
               },
             },
           ],
-          args: [],
+          description: "Adds Appflow Deploy to the project",
         },
         {
           name: "build",
@@ -605,7 +613,7 @@ const completionSpec = {
                 "Skip downloading build artifacts after command succeeds.",
             },
           ],
-          args: [],
+          description: "Create a deploy build on Appflow",
         },
         {
           name: "configure",
@@ -656,11 +664,12 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Overrides Appflow Deploy configuration",
         },
         {
           name: "manifest",
-          options: [],
-          args: [],
+          description:
+            "Generates a manifest file for the deploy service from a built app directory",
         },
       ],
     },
@@ -669,8 +678,8 @@ const completionSpec = {
       subcommands: [
         {
           name: "remote",
-          options: [],
-          args: [],
+          description:
+            "Adds/updates the Appflow git remote to your local Ionic app",
         },
       ],
     },
@@ -787,10 +796,10 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Create a package build on Appflow",
         },
         {
           name: "deploy",
-          options: [],
           args: [
             {
               name: "build-id",
@@ -805,6 +814,8 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description:
+            "Deploys a binary to a destination, such as an app store using Appflow",
         },
       ],
     },
@@ -872,7 +883,7 @@ const completionSpec = {
               },
             },
           ],
-          args: [],
+          description: "Generates an SSL key & certificate",
         },
       ],
     },
@@ -895,10 +906,10 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Add an SSH public key to Ionic",
         },
         {
           name: "delete",
-          options: [],
           args: [
             {
               name: "key-id",
@@ -906,6 +917,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Delete an SSH public key from Ionic",
         },
         {
           name: "generate",
@@ -940,6 +952,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Generates a private and public SSH key pair",
         },
         {
           name: "list",
@@ -949,16 +962,14 @@ const completionSpec = {
               description: "Output SSH keys in JSON",
             },
           ],
-          args: [],
+          description: "List your SSH public keys on Ionic",
         },
         {
           name: "setup",
-          options: [],
-          args: [],
+          description: "Setup your Ionic SSH keys automatically",
         },
         {
           name: "use",
-          options: [],
           args: [
             {
               name: "key-path",
@@ -966,6 +977,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Set your active Ionic SSH key",
         },
       ],
     },
@@ -974,7 +986,6 @@ const completionSpec = {
       subcommands: [
         {
           name: "check",
-          options: [],
           args: [
             {
               name: "id",
@@ -982,15 +993,14 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Check the health of your Ionic project",
         },
         {
           name: "list",
-          options: [],
-          args: [],
+          description: "List all issues and their identifiers",
         },
         {
           name: "treat",
-          options: [],
           args: [
             {
               name: "id",
@@ -998,6 +1008,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Attempt to fix issues in your Ionic project",
         },
       ],
     },
@@ -1006,7 +1017,6 @@ const completionSpec = {
       subcommands: [
         {
           name: "disable",
-          options: [],
           args: [
             {
               name: "name",
@@ -1015,6 +1025,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Disable an integration",
         },
         {
           name: "enable",
@@ -1044,11 +1055,11 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Add & enable integrations to your app",
         },
         {
           name: "list",
-          options: [],
-          args: [],
+          description: "List available and active integrations in your app",
         },
       ],
     },
@@ -1073,7 +1084,7 @@ const completionSpec = {
               },
             },
           ],
-          args: [],
+          description: "Register your Product Key with this app",
         },
       ],
     },
@@ -1118,6 +1129,8 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description:
+            "Use Cordova to build for Android and iOS platform targets",
         },
         {
           name: "compile",
@@ -1153,6 +1166,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Compile native platform code",
         },
         {
           name: "emulate",
@@ -1253,6 +1267,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Emulate an Ionic project on a simulator/emulator",
         },
         {
           name: "platform",
@@ -1277,6 +1292,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Manage Cordova platform targets",
         },
         {
           name: "plugin",
@@ -1308,6 +1324,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Manage Cordova plugins",
         },
         {
           name: "prepare",
@@ -1325,10 +1342,11 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description:
+            "Copies assets to Cordova platforms, preparing them for native builds",
         },
         {
           name: "requirements",
-          options: [],
           args: [
             {
               name: "platform",
@@ -1337,6 +1355,8 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description:
+            "Checks and print out all the requirements for platforms",
         },
         {
           name: "resources",
@@ -1358,6 +1378,7 @@ const completionSpec = {
               isOptional: true,
             },
           ],
+          description: "Automatically create icon and splash screen resources",
         },
         {
           name: "run",
@@ -1458,6 +1479,7 @@ const completionSpec = {
               isOptional: false,
             },
           ],
+          description: "Run an Ionic project on a connected device",
         },
       ],
     },
