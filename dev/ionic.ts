@@ -347,6 +347,7 @@ const completionSpec = {
     },
     {
       name: "config",
+      description: "Config commands for Ionic",
       subcommands: [
         {
           name: "get",
@@ -432,6 +433,7 @@ const completionSpec = {
     },
     {
       name: "capacitor",
+      description: "Capacitor commands Ionic",
       subcommands: [
         {
           name: "add",
@@ -668,6 +670,7 @@ const completionSpec = {
     },
     {
       name: "deploy",
+      description: "AppFlow deploy commands for Ionic",
       subcommands: [
         {
           name: "add",
@@ -809,6 +812,7 @@ const completionSpec = {
     },
     {
       name: "git",
+      description: "Git commands for Ionic",
       subcommands: [
         {
           name: "remote",
@@ -819,6 +823,7 @@ const completionSpec = {
     },
     {
       name: "package",
+      description: "Package commands for Ionic",
       subcommands: [
         {
           name: "build",
@@ -970,6 +975,7 @@ const completionSpec = {
     },
     {
       name: "ssl",
+      description: "SSL commands for Ionic",
       subcommands: [
         {
           name: "generate",
@@ -1046,6 +1052,7 @@ const completionSpec = {
     },
     {
       name: "ssh",
+      description: "SSH commands for Ionic",
       subcommands: [
         {
           name: "add",
@@ -1143,6 +1150,7 @@ const completionSpec = {
     },
     {
       name: "doctor",
+      description: "Doctor commands for Ionic",
       subcommands: [
         {
           name: "check",
@@ -1174,6 +1182,7 @@ const completionSpec = {
     },
     {
       name: "integrations",
+      description: "Integration commands for Ionic",
       subcommands: [
         {
           name: "disable",
@@ -1227,6 +1236,7 @@ const completionSpec = {
     },
     {
       name: "enterprise",
+      description: "Enterprise commands for Ionic",
       subcommands: [
         {
           name: "register",
@@ -1252,6 +1262,7 @@ const completionSpec = {
     },
     {
       name: "cordova",
+      description: "Cordova commands for Ionic",
       subcommands: [
         {
           name: "build",
