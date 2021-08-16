@@ -261,6 +261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "num",
           default: "2",
+          isOptional: true,
         },
       ],
     },
