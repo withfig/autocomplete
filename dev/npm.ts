@@ -136,9 +136,11 @@ const completionSpec: Fig.Spec = {
 
                 if (scripts) {
                   const keys = Object.keys(scripts).map((key) => {
+                    var val = scripts[key] || "";
                     return Object.assign(
                       {},
                       { icon: "fig://icon?type=npm" },
+                      { description: typeof val === "string" ? val : "" },
                       (figCompletions || {})[key], // need the || {} otherwise it errors
                       { name: key, insertValue: key }
                     ); // ensure that name and insertValue are defined by "scripts" dict
