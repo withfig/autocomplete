@@ -119,26 +119,6 @@ const getGlobalPackagesGenerator: Fig.Generator = {
   },
 };
 
-// generate workspace argument completion
-const scriptList: Fig.Generator = {
-  script: function (context) {
-    return `cat ${context[context.length - 2]}/package.json`;
-  },
-  postProcess: function (out) {
-    if (out.trim() == "") {
-      return [];
-    }
-    try {
-      const packageContent = JSON.parse(out);
-      const scripts = packageContent["scripts"];
-      if (scripts) {
-        return Object.keys(scripts).map((script) => ({ name: script }));
-      }
-    } catch (e) {}
-    return [];
-  },
-};
-
 const configList: Fig.Generator = {
   script: "yarn config list",
   postProcess: function (out) {
@@ -1119,60 +1099,56 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
-      generateSpec: async (_tokens, executeShellCommand) => {
-        const { postProcess } = scriptList;
-        const subcommands = [];
+      generateSpec: async (_, executeShellCommand) => {
+        const subcommands: Fig.Subcommand[] = [];
+        const isYarn1 = (await executeShellCommand("yarn -v"))[0] === "1";
 
-        try {
-          const out = await executeShellCommand("cat package.json");
+        const rawWorkspaces = await executeShellCommand(
+          isYarn1
+            ? "yarn workspaces info --json"
+            : "yarn workspaces list --json"
+        );
 
-          if (out.trim() == "") {
-            return { name: "workspaces" };
-          }
-          const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
+        let workspaces: { name: string; location: string }[] = [];
 
-          if (workspaces) {
-            for (const workspace of workspaces) {
-              if (workspace.includes("*")) {
-                const out = await executeShellCommand(
-                  `ls ${workspace.slice(0, -1)}`
-                );
-                const workspaceList = out.split("\n");
+        if (isYarn1) {
+          const parsed = JSON.parse(rawWorkspaces);
+          workspaces = Object.entries<{ location: string }>(
+            parsed
+          ).map(([name, { location }]) => ({ name, location }));
+        } else {
+          workspaces = JSON.parse(`[${rawWorkspaces.replace(/\n/g, ",")}]`);
+        }
 
-                for (const space of workspaceList) {
-                  subcommands.push({
-                    name: space,
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
-                      },
-                    },
-                  });
-                }
-              } else {
-                subcommands.push({
-                  name: workspace,
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `cat ${workspace}/package.json`,
-                      postProcess,
-                    },
-                  },
-                });
-              }
-            }
-          }
-        } catch (e) {
-          return { name: "workspaces" };
+        // const availableSubcommands = completionSpec.subcommands.filter(({ name }) => {
+        //   return Array.isArray(name) ||
+        //     new Set(["run", "workspace", "workspaces"]).has(name)
+        // })
+
+        for (const workspace of workspaces) {
+          subcommands.push({
+            name: workspace.name,
+            description: "Workspace",
+            // subcommands: [{
+            //   name: "run",
+            //   args: {
+            //     generators: {
+            //       script: `cat ${workspace.location}/package.json`,
+            //       postProcess: function (out) {
+            //         if (!out.trim()) {
+            //           return [];
+            //         }
+            //         try {
+            //           const packageContent = JSON.parse(out);
+            //           const scripts = packageContent["scripts"] ?? {};
+            //           return Object.keys(scripts).map(script => ({ name: script }));
+            //         } catch (e) {}
+            //         return [];
+            //       },
+            //     }
+            //   }
+            // }, ...availableSubcommands]
+          });
         }
 
         return {
@@ -1184,17 +1160,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspaces",
       description: "Show information about your workspaces",
-      options: [
+      subcommands: [
         {
-          name: "subcommand",
-          description: "",
-          args: {
-            suggestions: [{ name: "info" }, { name: "run" }],
-          },
+          name: "info",
+          description:
+            "Display the workspace dependency tree of your current project.",
+          options: [{ name: "--json" }],
         },
         {
-          name: "flags",
-          description: "",
+          name: "run",
+          description: "Run the following command in each of the workspaces.",
         },
       ],
     },
