@@ -181,7 +181,7 @@ const completionSpec: Fig.Spec = {
       description: "Prints only the matching part of the line.",
     },
     {
-      name: "--p",
+      name: "-p",
       dependsOn: ["-R"],
       description:
         "If -R is specified, no symbolic links are followed. This is the default.",
