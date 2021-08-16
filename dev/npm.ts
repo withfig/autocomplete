@@ -25,30 +25,33 @@ const searchGenerator: Fig.Generator = {
 };
 
 const dependenciesGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
   postProcess: function (out, context) {
     if (out.trim() === "") {
       return [];
     }
     try {
       const packageContent = JSON.parse(out);
-      const dependencies = packageContent["dependencies"];
-      if (dependencies) {
-        return Object.keys(dependencies)
+      const dependencies = packageContent["dependencies"] || {};
+      const devDependencies = packageContent["devDependencies"] || {};
+      const allDependencies = { ...devDependencies, ...dependencies };
+      if (allDependencies) {
+        return Object.keys(allDependencies)
           .filter(function (pkg) {
             const isListed = context.some((current) => current === pkg);
             return !isListed;
           })
           .map((name) => {
-            const scope = name.indexOf("/") + 1;
-            const version = name.indexOf("@");
-            const displayName =
-              (scope !== -1 ? name.substring(scope) : name) ||
-              (version !== -1 ? name.substring(version) : name);
+            // const scope = name.indexOf("/") + 1;
+            // const version = name.indexOf("@");
+            // const displayName =
+            //   (scope !== -1 ? name.substring(scope) : name) ||
+            //   (version !== -1 ? name.substring(version) : name);
             return {
               name,
-              displayName,
-              description: "dependency",
+              // displayName,
+              description: allDependencies[name] || "dependency",
             };
           });
       }
