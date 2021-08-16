@@ -51,7 +51,10 @@ const dependenciesGenerator: Fig.Generator = {
             return {
               name,
               // displayName,
-              description: allDependencies[name] || "dependency",
+              description:
+                typeof allDependencies[name] == "string"
+                  ? allDependencies[name]
+                  : "dependency",
             };
           });
       }
