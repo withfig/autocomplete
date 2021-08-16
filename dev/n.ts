@@ -89,7 +89,7 @@ const completionSpec: Fig.Spec = {
       args: [versionArg],
       options: [
         {
-          name: ["--all"],
+          name: "--all",
           description: "ls-remote displays all matches instead of last 20",
         },
       ],
