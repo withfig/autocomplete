@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "lsd",
-  description: "as ls command with a lot of pretty colors and some other stuff",
+  description: "an ls command with a lot of pretty colors and some other stuff",
   args: {
     isVariadic: true,
     template: "folders",
