@@ -11,6 +11,7 @@ body:
           required: true
         - label: "I have searched [github.com/withfig/autocomplete/issues](https://github.com/withfig/autocomplete/issues?q=) and there are no duplicates of my issue"
           required: true
+        - label: "I would like to work on this."
   - type: input
     attributes:
       label: What CLI tool does this relate to?
