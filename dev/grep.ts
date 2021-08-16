@@ -32,8 +32,9 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["--colour", "color"],
+      insertValue: "--colour=",
       description:
-        "Mark up the matching text with teh expression stored in GREP_COLOR environment variable.",
+        "Mark up the matching text with the expression stored in GREP_COLOR environment variable.",
       args: [
         {
           name: "when",
@@ -44,26 +45,46 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-D", "--devices"],
       description:
-        "Specify the demanded action for devices, FIFOs and sockets. The default action is `read', which means, that they are read as if they were normal files. If the action is set to `skip', devices will be silently skipped.",
+        "Specify the demanded action for devices, FIFOs and sockets.",
       args: [
         {
           name: "action",
-          suggestions: ["read", "skip"],
           default: "read",
+          suggestions: [
+            {
+              name: "read",
+              description: "Read as if they were normal files",
+            },
+            {
+              name: "skip",
+              description: "Devices will be silently skipped",
+            },
+          ],
         },
       ],
     },
     {
       name: ["-d", "--directories"],
-      description:
-        "Specify the demanded action for directories. It is `read' by default, which means that the directories are read in the same manner as normal files. Other possible values are `skip' to silently ignore the directories, and `recurse' to read them recursively, which has the same effect as the -R and -r option.",
-      args: [
-        {
-          name: "action",
-          suggestions: ["read", "skip", "recurse"],
-          default: "read",
-        },
-      ],
+      description: "Specify the demanded action for directories",
+      args: {
+        name: "action",
+        default: "read",
+        suggestions: [
+          {
+            name: "read",
+            description:
+              "Directories are read in the same manner as normal files",
+          },
+          {
+            name: "skip",
+            description: "Silently ignore the directories",
+          },
+          {
+            name: "recurse",
+            description: "Read directories recursively",
+          },
+        ],
+      },
     },
     {
       name: ["-E", "--extended-regexp"],
@@ -84,13 +105,24 @@ const completionSpec: Fig.Spec = {
     {
       name: "--exclude",
       description:
-        "If specified, it excludes files matching the given filename pattern from the search. Note that --exclude patterns take priority over --include patterns, and if no --include pattern is specified, all files are searched that are not excluded. Patterns are matched to teh full path specified, not only to the filename component.",
+        "If specified, it excludes files matching the given filename pattern from the search. Note that --exclude patterns take priority over --include patterns, and if no --include pattern is specified, all files are searched that are not excluded. Patterns are matched to the full path specified, not only to the filename component.",
+      args: [
+        {
+          name: "glob",
+        },
+      ],
     },
     {
       name: "--exclude-dir",
       dependsOn: ["-R"],
       description:
         "If -R is specified, it excludes directories matching the given filename patter from the search. Note that --exclude-dir patterns take priority over --include-dir patterns, and if no --include-dir pattern is specified, all directories are searched that are no excluded.",
+      args: [
+        {
+          name: "dir",
+          template: "folders"
+        },
+      ],
     },
     {
       name: ["-F", "--fixed-strings"],
@@ -129,20 +161,31 @@ const completionSpec: Fig.Spec = {
       name: "--include",
       description:
         "If specified, only files matching the given filename pattern are searched. Not that --exclude patterns take priority over --include patterns. Patterns are matched to the full path specified, not only to the filename component.",
+      args: [
+        {
+          name: "glob",
+        },
+      ],
     },
     {
       name: "--include-dir",
       dependsOn: ["-R"],
       description:
         "If -R is specified, only directories matching the given filename pattern are searched. Note that --exclude-dir patterns take priority over --include-dir patterns.",
+      args: [
+        {
+          name: "dir",
+          template: "folders"
+        },
+      ],
     },
     {
-      name: ["J", "--bz2decompress"],
+      name: ["-J", "--bz2decompress"],
       description:
         "Decompress the bzip2 compressed file before looking for the text.",
     },
     {
-      name: ["L", "--files-without-match"],
+      name: ["-L", "--files-without-match"],
       description:
         "Only the names of files not containing selected lines are written to standard output. Pathnames are listed once per file searched. If the standard input is searched, the string ``(standard input)'' is written.",
     },
@@ -226,15 +269,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--binary-files",
-      description:
-        "Controls searching and printing of binary files. Options are binary, the default: search binary files but do not print them; without-match: do not search binary files; and text: treat all files as text.",
-      args: [
-        {
-          name: "value",
-          suggestions: ["binary", "without-match", "text"],
-          default: "binary",
-        },
-      ],
+      description: "Controls searching and printing of binary files",
+      args: {
+        name: "value",
+        default: "binary",
+        suggestions: [
+          {
+            name: "binary",
+            description: "Search binary files but do not print them",
+          },
+          {
+            name: "without-match",
+            description: "do not search binary files",
+          },
+          {
+            name: "text",
+            description: "treat all files as text",
+          },
+        ],
+      },
     },
     {
       name: "--context",
