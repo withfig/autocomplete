@@ -5,12 +5,10 @@ const completionSpec: Fig.Spec = {
   args: [
     {
       name: "search pattern",
-      isOptional: true,
     },
     {
       name: "file",
       template: "filepaths",
-      isOptional: true,
       isVariadic: true,
     },
   ],
@@ -120,7 +118,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "dir",
-          template: "folders"
+          template: "folders",
         },
       ],
     },
@@ -175,7 +173,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "dir",
-          template: "folders"
+          template: "folders",
         },
       ],
     },
