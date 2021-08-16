@@ -67,7 +67,7 @@ const completionSpec: Fig.Spec = {
       args: [variadicVersionArg],
     },
     {
-      name: ["prune"],
+      name: "prune",
       description:
         "Remove all cached Node.js versions except the installed version",
     },
