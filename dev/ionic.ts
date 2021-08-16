@@ -29,6 +29,12 @@ const completionSpec = {
         {
           name: ["--configuration", "-c"],
           description: "Specify the configuration to use",
+          args: [
+            {
+              name: "conf",
+              template: ["filepaths", "folders"],
+            },
+          ],
         },
         {
           name: ["--source-map"],
@@ -255,6 +261,7 @@ const completionSpec = {
           args: [
             {
               name: "conf",
+              template: ["filepaths", "folders"],
             },
           ],
         },
@@ -599,6 +606,12 @@ const completionSpec = {
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
+              args: [
+                {
+                  name: "conf",
+                  template: ["filepaths", "folders"],
+                },
+              ],
             },
             {
               name: ["--source-map"],
@@ -633,6 +646,12 @@ const completionSpec = {
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
+              args: [
+                {
+                  name: "conf",
+                  template: ["filepaths", "folders"],
+                },
+              ],
             },
             {
               name: ["--source-map"],
@@ -1292,6 +1311,7 @@ const completionSpec = {
               description: "Use the specified build configuration",
               args: {
                 name: "file",
+                template: ["filepaths", "folders"],
               },
             },
             {
@@ -1301,6 +1321,12 @@ const completionSpec = {
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
+              args: [
+                {
+                  name: "conf",
+                  template: ["filepaths", "folders"],
+                },
+              ],
             },
             {
               name: ["--source-map"],
@@ -1342,6 +1368,7 @@ const completionSpec = {
               description: "Use the specified build configuration",
               args: {
                 name: "file",
+                template: ["filepaths", "folders"],
               },
             },
           ],
@@ -1426,6 +1453,7 @@ const completionSpec = {
               description: "Use the specified build configuration",
               args: {
                 name: "file",
+                template: ["filepaths", "folders"],
               },
             },
             {
@@ -1472,6 +1500,12 @@ const completionSpec = {
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
+              args: [
+                {
+                  name: "conf",
+                  template: ["filepaths", "folders"],
+                },
+              ],
             },
             {
               name: ["--source-map"],
@@ -1483,6 +1517,7 @@ const completionSpec = {
               args: [
                 {
                   name: "file",
+                  template: ["filepaths", "folders"],
                 },
               ],
             },
@@ -1574,6 +1609,7 @@ const completionSpec = {
               args: [
                 {
                   name: "conf",
+                  template: ["filepaths", "folders"],
                 },
               ],
             },
@@ -1706,6 +1742,7 @@ const completionSpec = {
               description: "Use the specified build configuration",
               args: {
                 name: "file",
+                template: ["filepaths", "folders"],
               },
             },
             {
@@ -1755,6 +1792,7 @@ const completionSpec = {
               args: [
                 {
                   name: "conf",
+                  template: ["filepaths", "folders"],
                 },
               ],
             },
