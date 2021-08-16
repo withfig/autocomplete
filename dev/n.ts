@@ -59,7 +59,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["i", "install"],
       description: "Install a Node.js version",
-      args: [versionArg],
+      args: versionArg,
     },
     {
       name: ["rm", "–"],
