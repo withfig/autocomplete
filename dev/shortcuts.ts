@@ -23,7 +23,6 @@ const completionSpec: Fig.Spec = {
         {
           name: "shortcut-name",
           description: "The name of the shortcut to run.",
-          isOptional: false,
           generators: shortcut.generators,
         },
       ],
@@ -53,15 +52,10 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "output-type",
-              isOptional: false,
             },
           ],
           description:
             "What type to output data in, in Universal Type Identifier format.",
-        },
-        {
-          name: ["--help", "-h"],
-          description: "Show help information.",
         },
       ],
     },
@@ -71,16 +65,11 @@ const completionSpec: Fig.Spec = {
       icon: "📂",
       options: [
         {
-          name: ["--help", "-h"],
-          description: "Show help information.",
-        },
-        {
           name: ["--folder-name", "-f"],
           description: "The name of the folder to list.",
           args: [
             {
               name: "folder-name",
-              isOptional: false,
               generators: [
                 {
                   script: "shortcuts list --folders",
@@ -109,14 +98,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "shortcut-name",
           description: "The name of the shortcut to run.",
-          isOptional: false,
           generators: shortcut.generators,
-        },
-      ],
-      options: [
-        {
-          name: ["--help", "-h"],
-          description: "Show help information.",
         },
       ],
     },
@@ -128,11 +110,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--input", "-i"],
           description: "The shortcut file to sign.",
-          isRequired: true,
           args: [
             {
               name: "input",
-              isOptional: false,
               generators: [
                 {
                   template: "filepaths",
@@ -152,27 +132,19 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--output", "-o"],
           description: "Output path for the signed shortcut file.",
-          isRequired: true,
           args: [
             {
               name: "output",
               template: "filepaths",
-              isOptional: false,
             },
           ],
         },
         {
-          name: ["--help", "-h"],
-          description: "Show help information.",
-        },
-        {
           name: ["--mode", "-m"],
-          description: "The  signing mode. (default: people-who-know-me)",
-          isRequired: false,
+          description: "The signing mode. (default: people-who-know-me)",
           args: [
             {
               name: "mode",
-              isOptional: false,
             },
           ],
         },
@@ -181,41 +153,28 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Show help information.",
-      args: [
+      subcommands: [
         {
-          name: "subcommand",
-          description: "The subcommand to show help for.",
-          isOptional: true,
-          suggestions: [
-            {
-              name: "run",
-              description: "Run a shortcut.",
-              icon: "▶️",
-            },
-            {
-              name: "list",
-              description: "List your shortcuts.",
-              icon: "📂",
-            },
-            {
-              name: "view",
-              description: "View a shortcut in Shortcuts.",
-              icon: "🔍",
-            },
-            {
-              name: "sign",
-              description: "Sign a shortcut file.",
-              icon: "🔏",
-            },
-          ],
+          name: "run",
+          description: "Run a shortcut.",
+          icon: "▶️",
+        },
+        {
+          name: "list",
+          description: "List your shortcuts.",
+          icon: "📂",
+        },
+        {
+          name: "view",
+          description: "View a shortcut in Shortcuts.",
+          icon: "🔍",
+        },
+        {
+          name: "sign",
+          description: "Sign a shortcut file.",
+          icon: "🔏",
         },
       ],
-    },
-  ],
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help information.",
     },
   ],
 };
