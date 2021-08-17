@@ -5,12 +5,11 @@ const shortcut: Fig.Arg = {
       postProcess: (list) =>
         list.split("\n").map((shortcut) => ({
           name: shortcut,
-          icon: shortcutsIcon,
+          icon: "fig:///System/Applications/Shortcuts.app",
         })),
     },
   ],
 };
-
 const completionSpec: Fig.Spec = {
   name: "shortcuts",
   description: "Command-line utility for running shortcuts.",
@@ -186,7 +185,4 @@ const completionSpec: Fig.Spec = {
     },
   ],
 };
-// "fig://type=shortcut" does work, but it's in the generic file icon. looks bad.
-const shortcutsIcon =
-  "https://help.apple.com/assets/5E8CEA35094622DF10489984/5E8CEA42094622DF1048998D/en_US/18c714c61bfdebca44fe6989f0a2511d.png";
 export default completionSpec;
