@@ -23,6 +23,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "run",
       description: "Run a shortcut.",
+      icon: "▶️",
       args: [
         {
           name: "shortcut-name",
@@ -77,6 +78,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       description: "List your shortcuts.",
+      icon: "📂",
       options: [
         {
           name: ["--help", "-h"],
@@ -111,6 +113,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "view",
       description: "View a shortcut in Shortcuts.",
+      icon: "🔍",
       args: [
         {
           name: "shortcut-name",
@@ -129,6 +132,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "sign",
       description: "Sign a shortcut file.",
+      icon: "🔏",
       options: [
         {
           name: ["--input", "-i"],
