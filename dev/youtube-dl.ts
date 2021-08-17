@@ -759,7 +759,6 @@ const completionSpec: Fig.Spec = {
       description: "Video format code",
       args: {
         name: "FORMAT",
-        // TODO generator
       },
     },
     {
@@ -974,7 +973,22 @@ const completionSpec: Fig.Spec = {
         "Adobe Pass multiple-system operator (TV provider) identifier",
       args: {
         name: "MSO",
-        // TODO generator
+        generators: {
+          script: (context) =>
+            `youtube-dl ${context.filter((token) =>
+              token.includes("youtube.")
+            )} --simulate --ap-list-mso | tail -n +3 | tr -s " "`,
+
+          postProcess: (out) =>
+            out.split("\n").map((line) => {
+              const [name, ...description] = line.split(" ");
+
+              return {
+                name,
+                description: description.join(" "),
+              };
+            }),
+        },
       },
     },
     {
