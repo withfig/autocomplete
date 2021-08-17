@@ -1,7 +1,7 @@
 // https://github.com/rupa/z
 const completionSpec: Fig.Spec = {
   name: "z",
-  description: "CLI tool to jump around directories"
+  description: "CLI tool to jump around directories",
   args: {
     name: "regex",
     isVariadic: true,
