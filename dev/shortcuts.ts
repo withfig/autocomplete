@@ -13,12 +13,7 @@ const shortcut: Fig.Arg = {
 const completionSpec: Fig.Spec = {
   name: "shortcuts",
   description: "Command-line utility for running shortcuts.",
-  options: [
-    {
-      name: ["--help", "-h"],
-      description: "Show help information.",
-    },
-  ],
+
   subcommands: [
     {
       name: "run",
@@ -35,23 +30,19 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-i", "--input-path"],
-          isRequired: false, // Default: stdin
           args: [
             {
               name: "input-path",
               template: "filepaths",
-              isOptional: false,
             },
           ],
           description: "The input to provide to the shortcut.",
         },
         {
           name: ["-o", "--output-path"],
-          isRequired: false,
           args: [
             {
               name: "output-path",
-              isOptional: false,
               template: "filepaths",
             },
           ],
@@ -59,7 +50,6 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--output-type"],
-          isRequired: false,
           args: [
             {
               name: "output-type",
@@ -97,7 +87,7 @@ const completionSpec: Fig.Spec = {
                   postProcess: (list) =>
                     list.split("\n").map((folder) => ({
                       name: folder,
-                      icon: "fig://icon?type=folder",
+                      icon: "📂",
                     })),
                 },
               ],
@@ -107,6 +97,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--folders"],
           description: "List folders instead of shortcuts.",
+          icon: "📂",
         },
       ],
     },
@@ -141,8 +132,20 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "input",
-              template: "filepaths",
               isOptional: false,
+              generators: [
+                {
+                  template: "filepaths",
+                  filterTemplateSuggestions: function (suggestions) {
+                    return suggestions.filter(
+                      (suggestion) =>
+                        suggestion.type === "folder" ||
+                        (typeof suggestion.name === "string" &&
+                          suggestion.name.endsWith(".shortcut"))
+                    );
+                  },
+                },
+              ],
             },
           ],
         },
@@ -183,9 +186,36 @@ const completionSpec: Fig.Spec = {
           name: "subcommand",
           description: "The subcommand to show help for.",
           isOptional: true,
-          suggestions: ["run", "list", "view", "sign"],
+          suggestions: [
+            {
+              name: "run",
+              description: "Run a shortcut.",
+              icon: "▶️",
+            },
+            {
+              name: "list",
+              description: "List your shortcuts.",
+              icon: "📂",
+            },
+            {
+              name: "view",
+              description: "View a shortcut in Shortcuts.",
+              icon: "🔍",
+            },
+            {
+              name: "sign",
+              description: "Sign a shortcut file.",
+              icon: "🔏",
+            },
+          ],
         },
       ],
+    },
+  ],
+  options: [
+    {
+      name: ["--help", "-h"],
+      description: "Show help information.",
     },
   ],
 };
