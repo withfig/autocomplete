@@ -163,6 +163,14 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Show help information.",
+      args: [
+        {
+          name: "subcommand",
+          description: "The subcommand to show help for.",
+          isOptional: true,
+          suggestions: ["run", "list", "view", "sign"],
+        },
+      ],
     },
   ],
 };
