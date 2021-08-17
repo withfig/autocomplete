@@ -97,7 +97,7 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "shortcut-name",
-          description: "The name of the shortcut to run.",
+          description: "The name of the shortcut to view.",
           generators: shortcut.generators,
         },
       ],
@@ -116,14 +116,13 @@ const completionSpec: Fig.Spec = {
               generators: [
                 {
                   template: "filepaths",
-                  filterTemplateSuggestions: function (suggestions) {
-                    return suggestions.filter(
+                  filterTemplateSuggestions: (suggestions) =>
+                    suggestions.filter(
                       (suggestion) =>
                         suggestion.type === "folder" ||
                         (typeof suggestion.name === "string" &&
                           suggestion.name.endsWith(".shortcut"))
-                    );
-                  },
+                    ),
                 },
               ],
             },
