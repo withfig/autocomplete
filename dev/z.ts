@@ -5,6 +5,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "regex",
     isVariadic: true,
+    isOptional: true,
   },
   options: [
     {
