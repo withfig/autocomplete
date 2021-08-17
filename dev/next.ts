@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       name: "build",
       description: "Create an optimized production build of your application",
       icon,
-      args: [dirArgument],
+      args: dirArgument,
       options: [
         {
           name: "--profile",
@@ -54,21 +54,21 @@ const completionSpec: Fig.Spec = {
       name: "dev",
       description: "Start the application in development mode",
       icon,
-      args: [dirArgument],
+      args: dirArgument,
       options: hostPortOptions,
     },
     {
       name: "start",
       description: "Start the application in production mode",
       icon,
-      args: [dirArgument],
+      args: dirArgument,
       options: hostPortOptions,
     },
     {
       name: "export",
       description: "Exports the application for production deployment",
       icon,
-      args: [dirArgument],
+      args: dirArgument,
       options: [
         {
           name: "-s",
@@ -80,22 +80,20 @@ const completionSpec: Fig.Spec = {
       name: "telemetry",
       description: "Allows you to control Next.js' telemetry collection",
       icon,
-      args: [
-        {
-          name: "status",
-          description: "Turn Next.js' telemetry collection on or off",
-          suggestions: [
-            {
-              name: "enable",
-              description: "Enable Next.js' telemetry collection",
-            },
-            {
-              name: "disable",
-              description: "Disable Next.js' telemetry collection",
-            },
-          ],
-        },
-      ],
+      args: {
+        name: "status",
+        description: "Turn Next.js' telemetry collection on or off",
+        suggestions: [
+          {
+            name: "enable",
+            description: "Enable Next.js' telemetry collection",
+          },
+          {
+            name: "disable",
+            description: "Disable Next.js' telemetry collection",
+          },
+        ],
+      },
     },
   ],
 };

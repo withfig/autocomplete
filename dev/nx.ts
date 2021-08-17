@@ -475,7 +475,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       args: {
-        generators: [nxGenerators.installedPlugins],
+        generators: nxGenerators.installedPlugins,
         description: "The name of an installed plugin to query",
       },
       options: [...defaultOptions],

@@ -46,11 +46,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon_name",
-        },
-      ],
+      args: {
+        name: "addon_name",
+      },
     },
     {
       name: "addons:create",
@@ -160,12 +158,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "addon",
+        isVariadic: true,
+      },
     },
     {
       name: "addons:remove",
@@ -189,12 +185,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "addon",
+        isVariadic: true,
+      },
     },
     {
       name: "addons:detach",
@@ -209,11 +203,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "attachment_name",
-        },
-      ],
+      args: {
+        name: "attachment_name",
+      },
     },
     {
       name: "addons:docs",
@@ -233,11 +225,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-        },
-      ],
+      args: {
+        name: "addon",
+      },
     },
     {
       name: "addons",
@@ -276,11 +266,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-        },
-      ],
+      args: {
+        name: "addon",
+      },
     },
     {
       name: "addons:open",
@@ -300,11 +288,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-        },
-      ],
+      args: {
+        name: "addon",
+      },
     },
     {
       name: "addons:plans",
@@ -315,11 +301,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "service",
-        },
-      ],
+      args: {
+        name: "service",
+      },
     },
     {
       name: "addons:rename",
@@ -419,20 +403,16 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "addon",
-        },
-      ],
+      args: {
+        name: "addon",
+      },
     },
     {
       name: "domains:add",
       description: "add a domain to an app",
-      args: [
-        {
-          name: "hostname",
-        },
-      ],
+      args: {
+        name: "hostname",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -519,11 +499,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "domains:info",
       description: "show detailed information for a domain on an app",
-      args: [
-        {
-          name: "hostname",
-        },
-      ],
+      args: {
+        name: "hostname",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -547,11 +525,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "domains:remove",
       description: "remove a domain from an app",
-      args: [
-        {
-          name: "hostname",
-        },
-      ],
+      args: {
+        name: "hostname",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -576,12 +552,10 @@ const completionSpec: Fig.Spec = {
       name: "domains:update",
       description:
         "update a domain to use a different SSL certificate on an app",
-      args: [
-        {
-          name: "hostname",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "hostname",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -611,12 +585,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "domains:wait",
       description: "wait for domain to be active for an app",
-      args: [
-        {
-          name: "hostname",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "hostname",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -713,12 +685,10 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "create",
@@ -796,12 +766,10 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "apps:destroy",
@@ -821,12 +789,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "destroy",
@@ -846,12 +812,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "apps:delete",
@@ -871,12 +835,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "apps:errors",
@@ -1070,12 +1032,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "info",
@@ -1101,12 +1061,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "app",
-          generators: getAppGenerator,
-        },
-      ],
+      args: {
+        name: "app",
+        generators: getAppGenerator,
+      },
     },
     {
       name: "apps:open",
@@ -1121,11 +1079,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-        },
-      ],
+      args: {
+        name: "path",
+      },
     },
     {
       name: "open",
@@ -1140,11 +1096,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-        },
-      ],
+      args: {
+        name: "path",
+      },
     },
     {
       name: "apps:rename",
@@ -1163,11 +1117,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "newname",
-        },
-      ],
+      args: {
+        name: "newname",
+      },
     },
     {
       name: "rename",
@@ -1186,11 +1138,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "newname",
-        },
-      ],
+      args: {
+        name: "newname",
+      },
     },
     {
       name: "apps:stacks",
@@ -1233,11 +1183,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "stack",
-        },
-      ],
+      args: {
+        name: "stack",
+      },
     },
     {
       name: "stack:set",
@@ -1252,11 +1200,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "stack",
-        },
-      ],
+      args: {
+        name: "stack",
+      },
     },
     {
       name: "config:set",
@@ -1271,12 +1217,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "confi",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "confi",
+        isVariadic: true,
+      },
     },
     {
       name: "config:add",
@@ -1291,12 +1235,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "confi",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "confi",
+        isVariadic: true,
+      },
     },
     {
       name: "dashboard",
@@ -1315,11 +1257,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "url",
-        },
-      ],
+      args: {
+        name: "url",
+      },
     },
     {
       name: "drains",
@@ -1355,11 +1295,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "url",
-        },
-      ],
+      args: {
+        name: "url",
+      },
     },
     {
       name: "features:disable",
@@ -1374,11 +1312,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "feature",
-        },
-      ],
+      args: {
+        name: "feature",
+      },
     },
     {
       name: "features:enable",
@@ -1393,11 +1329,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "feature",
-        },
-      ],
+      args: {
+        name: "feature",
+      },
     },
     {
       name: "features",
@@ -1434,11 +1368,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "feature",
-        },
-      ],
+      args: {
+        name: "feature",
+      },
     },
     {
       name: "keys:add",
@@ -1452,11 +1384,9 @@ const completionSpec: Fig.Spec = {
           description: "automatically answer yes for all prompts",
         },
       ],
-      args: [
-        {
-          name: "key",
-        },
-      ],
+      args: {
+        name: "key",
+      },
     },
     {
       name: "keys:clear",
@@ -1480,11 +1410,9 @@ const completionSpec: Fig.Spec = {
       name: "keys:remove",
       description: "remove an SSH key from the user",
 
-      args: [
-        {
-          name: "key",
-        },
-      ],
+      args: {
+        name: "key",
+      },
     },
     {
       name: "labs:enable",
@@ -1500,11 +1428,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "feature",
-        },
-      ],
+      args: {
+        name: "feature",
+      },
     },
     {
       name: "labs",
@@ -1543,11 +1469,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "feature",
-        },
-      ],
+      args: {
+        name: "feature",
+      },
     },
     {
       name: "maintenance",
@@ -1639,12 +1563,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "p",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "p",
+        isVariadic: true,
+      },
     },
     {
       name: "ps:restart",
@@ -1659,11 +1581,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "dyno:restart",
@@ -1678,11 +1598,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "restart",
@@ -1697,11 +1615,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "ps:scale",
@@ -1716,12 +1632,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "p",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "p",
+        isVariadic: true,
+      },
     },
     {
       name: "dyno:scale",
@@ -1736,12 +1650,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyn",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "dyn",
+        isVariadic: true,
+      },
     },
     {
       name: "scale",
@@ -1756,12 +1668,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "scal",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "scal",
+        isVariadic: true,
+      },
     },
     {
       name: "ps:stop",
@@ -1776,11 +1686,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "dyno:stop",
@@ -1795,11 +1703,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "ps:kill",
@@ -1814,11 +1720,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "dyno:kill",
@@ -1833,11 +1737,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "stop",
@@ -1852,11 +1754,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "kill",
@@ -1871,11 +1771,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyno",
-        },
-      ],
+      args: {
+        name: "dyno",
+      },
     },
     {
       name: "ps:type",
@@ -1890,12 +1788,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "p",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "p",
+        isVariadic: true,
+      },
     },
     {
       name: "ps:resize",
@@ -1910,12 +1806,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "p",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "p",
+        isVariadic: true,
+      },
     },
     {
       name: "resize",
@@ -1930,12 +1824,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "resiz",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "resiz",
+        isVariadic: true,
+      },
     },
     {
       name: "dyno:type",
@@ -1950,12 +1842,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyn",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "dyn",
+        isVariadic: true,
+      },
     },
     {
       name: "dyno:resize",
@@ -1970,12 +1860,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "dyn",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "dyn",
+        isVariadic: true,
+      },
     },
     {
       name: "releases",
@@ -2024,11 +1912,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "release",
-        },
-      ],
+      args: {
+        name: "release",
+      },
     },
     {
       name: "releases:output",
@@ -2043,11 +1929,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "release",
-        },
-      ],
+      args: {
+        name: "release",
+      },
     },
     {
       name: "releases:rollback",
@@ -2062,11 +1946,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "release",
-        },
-      ],
+      args: {
+        name: "release",
+      },
     },
     {
       name: "rollback",
@@ -2081,11 +1963,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "release",
-        },
-      ],
+      args: {
+        name: "release",
+      },
     },
     {
       name: "auth:2fa:disable",
@@ -2136,12 +2016,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "auth:disable",
       description: "disables an experimental feature",
-      args: [
-        {
-          name: "feature",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "feature",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2170,11 +2048,9 @@ const completionSpec: Fig.Spec = {
       name: "buildpacks:add",
       description:
         "add new app buildpack, inserting into list of buildpacks if necessary",
-      args: [
-        {
-          name: "buildpack",
-        },
-      ],
+      args: {
+        name: "buildpack",
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2237,21 +2113,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:info",
       description: "fetch info about a buildpack",
-      args: [
-        {
-          name: "buildpack",
-        },
-      ],
+      args: {
+        name: "buildpack",
+      },
     },
     {
       name: "buildpacks:remove",
       description: "remove a buildpack set on the app",
-      args: [
-        {
-          name: "buildpack",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "buildpack",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2277,12 +2149,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:search",
       description: "search for buildpacks",
-      args: [
-        {
-          name: "term",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "term",
+        isOptional: true,
+      },
       options: [
         {
           name: "namespace",
@@ -2306,11 +2176,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:set",
       description: "",
-      args: [
-        {
-          name: "buildpack",
-        },
-      ],
+      args: {
+        name: "buildpack",
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2335,11 +2203,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "buildpacks:versions",
       description: "list versions of a buildpack",
-      args: [
-        {
-          name: "buildpack",
-        },
-      ],
+      args: {
+        name: "buildpack",
+      },
     },
     {
       name: "certs:wait",
@@ -2459,12 +2325,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "cert",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "cert",
+        isVariadic: true,
+      },
     },
     {
       name: "certs:generate",
@@ -2517,11 +2381,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "domain",
-        },
-      ],
+      args: {
+        name: "domain",
+      },
     },
     {
       name: "certs",
@@ -2578,12 +2440,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "cert",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "cert",
+        isVariadic: true,
+      },
     },
     {
       name: "certs:remove",
@@ -2686,11 +2546,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "ci:info",
       description: "show the status of a specific test run",
-      args: [
-        {
-          name: "test-run",
-        },
-      ],
+      args: {
+        name: "test-run",
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2738,12 +2596,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "ci:rerun",
       description: "rerun tests against current directory",
-      args: [
-        {
-          name: "number",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "number",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2800,11 +2656,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "key",
-        },
-      ],
+      args: {
+        name: "key",
+      },
     },
     {
       name: "ci:config",
@@ -2853,12 +2707,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "c",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "c",
+        isVariadic: true,
+      },
     },
     {
       name: "ci:config:unset",
@@ -2879,12 +2731,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "c",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "c",
+        isVariadic: true,
+      },
     },
     {
       name: "ci:debug",
@@ -2943,12 +2793,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "config:edit",
       description: "",
-      args: [
-        {
-          name: "key",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "key",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -2968,11 +2816,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "config:get",
       description: "display a single config value for an app",
-      args: [
-        {
-          name: "KEY",
-        },
-      ],
+      args: {
+        name: "KEY",
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -3043,12 +2889,10 @@ const completionSpec: Fig.Spec = {
       name: "git:clone",
       description:
         "clones a heroku app to your local machine at DIRECTORY (defaults to app name)",
-      args: [
-        {
-          name: "DIRECTORY",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "DIRECTORY",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -3068,11 +2912,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "git:credentials",
       description: "internal command for git-credentials",
-      args: [
-        {
-          name: "command",
-        },
-      ],
+      args: {
+        name: "command",
+      },
     },
     {
       name: "git:remote",
@@ -3097,12 +2939,10 @@ const completionSpec: Fig.Spec = {
       name: "local",
       description:
         "run heroku app locally\nStart the application specified by a Procfile (defaults to ./Procfile)",
-      args: [
-        {
-          name: "processname",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "processname",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-f", "--procfile"],
@@ -3223,31 +3063,25 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "authorizations:revoke",
       description: "revoke OAuth authorization",
 
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "authorizations:rotate",
       description: "updates an OAuth authorization token",
 
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "authorizations:update",
@@ -3269,11 +3103,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "clients:create",
@@ -3301,11 +3133,9 @@ const completionSpec: Fig.Spec = {
       name: "clients:destroy",
       description: "delete client by ID",
 
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "clients:rotate",
@@ -3320,11 +3150,9 @@ const completionSpec: Fig.Spec = {
           description: "output in shell format",
         },
       ],
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "clients:update",
@@ -3341,21 +3169,17 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "sessions:destroy",
       description: "delete (logout) OAuth session by ID",
 
-      args: [
-        {
-          name: "id",
-        },
-      ],
+      args: {
+        name: "id",
+      },
     },
     {
       name: "sessions",
@@ -3389,21 +3213,17 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "email",
-        },
-      ],
+      args: {
+        name: "email",
+      },
     },
     {
       name: "sharing:add",
 
-      args: [
-        {
-          name: "sharin",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "sharin",
+        isVariadic: true,
+      },
     },
     {
       name: "access",
@@ -3426,12 +3246,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "sharing:access",
 
-      args: [
-        {
-          name: "sharin",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "sharin",
+        isVariadic: true,
+      },
     },
     {
       name: "access:remove",
@@ -3446,21 +3264,17 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "email",
-        },
-      ],
+      args: {
+        name: "email",
+      },
     },
     {
       name: "sharing:remove",
 
-      args: [
-        {
-          name: "sharin",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "sharin",
+        isVariadic: true,
+      },
     },
     {
       name: "access:update",
@@ -3485,11 +3299,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "email",
-        },
-      ],
+      args: {
+        name: "email",
+      },
     },
     {
       name: "apps:join",
@@ -3597,21 +3409,17 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "recipient",
-        },
-      ],
+      args: {
+        name: "recipient",
+      },
     },
     {
       name: "sharing:transfer",
 
-      args: [
-        {
-          name: "sharin",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "sharin",
+        isVariadic: true,
+      },
     },
     {
       name: "apps:unlock",
@@ -3675,11 +3483,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "email",
-        },
-      ],
+      args: {
+        name: "email",
+      },
     },
     {
       name: "orgs:default",
@@ -3737,11 +3543,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups:capture",
@@ -3766,11 +3570,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:backups:delete",
@@ -3789,11 +3591,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups:download",
@@ -3813,11 +3613,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups",
@@ -3854,12 +3652,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "p",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "p",
+        isVariadic: true,
+      },
     },
     {
       name: "pg:backups:info",
@@ -3874,11 +3670,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups:restore",
@@ -3932,11 +3726,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:backups:schedules",
@@ -3965,11 +3757,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:backups:url",
@@ -3987,11 +3777,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups:public-url",
@@ -4009,11 +3797,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:backups:publicurl",
@@ -4031,11 +3817,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "backup_id",
-        },
-      ],
+      args: {
+        name: "backup_id",
+      },
     },
     {
       name: "pg:bloat",
@@ -4051,11 +3835,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:blocking",
@@ -4071,11 +3853,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:connection-pooling:attach",
@@ -4095,11 +3875,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:copy",
@@ -4152,11 +3930,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:credentials:destroy",
@@ -4180,11 +3956,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:credentials:repair-default",
@@ -4204,11 +3978,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:credentials:rotate",
@@ -4241,11 +4013,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:credentials:url",
@@ -4266,11 +4036,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:credentials",
@@ -4289,11 +4057,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:diagnose",
@@ -4312,11 +4078,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "DATABASE|REPORT_ID",
-        },
-      ],
+      args: {
+        name: "DATABASE|REPORT_ID",
+      },
     },
     {
       name: "pg",
@@ -4331,11 +4095,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:info",
@@ -4350,11 +4112,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:kill",
@@ -4394,11 +4154,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:links:create",
@@ -4466,11 +4224,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:locks",
@@ -4489,11 +4245,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:maintenance",
@@ -4508,11 +4262,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:maintenance:run",
@@ -4530,11 +4282,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:maintenance:window",
@@ -4585,11 +4335,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:promote",
@@ -4607,11 +4355,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:ps",
@@ -4629,11 +4375,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:psql",
@@ -4663,11 +4407,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "psql",
@@ -4697,11 +4439,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:push",
@@ -4781,11 +4521,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:reset",
@@ -4804,11 +4542,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:settings",
@@ -4823,11 +4559,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:settings:log-connections",
@@ -4938,11 +4672,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:upgrade",
@@ -4967,11 +4699,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:vacuum-stats",
@@ -4987,11 +4717,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:vacuum_stats",
@@ -5007,11 +4735,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pg:wait",
@@ -5036,20 +4762,16 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "pipelines:add",
       description: "",
-      args: [
-        {
-          name: "pipeline",
-        },
-      ],
+      args: {
+        name: "pipeline",
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -5074,11 +4796,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:connect",
       description: "connect a github repo to an existing pipeline",
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
       options: [
         {
           name: ["-r", "--repo"],
@@ -5090,12 +4810,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:create",
       description: "",
-      args: [
-        {
-          name: "name",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "name",
+        isOptional: true,
+      },
       options: [
         {
           name: ["-a", "--app"],
@@ -5125,11 +4843,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:destroy",
       description: "destroy a pipeline",
-      args: [
-        {
-          name: "pipeline",
-        },
-      ],
+      args: {
+        name: "pipeline",
+      },
     },
     {
       name: "pipelines:diff",
@@ -5164,11 +4880,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:info",
       description: "show list of apps in a pipeline",
-      args: [
-        {
-          name: "pipeline",
-        },
-      ],
+      args: {
+        name: "pipeline",
+      },
       options: [
         {
           name: "json",
@@ -5179,11 +4893,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:open",
       description: "open a pipeline in dashboard",
-      args: [
-        {
-          name: "pipeline",
-        },
-      ],
+      args: {
+        name: "pipeline",
+      },
     },
     {
       name: "pipelines:promote",
@@ -5271,11 +4983,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "pipelines:transfer",
       description: "transfer ownership of a pipeline",
-      args: [
-        {
-          name: "owner",
-        },
-      ],
+      args: {
+        name: "owner",
+      },
       options: [
         {
           name: "pipeline",
@@ -5493,11 +5203,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:credentials",
@@ -5516,11 +5224,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis",
@@ -5539,11 +5245,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:info",
@@ -5562,11 +5266,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:keyspace-notifications",
@@ -5586,11 +5288,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:maintenance",
@@ -5619,11 +5319,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:maxmemory",
@@ -5643,11 +5341,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:promote",
@@ -5662,11 +5358,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:timeout",
@@ -5687,11 +5381,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "redis:wait",
@@ -5706,11 +5398,9 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "database",
-        },
-      ],
+      args: {
+        name: "database",
+      },
     },
     {
       name: "run:console",
@@ -6025,12 +5715,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "rak",
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "rak",
+        isVariadic: true,
+      },
     },
     {
       name: "spaces:create",
@@ -6086,11 +5774,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:destroy",
@@ -6107,11 +5793,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "drains:get",
@@ -6138,11 +5822,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "url",
-        },
-      ],
+      args: {
+        name: "url",
+      },
     },
     {
       name: "spaces:hosts",
@@ -6158,11 +5840,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces",
@@ -6193,11 +5873,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "outbound-rules:add",
@@ -6247,11 +5925,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "outbound-rules:remove",
@@ -6268,11 +5944,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "ruleNumber",
-        },
-      ],
+      args: {
+        name: "ruleNumber",
+      },
     },
     {
       name: "spaces:peerings:accept",
@@ -6289,11 +5963,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "pcxid",
-        },
-      ],
+      args: {
+        name: "pcxid",
+      },
     },
     {
       name: "spaces:peerings:destroy",
@@ -6315,11 +5987,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "pcxid",
-        },
-      ],
+      args: {
+        name: "pcxid",
+      },
     },
     {
       name: "spaces:peerings",
@@ -6335,11 +6005,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:peering:info",
@@ -6356,11 +6024,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:ps",
@@ -6376,11 +6042,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:rename",
@@ -6412,11 +6076,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:transfer",
@@ -6449,11 +6111,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "source",
-        },
-      ],
+      args: {
+        name: "source",
+      },
     },
     {
       name: "trusted-ips",
@@ -6469,11 +6129,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "trusted-ips:remove",
@@ -6490,11 +6148,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "source",
-        },
-      ],
+      args: {
+        name: "source",
+      },
     },
     {
       name: "spaces:vpn:config",
@@ -6516,11 +6172,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:vpn:connect",
@@ -6547,11 +6201,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:vpn:destroy",
@@ -6574,11 +6226,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:vpn:connections",
@@ -6594,11 +6244,9 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "spaces:vpn:info",
@@ -6619,11 +6267,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:vpn:update",
@@ -6645,11 +6291,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:vpn:wait",
@@ -6680,11 +6324,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "name",
-        },
-      ],
+      args: {
+        name: "name",
+      },
     },
     {
       name: "spaces:wait",
@@ -6710,11 +6352,9 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
       ],
-      args: [
-        {
-          name: "space",
-        },
-      ],
+      args: {
+        name: "space",
+      },
     },
     {
       name: "status",

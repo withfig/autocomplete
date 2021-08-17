@@ -103,30 +103,24 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Delete a key and its value from a namespace",
-          args: [
-            {
-              name: "key",
-              description: "Key whose value to delete",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key whose value to delete",
+          },
           options: [
             {
               name: ["-b", "--binding"],
-              args: [
-                {
-                  name: "binding",
-                },
-              ],
+              args: {
+                name: "binding",
+              },
               description:
                 "The binding of the namespace this action applies to",
             },
             {
               name: ["-n", "--namespace-id"],
-              args: [
-                {
-                  name: "namespace-id",
-                },
-              ],
+              args: {
+                name: "namespace-id",
+              },
               description: "The ID of the namespace this action applies to",
             },
           ],
@@ -241,13 +235,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "init",
       description: "Create a wrangler.toml for an existing project",
-      args: [
-        {
-          name: "name",
-          description: "The name of your worker! [default: worker]",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "name",
+        description: "The name of your worker! [default: worker]",
+        isOptional: true,
+      },
       options: [
         OPTION_CONFIG,
         OPTION_ENV,
@@ -348,13 +340,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish",
       description: "Publish your worker to the orange cloud",
-      args: [
-        {
-          name: "output",
-          suggestions: ["json"],
-          description: "[possible values: json]",
-        },
-      ],
+      args: {
+        name: "output",
+        suggestions: ["json"],
+        description: "[possible values: json]",
+      },
       options: [
         OPTION_CONFIG,
         OPTION_ENV,

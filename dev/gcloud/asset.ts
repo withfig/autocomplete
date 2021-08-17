@@ -944,14 +944,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FEED_ID",
-              description:
-                "Asset feed identifier being created, it must be unique under the specified parent resource project/folder/organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FEED_ID",
+            description:
+              "Asset feed identifier being created, it must be unique under the specified parent resource project/folder/organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1093,13 +1091,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FEED_ID",
-              description: "Asset feed identifier to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FEED_ID",
+            description: "Asset feed identifier to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1241,13 +1237,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FEED_ID",
-              description: "Asset feed identifier to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FEED_ID",
+            description: "Asset feed identifier to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1651,14 +1645,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FEED_ID",
-              description:
-                "Identifier of the asset feed to update, which must be unique in its parent resource. Parent resource can be a project, folder, or an organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FEED_ID",
+            description:
+              "Identifier of the asset feed to update, which must be unique in its parent resource. Parent resource can be a project, folder, or an organization.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2108,13 +2100,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION_NAME",
-              description: "Name of the operation to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION_NAME",
+            description: "Name of the operation to describe.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

@@ -680,11 +680,9 @@ const completionSpec: Fig.Spec = {
       name: "ext:update",
       description:
         "update an existing extension instance to the latest version",
-      args: [
-        {
-          name: "extensionInstanceId",
-        },
-      ],
+      args: {
+        name: "extensionInstanceId",
+      },
       options: [
         {
           name: ["-h", "--help"],

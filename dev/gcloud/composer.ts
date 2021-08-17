@@ -390,14 +390,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENVIRONMENT",
-              description:
-                "ID of the environment or fully qualified identifier for the environment.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENVIRONMENT",
+            description:
+              "ID of the environment or fully qualified identifier for the environment.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -546,14 +544,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENVIRONMENTS",
-              description:
-                "IDs of the environments or fully qualified identifiers for the environments.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "ENVIRONMENTS",
+            description:
+              "IDs of the environments or fully qualified identifiers for the environments.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -697,14 +693,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENVIRONMENT",
-              description:
-                "ID of the environment or fully qualified identifier for the environment.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENVIRONMENT",
+            description:
+              "ID of the environment or fully qualified identifier for the environment.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1223,14 +1217,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "TARGET",
-                      description:
-                        "A relative path to a file or subdirectory to delete within the\ndags Cloud Storage subdirectory. If not specified, the entire contents\nof the dags subdirectory will be deleted.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "TARGET",
+                    description:
+                      "A relative path to a file or subdirectory to delete within the\ndags Cloud Storage subdirectory. If not specified, the entire contents\nof the dags subdirectory will be deleted.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "export",
@@ -2027,14 +2019,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "TARGET",
-                      description:
-                        "A relative path to a file or subdirectory to delete within the\ndata Cloud Storage subdirectory. If not specified, the entire contents\nof the data subdirectory will be deleted.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "TARGET",
+                    description:
+                      "A relative path to a file or subdirectory to delete within the\ndata Cloud Storage subdirectory. If not specified, the entire contents\nof the data subdirectory will be deleted.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "export",
@@ -2831,14 +2821,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "TARGET",
-                      description:
-                        "A relative path to a file or subdirectory to delete within the\nplugins Cloud Storage subdirectory. If not specified, the entire contents\nof the plugins subdirectory will be deleted.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "TARGET",
+                    description:
+                      "A relative path to a file or subdirectory to delete within the\nplugins Cloud Storage subdirectory. If not specified, the entire contents\nof the plugins subdirectory will be deleted.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "export",
@@ -3873,14 +3861,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENVIRONMENT",
-              description:
-                "ID of the environment or fully qualified identifier for the environment.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENVIRONMENT",
+            description:
+              "ID of the environment or fully qualified identifier for the environment.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4159,14 +4145,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATIONS",
-              description:
-                "IDs of the operations or fully qualified identifiers for the operations.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "OPERATIONS",
+            description:
+              "IDs of the operations or fully qualified identifiers for the operations.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -4310,14 +4294,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4650,14 +4632,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

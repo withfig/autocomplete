@@ -63,14 +63,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Change a user's password for django.contrib.auth.",
-    args: [
-      {
-        name: "username",
-        description:
-          "Username to change password for; by default, it's the current username.",
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "username",
+      description:
+        "Username to change password for; by default, it's the current username.",
+      isOptional: true,
+    },
   },
   {
     name: "createsuperuser",
@@ -174,13 +172,11 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Checks the entire Django project for potential problems.",
-    args: [
-      {
-        name: "app_label",
-        isVariadic: true,
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "app_label",
+      isVariadic: true,
+      isOptional: true,
+    },
   },
   {
     name: "compilemessages",
@@ -237,15 +233,13 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Creates the tables needed to use the SQL cache backend.",
-    args: [
-      {
-        name: "table_name",
-        description:
-          "Optional table names. Otherwise, settings.CACHES is used to find cache tables.",
-        isVariadic: true,
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "table_name",
+      description:
+        "Optional table names. Otherwise, settings.CACHES is used to find cache tables.",
+      isVariadic: true,
+      isOptional: true,
+    },
   },
   {
     name: "dbshell",
@@ -362,15 +356,13 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Output the contents of the database as a fixture of the given format (using each model's default manager unless --all is specified).",
-    args: [
-      {
-        name: "app_label",
-        description:
-          "Restricts dumped data to the specified app_label or app_label.ModelName.",
-        isOptional: true,
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "app_label",
+      description:
+        "Restricts dumped data to the specified app_label or app_label.ModelName.",
+      isOptional: true,
+      isVariadic: true,
+    },
   },
   {
     name: "flush",
@@ -420,14 +412,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Introspects the database tables in the given database and outputs a Django",
-    args: [
-      {
-        name: "table",
-        description: "Selects what tables or views should be introspected.",
-        isOptional: true,
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "table",
+      description: "Selects what tables or views should be introspected.",
+      isOptional: true,
+      isVariadic: true,
+    },
   },
   {
     name: "loaddata",
@@ -474,13 +464,11 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Installs the named fixture(s) in the database.",
-    args: [
-      {
-        name: "fixture",
-        description: "Fixture labels.",
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "fixture",
+      description: "Fixture labels.",
+      isVariadic: true,
+    },
   },
   {
     name: "makemessages",
@@ -625,14 +613,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Creates new migration(s) for apps.",
-    args: [
-      {
-        name: "app_label",
-        description: "Specify the app label(s) to create migrations for.",
-        isOptional: true,
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "app_label",
+      description: "Specify the app label(s) to create migrations for.",
+      isOptional: true,
+      isVariadic: true,
+    },
   },
   {
     name: "migrate",
@@ -716,17 +702,15 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Sends a test email to the email addresses specified as arguments.",
-    args: [
-      {
-        name: "email",
-        description: "One or more email addresses to send a test email to.",
-        // This argument is not optional when no other arguments are supplied.
-        // But it is optional when either `--managers` or `--admins` are supplied as arguments,
-        // so keeping it as `isOptional` for now to keep things simple.
-        isOptional: true,
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "email",
+      description: "One or more email addresses to send a test email to.",
+      // This argument is not optional when no other arguments are supplied.
+      // But it is optional when either `--managers` or `--admins` are supplied as arguments,
+      // so keeping it as `isOptional` for now to keep things simple.
+      isOptional: true,
+      isVariadic: true,
+    },
   },
   {
     name: "shell",
@@ -786,14 +770,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Shows all available migrations for the current project",
-    args: [
-      {
-        name: "app_label",
-        description: "App labels of applications to limit the output to.",
-        isOptional: true,
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "app_label",
+      description: "App labels of applications to limit the output to.",
+      isOptional: true,
+      isVariadic: true,
+    },
   },
   {
     name: "sqlflush",
@@ -868,13 +850,11 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Prints the SQL statements for resetting sequences for the given app name(s).",
-    args: [
-      {
-        name: "app_label",
-        description: "One or more application label.",
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "app_label",
+      description: "One or more application label.",
+      isVariadic: true,
+    },
   },
   {
     name: "squashmigrations",
@@ -1107,14 +1087,12 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Discover and run tests in the specified modules or the current directory.",
-    args: [
-      {
-        name: "test_label",
-        description:
-          "Module paths to test; can be modulename, modulename.TestCase or modulename.TestCase.test_method",
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "test_label",
+      description:
+        "Module paths to test; can be modulename, modulename.TestCase or modulename.TestCase.test_method",
+      isOptional: true,
+    },
   },
   {
     name: "testserver",
@@ -1139,13 +1117,11 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Runs a development server with data from the given fixture(s).",
-    args: [
-      {
-        name: "fixture",
-        description: "Path(s) to fixtures to load before running the server.",
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "fixture",
+      description: "Path(s) to fixtures to load before running the server.",
+      isOptional: true,
+    },
   },
   {
     name: "test_mail",
@@ -1228,12 +1204,10 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
       },
     ],
     description: "Finds the absolute paths for the given static file(s).",
-    args: [
-      {
-        name: "staticfile",
-        isVariadic: true,
-      },
-    ],
+    args: {
+      name: "staticfile",
+      isVariadic: true,
+    },
   },
   {
     name: "runserver",
@@ -1263,13 +1237,11 @@ const DJANGO_NATIVE_COMMANDS: Fig.Subcommand[] = [
     ],
     description:
       "Starts a lightweight Web server for development and also serves static files.",
-    args: [
-      {
-        name: "addrport",
-        description: "Optional port number, or ipaddr:port",
-        isOptional: true,
-      },
-    ],
+    args: {
+      name: "addrport",
+      description: "Optional port number, or ipaddr:port",
+      isOptional: true,
+    },
   },
 ].map((subcommand) => {
   return {

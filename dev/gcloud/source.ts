@@ -764,14 +764,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY_NAME",
-              description:
-                "Name of the repository. May contain between 3 and 63 (inclusive)\nlowercase letters, digits, and hyphens. Must start with a letter, and\nmay not end with a hyphen.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY_NAME",
+            description:
+              "Name of the repository. May contain between 3 and 63 (inclusive)\nlowercase letters, digits, and hyphens. Must start with a letter, and\nmay not end with a hyphen.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -910,13 +908,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY_NAME",
-              description: "Name of the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY_NAME",
+            description: "Name of the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1050,13 +1046,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY_NAME",
-              description: "Name of the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY_NAME",
+            description: "Name of the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -1231,13 +1225,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPOSITORY_NAME",
-              description: "Name of the repository.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPOSITORY_NAME",
+            description: "Name of the repository.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1753,14 +1745,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPO",
-              description:
-                "ID of the repo or fully qualified identifier for the repo.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPO",
+            description:
+              "ID of the repo or fully qualified identifier for the repo.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

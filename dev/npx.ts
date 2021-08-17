@@ -71,20 +71,16 @@ const completionSpec: Fig.Spec = {
     {
       name: ["--package", "-p"],
       description: "Package to be installed.",
-      args: [
-        {
-          name: "package",
-        },
-      ],
+      args: {
+        name: "package",
+      },
     },
     {
       name: "--cache",
-      args: [
-        {
-          name: "path",
-          template: "filepaths",
-        },
-      ],
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
       description: "Location of the npm cache.",
     },
     {
@@ -96,61 +92,53 @@ const completionSpec: Fig.Spec = {
       name: "--no-install",
     },
     {
-      args: [
-        {
-          name: "path",
-          template: "filepaths",
-        },
-      ],
+      args: {
+        name: "path",
+        template: "filepaths",
+      },
       description: "Path to user npmrc.",
       name: "--userconfig",
     },
     {
       name: ["--call", "-c"],
-      args: [
-        {
-          name: "script",
-        },
-      ],
+      args: {
+        name: "script",
+      },
       description: "Execute string as if inside `npm run-script`.",
     },
     {
       name: ["--shell", "-s"],
       description: "Shell to execute the command with, if any.",
-      args: [
-        {
-          name: "shell",
-          suggestions: [
-            {
-              name: "bash",
-            },
-            {
-              name: "fish",
-            },
-            {
-              name: "zsh",
-            },
-          ],
-        },
-      ],
+      args: {
+        name: "shell",
+        suggestions: [
+          {
+            name: "bash",
+          },
+          {
+            name: "fish",
+          },
+          {
+            name: "zsh",
+          },
+        ],
+      },
     },
     {
-      args: [
-        {
-          name: "shell-fallback",
-          suggestions: [
-            {
-              name: "bash",
-            },
-            {
-              name: "fish",
-            },
-            {
-              name: "zsh",
-            },
-          ],
-        },
-      ],
+      args: {
+        name: "shell-fallback",
+        suggestions: [
+          {
+            name: "bash",
+          },
+          {
+            name: "fish",
+          },
+          {
+            name: "zsh",
+          },
+        ],
+      },
       name: "--shell-auto-fallback",
       description:
         'Generate shell code to use npx as the "command not found" fallback.',
@@ -167,12 +155,10 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--npm",
-      args: [
-        {
-          name: "path to binary",
-          template: "filepaths",
-        },
-      ],
+      args: {
+        name: "path to binary",
+        template: "filepaths",
+      },
       description: "npm binary to use for internal operations.",
     },
     {

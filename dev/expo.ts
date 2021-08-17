@@ -95,13 +95,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Build and sign a standalone IPA for the Apple App Store",
       priority: 59,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -475,13 +473,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Build and sign a standalone APK or App Bundle for the Google Play Store",
       priority: 59,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -681,13 +677,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Build the web app for production",
       priority: 59,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -782,13 +776,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Get the status of the latest build for the project",
       priority: 59,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -831,13 +823,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Bundle assets for a detached app. This command should be executed from xcode or gradle",
       priority: 51,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -899,13 +889,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Experimental: build a custom version of Expo Go for iOS using your own Apple credentials",
       priority: 52,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1026,13 +1014,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Show the project config",
       priority: 61,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1105,13 +1091,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Manage your credentials",
       priority: 58,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1164,13 +1148,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Eject the default web files for customization",
       priority: 53,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1243,13 +1225,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log environment info to the console",
       priority: 61,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1280,13 +1260,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Diagnose issues with the project",
       priority: 61,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1318,13 +1296,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Create native iOS and Android project files. Learn more: https://docs.expo.io/workflow/customizing/",
       priority: 53,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1423,13 +1399,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Export the static files of the app for hosting it on a web server",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1673,13 +1647,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Download the project's iOS standalone app signing credentials",
       priority: 58,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1710,13 +1682,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Download the project's Android keystore",
       priority: 58,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1747,13 +1717,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Compute and log the project's Android key hashes",
       priority: 58,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1784,13 +1752,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Download the project's Android keystore",
       priority: 58,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1821,12 +1787,10 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Create a new Expo project",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          name: "name",
-        },
-      ],
+      args: {
+        isOptional: true,
+        name: "name",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -1950,15 +1914,13 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Install a unimodule or other package to a project",
       priority: 64,
-      args: [
-        {
-          generators: _gen[`npm`],
-          isOptional: true,
-          name: "packages",
-          isVariadic: true,
-          debounce: true,
-        },
-      ],
+      args: {
+        generators: _gen[`npm`],
+        isOptional: true,
+        name: "packages",
+        isVariadic: true,
+        debounce: true,
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2082,13 +2044,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Experimental: Create native iOS and Android project files before building natively. Learn more: https://docs.expo.io/workflow/customizing/",
       priority: 53,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2230,13 +2190,11 @@ const completionSpec: Fig.Spec = {
       hidden: true,
       description: "Prepare a detached project for building",
       priority: 51,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2297,13 +2255,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Deploy a project to Expo hosting",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2428,13 +2384,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Specify the channel to serve a published release",
       priority: 60,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2497,13 +2451,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Undo an update to a channel",
       priority: 60,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2597,13 +2549,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log the project's releases",
       priority: 60,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2720,13 +2670,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log details of a published release",
       priority: 60,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2799,13 +2747,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Upload an FCM key for Android push notifications",
       priority: 57,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2858,13 +2804,11 @@ const completionSpec: Fig.Spec = {
       description:
         "Log the value currently in use for FCM notifications for this project",
       priority: 57,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2895,13 +2839,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Delete a previously uploaded FCM credential",
       priority: 57,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -2949,13 +2891,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Run the Android app binary locally",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -3037,13 +2977,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Run the iOS app binary locally",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -3139,13 +3077,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Share the project's URL to an email address",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -3357,13 +3293,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Start a local dev server for the app",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -3765,13 +3699,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Start a Webpack dev server for the web app",
       priority: 64,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4141,12 +4073,10 @@ const completionSpec: Fig.Spec = {
       description:
         "Upgrade the project packages and config for the given SDK version",
       priority: 61,
-      args: [
-        {
-          isOptional: true,
-          name: "sdk-version",
-        },
-      ],
+      args: {
+        isOptional: true,
+        name: "sdk-version",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4206,13 +4136,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Upload an Android binary to the Google Play Store",
       priority: 54,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4425,13 +4353,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Unsupported: Use eas submit or Transporter app instead.",
       priority: 54,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4657,13 +4583,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log a URL for opening the project in Expo Go",
       priority: 56,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4886,13 +4810,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log the download URL for the standalone iOS binary",
       priority: 56,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4934,13 +4856,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Log the download URL for the standalone Android binary",
       priority: 56,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -4982,13 +4902,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "List all webhooks for a project",
       priority: 55,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -5019,13 +4937,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Add a webhook to a project",
       priority: 55,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -5099,13 +5015,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Delete a webhook",
       priority: 55,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],
@@ -5146,13 +5060,11 @@ const completionSpec: Fig.Spec = {
       hidden: false,
       description: "Update an existing webhook",
       priority: 55,
-      args: [
-        {
-          isOptional: true,
-          template: "folders",
-          name: "path",
-        },
-      ],
+      args: {
+        isOptional: true,
+        template: "folders",
+        name: "path",
+      },
       options: [
         {
           name: ["-h", "--help"],

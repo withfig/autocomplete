@@ -208,14 +208,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIGURATION",
-              description:
-                "ID of the configuration or fully qualified identifier for the configuration.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONFIGURATION",
+            description:
+              "ID of the configuration or fully qualified identifier for the configuration.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1187,14 +1185,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SERVICE",
-          description:
-            "ID of the service or fully qualified identifier for the service.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SERVICE",
+        description:
+          "ID of the service or fully qualified identifier for the service.",
+        isVariadic: false,
+      },
     },
     {
       name: "domain-mappings",
@@ -2933,14 +2929,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REVISION",
-              description:
-                "ID of the revision or fully qualified identifier for the revision.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REVISION",
+            description:
+              "ID of the revision or fully qualified identifier for the revision.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3144,14 +3138,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REVISION",
-              description:
-                "ID of the revision or fully qualified identifier for the revision.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REVISION",
+            description:
+              "ID of the revision or fully qualified identifier for the revision.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3806,14 +3798,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ROUTE",
-              description:
-                "ID of the route or fully qualified identifier for the route.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ROUTE",
+            description:
+              "ID of the route or fully qualified identifier for the route.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4490,14 +4480,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -4701,14 +4689,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -4912,14 +4898,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -5153,14 +5137,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -5648,14 +5630,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -6391,14 +6371,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
         {
           name: "update-traffic",
@@ -6623,14 +6601,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description:
-                "ID of the service or fully qualified identifier for the service.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description:
+              "ID of the service or fully qualified identifier for the service.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

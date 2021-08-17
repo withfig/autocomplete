@@ -162,12 +162,12 @@ const dockerGenerators: Record<string, Fig.Generator> = {
 
 const containersArg = {
   name: "container",
-  generators: [dockerGenerators.runningDockerContainers],
+  generators: dockerGenerators.runningDockerContainers,
 };
 
 const imagesArg = {
   name: "image",
-  generators: [dockerGenerators.allLocalImages],
+  generators: dockerGenerators.allLocalImages,
 };
 
 const containerAndCommandArgs = [
@@ -180,7 +180,7 @@ const containerAndCommandArgs = [
 
 const contextsArg = {
   name: "CONTEXT",
-  generators: [dockerGenerators.allDockerContexts],
+  generators: dockerGenerators.allDockerContexts,
 };
 
 const sharedCommands: Record<string, Fig.Subcommand> = {
@@ -189,11 +189,9 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Build an image from a Dockerfile",
     args: {
       name: "path",
-      generators: [
-        {
-          template: "folders",
-        },
-      ],
+      generators: {
+        template: "folders",
+      },
     },
     options: [
       {
@@ -226,11 +224,9 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         description: "Name of the Dockerfile (Default is 'PATH/Dockerfile')",
         args: {
           name: "string",
-          generators: [
-            {
-              template: "filepaths",
-            },
-          ],
+          generators: {
+            template: "filepaths",
+          },
         },
       },
       {
@@ -324,45 +320,43 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
         description: "Set the target build stage to build",
         args: {
           name: "target build stage",
-          generators: [
-            {
-              trigger: function () {
-                return true;
-              },
-              script: function (context) {
-                let fileFlagIndex, dockerfilePath;
-                if (context.includes("-f")) {
-                  fileFlagIndex = context.indexOf("-f");
-                  dockerfilePath = context[fileFlagIndex + 1];
-                } else if (context.includes("--file")) {
-                  fileFlagIndex = context.indexOf("--file");
-                  dockerfilePath = context[fileFlagIndex + 1];
-                } else {
-                  dockerfilePath = "$PWD/Dockerfile";
-                }
-
-                return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
-              },
-              postProcess: function (out) {
-                // This just searches the Dockerfile for the alias name after AS,
-                // and due to the grep above, will only match lines where FROM and AS
-                // are on the same line. This could certainly be made more robust
-                // down the line.
-                const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
-                return out
-                  .split("\n")
-                  .map((i) => {
-                    const result = imageNameRegexp.exec(i);
-                    if (result) {
-                      return {
-                        name: result[1],
-                      };
-                    }
-                  })
-                  .filter((i) => i !== undefined);
-              },
+          generators: {
+            trigger: function () {
+              return true;
             },
-          ],
+            script: function (context) {
+              let fileFlagIndex, dockerfilePath;
+              if (context.includes("-f")) {
+                fileFlagIndex = context.indexOf("-f");
+                dockerfilePath = context[fileFlagIndex + 1];
+              } else if (context.includes("--file")) {
+                fileFlagIndex = context.indexOf("--file");
+                dockerfilePath = context[fileFlagIndex + 1];
+              } else {
+                dockerfilePath = "$PWD/Dockerfile";
+              }
+
+              return `grep -iE 'FROM.*AS' "${dockerfilePath}"`;
+            },
+            postProcess: function (out) {
+              // This just searches the Dockerfile for the alias name after AS,
+              // and due to the grep above, will only match lines where FROM and AS
+              // are on the same line. This could certainly be made more robust
+              // down the line.
+              const imageNameRegexp = /(?:[aA][sS]\s+)([\w:.-]+)/;
+              return out
+                .split("\n")
+                .map((i) => {
+                  const result = imageNameRegexp.exec(i);
+                  if (result) {
+                    return {
+                      name: result[1],
+                    };
+                  }
+                })
+                .filter((i) => i !== undefined);
+            },
+          },
         },
       },
     ],
@@ -373,7 +367,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     args: [
       {
         name: "container",
-        generators: [dockerGenerators.allLocalImages],
+        generators: dockerGenerators.allLocalImages,
       },
       {
         name: "command",
@@ -1287,7 +1281,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
           description: "All running containers",
         },
       ],
-      generators: [dockerGenerators.allDockerContainers],
+      generators: dockerGenerators.allDockerContainers,
     },
     options: [
       {
@@ -1351,7 +1345,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Start one or more stopped containers",
     args: {
       name: "container",
-      generators: [dockerGenerators.allDockerContainers],
+      generators: dockerGenerators.allDockerContainers,
     },
     options: [
       {
@@ -1423,7 +1417,7 @@ const sharedCommands: Record<string, Fig.Subcommand> = {
     description: "Unpause all processes within one or more containers",
     args: {
       name: "container",
-      generators: [dockerGenerators.pausedDockerContainers],
+      generators: dockerGenerators.pausedDockerContainers,
     },
   },
   update: {
@@ -1987,12 +1981,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "search",
       description: "Search the Docker Hub for images",
-      args: [
-        {
-          name: "TERM",
-          description: "Search term",
-        },
-      ],
+      args: {
+        name: "TERM",
+        description: "Search term",
+      },
       options: [
         {
           args: {
@@ -2598,7 +2590,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "NETWORK",
-              generators: [dockerGenerators.listDockerNetworks],
+              generators: dockerGenerators.listDockerNetworks,
             },
             containersArg,
           ],
@@ -2761,7 +2753,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "NETWORK",
-              generators: [dockerGenerators.listDockerNetworks],
+              generators: dockerGenerators.listDockerNetworks,
             },
             containersArg,
           ],
@@ -2777,7 +2769,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more networks",
           args: {
             name: "NETWORK",
-            generators: [dockerGenerators.listDockerNetworks],
+            generators: dockerGenerators.listDockerNetworks,
             isVariadic: true,
           },
           options: [
@@ -2844,7 +2836,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more networks",
           args: {
             name: "NETWORK",
-            generators: [dockerGenerators.listDockerNetworks],
+            generators: dockerGenerators.listDockerNetworks,
             isVariadic: true,
           },
         },
@@ -2859,7 +2851,7 @@ const completionSpec: Fig.Spec = {
           description: "Demote one or more nodes from manager in the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
         },
@@ -2868,7 +2860,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more nodes",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2914,7 +2906,7 @@ const completionSpec: Fig.Spec = {
           description: "Promote one or more nodes to manager in the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
         },
@@ -2924,7 +2916,7 @@ const completionSpec: Fig.Spec = {
             "List tasks running on one or more nodes, defaults to current node",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2961,7 +2953,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more nodes from the swarm",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -2976,7 +2968,7 @@ const completionSpec: Fig.Spec = {
           description: "Update a node",
           args: {
             name: "NODE",
-            generators: [dockerGenerators.listDockerSwarmNodes],
+            generators: dockerGenerators.listDockerSwarmNodes,
             isVariadic: true,
           },
           options: [
@@ -3037,7 +3029,7 @@ const completionSpec: Fig.Spec = {
           description: "Disable a plugin",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
           },
           options: [
             {
@@ -3051,7 +3043,7 @@ const completionSpec: Fig.Spec = {
           description: "Enable a plugin",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
           },
           options: [
             {
@@ -3068,7 +3060,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more plugins",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
             isVariadic: true,
           },
           options: [
@@ -3151,7 +3143,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more plugins",
           args: {
             name: "PLUGIN",
-            generators: [dockerGenerators.listDockerPlugins],
+            generators: dockerGenerators.listDockerPlugins,
             isVariadic: true,
           },
           options: [
@@ -3167,7 +3159,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "PLUGIN",
-              generators: [dockerGenerators.listDockerPlugins],
+              generators: dockerGenerators.listDockerPlugins,
             },
             { name: "KEY=VALUE", isVariadic: true },
           ],
@@ -3178,7 +3170,7 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "PLUGIN",
-              generators: [dockerGenerators.listDockerPlugins],
+              generators: dockerGenerators.listDockerPlugins,
             },
             { name: "REMOTE" },
           ],
@@ -3245,7 +3237,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more secrets",
           args: {
             name: "SECRET",
-            generators: [dockerGenerators.listDockerSecrets],
+            generators: dockerGenerators.listDockerSecrets,
             isVariadic: true,
           },
           options: [
@@ -3291,7 +3283,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more secrets",
           args: {
             name: "SECRET",
-            generators: [dockerGenerators.listDockerSecrets],
+            generators: dockerGenerators.listDockerSecrets,
             isVariadic: true,
           },
         },
@@ -3824,7 +3816,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
           options: [
@@ -3846,7 +3838,7 @@ const completionSpec: Fig.Spec = {
           description: "Fetch the logs of a service or task",
           args: {
             name: "SERVICE OR TASK",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -3924,7 +3916,7 @@ const completionSpec: Fig.Spec = {
           description: "List the tasks of one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
           options: [
@@ -3961,7 +3953,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more services",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
             isVariadic: true,
           },
         },
@@ -3970,7 +3962,7 @@ const completionSpec: Fig.Spec = {
           description: "Revert changes to a service's configuration",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -3989,7 +3981,7 @@ const completionSpec: Fig.Spec = {
           description: "Scale one or multiple replicated services",
           args: {
             name: "SERVICE=REPLICAS",
-            generators: [dockerGenerators.listDockerServicesReplicas],
+            generators: dockerGenerators.listDockerServicesReplicas,
             isVariadic: true,
           },
           options: [
@@ -4005,7 +3997,7 @@ const completionSpec: Fig.Spec = {
           description: "Update a service",
           args: {
             name: "SERVICE",
-            generators: [dockerGenerators.listDockerServices],
+            generators: dockerGenerators.listDockerServices,
           },
           options: [
             {
@@ -4698,7 +4690,7 @@ const completionSpec: Fig.Spec = {
           description: "List the tasks in the stack",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
           },
           options: [
             {
@@ -4741,7 +4733,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more stacks",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
             isVariadic: true,
           },
           options: [
@@ -4759,7 +4751,7 @@ const completionSpec: Fig.Spec = {
           description: "List the services in the stack",
           args: {
             name: "STACK",
-            generators: [dockerGenerators.listDockerStacks],
+            generators: dockerGenerators.listDockerStacks,
           },
           options: [
             {
@@ -5296,7 +5288,7 @@ const completionSpec: Fig.Spec = {
           description: "Display detailed information on one or more volumes",
           args: {
             name: "VOLUME",
-            generators: [dockerGenerators.listDockerVolumes],
+            generators: dockerGenerators.listDockerVolumes,
             isVariadic: true,
           },
           options: [
@@ -5355,7 +5347,7 @@ const completionSpec: Fig.Spec = {
           description: "Remove one or more volumes",
           args: {
             name: "VOLUME",
-            generators: [dockerGenerators.listDockerVolumes],
+            generators: dockerGenerators.listDockerVolumes,
             isVariadic: true,
           },
           options: [

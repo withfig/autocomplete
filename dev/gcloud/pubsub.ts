@@ -170,13 +170,11 @@ const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description: "Subscription ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description: "Subscription ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -319,14 +317,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -469,14 +465,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -814,14 +808,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1152,13 +1144,11 @@ const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description: "Topic ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description: "Topic ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1301,14 +1291,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1451,14 +1439,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1826,14 +1812,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -2017,14 +2001,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2323,13 +2305,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SNAPSHOT",
-              description: "One or more snapshot names to create.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SNAPSHOT",
+            description: "One or more snapshot names to create.",
+            isVariadic: true,
+          },
         },
         {
           name: "delete",
@@ -2463,13 +2443,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SNAPSHOT",
-              description: "One or more snapshot names to delete.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SNAPSHOT",
+            description: "One or more snapshot names to delete.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -2603,13 +2581,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SNAPSHOT",
-              description: "snapshot to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SNAPSHOT",
+            description: "snapshot to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3067,14 +3043,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "add-iam-policy-binding",
@@ -3229,14 +3203,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -3536,14 +3508,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
+            isVariadic: true,
+          },
         },
         {
           name: "delete",
@@ -3677,14 +3647,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -3818,14 +3786,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -3999,14 +3965,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4341,14 +4305,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "modify-push-config",
@@ -4514,14 +4476,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "pull",
@@ -4706,14 +4666,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "remove-iam-policy-binding",
@@ -4868,14 +4826,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "seek",
@@ -5040,14 +4996,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -5482,14 +5436,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "ID of the subscription or fully qualified identifier for the subscription.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "ID of the subscription or fully qualified identifier for the subscription.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -5778,14 +5730,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -5977,14 +5927,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "IDs of the topics or fully qualified identifiers for the topics.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "IDs of the topics or fully qualified identifiers for the topics.",
+            isVariadic: true,
+          },
         },
         {
           name: "delete",
@@ -6118,14 +6066,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "IDs of the topics or fully qualified identifiers for the topics.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "IDs of the topics or fully qualified identifiers for the topics.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -6259,14 +6205,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "detach-subscription",
@@ -6400,14 +6344,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SUBSCRIPTION",
-              description:
-                "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SUBSCRIPTION",
+            description:
+              "IDs of the subscriptions or fully qualified identifiers for the subscriptions.",
+            isVariadic: true,
+          },
         },
         {
           name: "get-iam-policy",
@@ -6581,14 +6523,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6945,14 +6885,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "publish",
@@ -7116,14 +7054,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "remove-iam-policy-binding",
@@ -7278,14 +7214,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -7643,14 +7577,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TOPIC",
-              description:
-                "ID of the topic or fully qualified identifier for the topic.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TOPIC",
+            description:
+              "ID of the topic or fully qualified identifier for the topic.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

@@ -4088,13 +4088,11 @@ const completionSpec: Fig.Spec = {
             "Use the instance profile instead of creating an IAM\n                         user.",
         },
       ],
-      args: [
-        {
-          name: "target",
-          description:
-            "Either the EC2 instance ID or the hostname of the\n                         instance or machine to be registered with OpsWorks.\n                         Cannot be used together with `--local`.",
-        },
-      ],
+      args: {
+        name: "target",
+        description:
+          "Either the EC2 instance ID or the hostname of the\n                         instance or machine to be registered with OpsWorks.\n                         Cannot be used together with `--local`.",
+      },
     },
     {
       name: "wait",

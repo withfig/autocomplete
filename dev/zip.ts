@@ -22,20 +22,16 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-s",
-      args: [
-        {
-          name: "split size",
-        },
-      ],
+      args: {
+        name: "split size",
+      },
     },
     {
       name: "-d",
-      args: [
-        {
-          name: "file",
-          template: "filepaths",
-        },
-      ],
+      args: {
+        name: "file",
+        template: "filepaths",
+      },
     },
     {
       name: "-9",

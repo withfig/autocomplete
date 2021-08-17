@@ -615,45 +615,37 @@ const completionSpec: Fig.Spec = {
           name: ["-C", "--reuse-message"],
           description:
             "Take an existing commit object, and reuse the log message and the authorship ...",
-          args: [
-            {
-              name: "commit",
-              generators: gitGenerators.commits,
-            },
-          ],
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
         },
         {
           name: ["-c", "--reedit-message"],
           description:
             "Like -C, but with -c the editor is invoked, so that the user can further edit...",
-          args: [
-            {
-              name: "commit",
-              generators: gitGenerators.commits,
-            },
-          ],
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
         },
         {
           name: "--fixup",
           description:
             "Construct a commit message for use with rebase --autosquash. The commit messa...",
-          args: [
-            {
-              name: "commit",
-              generators: gitGenerators.commits,
-            },
-          ],
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
         },
         {
           name: "--squash",
           description:
             "Construct a commit message for use with rebase --autosquash. The commit messa...",
-          args: [
-            {
-              name: "commit",
-              generators: gitGenerators.commits,
-            },
-          ],
+          args: {
+            name: "commit",
+            generators: gitGenerators.commits,
+          },
         },
         {
           name: "--reset-author",
@@ -3050,13 +3042,11 @@ const completionSpec: Fig.Spec = {
             "Show the changes recorded in the stash entry as a diff.",
           insertValue: "show {cursor}",
 
-          args: [
-            {
-              name: "stash",
-              isOptional: true,
-              generators: gitGenerators.stashes,
-            },
-          ],
+          args: {
+            name: "stash",
+            isOptional: true,
+            generators: gitGenerators.stashes,
+          },
         },
         {
           name: "save",
@@ -3107,13 +3097,11 @@ const completionSpec: Fig.Spec = {
               description: "Quiet, suppress feedback messages.",
             },
           ],
-          args: [
-            {
-              name: "stash",
-              isOptional: true,
-              generators: gitGenerators.stashes,
-            },
-          ],
+          args: {
+            name: "stash",
+            isOptional: true,
+            generators: gitGenerators.stashes,
+          },
         },
         {
           name: "list",
@@ -3130,13 +3118,11 @@ const completionSpec: Fig.Spec = {
               description: "Quiet, suppress feedback messages.",
             },
           ],
-          args: [
-            {
-              name: "stash",
-              isOptional: true,
-              generators: gitGenerators.stashes,
-            },
-          ],
+          args: {
+            name: "stash",
+            isOptional: true,
+            generators: gitGenerators.stashes,
+          },
         },
         {
           name: "clear",
@@ -3157,13 +3143,11 @@ const completionSpec: Fig.Spec = {
               description: "Quiet, suppress feedback messages.",
             },
           ],
-          args: [
-            {
-              name: "stash",
-              isOptional: true,
-              generators: gitGenerators.stashes,
-            },
-          ],
+          args: {
+            name: "stash",
+            isOptional: true,
+            generators: gitGenerators.stashes,
+          },
         },
         {
           name: "branch",
@@ -3371,7 +3355,7 @@ const completionSpec: Fig.Spec = {
           name: ["-c", "--config"],
           description:
             "Set a configuration variable in the newly-created repository; this takes effect immediately after the repository is initialized, but before the remote history is fetched or any files checked out. The key is in the same format as expected by git-config[1] (e.g., core.eol=true). If multiple values are given for the same key, each value will be written to the config file. This makes it safe, for example, to add additional fetch refspecs to the origin remote. Due to limitations of the current implementation, some configuration variables do not take effect until after the initial fetch and checkout. Configuration variables known to not take effect are: remote.<name>.mirror and remote.<name>.tagOpt. Use the corresponding --mirror and --no-tags options instead.",
-          args: [{ name: "key=value" }],
+          args: { name: "key=value" },
         },
         {
           name: "--depth",

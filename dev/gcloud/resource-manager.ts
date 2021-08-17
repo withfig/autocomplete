@@ -179,14 +179,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER",
-              description:
-                "ID of the folder or fully qualified identifier for the folder.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER",
+            description:
+              "ID of the folder or fully qualified identifier for the folder.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -486,13 +484,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder you want to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder you want to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -626,13 +622,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder you want to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder you want to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-ancestors-iam-policy",
@@ -806,14 +800,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description:
-                "ID of the folder or fully qualified identifier for the folder.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description:
+              "ID of the folder or fully qualified identifier for the folder.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -987,13 +979,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder whose policy you want to get.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder whose policy you want to get.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1347,13 +1337,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder you want to move.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder you want to move.",
+            isVariadic: false,
+          },
         },
         {
           name: "remove-iam-policy-binding",
@@ -1533,14 +1521,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER",
-              description:
-                "ID of the folder or fully qualified identifier for the folder.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER",
+            description:
+              "ID of the folder or fully qualified identifier for the folder.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -1819,13 +1805,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder you want to undelete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder you want to undelete.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -1970,13 +1954,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FOLDER_ID",
-              description: "ID for the folder you want to update.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FOLDER_ID",
+            description: "ID for the folder you want to update.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2407,13 +2389,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORG_POLICY_ID",
-              description: "The Org Policy constraint name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORG_POLICY_ID",
+            description: "The Org Policy constraint name.",
+            isVariadic: false,
+          },
         },
         {
           name: "deny",
@@ -2714,13 +2694,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORG_POLICY_ID",
-              description: "The Org Policy constraint name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORG_POLICY_ID",
+            description: "The Org Policy constraint name.",
+            isVariadic: false,
+          },
         },
         {
           name: "disable-enforce",
@@ -2863,13 +2841,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORG_POLICY_ID",
-              description: "The Org Policy constraint name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORG_POLICY_ID",
+            description: "The Org Policy constraint name.",
+            isVariadic: false,
+          },
         },
         {
           name: "enable-enforce",
@@ -3012,13 +2988,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORG_POLICY_ID",
-              description: "The Org Policy constraint name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORG_POLICY_ID",
+            description: "The Org Policy constraint name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3352,13 +3326,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "POLICY_FILE",
-              description: "JSON or YAML file with the Organization Policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "POLICY_FILE",
+            description: "JSON or YAML file with the Organization Policy.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

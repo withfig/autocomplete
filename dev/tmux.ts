@@ -2049,12 +2049,10 @@ const completionSpec: Fig.Spec = {
     {
       name: ["unbind", "unbind-key"],
       description: "Unbind a key",
-      args: [
-        {
-          name: "key",
-          description: "The key to unbind",
-        },
-      ],
+      args: {
+        name: "key",
+        description: "The key to unbind",
+      },
       options: [
         {
           name: "-a",

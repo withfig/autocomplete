@@ -145,14 +145,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "MOUNT_DIR",
-          description:
-            "Local directory onto which the Cloud Shell home directory should be\nmounted.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "MOUNT_DIR",
+        description:
+          "Local directory onto which the Cloud Shell home directory should be\nmounted.",
+        isVariadic: false,
+      },
     },
     {
       name: "scp",

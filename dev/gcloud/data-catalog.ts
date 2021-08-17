@@ -277,14 +277,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY",
-              description:
-                "ID of the entry or fully qualified identifier for the entry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY",
+            description:
+              "ID of the entry or fully qualified identifier for the entry.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -436,14 +434,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY",
-              description:
-                "ID of the entry or fully qualified identifier for the entry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY",
+            description:
+              "ID of the entry or fully qualified identifier for the entry.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -595,14 +591,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY",
-              description:
-                "ID of the entry or fully qualified identifier for the entry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY",
+            description:
+              "ID of the entry or fully qualified identifier for the entry.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -934,14 +928,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "RESOURCE",
-              description:
-                "The name of the target resource to lookup. This can be either the Google Cloud Platform\nresource name or the SQL name of a Google Cloud Platform resource. SQL names follow Standard\nSQL lexical structure: https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "RESOURCE",
+            description:
+              "The name of the target resource to lookup. This can be either the Google Cloud Platform\nresource name or the SQL name of a Google Cloud Platform resource. SQL names follow Standard\nSQL lexical structure: https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -1197,14 +1189,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY",
-              description:
-                "ID of the entry or fully qualified identifier for the entry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY",
+            description:
+              "ID of the entry or fully qualified identifier for the entry.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1503,14 +1493,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -1671,14 +1659,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1821,14 +1807,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1971,14 +1955,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -2162,14 +2144,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2524,14 +2504,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -2849,14 +2827,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ENTRY_GROUP",
-              description:
-                "ID of the entry group or fully qualified identifier for the entry group.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ENTRY_GROUP",
+            description:
+              "ID of the entry group or fully qualified identifier for the entry group.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -3184,14 +3160,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "QUERY",
-          description:
-            "Query string in search query syntax in Cloud Data Catalog. For more\ninformation, see:\nhttps://cloud.google.com/data-catalog/docs/how-to/search-reference",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "QUERY",
+        description:
+          "Query string in search query syntax in Cloud Data Catalog. For more\ninformation, see:\nhttps://cloud.google.com/data-catalog/docs/how-to/search-reference",
+        isVariadic: false,
+      },
     },
     {
       name: "tag-templates",
@@ -3360,14 +3334,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -3531,14 +3503,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -3686,14 +3656,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3836,14 +3804,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "fields",
@@ -4019,14 +3985,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FIELD",
-                  description:
-                    "ID of the tag template field or fully qualified identifier for the tag template field.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FIELD",
+                description:
+                  "ID of the tag template field or fully qualified identifier for the tag template field.",
+                isVariadic: false,
+              },
             },
             {
               name: "delete",
@@ -4183,14 +4147,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FIELD",
-                  description:
-                    "ID of the tag template field or fully qualified identifier for the tag template field.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FIELD",
+                description:
+                  "ID of the tag template field or fully qualified identifier for the tag template field.",
+                isVariadic: false,
+              },
             },
             {
               name: "enum-values",
@@ -4368,14 +4330,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "ENUM_VALUE",
-                      description:
-                        "ID of the enum value or fully qualified identifier for the enum value.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "ENUM_VALUE",
+                    description:
+                      "ID of the enum value or fully qualified identifier for the enum value.",
+                    isVariadic: false,
+                  },
                 },
               ],
               options: [
@@ -4667,14 +4627,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FIELD",
-                  description:
-                    "ID of the tag template field or fully qualified identifier for the tag template field.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FIELD",
+                description:
+                  "ID of the tag template field or fully qualified identifier for the tag template field.",
+                isVariadic: false,
+              },
             },
             {
               name: "update",
@@ -4850,14 +4808,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "FIELD",
-                  description:
-                    "ID of the tag template field or fully qualified identifier for the tag template field.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "FIELD",
+                description:
+                  "ID of the tag template field or fully qualified identifier for the tag template field.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -5171,14 +5127,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "remove-iam-policy-binding",
@@ -5343,14 +5297,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -5659,14 +5611,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG_TEMPLATE",
-              description:
-                "ID of the tag template or fully qualified identifier for the tag template.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG_TEMPLATE",
+            description:
+              "ID of the tag template or fully qualified identifier for the tag template.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -6173,14 +6123,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG",
-              description:
-                "ID of the tag or fully qualified identifier for the tag.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG",
+            description:
+              "ID of the tag or fully qualified identifier for the tag.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6588,14 +6536,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAG",
-              description:
-                "ID of the tag or fully qualified identifier for the tag.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAG",
+            description:
+              "ID of the tag or fully qualified identifier for the tag.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -6893,14 +6839,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMY",
-              description:
-                "ID of the taxonomy or fully qualified identifier for the taxonomy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMY",
+            description:
+              "ID of the taxonomy or fully qualified identifier for the taxonomy.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -7043,14 +6987,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMY",
-              description:
-                "ID of the taxonomy or fully qualified identifier for the taxonomy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMY",
+            description:
+              "ID of the taxonomy or fully qualified identifier for the taxonomy.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -7195,13 +7137,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMIES",
-              description: "List of taxonomies to bring.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMIES",
+            description: "List of taxonomies to bring.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -7384,14 +7324,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMY",
-              description:
-                "ID of the taxonomy or fully qualified identifier for the taxonomy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMY",
+            description:
+              "ID of the taxonomy or fully qualified identifier for the taxonomy.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -7537,13 +7475,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMIES",
-              description: "File containing serialized taxonomy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMIES",
+            description: "File containing serialized taxonomy.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -7910,14 +7846,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_TAG",
-                  description:
-                    "ID of the policy tag or fully qualified identifier for the policy tag.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_TAG",
+                description:
+                  "ID of the policy tag or fully qualified identifier for the policy tag.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -8069,14 +8003,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_TAG",
-                  description:
-                    "ID of the policy tag or fully qualified identifier for the policy tag.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_TAG",
+                description:
+                  "ID of the policy tag or fully qualified identifier for the policy tag.",
+                isVariadic: false,
+              },
             },
             {
               name: "get-iam-policy",
@@ -8269,14 +8201,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_TAG",
-                  description:
-                    "ID of the policy tag or fully qualified identifier for the policy tag.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_TAG",
+                description:
+                  "ID of the policy tag or fully qualified identifier for the policy tag.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -8648,14 +8578,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_TAG",
-                  description:
-                    "ID of the policy tag or fully qualified identifier for the policy tag.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_TAG",
+                description:
+                  "ID of the policy tag or fully qualified identifier for the policy tag.",
+                isVariadic: false,
+              },
             },
             {
               name: "set-iam-policy",
@@ -9116,14 +9044,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TAXONOMY",
-              description:
-                "ID of the taxonomy or fully qualified identifier for the taxonomy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TAXONOMY",
+            description:
+              "ID of the taxonomy or fully qualified identifier for the taxonomy.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",

@@ -476,13 +476,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "--get",
           description: "Get a configuration value.",
-          args: [
-            {
-              name: "key",
-              isOptional: true,
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "key",
+            isOptional: true,
+            isVariadic: true,
+          },
         },
         {
           name: "--append",
@@ -537,11 +535,9 @@ const completionSpec: Fig.Spec = {
         {
           name: "--remove-key",
           description: "Remove a configuration key (and all its values).",
-          args: [
-            {
-              name: "key",
-            },
-          ],
+          args: {
+            name: "key",
+          },
         },
         {
           name: "--stdin",

@@ -932,14 +932,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMPORT_JOB",
-              description:
-                "ID of the import job or fully qualified identifier for the import job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMPORT_JOB",
+            description:
+              "ID of the import job or fully qualified identifier for the import job.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -1116,13 +1114,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMPORT_JOB",
-              description: "Name of the import job to create.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMPORT_JOB",
+            description: "Name of the import job to create.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1283,13 +1279,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMPORT_JOB",
-              description: "Name of the import job to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMPORT_JOB",
+            description: "Name of the import job to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -1481,14 +1475,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMPORT_JOB",
-              description:
-                "ID of the import job or fully qualified identifier for the import job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMPORT_JOB",
+            description:
+              "ID of the import job or fully qualified identifier for the import job.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1857,14 +1849,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMPORT_JOB",
-              description:
-                "ID of the import job or fully qualified identifier for the import job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMPORT_JOB",
+            description:
+              "ID of the import job or fully qualified identifier for the import job.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -2347,14 +2337,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEYRING",
-              description:
-                "ID of the keyring or fully qualified identifier for the keyring.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEYRING",
+            description:
+              "ID of the keyring or fully qualified identifier for the keyring.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -2497,14 +2485,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEYRING",
-              description:
-                "ID of the keyring or fully qualified identifier for the keyring.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEYRING",
+            description:
+              "ID of the keyring or fully qualified identifier for the keyring.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2647,14 +2633,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEYRING",
-              description:
-                "ID of the keyring or fully qualified identifier for the keyring.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEYRING",
+            description:
+              "ID of the keyring or fully qualified identifier for the keyring.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -2837,13 +2821,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEYRING",
-              description: "Name of the key ring whose IAM policy to fetch.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEYRING",
+            description: "Name of the key ring whose IAM policy to fetch.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3221,14 +3203,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEYRING",
-              description:
-                "ID of the keyring or fully qualified identifier for the keyring.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEYRING",
+            description:
+              "ID of the keyring or fully qualified identifier for the keyring.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -3709,14 +3689,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "ID of the key or fully qualified identifier for the key.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "ID of the key or fully qualified identifier for the key.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -3956,14 +3934,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "ID of the key or fully qualified identifier for the key.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "ID of the key or fully qualified identifier for the key.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -4115,14 +4091,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "ID of the key or fully qualified identifier for the key.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "ID of the key or fully qualified identifier for the key.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -4314,13 +4288,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description: "Name of the key whose IAM policy to fetch.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description: "Name of the key whose IAM policy to fetch.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4716,14 +4688,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "ID of the key or fully qualified identifier for the key.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "ID of the key or fully qualified identifier for the key.",
+            isVariadic: false,
+          },
         },
         {
           name: "remove-rotation-schedule",
@@ -4875,14 +4845,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "Name of the key from which to clear the rotation schedule.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "Name of the key from which to clear the rotation schedule.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -5197,13 +5165,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description: "Name of the key to modify.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description: "Name of the key to modify.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-rotation-schedule",
@@ -5376,13 +5342,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description: "Name of the key to update the schedule of.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description: "Name of the key to update the schedule of.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -5620,14 +5584,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY",
-              description:
-                "ID of the key or fully qualified identifier for the key.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY",
+            description:
+              "ID of the key or fully qualified identifier for the key.",
+            isVariadic: false,
+          },
         },
         {
           name: "versions",
@@ -5976,13 +5938,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to describe.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to describe.",
+                isVariadic: false,
+              },
             },
             {
               name: "destroy",
@@ -6143,13 +6103,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to destroy.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to destroy.",
+                isVariadic: false,
+              },
             },
             {
               name: "disable",
@@ -6310,13 +6268,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to disable.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to disable.",
+                isVariadic: false,
+              },
             },
             {
               name: "enable",
@@ -6477,13 +6433,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to enable.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to enable.",
+                isVariadic: false,
+              },
             },
             {
               name: "get-public-key",
@@ -6653,13 +6607,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to get public key.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to get public key.",
+                isVariadic: false,
+              },
             },
             {
               name: "import",
@@ -7252,13 +7204,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to restore.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to restore.",
+                isVariadic: false,
+              },
             },
             {
               name: "update",
@@ -7438,13 +7388,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "VERSION",
-                  description: "Name of the version to describe.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "VERSION",
+                description: "Name of the version to describe.",
+                isVariadic: false,
+              },
             },
           ],
           options: [

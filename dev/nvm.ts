@@ -70,7 +70,7 @@ const lts: Fig.Option = {
 const ltsWithName: Fig.Option = {
   name: "--lts",
   description: "Uses automatic alias for provided LTS line, if available.",
-  args: [ltsName],
+  args: ltsName,
 };
 
 const completionSpec: Fig.Spec = {
@@ -81,7 +81,7 @@ const completionSpec: Fig.Spec = {
       name: "install",
       description:
         "Download and install a <version>. Uses .nvmrc if available and version is omitted.",
-      args: [{ ...version, isOptional: true }],
+      args: { ...version, isOptional: true },
       options: [
         {
           name: "-s",
@@ -91,7 +91,7 @@ const completionSpec: Fig.Spec = {
           name: "--reinstall-packages-from",
           description:
             "When installing, reinstall packages installed in <version>",
-          args: [version],
+          args: version,
         },
         {
           ...lts,
@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
           name: "--alias",
           description:
             "After installing, set the alias specified to the version specified. (same as: nvm alias <name> <version>)",
-          args: [name],
+          args: name,
         },
         {
           name: "--default",
@@ -133,7 +133,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "uninstall",
       description: "Uninstall a version",
-      args: [version],
+      args: version,
       options: [
         {
           ...lts,
@@ -151,7 +151,7 @@ const completionSpec: Fig.Spec = {
       name: "use",
       description:
         "Modify PATH to use <version>. Uses .nvmrc if available and version is omitted.",
-      args: [{ ...version, isOptional: true }],
+      args: { ...version, isOptional: true },
       options: [silent, lts, ltsWithName],
     },
     {
@@ -176,14 +176,14 @@ const completionSpec: Fig.Spec = {
       name: "ls",
       description:
         "List installed versions, matching a given <version> if provided",
-      args: [version],
+      args: version,
       options: [noColors, noAlias],
     },
     {
       name: "ls-remote",
       description:
         "List remote versions available for install, matching a given <version> if provided",
-      args: [version],
+      args: version,
       options: [
         {
           ...lts,
@@ -201,12 +201,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "version",
       description: "Resolve the given description to a single local version",
-      args: [version],
+      args: version,
     },
     {
       name: "version-remote",
       description: "Resolve the given description to a single remote version",
-      args: [version],
+      args: version,
       options: [
         {
           ...lts,
@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "unalias",
       description: "Deletes the alias named <name>",
-      args: [name],
+      args: name,
     },
     {
       name: "install-latest-npm",
@@ -254,7 +254,7 @@ const completionSpec: Fig.Spec = {
       name: "reinstall-packages",
       description:
         "Reinstall global `npm` packages contained in <version> to current version",
-      args: [version],
+      args: version,
     },
     {
       name: "unload",
@@ -264,7 +264,7 @@ const completionSpec: Fig.Spec = {
       name: "which",
       description:
         "Display path to installed node version. Uses .nvmrc if available and version is omitted.",
-      args: [{ ...version, isOptional: true }],
+      args: { ...version, isOptional: true },
       subcommands: [
         {
           name: "current",
@@ -299,7 +299,7 @@ const completionSpec: Fig.Spec = {
       name: "set-colors",
       description:
         'Set five text colors using format "yMeBg". Available when supported.',
-      args: [colorCodes],
+      args: colorCodes,
     },
   ],
   options: [

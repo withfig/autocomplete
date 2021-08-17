@@ -168,14 +168,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -354,14 +352,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -504,14 +500,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -654,14 +648,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -844,14 +836,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1208,14 +1198,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -1534,14 +1522,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP",
-              description:
-                "ID of the backup or fully qualified identifier for the backup.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP",
+            description:
+              "ID of the backup or fully qualified identifier for the backup.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1839,14 +1825,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -2014,14 +1998,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "ddl",
@@ -2213,14 +2195,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DATABASE",
-                  description:
-                    "ID of the database or fully qualified identifier for the database.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DATABASE",
+                description:
+                  "ID of the database or fully qualified identifier for the database.",
+                isVariadic: false,
+              },
             },
             {
               name: "update",
@@ -2388,14 +2368,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "DATABASE",
-                  description:
-                    "ID of the database or fully qualified identifier for the database.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "DATABASE",
+                description:
+                  "ID of the database or fully qualified identifier for the database.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -2668,14 +2646,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2818,14 +2794,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "execute-sql",
@@ -3004,14 +2978,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -3194,14 +3166,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3554,14 +3524,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description:
-                "ID of the database or fully qualified identifier for the database.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description:
+              "ID of the database or fully qualified identifier for the database.",
+            isVariadic: false,
+          },
         },
         {
           name: "restore",
@@ -3895,14 +3863,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "SESSION",
-                  description:
-                    "ID of the session or fully qualified identifier for the session.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "SESSION",
+                description:
+                  "ID of the session or fully qualified identifier for the session.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -4664,13 +4630,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE_CONFIG",
-              description: "Cloud Spanner instance config.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE_CONFIG",
+            description: "Cloud Spanner instance config.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -5137,14 +5101,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -5314,13 +5276,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud Spanner instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud Spanner instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -5454,13 +5414,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud Spanner instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud Spanner instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -5594,13 +5552,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud Spanner instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud Spanner instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -5774,14 +5730,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6114,14 +6068,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -6425,13 +6377,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud Spanner instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud Spanner instance ID.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -6730,13 +6680,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION-ID",
-              description: "ID of the operation",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION-ID",
+            description: "ID of the operation",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -6901,13 +6849,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION-ID",
-              description: "ID of the operation",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION-ID",
+            description: "ID of the operation",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

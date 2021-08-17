@@ -81,7 +81,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "which",
       description: "Display the full path to an executable",
-      args: [{ name: "command" }],
+      args: { name: "command" },
     },
   ],
 };

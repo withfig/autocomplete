@@ -1,9 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "mysql",
   description: "mysql is a terminal-based front-end to MySQL.",
-  args: [
-    {}, // db_name.
-  ],
+  args: {},
   options: [
     {
       name: "--auto-rehash",

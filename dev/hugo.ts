@@ -873,16 +873,14 @@ const completionSpec: Fig.Spec = {
           args: [
             {
               name: "archetype|default",
-              generators: [
-                {
-                  script: "ls ./archetypes/",
-                  postProcess: (output) =>
-                    output.split("\n").map((fileName) => ({
-                      name: fileName,
-                      icon: "fig://icon?type=string",
-                    })),
-                },
-              ],
+              generators: {
+                script: "ls ./archetypes/",
+                postProcess: (output) =>
+                  output.split("\n").map((fileName) => ({
+                    name: fileName,
+                    icon: "fig://icon?type=string",
+                  })),
+              },
             },
             {
               name: "content-section/file-name.md",

@@ -200,12 +200,10 @@ const completionSpec: Fig.Spec = {
       subcommands,
     } as Fig.Spec;
   },
-  args: [
-    {
-      generators: getScriptsGenerator,
-      isOptional: true,
-    },
-  ],
+  args: {
+    generators: getScriptsGenerator,
+    isOptional: true,
+  },
   options: [
     {
       name: "--cache-folder",
@@ -336,20 +334,16 @@ const completionSpec: Fig.Spec = {
     {
       name: "--network-concurrency",
       description: "maximum number of concurrent network requests",
-      args: [
-        {
-          name: "number",
-        },
-      ],
+      args: {
+        name: "number",
+      },
     },
     {
       name: "--network-timeout",
       description: "TCP timeout for network requests",
-      args: [
-        {
-          name: "milliseconds",
-        },
-      ],
+      args: {
+        name: "milliseconds",
+      },
     },
     {
       name: "--no-bin-links",
@@ -385,11 +379,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--otp",
       description: "one-time password for two factor authentication",
-      args: [
-        {
-          name: "otpcode",
-        },
-      ],
+      args: {
+        name: "otpcode",
+      },
     },
     {
       name: "--prefer-offline",
@@ -412,11 +404,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--proxy",
       description: "",
-      args: [
-        {
-          name: "host",
-        },
-      ],
+      args: {
+        name: "host",
+      },
     },
     {
       name: "--pure-lockfile",
@@ -425,11 +415,9 @@ const completionSpec: Fig.Spec = {
     {
       name: "--registry",
       description: "override configuration registry",
-      args: [
-        {
-          name: "url",
-        },
-      ],
+      args: {
+        name: "url",
+      },
     },
     {
       name: ["-s", "--silent"],
@@ -616,11 +604,9 @@ const completionSpec: Fig.Spec = {
             {
               name: "--pattern",
               description: "filter cached packages by pattern",
-              args: [
-                {
-                  name: "pattern",
-                },
-              ],
+              args: {
+                name: "pattern",
+              },
             },
           ],
         },
@@ -649,20 +635,16 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Print the value for a given key",
-          args: [
-            {
-              generators: configList,
-            },
-          ],
+          args: {
+            generators: configList,
+          },
         },
         {
           name: "delete",
           description: "Deletes a given key from the config",
-          args: [
-            {
-              generators: configList,
-            },
-          ],
+          args: {
+            generators: configList,
+          },
         },
         {
           name: "list",
@@ -810,11 +792,9 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-i", "--install"],
           description: "install a specific Yarn release",
-          args: [
-            {
-              name: "version",
-            },
-          ],
+          args: {
+            name: "version",
+          },
         },
         {
           name: "-2",
@@ -1020,37 +1000,18 @@ const completionSpec: Fig.Spec = {
       name: "remove",
       description: "remove installed package",
 
-      args: [
-        {
-          generators: packageList,
-          isVariadic: true,
-        },
-      ],
+      args: {
+        generators: packageList,
+        isVariadic: true,
+      },
     },
     {
       name: "run",
       description: "",
 
-      args: [
-        // TODO get this generator to work and combine the logic of both of these
-        //     {
-        //         generators: {
-        //            script: "ls -1 $(yarn bin)", // ISSUE: this runs in /bin/sh, yarn may not be defined in sh PATH
-        //            splitOn: "\n",
-        //            postProcess: function (out) {
-        //                try {
-        //                    if (out) {
-        //                        return out
-        //                    }
-        //                } catch(e) { }
-        //                return []
-        //            }
-        //           }
-        //     },
-        {
-          generators: getScriptsGenerator,
-        },
-      ],
+      args: {
+        generators: getScriptsGenerator,
+      },
     },
     {
       name: "tag",
@@ -1072,12 +1033,10 @@ const completionSpec: Fig.Spec = {
       name: "upgrade",
       description:
         "Upgrades packages to their latest version based on the specified range",
-      args: [
-        {
-          generators: packageList,
-          isVariadic: true,
-        },
-      ],
+      args: {
+        generators: packageList,
+        isVariadic: true,
+      },
     },
     {
       name: "upgrade-interactive",

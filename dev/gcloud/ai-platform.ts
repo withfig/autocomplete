@@ -138,13 +138,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description: "Name of the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description: "Name of the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -283,13 +281,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description: "Name of the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description: "Name of the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -625,13 +621,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description: "Name of the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description: "Name of the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "submit",
@@ -882,13 +876,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "JOB",
-                  description: "Name of the batch prediction job.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "JOB",
+                description: "Name of the batch prediction job.",
+                isVariadic: false,
+              },
             },
             {
               name: "training",
@@ -1624,13 +1616,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB",
-              description: "Name of the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB",
+            description: "Name of the job.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2166,14 +2156,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "USER_ARGS",
-              description:
-                "Additional user arguments to be forwarded to user code. Any relative paths will\nbe relative to the *parent* directory of `--package-path`.\n+\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "USER_ARGS",
+            description:
+              "Additional user arguments to be forwarded to user code. Any relative paths will\nbe relative to the *parent* directory of `--package-path`.\n+\n+\nThe '--' argument must be specified between gcloud specific args on the left and USER_ARGS on the right.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2486,13 +2474,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description: "Name of the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description: "Name of the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -2670,13 +2656,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description: "Name of the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description: "Name of the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -2834,13 +2818,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description: "Name of the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description: "Name of the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2998,13 +2980,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description: "Name of the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description: "Name of the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -3202,14 +3182,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description:
-                "ID of the model or fully qualified identifier for the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description:
+              "ID of the model or fully qualified identifier for the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3590,14 +3568,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description:
-                "ID of the model or fully qualified identifier for the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description:
+              "ID of the model or fully qualified identifier for the model.",
+            isVariadic: false,
+          },
         },
         {
           name: "set-iam-policy",
@@ -3960,13 +3936,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "MODEL",
-              description: "Name of the model.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "MODEL",
+            description: "Name of the model.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4258,13 +4232,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "Name of the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "Name of the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -4422,13 +4394,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "Name of the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "Name of the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4788,13 +4758,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "Name of the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "Name of the operation.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -5408,13 +5376,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "Name of the model version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "Name of the model version.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -5582,13 +5548,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "Name of the model version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "Name of the model version.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -5756,13 +5720,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "Name of the model version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "Name of the model version.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6143,13 +6105,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "Name of the model version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "Name of the model version.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -6360,14 +6320,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

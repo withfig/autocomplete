@@ -12,7 +12,7 @@ const getServices: Fig.Generator = {
 const completionSpec: Fig.Spec = {
   name: "logs",
   description: "View output from containers.",
-  args: [{ generators: getServices }],
+  args: { generators: getServices },
   options: [
     {
       name: "--no-color",

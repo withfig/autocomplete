@@ -203,13 +203,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "EMAIL",
-              description: "The email address of the group to be created.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "EMAIL",
+            description: "The email address of the group to be created.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -343,13 +341,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "EMAIL",
-              description: "The email address of the group being deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "EMAIL",
+            description: "The email address of the group being deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -483,13 +479,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "EMAIL",
-              description: "The email address of the group being described.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "EMAIL",
+            description: "The email address of the group being described.",
+            isVariadic: false,
+          },
         },
         {
           name: "memberships",
@@ -1836,13 +1830,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "EMAIL",
-              description: "The email address of the group to be updated.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "EMAIL",
+            description: "The email address of the group to be updated.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

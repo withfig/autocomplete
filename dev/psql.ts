@@ -1,9 +1,7 @@
 const completionSpec: Fig.Spec = {
   name: "psql",
   description: "psql is a terminal-based front-end to PostgreSQL",
-  args: [
-    {}, // [dbname [username]]
-  ],
+  args: {},
   options: [
     {
       name: ["-a", "--echo-all"],

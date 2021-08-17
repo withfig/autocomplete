@@ -1,13 +1,11 @@
 const FILTER_OPTION: Fig.Option = {
   name: "--filter",
-  args: [
-    {
-      template: "filepaths",
-      name: "Filepath / Package",
-      description:
-        "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
-    },
-  ],
+  args: {
+    template: "filepaths",
+    name: "Filepath / Package",
+    description:
+      "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+  },
   description: `Filtering allows you to restrict commands to specific subsets of packages.
      pnpm supports a rich selector syntax for picking packages by name or by relation.
      More details: https://pnpm.io/filtering`,
@@ -254,14 +252,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: "--filter",
-        args: [
-          {
-            template: "filepaths",
-            name: "Filepath / Package",
-            description:
-              "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
-          },
-        ],
+        args: {
+          template: "filepaths",
+          name: "Filepath / Package",
+          description:
+            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+        },
         description: `Filtering allows you to restrict commands to specific subsets of packages.
            pnpm supports a rich selector syntax for picking packages by name or by relation.
            More details: https://pnpm.io/filtering`,
@@ -382,14 +378,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: "--filter",
-        args: [
-          {
-            template: "filepaths",
-            name: "Filepath / Package",
-            description:
-              "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
-          },
-        ],
+        args: {
+          template: "filepaths",
+          name: "Filepath / Package",
+          description:
+            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+        },
         description: `Filtering allows you to restrict commands to specific subsets of packages.
              pnpm supports a rich selector syntax for picking packages by name or by relation.
              More details: https://pnpm.io/filtering`,
@@ -606,12 +600,10 @@ const SUBCOMMANDS_REVIEW_DEPS: Fig.Subcommand[] = [
       {
         name: "--audit-level",
         description: `Only print advisories with severity greater than or equal to <severity>.`,
-        args: [
-          {
-            name: "Audit Level",
-            suggestions: ["low", "moderate", "high", "critical"],
-          },
-        ],
+        args: {
+          name: "Audit Level",
+          suggestions: ["low", "moderate", "high", "critical"],
+        },
       },
       {
         name: "--json",
@@ -768,31 +760,25 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
     When publishing a package inside a workspace, the LICENSE file from the root of the workspace is packed with the package (unless the package has a license of its own).
     You may override some fields before publish, using the publishConfig field in package.json. You also can use the publishConfig.directory to customize the published subdirectory (usually using third party build tools).
     When running this command recursively (pnpm -r publish), pnpm will publish all the packages that have versions not yet published to the registry.`,
-    args: [
-      {
-        name: "Branch",
-        generators: searchBranches,
-      },
-    ],
+    args: {
+      name: "Branch",
+      generators: searchBranches,
+    },
     options: [
       {
         name: "--tag",
         description: `Publishes the package with the given tag. By default, pnpm publish updates the latest tag.`,
-        args: [
-          {
-            name: "<tag>",
-          },
-        ],
+        args: {
+          name: "<tag>",
+        },
       },
       {
         name: "--access",
         description: `Tells the registry whether the published package should be public or restricted.`,
-        args: [
-          {
-            name: "Type",
-            suggestions: ["public", "private"],
-          },
-        ],
+        args: {
+          name: "Type",
+          suggestions: ["public", "private"],
+        },
       },
       {
         name: "--force",
@@ -814,17 +800,15 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
         description: `Link locally available packages in workspaces of a monorepo into node_modules instead of re-downloading them from the registry. This emulates functionality similar to yarn workspaces.
         When this is set to deep, local packages can also be linked to subdependencies.
         Be advised that it is encouraged instead to use npmrc for this setting, to enforce the same behaviour in all environments. This option exists solely so you may override that if necessary.`,
-        args: [
-          {
-            name: "bool or `deep`",
-            suggestions: ["dee["],
-          },
-        ],
+        args: {
+          name: "bool or `deep`",
+          suggestions: ["dee["],
+        },
       },
       {
         name: "--workspace-concurrency",
         description: `Set the maximum number of tasks to run simultaneously. For unlimited concurrency use Infinity`,
-        args: [{ name: "<number>" }],
+        args: { name: "<number>" },
       },
       {
         name: "--bail",
@@ -865,27 +849,25 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
           {
             name: "--network-concurrency",
             description: `The maximum number of network requests to process simultaneously.`,
-            args: [{ name: "number" }],
+            args: { name: "number" },
           },
           {
             name: "--protocol",
             description: `The communication protocol used by the server. When this is set to auto, IPC is used on all systems except for Windows, which uses TCP.`,
-            args: [
-              {
-                name: "Type",
-                suggestions: ["auto", "tcp", "ipc"],
-              },
-            ],
+            args: {
+              name: "Type",
+              suggestions: ["auto", "tcp", "ipc"],
+            },
           },
           {
             name: "--port",
             description: `The port number to use when TCP is used for communication. If a port is specified and the protocol is set to auto, regardless of system type, the protocol is automatically set to use TCP.`,
-            args: [{ name: "port number" }],
+            args: { name: "port number" },
           },
           {
             name: "--store-dir",
             description: `The directory to use for the content addressable store.`,
-            args: [{ name: "Path", template: "filepaths" }],
+            args: { name: "Path", template: "filepaths" },
           },
           {
             name: "--lock",

@@ -321,14 +321,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "The ID of the backup run. You can find the ID by running\n            $ gcloud beta sql backups list.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "The ID of the backup run. You can find the ID by running\n            $ gcloud beta sql backups list.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -472,13 +470,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description: "The ID of the Backup Run.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description: "The ID of the Backup Run.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -825,13 +821,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "BACKUP_ID",
-              description: "The ID of the backup run to restore from.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "BACKUP_ID",
+            description: "The ID of the backup run to restore from.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1113,13 +1107,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "INSTANCE",
-          description: "Cloud SQL instance ID.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "INSTANCE",
+        description: "Cloud SQL instance ID.",
+        isVariadic: false,
+      },
     },
     {
       name: "databases",
@@ -1293,13 +1285,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description: "Cloud SQL database name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description: "Cloud SQL database name.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1443,13 +1433,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description: "Cloud SQL database name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description: "Cloud SQL database name.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1594,13 +1582,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description: "Cloud SQL database name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description: "Cloud SQL database name.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1956,13 +1942,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DATABASE",
-              description: "Cloud SQL database name.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DATABASE",
+            description: "Cloud SQL database name.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4493,13 +4477,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -4638,13 +4620,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -4779,13 +4759,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -5097,13 +5075,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -5911,13 +5887,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "promote-replica",
@@ -6057,13 +6031,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REPLICA",
-              description: "Cloud SQL read replica ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REPLICA",
+            description: "Cloud SQL read replica ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "reset-ssl-config",
@@ -6203,13 +6175,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "restart",
@@ -6348,13 +6318,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "restore-backup",
@@ -6512,13 +6480,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "Cloud SQL instance ID that will be restored.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "Cloud SQL instance ID that will be restored.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -6788,13 +6754,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "Name that uniquely identifies the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "Name that uniquely identifies the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -7127,14 +7091,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "An identifier that uniquely identifies the operation.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "An identifier that uniquely identifies the operation.",
+            isVariadic: true,
+          },
         },
       ],
       options: [
@@ -7423,13 +7385,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "INSTANCE",
-          description: "Cloud SQL instance ID.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "INSTANCE",
+        description: "Cloud SQL instance ID.",
+        isVariadic: false,
+      },
     },
     {
       name: "ssl",
@@ -7747,14 +7707,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "COMMON_NAME",
-                  description:
-                    "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "COMMON_NAME",
+                description:
+                  "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -7899,14 +7857,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "COMMON_NAME",
-                  description:
-                    "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "COMMON_NAME",
+                description:
+                  "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -8667,14 +8623,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "COMMON_NAME",
-              description:
-                "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "COMMON_NAME",
+            description:
+              "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -8819,14 +8773,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "COMMON_NAME",
-              description:
-                "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "COMMON_NAME",
+            description:
+              "User supplied name. Constrained to ```[a-zA-Z.-_ ]+```.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -9630,13 +9582,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "USERNAME",
-              description: "Cloud SQL username.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "USERNAME",
+            description: "Cloud SQL username.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -9795,13 +9745,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "USERNAME",
-              description: "Cloud SQL username.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "USERNAME",
+            description: "Cloud SQL username.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -10162,13 +10110,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "USERNAME",
-              description: "Cloud SQL username.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "USERNAME",
+            description: "Cloud SQL username.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
