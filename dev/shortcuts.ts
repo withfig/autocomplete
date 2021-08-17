@@ -1,3 +1,13 @@
+const shortcut: Fig.Arg = {
+  generators: [
+    {
+      script: "shortcuts list",
+      postProcess: (list) =>
+        list.split("\n").map((shortcut) => ({ name: shortcut })),
+    },
+  ],
+};
+
 const completionSpec: Fig.Spec = {
   name: "shortcuts",
   description: "Command-line utility for running shortcuts.",
@@ -16,31 +26,29 @@ const completionSpec: Fig.Spec = {
           name: "shortcut-name",
           description: "The name of the shortcut to run.",
           isOptional: false,
-          generators: [
-            {
-              script: "shortcuts list",
-              postProcess: (list) =>
-                list.split("\n").map((shortcut) => ({ name: shortcut })),
-            },
-          ],
+          generators: shortcut.generators,
         },
       ],
       options: [
         {
           name: ["-i", "--input-path"],
+          isRequired: false, // Default: stdin
           args: [
             {
               name: "input-path",
               template: "filepaths",
+              isOptional: false,
             },
           ],
           description: "The input to provide to the shortcut.",
         },
         {
           name: ["-o", "--output-path"],
+          isRequired: false,
           args: [
             {
               name: "output-path",
+              isOptional: false,
               template: "filepaths",
             },
           ],
@@ -48,9 +56,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--output-type"],
+          isRequired: false,
           args: [
             {
               name: "output-type",
+              isOptional: false,
             },
           ],
           description:
@@ -101,13 +111,7 @@ const completionSpec: Fig.Spec = {
           name: "shortcut-name",
           description: "The name of the shortcut to run.",
           isOptional: false,
-          generators: [
-            {
-              script: "shortcuts list",
-              postProcess: (list) =>
-                list.split("\n").map((shortcut) => ({ name: shortcut })),
-            },
-          ],
+          generators: shortcut.generators,
         },
       ],
       options: [
@@ -152,9 +156,11 @@ const completionSpec: Fig.Spec = {
         {
           name: ["--mode", "-m"],
           description: "The  signing mode. (default: people-who-know-me)",
+          isRequired: false,
           args: [
             {
               name: "mode",
+              isOptional: false,
             },
           ],
         },
