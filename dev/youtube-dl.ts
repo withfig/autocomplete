@@ -1,15 +1,7 @@
 const youtubeDlGenerators: Record<string, Fig.Generator> = {
   listVideos: {
-    script: (context) => {
-      let urlParam;
-      for (let i = 0; i < context.length; i++) {
-        if (context[i].includes("youtube.")) {
-          urlParam = context[i];
-          break;
-        }
-      }
-      return `youtube-dl --flat-playlist -J ${urlParam}`;
-    },
+    script: (context) => 
+      `youtube-dl --flat-playlist -J ${context.filter((token) => token.includes("youtube."))}`,
 
     postProcess: function (out) {
       try {
@@ -23,10 +15,12 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
           };
         });
       } catch (e) {
+        console.error(e)
         return [];
       }
     },
   },
+
   listClipboard: {
     script: "pbpaste",
     postProcess: function (out) {
@@ -44,6 +38,7 @@ const youtubeDlGenerators: Record<string, Fig.Generator> = {
             },
           ];
       } catch (e) {
+        console.error(e)
         return [];
       }
     },
@@ -56,24 +51,29 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "URL",
     generators: youtubeDlGenerators.listClipboard,
+    isVariadic: true,
   },
 
   options: [
     {
       name: ["--help", "-h"],
-      description: "Output help",
+      description: "Print the help text and exit",
     },
     {
       name: "--version",
-      description: "Print program version",
+      description: "Print program version and exit",
+    },
+    {
+      name: ["-U", "--update"],
+      description: "Update this program to latest version. Make sure you have sufficient permissions (run with sudo if needed)",
     },
     {
       name: ["--ignore-errors", "-i"],
-      description: "Continue on download error",
+      description: "Continue on download errors, for example to skip unavailable videos in a playlist",
     },
     {
       name: "--abort-on-error ",
-      description: "Abort downloading of further videos ",
+      description: "Abort downloading of further videos (in the playlist or the command line) if an error occurs",
     },
     {
       name: "--dump-user-agent",
@@ -86,6 +86,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "--extractor-descriptions",
       description: "Output descriptions of all supported extractors",
+    },
+    {
+      name: "--default-search",
+      description: 'Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for youtube-dl "large apple".',
+      args: [
+        {
+          name: "PREFIX",
+        }
+      ]
+    },
+    {
+      name: "--config-location",
+      description: "Location of the configuration file; either the path to the config or its containing directory",
+      args: [
+        {
+          name: "PATH",
+          template: ["filepaths", "folders"],
+        }
+      ]
     },
     {
       name: "--force-generic-extractor",
@@ -113,7 +132,8 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--proxy",
-      description: "Use the specified HTTP/HTTPS/SOCKS proxy",
+      description: "Use the specified HTTP/HTTPS/SOCKS proxy. Pass in an empty string for direct connection.",
+      insertValue: '--proxy "{cursor}"',
       args: {
         name: "URL",
       },
@@ -189,6 +209,84 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "NUMBER",
         generators: youtubeDlGenerators.listVideos,
+      },
+    },
+    {
+      name: "--playlist-items",
+      description: "Playlist video to end at (default is last)",
+      args: {
+        name: "ITEM_SPEC",
+        generators: youtubeDlGenerators.listVideos,
+      },
+    },
+    {
+      name: "--match-title",
+      description: "Download only matching titles (regex or caseless sub-string)",
+      args: {
+        name: "REGEX",
+      },
+    },
+    {
+      name: "--reject-title",
+      description: "Skip download for matching titles (regex or caseless sub-string)",
+      args: {
+        name: "REGEX",
+      },
+    },
+    {
+      name: "--max-downloads",
+      description: "Abort after downloading NUMBER files",
+      args: {
+        name: "NUMBER",
+      },
+    },
+    {
+      name: "--min-filesize",
+      description: "Do not download any videos smaller than SIZE (e.g. 50k or 44.6)",
+      args: {
+        name: "SIZE",
+      },
+    },
+    {
+      name: "--max-filesize",
+      description: "Do not download any videos larger than SIZE (e.g. 50k or 44.6)",
+      args: {
+        name: "SIZE",
+      },
+    },
+    {
+      name: "--date",
+      description: "Download only videos uploaded in this date",
+      args: {
+        name: "DATE",
+      },
+    },
+    {
+      name: "--datebefore",
+      description: "Download only videos uploaded on or before this date (i.e. inclusive)",
+      args: {
+        name: "DATE",
+      },
+    },
+    {
+      name: "--dateafter",
+      description: "Download only videos uploaded on or after this date (i.e. inclusive)",
+      args: {
+        name: "DATE",
+      },
+    },
+    {
+      name: "--min-views",
+      description: "Do not download any videos with less than COUNT views",
+      args: {
+        name: "COUNT",
+      },
+    },
+    {
+      name: "--max-views",
+      description: "Do not download any videos with more than COUNT views",
+      args: {
+        name: "COUNT",
       },
     },
   ],
