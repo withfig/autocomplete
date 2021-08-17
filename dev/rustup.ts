@@ -17,6 +17,19 @@ const completionSpec: Fig.Spec = {
           name: "home",
           description: "Display the computed value of RUSTUP_HOME",
         },
+        {
+          name: "profile",
+          description: "Show the current profile",
+        },
+        {
+          name: "keys",
+          description: "Display the known PGP keys",
+        },
+        {
+          name: "help",
+          description:
+            "Prints this message or the help of the given subcommand(s)",
+        },
       ],
 
       // If a subcommand or option takes an argument, you must include the args prop, even if it's an empty object (like below)
@@ -25,9 +38,6 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-h", "--help"],
           description: "Prints help information",
-          args: {
-            name: "branch",
-          },
         },
       ],
     },
