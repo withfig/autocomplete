@@ -41,6 +41,37 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
+    {
+      name: "update",
+      description: "Update Rust toolchains and rustup",
+
+      options: [
+        {
+          name: "--force",
+          description: "Force an update, even if some components are missing",
+        },
+        {
+          name: "--force-non-host",
+          description:
+            "Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "Prints help information",
+        },
+        {
+          name: "--no-self-update",
+          description:
+            "Don't perform self update when running the `rustup update` command",
+        },
+      ],
+      args: {
+        name: "toolchain",
+        description:
+          "Toolchain name, such as 'stable', 'nightly', or '1.8.0'. For more information see `rustup help toolchain`",
+        isOptional: true,
+      },
+    },
   ],
   options: [
     {
