@@ -4351,12 +4351,88 @@ const completionSpec: Fig.Spec = {
               name: "--",
               description: "end of subcommand options",
             },
+            {
+              name: ["-q", "--quiet"],
+              description: "Only print error and warning messages",
+            },
+            {
+              name: "--bare",
+              description: "Create a bare repository",
+            },
+            {
+              name: "--object-format",
+              description:
+                "Specify the given object format (hash algorithm) for the repository",
+              args: {
+                name: "format",
+                suggestions: [
+                  {
+                    name: "sha1",
+                    description: "Default",
+                  },
+                  {
+                    name: "sha256",
+                    description: "THIS OPTION IS EXPERIMENTAL",
+                  },
+                ],
+              },
+            },
+            {
+              name: "--template",
+              description:
+                "Specify the directory from which templates will be used",
+              args: {
+                name: "template_directory",
+                template: "folders",
+              },
+            },
+            {
+              name: "--separate-git-dir",
+              description:
+                "Create a text file containing the path to the actual repository",
+              args: {
+                name: "git dir",
+                template: "folders",
+              },
+            },
+            {
+              name: ["-b", "--initial-branch"],
+              description:
+                "Use the specified name for the initial branch in the newly created repository",
+              args: {
+                name: "branch-name",
+              },
+            },
+            {
+              name: "--shared",
+              description:
+                "Specify that the Git repository is to be shared amongst several users",
+              args: {
+                suggestions: [
+                  {
+                    name: ["umask", "false"],
+                    description: "Use permissions reported by umask",
+                  },
+                  {
+                    name: ["group", "true"],
+                    description: "Make the repository group-writable",
+                  },
+                  {
+                    name: ["all", "world", "everybody"],
+                    description:
+                      "Same as group, but make the repository readable by all users",
+                  },
+                ],
+                name: "0xxx",
+                description:
+                  "0xxx is an octal number and each file will have mode 0xxx",
+              },
+            },
           ],
           args: {
-            name: "path",
+            name: "directory",
             isOptional: true,
-            isVariadic: true,
-            template: "filepaths",
+            template: "folders",
           },
         },
         {
