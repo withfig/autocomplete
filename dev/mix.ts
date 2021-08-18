@@ -6,10 +6,10 @@ const constants = {
 const completionSpec: Fig.Spec = {
   name: "mix",
   description: "Build tool for Elixir",
+  icon: constants.elixir_logo_url,
   subcommands: [
     {
-      name: ["new"],
-      hidden: false,
+      name: "new",
       description: "Creates a new Elixir project at the given path",
       priority: 64,
       args: [
@@ -24,14 +24,34 @@ const completionSpec: Fig.Spec = {
           name: ["-h", "--help"],
           priority: 1,
           description: "Output usage information",
-          icon: constants.elixir_logo_url,
+        },
+        {
+          name: "--app",
+          description: "",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+
+        {
+          name: "--modules",
+          description: "",
+          args: {
+            name: "module",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--sup",
+        },
+        {
+          name: "--umbrella",
         },
       ],
     },
     {
-      name: ["help"],
-      hidden: false,
-      icon: constants.elixir_logo_url,
+      name: "help",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
       priority: 64,
@@ -39,6 +59,21 @@ const completionSpec: Fig.Spec = {
         {
           isOptional: true,
           name: "task",
+        },
+      ],
+      options: [
+        {
+          name: "--search",
+          description:
+            "Prints all tasks and aliases that contain 'pattern' in the name",
+          args: {
+            name: "pattern",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--names",
+          description: "Prints all task names and aliases",
         },
       ],
     },
