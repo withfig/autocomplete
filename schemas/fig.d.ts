@@ -388,7 +388,7 @@ declare namespace Fig {
      */
     debounce?: boolean;
     /**
-     * The default value for an optional argument. This is just a string.
+     * The default value for an optional argument.
      *
      */
     default?: string;
