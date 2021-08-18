@@ -54,7 +54,7 @@ const completionSpec: Fig.Spec = {
       name: "help",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
-      priority: 64,
+      priority: 84,
       args: [
         {
           isOptional: true,
