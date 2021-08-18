@@ -3,7 +3,7 @@ const completionSpec: Fig.Spec = {
   description: "list directory contents",
   args: {
     isVariadic: true,
-    template: "folders",
+    template: ["filepaths", "folders"],
   },
   options: [
     {
