@@ -4255,6 +4255,59 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "cherry-pick",
+      description: "Apply the changes introduced by some existing commits",
+      args: {
+        name: "commit",
+        description: "Commits to cherry-pick",
+        isVariadic: true
+        // TODO generator
+      },
+      options: [
+        {
+          name: ["-e", "--edit"],
+          description: "With this option, git cherry-pick will let you edit the commit message prior to committing"
+        },
+        {
+          name: "--cleanup",
+          description: "This option determines how the commit message will be cleaned up before being passed on to the commit machinery",
+          args: {
+            name: "mode",
+            // TODO generator
+          }
+        },
+        {
+          name: "-n",
+          description: ""
+        },
+        {
+          name: "-m",
+          description: "",
+          args: {
+            name: "parent-number",
+            description: ""
+          }
+        },
+        {
+          name: "-s",
+          description: ""
+        },
+        {
+          name: "-x",
+          description: ""
+        },
+        {
+          name: "--ff",
+          description: ""
+        },
+        {
+          name: "-S",
+          description: "",
+          args: {}
+        },
+      ]
+    },
+    {
       name: "submodule",
       description: " Initialize, update or inspect submodules",
       subcommands: [
