@@ -24,6 +24,34 @@ const searchGenerator: Fig.Generator = {
   // },
 };
 
+const workspaceGenerator: Fig.Generator = {
+  script: "cat package.json",
+  postProcess: function (out) {
+    const suggestions = [];
+
+    try {
+      if (out.trim() == "") {
+        return { name: "workspaces" };
+      }
+
+      const packageContent = JSON.parse(out);
+      const workspaces = packageContent["workspaces"];
+
+      if (workspaces) {
+        for (const workspace of workspaces) {
+          suggestions.push({
+            name: workspace,
+            description: "Workspaces",
+          });
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    return suggestions;
+  },
+};
+
 const dependenciesGenerator: Fig.Generator = {
   script: "cat package.json",
   postProcess: function (out, context) {
@@ -74,10 +102,32 @@ const npmInstallOptions: Fig.Option[] = [
     name: "--no-save",
     description: "Prevents saving to `dependencies`",
   },
+  {
+    name: "-g",
+    description: "Uninstall global package",
+  },
+  {
+    name: ["-wl--workspace"],
+    description:
+      "Enable running a command in the context of the configured workspaces of the current project",
+    args: {
+      name: "workspace",
+      generators: workspaceGenerator,
+      isVariadic: true,
+    },
+  },
+  {
+    name: ["-wsl--workspaces"],
+    description:
+      "Enable running a command in the context of all the configured workspaces.",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
   name: "npm",
+  parserDirectives: {
+    flagsArePosixNoncompliant: true,
+  },
   description: "Node package manager",
   subcommands: [
     {
@@ -112,6 +162,85 @@ const completionSpec: Fig.Spec = {
           name: ["-E", "--save-exact"],
           description:
             "Saved dependencies will be configured with an exact version rather than using npm's default semver range operator",
+        },
+        {
+          name: ["-B", "--save-bundle"],
+          description:
+            "Saved dependencies will also be added to your bundleDependencies list.",
+        },
+        {
+          name: ["-g", "--global"],
+          description:
+            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
+        },
+        {
+          name: ["--global-style"],
+          description:
+            "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder.",
+        },
+        {
+          name: ["--legacy-bundling"],
+          description:
+            "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package.",
+        },
+        {
+          name: ["--strict-peer-deps"],
+          description:
+            "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure.",
+        },
+        {
+          name: ["--no-package-lock"],
+          description: "Ignores package-lock.json files when installing.",
+        },
+        {
+          name: ["--omit"],
+          description:
+            "Dependency types to omit from the installation tree on disk.",
+          args: {
+            name: "Package type",
+            default: "dev",
+            suggestions: ["dev", "optional", "peer"],
+          },
+        },
+        {
+          name: ["--ignore-scripts"],
+          description:
+            "If true, npm does not run scripts specified in package.json files.",
+        },
+        {
+          name: ["--no-audit"],
+          description:
+            "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes.",
+        },
+        {
+          name: ["--no-bin-links"],
+          description:
+            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables.",
+        },
+        {
+          name: ["--no-fund"],
+          description:
+            "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding.",
+        },
+        {
+          name: ["--dry-run"],
+          description:
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+        },
+        {
+          name: ["-wl--workspace"],
+          description:
+            "Enable running a command in the context of the configured workspaces of the current project",
+          args: {
+            name: "workspace",
+            generators: workspaceGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-wsl--workspaces"],
+          description:
+            "Enable running a command in the context of all the configured workspaces.",
         },
       ],
     },
@@ -161,7 +290,17 @@ const completionSpec: Fig.Spec = {
     { name: "access", description: "set access controls on private packages" },
     { name: "adduser", description: "add a registry user account" },
     { name: "audit", description: "run a security audit" },
-    { name: "bin", description: "display npm bin folder" },
+    {
+      name: "bin",
+      description: "display npm bin folder",
+      options: [
+        {
+          name: ["-g"],
+          description:
+            "Print the global folder where npm will install executables",
+        },
+      ],
+    },
     {
       name: "bugs",
       description: "show the bugs that might exist for a package",
@@ -182,7 +321,46 @@ const completionSpec: Fig.Spec = {
       description: "install a project with a clean slate and run tests",
     },
     { name: "completion", description: "tab completion for npm" },
-    { name: "config", description: "manage the npm configuration files" },
+    {
+      name: "config",
+      description: "manage the npm configuration files",
+      subcommands: [
+        {
+          name: "set",
+          description: "Sets the config key to the value",
+          args: [{ name: "key" }, { name: "value" }],
+          options: [
+            { name: ["-g", "--global"], description: "Sets it globally" },
+          ],
+        },
+        {
+          name: "get",
+          description: "Echo the config value to stdout",
+          args: { name: "key" },
+        },
+        {
+          name: "list",
+          description: "Show all the config settings",
+          options: [
+            { name: ["-g"], description: "Lists globally installed packages" },
+            { name: ["-l"], description: "Also shows defaults" },
+            { name: ["--json"], description: "Shows settings in json format" },
+          ],
+        },
+        {
+          name: "delete",
+          description: "Deletes the key from all configuration files",
+          args: { name: "key" },
+        },
+        {
+          name: "edit",
+          description: "Opens the config file in an editor",
+          options: [
+            { name: ["--global"], description: "Edits the global config" },
+          ],
+        },
+      ],
+    },
     { name: "create", description: "create a package.json file" },
     { name: "ddp", description: "reduce duplication" },
     { name: "dedupe", description: "reduce duplication" },
@@ -219,13 +397,56 @@ const completionSpec: Fig.Spec = {
     { name: "ln", description: "symlink a package folder" },
     { name: "login", description: "log in of the registry" },
     { name: "logout", description: "log out of the registry" },
-    { name: "ls", description: "list installed packages" },
+    {
+      name: "ls",
+      description: "list installed packages",
+      options: [
+        {
+          name: ["-g", "--global"],
+          description:
+            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
+        },
+        {
+          name: ["-wl--workspace"],
+          description:
+            "Enable running a command in the context of the configured workspaces of the current project",
+          args: {
+            name: "workspace",
+            generators: workspaceGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-wsl--workspaces"],
+          description:
+            "Enable running a command in the context of all the configured workspaces.",
+        },
+      ],
+    },
     { name: "org", description: "manage orgs" },
-    { name: "outdated", description: "check for outdated packages" },
+    {
+      name: "outdated",
+      description: "check for outdated packages",
+      options: [
+        {
+          name: "-g",
+          description: "checks globally",
+        },
+      ],
+    },
     { name: "owner", description: "manage package owners" },
     { name: "pack", description: "create a tarball from a package" },
     { name: "ping", description: "ping npm registry" },
-    { name: "prefix", description: "display prefix" },
+    {
+      name: "prefix",
+      description: "display prefix",
+      options: [
+        {
+          name: ["-g"],
+          description: "Print the global prefix to standard out",
+        },
+      ],
+    },
     {
       name: "profile",
       description: "change settings on your registry profile",
@@ -239,7 +460,17 @@ const completionSpec: Fig.Spec = {
       description: "open package repository page in the browser",
     },
     { name: "restart", description: "restart a package" },
-    { name: "root", description: "display npm root" },
+    {
+      name: "root",
+      description: "display npm root",
+      options: [
+        {
+          name: ["-g"],
+          description:
+            "Print the effective global node_modules folder to standard out.",
+        },
+      ],
+    },
     { name: "run-script", description: "run arbitrary package scripts" },
     { name: "s", description: "search for packages" },
     { name: "se", description: "search for packages" },
@@ -324,7 +555,11 @@ const completionSpec: Fig.Spec = {
     { name: "unpublish", description: "remove a package from the registry" },
     { name: "unstar", description: "unmark your package" },
     { name: "up", description: "check the latest version of dependencies" },
-    { name: "update", description: "update a package" },
+    {
+      name: "update",
+      description: "update a package",
+      options: [{ name: "-g", description: "update global package" }],
+    },
     { name: "v", description: "check that you have node and npm installed" },
     { name: "version", description: "bump a package version" },
     { name: "view", description: "view registry info" },
