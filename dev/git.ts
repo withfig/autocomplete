@@ -4711,7 +4711,7 @@ const completionSpec: Fig.Spec = {
       name: "merge",
       description: "Join two or more development histories together",
       args: {
-        name: "branch",
+        name: "commit",
         generators: gitGenerators.localBranches,
         isVariadic: true,
         isOptional: true,
