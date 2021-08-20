@@ -673,7 +673,51 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    { name: "publish", description: "publish a package" },
+    {
+      name: "publish",
+      description: "publish a package",
+      options: [
+        {
+          name: "--tag",
+          description: "Registers the published package with the given tag",
+          args: { name: "tag" },
+        },
+        {
+          name: ["-wl--workspace"],
+          description:
+            "Enable running a command in the context of the configured workspaces of the current project",
+          args: {
+            name: "workspace",
+            generators: workspaceGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-wsl--workspaces"],
+          description:
+            "Enable running a command in the context of all the configured workspaces.",
+        },
+        {
+          name: "--access",
+          description:
+            "Sets scoped package to be publicly viewable if set to 'public'",
+          args: {
+            default: "restricted",
+            suggestions: ["restricted", "public"],
+          },
+        },
+        {
+          name: ["--dry-run"],
+          description:
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+        },
+        {
+          name: "--otp",
+          description: "one-time password from a two-factor authenticator",
+          args: { name: "otp" },
+        },
+      ],
+    },
     { name: "rb", description: "rebuild a package" },
     { name: "rebuild", description: "rebuild a package" },
     {
@@ -725,12 +769,40 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "stop", description: "stop a package" },
-    { name: "t", description: "test a package" },
+    {
+      name: "t",
+      description: "test a package",
+      options: [
+        {
+          name: ["--ignore-scripts"],
+          description:
+            "If true, npm does not run scripts specified in package.json files.",
+        },
+        {
+          name: "--script-shell",
+          args: { name: "shell" },
+        },
+      ],
+    },
     {
       name: "team",
       description: "manage organization teams and team memberships",
     },
-    { name: "test", description: "test a package" },
+    {
+      name: "test",
+      description: "test a package",
+      options: [
+        {
+          name: ["--ignore-scripts"],
+          description:
+            "If true, npm does not run scripts specified in package.json files.",
+        },
+        {
+          name: "--script-shell",
+          args: { name: "shell" },
+        },
+      ],
+    },
     { name: "token", description: "manage your authentication tokens" },
     { name: "tst", description: "test a package" },
     {
@@ -873,7 +945,28 @@ const completionSpec: Fig.Spec = {
       ],
     },
     { name: "v", description: "check that you have node and npm installed" },
-    { name: "version", description: "bump a package version" },
+    {
+      name: "version",
+      description: "bump a package version",
+      options: [
+        {
+          name: ["-wl--workspace"],
+          description:
+            "Enable running a command in the context of the configured workspaces of the current project",
+          args: {
+            name: "workspace",
+            generators: workspaceGenerator,
+            isVariadic: true,
+          },
+        },
+        {
+          name: ["-wsl--workspaces"],
+          description:
+            "Enable running a command in the context of all the configured workspaces.",
+        },
+        { name: "--json", description: "show output in json format" },
+      ],
+    },
     {
       name: "view",
       description: "view registry info",
