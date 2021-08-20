@@ -45,7 +45,7 @@ const completionSpec: Fig.Spec = {
     {
       description: "Run web server on port and watch them too.",
       name: "--serve",
-      dependsOn: "--port",
+      dependsOn: ["--port"],
     },
     {
       description: "Run Web Server on specified port.",
