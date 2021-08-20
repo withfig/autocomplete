@@ -183,12 +183,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Show help information.",
-      subcommands: subcommands.map(
-        (_) =>
-          Object.fromEntries(
-            ["name", "description", "icon"].map((k) => [k, _[k]])
-          ) as Fig.Subcommand
-      ),
+      subcommands: subcommands.map(({ name, description, icon }) => ({
+        name,
+        description,
+        icon,
+      })),
     },
   ],
 };
