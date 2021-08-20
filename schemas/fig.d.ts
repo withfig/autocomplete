@@ -118,7 +118,7 @@ declare namespace Fig {
            * @example
            * alternative: 'npm install'
            */
-          alternative?: string;
+          alternative?: Omit<BaseSuggestion, "deprecated">;
           /**
            * Provide a warning or additional info about the deprecation.
            */
