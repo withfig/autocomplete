@@ -71,7 +71,7 @@ function makeTaskSuggestions(out: string) {
         description,
       };
     }) // filter out commands which do not make sense here
-    .filter((x) => !["mix", "help", "new"].includes(x.name));
+    .filter((x) => !["mix", "help", "new", "iex -S mix"].includes(x.name));
 }
 
 export default completionSpec;
