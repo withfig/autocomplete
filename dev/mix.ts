@@ -66,7 +66,7 @@ function makeTaskSuggestions(out: string) {
 
       return {
         name: name.replace(/^mix /, ""),
-        description: description.replace("\n", ""),
+        description,
       };
     }) // filter out commands which do not make sense here
     .filter((x) => !["mix", "help", "new"].includes(x.name));
