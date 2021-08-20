@@ -22,7 +22,7 @@ const completionSpec: Fig.Spec = {
           description: "Prints documentation for a given task",
           generators: [
             {
-              cache: { ttl: 30000 },
+              cache: { ttl: 10000 },
               script: "mix help",
               postProcess: makeTaskSuggestions,
             },
@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       isOptional: true,
       generators: [
         {
-          cache: { ttl: 30000 },
+          cache: { ttl: 10000 },
           script: "mix help",
           postProcess: makeTaskSuggestions,
         },
@@ -49,10 +49,12 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-h", "--help"],
       description: "Show help for mix",
+      hidden: true,
     },
     {
       name: ["-v", "--version"],
       description: "View your current mix version",
+      hidden: true,
       priority: 49,
     },
   ],
