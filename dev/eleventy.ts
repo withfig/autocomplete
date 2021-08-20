@@ -43,15 +43,16 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      description: "Run web server on port (default 8080) and watch them too.",
+      description: "Run web server on port and watch them too.",
       name: "--serve",
+      dependsOn: "--port",
     },
     {
-      description: "Write HTML output to this folder.",
+      description: "Run Web Server on specified port.",
       name: "--port",
-      dependsOn: "--serve",
       args: {
         name: "port",
+        default: "8080",
       },
     },
     {
@@ -59,6 +60,7 @@ const completionSpec: Fig.Spec = {
       name: "--formats",
       args: {
         name: "Template Names Seperated by ,",
+        suggestions: ["md", "html", "ejs"],
       },
     },
     {
