@@ -82,6 +82,24 @@ const dependenciesGenerator: Fig.Generator = {
   },
 };
 
+const workSpaceOptions: Fig.Option[] = [
+  {
+    name: ["-wl--workspace"],
+    description:
+      "Enable running a command in the context of the configured workspaces of the current project",
+    args: {
+      name: "workspace",
+      generators: workspaceGenerator,
+      isVariadic: true,
+    },
+  },
+  {
+    name: ["-wsl--workspaces"],
+    description:
+      "Enable running a command in the context of all the configured workspaces.",
+  },
+];
+
 const npmInstallOptions: Fig.Option[] = [
   {
     name: ["-S", "--save"],
@@ -103,21 +121,7 @@ const npmInstallOptions: Fig.Option[] = [
     name: "-g",
     description: "Uninstall global package",
   },
-  {
-    name: ["-wl--workspace"],
-    description:
-      "Enable running a command in the context of the configured workspaces of the current project",
-    args: {
-      name: "workspace",
-      generators: workspaceGenerator,
-      isVariadic: true,
-    },
-  },
-  {
-    name: ["-wsl--workspaces"],
-    description:
-      "Enable running a command in the context of all the configured workspaces.",
-  },
+  ...workSpaceOptions,
 ];
 
 const npmListOptions: Fig.Option[] = [
@@ -156,21 +160,6 @@ const npmListOptions: Fig.Option[] = [
       "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
   },
   {
-    name: ["-wl--workspace"],
-    description:
-      "Enable running a command in the context of the configured workspaces of the current project",
-    args: {
-      name: "workspace",
-      generators: workspaceGenerator,
-      isVariadic: true,
-    },
-  },
-  {
-    name: ["-wsl--workspaces"],
-    description:
-      "Enable running a command in the context of all the configured workspaces.",
-  },
-  {
     name: ["--omit"],
     description: "Dependency types to omit from the installation tree on disk.",
     args: {
@@ -179,6 +168,7 @@ const npmListOptions: Fig.Option[] = [
       suggestions: ["dev", "optional", "peer"],
     },
   },
+  ...workSpaceOptions,
 ];
 
 const completionSpec: Fig.Spec = {
@@ -285,42 +275,14 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
       ],
     },
     {
       name: "run",
       description: "run arbitrary package scripts",
       options: [
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
         {
           name: "--if-present",
           description:
@@ -401,21 +363,7 @@ const completionSpec: Fig.Spec = {
       name: "audit",
       description: "run a security audit",
       options: [
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
         {
           name: "--audit-level",
           description:
@@ -623,21 +571,7 @@ const completionSpec: Fig.Spec = {
           name: "-g",
           description: "checks globally",
         },
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
       ],
     },
     { name: "owner", description: "manage package owners" },
@@ -682,21 +616,7 @@ const completionSpec: Fig.Spec = {
           description: "Registers the published package with the given tag",
           args: { name: "tag" },
         },
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
         {
           name: "--access",
           description:
@@ -927,21 +847,7 @@ const completionSpec: Fig.Spec = {
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
       ],
     },
     { name: "v", description: "check that you have node and npm installed" },
@@ -949,21 +855,7 @@ const completionSpec: Fig.Spec = {
       name: "version",
       description: "bump a package version",
       options: [
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
         { name: "--json", description: "show output in json format" },
       ],
     },
@@ -971,21 +863,7 @@ const completionSpec: Fig.Spec = {
       name: "view",
       description: "view registry info",
       options: [
-        {
-          name: ["-wl--workspace"],
-          description:
-            "Enable running a command in the context of the configured workspaces of the current project",
-          args: {
-            name: "workspace",
-            generators: workspaceGenerator,
-            isVariadic: true,
-          },
-        },
-        {
-          name: ["-wsl--workspaces"],
-          description:
-            "Enable running a command in the context of all the configured workspaces.",
-        },
+        ...workSpaceOptions,
         { name: "--json", description: "show output in json format" },
       ],
     },
