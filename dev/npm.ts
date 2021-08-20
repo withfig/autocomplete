@@ -23,12 +23,12 @@ const searchGenerator: Fig.Generator = {
 
 const workspaceGenerator: Fig.Generator = {
   script: "cat package.json",
-  postProcess: function (out) {
+  postProcess: function (out: string) {
     const suggestions = [];
 
     try {
       if (out.trim() == "") {
-        return { name: "workspaces" };
+        return suggestions;
       }
 
       const packageContent = JSON.parse(out);
