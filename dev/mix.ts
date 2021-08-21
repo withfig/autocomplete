@@ -14,8 +14,7 @@ const completionSpec: Fig.Spec = {
       priority: 64,
       args: [
         {
-          isOptional: true,
-          name: "name",
+          name: "path",
         },
       ],
 
@@ -27,23 +26,23 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--app",
-          description: "",
+          description: "Name the OTP application for the project",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
 
         {
           name: "--modules",
-          description: "",
+          description: "Name the modules in the generated code skeleton",
           args: {
             name: "module",
-            isOptional: false,
           },
         },
         {
           name: "--sup",
+          description:
+            "Generate an OTP application skeleton including a supervision tree. Normally an app is generated without a supervisor and without the app callback",
         },
         {
           name: "--umbrella",
@@ -51,10 +50,9 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "help",
+      name: "pp",
       description:
         "Prints documentation for a given task (Lists all the tasks if no task is specified)",
-      priority: 84,
       args: [
         {
           isOptional: true,
@@ -68,7 +66,6 @@ const completionSpec: Fig.Spec = {
             "Prints all tasks and aliases that contain 'pattern' in the name",
           args: {
             name: "pattern",
-            isOptional: false,
           },
         },
         {
