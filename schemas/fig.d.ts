@@ -198,6 +198,9 @@ declare namespace Fig {
     parserDirectives?: {
       flagsArePosixNoncompliant?: boolean;
     };
+
+    getVersionCommand?: string;
+    availableVersions?: string[];
   }
 
   export interface Option extends BaseSuggestion {

@@ -1,4 +1,4 @@
-import autojump from "./autojump";
+import autojump from "../autojump";
 
 const completionSpec: Fig.Spec = {
   name: "j",

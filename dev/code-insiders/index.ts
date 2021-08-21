@@ -1,4 +1,4 @@
-import code from "./code";
+import code from "../code";
 
 const completionSpec: Fig.Spec = {
   ...code,
