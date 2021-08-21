@@ -167,6 +167,7 @@ const troubleshootingOptions: Fig.Option[] = [
     description: "Log level to use. Default is 'info' when unspecified.",
     args: {
       name: "level",
+      default: "info",
       suggestions: [
         "critical",
         "error",
@@ -202,7 +203,8 @@ const troubleshootingOptions: Fig.Option[] = [
     name: "--sync",
     description: "Turn sync on or off.",
     args: {
-      name: "Whether to enable sync",
+      name: "sync",
+      description: "Whether to enable sync",
       suggestions: ["on", "off"],
     },
   },
