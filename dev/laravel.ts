@@ -46,6 +46,27 @@ const completionSpec: Fig.Spec = {
           description: 'Installs the latest "development" release',
         },
         {
+          name: "--git",
+          description: "Initialize a Git repository",
+        },
+        {
+          name: "--branch",
+          description: "The branch that should be created for a new repository",
+          args: {
+            name: "BRANCH",
+            default: "main",
+          },
+        },
+        {
+          name: "--github",
+          description: "Create a new repository on GitHub",
+          args: {
+            name: "GITHUB",
+            isOptional: true,
+            default: "false",
+          },
+        },
+        {
           name: "--jet",
           description: "Installs the Laravel Jetstream scaffolding",
         },
