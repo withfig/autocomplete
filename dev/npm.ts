@@ -83,7 +83,7 @@ const dependenciesGenerator: Fig.Generator = {
 
 const workSpaceOptions: Fig.Option[] = [
   {
-    name: ["-wl--workspace"],
+    name: "-wl--workspace",
     description:
       "Enable running a command in the context of the configured workspaces of the current project",
     args: {
@@ -93,7 +93,7 @@ const workSpaceOptions: Fig.Option[] = [
     },
   },
   {
-    name: ["-wsl--workspaces"],
+    name: "-wsl--workspaces",
     description:
       "Enable running a command in the context of all the configured workspaces.",
   },
@@ -159,7 +159,7 @@ const npmListOptions: Fig.Option[] = [
       "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
   },
   {
-    name: ["--omit"],
+    name: "--omit",
     description: "Dependency types to omit from the installation tree on disk.",
     args: {
       name: "Package type",
@@ -221,26 +221,26 @@ const completionSpec: Fig.Spec = {
             "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
         },
         {
-          name: ["--global-style"],
+          name: "--global-style",
           description:
             "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder.",
         },
         {
-          name: ["--legacy-bundling"],
+          name: "--legacy-bundling",
           description:
             "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package.",
         },
         {
-          name: ["--strict-peer-deps"],
+          name: "--strict-peer-deps",
           description:
             "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure.",
         },
         {
-          name: ["--no-package-lock"],
+          name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing.",
         },
         {
-          name: ["--omit"],
+          name: "--omit",
           description:
             "Dependency types to omit from the installation tree on disk.",
           args: {
@@ -250,27 +250,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--ignore-scripts"],
+          name: "--ignore-scripts",
           description:
             "If true, npm does not run scripts specified in package.json files.",
         },
         {
-          name: ["--no-audit"],
+          name: "--no-audit",
           description:
             "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes.",
         },
         {
-          name: ["--no-bin-links"],
+          name: "--no-bin-links",
           description:
             "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables.",
         },
         {
-          name: ["--no-fund"],
+          name: "--no-fund",
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding.",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },
@@ -300,44 +300,42 @@ const completionSpec: Fig.Spec = {
           args: { name: "shell" },
         },
       ],
-      args: [
-        {
-          generators: {
-            script:
-              "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
-            // splitOn: "\n",
-            postProcess: function (out) {
-              if (out.trim() == "") {
-                return [];
-              }
-
-              try {
-                var packageContent = JSON.parse(out);
-                var scripts = packageContent["scripts"];
-                var figCompletions = packageContent["fig"];
-
-                if (scripts) {
-                  const keys = Object.keys(scripts).map((key) => {
-                    var val = scripts[key] || "";
-                    return Object.assign(
-                      {},
-                      { icon: "fig://icon?type=npm" },
-                      { description: typeof val === "string" ? val : "" },
-                      (figCompletions || {})[key], // need the || {} otherwise it errors
-                      { name: key, insertValue: key }
-                    ); // ensure that name and insertValue are defined by "scripts" dict
-                  });
-                  return keys;
-                }
-              } catch (e) {
-                console.error(e);
-              }
-
+      args: {
+        generators: {
+          script:
+            "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
+          // splitOn: "\n",
+          postProcess: function (out) {
+            if (out.trim() == "") {
               return [];
-            },
+            }
+
+            try {
+              var packageContent = JSON.parse(out);
+              var scripts = packageContent["scripts"];
+              var figCompletions = packageContent["fig"];
+
+              if (scripts) {
+                const keys = Object.keys(scripts).map((key) => {
+                  var val = scripts[key] || "";
+                  return Object.assign(
+                    {},
+                    { icon: "fig://icon?type=npm" },
+                    { description: typeof val === "string" ? val : "" },
+                    (figCompletions || {})[key], // need the || {} otherwise it errors
+                    { name: key, insertValue: key }
+                  ); // ensure that name and insertValue are defined by "scripts" dict
+                });
+                return keys;
+              }
+            } catch (e) {
+              console.error(e);
+            }
+
+            return [];
           },
         },
-      ],
+      },
     },
     {
       name: "init",
@@ -384,9 +382,9 @@ const completionSpec: Fig.Spec = {
           description:
             "current operation will only use the package-lock.json, ignoring node_modules",
         },
-        { name: ["--json"], description: "Shows settings in json format" },
+        { name: "--json", description: "Shows settings in json format" },
         {
-          name: ["--omit"],
+          name: "--omit",
           description:
             "Dependency types to omit from the installation tree on disk.",
           args: {
@@ -402,7 +400,7 @@ const completionSpec: Fig.Spec = {
       description: "display npm bin folder",
       options: [
         {
-          name: ["-g"],
+          name: "-g",
           description:
             "Print the global folder where npm will install executables",
         },
@@ -465,9 +463,9 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description: "Show all the config settings",
           options: [
-            { name: ["-g"], description: "Lists globally installed packages" },
-            { name: ["-l"], description: "Also shows defaults" },
-            { name: ["--json"], description: "Shows settings in json format" },
+            { name: "-g", description: "Lists globally installed packages" },
+            { name: "-l", description: "Also shows defaults" },
+            { name: "--json", description: "Shows settings in json format" },
           ],
         },
         {
@@ -479,7 +477,7 @@ const completionSpec: Fig.Spec = {
           name: "edit",
           description: "Opens the config file in an editor",
           options: [
-            { name: ["--global"], description: "Edits the global config" },
+            { name: "--global", description: "Edits the global config" },
           ],
           args: {
             name: "package",
@@ -581,7 +579,7 @@ const completionSpec: Fig.Spec = {
       description: "display prefix",
       options: [
         {
-          name: ["-g"],
+          name: "-g",
           description: "Print the global prefix to standard out",
         },
       ],
@@ -595,7 +593,7 @@ const completionSpec: Fig.Spec = {
       description: "remove extraneous packages",
       options: [
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },
@@ -626,7 +624,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },
@@ -655,7 +653,7 @@ const completionSpec: Fig.Spec = {
       description: "display npm root",
       options: [
         {
-          name: ["-g"],
+          name: "-g",
           description:
             "Print the effective global node_modules folder to standard out.",
         },
@@ -677,7 +675,7 @@ const completionSpec: Fig.Spec = {
       description: "start a package",
       options: [
         {
-          name: ["--ignore-scripts"],
+          name: "--ignore-scripts",
           description:
             "If true, npm does not run scripts specified in package.json files.",
         },
@@ -693,7 +691,7 @@ const completionSpec: Fig.Spec = {
       description: "test a package",
       options: [
         {
-          name: ["--ignore-scripts"],
+          name: "--ignore-scripts",
           description:
             "If true, npm does not run scripts specified in package.json files.",
         },
@@ -712,7 +710,7 @@ const completionSpec: Fig.Spec = {
       description: "test a package",
       options: [
         {
-          name: ["--ignore-scripts"],
+          name: "--ignore-scripts",
           description:
             "If true, npm does not run scripts specified in package.json files.",
         },
@@ -727,13 +725,11 @@ const completionSpec: Fig.Spec = {
     {
       name: ["uninstall", "remove", "rm", "r", "unlink", "un"],
       description: "uninstall a package",
-      args: [
-        {
-          name: "package",
-          generators: dependenciesGenerator,
-          isVariadic: true,
-        },
-      ],
+      args: {
+        name: "package",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
       options: npmInstallOptions,
     },
     { name: "unpublish", description: "remove a package from the registry" },
@@ -745,26 +741,26 @@ const completionSpec: Fig.Spec = {
       options: [
         { name: "-g", description: "update global package" },
         {
-          name: ["--global-style"],
+          name: "--global-style",
           description:
             "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder.",
         },
         {
-          name: ["--legacy-bundling"],
+          name: "--legacy-bundling",
           description:
             "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package.",
         },
         {
-          name: ["--strict-peer-deps"],
+          name: "--strict-peer-deps",
           description:
             "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure.",
         },
         {
-          name: ["--no-package-lock"],
+          name: "--no-package-lock",
           description: "Ignores package-lock.json files when installing.",
         },
         {
-          name: ["--omit"],
+          name: "--omit",
           description:
             "Dependency types to omit from the installation tree on disk.",
           args: {
@@ -774,27 +770,27 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--ignore-scripts"],
+          name: "--ignore-scripts",
           description:
             "If true, npm does not run scripts specified in package.json files.",
         },
         {
-          name: ["--no-audit"],
+          name: "--no-audit",
           description:
             "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes.",
         },
         {
-          name: ["--no-bin-links"],
+          name: "--no-bin-links",
           description:
             "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables.",
         },
         {
-          name: ["--no-fund"],
+          name: "--no-fund",
           description:
             "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding.",
         },
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description:
             "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
         },

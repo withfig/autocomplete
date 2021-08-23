@@ -4283,14 +4283,12 @@ const completionSpec: Fig.Spec = {
             "Cancel the operation and return to the pre-sequence state",
         },
       ],
-      args: [
-        {
-          name: "commit",
-          description: "Commits to cherry-pick",
-          isVariadic: true,
-          generators: gitGenerators.commits,
-        },
-      ],
+      args: {
+        name: "commit",
+        description: "Commits to cherry-pick",
+        isVariadic: true,
+        generators: gitGenerators.commits,
+      },
       options: [
         {
           name: ["-e", "--edit"],

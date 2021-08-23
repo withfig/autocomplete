@@ -7,7 +7,7 @@ const completionSpec = {
       name: "build",
       options: [
         {
-          name: ["--engine"],
+          name: "--engine",
           description: "Target engine (e.g. browser, cordova)",
           args: {
             name: "engine",
@@ -15,7 +15,7 @@ const completionSpec = {
           },
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: "Target platform on chosen engine (e.g. ios, android)",
           args: {
             name: "platform",
@@ -23,25 +23,23 @@ const completionSpec = {
           },
         },
         {
-          name: ["--prod"],
+          name: "--prod",
           description: "Flag to use the production configuration",
         },
         {
           name: ["--configuration", "-c"],
           description: "Specify the configuration to use",
-          args: [
-            {
-              name: "conf",
-              template: ["filepaths", "folders"],
-            },
-          ],
+          args: {
+            name: "conf",
+            template: ["filepaths", "folders"],
+          },
         },
         {
-          name: ["--source-map"],
+          name: "--source-map",
           description: "Output source maps",
         },
         {
-          name: ["--watch"],
+          name: "--watch",
           description: "Rebuild when files change",
         },
       ],
@@ -71,7 +69,7 @@ const completionSpec = {
       name: "info",
       options: [
         {
-          name: ["--json"],
+          name: "--json",
           description: "Print system/environment info in JSON format",
         },
       ],
@@ -81,7 +79,7 @@ const completionSpec = {
       name: "init",
       options: [
         {
-          name: ["--type"],
+          name: "--type",
           description: "Type of project (e.g. angular, react, vue, custom)",
           args: {
             name: "type",
@@ -93,39 +91,35 @@ const completionSpec = {
           description: "Initialize even if a project already exists",
         },
         {
-          name: ["--multi-app"],
+          name: "--multi-app",
           description: "Initialize a multi-app project",
         },
         {
-          name: ["--project-id"],
+          name: "--project-id",
           description: "Specify a slug for your app",
           args: {
             name: "slug",
           },
         },
         {
-          name: ["--default"],
+          name: "--default",
           description: "Mark the initialized app as the default project",
         },
       ],
-      args: [
-        {
-          name: "name",
-          description: 'The name of your project (e.g. myApp, "My App")',
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "name",
+        description: 'The name of your project (e.g. myApp, "My App")',
+        isOptional: true,
+      },
       description: "Initialize existing projects with Ionic",
     },
     {
       name: "link",
-      args: [
-        {
-          name: "id",
-          description: "The Appflow ID of the app to link (e.g. a1b2c3d4)",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "id",
+        description: "The Appflow ID of the app to link (e.g. a1b2c3d4)",
+        isOptional: true,
+      },
       description: "Connect local apps to Ionic",
     },
     {
@@ -152,7 +146,7 @@ const completionSpec = {
       name: "repair",
       options: [
         {
-          name: ["--cordova"],
+          name: "--cordova",
           description:
             "Only perform the repair steps for Cordova platforms and plugins.",
         },
@@ -163,12 +157,12 @@ const completionSpec = {
       name: "serve",
       options: [
         {
-          name: ["--external"],
+          name: "--external",
           description:
             "Host dev server on all network interfaces (i.e. --host=0.0.0.0)",
         },
         {
-          name: ["--host"],
+          name: "--host",
           description: "Use specific host for the dev server",
           args: {
             name: "host",
@@ -183,7 +177,7 @@ const completionSpec = {
           },
         },
         {
-          name: ["--public-host"],
+          name: "--public-host",
           description: "The host used for the browser or web view",
           args: {
             name: "host",
@@ -191,11 +185,11 @@ const completionSpec = {
           },
         },
         {
-          name: ["--no-livereload"],
+          name: "--no-livereload",
           description: "Do not spin up dev server--just serve files",
         },
         {
-          name: ["--lab-host"],
+          name: "--lab-host",
           description: "Use specific host for Ionic Lab server",
           args: {
             name: "host",
@@ -203,14 +197,14 @@ const completionSpec = {
           },
         },
         {
-          name: ["--lab-port"],
+          name: "--lab-port",
           description: "Use specific port for Ionic Lab server",
           args: {
             name: "port",
           },
         },
         {
-          name: ["--no-open"],
+          name: "--no-open",
           description: "Do not open a browser window",
         },
         {
@@ -235,38 +229,34 @@ const completionSpec = {
             "Test your apps on multiple platform types in the browser",
         },
         {
-          name: ["--ssl"],
+          name: "--ssl",
           description: "Use HTTPS for the dev server",
         },
         {
-          name: ["--prod"],
+          name: "--prod",
           description: "Flag to use the production configuration",
         },
         {
-          name: ["--consolelogs"],
+          name: "--consolelogs",
           description: "Print app console logs to the terminal",
         },
         {
-          name: ["--consolelogs-port"],
+          name: "--consolelogs-port",
           description: "Use specific port for console logs server",
-          args: [
-            {
-              name: "port",
-            },
-          ],
+          args: {
+            name: "port",
+          },
         },
         {
           name: ["--configuration", "-c"],
           description: "Specify the configuration to use",
-          args: [
-            {
-              name: "conf",
-              template: ["filepaths", "folders"],
-            },
-          ],
+          args: {
+            name: "conf",
+            template: ["filepaths", "folders"],
+          },
         },
         {
-          name: ["--source-map"],
+          name: "--source-map",
           description: "Output sourcemaps",
         },
       ],
@@ -284,7 +274,7 @@ const completionSpec = {
           description: "List available starter templates",
         },
         {
-          name: ["--type"],
+          name: "--type",
           description:
             "Type of project to start (e.g. vue, angular, react, ionic-angular, ionic1)",
           args: {
@@ -293,34 +283,34 @@ const completionSpec = {
           },
         },
         {
-          name: ["--cordova"],
+          name: "--cordova",
           description: "Include Cordova integration",
         },
         {
-          name: ["--capacitor"],
+          name: "--capacitor",
           description: "Include Capacitor integration",
         },
         {
-          name: ["--no-deps"],
+          name: "--no-deps",
           description: "Do not install npm/yarn dependencies",
         },
         {
-          name: ["--no-git"],
+          name: "--no-git",
           description: "Do not initialize a git repo",
         },
         {
-          name: ["--link"],
+          name: "--link",
           description: "Connect your new app to Ionic",
         },
         {
-          name: ["--id"],
+          name: "--id",
           description: "Specify an Ionic App ID to link",
           args: {
             name: "id",
           },
         },
         {
-          name: ["--project-id"],
+          name: "--project-id",
           description:
             "Specify a slug for your app (used for the directory name and package name)",
           args: {
@@ -328,7 +318,7 @@ const completionSpec = {
           },
         },
         {
-          name: ["--package-id"],
+          name: "--package-id",
           description:
             "Specify the bundle ID/application ID for your app (reverse-DNS notation)",
           args: {
@@ -364,21 +354,19 @@ const completionSpec = {
               description: "Use global CLI config",
             },
             {
-              name: ["--json"],
+              name: "--json",
               description: "Output config values in JSON",
             },
             {
-              name: ["--root"],
+              name: "--root",
               description: "Operate on root of ionic.config.json",
             },
           ],
-          args: [
-            {
-              name: "property",
-              description: "The property name you wish to get",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "property",
+            description: "The property name you wish to get",
+            isOptional: true,
+          },
           description: "Print config values",
         },
         {
@@ -389,15 +377,15 @@ const completionSpec = {
               description: "Use global CLI config",
             },
             {
-              name: ["--json"],
+              name: "--json",
               description: "Always interpret value as JSON",
             },
             {
-              name: ["--force"],
+              name: "--force",
               description: "Always overwrite existing values",
             },
             {
-              name: ["--root"],
+              name: "--root",
               description: "Operate on root of ./ionic.config.json",
             },
           ],
@@ -423,17 +411,15 @@ const completionSpec = {
               description: "Use global CLI config",
             },
             {
-              name: ["--root"],
+              name: "--root",
               description: "Operate on root of ./ionic.config.json",
             },
           ],
-          args: [
-            {
-              name: "property",
-              description: "The property name you wish to delete",
-              isOptional: false,
-            },
-          ],
+          args: {
+            name: "property",
+            description: "The property name you wish to delete",
+            isOptional: false,
+          },
           description: "Delete config values",
         },
       ],
@@ -444,29 +430,27 @@ const completionSpec = {
       subcommands: [
         {
           name: "add",
-          args: [
-            {
-              name: "platform",
-              description: "The platform to add (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to add (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Add a native platform to your Ionic project",
         },
         {
           name: "build",
           options: [
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke Ionic build",
             },
             {
-              name: ["--no-open"],
+              name: "--no-open",
               description: "Do not invoke Capacitor open",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
@@ -474,33 +458,31 @@ const completionSpec = {
               description: "Specify the configuration to use",
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--watch"],
+              name: "--watch",
               description: "Rebuild when files change",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to build for (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to build for (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Build an Ionic project for a given platform",
         },
         {
           name: "copy",
           options: [
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke an Ionic build",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
@@ -508,44 +490,40 @@ const completionSpec = {
               description: "Specify the configuration to use",
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--watch"],
+              name: "--watch",
               description: "Rebuild when files change",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to copy (e.g. android, ios)",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to copy (e.g. android, ios)",
+            isOptional: true,
+          },
           description: "Copy web assets to native platforms",
         },
         {
           name: "open",
-          args: [
-            {
-              name: "platform",
-              description: "The platform to open (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to open (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Open the IDE for a given native platform project",
         },
         {
           name: "run",
           options: [
             {
-              name: ["--list"],
+              name: "--list",
               description: "List all available targets",
             },
             {
-              name: ["--target"],
+              name: "--target",
               description:
                 "Deploy to a specific device by its ID (use --list to see all)",
               args: {
@@ -553,20 +531,20 @@ const completionSpec = {
               },
             },
             {
-              name: ["--open"],
+              name: "--open",
               description: "Open native IDE instead of using capacitor run",
             },
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke Ionic build",
             },
             {
-              name: ["--external"],
+              name: "--external",
               description:
                 "Host dev server on all network interfaces (i.e. --host=0.0.0.0)",
             },
             {
-              name: ["--host"],
+              name: "--host",
               description: "Use specific host for the dev server",
               args: {
                 name: "host",
@@ -582,7 +560,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--public-host"],
+              name: "--public-host",
               description: "The host used for the browser or web view",
               args: {
                 name: "host",
@@ -593,95 +571,85 @@ const completionSpec = {
               description: "Spin up dev server to live-reload www files",
             },
             {
-              name: ["--livereload-url"],
+              name: "--livereload-url",
               description: "Provide a custom URL to the dev server",
               args: {
                 name: "url",
               },
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--watch"],
+              name: "--watch",
               description: "Rebuild when files change",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to run (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to run (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Run an Ionic project on a connected device",
         },
         {
           name: "sync",
           options: [
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke an Ionic build",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--watch"],
+              name: "--watch",
               description: "Rebuild when files change",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to sync (e.g. android, ios)",
-              isOptional: true,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to sync (e.g. android, ios)",
+            isOptional: true,
+            suggestions: ["ios", "android"],
+          },
           description: "Sync (copy + update) an Ionic project",
         },
         {
           name: "update",
-          args: [
-            {
-              name: "platform",
-              description: "The platform to update (e.g. android, ios)",
-              isOptional: true,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to update (e.g. android, ios)",
+            isOptional: true,
+            suggestions: ["ios", "android"],
+          },
           description:
             "Update Capacitor native platforms, install Capacitor/Cordova plugins",
         },
@@ -695,21 +663,21 @@ const completionSpec = {
           name: "add",
           options: [
             {
-              name: ["--app-id"],
+              name: "--app-id",
               description: "Your Appflow app ID",
               args: {
                 name: "id",
               },
             },
             {
-              name: ["--channel-name"],
+              name: "--channel-name",
               description: "The channel to check for updates from",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--update-method"],
+              name: "--update-method",
               description:
                 "The update method that dictates the behavior of the plugin",
               args: {
@@ -717,7 +685,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--max-store"],
+              name: "--max-store",
               description:
                 "The maximum number of downloaded versions to store on the device",
               args: {
@@ -726,7 +694,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--min-background-duration"],
+              name: "--min-background-duration",
               description:
                 "The minimum duration after which the app checks for an update in the background",
               args: {
@@ -741,7 +709,7 @@ const completionSpec = {
           name: "build",
           options: [
             {
-              name: ["--environment"],
+              name: "--environment",
               description:
                 "The group of environment variables exposed to your build",
               args: {
@@ -749,7 +717,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--channel"],
+              name: "--channel",
               description:
                 "The channel you want to auto deploy the build to. This can be repeated multiple times if multiple channels need to be specified.",
               args: {
@@ -757,14 +725,14 @@ const completionSpec = {
               },
             },
             {
-              name: ["--commit"],
+              name: "--commit",
               description: "Commit (defaults to HEAD)",
               args: {
                 name: "sha1",
               },
             },
             {
-              name: ["--skip-download"],
+              name: "--skip-download",
               description:
                 "Skip downloading build artifacts after command succeeds.",
             },
@@ -775,21 +743,21 @@ const completionSpec = {
           name: "configure",
           options: [
             {
-              name: ["--app-id"],
+              name: "--app-id",
               description: "Your Appflow app ID",
               args: {
                 name: "id",
               },
             },
             {
-              name: ["--channel-name"],
+              name: "--channel-name",
               description: "The channel to check for updates from",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--update-method"],
+              name: "--update-method",
               description:
                 "The update method that dictates the behavior of the plugin",
               args: {
@@ -797,7 +765,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--max-store"],
+              name: "--max-store",
               description:
                 "The maximum number of downloaded versions to store on the device",
               args: {
@@ -805,7 +773,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--min-background-duration"],
+              name: "--min-background-duration",
               description:
                 "The minimum duration after which the app checks for an update in the background",
               args: {
@@ -813,13 +781,11 @@ const completionSpec = {
               },
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The native platform (e.g. ios, android)",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The native platform (e.g. ios, android)",
+            isOptional: true,
+          },
           description: "Overrides Appflow Deploy configuration",
         },
         {
@@ -848,14 +814,14 @@ const completionSpec = {
           name: "build",
           options: [
             {
-              name: ["--signing-certificate"],
+              name: "--signing-certificate",
               description: "Signing certificate",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--environment"],
+              name: "--environment",
               description:
                 "The group of environment variables exposed to your build",
               args: {
@@ -863,7 +829,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--native-config"],
+              name: "--native-config",
               description:
                 "The group of native config variables exposed to your build",
               args: {
@@ -871,7 +837,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--destination"],
+              name: "--destination",
               description:
                 "The configuration to deploy the build artifact to the app store",
               args: {
@@ -879,14 +845,14 @@ const completionSpec = {
               },
             },
             {
-              name: ["--commit"],
+              name: "--commit",
               description: "Commit (defaults to HEAD)",
               args: {
                 name: "sha1",
               },
             },
             {
-              name: ["--build-stack"],
+              name: "--build-stack",
               description:
                 'Target platform ("Android", "iOS - Xcode 11 (Preferred)", "iOS - Xcode 10")',
               args: {
@@ -899,42 +865,42 @@ const completionSpec = {
               },
             },
             {
-              name: ["--build-file-name"],
+              name: "--build-file-name",
               description: "The name for the downloaded build file",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--ipa-name"],
+              name: "--ipa-name",
               description: "The name for the downloaded ipa file",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--dsym-name"],
+              name: "--dsym-name",
               description: "The name for the downloaded dsym file",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--apk-name"],
+              name: "--apk-name",
               description: "The name for the downloaded apk file",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--aab-name"],
+              name: "--aab-name",
               description: "The name for the downloaded aab file",
               args: {
                 name: "name",
               },
             },
             {
-              name: ["--artifact-type"],
+              name: "--artifact-type",
               description: "The artifact type (aab, apk, ipa, dsym)",
               args: {
                 name: "name",
@@ -942,7 +908,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--skip-download"],
+              name: "--skip-download",
               description:
                 "Skip downloading build artifacts after command succeeds.",
             },
@@ -1000,7 +966,7 @@ const completionSpec = {
           name: "generate",
           options: [
             {
-              name: ["--key-path"],
+              name: "--key-path",
               description: "Destination of private key file",
               args: {
                 name: "path",
@@ -1008,7 +974,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--cert-path"],
+              name: "--cert-path",
               description: "Destination of certificate file",
               args: {
                 name: "path",
@@ -1016,7 +982,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--country-name"],
+              name: "--country-name",
               description: "The country name (C) of the SSL certificate",
               args: {
                 name: "C",
@@ -1024,7 +990,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--state-or-province-name"],
+              name: "--state-or-province-name",
               description:
                 "The state or province name (ST) of the SSL certificate",
               args: {
@@ -1033,7 +999,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--locality-name"],
+              name: "--locality-name",
               description: "The locality name (L) of the SSL certificate",
               args: {
                 name: "L",
@@ -1041,7 +1007,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--organization-name"],
+              name: "--organization-name",
               description: "The organization name (O) of the SSL certificate",
               args: {
                 name: "O",
@@ -1049,7 +1015,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--common-name"],
+              name: "--common-name",
               description: "The common name (CN) of the SSL certificate",
               args: {
                 name: "CN",
@@ -1077,29 +1043,25 @@ const completionSpec = {
           name: "add",
           options: [
             {
-              name: ["--use"],
+              name: "--use",
               description:
                 "Use the newly added key as your default SSH key for Ionic",
             },
           ],
-          args: [
-            {
-              name: "pubkey-path",
-              description: "Location of public key file to add to Ionic",
-              isOptional: false,
-            },
-          ],
+          args: {
+            name: "pubkey-path",
+            description: "Location of public key file to add to Ionic",
+            isOptional: false,
+          },
           description: "Add an SSH public key to Ionic",
         },
         {
           name: "delete",
-          args: [
-            {
-              name: "key-id",
-              description: "The ID of the public key to delete",
-              isOptional: false,
-            },
-          ],
+          args: {
+            name: "key-id",
+            description: "The ID of the public key to delete",
+            isOptional: false,
+          },
           description: "Delete an SSH public key from Ionic",
         },
         {
@@ -1131,20 +1093,18 @@ const completionSpec = {
               },
             },
           ],
-          args: [
-            {
-              name: "key-path",
-              description: "Destination of private key file",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "key-path",
+            description: "Destination of private key file",
+            isOptional: true,
+          },
           description: "Generates a private and public SSH key pair",
         },
         {
           name: "list",
           options: [
             {
-              name: ["--json"],
+              name: "--json",
               description: "Output SSH keys in JSON",
             },
           ],
@@ -1156,13 +1116,11 @@ const completionSpec = {
         },
         {
           name: "use",
-          args: [
-            {
-              name: "key-path",
-              description: "Location of private key file to use",
-              isOptional: false,
-            },
-          ],
+          args: {
+            name: "key-path",
+            description: "Location of private key file to use",
+            isOptional: false,
+          },
           description: "Set your active Ionic SSH key",
         },
       ],
@@ -1173,13 +1131,11 @@ const completionSpec = {
       subcommands: [
         {
           name: "check",
-          args: [
-            {
-              name: "id",
-              description: "The issue identifier",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The issue identifier",
+            isOptional: true,
+          },
           description: "Check the health of your Ionic project",
         },
         {
@@ -1188,13 +1144,11 @@ const completionSpec = {
         },
         {
           name: "treat",
-          args: [
-            {
-              name: "id",
-              description: "The issue identifier",
-              isOptional: true,
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The issue identifier",
+            isOptional: true,
+          },
           description: "Attempt to fix issues in your Ionic project",
         },
       ],
@@ -1205,26 +1159,24 @@ const completionSpec = {
       subcommands: [
         {
           name: "disable",
-          args: [
-            {
-              name: "name",
-              description:
-                "The integration to disable (e.g. capacitor, cordova, enterprise)",
-              isOptional: false,
-              suggestions: ["capacitor", "cordova", "enterprise"],
-            },
-          ],
+          args: {
+            name: "name",
+            description:
+              "The integration to disable (e.g. capacitor, cordova, enterprise)",
+            isOptional: false,
+            suggestions: ["capacitor", "cordova", "enterprise"],
+          },
           description: "Disable an integration",
         },
         {
           name: "enable",
           options: [
             {
-              name: ["--add"],
+              name: "--add",
               description: "Download and add the integration even if enabled",
             },
             {
-              name: ["--root"],
+              name: "--root",
               description:
                 "Specify an alternative destination to download into when adding",
               args: {
@@ -1232,19 +1184,17 @@ const completionSpec = {
               },
             },
             {
-              name: ["--quiet"],
+              name: "--quiet",
               description: "Less verbose output, ignore integration errors",
             },
           ],
-          args: [
-            {
-              name: "name",
-              description:
-                "The integration to enable (e.g. capacitor, cordova, enterprise)",
-              isOptional: false,
-              suggestions: ["capacitor", "cordova", "enterprise"],
-            },
-          ],
+          args: {
+            name: "name",
+            description:
+              "The integration to enable (e.g. capacitor, cordova, enterprise)",
+            isOptional: false,
+            suggestions: ["capacitor", "cordova", "enterprise"],
+          },
           description: "Add & enable integrations to your app",
         },
         {
@@ -1261,14 +1211,14 @@ const completionSpec = {
           name: "register",
           options: [
             {
-              name: ["--app-id"],
+              name: "--app-id",
               description: "The Ionic App ID",
               args: {
                 name: "id",
               },
             },
             {
-              name: ["--key"],
+              name: "--key",
               description: "The Product Key",
               args: {
                 name: "key",
@@ -1287,27 +1237,27 @@ const completionSpec = {
           name: "build",
           options: [
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke an Ionic build",
             },
             {
-              name: ["--debug"],
+              name: "--debug",
               description: "Mark as a debug build",
             },
             {
-              name: ["--release"],
+              name: "--release",
               description: "Mark as a release build",
             },
             {
-              name: ["--device"],
+              name: "--device",
               description: "Deploy build to a device",
             },
             {
-              name: ["--emulator"],
+              name: "--emulator",
               description: "Deploy build to an emulator",
             },
             {
-              name: ["--buildConfig"],
+              name: "--buildConfig",
               description: "Use the specified build configuration",
               args: {
                 name: "file",
@@ -1315,32 +1265,28 @@ const completionSpec = {
               },
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to build (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to build (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description:
             "Use Cordova to build for Android and iOS platform targets",
         },
@@ -1348,23 +1294,23 @@ const completionSpec = {
           name: "compile",
           options: [
             {
-              name: ["--debug"],
+              name: "--debug",
               description: "Mark as a debug build",
             },
             {
-              name: ["--release"],
+              name: "--release",
               description: "Mark as a release build",
             },
             {
-              name: ["--device"],
+              name: "--device",
               description: "Deploy build to a device",
             },
             {
-              name: ["--emulator"],
+              name: "--emulator",
               description: "Deploy build to an emulator",
             },
             {
-              name: ["--buildConfig"],
+              name: "--buildConfig",
               description: "Use the specified build configuration",
               args: {
                 name: "file",
@@ -1372,34 +1318,32 @@ const completionSpec = {
               },
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to compile (android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to compile (android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Compile native platform code",
         },
         {
           name: "emulate",
           options: [
             {
-              name: ["--list"],
+              name: "--list",
               description: "List all available targets",
             },
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke Ionic build",
             },
             {
-              name: ["--external"],
+              name: "--external",
               description:
                 "Host dev server on all network interfaces (i.e. --host=0.0.0.0)",
             },
             {
-              name: ["--host"],
+              name: "--host",
               description: "Use specific host for the dev server",
               args: {
                 name: "host",
@@ -1415,7 +1359,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--public-host"],
+              name: "--public-host",
               description: "The host used for the browser or web view",
               args: {
                 name: "host",
@@ -1426,30 +1370,30 @@ const completionSpec = {
               description: "Spin up dev server to live-reload www files",
             },
             {
-              name: ["--livereload-url"],
+              name: "--livereload-url",
               description: "Provide a custom URL to the dev server",
               args: {
                 name: "url",
               },
             },
             {
-              name: ["--debug"],
+              name: "--debug",
               description: "Mark as a debug build",
             },
             {
-              name: ["--release"],
+              name: "--release",
               description: "Mark as a release build",
             },
             {
-              name: ["--device"],
+              name: "--device",
               description: "Deploy build to a device",
             },
             {
-              name: ["--emulator"],
+              name: "--emulator",
               description: "Deploy build to an emulator",
             },
             {
-              name: ["--buildConfig"],
+              name: "--buildConfig",
               description: "Use the specified build configuration",
               args: {
                 name: "file",
@@ -1457,86 +1401,78 @@ const completionSpec = {
               },
             },
             {
-              name: ["--target"],
+              name: "--target",
               description: "Deploy build to a device (use --list to see all)",
               args: {
                 name: "target",
               },
             },
             {
-              name: ["--no-native-run"],
+              name: "--no-native-run",
               description:
                 "Do not use native-run to run the app; use Cordova instead",
             },
             {
-              name: ["--connect"],
+              name: "--connect",
               description: "Tie the running app to the process",
             },
             {
-              name: ["--json"],
+              name: "--json",
               description: "Output targets in JSON",
             },
             {
-              name: ["--ssl"],
+              name: "--ssl",
               description: "Use HTTPS for the dev serve",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
-              name: ["--consolelogs"],
+              name: "--consolelogs",
               description: "Print app console logs to the terminal",
             },
             {
-              name: ["--consolelogs-port"],
+              name: "--consolelogs-port",
               description: "Use specific port for console logs server",
-              args: [
-                {
-                  name: "port",
-                },
-              ],
+              args: {
+                name: "port",
+              },
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--buildconfig"],
+              name: "--buildconfig",
               description: "Use the specified build configuration",
-              args: [
-                {
-                  name: "file",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "file",
+                template: ["filepaths", "folders"],
+              },
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to run (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to run (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Emulate an Ionic project on a simulator/emulator",
         },
         {
           name: "platform",
           options: [
             {
-              name: ["--no-resources"],
+              name: "--no-resources",
               description:
                 "Do not pregenerate icons and splash screen resources (corresponds to add)",
             },
@@ -1563,12 +1499,12 @@ const completionSpec = {
           name: "plugin",
           options: [
             {
-              name: ["--force"],
+              name: "--force",
               description:
                 "Force overwrite the plugin if it exists (corresponds to add)",
             },
             {
-              name: ["--variable"],
+              name: "--variable",
               description: "Specify plugin variables",
               args: {
                 name: "KEY=VALUE",
@@ -1596,55 +1532,49 @@ const completionSpec = {
           name: "prepare",
           options: [
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke an Ionic build",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
             {
-              name: ["--source-map"],
+              name: "--source-map",
               description: "Output source maps",
             },
             {
-              name: ["--watch"],
+              name: "--watch",
               description: "Rebuild when files change",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description:
-                "The platform you would like to prepare (e.g. android, ios)",
-              isOptional: true,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description:
+              "The platform you would like to prepare (e.g. android, ios)",
+            isOptional: true,
+            suggestions: ["ios", "android"],
+          },
           description:
             "Copies assets to Cordova platforms, preparing them for native builds",
         },
         {
           name: "requirements",
-          args: [
-            {
-              name: "platform",
-              description:
-                "The platform for which you would like to gather requirements (android, ios)",
-              isOptional: true,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description:
+              "The platform for which you would like to gather requirements (android, ios)",
+            isOptional: true,
+            suggestions: ["ios", "android"],
+          },
           description:
             "Checks and print out all the requirements for platforms",
         },
@@ -1660,35 +1590,33 @@ const completionSpec = {
               description: "Generate splash screen resources",
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description:
-                "The platform for which you would like to generate resources (ios, android)",
-              isOptional: true,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description:
+              "The platform for which you would like to generate resources (ios, android)",
+            isOptional: true,
+            suggestions: ["ios", "android"],
+          },
           description: "Automatically create icon and splash screen resources",
         },
         {
           name: "run",
           options: [
             {
-              name: ["--list"],
+              name: "--list",
               description: "List all available targets",
             },
             {
-              name: ["--no-build"],
+              name: "--no-build",
               description: "Do not invoke Ionic build",
             },
             {
-              name: ["--external"],
+              name: "--external",
               description:
                 "Host dev server on all network interfaces (i.e. --host=0.0.0.0)",
             },
             {
-              name: ["--host"],
+              name: "--host",
               description: "Use specific host for the dev server",
               args: {
                 name: "host",
@@ -1704,7 +1632,7 @@ const completionSpec = {
               },
             },
             {
-              name: ["--public-host"],
+              name: "--public-host",
               description: "The host used for the browser or web view",
               args: {
                 name: "host",
@@ -1715,30 +1643,30 @@ const completionSpec = {
               description: "Spin up dev server to live-reload www files",
             },
             {
-              name: ["--livereload-url"],
+              name: "--livereload-url",
               description: "Provide a custom URL to the dev server",
               args: {
                 name: "url",
               },
             },
             {
-              name: ["--debug"],
+              name: "--debug",
               description: "Mark as a debug build",
             },
             {
-              name: ["--release"],
+              name: "--release",
               description: "Mark as a release build",
             },
             {
-              name: ["--device"],
+              name: "--device",
               description: "Deploy build to a device",
             },
             {
-              name: ["--emulator"],
+              name: "--emulator",
               description: "Deploy build to an emulator",
             },
             {
-              name: ["--buildConfig"],
+              name: "--buildConfig",
               description: "Use the specified build configuration",
               args: {
                 name: "file",
@@ -1746,65 +1674,59 @@ const completionSpec = {
               },
             },
             {
-              name: ["--target"],
+              name: "--target",
               description: "Deploy build to a device (use --list to see all)",
               args: {
                 name: "target",
               },
             },
             {
-              name: ["--no-native-run"],
+              name: "--no-native-run",
               description:
                 "Do not use native-run to run the app; use Cordova instead",
             },
             {
-              name: ["--connect"],
+              name: "--connect",
               description: "Tie the running app to the process",
             },
             {
-              name: ["--json"],
+              name: "--json",
               description: "Output targets in JSON",
             },
             {
-              name: ["--ssl"],
+              name: "--ssl",
               description: "Use HTTPS for the dev server",
             },
             {
-              name: ["--prod"],
+              name: "--prod",
               description: "Flag to use the production configuration",
             },
             {
-              name: ["--consolelogs"],
+              name: "--consolelogs",
               description: "Print app console logs to the terminal",
             },
             {
-              name: ["--consolelogs-port"],
+              name: "--consolelogs-port",
               description: "Use specific port for console logs server",
-              args: [
-                {
-                  name: "port",
-                },
-              ],
+              args: {
+                name: "port",
+              },
             },
             {
               name: ["--configuration", "-c"],
               description: "Specify the configuration to use",
-              args: [
-                {
-                  name: "conf",
-                  template: ["filepaths", "folders"],
-                },
-              ],
+              args: {
+                name: "conf",
+                template: ["filepaths", "folders"],
+              },
             },
           ],
-          args: [
-            {
-              name: "platform",
-              description: "The platform to run (e.g. android, ios)",
-              isOptional: false,
-              suggestions: ["ios", "android"],
-            },
-          ],
+          args: {
+            name: "platform",
+            description: "The platform to run (e.g. android, ios)",
+            isOptional: false,
+            suggestions: ["ios", "android"],
+          },
           description: "Run an Ionic project on a connected device",
         },
       ],

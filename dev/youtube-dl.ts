@@ -96,22 +96,18 @@ const completionSpec: Fig.Spec = {
       name: "--default-search",
       description:
         'Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for youtube-dl "large apple".',
-      args: [
-        {
-          name: "PREFIX",
-        },
-      ],
+      args: {
+        name: "PREFIX",
+      },
     },
     {
       name: "--config-location",
       description:
         "Location of the configuration file; either the path to the config or its containing directory",
-      args: [
-        {
-          name: "PATH",
-          template: ["filepaths", "folders"],
-        },
-      ],
+      args: {
+        name: "PATH",
+        template: ["filepaths", "folders"],
+      },
     },
     {
       name: "--force-generic-extractor",
@@ -323,21 +319,17 @@ const completionSpec: Fig.Spec = {
     {
       name: "--age-limit",
       description: "Download only videos suitable for the given age",
-      args: [
-        {
-          name: "YEARS",
-        },
-      ],
+      args: {
+        name: "YEARS",
+      },
     },
     {
       name: "--download-archive",
       description:
         "Download only videos not listed in the archive file. Record the IDs of all downloaded videos in it.",
-      args: [
-        {
-          name: "FILE",
-        },
-      ],
+      args: {
+        name: "FILE",
+      },
     },
     {
       name: "--include-ads",
@@ -347,31 +339,25 @@ const completionSpec: Fig.Spec = {
       name: ["-r", "--limit-rate"],
       description:
         "Maximum download rate in bytes per second (e.g. 50K or 4.2M)",
-      args: [
-        {
-          name: "RATE",
-        },
-      ],
+      args: {
+        name: "RATE",
+      },
     },
     {
       name: ["-R", "--retries"],
       description: 'Number of retries or "infinite"',
-      args: [
-        {
-          name: "RETRIES",
-          default: "10",
-        },
-      ],
+      args: {
+        name: "RETRIES",
+        default: "10",
+      },
     },
     {
       name: "--fragment-retries",
       description: 'Number of retries for a fragment or "infinite"',
-      args: [
-        {
-          name: "RETRIES",
-          default: "10",
-        },
-      ],
+      args: {
+        name: "RETRIES",
+        default: "10",
+      },
     },
     {
       name: "--skip-unavailable-fragments",
@@ -389,12 +375,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "--buffer-size",
       description: "Size of download buffer (e.g. 1024 or 16K)",
-      args: [
-        {
-          name: "SIZE",
-          default: "1024",
-        },
-      ],
+      args: {
+        name: "SIZE",
+        default: "1024",
+      },
     },
     {
       name: "--no-resize-buffer",
@@ -404,11 +388,9 @@ const completionSpec: Fig.Spec = {
       name: "--http-chunk-size",
       description:
         "Size of a chunk for chunk-based HTTP downloading (e.g. 10385760 or 10M)",
-      args: [
-        {
-          name: "SIZE",
-        },
-      ],
+      args: {
+        name: "SIZE",
+      },
     },
     {
       name: "--playlist-reverse",
@@ -438,42 +420,36 @@ const completionSpec: Fig.Spec = {
     {
       name: "--external-downloader",
       description: "Use the specified external downloader",
-      args: [
-        {
-          name: "COMMAND",
-          suggestions: [
-            "aria2c",
-            "avconv",
-            "axel",
-            "curl",
-            "ffmpeg",
-            "httpie",
-            "wget",
-          ],
-        },
-      ],
+      args: {
+        name: "COMMAND",
+        suggestions: [
+          "aria2c",
+          "avconv",
+          "axel",
+          "curl",
+          "ffmpeg",
+          "httpie",
+          "wget",
+        ],
+      },
     },
     {
       name: "--external-downloader-args",
       description: "Give these arguments to the external downloader",
       dependsOn: ["--external-downloader"],
-      args: [
-        {
-          name: "ARGS",
-        },
-      ],
+      args: {
+        name: "ARGS",
+      },
     },
     {
       name: ["-a", "--batch-file"],
       description:
         "File containing URLs to download ('-' for stdin), one URL per line. Lines starting with '#', ';' or ']' are considered as comments and ignored.",
-      args: [
-        {
-          name: "FILE",
-          suggestions: ["-"],
-          template: ["filepaths"],
-        },
-      ],
+      args: {
+        name: "FILE",
+        suggestions: ["-"],
+        template: ["filepaths"],
+      },
     },
     {
       name: "--id",
@@ -482,32 +458,26 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-o", "--output"],
       description: "Output filename template",
-      args: [
-        {
-          name: "TEMPLATE",
-        },
-      ],
+      args: {
+        name: "TEMPLATE",
+      },
     },
     {
       name: "--output-na-placeholder",
       description:
         "Placeholder value for unavailable meta fields in output filename template",
-      args: [
-        {
-          name: "PLACEHOLDER",
-          default: "NA",
-        },
-      ],
+      args: {
+        name: "PLACEHOLDER",
+        default: "NA",
+      },
     },
     {
       name: "--autonumber-start",
       description: "Specify the start value for %(autonumber)s",
-      args: [
-        {
-          name: "NUMBER",
-          default: "1",
-        },
-      ],
+      args: {
+        name: "NUMBER",
+        default: "1",
+      },
     },
     {
       name: "--restrict-filenames",
