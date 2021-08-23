@@ -16406,22 +16406,22 @@ const completionSpec: Fig.Spec = {
           isRepeatable: true,
         },
         {
-          name: ["--no-deps"],
+          name: "--no-deps",
           description: "Don’t install package dependencies.",
         },
         {
-          name: ["--global-option"],
+          name: "--global-option",
           description:
             "Extra global options to be supplied to the setup.py call before the install command.",
         },
         {
-          name: ["--no-binary"],
+          name: "--no-binary",
           description:
             "Constrain versions using the given constraints file. This option can be used multiple times.",
           isRepeatable: true,
         },
         {
-          name: ["--only-binary"],
+          name: "--only-binary",
           description: "Do not use source packages",
           args: {
             suggestions: [
@@ -16437,12 +16437,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--prefer-binary"],
+          name: "--prefer-binary",
           description:
             "Prefer older binary packages over newer source packages.",
         },
         {
-          name: ["--src"],
+          name: "--src",
           description: "Directory to check out editable projects into.",
           args: {
             name: "source folder",
@@ -16450,17 +16450,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--pre"],
+          name: "--pre",
           description:
             "Include pre-release and development versions. By default, pip only finds stable versions.",
         },
         {
-          name: ["--require-hashes"],
+          name: "--require-hashes",
           description:
             "Require a hash to check each requirement against, for repeatable installs.",
         },
         {
-          name: ["--progress-bar"],
+          name: "--progress-bar",
           description: "Specify type of progress to be displayed",
           args: {
             suggestions: [
@@ -16473,16 +16473,16 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--no-build-isolation"],
+          name: "--no-build-isolation",
           description:
             "Disable isolation when building a modern source distribution.",
         },
         {
-          name: ["--use-pep517"],
+          name: "--use-pep517",
           description: "Use PEP 517 for building source distributions",
         },
         {
-          name: ["--ignore-requires-python"],
+          name: "--ignore-requires-python",
           description: "Ignore the Requires-Python information.",
         },
         {
@@ -16495,24 +16495,24 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--platform"],
+          name: "--platform",
           description: "Only use wheels compatible with platform.",
           args: { name: "platform" },
         },
         {
-          name: ["--python-version"],
+          name: "--python-version",
           description:
             "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
         },
         {
-          name: ["--implementation"],
+          name: "--implementation",
           description: "Only use wheels compatible with Python implementation",
           args: {
             name: "implementation",
           },
         },
         {
-          name: ["--abi"],
+          name: "--abi",
           description:
             "Only use wheels compatible with Python abi <abi>, e.g. ‘pypy_41’.",
           args: {
@@ -16520,7 +16520,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--no-clean"],
+          name: "--no-clean",
           description: "Don’t clean up build directories.",
         },
         {
@@ -16531,12 +16531,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--no-index"],
+          name: "--no-index",
           description:
             "Ignore package index (only looking at --find-links URLs instead).",
         },
         {
-          name: ["--extra-index-url"],
+          name: "--extra-index-url",
           description:
             "Extra URLs of package indexes to use in addition to --index-url. Should follow the same rules as --index-url.",
         },
@@ -16570,26 +16570,26 @@ const completionSpec: Fig.Spec = {
             "If in a virtualenv that has global access, do not output globally-installed packages",
         },
         {
-          name: ["--user"],
+          name: "--user",
           description: "Only output packages installed in user-site.",
         },
         {
-          name: ["--path"],
+          name: "--path",
           description:
             "Restrict to the specified installation path for listing packages (can be used multiple times).",
           isRepeatable: true,
         },
         {
-          name: ["--all"],
+          name: "--all",
           description:
             "Do not skip these packages in the output: setuptools, distribute, pip, wheel",
         },
         {
-          name: ["--exclude-editable"],
+          name: "--exclude-editable",
           description: "Exclude editable package from output",
         },
         {
-          name: ["--exclude"],
+          name: "--exclude",
           description: "Exclude specified package from the output",
           args: {
             name: "package",
@@ -16620,11 +16620,11 @@ const completionSpec: Fig.Spec = {
             "If in a virtualenv that has global access, do not list globally-installed packages.",
         },
         {
-          name: ["--user"],
+          name: "--user",
           description: "Only output packages installed in user-site",
         },
         {
-          name: ["--path"],
+          name: "--path",
           description:
             "Restrict to the specified installation path for listing packages (can be used multiple times).",
           isRepeatable: true,
@@ -16634,30 +16634,30 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--pre"],
+          name: "--pre",
           description:
             "Include pre-release and development versions. By default, pip only finds stable versions.",
         },
         {
-          name: ["--format"],
+          name: "--format",
           description:
             "Select the output format among: columns (default), freeze, or json",
         },
         {
-          name: ["--not-required"],
+          name: "--not-required",
           description:
             "List packages that are not dependencies of installed packages.",
         },
         {
-          name: ["--exclude-editable"],
+          name: "--exclude-editable",
           description: "Exclude editable package from output.",
         },
         {
-          name: ["--include-editable"],
+          name: "--include-editable",
           description: "Include editable package from output.",
         },
         {
-          name: ["--exclude"],
+          name: "--exclude",
           description: "Exclude specified package from the output.",
           args: {
             name: "package",
@@ -16671,12 +16671,12 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--extra-index-url"],
+          name: "--extra-index-url",
           description:
             "Include pre-release and development versions. By default, pip only finds stable versions.",
         },
         {
-          name: ["--no-index"],
+          name: "--no-index",
           description:
             "Ignore package index (only looking at --find-links URLs instead).",
         },
@@ -16708,20 +16708,20 @@ const completionSpec: Fig.Spec = {
       description: "Manage local and global configuration.",
       options: [
         {
-          name: ["--editor"],
+          name: "--editor",
           description:
             "Editor to use to edit the file. Uses VISUAL or EDITOR environment variables if not provided.",
         },
         {
-          name: ["--global"],
+          name: "--global",
           description: "Use the system-wide configuration file only",
         },
         {
-          name: ["--user"],
+          name: "--user",
           description: "Use the user configuration file only",
         },
         {
-          name: ["--site"],
+          name: "--site",
           description: "Use the current environment configuration file only",
         },
       ],
@@ -16769,14 +16769,14 @@ const completionSpec: Fig.Spec = {
       description: "Show information useful for debugging.",
       options: [
         {
-          name: ["--platform"],
+          name: "--platform",
           description: "Only use wheels compatible with platform.",
           args: {
             name: "platform",
           },
         },
         {
-          name: ["--python-version"],
+          name: "--python-version",
           description:
             "The Python interpreter version to use for wheel and “Requires-Python” compatibility checks.",
           args: {
@@ -16784,7 +16784,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--implementation"],
+          name: "--implementation",
           description: "Only use wheels compatible with Python implementation",
           args: {
             name: "implementation",

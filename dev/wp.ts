@@ -413,12 +413,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists capabilities for a given role.",
-          args: [
-            {
-              name: "role",
-              description: "Key for the role.",
-            },
-          ],
+          args: {
+            name: "role",
+            description: "Key for the role.",
+          },
           options: [
             {
               name: "--format",
@@ -493,12 +491,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "add",
               description: "Creates an alias.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the alias.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the alias.",
+              },
               options: [
                 {
                   name: "--set-user",
@@ -553,12 +549,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Deletes an alias.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the alias.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the alias.",
+              },
               options: [
                 {
                   name: "--config",
@@ -574,12 +568,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "get",
               description: "Gets the value for an alias.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the alias.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the alias.",
+              },
             },
             {
               name: "list",
@@ -603,12 +595,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Updates an alias.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the alias.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the alias.",
+              },
               options: [
                 {
                   name: "--set-user",
@@ -750,12 +740,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "has-command",
           description: "Detects if a command exists",
-          args: [
-            {
-              name: "command_name",
-              description: "The command",
-            },
-          ],
+          args: {
+            name: "command_name",
+            description: "The command",
+          },
         },
         {
           name: "info",
@@ -863,29 +851,25 @@ const completionSpec: Fig.Spec = {
         {
           name: "approve",
           description: "Approves a comment.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to approve.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to approve.",
+          },
         },
         {
           name: "count",
           description: "Counts comments, on whole blog or on a given post.",
-          args: [
-            {
-              name: "post-id",
-              description: "The ID of the post to count comments in.",
-            },
-          ],
+          args: {
+            name: "post-id",
+            description: "The ID of the post to count comments in.",
+          },
         },
         {
           name: "create",
           description: "Creates a new comment.",
           options: [
             {
-              name: ["--field=value"],
+              name: "--field=value",
               insertValue: "--",
               description:
                 "Associative args for the new comment. See wp_insert_comment().",
@@ -914,12 +898,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "exists",
           description: "Verifies whether a comment exists.",
-          args: [
-            {
-              name: "id",
-              description: "The ID of the comment to check.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The ID of the comment to check.",
+          },
         },
         {
           name: "generate",
@@ -1131,12 +1113,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all metadata associated with an object.",
-              args: [
-                {
-                  name: "id",
-                  description: "ID for the object.",
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID for the object.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -1312,82 +1292,66 @@ const completionSpec: Fig.Spec = {
           name: "recount",
           description:
             "Recalculates the comment_count value for one or more posts.",
-          args: [
-            {
-              name: "id",
-              description: "IDs for one or more posts to update.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "IDs for one or more posts to update.",
+          },
         },
         {
           name: "spam",
           description: "Marks a comment as spam.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to mark as spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to mark as spam.",
+          },
         },
         {
           name: "status",
           description: "Gets the status of a comment.",
-          args: [
-            {
-              name: "id",
-              description: "The ID of the comment to check.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The ID of the comment to check.",
+          },
         },
         {
           name: "trash",
           description: "Trashes a comment.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to trash.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to trash.",
+          },
         },
         {
           name: "unapprove",
           description: "Unapproves a comment.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to unapprove.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to unapprove.",
+          },
         },
         {
           name: "unspam",
           description: "Unmarks a comment as spam.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to unmark as spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to unmark as spam.",
+          },
         },
         {
           name: "untrash",
           description: "Untrashes a comment.",
-          args: [
-            {
-              name: "id",
-              description: "The IDs of the comments to untrash.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The IDs of the comments to untrash.",
+          },
         },
         {
           name: "update",
           description: "Updates one or more comments.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of comments to update.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of comments to update.",
+          },
           options: [
             {
               name: "--field=value",
@@ -1518,12 +1482,10 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Deletes a specific constant or variable from the wp-config.php file.",
-          args: [
-            {
-              name: "name",
-              description: "Name of the wp-config.php constant or variable.",
-            },
-          ],
+          args: {
+            name: "name",
+            description: "Name of the wp-config.php constant or variable.",
+          },
           options: [
             {
               name: "--type",
@@ -1549,12 +1511,10 @@ const completionSpec: Fig.Spec = {
           name: "get",
           description:
             "Gets the value of a specific constant or variable defined in wp-config.php file.",
-          args: [
-            {
-              name: "name",
-              description: "Name of the wp-config.php constant or variable.",
-            },
-          ],
+          args: {
+            name: "name",
+            description: "Name of the wp-config.php constant or variable.",
+          },
           options: [
             {
               name: "--type",
@@ -1589,12 +1549,10 @@ const completionSpec: Fig.Spec = {
           name: "has",
           description:
             "Checks whether a specific constant or variable exists in the wp-config.php file.",
-          args: [
-            {
-              name: "name",
-              description: "Name of the wp-config.php constant or variable.",
-            },
-          ],
+          args: {
+            name: "name",
+            description: "Name of the wp-config.php constant or variable.",
+          },
           options: [
             {
               name: "--type",
@@ -1616,12 +1574,10 @@ const completionSpec: Fig.Spec = {
           name: "list",
           description:
             "Lists variables, constants, and file includes defined in wp-config.php file.",
-          args: [
-            {
-              name: "filter",
-              description: "Name or partial name to filter the list by.",
-            },
-          ],
+          args: {
+            name: "filter",
+            description: "Name or partial name to filter the list by.",
+          },
           options: [
             {
               name: "--fields",
@@ -1728,13 +1684,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "shuffle-salts",
           description: "Refreshes the salts defined in the wp-config.php file.",
-          args: [
-            {
-              name: "keys",
-              description:
-                "One ore more keys to shuffle. If none are provided, this falls back to the default WordPress Core salt keys.",
-            },
-          ],
+          args: {
+            name: "keys",
+            description:
+              "One ore more keys to shuffle. If none are provided, this falls back to the default WordPress Core salt keys.",
+          },
           options: [
             {
               name: "--force",
@@ -1823,13 +1777,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "download",
           description: "Downloads core WordPress files.",
-          args: [
-            {
-              name: "download-url",
-              description:
-                "Download directly from a provided URL instead of fetching the URL from the wordpress.org servers.",
-            },
-          ],
+          args: {
+            name: "download-url",
+            description:
+              "Download directly from a provided URL instead of fetching the URL from the wordpress.org servers.",
+          },
           options: [
             {
               name: "--path",
@@ -2021,14 +1973,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates WordPress to a newer version.",
-          args: [
-            {
-              name: "zip",
-              template: "filepaths",
-              description:
-                "Path to zip file to use, instead of downloading from wordpress.org.",
-            },
-          ],
+          args: {
+            name: "zip",
+            template: "filepaths",
+            description:
+              "Path to zip file to use, instead of downloading from wordpress.org.",
+          },
           options: [
             {
               name: "--minor",
@@ -2147,12 +2097,10 @@ const completionSpec: Fig.Spec = {
               name: "delete",
               description:
                 "Deletes all scheduled cron events for the given hook.",
-              args: [
-                {
-                  name: "hook",
-                  description: "The hook name.",
-                },
-              ],
+              args: {
+                name: "hook",
+                description: "The hook name.",
+              },
             },
             {
               name: "list",
@@ -2198,12 +2146,10 @@ const completionSpec: Fig.Spec = {
               name: "run",
               description:
                 "Runs the next scheduled cron event for the given hook.",
-              args: [
-                {
-                  name: "hook",
-                  description: "The hook name.",
-                },
-              ],
+              args: {
+                name: "hook",
+                description: "The hook name.",
+              },
               options: [
                 {
                   name: "--due-now",
@@ -2246,13 +2192,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "unschedule",
               description: "Unschedules all cron events for a given hook.",
-              args: [
-                {
-                  name: "hook",
-                  description:
-                    "Name of the hook for which all events should be unscheduled.",
-                },
-              ],
+              args: {
+                name: "hook",
+                description:
+                  "Name of the hook for which all events should be unscheduled.",
+              },
             },
           ],
         },
@@ -2432,12 +2376,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "columns",
           description: "Displays information about a given table.",
-          args: [
-            {
-              name: "table",
-              description: "Name of the database table.",
-            },
-          ],
+          args: {
+            name: "table",
+            description: "Name of the database table.",
+          },
           options: [
             {
               name: "--format",
@@ -2500,13 +2442,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "export",
           description: "Exports the database to a file or to STDOUT.",
-          args: [
-            {
-              name: "file",
-              description:
-                "The name of the SQL file to export. If ‘-‘, then outputs to STDOUT. If omitted, it will be ‘{dbname}-{Y-m-d}-{random-hash}.sql’.",
-            },
-          ],
+          args: {
+            name: "file",
+            description:
+              "The name of the SQL file to export. If ‘-‘, then outputs to STDOUT. If omitted, it will be ‘{dbname}-{Y-m-d}-{random-hash}.sql’.",
+          },
           options: [
             {
               name: "--dbuser",
@@ -2561,13 +2501,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "import",
           description: "Imports a database from a file or from STDIN.",
-          args: [
-            {
-              name: "file",
-              description:
-                "The name of the SQL file to import. If ‘-‘, then reads from STDIN. If omitted, it will look for ‘{dbname}.sql’.",
-            },
-          ],
+          args: {
+            name: "file",
+            description:
+              "The name of the SQL file to import. If ‘-‘, then reads from STDIN. If omitted, it will look for ‘{dbname}.sql’.",
+          },
           options: [
             {
               name: "--dbuser",
@@ -2650,13 +2588,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "query",
           description: "Executes a SQL query against the database.",
-          args: [
-            {
-              name: "sql",
-              description:
-                "A SQL query. If not passed, will try to read from STDIN.",
-            },
-          ],
+          args: {
+            name: "sql",
+            description:
+              "A SQL query. If not passed, will try to read from STDIN.",
+          },
           options: [
             {
               name: "--dbuser",
@@ -2944,13 +2880,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "tables",
           description: "Lists the database tables.",
-          args: [
-            {
-              name: "table",
-              description:
-                "List tables based on wildcard search, e.g. ‘wp_*_options’ or ‘wp_post?’.",
-            },
-          ],
+          args: {
+            name: "table",
+            description:
+              "List tables based on wildcard search, e.g. ‘wp_*_options’ or ‘wp_post?’.",
+          },
           options: [
             {
               name: "--scope",
@@ -3070,22 +3004,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "clear",
               description: "Deletes all oEmbed caches for a given post.",
-              args: [
-                {
-                  name: "post_id",
-                  description: "ID of the post to clear the cache for.",
-                },
-              ],
+              args: {
+                name: "post_id",
+                description: "ID of the post to clear the cache for.",
+              },
             },
             {
               name: "find",
               description: "Finds an oEmbed cache post ID for a given URL.",
-              args: [
-                {
-                  name: "url",
-                  description: "ID of the post to clear the cache for.",
-                },
-              ],
+              args: {
+                name: "url",
+                description: "ID of the post to clear the cache for.",
+              },
               options: [
                 {
                   name: "--width",
@@ -3112,24 +3042,20 @@ const completionSpec: Fig.Spec = {
               name: "trigger",
               description:
                 "Triggers the caching of all oEmbed results for a given post.",
-              args: [
-                {
-                  name: "post_id",
-                  description: "ID of the post to do the caching for.",
-                },
-              ],
+              args: {
+                name: "post_id",
+                description: "ID of the post to do the caching for.",
+              },
             },
           ],
         },
         {
           name: "fetch",
           description: "Attempts to convert a URL into embed HTML.",
-          args: [
-            {
-              name: "url",
-              description: "URL to retrieve oEmbed data for.",
-            },
-          ],
+          args: {
+            name: "url",
+            description: "URL to retrieve oEmbed data for.",
+          },
           options: [
             {
               name: "--width",
@@ -3266,12 +3192,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "match",
               description: "Gets the matching provider for a given URL.",
-              args: [
-                {
-                  name: "url",
-                  description: "URL to retrieve provider for.",
-                },
-              ],
+              args: {
+                name: "url",
+                description: "URL to retrieve provider for.",
+              },
               options: [
                 {
                   name: "--discover",
@@ -3304,12 +3228,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "eval",
       description: "Executes arbitrary PHP code.",
-      args: [
-        {
-          name: "php-code",
-          description: "The code to execute, as a string.",
-        },
-      ],
+      args: {
+        name: "php-code",
+        description: "The code to execute, as a string.",
+      },
       options: [
         {
           name: "--skip-wordpress",
@@ -3495,13 +3417,11 @@ const completionSpec: Fig.Spec = {
     {
       name: "find",
       description: "Find WordPress installations on the filesystem.",
-      args: [
-        {
-          name: "path",
-          template: "folders",
-          description: "Path to search the subdirectories of.",
-        },
-      ],
+      args: {
+        name: "path",
+        template: "folders",
+        description: "Path to search the subdirectories of.",
+      },
       options: [
         {
           name: "--skip-ignored-paths",
@@ -3571,12 +3491,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "help",
       description: "Gets help on WP-CLI, or on a specific command.",
-      args: [
-        {
-          name: "command",
-          description: "Get help on a specific command.",
-        },
-      ],
+      args: {
+        name: "command",
+        description: "Get help on a specific command.",
+      },
       options: [
         global_parameter_path,
         global_parameter_url,
@@ -3780,14 +3698,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "import",
       description: "Imports content from a given WXR file.",
-      args: [
-        {
-          name: "file",
-          template: "filepaths",
-          description:
-            "Path to one or more valid WXR files for importing. Directories are also accepted.",
-        },
-      ],
+      args: {
+        name: "file",
+        template: "filepaths",
+        description:
+          "Path to one or more valid WXR files for importing. Directories are also accepted.",
+      },
       options: [
         {
           name: "--authors",
@@ -3856,22 +3772,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "activate",
               description: "Activates a given language.",
-              args: [
-                {
-                  name: "language",
-                  description: "Language code to activate.",
-                },
-              ],
+              args: {
+                name: "language",
+                description: "Language code to activate.",
+              },
             },
             {
               name: "install",
               description: "Installs a given language.",
-              args: [
-                {
-                  name: "language",
-                  description: "Language code to install.",
-                },
-              ],
+              args: {
+                name: "language",
+                description: "Language code to install.",
+              },
               options: [
                 {
                   name: "--activate",
@@ -3883,12 +3795,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "is-installed",
               description: "Checks if a given language is installed.",
-              args: [
-                {
-                  name: "language",
-                  description: "Language code to check.",
-                },
-              ],
+              args: {
+                name: "language",
+                description: "Language code to check.",
+              },
             },
             {
               name: "list",
@@ -3929,12 +3839,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "uninstall",
               description: "Uninstalls a given language.",
-              args: [
-                {
-                  name: "language",
-                  description: "Language code to uninstall.",
-                },
-              ],
+              args: {
+                name: "language",
+                description: "Language code to uninstall.",
+              },
             },
             {
               name: "update",
@@ -4007,12 +3915,10 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "Lists all available languages for one or more plugins.",
-              args: [
-                {
-                  name: "plugin",
-                  description: "One or more plugins to list languages for.",
-                },
-              ],
+              args: {
+                name: "plugin",
+                description: "One or more plugins to list languages for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -4069,12 +3975,10 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Updates installed languages for one or more plugins.",
-              args: [
-                {
-                  name: "plugin",
-                  description: "One or more plugins to update languages for.",
-                },
-              ],
+              args: {
+                name: "plugin",
+                description: "One or more plugins to update languages for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -4147,12 +4051,10 @@ const completionSpec: Fig.Spec = {
               name: "list",
               description:
                 "Lists all available languages for one or more themes.",
-              args: [
-                {
-                  name: "theme",
-                  description: "One or more themes to list languages for.",
-                },
-              ],
+              args: {
+                name: "theme",
+                description: "One or more themes to list languages for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -4209,12 +4111,10 @@ const completionSpec: Fig.Spec = {
               name: "update",
               description:
                 "Updates installed languages for one or more themes.",
-              args: [
-                {
-                  name: "theme",
-                  description: "One or more themes to update languages for.",
-                },
-              ],
+              args: {
+                name: "theme",
+                description: "One or more themes to update languages for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -4310,12 +4210,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "fix-orientation",
           description: "Fix image orientation for one or more attachments.",
-          args: [
-            {
-              name: "attachment-id",
-              description: "One or more IDs of the attachments to regenerate.",
-            },
-          ],
+          args: {
+            name: "attachment-id",
+            description: "One or more IDs of the attachments to regenerate.",
+          },
           options: [
             {
               name: "--dry-run",
@@ -4355,14 +4253,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "import",
           description: "Creates attachments from local files or URLs.",
-          args: [
-            {
-              name: "file",
-              template: "filepaths",
-              description:
-                "Path to file or files to be imported. Supports the glob(3) capabilities of the current shell. If file is recognized as a URL (for example, with a scheme of http or ftp), the file will be downloaded to a temp file before being sideloaded.",
-            },
-          ],
+          args: {
+            name: "file",
+            template: "filepaths",
+            description:
+              "Path to file or files to be imported. Supports the glob(3) capabilities of the current shell. If file is recognized as a URL (for example, with a scheme of http or ftp), the file will be downloaded to a temp file before being sideloaded.",
+          },
           options: [
             {
               name: "--post_id",
@@ -4419,12 +4315,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "regenerate",
           description: "Regenerates thumbnails for one or more attachments.",
-          args: [
-            {
-              name: "attachment-id",
-              description: "One or more IDs of the attachments to regenerate.",
-            },
-          ],
+          args: {
+            name: "attachment-id",
+            description: "One or more IDs of the attachments to regenerate.",
+          },
           options: [
             {
               name: "--image_size",
@@ -4481,12 +4375,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a new menu.",
-          args: [
-            {
-              name: "menu-name",
-              description: "A descriptive name for the menu.",
-            },
-          ],
+          args: {
+            name: "menu-name",
+            description: "A descriptive name for the menu.",
+          },
           options: [
             {
               name: "--porcelain",
@@ -4497,12 +4389,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more menus.",
-          args: [
-            {
-              name: "menu",
-              description: "The name, slug, or term ID for the menu(s).",
-            },
-          ],
+          args: {
+            name: "menu",
+            description: "The name, slug, or term ID for the menu(s).",
+          },
         },
         {
           name: "item",
@@ -4717,22 +4607,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Deletes one or more items from a menu.",
-              args: [
-                {
-                  name: "db-id",
-                  description: "Database ID for the menu item(s).",
-                },
-              ],
+              args: {
+                name: "db-id",
+                description: "Database ID for the menu item(s).",
+              },
             },
             {
               name: "list",
               description: "Gets a list of items associated with a menu.",
-              args: [
-                {
-                  name: "menu",
-                  description: "The name, slug, or term ID for the menu.",
-                },
-              ],
+              args: {
+                name: "menu",
+                description: "The name, slug, or term ID for the menu.",
+              },
               options: [
                 {
                   name: "--fields",
@@ -4761,12 +4647,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "update",
               description: "Updates a menu item.",
-              args: [
-                {
-                  name: "db-id",
-                  description: "Database ID for the menu item.",
-                },
-              ],
+              args: {
+                name: "db-id",
+                description: "Database ID for the menu item.",
+              },
               options: [
                 {
                   name: "--title",
@@ -5025,12 +4909,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all metadata associated with an object.",
-              args: [
-                {
-                  name: "id",
-                  description: "ID for the object.",
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID for the object.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -5264,22 +5146,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes an option.",
-          args: [
-            {
-              name: "key",
-              description: "Key for the option.",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key for the option.",
+          },
         },
         {
           name: "get",
           description: "Gets the value for an option.",
-          args: [
-            {
-              name: "key",
-              description: "Key for the option.",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key for the option.",
+          },
           options: [
             {
               name: "--format",
@@ -5551,13 +5429,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Installs a WP-CLI package.",
-          args: [
-            {
-              name: "name|git|path|zip",
-              description:
-                "Name, git URL, directory path, or .zip file for the package to install. Names can optionally include a version constraint (e.g. wp-cli/server-command:@stable).",
-            },
-          ],
+          args: {
+            name: "name|git|path|zip",
+            description:
+              "Name, git URL, directory path, or .zip file for the package to install. Names can optionally include a version constraint (e.g. wp-cli/server-command:@stable).",
+          },
           options: [
             {
               name: "--insecure",
@@ -5598,23 +5474,19 @@ const completionSpec: Fig.Spec = {
           name: "path",
           description:
             "Gets the path to an installed WP-CLI package, or the package directory.",
-          args: [
-            {
-              name: "name",
-              template: "folders",
-              description: "Name of the package to get the directory for.",
-            },
-          ],
+          args: {
+            name: "name",
+            template: "folders",
+            description: "Name of the package to get the directory for.",
+          },
         },
         {
           name: "uninstall",
           description: "Uninstalls a WP-CLI package.",
-          args: [
-            {
-              name: "name",
-              description: "Name of the package to uninstall.",
-            },
-          ],
+          args: {
+            name: "name",
+            description: "Name of the package to uninstall.",
+          },
         },
         {
           name: "update",
@@ -5652,12 +5524,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "activate",
           description: "Activates one or more plugins.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to activate.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to activate.",
+          },
           options: [
             {
               name: "--all",
@@ -5677,13 +5547,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "disable",
               description: "Disables the auto-updates for a plugin.",
-              args: [
-                {
-                  name: "plugin",
-                  description:
-                    "One or more plugins to disable auto-updates for.",
-                },
-              ],
+              args: {
+                name: "plugin",
+                description: "One or more plugins to disable auto-updates for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -5700,13 +5567,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "enable",
               description: "Enables the auto-updates for a plugin.",
-              args: [
-                {
-                  name: "plugin",
-                  description:
-                    "One or more plugins to enable auto-updates for.",
-                },
-              ],
+              args: {
+                name: "plugin",
+                description: "One or more plugins to enable auto-updates for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -5723,13 +5587,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "status",
               description: "Shows the status of auto-updates for a plugin.",
-              args: [
-                {
-                  name: "plugin",
-                  description:
-                    "One or more plugins to show the status of the auto-updates of.",
-                },
-              ],
+              args: {
+                name: "plugin",
+                description:
+                  "One or more plugins to show the status of the auto-updates of.",
+              },
               options: [
                 {
                   name: "--all",
@@ -5759,12 +5621,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "deactivate",
           description: "Deactivates one or more plugins.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to deactivate.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to deactivate.",
+          },
           options: [
             {
               name: "--uninstall",
@@ -5785,12 +5645,10 @@ const completionSpec: Fig.Spec = {
           name: "delete",
           description:
             "Deletes plugin files without deactivating or uninstalling.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to delete.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to delete.",
+          },
           options: [
             {
               name: "--all",
@@ -5801,12 +5659,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about an installed plugin.",
-          args: [
-            {
-              name: "plugin",
-              description: "The plugin to get.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "The plugin to get.",
+          },
           options: [
             {
               name: "--field",
@@ -5841,13 +5697,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Installs one or more plugins.",
-          args: [
-            {
-              name: "plugin|zip|url",
-              description:
-                "One or more plugins to install. Accepts a plugin slug, the path to a local zip file, or a URL to a remote zip file.",
-            },
-          ],
+          args: {
+            name: "plugin|zip|url",
+            description:
+              "One or more plugins to install. Accepts a plugin slug, the path to a local zip file, or a URL to a remote zip file.",
+          },
           options: [
             {
               name: "--version",
@@ -5881,12 +5735,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "is-active",
           description: "Checks if a given plugin is active.",
-          args: [
-            {
-              name: "plugin",
-              description: "The plugin to check.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "The plugin to check.",
+          },
           options: [
             {
               name: "--network",
@@ -5897,12 +5749,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "is-installed",
           description: "Checks if a given plugin is installed.",
-          args: [
-            {
-              name: "plugin",
-              description: "The plugin to check.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "The plugin to check.",
+          },
         },
         {
           name: "list",
@@ -5960,13 +5810,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "path",
           description: "Gets the path to a plugin or to the plugin directory.",
-          args: [
-            {
-              name: "plugin",
-              description:
-                "The plugin to get the path to. If not set, will return the path to the plugins directory.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description:
+              "The plugin to get the path to. If not set, will return the path to the plugins directory.",
+          },
           options: [
             {
               name: "--dir",
@@ -5978,12 +5826,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description: "Searches the WordPress.org plugin directory.",
-          args: [
-            {
-              name: "search",
-              description: "The string to search for.",
-            },
-          ],
+          args: {
+            name: "search",
+            description: "The string to search for.",
+          },
           options: [
             {
               name: "--page",
@@ -6069,22 +5915,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "status",
           description: "Reveals the status of one or all plugins.",
-          args: [
-            {
-              name: "plugin",
-              description: "A particular plugin to show the status for.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "A particular plugin to show the status for.",
+          },
         },
         {
           name: "toggle",
           description: "Toggles a plugin’s activation state.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to toggle.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to toggle.",
+          },
           options: [
             {
               name: "--network",
@@ -6096,12 +5938,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "uninstall",
           description: "Uninstalls one or more plugins.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to uninstall.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to uninstall.",
+          },
           options: [
             {
               name: "--deactivate",
@@ -6122,12 +5962,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates one or more plugins.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to update.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to update.",
+          },
           options: [
             {
               name: "--all",
@@ -6186,12 +6024,10 @@ const completionSpec: Fig.Spec = {
           name: "verify-checksums",
           description:
             "Verifies plugin files against WordPress.org’s checksums.",
-          args: [
-            {
-              name: "plugin",
-              description: "One or more plugins to verify.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "One or more plugins to verify.",
+          },
           options: [
             {
               name: "--all",
@@ -6255,13 +6091,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description: "Creates a new post.",
-          args: [
-            {
-              name: "file",
-              description:
-                "Read post content from <file>. If this value is present, the --post_content argument will be ignored. Passing - as the filename will cause post content to be read from STDIN",
-            },
-          ],
+          args: {
+            name: "file",
+            description:
+              "Read post content from <file>. If this value is present, the --post_content argument will be ignored. Passing - as the filename will cause post content to be read from STDIN",
+          },
           options: [
             {
               name: "--post_author",
@@ -6466,12 +6300,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes an existing post.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of posts to delete.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of posts to delete.",
+          },
           options: [
             {
               name: "--force",
@@ -6487,22 +6319,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "edit",
           description: "Launches system editor to edit post content.",
-          args: [
-            {
-              name: "id",
-              description: "The ID of the post to edit.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The ID of the post to edit.",
+          },
         },
         {
           name: "exists",
           description: "Verifies whether a post exists.",
-          args: [
-            {
-              name: "id",
-              description: "The ID of the post to check.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The ID of the post to check.",
+          },
         },
         {
           name: "generate",
@@ -6590,12 +6418,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about a post.",
-          args: [
-            {
-              name: "id",
-              description: "The ID of the post to get.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "The ID of the post to get.",
+          },
           options: [
             {
               name: "--field",
@@ -6815,12 +6641,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all metadata associated with an object.",
-              args: [
-                {
-                  name: "id",
-                  description: "ID for the object.",
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID for the object.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -7395,12 +7219,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about a registered post type.",
-          args: [
-            {
-              name: "post-type",
-              description: "Post type slug.",
-            },
-          ],
+          args: {
+            name: "post-type",
+            description: "Post type slug.",
+          },
           options: [
             {
               name: "--field",
@@ -7502,12 +7324,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "eval",
           description: "Profile arbitrary code execution.",
-          args: [
-            {
-              name: "php-code",
-              description: "The code to execute, as a string.",
-            },
-          ],
+          args: {
+            name: "php-code",
+            description: "The code to execute, as a string.",
+          },
           options: [
             {
               name: "--hook",
@@ -7556,13 +7376,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "eval-file",
           description: "Profile execution of an arbitrary file.",
-          args: [
-            {
-              name: "file",
-              template: "filepaths",
-              description: "The path to the PHP file to execute and profile.",
-            },
-          ],
+          args: {
+            name: "file",
+            template: "filepaths",
+            description: "The path to the PHP file to execute and profile.",
+          },
           options: [
             {
               name: "--hook",
@@ -7612,13 +7430,11 @@ const completionSpec: Fig.Spec = {
           name: "hook",
           description:
             "Profile key metrics for WordPress hooks (actions and filters).",
-          args: [
-            {
-              name: "hook",
-              description:
-                "Drill into key metrics of callbacks on a specific WordPress hook.",
-            },
-          ],
+          args: {
+            name: "hook",
+            description:
+              "Drill into key metrics of callbacks on a specific WordPress hook.",
+          },
           options: [
             {
               name: "--all",
@@ -7676,12 +7492,10 @@ const completionSpec: Fig.Spec = {
           name: "stage",
           description:
             "Profile each stage of the WordPress load process (bootstrap, main_query, template).",
-          args: [
-            {
-              name: "stage",
-              description: "Drill down into a specific stage.",
-            },
-          ],
+          args: {
+            name: "stage",
+            description: "Drill down into a specific stage.",
+          },
           options: [
             {
               name: "--all",
@@ -7818,12 +7632,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "structure",
           description: "Updates the permalink structure.",
-          args: [
-            {
-              name: "permastruct",
-              description: "The new permalink structure to apply.",
-            },
-          ],
+          args: {
+            name: "permastruct",
+            description: "The new permalink structure to apply.",
+          },
           options: [
             {
               name: "--category-base",
@@ -7898,22 +7710,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes an existing role.",
-          args: [
-            {
-              name: "role-key",
-              description: "The internal name of the role.",
-            },
-          ],
+          args: {
+            name: "role-key",
+            description: "The internal name of the role.",
+          },
         },
         {
           name: "exists",
           description: "Checks if a role exists.",
-          args: [
-            {
-              name: "role-key",
-              description: "The internal name of the role.",
-            },
-          ],
+          args: {
+            name: "role-key",
+            description: "The internal name of the role.",
+          },
         },
         {
           name: "list",
@@ -7951,12 +7759,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "reset",
           description: "Resets any default role to default capabilities.",
-          args: [
-            {
-              name: "role-key",
-              description: "The internal name of one or more roles to reset.",
-            },
-          ],
+          args: {
+            name: "role-key",
+            description: "The internal name of one or more roles to reset.",
+          },
           options: [
             {
               name: "--all",
@@ -7996,12 +7802,10 @@ const completionSpec: Fig.Spec = {
           name: "block",
           description:
             "Generates PHP, JS and CSS code for registering a Gutenberg block for a plugin or theme.",
-          args: [
-            {
-              name: "slug",
-              description: "The internal name of the block.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description: "The internal name of the block.",
+          },
           options: [
             {
               name: "--title",
@@ -8052,12 +7856,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "child-theme",
           description: "Generates child theme based on an existing theme.",
-          args: [
-            {
-              name: "slug",
-              description: "The slug for the new child theme.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description: "The slug for the new child theme.",
+          },
           options: [
             {
               name: "--parent_theme",
@@ -8112,12 +7914,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "plugin",
           description: "Generates starter code for a plugin.",
-          args: [
-            {
-              name: "slug",
-              description: "The internal name of the plugin.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description: "The internal name of the plugin.",
+          },
           options: [
             {
               name: "--dir",
@@ -8192,12 +7992,10 @@ const completionSpec: Fig.Spec = {
           name: "plugin-tests",
           description:
             "Generates files needed for running PHPUnit tests in a plugin.",
-          args: [
-            {
-              name: "plugin",
-              description: "The name of the plugin to generate test files for.",
-            },
-          ],
+          args: {
+            name: "plugin",
+            description: "The name of the plugin to generate test files for.",
+          },
           options: [
             {
               name: "--dir",
@@ -8230,12 +8028,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "post-type",
           description: "Generates PHP code for registering a custom post type.",
-          args: [
-            {
-              name: "slug",
-              description: "The internal name of the post type.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description: "The internal name of the post type.",
+          },
           options: [
             {
               name: "--label",
@@ -8281,12 +8077,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "taxonomy",
           description: "Generates PHP code for registering a custom taxonomy.",
-          args: [
-            {
-              name: "slug",
-              description: "The internal name of taxonomy.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description: "The internal name of taxonomy.",
+          },
           options: [
             {
               name: "--post_types",
@@ -8333,12 +8127,10 @@ const completionSpec: Fig.Spec = {
           name: "theme-tests",
           description:
             "Generates files needed for running PHPUnit tests in a theme.",
-          args: [
-            {
-              name: "theme",
-              description: "The name of the theme to generate test files for.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The name of the theme to generate test files for.",
+          },
           options: [
             {
               name: "--dir",
@@ -8371,13 +8163,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "underscores",
           description: "Generates starter code for a theme based on _s.",
-          args: [
-            {
-              name: "slug",
-              description:
-                "The slug for the new theme, used for prefixing functions.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description:
+              "The slug for the new theme, used for prefixing functions.",
+          },
           options: [
             {
               name: "--activate",
@@ -8426,13 +8216,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "_s",
           description: "Generates starter code for a theme based on _s.",
-          args: [
-            {
-              name: "slug",
-              description:
-                "The slug for the new theme, used for prefixing functions.",
-            },
-          ],
+          args: {
+            name: "slug",
+            description:
+              "The slug for the new theme, used for prefixing functions.",
+          },
           options: [
             {
               name: "--activate",
@@ -8836,22 +8624,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "activate",
           description: "Activates one or more sites.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to activate.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to activate.",
+          },
         },
         {
           name: "archive",
           description: "Archives one or more sites.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to archive.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to archive.",
+          },
         },
         {
           name: "create",
@@ -8899,23 +8683,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "deactivate",
           description: "Deactivates one or more sites.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to deactivate.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to deactivate.",
+          },
         },
         {
           name: "delete",
           description: "Deletes a site in a multisite installation.",
-          args: [
-            {
-              name: "site-id",
-              description:
-                "The id of the site to delete. If not provided, you must set the –slug parameter.",
-            },
-          ],
+          args: {
+            name: "site-id",
+            description:
+              "The id of the site to delete. If not provided, you must set the –slug parameter.",
+          },
           options: [
             {
               name: "--slug",
@@ -9007,12 +8787,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "mature",
           description: "Sets one or more sites as mature.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to set as mature.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to set as mature.",
+          },
         },
         {
           name: "meta",
@@ -9105,12 +8883,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all metadata associated with an object.",
-              args: [
-                {
-                  name: "id",
-                  description: "ID for the object.",
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID for the object.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -9315,22 +9091,18 @@ const completionSpec: Fig.Spec = {
             {
               name: "delete",
               description: "Deletes a site option.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the site option.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the site option.",
+              },
             },
             {
               name: "get",
               description: "Gets a site option.",
-              args: [
-                {
-                  name: "key",
-                  description: "Key for the site option.",
-                },
-              ],
+              args: {
+                name: "key",
+                description: "Key for the site option.",
+              },
               options: [
                 {
                   name: "--format",
@@ -9497,72 +9269,58 @@ const completionSpec: Fig.Spec = {
         {
           name: "private",
           description: "Sets one or more sites as private.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to set as private.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to set as private.",
+          },
         },
         {
           name: "public",
           description: "Sets one or more sites as public.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to set as public.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to set as public.",
+          },
         },
         {
           name: "spam",
           description: "Marks one or more sites as spam.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to set as spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to set as spam.",
+          },
         },
         {
           name: "switch-language",
           description: "Activates a given language.",
-          args: [
-            {
-              name: "language",
-              description: "Language code to activate.",
-            },
-          ],
+          args: {
+            name: "language",
+            description: "Language code to activate.",
+          },
         },
         {
           name: "unarchive",
           description: "Unarchives one or more sites.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to unarchive.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to unarchive.",
+          },
         },
         {
           name: "unmature",
           description: "Sets one or more sites as immature.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to set as unmature.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to set as unmature.",
+          },
         },
         {
           name: "unspam",
           description: "Removes one or more sites from spam.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of sites to remove from spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of sites to remove from spam.",
+          },
         },
       ],
     },
@@ -9595,12 +9353,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "add",
           description: "Grants super admin privileges to one or more users.",
-          args: [
-            {
-              name: "user",
-              description: "One or more user IDs, user emails, or user logins.",
-            },
-          ],
+          args: {
+            name: "user",
+            description: "One or more user IDs, user emails, or user logins.",
+          },
         },
         {
           name: "list",
@@ -9627,12 +9383,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "remove",
           description: "Removes super admin privileges from one or more users.",
-          args: [
-            {
-              name: "user",
-              description: "One or more user IDs, user emails, or user logins.",
-            },
-          ],
+          args: {
+            name: "user",
+            description: "One or more user IDs, user emails, or user logins.",
+          },
         },
       ],
     },
@@ -9664,12 +9418,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about a registered taxonomy.",
-          args: [
-            {
-              name: "taxonomy",
-              description: "Taxonomy slug.",
-            },
-          ],
+          args: {
+            name: "taxonomy",
+            description: "Taxonomy slug.",
+          },
           options: [
             {
               name: "--field",
@@ -9836,12 +9588,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "generate",
           description: "Generates some terms.",
-          args: [
-            {
-              name: "taxonomy",
-              description: "The taxonomy for the generated terms.",
-            },
-          ],
+          args: {
+            name: "taxonomy",
+            description: "The taxonomy for the generated terms.",
+          },
           options: [
             {
               name: "--count",
@@ -9928,12 +9678,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "list",
           description: "Lists terms in a taxonomy.",
-          args: [
-            {
-              name: "taxonomy",
-              description: "List terms of one or more taxonomies.",
-            },
-          ],
+          args: {
+            name: "taxonomy",
+            description: "List terms of one or more taxonomies.",
+          },
           options: [
             {
               name: "--field=value",
@@ -10062,12 +9810,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List all metadata associated with an object.",
-              args: [
-                {
-                  name: "id",
-                  description: "ID for the object.",
-                },
-              ],
+              args: {
+                name: "id",
+                description: "ID for the object.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -10241,12 +9987,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "migrate",
           description: "Migrate a term of a taxonomy to another taxonomy.",
-          args: [
-            {
-              name: "term",
-              description: "Slug or ID of the term to migrate.",
-            },
-          ],
+          args: {
+            name: "term",
+            description: "Slug or ID of the term to migrate.",
+          },
           options: [
             {
               name: "--by",
@@ -10274,12 +10018,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "recount",
           description: "Recalculates number of posts assigned to each term.",
-          args: [
-            {
-              name: "taxonomy",
-              description: "One or more taxonomies to recalculate.",
-            },
-          ],
+          args: {
+            name: "taxonomy",
+            description: "One or more taxonomies to recalculate.",
+          },
         },
         {
           name: "update",
@@ -10361,12 +10103,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "activate",
           description: "Activates a theme.",
-          args: [
-            {
-              name: "theme",
-              description: "The theme to activate.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The theme to activate.",
+          },
         },
         {
           name: "auto-updates",
@@ -10375,13 +10115,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "disable",
               description: "Disables the auto-updates for a theme.",
-              args: [
-                {
-                  name: "theme",
-                  description:
-                    "One or more themes to disable auto-updates for.",
-                },
-              ],
+              args: {
+                name: "theme",
+                description: "One or more themes to disable auto-updates for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -10398,12 +10135,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "enable",
               description: "Enables the auto-updates for a theme.",
-              args: [
-                {
-                  name: "theme",
-                  description: "One or more themes to enable auto-updates for.",
-                },
-              ],
+              args: {
+                name: "theme",
+                description: "One or more themes to enable auto-updates for.",
+              },
               options: [
                 {
                   name: "--all",
@@ -10420,13 +10155,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "status",
               description: "Shows the status of auto-updates for a theme.",
-              args: [
-                {
-                  name: "theme",
-                  description:
-                    "One or more themes to show the status of the auto-updates of.",
-                },
-              ],
+              args: {
+                name: "theme",
+                description:
+                  "One or more themes to show the status of the auto-updates of.",
+              },
               options: [
                 {
                   name: "--all",
@@ -10456,12 +10189,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more themes.",
-          args: [
-            {
-              name: "theme",
-              description: "One or more themes to delete.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "One or more themes to delete.",
+          },
           options: [
             {
               name: "--all",
@@ -10477,12 +10208,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "disable",
           description: "Disables a theme on a WordPress multisite install.",
-          args: [
-            {
-              name: "theme",
-              description: "The theme to disable.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The theme to disable.",
+          },
           options: [
             {
               name: "--network",
@@ -10494,12 +10223,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "enable",
           description: "Enables a theme on a WordPress multisite install.",
-          args: [
-            {
-              name: "theme",
-              description: "The theme to enable.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The theme to enable.",
+          },
           options: [
             {
               name: "--network",
@@ -10516,12 +10243,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about a theme.",
-          args: [
-            {
-              name: "theme",
-              description: "The theme to get.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The theme to get.",
+          },
           options: [
             {
               name: "--field",
@@ -10556,13 +10281,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "install",
           description: "Installs one or more themes.",
-          args: [
-            {
-              name: "theme|zip|url",
-              description:
-                "One or more themes to install. Accepts a theme slug, the path to a local zip file, or a URL to a remote zip file.",
-            },
-          ],
+          args: {
+            name: "theme|zip|url",
+            description:
+              "One or more themes to install. Accepts a theme slug, the path to a local zip file, or a URL to a remote zip file.",
+          },
           options: [
             {
               name: "--version",
@@ -10591,22 +10314,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "is-active",
           description: "Checks if a given theme is active.",
-          args: [
-            {
-              name: "theme",
-              description: "The plugin to check.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The plugin to check.",
+          },
         },
         {
           name: "is-installed",
           description: "Checks if a given theme is installed.",
-          args: [
-            {
-              name: "theme",
-              description: "The plugin to check.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "The plugin to check.",
+          },
         },
         {
           name: "list",
@@ -10666,12 +10385,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "get",
               description: "Gets one or more theme mods.",
-              args: [
-                {
-                  name: "mod",
-                  description: "One or more mods to get.",
-                },
-              ],
+              args: {
+                name: "mod",
+                description: "One or more mods to get.",
+              },
               options: [
                 {
                   name: "--field",
@@ -10727,12 +10444,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "remove",
               description: "Removes one or more theme mods.",
-              args: [
-                {
-                  name: "mod",
-                  description: "One or more mods to remove.",
-                },
-              ],
+              args: {
+                name: "mod",
+                description: "One or more mods to remove.",
+              },
               options: [
                 {
                   name: "--all",
@@ -10759,13 +10474,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "path",
           description: "Gets the path to a theme or to the theme directory.",
-          args: [
-            {
-              name: "theme",
-              description:
-                "The theme to get the path to. Path includes “style.css” file. If not set, will return the path to the themes directory.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description:
+              "The theme to get the path to. Path includes “style.css” file. If not set, will return the path to the themes directory.",
+          },
           options: [
             {
               name: "--dir",
@@ -10777,12 +10490,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "search",
           description: "Searches the WordPress.org theme directory.",
-          args: [
-            {
-              name: "search",
-              description: "The string to search for.",
-            },
-          ],
+          args: {
+            name: "search",
+            description: "The string to search for.",
+          },
           options: [
             {
               name: "--page",
@@ -10873,22 +10584,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "status",
           description: "Reveals the status of one or all themes.",
-          args: [
-            {
-              name: "theme",
-              description: "A particular theme to show the status for.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "A particular theme to show the status for.",
+          },
         },
         {
           name: "update",
           description: "Updates one or more themes.",
-          args: [
-            {
-              name: "theme",
-              description: "One or more themes to update.",
-            },
-          ],
+          args: {
+            name: "theme",
+            description: "One or more themes to update.",
+          },
           options: [
             {
               name: "--all",
@@ -10965,12 +10672,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes a transient value.",
-          args: [
-            {
-              name: "key",
-              description: "Key for the transient.",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key for the transient.",
+          },
           options: [
             {
               name: "--network",
@@ -10990,12 +10695,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets a transient value.",
-          args: [
-            {
-              name: "key",
-              description: "Key for the transient.",
-            },
-          ],
+          args: {
+            name: "key",
+            description: "Key for the transient.",
+          },
           options: [
             {
               name: "--format",
@@ -11288,13 +10991,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "delete",
           description: "Deletes one or more users from the current site.",
-          args: [
-            {
-              name: "user",
-              description:
-                "The user login, user email, or user ID of the user(s) to delete.",
-            },
-          ],
+          args: {
+            name: "user",
+            description:
+              "The user login, user email, or user ID of the user(s) to delete.",
+          },
           options: [
             {
               name: "--network",
@@ -11347,12 +11048,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "get",
           description: "Gets details about a user.",
-          args: [
-            {
-              name: "user",
-              description: "User ID, user email, or user login.",
-            },
-          ],
+          args: {
+            name: "user",
+            description: "User ID, user email, or user login.",
+          },
           options: [
             {
               name: "--field",
@@ -11386,13 +11085,11 @@ const completionSpec: Fig.Spec = {
         {
           name: "import-csv",
           description: "Imports users from a CSV file.",
-          args: [
-            {
-              name: "file",
-              description:
-                "The local or remote CSV file of users to import. If ‘-‘, then reads from STDIN.",
-            },
-          ],
+          args: {
+            name: "file",
+            description:
+              "The local or remote CSV file of users to import. If ‘-‘, then reads from STDIN.",
+          },
           options: [
             {
               name: "--send-email",
@@ -11458,12 +11155,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "list-caps",
           description: "Lists all capabilities for a user.",
-          args: [
-            {
-              name: "user",
-              description: "User ID, user email, or login.",
-            },
-          ],
+          args: {
+            name: "user",
+            description: "User ID, user email, or login.",
+          },
           options: [
             {
               name: "--format",
@@ -11571,13 +11266,11 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "Lists all metadata associated with a user.",
-              args: [
-                {
-                  name: "user",
-                  description:
-                    "The user login, user email, or user ID of the user to get metadata for.",
-                },
-              ],
+              args: {
+                name: "user",
+                description:
+                  "The user login, user email, or user ID of the user to get metadata for.",
+              },
               options: [
                 {
                   name: "--keys",
@@ -11779,12 +11472,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "reset-password",
           description: "Resets the password for one or more users.",
-          args: [
-            {
-              name: "user",
-              description: "One or more user logins or IDs.",
-            },
-          ],
+          args: {
+            name: "user",
+            description: "One or more user logins or IDs.",
+          },
           options: [
             {
               name: "--skip-email",
@@ -11821,12 +11512,10 @@ const completionSpec: Fig.Spec = {
             {
               name: "list",
               description: "List sessions for the given user.",
-              args: [
-                {
-                  name: "user",
-                  description: "User ID, user email, or user login.",
-                },
-              ],
+              args: {
+                name: "user",
+                description: "User ID, user email, or user login.",
+              },
               options: [
                 {
                   name: "--fields",
@@ -11872,12 +11561,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "spam",
           description: "Marks one or more users as spam.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of users to mark as spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of users to mark as spam.",
+          },
         },
         {
           name: "term",
@@ -12028,23 +11715,19 @@ const completionSpec: Fig.Spec = {
         {
           name: "unspam",
           description: "Removes one or more users from spam.",
-          args: [
-            {
-              name: "id",
-              description: "One or more IDs of users to remove from spam.",
-            },
-          ],
+          args: {
+            name: "id",
+            description: "One or more IDs of users to remove from spam.",
+          },
         },
         {
           name: "update",
           description: "Updates an existing user.",
-          args: [
-            {
-              name: "user",
-              description:
-                "The user login, user email or user ID of the user(s) to update.",
-            },
-          ],
+          args: {
+            name: "user",
+            description:
+              "The user login, user email or user ID of the user(s) to update.",
+          },
           options: [
             {
               name: "--user_pass",
@@ -12195,32 +11878,26 @@ const completionSpec: Fig.Spec = {
           name: "deactivate",
           description:
             "Deactivates one or more widgets from an active sidebar.",
-          args: [
-            {
-              name: "widget-id",
-              description: "Unique ID for the widget(s).",
-            },
-          ],
+          args: {
+            name: "widget-id",
+            description: "Unique ID for the widget(s).",
+          },
         },
         {
           name: "delete",
           description: "Deletes one or more widgets from a sidebar.",
-          args: [
-            {
-              name: "widget-id",
-              description: "Unique ID for the widget(s).",
-            },
-          ],
+          args: {
+            name: "widget-id",
+            description: "Unique ID for the widget(s).",
+          },
         },
         {
           name: "list",
           description: "Lists widgets associated with a sidebar.",
-          args: [
-            {
-              name: "sidebar-id",
-              description: "ID for the corresponding sidebar.",
-            },
-          ],
+          args: {
+            name: "sidebar-id",
+            description: "ID for the corresponding sidebar.",
+          },
           options: [
             {
               name: "--fields",
@@ -12249,12 +11926,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "move",
           description: "Moves the position of a widget.",
-          args: [
-            {
-              name: "widget-id",
-              description: "Unique ID for the widget.",
-            },
-          ],
+          args: {
+            name: "widget-id",
+            description: "Unique ID for the widget.",
+          },
           options: [
             {
               name: "--position",
@@ -12273,12 +11948,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "reset",
           description: "Resets sidebar.",
-          args: [
-            {
-              name: "sidebar-id",
-              description: "One or more sidebars to reset.",
-            },
-          ],
+          args: {
+            name: "sidebar-id",
+            description: "One or more sidebars to reset.",
+          },
           options: [
             {
               name: "--all",
@@ -12289,12 +11962,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "update",
           description: "Updates options for an existing widget.",
-          args: [
-            {
-              name: "widget-id",
-              description: "Unique ID for the widget.",
-            },
-          ],
+          args: {
+            name: "widget-id",
+            description: "Unique ID for the widget.",
+          },
           options: [
             {
               name: "--field=value",

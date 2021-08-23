@@ -1399,14 +1399,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEVICE",
-              description:
-                "ID of the device or fully qualified identifier for the device.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEVICE",
+            description:
+              "ID of the device or fully qualified identifier for the device.",
+            isVariadic: false,
+          },
         },
         {
           name: "credentials",
@@ -1937,14 +1935,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "INDEX",
-                  description:
-                    "The index (zero-based) of the credential to delete.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "INDEX",
+                description:
+                  "The index (zero-based) of the credential to delete.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -2107,14 +2103,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "INDEX",
-                  description:
-                    "The index (zero-based) of the credential to describe.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "INDEX",
+                description:
+                  "The index (zero-based) of the credential to describe.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -2479,14 +2473,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "INDEX",
-                  description:
-                    "The index (zero-based) of the credential to update.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "INDEX",
+                description:
+                  "The index (zero-based) of the credential to update.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -2768,14 +2760,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEVICE",
-              description:
-                "ID of the device or fully qualified identifier for the device.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEVICE",
+            description:
+              "ID of the device or fully qualified identifier for the device.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2927,14 +2917,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEVICE",
-              description:
-                "ID of the device or fully qualified identifier for the device.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEVICE",
+            description:
+              "ID of the device or fully qualified identifier for the device.",
+            isVariadic: false,
+          },
         },
         {
           name: "gateways",
@@ -4397,14 +4385,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DEVICE",
-              description:
-                "ID of the device or fully qualified identifier for the device.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DEVICE",
+            description:
+              "ID of the device or fully qualified identifier for the device.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4734,14 +4720,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGISTRY",
-              description:
-                "ID of the registry or fully qualified identifier for the registry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGISTRY",
+            description:
+              "ID of the registry or fully qualified identifier for the registry.",
+            isVariadic: false,
+          },
         },
         {
           name: "credentials",
@@ -5216,14 +5200,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "INDEX",
-                  description:
-                    "The index (zero-based) of the credential to delete.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "INDEX",
+                description:
+                  "The index (zero-based) of the credential to delete.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -5377,14 +5359,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "INDEX",
-                  description:
-                    "The index (zero-based) of the credential to describe.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "INDEX",
+                description:
+                  "The index (zero-based) of the credential to describe.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -5840,14 +5820,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGISTRY",
-              description:
-                "ID of the registry or fully qualified identifier for the registry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGISTRY",
+            description:
+              "ID of the registry or fully qualified identifier for the registry.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -5990,14 +5968,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGISTRY",
-              description:
-                "ID of the registry or fully qualified identifier for the registry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGISTRY",
+            description:
+              "ID of the registry or fully qualified identifier for the registry.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-iam-policy",
@@ -6180,14 +6156,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGISTRY",
-              description:
-                "ID of the registry or fully qualified identifier for the registry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGISTRY",
+            description:
+              "ID of the registry or fully qualified identifier for the registry.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6715,14 +6689,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGISTRY",
-              description:
-                "ID of the registry or fully qualified identifier for the registry.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGISTRY",
+            description:
+              "ID of the registry or fully qualified identifier for the registry.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

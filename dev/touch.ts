@@ -5,7 +5,7 @@ const completionSpec: Fig.Spec = {
     name: "file",
   },
   options: [
-    { name: ["-a"], description: "change only the access time" },
+    { name: "-a", description: "change only the access time" },
     {
       name: ["-c", "--no-create"],
       description: "do not create any files",
@@ -21,7 +21,7 @@ const completionSpec: Fig.Spec = {
         "affect each symbolic link instead of any referenced file (useful only on systems that can change the timestamps of a symlink)",
     },
     {
-      name: ["-m"],
+      name: "-m",
       description: "change only the modification time",
     },
     {
@@ -30,20 +30,20 @@ const completionSpec: Fig.Spec = {
       args: { name: "file" },
     },
     {
-      name: ["-t"],
+      name: "-t",
       description: "use [[CC]YY]MMDDhhmm[.ss] instead of current time",
       args: {
         name: "stamp",
       },
     },
     {
-      name: ["--time"],
+      name: "--time",
       description: "change the specified time",
       args: { name: "WORD" },
     },
-    { name: ["--help"], description: "display this help and exit" },
+    { name: "--help", description: "display this help and exit" },
     {
-      name: ["--version"],
+      name: "--version",
       description: "output version information and exit",
     },
   ],

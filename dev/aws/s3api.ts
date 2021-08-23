@@ -6088,12 +6088,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "outfile",
-          description: "Filename where the records will be saved",
-        },
-      ],
+      args: {
+        name: "outfile",
+        description: "Filename where the records will be saved",
+      },
     },
     {
       name: "upload-part",

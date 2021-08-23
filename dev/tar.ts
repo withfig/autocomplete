@@ -35,9 +35,9 @@ const completionSpec: Fig.Spec = {
       },
     },
     { name: ["-h", "--help"], description: "Help" },
-    { name: ["--version"], description: "Version" },
+    { name: "--version", description: "Version" },
     {
-      name: ["--wildcards"],
+      name: "--wildcards",
       args: { name: "pattern", description: "ex: *.html" },
     },
   ],

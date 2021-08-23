@@ -44,7 +44,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--unset"],
+          name: "--unset",
         },
       ],
     },
@@ -64,7 +64,7 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--unset"],
+          name: "--unset",
         },
       ],
     },

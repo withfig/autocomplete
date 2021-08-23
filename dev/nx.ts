@@ -378,25 +378,25 @@ const completionSpec: Fig.Spec = {
       },
       options: [
         {
-          name: ["--defaults"],
+          name: "--defaults",
           args: [{ name: "true" }, { name: "false" }],
           description:
             "when true, disables interactive input prompts for options with a default {true|false}",
         },
         {
-          name: ["--dryRun"],
+          name: "--dryRun",
           args: [{ name: "true" }, { name: "false" }],
           description:
             "when true, runs the generator without making actual changes {true|false}",
         },
         {
-          name: ["--force"],
+          name: "--force",
           args: [{ name: "true" }, { name: "false" }],
           description:
             "when true, forces overwriting of existing files {true|false}",
         },
         {
-          name: ["--interactive"],
+          name: "--interactive",
           args: [{ name: "true" }, { name: "false" }],
           description:
             "when false, disables interactive input prompts {true|false}",
@@ -475,7 +475,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "list",
       args: {
-        generators: [nxGenerators.installedPlugins],
+        generators: nxGenerators.installedPlugins,
         description: "The name of an installed plugin to query",
       },
       options: [...defaultOptions],

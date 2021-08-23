@@ -7,7 +7,7 @@ const completionSpec: Fig.Spec = {
   },
   options: [
     {
-      name: ["-l"],
+      name: "-l",
       description: "List the contents of a zip file without extracting",
       args: {
         name: "file",
@@ -15,14 +15,14 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-c"],
+      name: "-c",
       args: {
         name: "file",
         template: "filepaths",
       },
     },
     {
-      name: ["-0"],
+      name: "-0",
       description:
         "Extract a zip file created in windows, containing files with non-ascii (chinese) filenames",
       args: [
@@ -36,7 +36,7 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: ["-d"],
+      name: "-d",
       args: {
         name: "destination",
         template: "folders",

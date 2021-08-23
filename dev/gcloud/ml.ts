@@ -1195,14 +1195,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "OPERATION",
-                  description:
-                    "ID of the operation or fully qualified identifier for the operation.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "OPERATION",
+                description:
+                  "ID of the operation or fully qualified identifier for the operation.",
+                isVariadic: false,
+              },
             },
             {
               name: "wait",
@@ -1337,14 +1335,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "OPERATION",
-                  description:
-                    "ID of the operation or fully qualified identifier for the operation.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "OPERATION",
+                description:
+                  "ID of the operation or fully qualified identifier for the operation.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -1679,14 +1675,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUDIO",
-              description:
-                "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object).",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUDIO",
+            description:
+              "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object).",
+            isVariadic: false,
+          },
         },
         {
           name: "recognize-long-running",
@@ -1895,14 +1889,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "AUDIO",
-              description:
-                "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object).",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "AUDIO",
+            description:
+              "The location of the audio file to transcribe. Must be a local path or a\nGoogle Cloud Storage URL (in the format gs://bucket/object).",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2210,14 +2202,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INPUT_PATH",
-              description:
-                "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INPUT_PATH",
+            description:
+              "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-labels",
@@ -2402,14 +2392,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INPUT_PATH",
-              description:
-                "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INPUT_PATH",
+            description:
+              "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-shot-changes",
@@ -2583,14 +2571,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INPUT_PATH",
-              description:
-                "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INPUT_PATH",
+            description:
+              "Path to the video to be analyzed. Must be a local path or a Google\nCloud Storage URI.",
+            isVariadic: false,
+          },
         },
         {
           name: "operations",
@@ -2739,14 +2725,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "OPERATION",
-                  description:
-                    "ID of the operation or fully qualified identifier for the operation.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "OPERATION",
+                description:
+                  "ID of the operation or fully qualified identifier for the operation.",
+                isVariadic: false,
+              },
             },
             {
               name: "wait",
@@ -2890,14 +2874,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "OPERATION",
-                  description:
-                    "ID of the operation or fully qualified identifier for the operation.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "OPERATION",
+                description:
+                  "ID of the operation or fully qualified identifier for the operation.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -3304,14 +3286,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-faces",
@@ -3454,14 +3434,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-image-properties",
@@ -3595,14 +3573,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-labels",
@@ -3745,14 +3721,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-landmarks",
@@ -3896,14 +3870,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-logos",
@@ -4046,14 +4018,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-objects",
@@ -4188,14 +4158,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-safe-search",
@@ -4329,14 +4297,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-text",
@@ -4479,14 +4445,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "detect-text-pdf",
@@ -4946,14 +4910,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
         {
           name: "suggest-crop",
@@ -5097,14 +5059,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_PATH",
-              description:
-                "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_PATH",
+            description:
+              "Path to the image to be analyzed. This can be either a local path\nor a URL. If you provide a local file, the contents will be sent\ndirectly to Google Cloud Vision. If you provide a URL, it must be in\nGoogle Cloud Storage format (gs://bucket/object) or an HTTP URL\n(http://... or https://...)",
+            isVariadic: false,
+          },
         },
       ],
       options: [

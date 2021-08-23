@@ -358,14 +358,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more logpoint resource identifiers. The specified\nlogpoints will be deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more logpoint resource identifiers. The specified\nlogpoints will be deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -566,14 +564,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more logpoint resource identifiers. The specified\nlogpoints will be listed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more logpoint resource identifiers. The specified\nlogpoints will be listed.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -893,14 +889,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "LOCATION",
-              description:
-                "The location where the snapshot should be taken. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differntiate it from\nother files with the same name. If the file name is not unique in\nthe debug target, the behavior is unspecified.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "LOCATION",
+            description:
+              "The location where the snapshot should be taken. Locations are of\nthe form FILE:LINE, where FILE can be simply the file name, or the\nfile name preceded by enough path components to differntiate it from\nother files with the same name. If the file name is not unique in\nthe debug target, the behavior is unspecified.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1066,14 +1060,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1229,14 +1221,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1437,14 +1427,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The specified\nsnapshots will be displayed.",
+            isVariadic: false,
+          },
         },
         {
           name: "wait",
@@ -1650,14 +1638,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "Zero or more snapshot resource identifiers. The command will\nwait for any of the specified snapshots to complete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "Zero or more snapshot resource identifiers. The command will\nwait for any of the specified snapshots to complete.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

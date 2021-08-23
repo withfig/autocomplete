@@ -15,16 +15,16 @@ const completionSpec: Fig.Spec = {
     "Pulls images for services defined in a Compose file, but does not start the containers.",
   options: [
     {
-      name: ["--ignore-pull-failures"],
+      name: "--ignore-pull-failures",
       description: "Pull what it can and ignores images with pull failures.",
     },
     {
-      name: ["--parallel"],
+      name: "--parallel",
       description:
         "Deprecated, pull multiple images in parallel (enabled by default).",
     },
     {
-      name: ["--no-parallel"],
+      name: "--no-parallel",
       description: "Disable parallel pulling.",
     },
     {
@@ -32,7 +32,7 @@ const completionSpec: Fig.Spec = {
       description: "Pull without printing progress information",
     },
     {
-      name: ["--include-deps"],
+      name: "--include-deps",
       description: "Also pull services declared as dependencies",
     },
   ],

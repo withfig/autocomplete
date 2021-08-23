@@ -158,14 +158,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-parent",
@@ -320,14 +318,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-project",
@@ -482,14 +478,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "group",
@@ -684,14 +678,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -915,14 +907,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "list-marks",
@@ -1126,14 +1116,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ASSET",
-              description:
-                "ID of the asset or fully qualified identifier for the asset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ASSET",
+            description:
+              "ID of the asset or fully qualified identifier for the asset.",
+            isVariadic: false,
+          },
         },
         {
           name: "run-discovery",
@@ -1267,14 +1255,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "update-marks",
@@ -1449,14 +1435,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ASSET",
-              description:
-                "ID of the asset or fully qualified identifier for the asset.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ASSET",
+            description:
+              "ID of the asset or fully qualified identifier for the asset.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1807,14 +1791,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FINDING",
-              description:
-                "ID of the finding or fully qualified identifier for the finding.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FINDING",
+            description:
+              "ID of the finding or fully qualified identifier for the finding.",
+            isVariadic: false,
+          },
         },
         {
           name: "group",
@@ -2018,14 +2000,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2258,14 +2238,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "list-marks",
@@ -2479,14 +2457,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FINDING",
-              description:
-                "ID of the finding or fully qualified identifier for the finding.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FINDING",
+            description:
+              "ID of the finding or fully qualified identifier for the finding.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -2691,14 +2667,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FINDING",
-              description:
-                "ID of the finding or fully qualified identifier for the finding.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FINDING",
+            description:
+              "ID of the finding or fully qualified identifier for the finding.",
+            isVariadic: false,
+          },
         },
         {
           name: "update-marks",
@@ -2883,14 +2857,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "FINDING",
-              description:
-                "ID of the finding or fully qualified identifier for the finding.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "FINDING",
+            description:
+              "ID of the finding or fully qualified identifier for the finding.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -3199,14 +3171,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NOTIFICATION_CONFIG_ID",
-              description:
-                'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NOTIFICATION_CONFIG_ID",
+            description:
+              'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -3351,14 +3321,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NOTIFICATION_CONFIG_ID",
-              description:
-                'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NOTIFICATION_CONFIG_ID",
+            description:
+              'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3503,14 +3471,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NOTIFICATION_CONFIG_ID",
-              description:
-                'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NOTIFICATION_CONFIG_ID",
+            description:
+              'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3685,14 +3651,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -3867,14 +3831,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NOTIFICATION_CONFIG_ID",
-              description:
-                'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NOTIFICATION_CONFIG_ID",
+            description:
+              'The ID of the notification config. Formatted as "organizations/123/notificationConfigs/456" or just "456".',
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4152,14 +4114,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -4447,14 +4407,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ORGANIZATION",
-              description:
-                "ID of the organization or fully qualified identifier for the organization.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ORGANIZATION",
+            description:
+              "ID of the organization or fully qualified identifier for the organization.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

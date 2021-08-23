@@ -220,14 +220,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "TEMPLATE_FILE_GCS_PATH",
-              description:
-                "The Google Cloud Storage location of the flex template file.Overrides if file already exists.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "TEMPLATE_FILE_GCS_PATH",
+            description:
+              "The Google Cloud Storage location of the flex template file.Overrides if file already exists.",
+            isVariadic: false,
+          },
         },
         {
           name: "run",
@@ -513,13 +511,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_NAME",
-              description: "Unique name to assign to the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB_NAME",
+            description: "Unique name to assign to the job.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -798,13 +794,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_ID",
-              description: "The job IDs to operate on.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "JOB_ID",
+            description: "The job IDs to operate on.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -952,13 +946,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_ID",
-              description: "The job ID to operate on.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB_ID",
+            description: "The job ID to operate on.",
+            isVariadic: false,
+          },
         },
         {
           name: "drain",
@@ -1102,13 +1094,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_ID",
-              description: "The job IDs to operate on.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "JOB_ID",
+            description: "The job IDs to operate on.",
+            isVariadic: true,
+          },
         },
         {
           name: "list",
@@ -1600,13 +1590,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_NAME",
-              description: "The unique name to assign to the job.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB_NAME",
+            description: "The unique name to assign to the job.",
+            isVariadic: false,
+          },
         },
         {
           name: "show",
@@ -1758,13 +1746,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "JOB_ID",
-              description: "The job ID to operate on.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "JOB_ID",
+            description: "The job ID to operate on.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2247,13 +2233,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "QUERY",
-              description: "The SQL query to execute.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "QUERY",
+            description: "The SQL query to execute.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

@@ -208,14 +208,14 @@ const sharedOpts: Record<string, Fig.Option> = {
     },
   },
   resourceVersion: {
-    name: ["--resource-version"],
+    name: "--resource-version",
     insertValue: "--resource-version=",
     description:
       "If non-empty, the annotation update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource.",
     args: {},
   },
   dryRun: {
-    name: ["--dry-run"],
+    name: "--dry-run",
     insertValue: "--dry-run=",
     description:
       'Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.',
@@ -225,24 +225,24 @@ const sharedOpts: Record<string, Fig.Option> = {
     },
   },
   fieldSelector: {
-    name: ["--field-selector"],
+    name: "--field-selector",
     insertValue: "--field-selector=",
     description:
       "Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.",
     args: {},
   },
   local: {
-    name: ["--local"],
+    name: "--local",
     description:
       "If true, annotation will NOT contact api-server but run locally.",
   },
   allResources: {
-    name: ["--all"],
+    name: "--all",
     description:
       "Select all resources, including uninitialized ones, in the namespace of the specified resource types.",
   },
   allowMissingTemplateKeys: {
-    name: ["--allow-missing-template-keys"],
+    name: "--allow-missing-template-keys",
     description:
       "If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.",
   },
@@ -258,19 +258,19 @@ const sharedOpts: Record<string, Fig.Option> = {
     args: {},
   },
   template: {
-    name: ["--template"],
+    name: "--template",
     insertValue: "--template=",
     description:
       "Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].",
     args: {},
   },
   overwrite: {
-    name: ["--overwrite"],
+    name: "--overwrite",
     description:
       "If true, allow annotations to be overwritten, otherwise reject annotation updates that overwrite existing annotations.",
   },
   record: {
-    name: ["--record"],
+    name: "--record",
     description:
       "Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.",
   },
@@ -293,39 +293,39 @@ const completionSpec: Fig.Spec = {
           description: "Tools for debugging Kubernetes resources",
           options: [
             {
-              name: ["--arguments-only"],
+              name: "--arguments-only",
               description:
                 "If specified, everything after -- will be passed to the new container as Args instead of Command.",
               args: {},
             },
             {
-              name: ["--attach"],
+              name: "--attach",
               description:
                 "If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true.",
               args: {},
             },
             {
-              name: ["--container"],
+              name: "--container",
               description: "Container name to use for debug container.",
               args: {},
             },
             {
-              name: ["--env"],
+              name: "--env",
               description: "Environment variables to set in the container.",
               args: {},
             },
             {
-              name: ["--image"],
+              name: "--image",
               description: "Container image to use for debug container.",
               args: {},
             },
             {
-              name: ["--image-pull-policy"],
+              name: "--image-pull-policy",
               description: "The image pull policy for the container.",
               args: {},
             },
             {
-              name: ["--quiet"],
+              name: "--quiet",
               description: "If true, suppress prompt messages.",
               args: {},
             },
@@ -336,7 +336,7 @@ const completionSpec: Fig.Spec = {
               args: {},
             },
             {
-              name: ["--target"],
+              name: "--target",
               description: "Target processes in this container name.",
               args: {},
             },
@@ -369,34 +369,34 @@ const completionSpec: Fig.Spec = {
       options: [
         sharedOpts.output,
         {
-          name: ["--api-group"],
-          insertValue: "--api-group",
+          name: "--api-group",
+
           description: "Limit to resources in the specified API group.",
           args: {},
         },
         {
-          name: ["--cached"],
+          name: "--cached",
           description: "Use the cached list of resources if available.",
         },
         {
-          name: ["--namespaced"],
+          name: "--namespaced",
           description:
             "If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.",
         },
         {
-          name: ["--no-headers"],
+          name: "--no-headers",
           description:
             "When using the default or custom-column output format, don't print headers (default print headers).",
         },
         {
-          name: ["--sort-by"],
+          name: "--sort-by",
           insertValue: "--sort-by=",
           description:
             "If non-empty, sort nodes list using specified field. The field can be either 'name' or 'kind'.",
           args: {},
         },
         {
-          name: ["--verbs"],
+          name: "--verbs",
           insertValue: "--verbs=",
           description: "Limit to resources that support the specified verbs.",
           args: {},
@@ -414,28 +414,28 @@ const completionSpec: Fig.Spec = {
         "Apply a configuration to a resource by filename or stdin. The resource name must be specified. This resource will be created if it doesn't exist yet. To use 'apply', always create the resource initially with either 'apply' or 'create --save-config'.",
       options: sharedOptsArray.concat([
         {
-          name: ["--cascade"],
+          name: "--cascade",
           description:
             "If true, cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController). Default true.",
         },
         {
-          name: ["--field-manager"],
+          name: "--field-manager",
           insertValue: "--field-manager=",
           description: "Name of the manager used to track field ownership.",
           args: {},
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
         },
         {
-          name: ["--force-conflicts"],
+          name: "--force-conflicts",
           description:
             "If true, server-side apply will force the changes against conflicts.",
         },
         {
-          name: ["--grace-period"],
+          name: "--grace-period",
           insertValue: "--grace-period=",
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
@@ -444,22 +444,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--openapi-patch"],
+          name: "--openapi-patch",
           description:
             "If true, use openapi to calculate diff when the openapi presents and the resource can be found in the openapi spec. Otherwise, fall back to use baked-in types.",
         },
         {
-          name: ["--overwrite"],
+          name: "--overwrite",
           description:
             "Automatically resolve conflicts between the modified and live configuration by using values from the modified configuration",
         },
         {
-          name: ["--prune"],
+          name: "--prune",
           description:
             "Automatically delete resource objects, including the uninitialized ones, that do not appear in the configs and are created by either apply or create --save-config. Should be used with either -l or --all.",
         },
         {
-          name: ["--prune-whitelist"],
+          name: "--prune-whitelist",
           insertValue: "--prune-whitelist=",
           description:
             "Overwrite the default whitelist with <group/version/kind> for --prune",
@@ -468,12 +468,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--server-side"],
+          name: "--server-side",
           description:
             "If true, apply runs in the server instead of the client.",
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           insertValue: "--timeout=",
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
@@ -482,12 +482,12 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
         {
-          name: ["--wait"],
+          name: "--wait",
           description:
             "If true, wait for resources to be gone before returning. This waits for finalizers.",
         },
@@ -510,17 +510,17 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.template,
             {
-              name: ["--windows-line-endings"],
+              name: "--windows-line-endings",
               description:
                 "Defaults to the line ending native to your platform.",
             },
             {
-              name: ["--field-manager"],
+              name: "--field-manager",
               description: "Name of the manager used to track field ownership.",
               args: {},
             },
             {
-              name: ["--show-manged-fields"],
+              name: "--show-manged-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
@@ -536,12 +536,12 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--show-manged-fields"],
+              name: "--show-manged-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
             {
-              name: ["--create-annotation"],
+              name: "--create-annotation",
               description:
                 "Will create 'last-applied-configuration' annotations if current objects doesn't have one",
             },
@@ -579,7 +579,7 @@ const completionSpec: Fig.Spec = {
           args: sharedArgs.listContainersFromPod,
         },
         {
-          name: ["--pod-running-timeout"],
+          name: "--pod-running-timeout",
           insertValue: "-pod-running-timeout=",
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -617,11 +617,11 @@ const completionSpec: Fig.Spec = {
                 "If true, check the specified action in all namespaces.",
             },
             {
-              name: ["--list"],
+              name: "--list",
               description: "If true, prints all allowed actions.",
             },
             {
-              name: ["--no-headers"],
+              name: "--no-headers",
               description: "If true, prints allowed actions without headers",
             },
             {
@@ -630,7 +630,7 @@ const completionSpec: Fig.Spec = {
                 "If true, suppress output and just return the exit code.",
             },
             {
-              name: ["--subresource"],
+              name: "--subresource",
               insertValue: "--subresource=",
               description: "SubResource such as pod/log or deployment/scale",
               // TODO: Generator here
@@ -651,16 +651,16 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.template,
             {
-              name: ["--remove-extra-permissions"],
+              name: "--remove-extra-permissions",
               description: "If true, removes extra permissions added to roles",
             },
             {
-              name: ["--remove-extra-subjects"],
+              name: "--remove-extra-subjects",
               description:
                 "If true, removes extra subjects added to rolebindings",
             },
             {
-              name: ["--show-managed-fields"],
+              name: "--show-managed-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
@@ -686,7 +686,7 @@ const completionSpec: Fig.Spec = {
         sharedOpts.kustomize,
         sharedOpts.template,
         {
-          name: ["--cpu-percent"],
+          name: "--cpu-percent",
           insertValue: "--cpu-percent=",
           description:
             "The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used.",
@@ -695,14 +695,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--generator"],
+          name: "--generator",
           insertValue: "--generator=",
           description:
             "The name of the API generator to use. Currently there is only 1 generator.",
           args: {},
         },
         {
-          name: ["--max"],
+          name: "--max",
           insertValue: "--max=",
           description:
             "The upper limit for the number of pods that can be set by the autoscaler. Required.",
@@ -711,7 +711,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--min"],
+          name: "--min",
           insertValue: "--min=",
           description:
             "The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative, the server will apply a default value.",
@@ -720,14 +720,14 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--name"],
+          name: "--name",
           insertValue: "--name=",
           description:
             "The name for the newly created object. If not specified, the name of the input resource will be used.",
           args: {},
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
@@ -751,7 +751,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.template,
             {
-              name: ["--force"],
+              name: "--force",
               description: "Update the CSR even if it is already approved.",
             },
           ],
@@ -770,7 +770,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.template,
             {
-              name: ["--force"],
+              name: "--force",
               description: "Update the CSR even if it is already approved.",
             },
           ],
@@ -796,21 +796,21 @@ const completionSpec: Fig.Spec = {
                 "If true, dump all namespaces.  If true, --namespaces is ignored.",
             },
             {
-              name: ["--namespaces"],
+              name: "--namespaces",
               description: "A comma separated list of namespaces to dump.",
               args: {
                 name: "Namespaces (Comma seperated)",
               },
             },
             {
-              name: ["--output-directory"],
+              name: "--output-directory",
               insertValue: "--output-directory=",
               description:
                 "Where to output the files.  If empty or '-' uses stdout, otherwise creates a directory hierarchy in that directory",
               args: {},
             },
             {
-              name: ["--pod-running-timeout"],
+              name: "--pod-running-timeout",
               insertValue: "--pod-running-timeout=",
               description:
                 "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -819,7 +819,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--show-managed-fields"],
+              name: "--show-managed-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
@@ -873,7 +873,7 @@ const completionSpec: Fig.Spec = {
           options: [
             sharedOpts.output,
             {
-              name: ["--no-headers"],
+              name: "--no-headers",
               description:
                 "When using the default or custom-column output format, don't print headers (default print headers).",
               args: {},
@@ -907,7 +907,7 @@ const completionSpec: Fig.Spec = {
           ],
           options: [
             {
-              name: ["--set-raw-bytes"],
+              name: "--set-raw-bytes",
               description:
                 "When writing a []byte PROPERTY_VALUE, write the given string directly without base64 decoding.",
               args: {},
@@ -922,18 +922,18 @@ const completionSpec: Fig.Spec = {
           },
           options: [
             {
-              name: ["--embed-certs"],
+              name: "--embed-certs",
               description: "embed-certs for the cluster entry in kubeconfig",
             },
             {
-              name: ["--server"],
+              name: "--server",
               insertValue: "--server=",
               args: {
                 name: "Server",
               },
             },
             {
-              name: ["--certificate-authority"],
+              name: "--certificate-authority",
               insertValue: "--certificate-authority=",
               description: "Path to certificate authority",
               args: {
@@ -942,14 +942,14 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--insecure-skip-tls-verify"],
+              name: "--insecure-skip-tls-verify",
               insertValue: "--insecure-skip-tls-verify=",
               args: {
                 suggestions: ["true", "false"],
               },
             },
             {
-              name: ["--tls-server-name"],
+              name: "--tls-server-name",
               insertValue: "--tls-server-name=",
               args: {
                 name: "TLS Server Name",
@@ -963,25 +963,25 @@ const completionSpec: Fig.Spec = {
           args: sharedArgs.listKubeConfContexts,
           options: [
             {
-              name: ["--current"],
+              name: "--current",
               description: "Modify the current context",
             },
             {
-              name: ["--cluster"],
+              name: "--cluster",
               insertValue: "--cluster=",
               args: {
                 name: "cluster_nickname",
               },
             },
             {
-              name: ["--user"],
+              name: "--user",
               insertValue: "--user=",
               args: {
                 name: "user_nickname",
               },
             },
             {
-              name: ["--namespace"],
+              name: "--namespace",
               insertValue: "--namespace=",
               args: {
                 name: "namespace",
@@ -995,7 +995,7 @@ const completionSpec: Fig.Spec = {
           args: sharedArgs.listClusters,
           options: [
             {
-              name: ["--client-certificate"],
+              name: "--client-certificate",
               insertValue: "--client-certificate=",
               description: "Client cert for user entry",
               args: {
@@ -1003,7 +1003,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--client-key"],
+              name: "--client-key",
               insertValue: "--client-key=",
               description: "Client key for user entry",
               args: {
@@ -1011,7 +1011,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--token"],
+              name: "--token",
               insertValue: "--token=",
               description: "Bearer Token for user entry",
               args: {
@@ -1019,7 +1019,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--username"],
+              name: "--username",
               insertValue: "--username=",
               description: "Username for basic authentication",
               args: {
@@ -1027,7 +1027,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--password"],
+              name: "--password",
               insertValue: "--password=",
               description: "Password for basic authentication",
               args: {
@@ -1035,7 +1035,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--auth-provider"],
+              name: "--auth-provider",
               insertValue: "--auth-provider=",
               description: "Auth provider for the user entry in kubeconfig",
               args: {
@@ -1043,7 +1043,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--auth-provider-arg"],
+              name: "--auth-provider-arg",
               insertValue: "--auth-provider-arg=",
               description: "'key=value' arguments for the auth provider",
               args: {
@@ -1051,12 +1051,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--embed-certs"],
+              name: "--embed-certs",
               description:
                 "Embed client cert/key for the user entry in kubeconfig",
             },
             {
-              name: ["--exec-api-version"],
+              name: "--exec-api-version",
               insertValue: "--exec-api-version=",
               description:
                 "API version of the exec credential plugin for the user entry in kubeconfig",
@@ -1065,7 +1065,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--exec-arg"],
+              name: "--exec-arg",
               insertValue: "--exec-arg=",
               description:
                 "New arguments for the exec credential plugin command for the user entry in kubeconfig",
@@ -1074,7 +1074,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--exec-command"],
+              name: "--exec-command",
               insertValue: "--exec-command=",
               description:
                 "Command for the exec credential plugin for the user entry in kubeconfig",
@@ -1083,7 +1083,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--exec-env"],
+              name: "--exec-env",
               insertValue: "--exec-env=",
               description:
                 "'key=value' environment values for the exec credential plugin",
@@ -1114,25 +1114,25 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--flatten"],
+              name: "--flatten",
               description:
                 "Flatten the resulting kubeconfig file into self-contained output (useful for creating portable kubeconfig files)",
             },
             {
-              name: ["--merge"],
+              name: "--merge",
               description: "Merge the full hierarchy of kubeconfig files",
             },
             {
-              name: ["--minify"],
+              name: "--minify",
               description:
                 "Remove all information not used by current-context from the output",
             },
             {
-              name: ["--raw"],
+              name: "--raw",
               description: "Display raw byte data",
             },
             {
-              name: ["--show-managed-fields"],
+              name: "--show-managed-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
@@ -1152,19 +1152,19 @@ const completionSpec: Fig.Spec = {
         sharedOpts.recursive,
         sharedOpts.template,
         {
-          name: ["--local"],
+          name: "--local",
           description:
             "If true, convert will NOT try to contact api-server but run locally.",
         },
         {
-          name: ["--output-version"],
+          name: "--output-version",
           insertValue: "--output-version=",
           description:
             "Output the formatted object with the given group version (for ex: 'extensions/v1beta1').",
           args: {},
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
@@ -1189,7 +1189,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--no-preserve"],
+          name: "--no-preserve",
           description:
             "The copied file/directory's ownership and permissions will not be preserved in the container",
           args: {},
@@ -1210,26 +1210,26 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         sharedOpts.record,
         {
-          name: ["--edit"],
+          name: "--edit",
           description: "Edit the API resource before creating",
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "Raw URI to POST to the server.  Uses the transport specified by the kubeconfig file.",
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
         {
-          name: ["--windows-line-endings"],
+          name: "--windows-line-endings",
           description:
             "Only relevant if --edit=true. Defaults to the line ending native to your platform.",
         },
@@ -1247,43 +1247,43 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--aggregation-rule"],
+              name: "--aggregation-rule",
               insertValue: "--aggregation-rule=",
               description:
                 "An aggregation label selector for combining ClusterRoles.",
               args: {},
             },
             {
-              name: ["--non-resource-url"],
-              insertValue: "--non-resource-url",
+              name: "--non-resource-url",
+
               description: "A partial url that user should have access to.",
               args: {},
             },
             {
-              name: ["--resource"],
+              name: "--resource",
               insertValue: "--resource=",
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
-              name: ["--resource-name"],
+              name: "--resource-name",
               insertValue: "--resource-name=",
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
               args: {},
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
             {
-              name: ["--verb"],
+              name: "--verb",
               insertValue: "--verb=",
               description:
                 "Verb that applies to the resources contained in the rule",
@@ -1307,33 +1307,33 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--clusterrole"],
+              name: "--clusterrole",
               insertValue: "--clusterrole=",
               description:
                 "ClusterRole this ClusterRoleBinding should reference",
               args: sharedArgs.listClusterRoles,
             },
             {
-              name: ["--user"],
+              name: "--user",
               insertValue: "--user=",
               args: {
                 name: "User Name",
               },
             },
             {
-              name: ["--group"],
+              name: "--group",
               description: "Groups to bind to the clusterrole",
               args: {
                 name: "Group Name",
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--serviceaccount"],
+              name: "--serviceaccount",
               description:
                 "Service accounts to bind to the clusterrole, in the format <namespace>:<name>",
               args: {
@@ -1341,7 +1341,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1360,11 +1360,11 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--append-hash"],
+              name: "--append-hash",
               description: "Append a hash of the configmap to its name.",
             },
             {
-              name: ["--from-env-file"],
+              name: "--from-env-file",
               insertValue: "--from-env-file=",
               description:
                 "Specify the path to a file to read lines of key=val pairs to create a configmap (i.e. a Docker .env file).",
@@ -1373,7 +1373,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--from-file"],
+              name: "--from-file",
               insertValue: "--from-file=",
               description:
                 "Key file can be specified using its file path, in which case file basename will be used as configmap key, or optionally with a key and file path, in which case the given key will be used.  Specifying a directory will iterate each named file in the directory whose basename is a valid configmap key.",
@@ -1382,7 +1382,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--from-literal"],
+              name: "--from-literal",
               insertValue: "--from-literal=",
               description:
                 "Specify a key and literal value to insert in configmap (i.e. mykey=somevalue)",
@@ -1391,12 +1391,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1414,7 +1414,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--image"],
+              name: "--image",
               insertValue: "--image=",
               description: "Image name to run.",
               args: {
@@ -1422,7 +1422,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--restart"],
+              name: "--restart",
               insertValue: "--restart=",
               description:
                 "job's restart policy. supported values: OnFailure, Never",
@@ -1431,12 +1431,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--schedule"],
+              name: "--schedule",
               description:
                 "A schedule in the Cron format the job should be run with.",
               args: {
@@ -1444,7 +1444,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1462,7 +1462,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--image"],
+              name: "--image",
               insertValue: "--image=",
               description: "Image name to run.",
               args: {
@@ -1470,12 +1470,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1493,7 +1493,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--annotation"],
+              name: "--annotation",
               description:
                 "Annotation to insert in the ingress object, in the format annotation=value",
               args: {
@@ -1501,13 +1501,13 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--class"],
+              name: "--class",
               insertValue: "--class=",
               description: "Ingress Class to be used",
               args: {},
             },
             {
-              name: ["--default-backend"],
+              name: "--default-backend",
               insertValue: "--default-backend=",
               description:
                 "Default service for backend, in format of svcname:port",
@@ -1516,13 +1516,13 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--field-manager"],
+              name: "--field-manager",
               insertValue: "--field-manager=",
               description: "Name of the manager used to track field ownership.",
               args: {},
             },
             {
-              name: ["--rule"],
+              name: "--rule",
               insertValue: "--rule=",
               description:
                 "Rule in format host/path=service:port[,tls=secretname]. Paths containing the leading character '*' are considered pathType=Prefix. tls argument is optional.",
@@ -1531,12 +1531,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--show-managed-fields"],
+              name: "--show-managed-fields",
               description:
                 "If true, keep the managedFields when printing objects in JSON or YAML format.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1560,7 +1560,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--from"],
+              name: "--from",
               insertValue: "--from=",
               description:
                 "The name of the resource to create a Job from (only cronjob is supported).",
@@ -1578,7 +1578,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--image"],
+              name: "--image",
               insertValue: "--image=",
               description: "Image name to run.",
               args: {
@@ -1586,12 +1586,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1609,12 +1609,12 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1634,7 +1634,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             sharedOpts.selector,
             {
-              name: ["--max-unavailable"],
+              name: "--max-unavailable",
               description:
                 "The maximum number or percentage of unavailable pods this budget requires.",
               args: {
@@ -1642,7 +1642,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--min-available"],
+              name: "--min-available",
               description:
                 "The minimum number or percentage of available pods this budget requires.",
               args: {
@@ -1650,12 +1650,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1674,7 +1674,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--description"],
+              name: "--description",
               insertValue: "--description=",
               description:
                 "description is an arbitrary string that usually provides guidelines on when this priority class should be used.",
@@ -1683,13 +1683,13 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--global-default"],
+              name: "--global-default",
               description:
                 "global-default specifies whether this PriorityClass should be considered as the default priority.",
             },
             {
-              name: ["--preemption-policy"],
-              insertValue: "--preemption-policy",
+              name: "--preemption-policy",
+
               description:
                 "preemption-policy is the policy for preempting pods with lower priority.",
               args: {
@@ -1697,17 +1697,17 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
             {
-              name: ["--value"],
+              name: "--value",
               insertValue: "--value=",
               description: "the value of this priority class.",
               args: {
@@ -1729,13 +1729,13 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--field-manager"],
+              name: "--field-manager",
               insertValue: "--field-manager=",
               description: "Name of the manager used to track field ownership.",
               args: {},
             },
             {
-              name: ["--hard"],
+              name: "--hard",
               description:
                 "A comma-delimited set of resource=quantity pairs that define a hard limit.",
               args: {
@@ -1743,12 +1743,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--scopes"],
+              name: "--scopes",
               description:
                 "A comma-delimited set of quota scopes that must all match each object tracked by the quota.",
               args: {
@@ -1756,7 +1756,7 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1774,30 +1774,30 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--resource"],
+              name: "--resource",
               insertValue: "--resource=",
               description: "Resource that the rule applies to",
               args: sharedArgs.resourcesArg,
             },
             {
-              name: ["--resource-name"],
+              name: "--resource-name",
               insertValue: "--resource-name=",
               description:
                 "Resource in the white list that the rule applies to, repeat this flag for multiple items",
               args: {},
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
             {
-              name: ["--verb"],
+              name: "--verb",
               insertValue: "--verb=",
               description:
                 "Verb that applies to the resources contained in the rule",
@@ -1821,19 +1821,19 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--clusterrole"],
+              name: "--clusterrole",
               insertValue: "--clusterrole=",
               description: "ClusterRole this RoleBinding should reference",
               args: sharedArgs.listClusterRoles,
             },
             {
-              name: ["--group"],
+              name: "--group",
               insertValue: "--group=",
               description: "Groups to bind to the role",
               args: {},
             },
             {
-              name: ["--role"],
+              name: "--role",
               insertValue: "--role=",
               description: "Role this RoleBinding should reference",
               args: {
@@ -1845,12 +1845,12 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--serviceaccount"],
+              name: "--serviceaccount",
               insertValue: "--serviceaccount=",
               description:
                 "Service accounts to bind to the role, in the format <namespace>:<name>",
@@ -1859,14 +1859,14 @@ const completionSpec: Fig.Spec = {
               },
             },
             {
-              name: ["--username"],
+              name: "--username",
               insertValue: "--username=",
               args: {
                 name: "Username",
               },
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -1889,11 +1889,11 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--append-hash"],
+                  name: "--append-hash",
                   description: "Append a hash of the secret to its name.",
                 },
                 {
-                  name: ["--docker-email"],
+                  name: "--docker-email",
                   insertValue: "--docker-email=",
                   description: "Email for Docker registry",
                   args: {
@@ -1901,7 +1901,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--docker-password"],
+                  name: "--docker-password",
                   insertValue: "--docker-password=",
                   description: "Password for Docker registry authentication",
                   args: {
@@ -1909,7 +1909,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--docker-server"],
+                  name: "--docker-server",
                   insertValue: "--docker-server=",
                   description: "Server location for Docker registry",
                   args: {
@@ -1917,7 +1917,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--docker-username"],
+                  name: "--docker-username",
                   insertValue: "--docker-username=",
                   description: "Username for Docker registry authentication",
                   args: {
@@ -1925,7 +1925,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--from-file"],
+                  name: "--from-file",
                   insertValue: "--from-file=",
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key.",
@@ -1934,12 +1934,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -1958,11 +1958,11 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--append-hash"],
+                  name: "--append-hash",
                   description: "Append a hash of the secret to its name.",
                 },
                 {
-                  name: ["--from-env-file"],
+                  name: "--from-env-file",
                   insertValue: "--from-env-file=",
                   description:
                     "Specify the path to a file to read lines of key=val pairs to create a secret (i.e. a Docker .env file).",
@@ -1971,7 +1971,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--from-file"],
+                  name: "--from-file",
                   insertValue: "--from-file=",
                   description:
                     "Key files can be specified using their file path, in which case a default name will be given to them, or optionally with a name and file path, in which case the given name will be used.  Specifying a directory will iterate each named file in the directory that is a valid secret key.",
@@ -1980,7 +1980,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--from-literal"],
+                  name: "--from-literal",
                   insertValue: "--from-literal=",
                   description:
                     "Specify a key and literal value to insert in secret (i.e. mykey=somevalue)",
@@ -1989,18 +1989,18 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--type"],
+                  name: "--type",
                   insertValue: "--type=",
                   description: "The type of secret to create",
                   args: {},
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2019,11 +2019,11 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--append-hash"],
+                  name: "--append-hash",
                   description: "Append a hash of the secret to its name.",
                 },
                 {
-                  name: ["--cert"],
+                  name: "--cert",
                   insertValue: "--cert=",
                   description: "Path to PEM encoded public key certificate.",
                   args: {
@@ -2031,7 +2031,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--key"],
+                  name: "--key",
                   insertValue: "--key=",
                   description:
                     "Path to private key associated with given certificate.",
@@ -2040,12 +2040,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2071,7 +2071,7 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--clusterip"],
+                  name: "--clusterip",
                   insertValue: "--clusterip=",
                   description:
                     "Assign your own ClusterIP or set to 'None' for a 'headless' service (no loadbalancing).",
@@ -2081,12 +2081,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--tcp"],
+                  name: "--tcp",
                   insertValue: "--tcp=",
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'.",
@@ -2095,7 +2095,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2114,19 +2114,19 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--external-name"],
+                  name: "--external-name",
                   description: "External name of service",
                   args: {
                     name: "External name",
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--tcp"],
+                  name: "--tcp",
                   insertValue: "--tcp=",
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'.",
@@ -2135,7 +2135,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2154,12 +2154,12 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--tcp"],
+                  name: "--tcp",
                   insertValue: "--tcp=",
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'.",
@@ -2168,7 +2168,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2186,7 +2186,7 @@ const completionSpec: Fig.Spec = {
                 sharedOpts.output,
                 sharedOpts.template,
                 {
-                  name: ["--node-port"],
+                  name: "--node-port",
                   description:
                     "Port used to expose the service on each node in a cluster.",
                   args: {
@@ -2194,12 +2194,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--save-config"],
+                  name: "--save-config",
                   description:
                     "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
                 },
                 {
-                  name: ["--tcp"],
+                  name: "--tcp",
                   insertValue: "--tcp=",
                   description:
                     "Port pairs can be specified as '<port>:<targetPort>'.",
@@ -2208,7 +2208,7 @@ const completionSpec: Fig.Spec = {
                   },
                 },
                 {
-                  name: ["--validate"],
+                  name: "--validate",
                   description:
                     "If true, use a schema to validate the input before sending it",
                 },
@@ -2228,12 +2228,12 @@ const completionSpec: Fig.Spec = {
             sharedOpts.output,
             sharedOpts.template,
             {
-              name: ["--save-config"],
+              name: "--save-config",
               description:
                 "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
             },
             {
-              name: ["--validate"],
+              name: "--validate",
               description:
                 "If true, use a schema to validate the input before sending it",
             },
@@ -2264,17 +2264,17 @@ const completionSpec: Fig.Spec = {
             "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.",
         },
         {
-          name: ["--cascade"],
+          name: "--cascade",
           description:
             "If true, cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController).  Default true.",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
         },
         {
-          name: ["--grace-period"],
+          name: "--grace-period",
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
           args: {
@@ -2282,22 +2282,22 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--ignore-not-found"],
+          name: "--ignore-not-found",
           description:
             'Treat "resource not found" as a successful delete. Defaults to "true" when --all is specified.',
         },
         {
-          name: ["--now"],
+          name: "--now",
           description:
             "If true, resources are signaled for immediate shutdown (same as --grace-period=1).",
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "Raw URI to DELETE to the server.  Uses the transport specified by the kubeconfig file.",
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
           args: {
@@ -2305,7 +2305,7 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--wait"],
+          name: "--wait",
           description:
             "If true, wait for resources to be gone before returning. This waits for finalizers.",
         },
@@ -2329,7 +2329,7 @@ const completionSpec: Fig.Spec = {
             "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.",
         },
         {
-          name: ["--show-events"],
+          name: "--show-events",
           description:
             "If true, display events related to the described object.",
         },
@@ -2344,19 +2344,19 @@ const completionSpec: Fig.Spec = {
         sharedOpts.kustomize,
         sharedOpts.recursive,
         {
-          name: ["--field-manager"],
+          name: "--field-manager",
           description: "Name of the manager used to track field ownership.",
           args: {
             name: "Field Manager",
           },
         },
         {
-          name: ["--force-conflicts"],
+          name: "--force-conflicts",
           description:
             "If true, server-side apply will force the changes against conflicts.",
         },
         {
-          name: ["--server-side"],
+          name: "--server-side",
           description:
             "If true, apply runs in the server instead of the client.",
         },
@@ -2370,22 +2370,22 @@ const completionSpec: Fig.Spec = {
         sharedOpts.dryRun,
         sharedOpts.selector,
         {
-          name: ["--delete-local-data"],
+          name: "--delete-local-data",
           description:
             "Continue even if there are pods using emptyDir (local data that will be deleted when the node is drained).",
         },
         {
-          name: ["--disable-eviction"],
+          name: "--disable-eviction",
           description:
             "Force drain to use delete, even if eviction is supported. This will bypass checking PodDisruptionBudgets, use with caution.",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "Continue even if there are pods not managed by a ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet.",
         },
         {
-          name: ["--grace-period"],
+          name: "--grace-period",
           insertValue: "--grace-period=",
           description:
             "Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used.",
@@ -2394,23 +2394,23 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--ignore-daemonsets"],
+          name: "--ignore-daemonsets",
           description: "Ignore DaemonSet-managed pods.",
         },
         {
-          name: ["--pod-selector"],
+          name: "--pod-selector",
           insertValue: "--pod-selector=",
           description: "Label selector to filter pods on the node",
           args: {},
         },
         {
-          name: ["--skip-wait-for-delete-timeout"],
+          name: "--skip-wait-for-delete-timeout",
           description:
             "If pod DeletionTimestamp older than N seconds, skip waiting for the pod.  Seconds must be greater than 0 to skip.",
           args: {},
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           insertValue: "--timeout=",
           description:
             "The length of time to wait before giving up, zero means infinite",
@@ -2436,22 +2436,22 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         sharedOpts.record,
         {
-          name: ["--output-patch"],
+          name: "--output-patch",
           description: "Output the patch if the resource is edited.",
           args: {},
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
         {
-          name: ["--windows-line-endings"],
+          name: "--windows-line-endings",
           description: "Defaults to the line ending native to your platform.",
         },
       ],
@@ -2475,7 +2475,7 @@ const completionSpec: Fig.Spec = {
           args: sharedArgs.listContainersFromPod,
         },
         {
-          name: ["--pod-running-timeout"],
+          name: "--pod-running-timeout",
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
@@ -2496,12 +2496,12 @@ const completionSpec: Fig.Spec = {
       args: sharedArgs.resourcesArg,
       options: [
         {
-          name: ["--api-version"],
+          name: "--api-version",
           description: "Get different explanations for particular API version",
           args: {},
         },
         {
-          name: ["--recursive"],
+          name: "--recursive",
           description:
             "Print the fields of fields (Currently only 1 level deep)",
         },
@@ -2525,21 +2525,21 @@ const completionSpec: Fig.Spec = {
         sharedOpts.selector,
         sharedOpts.template,
         {
-          name: ["--cluster-ip"],
+          name: "--cluster-ip",
           insertValue: "--cluster-ip=",
           description:
             "ClusterIP to be assigned to the service. Leave empty to auto-allocate, or set to 'None' to create a headless service.",
           args: {},
         },
         {
-          name: ["--external-ip"],
+          name: "--external-ip",
           insertValue: "--external-ip=",
           description:
             "Additional external IP address (not managed by Kubernetes) to accept for the service. If this IP is routed to a node, the service can be accessed by this IP in addition to its generated service IP.",
           args: {},
         },
         {
-          name: ["--generator"],
+          name: "--generator",
           insertValue: "--generator=",
           description:
             "The name of the API generator to use. There are 2 generators: 'service/v1' and 'service/v2'. The only difference between them is that service port in v1 is named 'default', while it is left unnamed in v2. Default is 'service/v2'.",
@@ -2552,33 +2552,33 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--load-balancer-ip"],
+          name: "--load-balancer-ip",
           insertValue: "--load-balancer-ip=",
           description:
             "IP to assign to the LoadBalancer. If empty, an ephemeral IP will be created and used (cloud-provider specific).",
           args: {},
         },
         {
-          name: ["--name"],
+          name: "--name",
           description: "The name for the newly created object.",
           insertValue: "--name=",
           args: {},
         },
         {
-          name: ["--overrides"],
+          name: "--overrides",
           description:
             "An inline JSON override for the generated object. If this is non-empty, it is used to override the generated object. Requires that the object supply a valid apiVersion field.",
           args: {},
         },
         {
-          name: ["--port"],
+          name: "--port",
           insertValue: "--port=",
           description:
             "The port that the service should serve on. Copied from the resource being exposed, if unspecified",
           args: {},
         },
         {
-          name: ["--protocol"],
+          name: "--protocol",
           insertValue: "--protocol=",
           description:
             "The network protocol for the service to be created. Default is 'TCP'.",
@@ -2587,26 +2587,26 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
         {
-          name: ["--session-affinity"],
+          name: "--session-affinity",
           insertValue: "--session-affinity=",
           description:
             "If non-empty, set the session affinity for the service to this; legal values: 'None', 'ClientIP'",
           args: {},
         },
         {
-          name: ["--target-port"],
+          name: "--target-port",
           insertValue: "--target-port=",
           description:
             "Name or number for the port on the container that the service should direct traffic to. Optional.",
           args: {},
         },
         {
-          name: ["--type"],
+          name: "--type",
           insertValue: "--type=",
           description:
             "Type for this service: ClusterIP, NodePort, LoadBalancer, or ExternalName. Default is 'ClusterIP'.",
@@ -2643,14 +2643,14 @@ const completionSpec: Fig.Spec = {
             "If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.",
         },
         {
-          name: ["--chunk-size"],
+          name: "--chunk-size",
           insertValue: "--chunk-size=",
           description:
             "Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.",
           args: {},
         },
         {
-          name: ["--ignore-not-found"],
+          name: "--ignore-not-found",
           description:
             "If the requested object does not exist the command will return exit code 0.",
         },
@@ -2662,37 +2662,37 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--no-headers"],
+          name: "--no-headers",
           description:
             "When using the default or custom-column output format, don't print headers (default print headers).",
         },
         {
-          name: ["--output-watch-events"],
+          name: "--output-watch-events",
           description:
             "Output watch event objects when --watch or --watch-only is used. Existing objects are output as initial ADDED events.",
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           description:
             "Raw URI to request from the server.  Uses the transport specified by the kubeconfig file.",
         },
         {
-          name: ["--server-print"],
+          name: "--server-print",
           description:
             "If true, have the server return the appropriate table output. Supports extension APIs and CRDs.",
         },
         {
-          name: ["--show-kind"],
+          name: "--show-kind",
           description:
             "If present, list the resource type for the requested object(s).",
         },
         {
-          name: ["--show-labels"],
+          name: "--show-labels",
           description:
             "When printing, show all labels as the last column (default hide labels column)",
         },
         {
-          name: ["--sort-by"],
+          name: "--sort-by",
           insertValue: "--sort-by=",
           description:
             "If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.",
@@ -2704,7 +2704,7 @@ const completionSpec: Fig.Spec = {
             "After listing/getting the requested object, watch for changes. Uninitialized objects are excluded if no object name is provided.",
         },
         {
-          name: ["--watch-only"],
+          name: "--watch-only",
           description:
             "Watch for changes to the requested object(s), without listing/getting first.",
         },
@@ -2793,16 +2793,16 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         sharedOpts.resourceVersion,
         {
-          name: ["--all"],
+          name: "--all",
           description:
             "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
         },
         {
-          name: ["--list"],
+          name: "--list",
           description: "If true, display the labels for a given resource.",
         },
         {
-          name: ["--overwrite"],
+          name: "--overwrite",
           description:
             "If true, allow labels to be overwritten, otherwise reject label updates that overwrite existing labels.",
         },
@@ -2819,7 +2819,7 @@ const completionSpec: Fig.Spec = {
       options: [
         sharedOpts.selector,
         {
-          name: ["--all-containers"],
+          name: "--all-containers",
           description: "Get all containers' logs in the pod(s).",
         },
         {
@@ -2832,37 +2832,37 @@ const completionSpec: Fig.Spec = {
           description: "Specify if the logs should be streamed.",
         },
         {
-          name: ["--ignore-errors"],
+          name: "--ignore-errors",
           description:
             "If watching / following pod logs, allow for any errors that occur to be non-fatal",
         },
         {
-          name: ["--insecure-skip-tls-verify-backend"],
+          name: "--insecure-skip-tls-verify-backend",
           description:
             "Skip verifying the identity of the kubelet that logs are requested from.  In theory, an attacker could provide invalid log content back. You might want to use this if your kubelet serving certificates have expired.",
         },
         {
-          name: ["--limit-bytes"],
+          name: "--limit-bytes",
           insertValue: "--limit-bytes=",
           description: "Maximum bytes of logs to return. Defaults to no limit.",
           args: {},
         },
         {
-          name: ["--max-log-requests"],
+          name: "--max-log-requests",
           insertValue: "--max-log-requests=",
           description:
             "Specify maximum number of concurrent logs to follow when using by a selector. Defaults to 5.",
           args: {},
         },
         {
-          name: ["--pod-running-timeout"],
+          name: "--pod-running-timeout",
           insertValue: "--pod-running-timeout=",
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
         },
         {
-          name: ["--prefix"],
+          name: "--prefix",
           description:
             "Prefix each log line with the log source (pod name and container name)",
         },
@@ -2872,28 +2872,28 @@ const completionSpec: Fig.Spec = {
             "If true, print the logs for the previous instance of the container in a pod if it exists.",
         },
         {
-          name: ["--since"],
+          name: "--since",
           insertValue: "--since=",
           description:
             "Only return logs newer than a relative duration like 5s, 2m, or 3h. Defaults to all logs. Only one of since-time / since may be used.",
           args: {},
         },
         {
-          name: ["--since-time"],
+          name: "--since-time",
           insertValue: "--since-time=",
           description:
             "Only return logs after a specific date (RFC3339). Defaults to all logs. Only one of since-time / since may be used.",
           args: {},
         },
         {
-          name: ["--tail"],
+          name: "--tail",
           insertValue: "--tail=",
           description:
             "Lines of recent log file to display. Defaults to -1 with no selector, showing all log lines otherwise 10, if a selector is provided.",
           args: {},
         },
         {
-          name: ["--timestamps"],
+          name: "--timestamps",
           description: "Include timestamps on each line in the log output",
         },
       ],
@@ -2922,7 +2922,7 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--type"],
+          name: "--type",
           insertValue: "--type=",
           description:
             "The type of patch being provided; one of [json merge strategic]",
@@ -2950,13 +2950,13 @@ const completionSpec: Fig.Spec = {
       ],
       options: [
         {
-          name: ["--address"],
+          name: "--address",
           description:
             "Addresses to listen on (comma separated). Only accepts IP addresses or localhost as a value. When localhost is supplied, kubectl will try to bind on both 127.0.0.1 and ::1 and will fail if neither of these addresses are available to bind.",
           args: {},
         },
         {
-          name: ["--pod-running-timeout"],
+          name: "--pod-running-timeout",
           insertValue: "---pod-running-timeout=",
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
@@ -2970,38 +2970,38 @@ const completionSpec: Fig.Spec = {
         "Creates a proxy server or application-level gateway between localhost and the Kubernetes API Server. It also allows serving static content over specified HTTP path. All incoming data enters through one port and gets forwarded to the remote kubernetes API Server port, except for the path matching the static content path.",
       options: [
         {
-          name: ["--accept-hosts"],
+          name: "--accept-hosts",
           insertValue: "--accept-hosts=",
           description:
             "Regular expression for hosts that the proxy should accept.",
           args: {},
         },
         {
-          name: ["--accept-paths"],
+          name: "--accept-paths",
           insertValue: "--accept-paths=",
           description:
             "Regular expression for paths that the proxy should accept.",
           args: {},
         },
         {
-          name: ["--address"],
+          name: "--address",
           insertValue: "--address=",
           description: "The IP address on which to serve on.",
           args: {},
         },
         {
-          name: ["--api-prefix"],
+          name: "--api-prefix",
           insertValue: "--api-prefix=",
           description: "Prefix to serve the proxied API under.",
           args: {},
         },
         {
-          name: ["--disable-filter"],
+          name: "--disable-filter",
           description:
             "If true, disable request filtering in the proxy. This is dangerous, and can leave you vulnerable to XSRF attacks, when used with an accessible port.",
         },
         {
-          name: ["--keepalive"],
+          name: "--keepalive",
           insertValue: "--keepalive=",
           description:
             "keepalive specifies the keep-alive period for an active network connection. Set to 0 to disable keepalive.",
@@ -3015,14 +3015,14 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--reject-methods"],
+          name: "--reject-methods",
           insertValue: "--reject-methods=",
           description:
             "Regular expression for HTTP methods that the proxy should reject (example --reject-methods='POST,PUT,PATCH'). ",
           args: {},
         },
         {
-          name: ["--reject-paths"],
+          name: "--reject-paths",
           insertValue: "--reject-paths=",
           description:
             "Regular expression for paths that the proxy should reject. Paths specified here will be rejected even accepted by --accept-paths.",
@@ -3062,48 +3062,48 @@ const completionSpec: Fig.Spec = {
         sharedOpts.recursive,
         sharedOpts.template,
         {
-          name: ["--cascade"],
+          name: "--cascade",
           description:
             "If true, cascade the deletion of the resources managed by this resource (e.g. Pods created by a ReplicationController).  Default true.",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
         },
         {
-          name: ["--grace-period"],
+          name: "--grace-period",
           insertValue: "--grace-period=",
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
           args: {},
         },
         {
-          name: ["--raw"],
+          name: "--raw",
           insertValue: "--raw=",
           description:
             "Raw URI to PUT to the server.  Uses the transport specified by the kubeconfig file.",
           args: {},
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           insertValue: "--timeout=",
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
           args: {},
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
         {
-          name: ["--wait"],
+          name: "--wait",
           description:
             "If true, wait for resources to be gone before returning. This waits for finalizers.",
         },
@@ -3126,7 +3126,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.template,
             {
-              name: ["--revision"],
+              name: "--revision",
               insertValue: "--revision=",
               description:
                 "See the details, including podTemplate of the revision specified",
@@ -3183,14 +3183,14 @@ const completionSpec: Fig.Spec = {
             sharedOpts.kustomize,
             sharedOpts.recursive,
             {
-              name: ["--revision"],
+              name: "--revision",
               insertValue: "--revision=",
               description:
                 "Pin to a specific revision for showing its status. Defaults to 0 (last revision).",
               args: {},
             },
             {
-              name: ["--timeout"],
+              name: "--timeout",
               insertValue: "--timeout=",
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
@@ -3213,12 +3213,12 @@ const completionSpec: Fig.Spec = {
             sharedOpts.recursive,
             sharedOpts.dryRun,
             {
-              name: ["--to_revision"],
+              name: "--to_revision",
               insertValue: "--to_revision=",
               args: {},
             },
             {
-              name: ["--timeout"],
+              name: "--timeout",
               insertValue: "--timeout=",
               description:
                 "The length of time to wait before ending watch, zero means never. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
@@ -3244,18 +3244,18 @@ const completionSpec: Fig.Spec = {
         sharedOpts.record,
         sharedOpts.template,
         {
-          name: ["--annotations"],
+          name: "--annotations",
           insertValue: "--annotations=",
           description: "Annotations to apply to the pod.",
           args: {},
         },
         {
-          name: ["--attach"],
+          name: "--attach",
           description:
             "If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Default false, unless '-i/--stdin' is set, in which case the default is true. With '--restart=Never' the exit code of the container process is returned.",
         },
         {
-          name: ["--cascade"],
+          name: "--cascade",
           description:
             'Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Pods created by a ReplicationController). Defaults to background.',
           args: {
@@ -3263,49 +3263,49 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--command"],
+          name: "--command",
           description:
             "If true and extra arguments are present, use them as the 'command' field in the container, rather than the 'args' field which is the default.",
         },
         {
-          name: ["--env"],
+          name: "--env",
           insertValue: "--env=",
           description: "Environment variables to set in the container.",
           args: {},
         },
         {
-          name: ["--expose"],
+          name: "--expose",
           description:
             "If true, service is created for the container(s) which are run",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description:
             "If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some resources may result in inconsistency or data loss and requires confirmation.",
         },
         {
-          name: ["--grace-period"],
+          name: "--grace-period",
           insertValue: "--grace-period=",
           description:
             "Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can only be set to 0 when --force is true (force deletion).",
           args: {},
         },
         {
-          name: ["--hostport"],
+          name: "--hostport",
           insertValue: "--hostport=",
           description:
             "The host port mapping for the container port. To demonstrate a single-machine container.",
           args: {},
         },
         {
-          name: ["--image"],
+          name: "--image",
           insertValue: "--image=",
           description: "The image for the container to run.",
           args: {},
         },
         {
-          name: ["--image-pull-policy"],
-          insertValue: "--image-pull-policy",
+          name: "--image-pull-policy",
+
           description:
             "The image pull policy for the container. If left empty, this value will not be specified by the client and defaulted by the server",
           args: {},
@@ -3318,50 +3318,50 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--leave-stdin-open"],
+          name: "--leave-stdin-open",
           description:
             "If the pod is started in interactive mode or with stdin, leave stdin open after the first attach completes. By default, stdin will be closed after the first attach completes.",
         },
         {
-          name: ["--limits"],
+          name: "--limits",
           insertValue: "--limits=",
           description:
             "The resource requirement limits for this container.  For example, 'cpu=200m,memory=512Mi'.  Note that server side components may assign limits depending on the server configuration, such as limit ranges.",
           args: {},
         },
         {
-          name: ["--overrides"],
+          name: "--overrides",
           insertValue: "--overrides=",
           description:
             "An inline JSON override for the generated object. If this is non-empty, it is used to override the generated object. Requires that the object supply a valid apiVersion field.",
           args: {},
         },
         {
-          name: ["--pod-running-timeout"],
+          name: "--pod-running-timeout",
           insertValue: "--pod-running-timeout=",
           description:
             "The length of time (like 5s, 2m, or 3h, higher than zero) to wait until at least one pod is running",
           args: {},
         },
         {
-          name: ["--port"],
+          name: "--port",
           insertValue: "--port=",
           description: "The port that this container exposes.",
           args: {},
         },
         {
-          name: ["--quiet"],
+          name: "--quiet",
           description: "If true, suppress prompt messages.",
         },
         {
-          name: ["--requests"],
+          name: "--requests",
           insertValue: "--requests=",
           description:
             "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
           args: {},
         },
         {
-          name: ["--restart"],
+          name: "--restart",
           insertValue: "--restart=",
           description:
             "The restart policy for this Pod.  Legal values [Always, OnFailure, Never].  If set to 'Always' a deployment is created, if set to 'OnFailure' a job is created, if set to 'Never', a regular pod is created. For the latter two --replicas must be 1.  Default 'Always', for CronJobs `Never`.",
@@ -3370,17 +3370,17 @@ const completionSpec: Fig.Spec = {
           },
         },
         {
-          name: ["--rm"],
+          name: "--rm",
           description:
             "If true, delete resources created in this command for attached containers.",
         },
         {
-          name: ["--save-config"],
+          name: "--save-config",
           description:
             "If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.",
         },
         {
-          name: ["--serviceaccount"],
+          name: "--serviceaccount",
           insertValue: "--serviceaccount=",
           description: "Service account to set in the pod spec.",
           args: {},
@@ -3391,7 +3391,7 @@ const completionSpec: Fig.Spec = {
             "Keep stdin open on the container(s) in the pod, even if nothing is attached.",
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           insertValue: "--timeout=",
           description:
             "The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the object",
@@ -3402,7 +3402,7 @@ const completionSpec: Fig.Spec = {
           description: "Allocated a TTY for each container in the pod.",
         },
         {
-          name: ["--wait"],
+          name: "--wait",
           description:
             "If true, wait for resources to be gone before returning. This waits for finalizers.",
         },
@@ -3428,26 +3428,26 @@ const completionSpec: Fig.Spec = {
         sharedOpts.template,
         sharedOpts.dryRun,
         {
-          name: ["--all"],
+          name: "--all",
           description:
             "Select all resources in the namespace of the specified resource types",
         },
         {
-          name: ["--current-replicas"],
+          name: "--current-replicas",
           insertValue: "--currrent-replicas=",
           description:
             "Precondition for current size. Requires that the current size of the resource match this value in order to scale.",
           args: {},
         },
         {
-          name: ["--replicas"],
+          name: "--replicas",
           insertValue: "--replicas=",
           description: "The new desired number of replicas. Required.",
           args: {},
         },
         {
-          name: ["--timeout"],
-          insertValue: "--timeout",
+          name: "--timeout",
+
           description:
             "The length of time to wait before giving up on a scale operation, zero means don't wait. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).",
           args: {},
@@ -3480,7 +3480,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.selector,
             sharedOpts.template,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "If true, select all resources in the namespace of the specified resource types",
             },
@@ -3499,37 +3499,37 @@ const completionSpec: Fig.Spec = {
               args: {},
             },
             {
-              name: ["--from"],
+              name: "--from",
               insertValue: "--from=",
               description:
                 "The name of a resource from which to inject environment variables",
               args: {},
             },
             {
-              name: ["--keys"],
+              name: "--keys",
               insertValue: "--keys=",
               description:
                 "Comma-separated list of keys to import from specified resource",
               args: {},
             },
             {
-              name: ["--list"],
+              name: "--list",
               description:
                 "If true, display the environment and any changes in the standard format. this flag will removed when we have kubectl view env.",
             },
             {
-              name: ["--overwrite"],
+              name: "--overwrite",
               description:
                 "If true, allow environment to be overwritten, otherwise reject updates that overwrite existing environment.",
             },
             {
-              name: ["--prefix"],
-              insertValue: "--prefix",
+              name: "--prefix",
+
               description: "Prefix to append to variable names",
               args: {},
             },
             {
-              name: ["--resolve"],
+              name: "--resolve",
               description:
                 "If true, show secret or configmap references when listing variables",
             },
@@ -3558,7 +3558,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             sharedOpts.record,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
             },
@@ -3584,7 +3584,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             sharedOpts.record,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
             },
@@ -3596,14 +3596,14 @@ const completionSpec: Fig.Spec = {
               args: {},
             },
             {
-              name: ["--limits"],
+              name: "--limits",
               insertValue: "--limits=",
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
               args: {},
             },
             {
-              name: ["--requests"],
+              name: "--requests",
               insertValue: "--requests=",
               description:
                 "The resource requirement requests for this container.  For example, 'cpu=100m,memory=256Mi'.  Note that server side components may assign requests depending on the server configuration, such as limit ranges.",
@@ -3634,7 +3634,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.record,
             sharedOpts.resourceVersion,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "Select all resources in the namespace of the specified resource types",
               args: {},
@@ -3659,7 +3659,7 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             sharedOpts.record,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
             },
@@ -3685,18 +3685,18 @@ const completionSpec: Fig.Spec = {
             sharedOpts.template,
             sharedOpts.record,
             {
-              name: ["--all"],
+              name: "--all",
               description:
                 "Select all resources, including uninitialized ones, in the namespace of the specified resource types",
             },
             {
-              name: ["--group"],
+              name: "--group",
               insertValue: "--group=",
               description: "Groups to bind to the role",
               args: {},
             },
             {
-              name: ["--serviceaccount"],
+              name: "--serviceaccount",
               insertValue: "--serviceaccount=",
               description: "Service accounts to bind to the role",
               args: {},
@@ -3716,16 +3716,16 @@ const completionSpec: Fig.Spec = {
         sharedOpts.selector,
         sharedOpts.template,
         {
-          name: ["--all"],
+          name: "--all",
           description: "Select all nodes in the cluster",
         },
         {
-          name: ["--overwrite"],
+          name: "--overwrite",
           description:
             "If true, allow taints to be overwritten, otherwise reject taint updates that overwrite existing taints.",
         },
         {
-          name: ["--validate"],
+          name: "--validate",
           description:
             "If true, use a schema to validate the input before sending it",
         },
@@ -3748,13 +3748,13 @@ const completionSpec: Fig.Spec = {
       options: [
         sharedOpts.output,
         {
-          name: ["--client"],
+          name: "--client",
           description:
             "If true, shows client version only (no server required).",
           args: {},
         },
         {
-          name: ["--short"],
+          name: "--short",
           description: "If true, print just the version number.",
           args: {},
         },
@@ -3776,7 +3776,7 @@ const completionSpec: Fig.Spec = {
         sharedOpts.selector,
         sharedOpts.template,
         {
-          name: ["--all"],
+          name: "--all",
           description:
             "Select all resources in the namespace of the specified resource types",
         },
@@ -3787,14 +3787,14 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--for"],
+          name: "--for",
           insertValue: "--for=",
           description:
             "The condition to wait on: [delete|condition=condition-name].",
           args: {},
         },
         {
-          name: ["--timeout"],
+          name: "--timeout",
           insertValue: "--timeout=",
           description:
             "The length of time to wait before giving up.  Zero means check once and don't wait, negative means wait for a week.",

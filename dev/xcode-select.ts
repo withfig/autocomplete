@@ -20,7 +20,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--install"],
+      name: "--install",
       description: "Install Xcode command line tools",
     },
     {

@@ -343,12 +343,10 @@ const completionSpec: Fig.Spec = {
       name: "park",
       description:
         "Register the current working (or specified) directory with Valet.",
-      args: [
-        {
-          name: "path",
-          template: "folders",
-        },
-      ],
+      args: {
+        name: "path",
+        template: "folders",
+      },
       options: [
         global_option_help,
         global_option_quiet,

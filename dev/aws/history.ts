@@ -36,13 +36,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "command_id",
-          description:
-            "The ID of the CLI command to show. If this positional argument is omitted, it will show the last the CLI command ran.",
-        },
-      ],
+      args: {
+        name: "command_id",
+        description:
+          "The ID of the CLI command to show. If this positional argument is omitted, it will show the last the CLI command ran.",
+      },
     },
     {
       name: "list",

@@ -712,14 +712,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "create",
@@ -882,14 +880,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "delete",
@@ -1023,14 +1019,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -1164,14 +1158,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "get-iam-policy",
@@ -1350,14 +1342,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -1946,13 +1936,11 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "PUBLIC_KEY_ID",
-                      description: "The ID of the public key to remove.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "PUBLIC_KEY_ID",
+                    description: "The ID of the public key to remove.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "update",
@@ -2117,13 +2105,11 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "PUBLIC_KEY_ID",
-                      description: "The ID of the public key to update.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "PUBLIC_KEY_ID",
+                    description: "The ID of the public key to update.",
+                    isVariadic: false,
+                  },
                 },
               ],
               options: [
@@ -2409,14 +2395,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
             {
               name: "set-iam-policy",
@@ -2706,14 +2690,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ATTESTOR",
-                  description:
-                    "ID of the attestor or fully qualified identifier for the attestor.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ATTESTOR",
+                description:
+                  "ID of the attestor or fully qualified identifier for the attestor.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -3599,14 +3581,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_FILE",
-                  description:
-                    "The file containing the YAML-formatted policy description.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_FILE",
+                description:
+                  "The file containing the YAML-formatted policy description.",
+                isVariadic: false,
+              },
             },
             {
               name: "remove-iam-policy-binding",
@@ -3896,14 +3876,11 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "POLICY_FILE",
-                  description:
-                    "The JSON or YAML file containing the IAM policy.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "POLICY_FILE",
+                description: "The JSON or YAML file containing the IAM policy.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -5149,14 +5126,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description:
-                "The name of the cluster to create.\n+\nThe name may contain only lowercase alphanumerics and '-', must start with a\nletter and end with an alphanumeric, and must be no longer than 40\ncharacters.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description:
+              "The name of the cluster to create.\n+\nThe name may contain only lowercase alphanumerics and '-', must start with a\nletter and end with an alphanumeric, and must be no longer than 40\ncharacters.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -5314,13 +5289,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The names of the clusters to delete.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The names of the clusters to delete.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -5473,13 +5446,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of this cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of this cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "get-credentials",
@@ -5637,14 +5608,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description:
-                "Name of the cluster to get credentials for. Overrides the default *container/cluster* property value for this command invocation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description:
+              "Name of the cluster to get credentials for. Overrides the default *container/cluster* property value for this command invocation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6027,13 +5996,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of this cluster.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of this cluster.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -6714,13 +6681,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the cluster to update.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the cluster to update.",
+            isVariadic: false,
+          },
         },
         {
           name: "upgrade",
@@ -6913,13 +6878,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the cluster to upgrade.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the cluster to upgrade.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -7437,14 +7400,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "MEMBERSHIP",
-                  description:
-                    "ID of the membership or fully qualified identifier for the membership.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "MEMBERSHIP",
+                description:
+                  "ID of the membership or fully qualified identifier for the membership.",
+                isVariadic: false,
+              },
             },
             {
               name: "delete",
@@ -7592,14 +7553,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "MEMBERSHIP",
-                  description:
-                    "ID of the membership or fully qualified identifier for the membership.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "MEMBERSHIP",
+                description:
+                  "ID of the membership or fully qualified identifier for the membership.",
+                isVariadic: false,
+              },
             },
             {
               name: "describe",
@@ -7742,14 +7701,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "MEMBERSHIP",
-                  description:
-                    "ID of the membership or fully qualified identifier for the membership.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "MEMBERSHIP",
+                description:
+                  "ID of the membership or fully qualified identifier for the membership.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -8132,14 +8089,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "CLUSTER_NAME",
-                  description:
-                    "The membership name that you choose to uniquely represents the cluster\nbeing registered on the Hub.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "CLUSTER_NAME",
+                description:
+                  "The membership name that you choose to uniquely represents the cluster\nbeing registered on the Hub.",
+                isVariadic: false,
+              },
             },
             {
               name: "unregister",
@@ -8314,14 +8269,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "CLUSTER_NAME",
-                  description:
-                    "The membership name that corresponds to the cluster being\nunregistered. To get list of all the memberships on the Hub,\nconsider using the command: `{parent_command} list`.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "CLUSTER_NAME",
+                description:
+                  "The membership name that corresponds to the cluster being\nunregistered. To get list of all the memberships on the Hub,\nconsider using the command: `{parent_command} list`.",
+                isVariadic: false,
+              },
             },
             {
               name: "update",
@@ -8494,14 +8447,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "MEMBERSHIP",
-                  description:
-                    "ID of the membership or fully qualified identifier for the membership.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "MEMBERSHIP",
+                description:
+                  "ID of the membership or fully qualified identifier for the membership.",
+                isVariadic: false,
+              },
             },
           ],
           options: [
@@ -9051,14 +9002,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_NAME",
-              description:
-                "The fully qualified name(s) of image(s) to delete. The name(s) should be formatted as *.gcr.io/PROJECT_ID/IMAGE_PATH@sha256:DIGEST or *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "IMAGE_NAME",
+            description:
+              "The fully qualified name(s) of image(s) to delete. The name(s) should be formatted as *.gcr.io/PROJECT_ID/IMAGE_PATH@sha256:DIGEST or *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -9192,14 +9141,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_NAME",
-              description:
-                "The fully qualified name(s) of image(s) to describe. The name(s) should be formatted as *.gcr.io/PROJECT_ID/IMAGE_PATH@sha256:DIGEST or *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_NAME",
+            description:
+              "The fully qualified name(s) of image(s) to describe. The name(s) should be formatted as *.gcr.io/PROJECT_ID/IMAGE_PATH@sha256:DIGEST or *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -9561,14 +9508,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_NAME",
-              description:
-                "The name of the image to list tags for. The name format should be *.gcr.io/PROJECT_ID/IMAGE_PATH.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IMAGE_NAME",
+            description:
+              "The name of the image to list tags for. The name format should be *.gcr.io/PROJECT_ID/IMAGE_PATH.",
+            isVariadic: false,
+          },
         },
         {
           name: "untag",
@@ -9702,14 +9647,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IMAGE_NAME",
-              description:
-                "The fully qualified name(s) of image(s) to untag. The name(s) should be formatted as  *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "IMAGE_NAME",
+            description:
+              "The fully qualified name(s) of image(s) to untag. The name(s) should be formatted as  *.gcr.io/PROJECT_ID/IMAGE_PATH:TAG.",
+            isVariadic: true,
+          },
         },
       ],
       options: [
@@ -10322,13 +10265,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the node pool to create.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the node pool to create.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -10496,13 +10437,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the node pool to delete.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the node pool to delete.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -10665,13 +10604,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the node pool.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the node pool.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -11046,13 +10983,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the node pool to rollback.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the node pool to rollback.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -11296,13 +11231,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "NAME",
-              description: "The name of the node pool.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "NAME",
+            description: "The name of the node pool.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -11609,13 +11542,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION_ID",
-              description: "The operation id to look up.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION_ID",
+            description: "The operation id to look up.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -11960,13 +11891,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION_ID",
-              description: "The operation id to poll.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION_ID",
+            description: "The operation id to poll.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

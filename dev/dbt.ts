@@ -330,7 +330,7 @@ const completionSpec: Fig.Spec = {
       description: "Redirect debug logs to standard out",
     },
     {
-      name: ["--log-format"],
+      name: "--log-format",
       description: "Specify how dbt's logs should be formatted",
       args: {
         name: "log format",

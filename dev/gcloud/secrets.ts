@@ -175,14 +175,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "create",
@@ -356,14 +354,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "delete",
@@ -497,14 +493,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -638,14 +632,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "get-iam-policy",
@@ -819,14 +811,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -1142,14 +1132,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "LOCATION",
-              description:
-                "ID of the location or fully qualified identifier for the location.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "LOCATION",
+            description:
+              "ID of the location or fully qualified identifier for the location.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1637,14 +1625,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "set-iam-policy",
@@ -1950,14 +1936,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECRET",
-          description:
-            "ID of the secret or fully qualified identifier for the secret.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECRET",
+        description:
+          "ID of the secret or fully qualified identifier for the secret.",
+        isVariadic: false,
+      },
     },
     {
       name: "versions",
@@ -2104,14 +2088,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "add",
@@ -2256,14 +2238,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SECRET",
-              description:
-                "ID of the secret or fully qualified identifier for the secret.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SECRET",
+            description:
+              "ID of the secret or fully qualified identifier for the secret.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2406,14 +2386,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "destroy",
@@ -2556,14 +2534,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "disable",
@@ -2706,14 +2682,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "enable",
@@ -2856,14 +2830,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description:
-                "ID of the version or fully qualified identifier for the version.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description:
+              "ID of the version or fully qualified identifier for the version.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -3042,14 +3014,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SECRET",
-              description:
-                "ID of the secret or fully qualified identifier for the secret.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SECRET",
+            description:
+              "ID of the secret or fully qualified identifier for the secret.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

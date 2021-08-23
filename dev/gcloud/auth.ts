@@ -305,13 +305,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT",
-          description: "E-mail address of the service account.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description: "E-mail address of the service account.",
+        isVariadic: false,
+      },
     },
     {
       name: "application-default",
@@ -887,14 +885,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "QUOTA_PROJECT_ID",
-              description:
-                "Quota project ID to add to application default credentials. If a quota project already exists, it will be updated.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "QUOTA_PROJECT_ID",
+            description:
+              "Quota project ID to add to application default credentials. If a quota project already exists, it will be updated.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1158,14 +1154,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "REGISTRIES",
-          description:
-            "The comma-separated list of registries to configure the credential helper for.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "REGISTRIES",
+        description:
+          "The comma-separated list of registries to configure the credential helper for.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -1299,13 +1293,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT_NAME",
-          description: "Name of the account to describe",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT_NAME",
+        description: "Name of the account to describe",
+        isVariadic: false,
+      },
     },
     {
       name: "docker-helper",
@@ -1440,13 +1432,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "METHOD",
-          description: "The docker credential helper method.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "METHOD",
+        description: "The docker credential helper method.",
+        isVariadic: false,
+      },
     },
     {
       name: "git-helper",
@@ -1586,13 +1576,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "METHOD",
-          description: "The git credential helper method.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "METHOD",
+        description: "The git credential helper method.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -1938,13 +1926,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT",
-          description: "User account used for authorization.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description: "User account used for authorization.",
+        isVariadic: false,
+      },
     },
     {
       name: "print-access-token",
@@ -2078,14 +2064,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT",
-          description:
-            "Account to get the access token for. If not specified, the current active account will be used.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description:
+          "Account to get the access token for. If not specified, the current active account will be used.",
+        isVariadic: false,
+      },
     },
     {
       name: "print-identity-token",
@@ -2249,14 +2233,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT",
-          description:
-            "Account to print the identity token for. If not specified, the current active account will be used.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description:
+          "Account to print the identity token for. If not specified, the current active account will be used.",
+        isVariadic: false,
+      },
     },
     {
       name: "print-refresh-token",
@@ -2391,14 +2373,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNT",
-          description:
-            "The account to get the refresh token for. Leave empty for the active account.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNT",
+        description:
+          "The account to get the refresh token for. Leave empty for the active account.",
+        isVariadic: false,
+      },
     },
     {
       name: "revoke",
@@ -2536,13 +2516,11 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "ACCOUNTS",
-          description: "Accounts whose credentials are to be revoked.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "ACCOUNTS",
+        description: "Accounts whose credentials are to be revoked.",
+        isVariadic: false,
+      },
     },
   ],
   options: [

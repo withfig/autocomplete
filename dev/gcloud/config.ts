@@ -288,13 +288,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIGURATION_NAME",
-              description: "Name of the configuration to activate",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONFIGURATION_NAME",
+            description: "Name of the configuration to activate",
+            isVariadic: false,
+          },
         },
         {
           name: "create",
@@ -433,13 +431,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIGURATION_NAME",
-              description: "Name of the configuration to create",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONFIGURATION_NAME",
+            description: "Name of the configuration to create",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -573,14 +569,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIGURATION_NAMES",
-              description:
-                "Name of the configuration to delete. Cannot be currently active configuration.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "CONFIGURATION_NAMES",
+            description:
+              "Name of the configuration to delete. Cannot be currently active configuration.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -719,13 +713,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONFIGURATION_NAME",
-              description: "Name of the configuration to describe",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONFIGURATION_NAME",
+            description: "Name of the configuration to describe",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1152,14 +1144,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECTION/PROPERTY",
-          description:
-            "The property to be fetched. Note that `SECTION/` is optional while referring to properties in the core section.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECTION/PROPERTY",
+        description:
+          "The property to be fetched. Note that `SECTION/` is optional while referring to properties in the core section.",
+        isVariadic: false,
+      },
     },
     {
       name: "list",
@@ -1329,14 +1319,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECTION/PROPERTY",
-          description:
-            "Property to be listed. Note that SECTION/ is optional while referring to properties in the core section.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECTION/PROPERTY",
+        description:
+          "Property to be listed. Note that SECTION/ is optional while referring to properties in the core section.",
+        isVariadic: false,
+      },
     },
     {
       name: "set",
@@ -1626,14 +1614,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "SECTION/PROPERTY",
-          description:
-            "The property to be unset. Note that SECTION/ is optional while referring to properties in the core section.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "SECTION/PROPERTY",
+        description:
+          "The property to be unset. Note that SECTION/ is optional while referring to properties in the core section.",
+        isVariadic: false,
+      },
     },
   ],
   options: [

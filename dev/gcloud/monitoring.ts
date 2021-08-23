@@ -291,14 +291,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DASHBOARD",
-              description:
-                "ID of the dashboard or fully qualified identifier for the dashboard.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DASHBOARD",
+            description:
+              "ID of the dashboard or fully qualified identifier for the dashboard.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -432,14 +430,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DASHBOARD",
-              description:
-                "ID of the dashboard or fully qualified identifier for the dashboard.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DASHBOARD",
+            description:
+              "ID of the dashboard or fully qualified identifier for the dashboard.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -771,14 +767,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DASHBOARD",
-              description:
-                "ID of the dashboard or fully qualified identifier for the dashboard.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DASHBOARD",
+            description:
+              "ID of the dashboard or fully qualified identifier for the dashboard.",
+            isVariadic: false,
+          },
         },
       ],
       options: [

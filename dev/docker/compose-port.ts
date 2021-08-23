@@ -14,7 +14,7 @@ const completionSpec: Fig.Spec = {
   description: "Print the public port for a port binding.",
   options: [
     {
-      name: ["--protocol"],
+      name: "--protocol",
       description: "tcp or udp [default: tcp]",
       args: {
         name: "Protocol",
@@ -22,7 +22,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--index"],
+      name: "--index",
       description:
         "index of the container if there are multiple instances of a service [default: 1]",
       args: {

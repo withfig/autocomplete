@@ -7,21 +7,21 @@ const completionSpec: Fig.Spec = {
       description: "Show library version and usage prompt",
     },
     {
-      name: ["-b"],
+      name: "-b",
       description: "Starts top in Batch mode",
       args: {
         name: "operaion",
       },
     },
     {
-      name: ["-c"],
+      name: "-c",
       description: "Starts top with last remembered c state reversed",
       args: {
         name: "toggle",
       },
     },
     {
-      name: ["-i"],
+      name: "-i",
       description:
         "Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that are idled or zombied will not be displayed.",
       args: {
@@ -29,14 +29,14 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["-s"],
+      name: "-s",
       description: "Starts top with secure mode forced",
       args: {
         name: "delay",
       },
     },
     {
-      name: ["-pid"],
+      name: "-pid",
       description: "Monitor pids",
       args: {
         name: "process ids",

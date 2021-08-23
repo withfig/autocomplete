@@ -148,13 +148,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "KEY-ID",
-              description: "The DNS key identifier.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "KEY-ID",
+            description: "The DNS key identifier.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -765,13 +763,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ZONE_NAME",
-              description: "The name of the managed-zone to be created.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ZONE_NAME",
+            description: "The name of the managed-zone to be created.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -905,13 +901,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ZONE_NAME",
-              description: "The name of the empty managed-zone to be deleted.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ZONE_NAME",
+            description: "The name of the empty managed-zone to be deleted.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1045,14 +1039,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ZONE",
-              description:
-                "ID of the zone or fully qualified identifier for the zone.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ZONE",
+            description:
+              "ID of the zone or fully qualified identifier for the zone.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1532,14 +1524,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ZONE",
-              description:
-                "ID of the zone or fully qualified identifier for the zone.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ZONE",
+            description:
+              "ID of the zone or fully qualified identifier for the zone.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1817,13 +1807,11 @@ const completionSpec: Fig.Spec = {
               priority: 100,
             },
           ],
-          args: [
-            {
-              name: "OPERATION_ID",
-              description: "The id of the operation to display.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION_ID",
+            description: "The id of the operation to display.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2316,14 +2304,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "POLICY",
-              description:
-                "ID of the policy or fully qualified identifier for the policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "POLICY",
+            description:
+              "ID of the policy or fully qualified identifier for the policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -2457,14 +2443,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "POLICY",
-              description:
-                "ID of the policy or fully qualified identifier for the policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "POLICY",
+            description:
+              "ID of the policy or fully qualified identifier for the policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2598,14 +2582,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "POLICY",
-              description:
-                "ID of the policy or fully qualified identifier for the policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "POLICY",
+            description:
+              "ID of the policy or fully qualified identifier for the policy.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2966,14 +2948,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "POLICY",
-              description:
-                "ID of the policy or fully qualified identifier for the policy.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "POLICY",
+            description:
+              "ID of the policy or fully qualified identifier for the policy.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -3241,14 +3221,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PROJECT_ID",
-              description:
-                "The identifier for the project you want DNS related info for.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PROJECT_ID",
+            description:
+              "The identifier for the project you want DNS related info for.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -3532,13 +3510,11 @@ const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [
-                {
-                  name: "CHANGE_ID",
-                  description: "The ID of the change you want details for.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "CHANGE_ID",
+                description: "The ID of the change you want details for.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",
@@ -4018,13 +3994,11 @@ const completionSpec: Fig.Spec = {
                 "Indicates that records-file should be in the zone file format. When using this flag, expect the record-set to be exported to a BIND zone formatted file. If you omit this flag, the record-set is exported into a YAML formatted records file. Note, this format flag determines the format of the output recorded in the records-file; it is different from the global `--format` flag which affects console output alone.",
             },
           ],
-          args: [
-            {
-              name: "RECORDS_FILE",
-              description: "File to which record-sets should be exported.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "RECORDS_FILE",
+            description: "File to which record-sets should be exported.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -4184,14 +4158,12 @@ const completionSpec: Fig.Spec = {
                 "Indicates that the input records-file is in BIND zone format. If omitted, indicates that the records-file is in YAML format.",
             },
           ],
-          args: [
-            {
-              name: "RECORDS_FILE",
-              description:
-                "File from which record-sets should be imported. For examples of YAML-formatted and BIND zone-formatted records files, refer to https://cloud.google.com/dns/records#importing_and_exporting_record_sets",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "RECORDS_FILE",
+            description:
+              "File from which record-sets should be imported. For examples of YAML-formatted and BIND zone-formatted records files, refer to https://cloud.google.com/dns/records#importing_and_exporting_record_sets",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4744,14 +4716,12 @@ const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [
-                {
-                  name: "DATA",
-                  description:
-                    "DNS data (Address/CNAME/MX info, etc.) of the record-set to add. This is RDATA; the format of this information varies depending on the type and class of the resource record.",
-                  isVariadic: true,
-                },
-              ],
+              args: {
+                name: "DATA",
+                description:
+                  "DNS data (Address/CNAME/MX info, etc.) of the record-set to add. This is RDATA; the format of this information varies depending on the type and class of the resource record.",
+                isVariadic: true,
+              },
             },
             {
               name: "describe",
@@ -5289,13 +5259,11 @@ const completionSpec: Fig.Spec = {
                   priority: 100,
                 },
               ],
-              args: [
-                {
-                  name: "DATA",
-                  description: "DNS name of the record-set to be removed.",
-                  isVariadic: true,
-                },
-              ],
+              args: {
+                name: "DATA",
+                description: "DNS name of the record-set to be removed.",
+                isVariadic: true,
+              },
             },
             {
               name: "start",

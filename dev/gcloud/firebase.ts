@@ -146,14 +146,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "LOCALE",
-                      description:
-                        "The locale to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "LOCALE",
+                    description:
+                      "The locale to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -598,14 +596,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "MODEL_ID",
-                      description:
-                        "ID of the model to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "MODEL_ID",
+                    description:
+                      "ID of the model to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -1381,14 +1377,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ARGSPEC",
-                  description:
-                    "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ARGSPEC",
+                description:
+                  "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples.",
+                isVariadic: false,
+              },
             },
             {
               name: "versions",
@@ -1526,14 +1520,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "VERSION_ID",
-                      description:
-                        "The version ID to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "VERSION_ID",
+                    description:
+                      "The version ID to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -2111,14 +2103,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "LOCALE",
-                      description:
-                        "The locale to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "LOCALE",
+                    description:
+                      "The locale to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -2563,14 +2553,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "MODEL_ID",
-                      description:
-                        "ID of the model to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "MODEL_ID",
+                    description:
+                      "ID of the model to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -3166,14 +3154,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "ARGSPEC",
-                  description:
-                    "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "ARGSPEC",
+                description:
+                  "An ARG_FILE:ARG_GROUP_NAME pair, where ARG_FILE is the path to a file containing groups of test arguments in yaml format, and ARG_GROUP_NAME is the particular yaml object holding a group of arg:value pairs to use. Run *$ gcloud topic arg-files* for more information and examples.",
+                isVariadic: false,
+              },
             },
             {
               name: "versions",
@@ -3311,14 +3297,12 @@ const completionSpec: Fig.Spec = {
                       },
                     },
                   ],
-                  args: [
-                    {
-                      name: "VERSION_ID",
-                      description:
-                        "The version ID to describe, found using $ {parent_command} list.",
-                      isVariadic: false,
-                    },
-                  ],
+                  args: {
+                    name: "VERSION_ID",
+                    description:
+                      "The version ID to describe, found using $ {parent_command} list.",
+                    isVariadic: false,
+                  },
                 },
                 {
                   name: "list",
@@ -3891,14 +3875,12 @@ const completionSpec: Fig.Spec = {
                   },
                 },
               ],
-              args: [
-                {
-                  name: "PROFILE_ID",
-                  description:
-                    "The network profile to describe, found using $ {parent_command} list.",
-                  isVariadic: false,
-                },
-              ],
+              args: {
+                name: "PROFILE_ID",
+                description:
+                  "The network profile to describe, found using $ {parent_command} list.",
+                isVariadic: false,
+              },
             },
             {
               name: "list",

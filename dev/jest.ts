@@ -13,20 +13,20 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--cache"],
+      name: "--cache",
       description: "Whether to use the cache",
     },
     {
-      name: ["--no-cache"],
+      name: "--no-cache",
       description: "Whether to use the cache",
     },
     {
-      name: ["--changedFilesWithAncestor"],
+      name: "--changedFilesWithAncestor",
       description:
         "Runs tests related to the current changes and the changes made in the last commit",
     },
     {
-      name: ["--changedSince"],
+      name: "--changedSince",
       description:
         "Runs tests related to the changes since the provided branch or commit hash",
       args: {
@@ -34,12 +34,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--ci"],
+      name: "--ci",
       description:
         "Instead of the regular behavior of storing a new snapshot automatically, will fail the test and require Jest to be run with --updateSnapshot",
     },
     {
-      name: ["--clearCache"],
+      name: "--clearCache",
       description:
         "Deletes the Jest cache directory and then exits without running tests",
       args: {
@@ -47,7 +47,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--collectCoverageFrom"],
+      name: "--collectCoverageFrom",
       displayName: "--collectCoverageFrom=<glob>",
       insertValue: "--collectCoverageFrom=",
       description:
@@ -57,7 +57,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--colors"],
+      name: "--colors",
       description:
         "Forces test results output highlighting even if stdout is not a TTY",
     },
@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverage"],
+      name: "--coverage",
       displayName: "--coverage=<boolean>",
       insertValue: "--coverage=",
       description: "Enable or disable coverage, disabled by default",
@@ -90,7 +90,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--coverageProvider"],
+      name: "--coverageProvider",
       displayName: "--coverageProvider=<provider>",
       insertValue: "--coverageProvider=",
       description:
@@ -101,16 +101,16 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--debug"],
+      name: "--debug",
       description: "Print debugging info about your Jest config",
     },
     {
-      name: ["--detectOpenHandles"],
+      name: "--detectOpenHandles",
       description:
         "Attempt to collect and print open handles preventing Jest from exiting cleanly",
     },
     {
-      name: ["--env"],
+      name: "--env",
       displayName: "--env=<environment>",
       insertValue: "--env=",
       description: "The test environment used for all tests",
@@ -121,7 +121,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--errorOnDeprecated"],
+      name: "--errorOnDeprecated",
       description: "Make calling deprecated APIs throw helpful error messages",
     },
     {
@@ -130,7 +130,7 @@ const completionSpec: Fig.Spec = {
         "Use this flag to show full diffs and errors instead of a patch",
     },
     {
-      name: ["--findRelatedTests"],
+      name: "--findRelatedTests",
       displayName: "--findRelatedTests <path1> ... <pathN>",
       description:
         "Find and run the tests that cover a space separated list of source files that were passed in as arguments",
@@ -139,28 +139,28 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--forceExit"],
+      name: "--forceExit",
       description: "Force Jest to exit after all tests have completed running",
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "Show the help information",
     },
     {
-      name: ["--init"],
+      name: "--init",
       description: "Generate a basic configuration file",
     },
     {
-      name: ["--injectGlobals"],
+      name: "--injectGlobals",
       description:
         "Insert Jest's globals (expect, test, describe, beforeEach etc.) into the global environment",
     },
     {
-      name: ["--json"],
+      name: "--json",
       description: "Prints the test results in JSON",
     },
     {
-      name: ["--outputFile"],
+      name: "--outputFile",
       displayName: "--outputFile=<filename>",
       insertValue: "--outputFile=",
       description:
@@ -170,21 +170,21 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--lastCommit"],
+      name: "--lastCommit",
       description:
         "Run all tests affected by file changes in the last commit made",
     },
     {
-      name: ["--listTests"],
+      name: "--listTests",
       description:
         "Lists all tests as JSON that Jest will run given the arguments, and exits",
     },
     {
-      name: ["--logHeapUsage"],
+      name: "--logHeapUsage",
       description: "Logs the heap usage after every test",
     },
     {
-      name: ["--maxConcurrency"],
+      name: "--maxConcurrency",
       displayName: "--maxConcurrency=<num>",
       insertValue: "--maxConcurrency=",
       description:
@@ -204,11 +204,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--noStackTrace"],
+      name: "--noStackTrace",
       description: "Disables stack trace in test results output",
     },
     {
-      name: ["--notify"],
+      name: "--notify",
       description: "Activates notifications for test results",
     },
     {
@@ -217,11 +217,11 @@ const completionSpec: Fig.Spec = {
         "Attempts to identify which tests to run based on which files have changed in the current repository",
     },
     {
-      name: ["--passWithNoTests"],
+      name: "--passWithNoTests",
       description: "Allows the test suite to pass when no files are found",
     },
     {
-      name: ["--projects"],
+      name: "--projects",
       displayName: "--projects <path1> ... <pathN>",
       description:
         "Run tests from one or more projects, found in the specified paths; also takes path globs",
@@ -232,7 +232,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--reporters"],
+      name: "--reporters",
       displayName: "--reporters=<reporter>",
       insertValue: "--reporters=",
       description: "Run tests with specified reporters",
@@ -241,7 +241,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--roots"],
+      name: "--roots",
       displayName: "--roots <path1> ... <pathN>",
       description:
         "A list of paths to directories that Jest should use to search for files in",
@@ -257,7 +257,7 @@ const completionSpec: Fig.Spec = {
         "Run all tests serially in the current process, rather than creating a worker pool of child processes that run tests",
     },
     {
-      name: ["--selectProjects"],
+      name: "--selectProjects",
       displayName: "--selectProjects <project1> ... <projectN>",
       description: "Run only the tests of the specified projects",
       args: {
@@ -265,12 +265,12 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--runTestsByPath"],
+      name: "--runTestsByPath",
       description:
         "Run only the tests that were specified with their exact paths",
     },
     {
-      name: ["--setupTestFrameworkScriptFile"],
+      name: "--setupTestFrameworkScriptFile",
       displayName: "--setupTestFrameworkScriptFile=<file>",
       insertValue: "--setupTestFrameworkScriptFile=",
       description:
@@ -281,11 +281,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--showConfig"],
+      name: "--showConfig",
       description: "Print your Jest config and then exits",
     },
     {
-      name: ["--silent"],
+      name: "--silent",
       description: "Prevent tests from printing messages through the console",
     },
     {
@@ -298,11 +298,11 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--testLocationInResults"],
+      name: "--testLocationInResults",
       description: "Adds a location field to test results",
     },
     {
-      name: ["--testPathPattern"],
+      name: "--testPathPattern",
       displayName: "--testPathPattern=<regex>",
       insertValue: "--testPathPattern=",
       description:
@@ -312,7 +312,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--testPathIgnorePatterns"],
+      name: "--testPathIgnorePatterns",
       displayName: "--testPathIgnorePatterns=[array]",
       insertValue: "--testPathIgnorePatterns=",
       description:
@@ -322,7 +322,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--testRunner"],
+      name: "--testRunner",
       displayName: "--testRunner=<path>",
       insertValue: "--testRunner=",
       description: "Lets you specify a custom test runner",
@@ -332,7 +332,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--testSequencer"],
+      name: "--testSequencer",
       displayName: "--testSequencer=<path>",
       insertValue: "--testSequencer=",
       description: "Lets you specify a custom test sequencer",
@@ -342,7 +342,7 @@ const completionSpec: Fig.Spec = {
       },
     },
     {
-      name: ["--testTimeout"],
+      name: "--testTimeout",
       displayName: "--testTimeout=<num>",
       insertValue: "--testTimeout=",
       description: "Default timeout of a test in milliseconds",
@@ -356,11 +356,11 @@ const completionSpec: Fig.Spec = {
         "Use this flag to re-record every snapshot that fails during this test run",
     },
     {
-      name: ["--useStderr"],
+      name: "--useStderr",
       description: "Divert all output to stderr",
     },
     {
-      name: ["--verbose"],
+      name: "--verbose",
       description:
         "Display individual test results with the test suite hierarchy",
     },
@@ -369,21 +369,21 @@ const completionSpec: Fig.Spec = {
       description: "Print the version and exit",
     },
     {
-      name: ["--watch"],
+      name: "--watch",
       description:
         "Watch files for changes and rerun tests related to changed files",
     },
     {
-      name: ["--watchAll"],
+      name: "--watchAll",
       description:
         "Watch files for changes and rerun all tests when something changes",
     },
     {
-      name: ["--watchman"],
+      name: "--watchman",
       description: "Whether to use watchman for file crawling",
     },
     {
-      name: ["--no-watchman"],
+      name: "--no-watchman",
       description: "Whether to use watchman for file crawling",
     },
   ],

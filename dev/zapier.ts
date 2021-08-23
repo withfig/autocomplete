@@ -85,13 +85,11 @@ const completionSpec: Fig.Spec = {
       name: "delete:version",
       description: "Delete a specific version of your integration.",
       options: [debugFlag],
-      args: [
-        {
-          name: "version",
-          description:
-            "Specify the version to delete. It must have no users or Zaps.",
-        },
-      ],
+      args: {
+        name: "version",
+        description:
+          "Specify the version to delete. It must have no users or Zaps.",
+      },
       isDangerous: true,
     },
     {
@@ -120,12 +118,10 @@ const completionSpec: Fig.Spec = {
       name: "env:get",
       description: "Get environment variables for a version.",
       options: [formatFlag],
-      args: [
-        {
-          name: "version",
-          description: "The version to get the environment for.",
-        },
-      ],
+      args: {
+        name: "version",
+        description: "The version to get the environment for.",
+      },
     },
     {
       name: "env:set",
@@ -197,14 +193,12 @@ const completionSpec: Fig.Spec = {
         },
         debugFlag,
       ],
-      args: [
-        {
-          name: "path",
-          description:
-            "Where to create the new integration. If the directory doesn't exist, it will be created. If the directory isn't empty, we'll ask for confirmation",
-          template: "folders",
-        },
-      ],
+      args: {
+        name: "path",
+        description:
+          "Where to create the new integration. If the directory doesn't exist, it will be created. If the directory isn't empty, we'll ask for confirmation",
+        template: "folders",
+      },
     },
     {
       name: ["integrations", "apps"],
@@ -319,12 +313,10 @@ const completionSpec: Fig.Spec = {
       name: "promote",
       description: "Promote a specific version to public access.",
       options: [debugFlag],
-      args: [
-        {
-          name: "version",
-          description: "The version you want promote.",
-        },
-      ],
+      args: {
+        name: "version",
+        description: "The version you want promote.",
+      },
     },
     {
       name: "push",
@@ -342,14 +334,12 @@ const completionSpec: Fig.Spec = {
       name: "register",
       description: "Register a new integration in your account.",
       options: [debugFlag],
-      args: [
-        {
-          name: "title",
-          description:
-            "Your integrations's public title. Asked interactively if not present.",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "title",
+        description:
+          "Your integrations's public title. Asked interactively if not present.",
+        isOptional: true,
+      },
     },
     {
       name: "scaffold",
@@ -514,12 +504,10 @@ const completionSpec: Fig.Spec = {
         },
         debugFlag,
       ],
-      args: [
-        {
-          name: "email",
-          description: "The user to be removed.",
-        },
-      ],
+      args: {
+        name: "email",
+        description: "The user to be removed.",
+      },
       isDangerous: true,
     },
     {
@@ -550,13 +538,11 @@ const completionSpec: Fig.Spec = {
           description: "see all commands in CLI",
         },
       ],
-      args: [
-        {
-          name: "command",
-          description: "command to show help for",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "command",
+        description: "command to show help for",
+        isOptional: true,
+      },
     },
   ],
 };

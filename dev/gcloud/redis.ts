@@ -269,14 +269,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -425,14 +423,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -576,14 +572,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "export",
@@ -907,14 +901,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "import",
@@ -1478,14 +1470,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
         {
           name: "upgrade",
@@ -1646,14 +1636,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "ID of the instance or fully qualified identifier for the instance.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "ID of the instance or fully qualified identifier for the instance.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1931,14 +1919,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -2082,14 +2068,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2545,14 +2529,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "REGION",
-              description:
-                "ID of the region or fully qualified identifier for the region.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "REGION",
+            description:
+              "ID of the region or fully qualified identifier for the region.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

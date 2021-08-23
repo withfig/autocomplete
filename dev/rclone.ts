@@ -1,13 +1,10 @@
 // TODO: dynamically suggest paths
 const remote: Fig.Arg = {
   name: "remote:",
-  generators: [
-    {
-      script: "rclone listremotes",
-      postProcess: (list) =>
-        list.split("\n").map((remote) => ({ name: remote })),
-    },
-  ],
+  generators: {
+    script: "rclone listremotes",
+    postProcess: (list) => list.split("\n").map((remote) => ({ name: remote })),
+  },
 };
 const hashes = [
   "MD5",
@@ -95,7 +92,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "about",
       description: "Get quota information from the remote.",
-      args: [remote],
+      args: remote,
       options: [
         {
           name: "--full",
@@ -130,7 +127,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "cat",
       description: "Concatenates any files and sends them to stdout.",
-      args: [remotePath],
+      args: remotePath,
       options: [
         {
           name: "--discard",
@@ -139,38 +136,30 @@ const completionSpec: Fig.Spec = {
         {
           name: "--count",
           description: "Only print N characters. (default -1)",
-          args: [
-            {
-              name: "int",
-            },
-          ],
+          args: {
+            name: "int",
+          },
         },
         {
           name: "--head",
           description: "Only print the first N characters.",
-          args: [
-            {
-              name: "int",
-            },
-          ],
+          args: {
+            name: "int",
+          },
         },
         {
           name: "--offset",
           description: "Start printing at offset N (or from end if -ve)",
-          args: [
-            {
-              name: "int",
-            },
-          ],
+          args: {
+            name: "int",
+          },
         },
         {
           name: "--tail",
           description: "Only print the last N characters.",
-          args: [
-            {
-              name: "int",
-            },
-          ],
+          args: {
+            name: "int",
+          },
         },
       ],
     },
@@ -189,7 +178,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "cleanup",
       description: "Clean up the remote if possible.",
-      args: [remotePath],
+      args: remotePath,
     },
     {
       name: "config",
@@ -258,7 +247,7 @@ const completionSpec: Fig.Spec = {
       name: "dedupe",
       description:
         "Interactively find duplicate filenames and delete/rename them.",
-      args: [remotePath],
+      args: remotePath,
       options: [
         {
           name: "--by-hash",
@@ -304,7 +293,7 @@ const completionSpec: Fig.Spec = {
       name: "delete",
       description: "Remove the files in path.",
       isDangerous: true,
-      args: [remotePath],
+      args: remotePath,
       options: [
         {
           name: "--rmdirs",
@@ -317,7 +306,7 @@ const completionSpec: Fig.Spec = {
       name: "deletefile",
       isDangerous: true,
       description: "Remove a single file from remote.",
-      args: [remotePath],
+      args: remotePath,
     },
     {
       name: "genautocomplete",
@@ -392,11 +381,9 @@ const completionSpec: Fig.Spec = {
           name: "--expire",
           description:
             "The amount of time that the link will be valid (default 100y)",
-          args: [
-            {
-              name: "duration",
-            },
-          ],
+          args: {
+            name: "duration",
+          },
         },
         {
           name: "--unlink",
@@ -476,30 +463,26 @@ const completionSpec: Fig.Spec = {
           name: "--hash",
           description:
             'Use this hash when h is used in the format (default "MD5")',
-          args: [
-            {
-              name: "hash",
-              suggestions: hashes,
-            },
-          ],
+          args: {
+            name: "hash",
+            suggestions: hashes,
+          },
         },
 
         {
           name: ["--seperator", "-s"],
           description: 'Separator for the items in the format. (default ";")',
-          args: [
-            {
-              name: "separator",
-              isOptional: false,
-            },
-          ],
+          args: {
+            name: "separator",
+            isOptional: false,
+          },
         },
       ],
     },
     {
       name: "lsjson",
       description: "List directories and objects in the path in JSON format.",
-      args: [remotePath],
+      args: remotePath,
       options: [
         ...listOptions,
         {

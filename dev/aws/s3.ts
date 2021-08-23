@@ -406,12 +406,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
     {
       name: "website",
@@ -436,12 +434,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "cp",
@@ -1044,12 +1040,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "paths",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "paths",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
     {
       name: "sync",
@@ -1326,12 +1320,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "rb",
@@ -1344,12 +1336,10 @@ const completionSpec: Fig.Spec = {
             "Deletes all objects in the bucket including the bucket itself. Note that versioned objects will not be deleted in this process which would cause the bucket deletion to fail because the bucket would not be empty. To delete versioned objects use the ``s3api delete-object`` command with the ``--version-id`` parameter.",
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listBuckets,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listBuckets,
+      },
     },
     {
       name: "presign",
@@ -1365,12 +1355,10 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "path",
-          generators: generators.listRemoteFilesGenerator,
-        },
-      ],
+      args: {
+        name: "path",
+        generators: generators.listRemoteFilesGenerator,
+      },
     },
   ],
 };

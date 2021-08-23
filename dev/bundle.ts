@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
       description: "Update dependencies to their latest versions",
       options: [
         {
-          name: ["--all"],
+          name: "--all",
           description: "Update all gems specified in Gemfile",
         },
         {
@@ -82,26 +82,26 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--source"],
+          name: "--source",
           description: "The name of a :git or :path source used in the Gemfile",
           args: {},
         },
         {
-          name: ["--local"],
+          name: "--local",
           description: "Use only gems already downloaded or cached",
         },
         {
-          name: ["--ruby"],
+          name: "--ruby",
           description:
             "Update the locked version of Ruby to the current version of Ruby",
         },
         {
-          name: ["--bundler"],
+          name: "--bundler",
           description:
             "Update the locked version of bundler to the invoked bundler version",
         },
         {
-          name: ["--full-index"],
+          name: "--full-index",
           description: "Fall back to using the single-file index of all gems",
         },
         {
@@ -111,34 +111,34 @@ const completionSpec: Fig.Spec = {
           args: {},
         },
         {
-          name: ["--retry"],
+          name: "--retry",
           description: "Retry failed network or git requests for number times",
           args: {},
         },
-        { name: ["--quiet"], description: "Only output warnings and errors" },
+        { name: "--quiet", description: "Only output warnings and errors" },
         {
           name: ["--force", "--redownload"],
           description: "Force downloading every gem",
         },
         {
-          name: ["--patch"],
+          name: "--patch",
           description: "Prefer updating only to next patch version",
         },
         {
-          name: ["--minor"],
+          name: "--minor",
           description: "Prefer updating only to next minor version",
         },
         {
-          name: ["--major"],
+          name: "--major",
           description: "Prefer updating to next major version (default)",
         },
         {
-          name: ["--strict"],
+          name: "--strict",
           description:
             "Do not allow any gem to be updated past latest --patch | --minor | --major",
         },
         {
-          name: ["--conservative"],
+          name: "--conservative",
           description: "Do not allow shared dependencies to be updated",
         },
       ],
@@ -153,7 +153,7 @@ const completionSpec: Fig.Spec = {
       description: "Execute a command in the context of the bundle",
       options: [
         {
-          name: ["--keep-file-descriptors"],
+          name: "--keep-file-descriptors",
           description: "Pass all file descriptors to the new process",
         },
       ],
@@ -181,15 +181,15 @@ const completionSpec: Fig.Spec = {
           description: "Specify the source",
         },
         {
-          name: ["--skip-install"],
+          name: "--skip-install",
           description: "Adds the gem to the Gemfile but does not install it",
         },
         {
-          name: ["--optimistic"],
+          name: "--optimistic",
           description: "Adds optimistic declaration of version",
         },
         {
-          name: ["--strict"],
+          name: "--strict",
           description: "Adds strict declaration of version",
         },
       ],
@@ -200,20 +200,20 @@ const completionSpec: Fig.Spec = {
       args: {},
       options: [
         {
-          name: ["--force"],
+          name: "--force",
           description: "Overwrite existing binstubs",
         },
         {
-          name: ["--path"],
+          name: "--path",
           description: "The location to install the specified binstubs to",
         },
         {
-          name: ["--standalone"],
+          name: "--standalone",
           description:
             "Makes binstubs that can work without depending on Rubygems or Bundler at runtime",
         },
         {
-          name: ["--shebang"],
+          name: "--shebang",
           description:
             "Specify a different shebang executable name than the default",
         },
@@ -225,15 +225,15 @@ const completionSpec: Fig.Spec = {
         "Determine whether the requirements for your application are installed and available to Bundler",
       options: [
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Locks the Gemfile before running the command",
         },
         {
-          name: ["--gemfile"],
+          name: "--gemfile",
           description: "Use the specified gemfile instead of the Gemfile",
         },
         {
-          name: ["--path"],
+          name: "--path",
           description: "Specify a different path than the system default",
         },
       ],
@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
       description: "Show the source location of a particular gem in the bundle",
       options: [
         {
-          name: ["--paths"],
+          name: "--paths",
           description:
             "List the paths of all gems that are required by your Gemfile",
         },
@@ -254,14 +254,14 @@ const completionSpec: Fig.Spec = {
       description: "Show all of the outdated gems in the current bundle",
       options: [
         {
-          name: ["--local"],
+          name: "--local",
           description:
             "Do not attempt to fetch gems remotely and use the gem cache instead",
         },
-        { name: ["--pre"], description: "Check for newer pre-release gems" },
-        { name: ["--source"], description: "Check against a specific source" },
+        { name: "--pre", description: "Check for newer pre-release gems" },
+        { name: "--source", description: "Check against a specific source" },
         {
-          name: ["--strict"],
+          name: "--strict",
           description:
             "Only list newer versions allowed by your Gemfile requirements",
         },
@@ -269,39 +269,39 @@ const completionSpec: Fig.Spec = {
           name: ["--parseable", "--porcelain"],
           description: "Use minimal formatting for more parseable output",
         },
-        { name: ["--group"], description: "List gems from a specific group" },
-        { name: ["--groups"], description: "List gems organized by groups" },
+        { name: "--group", description: "List gems from a specific group" },
+        { name: "--groups", description: "List gems organized by groups" },
         {
-          name: ["--update-strict"],
+          name: "--update-strict",
           description:
             "Strict conservative resolution, do not allow any gem to be updated past latest --patch | --minor| --major",
         },
         {
-          name: ["--minor"],
+          name: "--minor",
           description: "Prefer updating only to next minor version",
         },
         {
-          name: ["--major"],
+          name: "--major",
           description: "Prefer updating to next major version (default)",
         },
         {
-          name: ["--patch"],
+          name: "--patch",
           description: "Prefer updating only to next patch version",
         },
         {
-          name: ["--filter-major"],
+          name: "--filter-major",
           description: "Only list major newer versions",
         },
         {
-          name: ["--filter-minor"],
+          name: "--filter-minor",
           description: "Only list minor newer versions",
         },
         {
-          name: ["--filter-patch"],
+          name: "--filter-patch",
           description: "Only list patch newer versions",
         },
         {
-          name: ["--only-explicit"],
+          name: "--only-explicit",
           description:
             "Only list gems specified in your Gemfile, not their dependencies",
         },
@@ -321,58 +321,59 @@ const completionSpec: Fig.Spec = {
       description: "Generate a lockfile for your dependencies",
       options: [
         {
-          name: ["--update"],
+          name: "--update",
           description: "Ignores the existing lockfile",
           args: {},
         },
         {
-          name: ["--local"],
+          name: "--local",
           description: "Do not attempt to connect to rubygems.org",
         },
         {
-          name: ["--print"],
+          name: "--print",
           description:
             "Prints the lockfile to STDOUT instead of writing to the file\n system.",
         },
         {
-          name: ["--lockfile=<path>"],
+          name: "--lockfile",
           description: "The path where the lockfile should be written to.",
+          args: { name: "path" },
         },
         {
-          name: ["--full-index"],
+          name: "--full-index",
           description: "Fall back to using the single-file index of all gems.",
         },
         {
-          name: ["--add-platform"],
+          name: "--add-platform",
           description:
             "Add a new platform to the lockfile, re-resolving for the addi-\n tion of that platform.",
         },
         {
-          name: ["--remove-platform"],
+          name: "--remove-platform",
           description: "Remove a platform from the lockfile.",
         },
         {
-          name: ["--patch"],
+          name: "--patch",
           description:
             "If updating, prefer updating only to next patch version.",
         },
         {
-          name: ["--minor"],
+          name: "--minor",
           description:
             "If updating, prefer updating only to next minor version.",
         },
         {
-          name: ["--major"],
+          name: "--major",
           description:
             "If updating, prefer updating to next major version (default).",
         },
         {
-          name: ["--strict"],
+          name: "--strict",
           description:
             "If updating, do not allow any gem to be updated past latest --patch | --minor | --major.",
         },
         {
-          name: ["--conservative"],
+          name: "--conservative",
           description:
             "If updating, use bundle install conservative update behavior and do not allow shared dependencies to be updated.",
         },
@@ -411,7 +412,7 @@ const completionSpec: Fig.Spec = {
       description: "Generate a simple Gemfile, placed in the current directory",
       options: [
         {
-          name: ["--gemspec"],
+          name: "--gemspec",
           description: "Use the specified .gemspec to create the Gemfile",
         },
       ],
@@ -425,33 +426,33 @@ const completionSpec: Fig.Spec = {
           description: "Specify that Bundler should create a binary executable",
         },
         {
-          name: ["--no-exe"],
+          name: "--no-exe",
           description: "Do not create a binary",
         },
         {
-          name: ["--coc"],
+          name: "--coc",
           description:
             " Add a CODE_OF_CONDUCT.md file to the root of the generated project",
         },
         {
-          name: ["--no-coc"],
+          name: "--no-coc",
           description: "Do not create a CODE_OF_CONDUCT.md",
         },
         {
-          name: ["--ext"],
+          name: "--ext",
           description:
             "Add boilerplate for C extension code to the generated project",
         },
         {
-          name: ["--no-ext"],
+          name: "--no-ext",
           description: "Do not add C extension code",
         },
         {
-          name: ["--mit"],
+          name: "--mit",
           description: "Add an MIT license",
         },
         {
-          name: ["--no-mit"],
+          name: "--no-mit",
           description: "Do not create a LICENSE.txt",
         },
         {
@@ -471,7 +472,7 @@ const completionSpec: Fig.Spec = {
       description: "Display platform compatibility information",
       options: [
         {
-          name: ["--ruby"],
+          name: "--ruby",
           description:
             "It will display the ruby directive information so you don't have to parse it from the Gemfile.",
         },
@@ -482,11 +483,11 @@ const completionSpec: Fig.Spec = {
       description: "Clean up unused gems in your Bundler directory",
       options: [
         {
-          name: ["--dry-run"],
+          name: "--dry-run",
           description: "Print the changes, but do not clean the unused gems.",
         },
         {
-          name: ["--force"],
+          name: "--force",
           description: "Force a clean even if --path is not set.",
         },
       ],
@@ -495,9 +496,9 @@ const completionSpec: Fig.Spec = {
       name: "doctor",
       description: "Display warnings about common problems",
       options: [
-        { name: ["--quiet"], description: "Only output warnings and errors." },
+        { name: "--quiet", description: "Only output warnings and errors." },
         {
-          name: ["--gemfile"],
+          name: "--gemfile",
           description: "The location of the Gemfile which Bundler should use",
           args: {},
         },
@@ -505,7 +506,7 @@ const completionSpec: Fig.Spec = {
     },
   ],
   options: [
-    { name: ["--no-color"], description: "Print all output without color" },
+    { name: "--no-color", description: "Print all output without color" },
     {
       name: ["--retry", "-r"],
       description:

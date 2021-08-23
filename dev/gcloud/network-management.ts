@@ -280,14 +280,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONNECTIVITY_TEST",
-              description:
-                "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONNECTIVITY_TEST",
+            description:
+              "ID of the connectivity test or fully qualified identifier for the connectivity test.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -426,14 +424,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONNECTIVITY_TEST",
-              description:
-                "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONNECTIVITY_TEST",
+            description:
+              "ID of the connectivity test or fully qualified identifier for the connectivity test.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -567,14 +563,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONNECTIVITY_TEST",
-              description:
-                "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONNECTIVITY_TEST",
+            description:
+              "ID of the connectivity test or fully qualified identifier for the connectivity test.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -886,14 +880,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONNECTIVITY_TEST",
-              description:
-                "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONNECTIVITY_TEST",
+            description:
+              "ID of the connectivity test or fully qualified identifier for the connectivity test.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -1185,14 +1177,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "CONNECTIVITY_TEST",
-              description:
-                "ID of the connectivity test or fully qualified identifier for the connectivity test.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "CONNECTIVITY_TEST",
+            description:
+              "ID of the connectivity test or fully qualified identifier for the connectivity test.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1460,14 +1450,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description:
-                "ID of the operation or fully qualified identifier for the operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description:
+              "ID of the operation or fully qualified identifier for the operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",

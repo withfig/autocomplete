@@ -10,32 +10,26 @@ const completionSpec: Fig.Spec = {
     {
       name: "-b",
       description: "byte positions as a comma or - separated list of numbers",
-      args: [
-        {
-          name: "list",
-          description: "specifies byte positions",
-        },
-      ],
+      args: {
+        name: "list",
+        description: "specifies byte positions",
+      },
     },
     {
       name: "-c",
       description: "column positions as a comma or - separated list of numbers",
-      args: [
-        {
-          name: "list",
-          description: "specifies column positions",
-        },
-      ],
+      args: {
+        name: "list",
+        description: "specifies column positions",
+      },
     },
     {
       name: "-f",
       description: "field positions as a comma or - separated list of numbers",
-      args: [
-        {
-          name: "list",
-          description: "specifies column positions",
-        },
-      ],
+      args: {
+        name: "list",
+        description: "specifies column positions",
+      },
     },
     {
       name: "-n",
@@ -45,13 +39,11 @@ const completionSpec: Fig.Spec = {
       name: "-d",
       description:
         "use delim as the field delimiter character instead of the tab character.",
-      args: [
-        {
-          name: "delim",
-          description: "field deliminator to use instead of the tab character",
-          isOptional: true,
-        },
-      ],
+      args: {
+        name: "delim",
+        description: "field deliminator to use instead of the tab character",
+        isOptional: true,
+      },
     },
     {
       name: "-s",

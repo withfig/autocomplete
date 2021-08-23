@@ -141,7 +141,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "list directories before other files",
-      name: ["--group-directories-first"],
+      name: "--group-directories-first",
     },
     {
       description: "list only directories",
@@ -156,7 +156,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "Ignore files mentioned in '.gitignore'",
-      name: ["--git-ignore"],
+      name: "--git-ignore",
     },
     {
       description: "list file sizes with binary prefixes",
@@ -220,7 +220,7 @@ const completionSpec: Fig.Spec = {
     {
       description:
         "how to format timestamps (default, iso, long-iso, full-iso)",
-      name: ["--time-style"],
+      name: "--time-style",
       args: {
         name: "style",
         suggestions: [
@@ -241,7 +241,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description: "list each file's Git status, if tracked or ignored",
-      name: ["--git"],
+      name: "--git",
     },
     {
       description: "list each file's extended attributes and sizes",

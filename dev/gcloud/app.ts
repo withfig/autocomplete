@@ -483,14 +483,12 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
-      args: [
-        {
-          name: "DEPLOYABLES",
-          description:
-            "The yaml files for the services or configurations you want to deploy.\nIf not given, defaults to `app.yaml` in the current directory.\nIf that is not found, attempts to automatically generate necessary\nconfiguration files (such as app.yaml) in the current directory.",
-          isVariadic: false,
-        },
-      ],
+      args: {
+        name: "DEPLOYABLES",
+        description:
+          "The yaml files for the services or configurations you want to deploy.\nIf not given, defaults to `app.yaml` in the current directory.\nIf that is not found, attempts to automatically generate necessary\nconfiguration files (such as app.yaml) in the current directory.",
+        isVariadic: false,
+      },
     },
     {
       name: "describe",
@@ -781,14 +779,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -922,14 +918,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1063,14 +1057,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -1406,14 +1398,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "DOMAIN",
-              description:
-                "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "DOMAIN",
+            description:
+              "A valid domain which may begin with a wildcard, such as: `example.com` or `*.example.com`",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -1712,14 +1702,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRIORITY",
-              description:
-                "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRIORITY",
+            description:
+              "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
+            isVariadic: false,
+          },
         },
         {
           name: "delete",
@@ -1853,14 +1841,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRIORITY",
-              description:
-                "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRIORITY",
+            description:
+              "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -1994,14 +1980,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRIORITY",
-              description:
-                "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRIORITY",
+            description:
+              "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -2313,14 +2297,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "IP",
-              description:
-                "An IPv4 or IPv6 address to test against the firewall.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "IP",
+            description:
+              "An IPv4 or IPv6 address to test against the firewall.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -2483,14 +2465,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "PRIORITY",
-              description:
-                "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "PRIORITY",
+            description:
+              "An integer between 1 and 2^32-1 which indicates the evaluation order of rules. Lowest priority rules are evaluated first. The handle `default` may also be used to refer to the final rule at priority 2^32-1 which is always present in a set of rules.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -2931,13 +2911,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "The instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "The instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -3081,13 +3059,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description: "The instance ID.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description: "The instance ID.",
+            isVariadic: false,
+          },
         },
         {
           name: "disable-debug",
@@ -3231,14 +3207,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "The instance ID to disable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "The instance ID to disable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
+            isVariadic: false,
+          },
         },
         {
           name: "enable-debug",
@@ -3383,14 +3357,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "INSTANCE",
-              description:
-                "Instance ID to enable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "INSTANCE",
+            description:
+              "Instance ID to enable debug mode on. If not specified,\nselect instance interactively. Must uniquely specify (with other\nflags) exactly one instance",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -4804,13 +4776,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "ID of operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "ID of operation.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -5126,13 +5096,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "OPERATION",
-              description: "ID of operation.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "OPERATION",
+            description: "ID of operation.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -5719,14 +5687,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICES",
-              description:
-                "The services to open (optionally filtered by the --version flag).",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SERVICES",
+            description:
+              "The services to open (optionally filtered by the --version flag).",
+            isVariadic: true,
+          },
         },
         {
           name: "delete",
@@ -5860,13 +5826,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICES",
-              description: "The service(s) to delete.",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "SERVICES",
+            description: "The service(s) to delete.",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -6000,13 +5964,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICE",
-              description: "The service to describe.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICE",
+            description: "The service to describe.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -6344,13 +6306,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICES",
-              description: "The services to modify.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICES",
+            description: "The services to modify.",
+            isVariadic: false,
+          },
         },
         {
           name: "update",
@@ -6499,13 +6459,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "SERVICES",
-              description: "The services to modify.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "SERVICES",
+            description: "The services to modify.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -6938,14 +6896,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
+            isVariadic: false,
+          },
         },
         {
           name: "describe",
@@ -7079,14 +7035,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -7427,14 +7381,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "ID",
-              description:
-                "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "ID",
+            description:
+              "The id of the certificate. This identifier is printed upon creation of a new certificate. Run `{parent_command} list` to view existing certificates.",
+            isVariadic: false,
+          },
         },
       ],
       options: [
@@ -7855,14 +7807,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSIONS",
-              description:
-                "The versions to open (optionally filtered by the --service flag).",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "VERSIONS",
+            description:
+              "The versions to open (optionally filtered by the --service flag).",
+            isVariadic: true,
+          },
         },
         {
           name: "delete",
@@ -8006,14 +7956,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSIONS",
-              description:
-                "The versions to delete (optionally filtered by the --service flag).",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "VERSIONS",
+            description:
+              "The versions to delete (optionally filtered by the --service flag).",
+            isVariadic: true,
+          },
         },
         {
           name: "describe",
@@ -8157,13 +8105,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "The ID of the version to show.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "The ID of the version to show.",
+            isVariadic: false,
+          },
         },
         {
           name: "list",
@@ -8499,13 +8445,11 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSION",
-              description: "The version to migrate to.",
-              isVariadic: false,
-            },
-          ],
+          args: {
+            name: "VERSION",
+            description: "The version to migrate to.",
+            isVariadic: false,
+          },
         },
         {
           name: "start",
@@ -8649,14 +8593,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSIONS",
-              description:
-                "The versions to start. (optionally filtered by the --service flag).",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "VERSIONS",
+            description:
+              "The versions to start. (optionally filtered by the --service flag).",
+            isVariadic: true,
+          },
         },
         {
           name: "stop",
@@ -8800,14 +8742,12 @@ const completionSpec: Fig.Spec = {
               },
             },
           ],
-          args: [
-            {
-              name: "VERSIONS",
-              description:
-                "The versions to stop (optionally filtered by the --service flag).",
-              isVariadic: true,
-            },
-          ],
+          args: {
+            name: "VERSIONS",
+            description:
+              "The versions to stop (optionally filtered by the --service flag).",
+            isVariadic: true,
+          },
         },
       ],
       options: [

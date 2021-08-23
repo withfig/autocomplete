@@ -69,74 +69,74 @@ const completionSpec: Fig.Spec = {
   ],
   options: [
     {
-      name: ["--version"],
+      name: "--version",
       description: "output the version number",
       args: {},
     },
     {
-      name: ["--debug"],
+      name: "--debug",
       description: "Run with debugging.",
       args: {},
     },
     {
-      name: ["--knexfile"],
+      name: "--knexfile",
       description: "Specify the knexfile path.",
       args: {},
     },
     {
-      name: ["--knexpath"],
+      name: "--knexpath",
       description: "Specify the path to knex instance.",
       args: {},
     },
     {
-      name: ["--cwd"],
+      name: "--cwd",
       description: "Specify the working directory.",
       args: {},
     },
     {
-      name: ["--client"],
+      name: "--client",
       description: "Set DB client without a knexfile.",
       args: {},
     },
     {
-      name: ["--connection"],
+      name: "--connection",
       description: "Set DB connection without a knexfile.",
       args: {},
     },
     {
-      name: ["--migrations-directory"],
+      name: "--migrations-directory",
       description: "Set migrations directory without a knexfile.",
       args: {},
     },
     {
-      name: ["--migrations-table-name"],
+      name: "--migrations-table-name",
       description: "Set migrations table name without a knexfile.",
       args: {},
     },
     {
-      name: ["--env"],
+      name: "--env",
       description: "environment, default: process.env.NODE_ENV || development",
       args: {
         name: "environment",
       },
     },
     {
-      name: ["--esm"],
+      name: "--esm",
       description: "Enable ESM interop.",
       args: {},
     },
     {
-      name: ["--specific"],
+      name: "--specific",
       description: "Specify one seed file to execute.",
       args: {},
     },
     {
-      name: ["--timestamp-filename-prefix"],
+      name: "--timestamp-filename-prefix",
       description: "Enable a timestamp prefix on name of generated seed files.",
       args: {},
     },
     {
-      name: ["--help"],
+      name: "--help",
       description: "display help for command",
       args: {},
     },
