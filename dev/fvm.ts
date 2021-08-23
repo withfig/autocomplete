@@ -14,11 +14,11 @@ const completionSpec: Fig.Spec = {
   options: [
     ...globalOptions,
     {
-      name: ["--verbose"],
+      name: "--verbose",
       description: "Print verbose output.",
     },
     {
-      name: ["--version"],
+      name: "--version",
       description: "Current FVM version.",
     },
   ],
@@ -101,16 +101,14 @@ const completionSpec: Fig.Spec = {
             priority: 98,
           },
         ],
-        generators: [
-          {
-            script: "fvm releases",
-            postProcess: function (out): Fig.Suggestion[] {
-              const matches = out.match(semverRegex);
-              const matchesSet = [...new Set(matches)];
-              return matchesSet.map((match) => ({ name: match })).reverse();
-            },
+        generators: {
+          script: "fvm releases",
+          postProcess: function (out): Fig.Suggestion[] {
+            const matches = out.match(semverRegex);
+            const matchesSet = [...new Set(matches)];
+            return matchesSet.map((match) => ({ name: match })).reverse();
           },
-        ],
+        },
       },
       options: [
         ...globalOptions,
@@ -140,7 +138,7 @@ const completionSpec: Fig.Spec = {
       options: [
         ...globalOptions,
         {
-          name: ["--force"],
+          name: "--force",
           description: "Skips version global check.",
         },
       ],
@@ -172,7 +170,7 @@ const completionSpec: Fig.Spec = {
             "If version provided is a channel. Will pin the latest release of the channel.",
         },
         {
-          name: ["--flavor"],
+          name: "--flavor",
           description: "Sets version for a project flavor.",
         },
       ],
