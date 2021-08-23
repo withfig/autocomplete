@@ -433,6 +433,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-E", "--exact"],
           description: "install exact version",
+          dependsOn: ["--latest"],
         },
         {
           name: ["-T", "--tilde"],
@@ -714,6 +715,7 @@ const completionSpec: Fig.Spec = {
               name: ["-E", "--exact"],
               description:
                 "install exact version. Only used when --latest is specified.",
+              dependsOn: ["--latest"],
             },
             {
               name: ["-P", "--pattern"],
@@ -729,7 +731,9 @@ const completionSpec: Fig.Spec = {
               name: ["-C", "--caret"],
               description:
                 "install most recent release with the same major version. Only used when --latest is specified.",
+              dependsOn: ["--latest"],
             },
+
             {
               name: ["-A", "--audit"],
               description: "Run vulnerability audit on installed packages",
