@@ -7611,6 +7611,42 @@ const completionSpec: Fig.Spec = {
         isOptional: true,
       },
     },
+    {
+      name: "rake",
+      options: [
+        {
+          name: "--size",
+          description: "dyno size",
+          args: {},
+        },
+        {
+          name: "--exit-code",
+          description: "passthrough the exit code of the remote command",
+        },
+        {
+          name: "--env",
+          description:
+            "environment variables to set (use ';' to split multiple vars)",
+          args: {},
+        },
+        {
+          name: "--no-tty",
+          description: "force the command to not run in a tty",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            generators: getAppGenerator,
+          },
+        },
+      ],
+      args: {
+        name: "rake",
+        isVariadic: true,
+      },
+    },
   ],
 };
 
