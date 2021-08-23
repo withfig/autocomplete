@@ -34,6 +34,11 @@ const completionSpec: Fig.Spec = {
     {
       name: ["search", "s"],
       description: "Search for plugins on npm",
+      args: {
+        isOptional: true,
+        name: "query",
+        description: "your search query",
+      },
     },
     {
       name: ["uninstall", "u", "rm", "remove"],
