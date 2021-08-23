@@ -48,8 +48,99 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "info",
+      name: ["info", "abv"],
       description: "Display brief statistics for your Homebrew installation",
+      args: {
+        isVariadic: true,
+        isOptional: true,
+        name: "formula",
+        description: "Formula or cask to summarize",
+        generators: {
+          script:
+            "HBPATH=$(brew --repository); ls -1 $HBPATH/Library/Taps/homebrew/homebrew-core/Formula $HBPATH/Library/Taps/homebrew/homebrew-cask/Casks",
+          postProcess: function (out) {
+            return out.split("\n").map((formula) => {
+              return {
+                name: formula.replace(".rb", ""),
+                description: "formula",
+                icon: "🍺",
+                priority:
+                  (formula[0] >= "0" && formula[0] <= "9") || formula[0] == "/"
+                    ? 0
+                    : 51,
+              };
+            });
+          },
+        },
+      },
+      options: [
+        {
+          name: "--analytics",
+          description:
+            "List global Homebrew analytics data or, if specified, installation and build error data for formula",
+        },
+        {
+          name: "--days",
+          description: "How many days of analytics data to retrieve",
+          exclusiveOn: ["--analytics"],
+          args: {},
+        },
+        {
+          name: "--category",
+          description: "How many days of analytics data to retrieve",
+          exclusiveOn: ["--analytics"],
+          args: {
+            generators: {
+              custom: async (ctx) => {
+                // if anything provided after the command does not begin with '-'
+                // then a formula has been provided and we should provide info on it
+                if (ctx.slice(2).some((token) => token[0] !== "-")) {
+                  return ["install", "install-on-request", "build-error"].map(
+                    (sugg) => ({
+                      name: sugg,
+                    })
+                  );
+                }
+
+                // if no formulas are specified, then we should provide system info
+                return ["cask-install", "os-version"].map((sugg) => ({
+                  name: sugg,
+                }));
+              },
+            },
+          },
+        },
+        {
+          name: "--github",
+          description: "Open the GitHub source page for formula in a browser",
+        },
+        {
+          name: "--json",
+          description: "Print a JSON representation",
+        },
+        {
+          name: "--installed",
+          exclusiveOn: ["--json"],
+          description: "Print JSON of formulae that are currently installed",
+        },
+        {
+          name: "--all",
+          exclusiveOn: ["--json"],
+          description: "Print JSON of all available formulae",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "Show more verbose analytics data for formulae",
+        },
+        {
+          name: "--formula",
+          description: "Treat all named arguments as formulae",
+        },
+        {
+          name: "--cash",
+          description: "Treat all named arguments as casks",
+        },
+      ],
     },
     {
       name: "update",
