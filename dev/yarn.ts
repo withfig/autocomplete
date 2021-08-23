@@ -699,6 +699,44 @@ const completionSpec: Fig.Spec = {
         {
           name: "upgrade",
           description: "Upgrade globally installed packages",
+          options: [
+            ...commonOptions,
+            {
+              name: ["-S", "--scope"],
+              description: "upgrade packages under the specified scope",
+              args: { name: "scope" },
+            },
+            {
+              name: ["-L", "--latest"],
+              description: "list the latest version of packages",
+            },
+            {
+              name: ["-E", "--exact"],
+              description:
+                "install exact version. Only used when --latest is specified.",
+            },
+            {
+              name: ["-P", "--pattern"],
+              description: "upgrade packages that match pattern",
+              args: { name: "pattern" },
+            },
+            {
+              name: ["-T", "--tilde"],
+              description:
+                "install most recent release with the same minor version. Only used when --latest is specified.",
+            },
+            {
+              name: ["-C", "--caret"],
+              description:
+                "install most recent release with the same major version. Only used when --latest is specified.",
+            },
+            {
+              name: ["-A", "--audit"],
+              description: "Run vulnerability audit on installed packages",
+            },
+            { name: ["-h", "--help"], description: "output usage information" },
+            { name: "--help", description: "output usage information" },
+          ],
         },
         {
           name: "upgrade-interactive",
@@ -707,6 +745,7 @@ const completionSpec: Fig.Spec = {
         },
       ],
       options: [
+        ...commonOptions,
         {
           name: "--prefix",
           description: "bin prefix to use to install binaries",
@@ -954,11 +993,21 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "remove installed package",
-
       args: [
         {
           generators: packageList,
           isVariadic: true,
+        },
+      ],
+      options: [
+        ...commonOptions,
+        {
+          name: ["-W", "--ignore-workspace-root-check"],
+          description: "required to run yarn remove inside a workspace root",
+        },
+        {
+          name: ["-h", "--help"],
+          description: "output usage information",
         },
       ],
     },
@@ -987,6 +1036,12 @@ const completionSpec: Fig.Spec = {
         //     },
         {
           generators: getScriptsGenerator,
+        },
+        {
+          name: "env",
+          suggestions: ["env"],
+          description: "lists enviornment variables available to scripts",
+          isOptional: true,
         },
       ],
     },
