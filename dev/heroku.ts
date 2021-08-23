@@ -38,7 +38,6 @@ const completionSpec: Fig.Spec = {
             'browser to open SSO with (example: "firefox", "safari")',
           args: {
             name: "browser",
-            isOptional: false,
           },
         },
         {
@@ -50,7 +49,6 @@ const completionSpec: Fig.Spec = {
           description: "duration of token in seconds (default 30 days)",
           args: {
             name: "expires-in",
-            isOptional: false,
           },
         },
       ],
@@ -82,7 +80,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -90,7 +87,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -98,7 +94,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
@@ -116,7 +111,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -124,7 +118,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -139,7 +132,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -147,7 +139,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -155,14 +146,12 @@ const completionSpec: Fig.Spec = {
           description: "the 1-based index of the URL in the list of URLs",
           args: {
             name: "index",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "buildpack",
         description: "namespace/name of the buildpack",
-        isOptional: false,
       },
     },
     {
@@ -174,7 +163,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -182,7 +170,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -194,7 +181,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "buildpack",
         description: "namespace/name of the buildpack",
-        isOptional: false,
       },
     },
     {
@@ -206,7 +192,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -214,7 +199,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -223,7 +207,6 @@ const completionSpec: Fig.Spec = {
             "the 1-based index of the URL to remove from the list of URLs",
           args: {
             name: "index",
-            isOptional: false,
           },
         },
       ],
@@ -243,7 +226,6 @@ const completionSpec: Fig.Spec = {
             "buildpack namespaces to filter on using a comma separated list",
           args: {
             name: "namespace",
-            isOptional: false,
           },
         },
         {
@@ -252,7 +234,6 @@ const completionSpec: Fig.Spec = {
             "buildpack names to filter on using a comma separated list ",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -260,7 +241,6 @@ const completionSpec: Fig.Spec = {
           description: "buildpack description to filter on",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
       ],
@@ -280,7 +260,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -288,7 +267,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -296,14 +274,12 @@ const completionSpec: Fig.Spec = {
           description: "the 1-based index of the URL in the list of URLs",
           args: {
             name: "index",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "buildpack",
         description: "namespace/name of the buildpack",
-        isOptional: false,
       },
     },
     {
@@ -313,7 +289,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "buildpack",
         description: "namespace/name of the buildpack",
-        isOptional: false,
       },
     },
     {
@@ -333,7 +308,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -341,7 +315,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -349,7 +322,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -367,7 +339,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -375,7 +346,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -383,13 +353,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "key",
-        isOptional: false,
       },
     },
     {
@@ -401,7 +369,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -409,7 +376,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -417,7 +383,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -431,7 +396,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -439,7 +403,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -447,7 +410,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -466,7 +428,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -478,7 +439,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -486,7 +446,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -505,7 +464,6 @@ const completionSpec: Fig.Spec = {
           description: "pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -513,7 +471,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -521,7 +478,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -539,7 +495,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -547,7 +502,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -559,7 +513,6 @@ const completionSpec: Fig.Spec = {
           description: "only show provided columns (comma-separated)",
           args: {
             name: "columns",
-            isOptional: false,
           },
         },
         {
@@ -567,7 +520,6 @@ const completionSpec: Fig.Spec = {
           description: "property to sort by (prepend '-' for descending)",
           args: {
             name: "sort",
-            isOptional: false,
           },
         },
         {
@@ -576,7 +528,6 @@ const completionSpec: Fig.Spec = {
             "filter property by partial string matching, ex: name=foo",
           args: {
             name: "filter",
-            isOptional: false,
           },
         },
         {
@@ -606,7 +557,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -615,7 +565,6 @@ const completionSpec: Fig.Spec = {
             "the name of the SSL cert you want to use for this domain",
           args: {
             name: "cert",
-            isOptional: false,
           },
         },
         {
@@ -631,13 +580,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "hostname",
-        isOptional: false,
       },
     },
     {
@@ -653,7 +600,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -661,7 +607,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -679,7 +624,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -687,13 +631,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "hostname",
-        isOptional: false,
       },
     },
     {
@@ -709,7 +651,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -717,13 +658,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "hostname",
-        isOptional: false,
       },
     },
     {
@@ -740,7 +679,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -748,7 +686,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -757,7 +694,6 @@ const completionSpec: Fig.Spec = {
             "the name or id of the certificate you want to use for this domain",
           args: {
             name: "cert",
-            isOptional: false,
           },
         },
       ],
@@ -779,7 +715,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -787,7 +722,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -813,7 +747,6 @@ const completionSpec: Fig.Spec = {
           description: "filter by space",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -826,7 +759,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -840,7 +772,6 @@ const completionSpec: Fig.Spec = {
           description: "comma-delimited list of addons to install",
           args: {
             name: "addons",
-            isOptional: false,
           },
         },
         {
@@ -848,7 +779,6 @@ const completionSpec: Fig.Spec = {
           description: "buildpack url to use for this app",
           args: {
             name: "buildpack",
-            isOptional: false,
           },
         },
         {
@@ -860,7 +790,6 @@ const completionSpec: Fig.Spec = {
           description: 'the git remote to create, default "heroku"',
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -868,7 +797,6 @@ const completionSpec: Fig.Spec = {
           description: "the stack to create the app on",
           args: {
             name: "stack",
-            isOptional: false,
           },
         },
         {
@@ -876,7 +804,6 @@ const completionSpec: Fig.Spec = {
           description: "the private space to create the app in",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -884,7 +811,6 @@ const completionSpec: Fig.Spec = {
           description: "specify region for the app to run in",
           args: {
             name: "region",
-            isOptional: false,
           },
         },
         {
@@ -900,7 +826,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -919,7 +844,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -927,7 +851,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -935,7 +858,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -953,7 +875,6 @@ const completionSpec: Fig.Spec = {
           description: "number of hours to look back (default 24)",
           args: {
             name: "hours",
-            isOptional: false,
           },
         },
         {
@@ -969,7 +890,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -977,7 +897,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1001,7 +920,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1009,7 +927,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1023,7 +940,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1031,7 +947,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1053,7 +968,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1061,7 +975,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1075,7 +988,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1083,7 +995,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1105,7 +1016,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1113,13 +1023,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "newname",
-        isOptional: false,
       },
     },
     {
@@ -1131,7 +1039,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1139,7 +1046,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1153,7 +1059,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1161,13 +1066,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "stack",
-        isOptional: false,
       },
     },
     {
@@ -1179,7 +1082,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1187,7 +1089,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1205,7 +1106,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1213,7 +1113,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1227,7 +1126,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1235,13 +1133,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "url",
-        isOptional: false,
       },
     },
     {
@@ -1253,7 +1149,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1261,13 +1156,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "url",
-        isOptional: false,
       },
     },
     {
@@ -1279,7 +1172,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1287,13 +1179,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "dyno",
-        isOptional: false,
       },
     },
     {
@@ -1305,7 +1195,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1313,7 +1202,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1327,7 +1215,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1335,7 +1222,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1353,7 +1239,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1361,7 +1246,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1375,7 +1259,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1383,13 +1266,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "dyno",
-        isOptional: false,
       },
     },
     {
@@ -1405,7 +1286,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1413,7 +1293,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1427,7 +1306,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1435,13 +1313,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
-        isOptional: false,
       },
     },
     {
@@ -1453,7 +1329,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1461,13 +1336,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
-        isOptional: false,
       },
     },
     {
@@ -1483,7 +1356,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1491,13 +1363,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
-        isOptional: false,
       },
     },
     {
@@ -1538,7 +1408,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "key",
-        isOptional: false,
       },
     },
     {
@@ -1554,7 +1423,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1562,7 +1430,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1576,7 +1443,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1584,13 +1450,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
-        isOptional: false,
       },
     },
     {
@@ -1606,7 +1470,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1614,13 +1477,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
-        isOptional: false,
       },
     },
     {
@@ -1632,7 +1493,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1640,7 +1500,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1654,7 +1513,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1662,7 +1520,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1676,7 +1533,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1684,7 +1540,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1711,7 +1566,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1719,7 +1573,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1737,7 +1590,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1745,7 +1597,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1759,7 +1610,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1767,13 +1617,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "dyno",
-        isOptional: false,
       },
     },
     {
@@ -1785,7 +1633,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1793,7 +1640,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1807,7 +1653,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1815,7 +1660,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1833,7 +1677,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1841,7 +1684,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1855,7 +1697,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1863,13 +1704,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "dyno",
-        isOptional: false,
       },
     },
     {
@@ -1881,7 +1720,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1889,7 +1727,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1903,7 +1740,6 @@ const completionSpec: Fig.Spec = {
           description: "number of releases to show",
           args: {
             name: "num",
-            isOptional: false,
           },
         },
         {
@@ -1915,7 +1751,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1923,7 +1758,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1945,7 +1779,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1953,7 +1786,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1971,7 +1803,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -1979,7 +1810,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -1997,7 +1827,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2005,7 +1834,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2038,7 +1866,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2046,7 +1873,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -2068,7 +1894,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2076,7 +1901,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2095,7 +1919,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2103,7 +1926,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -2113,7 +1935,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "KEY",
-        isOptional: false,
       },
     },
     {
@@ -2125,7 +1946,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2133,7 +1953,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2147,7 +1966,6 @@ const completionSpec: Fig.Spec = {
           description: "use a different Procfile",
           args: {
             name: "procfile",
-            isOptional: false,
           },
         },
         {
@@ -2155,7 +1973,6 @@ const completionSpec: Fig.Spec = {
           description: "location of env file (defaults to .env)",
           args: {
             name: "env",
-            isOptional: false,
           },
         },
         {
@@ -2163,7 +1980,6 @@ const completionSpec: Fig.Spec = {
           description: "port to listen on",
           args: {
             name: "port",
-            isOptional: false,
           },
         },
       ],
@@ -2181,7 +1997,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "env",
-            isOptional: false,
           },
         },
         {
@@ -2189,7 +2004,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "port",
-            isOptional: false,
           },
         },
       ],
@@ -2207,7 +2021,6 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2219,7 +2032,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -2237,7 +2049,6 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2245,7 +2056,6 @@ const completionSpec: Fig.Spec = {
           description: "the node number to show its setup and output",
           args: {
             name: "node",
-            isOptional: false,
           },
         },
         {
@@ -2253,13 +2063,11 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "test-run",
-        isOptional: false,
       },
     },
     {
@@ -2272,7 +2080,6 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2280,7 +2087,6 @@ const completionSpec: Fig.Spec = {
           description: "the node number to show its setup and output",
           args: {
             name: "node",
-            isOptional: false,
           },
         },
         {
@@ -2288,7 +2094,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
       ],
@@ -2302,7 +2107,6 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2310,7 +2114,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
       ],
@@ -2328,7 +2131,6 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2336,7 +2138,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
       ],
@@ -2350,7 +2151,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2358,7 +2158,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2376,7 +2175,6 @@ const completionSpec: Fig.Spec = {
           description: "type to create, either 'sni' or 'endpoint'",
           args: {
             name: "type",
-            isOptional: false,
           },
         },
         {
@@ -2384,7 +2182,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2392,18 +2189,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "CRT",
-          isOptional: false,
         },
         {
           name: "KEY",
-          isOptional: false,
         },
       ],
     },
@@ -2420,7 +2214,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2428,7 +2221,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2442,7 +2234,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2450,7 +2241,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2468,7 +2258,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2476,7 +2265,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2490,7 +2278,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2498,7 +2285,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2512,7 +2298,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2520,7 +2305,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2538,7 +2322,6 @@ const completionSpec: Fig.Spec = {
           description: "RSA key size in bits (default: 2048)",
           args: {
             name: "keysize",
-            isOptional: false,
           },
         },
         {
@@ -2546,7 +2329,6 @@ const completionSpec: Fig.Spec = {
           description: "name of organization certificate belongs to",
           args: {
             name: "owner",
-            isOptional: false,
           },
         },
         {
@@ -2554,7 +2336,6 @@ const completionSpec: Fig.Spec = {
           description: "country of owner, as a two-letter ISO country code",
           args: {
             name: "country",
-            isOptional: false,
           },
         },
         {
@@ -2562,7 +2343,6 @@ const completionSpec: Fig.Spec = {
           description: "sub-country area (state, province, etc.) of owner",
           args: {
             name: "area",
-            isOptional: false,
           },
         },
         {
@@ -2570,7 +2350,6 @@ const completionSpec: Fig.Spec = {
           description: "city of owner",
           args: {
             name: "city",
-            isOptional: false,
           },
         },
         {
@@ -2578,7 +2357,6 @@ const completionSpec: Fig.Spec = {
           description: "specify entire certificate subject",
           args: {
             name: "subject",
-            isOptional: false,
           },
         },
         {
@@ -2590,7 +2368,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2598,13 +2375,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "domain",
-        isOptional: false,
       },
     },
     {
@@ -2616,7 +2391,6 @@ const completionSpec: Fig.Spec = {
           description: "name to check info on",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -2624,7 +2398,6 @@ const completionSpec: Fig.Spec = {
           description: "endpoint to check info on",
           args: {
             name: "endpoint",
-            isOptional: false,
           },
         },
         {
@@ -2636,7 +2409,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2644,7 +2416,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2658,7 +2429,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2666,7 +2436,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2680,7 +2449,6 @@ const completionSpec: Fig.Spec = {
           description: "name to remove",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -2688,7 +2456,6 @@ const completionSpec: Fig.Spec = {
           description: "endpoint to remove",
           args: {
             name: "endpoint",
-            isOptional: false,
           },
         },
         {
@@ -2696,7 +2463,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2704,7 +2470,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2722,7 +2487,6 @@ const completionSpec: Fig.Spec = {
           description: "name to update",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -2730,7 +2494,6 @@ const completionSpec: Fig.Spec = {
           description: "endpoint to update",
           args: {
             name: "endpoint",
-            isOptional: false,
           },
         },
         {
@@ -2738,7 +2501,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2746,18 +2508,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "CRT",
-          isOptional: false,
         },
         {
           name: "KEY",
-          isOptional: false,
         },
       ],
     },
@@ -2771,7 +2530,6 @@ const completionSpec: Fig.Spec = {
           description: "the Heroku app to use",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2779,7 +2537,6 @@ const completionSpec: Fig.Spec = {
           description: 'the git remote to create, default "heroku"',
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -2802,7 +2559,6 @@ const completionSpec: Fig.Spec = {
           description: "the Heroku app to use",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2810,7 +2566,6 @@ const completionSpec: Fig.Spec = {
           description: "the git remote to create",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -2836,7 +2591,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2844,7 +2598,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2858,7 +2611,6 @@ const completionSpec: Fig.Spec = {
           description: "name for add-on attachment",
           args: {
             name: "as",
-            isOptional: false,
           },
         },
         {
@@ -2866,7 +2618,6 @@ const completionSpec: Fig.Spec = {
           description: "credential name for scoped access to Heroku Postgres",
           args: {
             name: "credential",
-            isOptional: false,
           },
         },
         {
@@ -2874,7 +2625,6 @@ const completionSpec: Fig.Spec = {
           description: "overwrite existing add-on attachment with same name",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -2882,7 +2632,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2890,13 +2639,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "addon_name",
-        isOptional: false,
       },
     },
     {
@@ -2908,7 +2655,6 @@ const completionSpec: Fig.Spec = {
           description: "name for the add-on resource",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -2916,7 +2662,6 @@ const completionSpec: Fig.Spec = {
           description: "name for the initial add-on attachment",
           args: {
             name: "as",
-            isOptional: false,
           },
         },
         {
@@ -2925,7 +2670,6 @@ const completionSpec: Fig.Spec = {
             "overwrite existing config vars or existing add-on attachments",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -2937,7 +2681,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2945,13 +2688,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "service:plan",
-        isOptional: false,
       },
     },
     {
@@ -2967,7 +2708,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -2975,7 +2715,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -2983,7 +2722,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -2997,7 +2735,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3005,13 +2742,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "attachment_name",
-        isOptional: false,
       },
     },
     {
@@ -3027,7 +2762,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3035,13 +2769,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "addon",
-        isOptional: false,
       },
     },
     {
@@ -3053,7 +2785,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3061,14 +2792,12 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "addon",
-          isOptional: false,
         },
         {
           name: "plan",
@@ -3085,7 +2814,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3093,13 +2821,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "addon",
-        isOptional: false,
       },
     },
     {
@@ -3115,7 +2841,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3123,13 +2848,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "addon",
-        isOptional: false,
       },
     },
     {
@@ -3143,7 +2866,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "service",
-        isOptional: false,
       },
     },
     {
@@ -3155,7 +2877,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3163,18 +2884,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "addon",
-          isOptional: false,
         },
         {
           name: "name",
-          isOptional: false,
         },
       ],
     },
@@ -3197,7 +2915,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3205,14 +2922,12 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "addon",
-          isOptional: false,
         },
         {
           name: "plan",
@@ -3229,7 +2944,6 @@ const completionSpec: Fig.Spec = {
           description: "how frequently to poll in seconds",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -3237,7 +2951,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3245,7 +2958,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3273,7 +2985,6 @@ const completionSpec: Fig.Spec = {
           description: "set a custom authorization description",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
         {
@@ -3281,7 +2992,6 @@ const completionSpec: Fig.Spec = {
           description: "set custom OAuth scopes",
           args: {
             name: "scope",
-            isOptional: false,
           },
         },
         {
@@ -3289,7 +2999,6 @@ const completionSpec: Fig.Spec = {
           description: "set expiration in seconds (default no expiration)",
           args: {
             name: "expires-in",
-            isOptional: false,
           },
         },
         {
@@ -3313,7 +3022,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3322,7 +3030,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3331,7 +3038,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3343,7 +3049,6 @@ const completionSpec: Fig.Spec = {
           description: "set a custom authorization description",
           args: {
             name: "description",
-            isOptional: false,
           },
         },
         {
@@ -3351,7 +3056,6 @@ const completionSpec: Fig.Spec = {
           description: "identifier of OAuth client to set",
           args: {
             name: "client-id",
-            isOptional: false,
           },
         },
         {
@@ -3359,13 +3063,11 @@ const completionSpec: Fig.Spec = {
           description: "secret of OAuth client to set",
           args: {
             name: "client-secret",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3394,11 +3096,9 @@ const completionSpec: Fig.Spec = {
       args: [
         {
           name: "name",
-          isOptional: false,
         },
         {
           name: "redirect_uri",
-          isOptional: false,
         },
       ],
     },
@@ -3408,7 +3108,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3426,7 +3125,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3444,7 +3142,6 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3456,7 +3153,6 @@ const completionSpec: Fig.Spec = {
           description: "change the client name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -3464,13 +3160,11 @@ const completionSpec: Fig.Spec = {
           description: "change the client redirect URL",
           args: {
             name: "url",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3489,7 +3183,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -3505,7 +3198,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3513,7 +3205,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3531,7 +3222,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -3539,7 +3229,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3547,7 +3236,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3569,7 +3257,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3577,7 +3264,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3599,7 +3285,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3607,7 +3292,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3625,7 +3309,6 @@ const completionSpec: Fig.Spec = {
           description: "set keyspace notifications configuration",
           args: {
             name: "config",
-            isOptional: false,
           },
         },
         {
@@ -3633,7 +3316,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3641,7 +3323,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3659,7 +3340,6 @@ const completionSpec: Fig.Spec = {
           description: "set weekly UTC maintenance window",
           args: {
             name: "window",
-            isOptional: false,
           },
         },
         {
@@ -3676,7 +3356,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3684,7 +3363,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3702,7 +3380,6 @@ const completionSpec: Fig.Spec = {
           description: "set policy name",
           args: {
             name: "policy",
-            isOptional: false,
           },
         },
         {
@@ -3710,7 +3387,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3718,7 +3394,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3736,7 +3411,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3744,13 +3418,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
-        isOptional: false,
       },
     },
     {
@@ -3763,7 +3435,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -3771,7 +3442,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3779,7 +3449,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3798,7 +3467,6 @@ const completionSpec: Fig.Spec = {
           description: "set timeout value",
           args: {
             name: "seconds",
-            isOptional: false,
           },
         },
         {
@@ -3806,7 +3474,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3814,7 +3481,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3832,7 +3498,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3840,7 +3505,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3886,7 +3550,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3894,7 +3557,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3918,7 +3580,6 @@ const completionSpec: Fig.Spec = {
           description: "set build-time variables",
           args: {
             name: "arg",
-            isOptional: false,
           },
         },
         {
@@ -3927,7 +3588,6 @@ const completionSpec: Fig.Spec = {
             "path to use as build context (defaults to Dockerfile dir)",
           args: {
             name: "context-path",
-            isOptional: false,
           },
         },
         {
@@ -3935,7 +3595,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3943,7 +3602,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3962,7 +3620,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3970,7 +3627,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -3984,7 +3640,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -3992,7 +3647,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -4006,7 +3660,6 @@ const completionSpec: Fig.Spec = {
           description: "port the app will run on",
           args: {
             name: "port",
-            isOptional: false,
           },
         },
         {
@@ -4018,7 +3671,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4026,7 +3678,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -4040,7 +3691,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4048,7 +3698,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4056,7 +3705,6 @@ const completionSpec: Fig.Spec = {
           description: "number of lines to display",
           args: {
             name: "num",
-            isOptional: false,
           },
         },
         {
@@ -4065,7 +3713,6 @@ const completionSpec: Fig.Spec = {
             'only show output from this dyno type (such as "web" or "worker")',
           args: {
             name: "dyno",
-            isOptional: false,
           },
         },
         {
@@ -4074,7 +3721,6 @@ const completionSpec: Fig.Spec = {
             'only show output from this source (such as "app" or "heroku")',
           args: {
             name: "source",
-            isOptional: false,
           },
         },
         {
@@ -4096,7 +3742,6 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4104,7 +3749,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4112,7 +3756,6 @@ const completionSpec: Fig.Spec = {
           description: "dyno size",
           args: {
             name: "size",
-            isOptional: false,
           },
         },
         {
@@ -4120,7 +3763,6 @@ const completionSpec: Fig.Spec = {
           description: "process type",
           args: {
             name: "type",
-            isOptional: false,
           },
         },
         {
@@ -4133,7 +3775,6 @@ const completionSpec: Fig.Spec = {
             "environment variables to set (use ';' to split multiple vars)",
           args: {
             name: "env",
-            isOptional: false,
           },
         },
         {
@@ -4156,7 +3797,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4164,7 +3804,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4173,7 +3812,6 @@ const completionSpec: Fig.Spec = {
             "environment variables to set (use ';' to split multiple vars)",
           args: {
             name: "env",
-            isOptional: false,
           },
         },
         {
@@ -4181,7 +3819,6 @@ const completionSpec: Fig.Spec = {
           description: "dyno size",
           args: {
             name: "size",
-            isOptional: false,
           },
         },
         {
@@ -4193,7 +3830,6 @@ const completionSpec: Fig.Spec = {
           description: "process type",
           args: {
             name: "type",
-            isOptional: false,
           },
         },
       ],
@@ -4227,7 +3863,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4235,7 +3870,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4243,14 +3877,12 @@ const completionSpec: Fig.Spec = {
           description: "stage of first app in pipeline",
           args: {
             name: "stage",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "pipeline",
         description: "name of pipeline",
-        isOptional: false,
       },
     },
     {
@@ -4262,14 +3894,12 @@ const completionSpec: Fig.Spec = {
           description: "the GitHub repository to connect to",
           args: {
             name: "repo",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "name",
         description: "name of pipeline",
-        isOptional: false,
       },
     },
     {
@@ -4281,7 +3911,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4289,7 +3918,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4297,7 +3925,6 @@ const completionSpec: Fig.Spec = {
           description: "stage of first app in pipeline",
           args: {
             name: "stage",
-            isOptional: false,
           },
         },
         {
@@ -4305,7 +3932,6 @@ const completionSpec: Fig.Spec = {
           description: "the team which will own the apps",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -4322,7 +3948,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pipeline",
         description: "name of pipeline",
-        isOptional: false,
       },
     },
     {
@@ -4335,7 +3960,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4343,7 +3967,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -4360,7 +3983,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pipeline",
         description: "pipeline to show list of apps for",
-        isOptional: false,
       },
     },
     {
@@ -4370,7 +3992,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "pipeline",
         description: "name of pipeline",
-        isOptional: false,
       },
     },
     {
@@ -4383,7 +4004,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4391,7 +4011,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4399,7 +4018,6 @@ const completionSpec: Fig.Spec = {
           description: "comma separated list of apps to promote to",
           args: {
             name: "to",
-            isOptional: false,
           },
         },
       ],
@@ -4413,7 +4031,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4421,7 +4038,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -4434,12 +4050,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "pipeline",
           description: "current name of pipeline",
-          isOptional: false,
         },
         {
           name: "name",
           description: "new name of pipeline",
-          isOptional: false,
         },
       ],
     },
@@ -4454,7 +4068,6 @@ const completionSpec: Fig.Spec = {
             "the team to assign pipeline ownership to (defaults to current user)",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
         {
@@ -4484,7 +4097,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -4492,14 +4104,12 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "owner",
         description: "the owner to transfer the pipeline to",
-        isOptional: false,
       },
     },
     {
@@ -4511,7 +4121,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4519,7 +4128,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4527,7 +4135,6 @@ const completionSpec: Fig.Spec = {
           description: "new stage of app",
           args: {
             name: "stage",
-            isOptional: false,
           },
         },
       ],
@@ -4542,7 +4149,6 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4550,7 +4156,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4558,7 +4163,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -4584,7 +4188,6 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -4592,7 +4195,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -4600,7 +4202,6 @@ const completionSpec: Fig.Spec = {
           description: "name of pipeline",
           args: {
             name: "pipeline",
-            isOptional: false,
           },
         },
         {
@@ -4630,7 +4231,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -4644,7 +4244,6 @@ const completionSpec: Fig.Spec = {
           description: "name of space to create",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4652,7 +4251,6 @@ const completionSpec: Fig.Spec = {
           description: "region name",
           args: {
             name: "region",
-            isOptional: false,
           },
         },
         {
@@ -4660,7 +4258,6 @@ const completionSpec: Fig.Spec = {
           description: "RFC-1918 CIDR the space will use",
           args: {
             name: "cidr",
-            isOptional: false,
           },
         },
         {
@@ -4669,7 +4266,6 @@ const completionSpec: Fig.Spec = {
             "RFC-1918 CIDR used by Heroku Data resources for the space",
           args: {
             name: "data-cidr",
-            isOptional: false,
           },
         },
         {
@@ -4677,7 +4273,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -4691,7 +4286,6 @@ const completionSpec: Fig.Spec = {
           description: "space to destroy",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4699,7 +4293,6 @@ const completionSpec: Fig.Spec = {
           description: "set to space name to bypass confirm prompt",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
@@ -4713,7 +4306,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get info of",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4732,7 +4324,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get peering info from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4750,7 +4341,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get peer list from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4768,7 +4358,6 @@ const completionSpec: Fig.Spec = {
           description: "PCX ID of a pending peering",
           args: {
             name: "pcxid",
-            isOptional: false,
           },
         },
         {
@@ -4776,7 +4365,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get peering info from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
       ],
@@ -4790,7 +4378,6 @@ const completionSpec: Fig.Spec = {
           description: "PCX ID of a pending peering",
           args: {
             name: "pcxid",
-            isOptional: false,
           },
         },
         {
@@ -4798,7 +4385,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get peering info from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4806,7 +4392,6 @@ const completionSpec: Fig.Spec = {
           description: "set to PCX ID to bypass confirm prompt",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
@@ -4820,7 +4405,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get dynos of",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4838,7 +4422,6 @@ const completionSpec: Fig.Spec = {
           description: "current name of space",
           args: {
             name: "from",
-            isOptional: false,
           },
         },
         {
@@ -4846,7 +4429,6 @@ const completionSpec: Fig.Spec = {
           description: "desired name of space",
           args: {
             name: "to",
-            isOptional: false,
           },
         },
       ],
@@ -4860,7 +4442,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get topology of",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4878,7 +4459,6 @@ const completionSpec: Fig.Spec = {
           description: "name of space",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4886,7 +4466,6 @@ const completionSpec: Fig.Spec = {
           description: "desired owner of space",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -4900,7 +4479,6 @@ const completionSpec: Fig.Spec = {
           description: "space the VPN connection belongs to",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4909,7 +4487,6 @@ const completionSpec: Fig.Spec = {
             "name or id of the VPN connection to retrieve config from",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -4927,7 +4504,6 @@ const completionSpec: Fig.Spec = {
           description: "VPN name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -4935,7 +4511,6 @@ const completionSpec: Fig.Spec = {
           description: "public IP of customer gateway",
           args: {
             name: "ip",
-            isOptional: false,
           },
         },
         {
@@ -4943,7 +4518,6 @@ const completionSpec: Fig.Spec = {
           description: "a list of routable CIDRs separated by commas",
           args: {
             name: "cidrs",
-            isOptional: false,
           },
         },
         {
@@ -4951,7 +4525,6 @@ const completionSpec: Fig.Spec = {
           description: "space name",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
       ],
@@ -4965,7 +4538,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get VPN connections from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4983,7 +4555,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get peering info from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -4992,7 +4563,6 @@ const completionSpec: Fig.Spec = {
             "name or id of the VPN connection to retrieve config from",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -5000,7 +4570,6 @@ const completionSpec: Fig.Spec = {
           description: "set to VPN connection name to bypass confirm prompt",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
@@ -5014,7 +4583,6 @@ const completionSpec: Fig.Spec = {
           description: "space the vpn connection belongs to",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5026,7 +4594,6 @@ const completionSpec: Fig.Spec = {
           description: "name or id of the VPN connection to get info from",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
       ],
@@ -5040,7 +4607,6 @@ const completionSpec: Fig.Spec = {
           description: "VPN name",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -5048,7 +4614,6 @@ const completionSpec: Fig.Spec = {
           description: "a list of routable CIDRs separated by commas",
           args: {
             name: "cidrs",
-            isOptional: false,
           },
         },
         {
@@ -5056,7 +4621,6 @@ const completionSpec: Fig.Spec = {
           description: "space name",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
       ],
@@ -5070,7 +4634,6 @@ const completionSpec: Fig.Spec = {
           description: "space the vpn connection belongs to",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5078,7 +4641,6 @@ const completionSpec: Fig.Spec = {
           description: "name or id of the vpn connection to wait for",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -5090,7 +4652,6 @@ const completionSpec: Fig.Spec = {
           description: "seconds to wait between poll intervals",
           args: {
             name: "interval",
-            isOptional: false,
           },
         },
         {
@@ -5098,7 +4659,6 @@ const completionSpec: Fig.Spec = {
           description: "maximum number of seconds to wait",
           args: {
             name: "timeout",
-            isOptional: false,
           },
         },
       ],
@@ -5112,7 +4672,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get info of",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5124,7 +4683,6 @@ const completionSpec: Fig.Spec = {
           description: "seconds to wait between poll intervals",
           args: {
             name: "interval",
-            isOptional: false,
           },
         },
         {
@@ -5132,7 +4690,6 @@ const completionSpec: Fig.Spec = {
           description: "maximum number of seconds to wait",
           args: {
             name: "timeout",
-            isOptional: false,
           },
         },
       ],
@@ -5146,7 +4703,6 @@ const completionSpec: Fig.Spec = {
           description: "space to get inbound rules from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5164,7 +4720,6 @@ const completionSpec: Fig.Spec = {
           description: "space to add rule to",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5172,13 +4727,11 @@ const completionSpec: Fig.Spec = {
           description: "set to space name to bypass confirm prompt",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "source",
-        isOptional: false,
       },
     },
     {
@@ -5190,7 +4743,6 @@ const completionSpec: Fig.Spec = {
           description: "space to remove rule from",
           args: {
             name: "space",
-            isOptional: false,
           },
         },
         {
@@ -5198,13 +4750,11 @@ const completionSpec: Fig.Spec = {
           description: "set to space name to bypass confirm prompt",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "source",
-        isOptional: false,
       },
     },
     {
@@ -5216,7 +4766,6 @@ const completionSpec: Fig.Spec = {
           description: "specify the dyno to connect to",
           args: {
             name: "dyno",
-            isOptional: false,
           },
         },
         {
@@ -5224,7 +4773,6 @@ const completionSpec: Fig.Spec = {
           description: "the name of the output file",
           args: {
             name: "output",
-            isOptional: false,
           },
         },
         {
@@ -5232,7 +4780,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5240,13 +4787,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "file",
-        isOptional: false,
       },
     },
     {
@@ -5258,7 +4803,6 @@ const completionSpec: Fig.Spec = {
           description: "specify the dyno to connect to",
           args: {
             name: "dyno",
-            isOptional: false,
           },
         },
         {
@@ -5274,7 +4818,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5282,7 +4825,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5296,7 +4838,6 @@ const completionSpec: Fig.Spec = {
           description: "specify the dyno to connect to",
           args: {
             name: "dyno",
-            isOptional: false,
           },
         },
         {
@@ -5304,7 +4845,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5312,13 +4852,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "port",
-        isOptional: false,
       },
     },
     {
@@ -5330,7 +4868,6 @@ const completionSpec: Fig.Spec = {
           description: "specify the dyno to connect to",
           args: {
             name: "dyno",
-            isOptional: false,
           },
         },
         {
@@ -5338,7 +4875,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5346,7 +4882,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5364,7 +4899,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5372,7 +4906,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5386,7 +4919,6 @@ const completionSpec: Fig.Spec = {
           description: "list of permissions comma separated",
           args: {
             name: "permissions",
-            isOptional: false,
           },
         },
         {
@@ -5394,7 +4926,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5402,13 +4933,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5420,7 +4949,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5428,13 +4956,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5447,7 +4973,6 @@ const completionSpec: Fig.Spec = {
             "comma-delimited list of permissions to update (deploy,manage,operate)",
           args: {
             name: "permissions",
-            isOptional: false,
           },
         },
         {
@@ -5455,7 +4980,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5463,13 +4987,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5481,7 +5003,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5489,7 +5010,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5503,7 +5023,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5511,7 +5030,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5525,7 +5043,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5533,7 +5050,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5555,7 +5071,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5563,14 +5078,12 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "recipient",
         description: "user or team to transfer applications to",
-        isOptional: false,
       },
     },
     {
@@ -5582,7 +5095,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5590,7 +5102,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5604,7 +5115,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5612,7 +5122,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5626,7 +5135,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5634,7 +5142,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5648,7 +5155,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5656,7 +5162,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5670,7 +5175,6 @@ const completionSpec: Fig.Spec = {
           description: "filter by role",
           args: {
             name: "role",
-            isOptional: false,
           },
         },
         {
@@ -5686,7 +5190,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -5700,7 +5203,6 @@ const completionSpec: Fig.Spec = {
           description: "member role (admin, collaborator, member, owner)",
           args: {
             name: "role",
-            isOptional: false,
           },
         },
         {
@@ -5708,13 +5210,11 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5726,13 +5226,11 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5744,7 +5242,6 @@ const completionSpec: Fig.Spec = {
           description: "member role (admin, collaborator, member, owner)",
           args: {
             name: "role",
-            isOptional: false,
           },
         },
         {
@@ -5752,13 +5249,11 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "email",
-        isOptional: false,
       },
     },
     {
@@ -5784,7 +5279,6 @@ const completionSpec: Fig.Spec = {
           description: "team to use",
           args: {
             name: "team",
-            isOptional: false,
           },
         },
       ],
@@ -5808,7 +5302,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5816,7 +5309,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5830,7 +5322,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5838,7 +5329,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5852,7 +5342,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5860,7 +5349,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -5868,7 +5356,6 @@ const completionSpec: Fig.Spec = {
           description: "minimum number of dynos",
           args: {
             name: "min",
-            isOptional: false,
           },
         },
         {
@@ -5876,7 +5363,6 @@ const completionSpec: Fig.Spec = {
           description: "maximum number of dynos",
           args: {
             name: "max",
-            isOptional: false,
           },
         },
         {
@@ -5884,7 +5370,6 @@ const completionSpec: Fig.Spec = {
           description: "desired p95 response time",
           args: {
             name: "p95",
-            isOptional: false,
           },
         },
         {
@@ -5904,7 +5389,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5912,7 +5396,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -5920,7 +5403,6 @@ const completionSpec: Fig.Spec = {
           description: "wait for one specific dyno type",
           args: {
             name: "type",
-            isOptional: false,
           },
         },
         {
@@ -5929,7 +5411,6 @@ const completionSpec: Fig.Spec = {
             "how frequently to poll in seconds (to avoid hitting Heroku API rate limits)",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -5965,7 +5446,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5973,7 +5453,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -5987,7 +5466,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -5995,7 +5473,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -6003,7 +5480,6 @@ const completionSpec: Fig.Spec = {
           description: "comma delimited event types your server will receive ",
           args: {
             name: "include",
-            isOptional: false,
           },
         },
         {
@@ -6012,7 +5488,6 @@ const completionSpec: Fig.Spec = {
             "notify does not retry, sync will retry until successful or timeout",
           args: {
             name: "level",
-            isOptional: false,
           },
         },
         {
@@ -6021,7 +5496,6 @@ const completionSpec: Fig.Spec = {
             "value to sign delivery with in Heroku-Webhook-Hmac-SHA256 header",
           args: {
             name: "secret",
-            isOptional: false,
           },
         },
         {
@@ -6029,7 +5503,6 @@ const completionSpec: Fig.Spec = {
           description: "authoriation header to send with webhooks",
           args: {
             name: "authorization",
-            isOptional: false,
           },
         },
         {
@@ -6037,7 +5510,6 @@ const completionSpec: Fig.Spec = {
           description: "URL for receiver",
           args: {
             name: "url",
-            isOptional: false,
           },
         },
       ],
@@ -6051,7 +5523,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6059,7 +5530,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -6067,7 +5537,6 @@ const completionSpec: Fig.Spec = {
           description: "filter deliveries by status",
           args: {
             name: "status",
-            isOptional: false,
           },
         },
       ],
@@ -6081,7 +5550,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6089,13 +5557,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -6107,7 +5573,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6115,7 +5580,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6129,7 +5593,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6137,13 +5600,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -6155,7 +5616,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6163,13 +5623,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -6181,7 +5639,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6189,14 +5646,12 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
         description: "id of webhook to remove",
-        isOptional: false,
       },
     },
     {
@@ -6208,7 +5663,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6216,7 +5670,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
         {
@@ -6224,7 +5677,6 @@ const completionSpec: Fig.Spec = {
           description: "comma delimited event types your server will receive ",
           args: {
             name: "include",
-            isOptional: false,
           },
         },
         {
@@ -6233,7 +5685,6 @@ const completionSpec: Fig.Spec = {
             "notify does not retry, sync will retry until successful or timeout",
           args: {
             name: "level",
-            isOptional: false,
           },
         },
         {
@@ -6242,7 +5693,6 @@ const completionSpec: Fig.Spec = {
             "value to sign delivery with in Heroku-Webhook-Hmac-SHA256 header",
           args: {
             name: "secret",
-            isOptional: false,
           },
         },
         {
@@ -6250,7 +5700,6 @@ const completionSpec: Fig.Spec = {
           description: "authoriation header to send with webhooks",
           args: {
             name: "authorization",
-            isOptional: false,
           },
         },
         {
@@ -6258,13 +5707,11 @@ const completionSpec: Fig.Spec = {
           description: "URL for receiver",
           args: {
             name: "url",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "id",
-        isOptional: false,
       },
     },
     {
@@ -6288,7 +5735,6 @@ const completionSpec: Fig.Spec = {
           description: "only show provided columns (comma-separated)",
           args: {
             name: "columns",
-            isOptional: false,
           },
         },
         {
@@ -6296,7 +5742,6 @@ const completionSpec: Fig.Spec = {
           description: "property to sort by (prepend '-' for descending)",
           args: {
             name: "sort",
-            isOptional: false,
           },
         },
         {
@@ -6305,7 +5750,6 @@ const completionSpec: Fig.Spec = {
             "filter property by partial string matching, ex: name=foo",
           args: {
             name: "filter",
-            isOptional: false,
           },
         },
         {
@@ -6317,7 +5761,7 @@ const completionSpec: Fig.Spec = {
           description: "output in a more machine friendly format",
           args: {
             name: "output",
-            isOptional: false,
+
             suggestions: ["csv", "json", "yaml"],
           },
         },
@@ -6356,7 +5800,6 @@ const completionSpec: Fig.Spec = {
 
       args: {
         name: "command",
-        isOptional: false,
       },
     },
     {
@@ -6398,7 +5841,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "plugin",
         description: "plugin to install",
-        isOptional: false,
       },
     },
     {
@@ -6417,7 +5859,6 @@ const completionSpec: Fig.Spec = {
       args: {
         name: "path",
         description: "path to plugin",
-        isOptional: false,
       },
     },
     {
@@ -6462,7 +5903,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6470,7 +5910,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6488,7 +5927,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6496,7 +5934,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6510,7 +5947,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6518,7 +5954,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6536,7 +5971,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -6548,7 +5982,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6556,7 +5989,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6574,7 +6006,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -6582,7 +6013,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6590,13 +6020,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "backup_id",
-        isOptional: false,
       },
     },
     {
@@ -6608,7 +6036,6 @@ const completionSpec: Fig.Spec = {
           description: "location to download to. Defaults to latest.dump",
           args: {
             name: "output",
-            isOptional: false,
           },
         },
         {
@@ -6616,7 +6043,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6624,7 +6050,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6642,7 +6067,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6650,7 +6074,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6668,7 +6091,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -6680,7 +6102,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -6688,7 +6109,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6696,7 +6116,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6721,7 +6140,6 @@ const completionSpec: Fig.Spec = {
             "at a specific (24h) hour in the given timezone. Defaults to UTC. --at '[HOUR]:00 [TIMEZONE]'",
           args: {
             name: "at",
-            isOptional: false,
           },
         },
         {
@@ -6729,7 +6147,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6737,7 +6154,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6755,7 +6171,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6763,7 +6178,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6777,7 +6191,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6785,7 +6198,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6803,7 +6215,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6811,7 +6222,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6830,7 +6240,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6838,7 +6247,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6857,7 +6265,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6865,7 +6272,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6883,7 +6289,6 @@ const completionSpec: Fig.Spec = {
           description: "name for add-on attachment",
           args: {
             name: "as",
-            isOptional: false,
           },
         },
         {
@@ -6891,7 +6296,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6899,7 +6303,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6917,7 +6320,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -6929,7 +6331,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -6937,7 +6338,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6945,18 +6345,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "source",
-          isOptional: false,
         },
         {
           name: "target",
-          isOptional: false,
         },
       ],
     },
@@ -6973,7 +6370,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -6981,7 +6377,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -6999,7 +6394,6 @@ const completionSpec: Fig.Spec = {
           description: "name of the new credential within the database",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -7007,7 +6401,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7015,7 +6408,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7033,7 +6425,6 @@ const completionSpec: Fig.Spec = {
           description: "unique identifier for the credential",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -7041,7 +6432,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7049,7 +6439,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7057,7 +6446,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7076,7 +6464,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7084,7 +6471,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7092,7 +6478,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7111,7 +6496,6 @@ const completionSpec: Fig.Spec = {
             "which credential to rotate (default credentials if not specified)",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -7123,7 +6507,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7135,7 +6518,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7143,7 +6525,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7162,7 +6543,6 @@ const completionSpec: Fig.Spec = {
             "which credential to show (default credentials if not specified)",
           args: {
             name: "name",
-            isOptional: false,
           },
         },
         {
@@ -7170,7 +6550,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7178,7 +6557,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7200,7 +6578,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7208,7 +6585,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7226,7 +6602,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7234,7 +6609,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7256,7 +6630,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7264,14 +6637,12 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "pid",
-          isOptional: false,
         },
         {
           name: "database",
@@ -7288,7 +6659,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7296,7 +6666,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7314,7 +6683,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7322,7 +6690,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7340,7 +6707,6 @@ const completionSpec: Fig.Spec = {
           description: "name of link to create",
           args: {
             name: "as",
-            isOptional: false,
           },
         },
         {
@@ -7348,7 +6714,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7356,18 +6721,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "remote",
-          isOptional: false,
         },
         {
           name: "database",
-          isOptional: false,
         },
       ],
     },
@@ -7380,7 +6742,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7388,7 +6749,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7396,18 +6756,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "database",
-          isOptional: false,
         },
         {
           name: "link",
-          isOptional: false,
         },
       ],
     },
@@ -7424,7 +6781,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7432,7 +6788,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7450,7 +6805,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7458,7 +6812,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7480,7 +6833,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7488,7 +6840,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7506,7 +6857,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7514,18 +6864,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "database",
-          isOptional: false,
         },
         {
           name: "window",
-          isOptional: false,
         },
       ],
     },
@@ -7547,7 +6894,6 @@ const completionSpec: Fig.Spec = {
           description: "the number of queries to display (default: 10)",
           args: {
             name: "num",
-            isOptional: false,
           },
         },
         {
@@ -7555,7 +6901,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7563,7 +6908,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7585,7 +6929,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7593,13 +6936,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
-        isOptional: false,
       },
     },
     {
@@ -7615,7 +6956,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7623,7 +6963,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7641,7 +6980,6 @@ const completionSpec: Fig.Spec = {
           description: "SQL command to run",
           args: {
             name: "command",
-            isOptional: false,
           },
         },
         {
@@ -7649,7 +6987,6 @@ const completionSpec: Fig.Spec = {
           description: "SQL file to run",
           args: {
             name: "file",
-            isOptional: false,
           },
         },
         {
@@ -7657,7 +6994,6 @@ const completionSpec: Fig.Spec = {
           description: "credential to use",
           args: {
             name: "credential",
-            isOptional: false,
           },
         },
         {
@@ -7665,7 +7001,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7673,7 +7008,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7692,7 +7026,6 @@ const completionSpec: Fig.Spec = {
             "tables for which data should be excluded (use ';' to split multiple names)",
           args: {
             name: "exclude-table-data",
-            isOptional: false,
           },
         },
         {
@@ -7700,7 +7033,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7708,18 +7040,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "source",
-          isOptional: false,
         },
         {
           name: "target",
-          isOptional: false,
         },
       ],
     },
@@ -7733,7 +7062,6 @@ const completionSpec: Fig.Spec = {
             "tables for which data should be excluded (use ';' to split multiple names)",
           args: {
             name: "exclude-table-data",
-            isOptional: false,
           },
         },
         {
@@ -7741,7 +7069,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7749,18 +7076,15 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "source",
-          isOptional: false,
         },
         {
           name: "target",
-          isOptional: false,
         },
       ],
     },
@@ -7773,7 +7097,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7781,7 +7104,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7789,7 +7111,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7807,7 +7128,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7815,7 +7135,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7834,7 +7153,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7842,7 +7160,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7867,7 +7184,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7875,7 +7191,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7899,7 +7214,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7907,7 +7221,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -7932,7 +7245,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7940,7 +7252,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7948,13 +7259,11 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
-        isOptional: false,
       },
     },
     {
@@ -7967,7 +7276,6 @@ const completionSpec: Fig.Spec = {
           description: "",
           args: {
             name: "confirm",
-            isOptional: false,
           },
         },
         {
@@ -7975,7 +7283,6 @@ const completionSpec: Fig.Spec = {
           description: "PostgreSQL version to upgrade to",
           args: {
             name: "version",
-            isOptional: false,
           },
         },
         {
@@ -7983,7 +7290,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -7991,7 +7297,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -8010,7 +7315,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -8018,7 +7322,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -8037,7 +7340,6 @@ const completionSpec: Fig.Spec = {
             "how frequently to poll in seconds (to avoid rate limiting)",
           args: {
             name: "wait-interval",
-            isOptional: false,
           },
         },
         {
@@ -8049,7 +7351,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -8057,7 +7358,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
@@ -8075,7 +7375,6 @@ const completionSpec: Fig.Spec = {
           description: "SQL command to run",
           args: {
             name: "command",
-            isOptional: false,
           },
         },
         {
@@ -8083,7 +7382,6 @@ const completionSpec: Fig.Spec = {
           description: "SQL file to run",
           args: {
             name: "file",
-            isOptional: false,
           },
         },
         {
@@ -8091,7 +7389,6 @@ const completionSpec: Fig.Spec = {
           description: "credential to use",
           args: {
             name: "credential",
-            isOptional: false,
           },
         },
         {
@@ -8099,7 +7396,6 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: false,
           },
         },
         {
@@ -8107,7 +7403,6 @@ const completionSpec: Fig.Spec = {
           description: "git remote of app to use",
           args: {
             name: "remote",
-            isOptional: false,
           },
         },
       ],
