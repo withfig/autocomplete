@@ -1,6 +1,6 @@
 const semverRegex = /((([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)/gm;
 
-const globalOptions = [
+const globalOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
     description: "Print this usage information.",
@@ -32,6 +32,11 @@ const completionSpec: Fig.Spec = {
           name: ["-c", "--cache-path"],
           description:
             "Set the path which FVM will cache the version. Priority over FVM_HOME.",
+          args: {
+            name: "path",
+            description: "Path to the Flutter versions cache.",
+            template: "filepaths",
+          },
         },
         {
           name: ["-s", "--skip-setup", "--no-skip-setup"],
@@ -47,7 +52,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "dart",
       description: "Proxies Dart commands",
-      args: {},
     },
     {
       name: "doctor",
@@ -57,7 +61,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "flavor",
       description: "Switches between different project flavors.",
-      args: {},
+      args: {
+        name: "flavor-name",
+        description: "The flavor to switch to.",
+      },
     },
     {
       name: "flutter",
@@ -77,7 +84,23 @@ const completionSpec: Fig.Spec = {
       description: "Installs Flutter SDK version",
       args: {
         name: "version",
-        suggestions: ["stable", "beta", "dev"],
+        suggestions: [
+          {
+            name: "stable",
+            description: "Latest stable release of Flutter",
+            priority: 100,
+          },
+          {
+            name: "beta",
+            description: "Latest beta release of Flutter",
+            priority: 99,
+          },
+          {
+            name: "dev",
+            description: "Latest dev release of Flutter (master)",
+            priority: 98,
+          },
+        ],
         generators: [
           {
             script: "fvm releases",
@@ -110,7 +133,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "remove",
       description: "Removes Flutter SDK version.",
-      args: { name: "version" },
+      args: {
+        name: "version",
+        description: "The installed Flutter version to remove.",
+      },
       options: [
         ...globalOptions,
         {
@@ -122,7 +148,10 @@ const completionSpec: Fig.Spec = {
     {
       name: "spawn",
       description: "Spawn a Flutter SDK version command",
-      args: { name: "version" },
+      args: {
+        name: "version",
+        description: "The Flutter version from which to spawn a command.",
+      },
     },
     {
       name: "use",
