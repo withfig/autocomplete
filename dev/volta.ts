@@ -168,6 +168,7 @@ const completionSpec: Fig.Spec = {
           name: "--env",
           description:
             "Set an environment variable (can be used multiple times)",
+          isRepeatable: true,
           args: {
             name: "NAME=value",
           },

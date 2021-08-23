@@ -16397,11 +16397,13 @@ const completionSpec: Fig.Spec = {
           name: ["-c", "--constraint"],
           description:
             "Constrain versions using the given constraints file. This option can be used multiple times.",
+          isRepeatable: true,
         },
         {
           name: ["-r", "--requirement"],
           description:
             "Install from the given requirements file. This option can be used multiple times.",
+          isRepeatable: true,
         },
         {
           name: ["--no-deps"],
@@ -16416,6 +16418,7 @@ const completionSpec: Fig.Spec = {
           name: ["--no-binary"],
           description:
             "Constrain versions using the given constraints file. This option can be used multiple times.",
+          isRepeatable: true,
         },
         {
           name: ["--only-binary"],
@@ -16574,6 +16577,7 @@ const completionSpec: Fig.Spec = {
           name: ["--path"],
           description:
             "Restrict to the specified installation path for listing packages (can be used multiple times).",
+          isRepeatable: true,
         },
         {
           name: ["--all"],
@@ -16623,6 +16627,7 @@ const completionSpec: Fig.Spec = {
           name: ["--path"],
           description:
             "Restrict to the specified installation path for listing packages (can be used multiple times).",
+          isRepeatable: true,
           args: {
             name: "path",
             template: "filepaths",

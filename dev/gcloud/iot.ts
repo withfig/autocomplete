@@ -1336,6 +1336,7 @@ const completionSpec: Fig.Spec = {
               name: "--public-key",
               description:
                 "Specify a public key.\n+\nSupports four key types:\n+\n* `rsa-x509-pem`:         As RSA_PEM, but wrapped in an X.509v3 certificate\n        ([RFC5280](https://www.ietf.org/rfc/rfc5280.txt)),\n        encoded in base64, and wrapped by\n        `-----BEGIN CERTIFICATE-----` and\n        `-----END CERTIFICATE-----`.\n* `rsa-pem`:         An RSA public key encoded in base64, and wrapped by\n        `-----BEGIN PUBLIC KEY-----` and `-----END PUBLIC KEY-----`.\n        This can be used to verify `RS256` signatures in JWT tokens\n        ([RFC7518](https://www.ietf.org/rfc/rfc7518.txt)).\n* `rs256`: Deprecated name for `rsa-x509-pem`\n* `es256-x509-pem`:         As ES256_PEM, but wrapped in an X.509v3 certificate\n        ([RFC5280](https://www.ietf.org/rfc/rfc5280.txt)),\n        encoded in base64, and wrapped by\n        `-----BEGIN CERTIFICATE-----` and\n        `-----END CERTIFICATE-----`.\n* `es256-pem`:         Public key for the ECDSA algorithm using P-256 and\n        SHA-256, encoded in base64, and wrapped by\n        `-----BEGIN PUBLIC KEY-----` and\n        `-----END PUBLIC KEY-----`. This can be used to verify JWT\n        tokens with the `ES256` algorithm\n        ([RFC7518](https://www.ietf.org/rfc/rfc7518.txt)). This\n        curve is defined in [OpenSSL](https://www.openssl.org/) as\n        the `prime256v1` curve.\n* `es256`: Deprecated nmame for `es256-pem`\n+\nThe key specification is given via the following sub-arguments:\n+\n* *path*: Required. The path on disk to the file containing the key.\n* *type*: Required. One of [`es256`, `es256-pem`, `es256-x509-pem`, `rs256`, `rsa-pem`, `rsa-x509-pem`]. The type of the key.\n* *expiration-time*: Optional. The expiration time for the key. See $ gcloud topic datetimes for information on time formats.\n+\nFor example:\n+\n  --public-key \\\n      path=/path/to/id_rsa.pem,type=RSA_PEM,expiration-time=2017-01-01T00:00-05\n+\nThis flag may be provide multiple times to provide multiple keys (maximum 3).",
+              isRepeatable: true,
               args: {
                 name: "path=PATH,type=TYPE,[expiration-time=EXPIRATION-TIME]",
                 description: "dict",
@@ -4588,6 +4589,7 @@ const completionSpec: Fig.Spec = {
               name: "--event-notification-config",
               description:
                 "The configuration for notification of telemetry events received\nfrom the device. This flag can be specified multiple times to add multiple\nconfigs to the device registry. Configs are added to the registry in the order\nthe flags are specified. Only one config with an empty subfolder field is\nallowed and must be specified last.\n+\n*topic*::::A Google Cloud Pub/Sub topic name for event notifications\n+\n*subfolder*::::If the subfolder name matches this string exactly, this\nconfiguration will be used to publish telemetry events. If empty all strings\nare matched.",
+              isRepeatable: true,
               args: {
                 name: "EVENT_NOTIFICATION_CONFIG",
                 description: "dict",
@@ -6580,6 +6582,7 @@ const completionSpec: Fig.Spec = {
               name: "--event-notification-config",
               description:
                 "The configuration for notification of telemetry events received\nfrom the device. This flag can be specified multiple times to add multiple\nconfigs to the device registry. Configs are added to the registry in the order\nthe flags are specified. Only one config with an empty subfolder field is\nallowed and must be specified last.\n+\n*topic*::::A Google Cloud Pub/Sub topic name for event notifications\n+\n*subfolder*::::If the subfolder name matches this string exactly, this\nconfiguration will be used to publish telemetry events. If empty all strings\nare matched.",
+              isRepeatable: true,
               args: {
                 name: "EVENT_NOTIFICATION_CONFIG",
                 description: "dict",
