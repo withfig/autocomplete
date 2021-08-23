@@ -92,10 +92,11 @@ const completionSpec: Fig.Spec = {
           args: {
             generators: {
               custom: async (ctx) => {
-                // if anything provided after the command does not begin with '-'
+                // if anything provided after the subcommand does not begin with '-'
                 // then a formula has been provided and we should provide info on it
-                console.log({ctx}, ctx.slice(2, ctx.length - 1))
-                if (ctx.slice(2, ctx.length - 1).some((token) => token[0] !== "-")) {
+                if (
+                  ctx.slice(2, ctx.length - 1).some((token) => token[0] !== "-")
+                ) {
                   return ["install", "install-on-request", "build-error"].map(
                     (sugg) => ({
                       name: sugg,
