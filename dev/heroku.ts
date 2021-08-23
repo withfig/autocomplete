@@ -80,6 +80,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -111,6 +112,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -132,6 +134,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -163,6 +166,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -192,6 +196,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -260,6 +265,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -315,6 +321,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -346,6 +353,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -376,6 +384,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -403,6 +412,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -439,6 +449,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -471,6 +482,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -495,6 +507,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -557,6 +570,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -600,6 +614,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -624,6 +639,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -651,6 +667,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -679,6 +696,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -715,6 +733,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -831,6 +850,7 @@ const completionSpec: Fig.Spec = {
       ],
       args: {
         name: "app",
+        generators: getAppGenerator,
         description: "name of app to create",
         isOptional: true,
       },
@@ -851,6 +871,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -890,6 +911,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -920,6 +942,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -940,6 +963,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -968,6 +992,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -988,6 +1013,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1016,6 +1042,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1039,6 +1066,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1059,6 +1087,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1082,6 +1111,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1106,6 +1136,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1126,6 +1157,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1149,6 +1181,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1172,6 +1205,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1195,6 +1229,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1215,6 +1250,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1239,6 +1275,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1259,6 +1296,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1286,6 +1324,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1306,6 +1345,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1329,6 +1369,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1356,6 +1397,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1423,6 +1465,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1443,6 +1486,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1470,6 +1514,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1493,6 +1538,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1513,6 +1559,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1533,6 +1580,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1566,6 +1614,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1590,6 +1639,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1610,6 +1660,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1633,6 +1684,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1653,6 +1705,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1677,6 +1730,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1697,6 +1751,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1720,6 +1775,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1751,6 +1807,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1779,6 +1836,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1803,6 +1861,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1827,6 +1886,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1866,6 +1926,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1894,6 +1955,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1919,6 +1981,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -1946,6 +2009,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2021,6 +2085,7 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2049,6 +2114,7 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2080,6 +2146,7 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2107,6 +2174,7 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2131,6 +2199,7 @@ const completionSpec: Fig.Spec = {
           description: "app name",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2151,6 +2220,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2182,6 +2252,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2214,6 +2285,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2234,6 +2306,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2258,6 +2331,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2278,6 +2352,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2298,6 +2373,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2368,6 +2444,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2409,6 +2486,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2429,6 +2507,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2463,6 +2542,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2501,6 +2581,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2530,6 +2611,7 @@ const completionSpec: Fig.Spec = {
           description: "the Heroku app to use",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2559,6 +2641,7 @@ const completionSpec: Fig.Spec = {
           description: "the Heroku app to use",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2591,6 +2674,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2632,6 +2716,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2681,6 +2766,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2715,6 +2801,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2735,6 +2822,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2762,6 +2850,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2785,6 +2874,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2814,6 +2904,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2841,6 +2932,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2877,6 +2969,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2915,6 +3008,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -2951,6 +3045,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3198,6 +3293,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3229,6 +3325,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3257,6 +3354,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3285,6 +3383,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3316,6 +3415,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3356,6 +3456,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3387,6 +3488,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3411,6 +3513,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3442,6 +3545,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3474,6 +3578,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3498,6 +3603,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3550,6 +3656,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3595,6 +3702,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3620,6 +3728,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3640,6 +3749,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3671,6 +3781,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3691,6 +3802,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3742,6 +3854,7 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3797,6 +3910,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3863,6 +3977,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3911,6 +4026,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -3960,6 +4076,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4004,6 +4121,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4031,6 +4149,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4121,6 +4240,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4149,6 +4269,7 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4188,6 +4309,7 @@ const completionSpec: Fig.Spec = {
           description: "parent app used by review apps",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4780,6 +4902,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4818,6 +4941,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4845,6 +4969,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4875,6 +5000,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4899,6 +5025,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4926,6 +5053,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4949,6 +5077,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -4980,6 +5109,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5003,6 +5133,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5023,6 +5154,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5043,6 +5175,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5071,6 +5204,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5095,6 +5229,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5115,6 +5250,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5135,6 +5271,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5155,6 +5292,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5302,6 +5440,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5322,6 +5461,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5342,6 +5482,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5389,6 +5530,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5446,6 +5588,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5466,6 +5609,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5523,6 +5667,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5550,6 +5695,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5573,6 +5719,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5593,6 +5740,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5616,6 +5764,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5639,6 +5788,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5663,6 +5813,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5903,6 +6054,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5927,6 +6079,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5947,6 +6100,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -5982,6 +6136,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6013,6 +6168,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6043,6 +6199,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6067,6 +6224,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6109,6 +6267,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6147,6 +6306,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6171,6 +6331,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6191,6 +6352,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6215,6 +6377,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6240,6 +6403,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6265,6 +6429,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6296,6 +6461,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6338,6 +6504,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6370,6 +6537,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6401,6 +6569,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6439,6 +6608,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6471,6 +6641,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6518,6 +6689,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6550,6 +6722,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6578,6 +6751,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6602,6 +6776,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6630,6 +6805,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6659,6 +6835,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6683,6 +6860,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6714,6 +6892,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6749,6 +6928,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6781,6 +6961,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6805,6 +6986,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6833,6 +7015,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6857,6 +7040,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6901,6 +7085,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6929,6 +7114,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -6956,6 +7142,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7001,6 +7188,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7033,6 +7221,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7069,6 +7258,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7104,6 +7294,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7128,6 +7319,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7153,6 +7345,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7184,6 +7377,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7214,6 +7408,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7252,6 +7447,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7290,6 +7486,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7315,6 +7512,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7351,6 +7549,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
@@ -7396,6 +7595,7 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
+            generators: getAppGenerator,
           },
         },
         {
