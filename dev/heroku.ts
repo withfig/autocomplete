@@ -1,39 +1,25 @@
+const getAppGenerator: Fig.Generator = {
+  script: "heroku apps --all --json",
+  postProcess: function (out) {
+    try {
+      return JSON.parse(out).map((app) => {
+        return {
+          name: app.name,
+          description: app.name,
+          icon: "https://www.herokucdn.com/favicon.ico",
+        };
+      });
+    } catch (e) {
+      return [];
+    }
+  },
+};
+
 const completionSpec: Fig.Spec = {
   name: "heroku",
-  description: "",
+  description:
+    "Makes it easy to create and manage your Heroku apps directly from the terminal",
   subcommands: [
-    {
-      name: "fig-completion",
-      description: "Generate a Fig completion spec",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "show CLI help",
-        },
-        {
-          name: ["-o", "--output"],
-          description:
-            "filepath to export completion spec (do not specify file extension)",
-          args: {
-            name: "output",
-            isOptional: false,
-          },
-        },
-        {
-          name: ["-l", "--lang"],
-          description: "",
-          args: {
-            name: "lang",
-            isOptional: false,
-            suggestions: [" ts", "js"],
-          },
-        },
-      ],
-      args: {
-        name: "file",
-        isOptional: true,
-      },
-    },
     {
       name: ["auth:2fa", "2fa", "twofactor"],
       description: "check 2fa status",
