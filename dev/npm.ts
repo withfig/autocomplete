@@ -32,28 +32,27 @@ const dependenciesGenerator: Fig.Generator = {
     }
     try {
       const packageContent = JSON.parse(out);
-      const dependencies = packageContent["dependencies"];
-      if (dependencies) {
-        return Object.keys(dependencies)
-          .filter(function (pkg) {
-            const isListed = context.some((current) => current === pkg);
-            return !isListed;
-          })
-          .map((name) => {
-            const scope = name.indexOf("/") + 1;
-            const version = name.indexOf("@");
-            const displayName =
-              (scope !== -1 ? name.substring(scope) : name) ||
-              (version !== -1 ? name.substring(version) : name);
-            return {
-              name,
-              displayName,
-              description: "dependency",
-            };
-          });
-      }
-    } catch (e) {}
-    return [];
+      const dependencies = packageContent["dependencies"] ?? {};
+      const devDependencies = packageContent["devDependencies"];
+      const optionalDependencies = packageContent["optionalDependencies"] ?? {};
+      Object.assign(dependencies, devDependencies, optionalDependencies);
+
+      return Object.keys(dependencies)
+        .filter((pkgName) => {
+          const isListed = context.some((current) => current === pkgName);
+          return !isListed;
+        })
+        .map((pkgName) => ({
+          name: pkgName,
+          description: dependencies[pkgName]
+            ? "dependency"
+            : optionalDependencies[pkgName]
+            ? "optionalDependency"
+            : "devDependency",
+        }));
+    } catch {
+      return [];
+    }
   },
 };
 
@@ -262,56 +261,8 @@ const completionSpec: Fig.Spec = {
     { name: "token", description: "manage your authentication tokens" },
     { name: "tst", description: "test a package" },
     {
-      name: "un",
+      name: ["uninstall", "remove", "rm", "r", "unlink", "un"],
       description: "uninstall a package",
-      args: [
-        {
-          name: "package",
-          generators: dependenciesGenerator,
-          isVariadic: true,
-        },
-      ],
-      options: npmInstallOptions,
-    },
-    {
-      name: "r",
-      description: "uninstall a package",
-      args: [
-        {
-          name: "package",
-          generators: dependenciesGenerator,
-          isVariadic: true,
-        },
-      ],
-      options: npmInstallOptions,
-    },
-    {
-      name: "rm",
-      description: "uninstall a package",
-      args: [
-        {
-          name: "package",
-          generators: dependenciesGenerator,
-          isVariadic: true,
-        },
-      ],
-      options: npmInstallOptions,
-    },
-    {
-      name: "remove",
-      description: "uninstall a package",
-      args: [
-        {
-          name: "package",
-          generators: dependenciesGenerator,
-          isVariadic: true,
-        },
-      ],
-      options: npmInstallOptions,
-    },
-    {
-      name: "uninstall",
-      description: "remove a package",
       args: [
         {
           name: "package",
