@@ -1,6 +1,9 @@
 const completionSpec: Fig.Spec = {
   name: "hyper",
   description: "Hyper is an Electron-based terminal",
+  args: {
+    template: "folders",
+  },
   subcommands: [
     {
       name: ["install", "i"],
