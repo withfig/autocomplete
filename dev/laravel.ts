@@ -1,38 +1,28 @@
+const commonOptions: Fig.Option[] = [
+  {
+    name: "--format",
+    description: "The output format (txt, xml, json, or md)",
+    args: {
+      suggestions: ["txt", "xml", "json", "md"],
+    },
+  },
+  {
+    name: "--raw",
+    description: "To output raw command list",
+  },
+];
+
 const completionSpec: Fig.Spec = {
   name: "laravel",
   description: "Laravel Installer",
   subcommands: [
     {
       name: "help",
-      options: [
-        {
-          name: "--format",
-          description: "The output format (txt, xml, json, or md)",
-          args: {
-            suggestions: ["txt", "xml", "json", "md"],
-          },
-        },
-        {
-          name: "--raw",
-          description: "To output raw command list",
-        },
-      ],
+      options: commonOptions,
     },
     {
       name: "list",
-      options: [
-        {
-          name: "--format",
-          description: "The output format (txt, xml, json, or md)",
-          args: {
-            suggestions: ["txt", "xml", "json", "md"],
-          },
-        },
-        {
-          name: "--raw",
-          description: "To output raw command list",
-        },
-      ],
+      options: commonOptions,
     },
     {
       name: "new",
@@ -75,6 +65,7 @@ const completionSpec: Fig.Spec = {
           description: "The Jetstream stack that should be installed",
           args: {
             name: "STACK",
+            suggestions: ["livewire", "inertia"],
           },
         },
         {
