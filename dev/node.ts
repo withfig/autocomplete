@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "node",
-  description: "Run the node interpretor",
+  description: "Run the node interpreter",
   args: {
     name: "node script",
     isScript: true,
