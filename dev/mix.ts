@@ -47,6 +47,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--umbrella",
+          description: "Generate an umbrella project",
         },
       ],
     },
