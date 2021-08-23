@@ -144,6 +144,7 @@ const completionSpec: Fig.Spec = {
       name: ["-i"],
       description:
         "Selects a file from which the identity (private key) for public key authentication is read.",
+      isRepeatable: true,
       args: {
         name: "identity file",
         description: "path to identity (private key)",
@@ -181,6 +182,7 @@ const completionSpec: Fig.Spec = {
       name: ["-M"],
       description:
         "Places the ssh client into ``master'' mode for connection sharing.",
+      isRepeatable: true,
     },
     {
       name: ["-m"],
@@ -211,6 +213,7 @@ const completionSpec: Fig.Spec = {
       name: ["-o"],
       description:
         "Can be used to give options in the format used in the configuration file.",
+      isRepeatable: true,
       args: {
         name: "option",
         description:

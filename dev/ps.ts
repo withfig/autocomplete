@@ -82,6 +82,7 @@ const completionSpec: Fig.Spec = {
       name: ["--format", "-o", "o"],
       description: ".",
       args: { name: "format" },
+      isRepeatable: true,
     },
     { name: ["-M", "Z"], description: "(for SE Linux)." },
     { name: ["-y", "-l"], description: "." },
