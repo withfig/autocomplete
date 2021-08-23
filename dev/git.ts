@@ -749,12 +749,32 @@ const completionSpec: Fig.Spec = {
             "This option determines how the supplied commit message should be cleaned up b...",
           args: {
             name: "mode",
+            description:
+              "Determines how the supplied commit messaged should be cleaned up before committing",
             suggestions: [
-              "strip",
-              "whitespace",
-              "verbatim",
-              "scissors",
-              "default",
+              {
+                name: "strip",
+                description:
+                  "Strip leading and trailing empty lines, trailing whitepace, commentary and collapse consecutive empty lines",
+              },
+              {
+                name: "whitespace",
+                description: "Same as strip except #commentary is not removed",
+              },
+              {
+                name: "verbatim",
+                description: "Do not change the message at all",
+              },
+              {
+                name: "scissors",
+                description:
+                  "Same as whitespace except that everything from (and including) the line found below is truncated",
+              },
+              {
+                name: "default",
+                description:
+                  "Same as strip if the message is to be edited. Otherwise whitespace.",
+              },
             ],
           },
         },
@@ -1182,6 +1202,7 @@ const completionSpec: Fig.Spec = {
 
         {
           name: ["-s", "--strategy"],
+          isRepeatable: true,
           description:
             "Use the given merge strategy. If there is no -s option git merge-recursive is used instead. This implies --merge. Because git rebase replays each commit from the working branch on top of the <upstream> branch using the given strategy, using the ours strategy simply empties all patches from the <branch>, which makes little sense.",
           args: {
@@ -4251,6 +4272,186 @@ const completionSpec: Fig.Spec = {
           isOptional: true,
           isVariadic: true,
           template: "filepaths",
+        },
+      ],
+    },
+    {
+      name: "cherry-pick",
+      description: "Apply the changes introduced by some existing commits",
+      subcommands: [
+        {
+          name: "--continue",
+          description:
+            "Continue the operation in progress using the information in .git/sequencer",
+        },
+        {
+          name: "--skip",
+          description:
+            "Skip the current commit and continue with the rest of the sequence",
+        },
+        {
+          name: "--quit",
+          description: "Forget about the current operation in progress",
+        },
+        {
+          name: "--abort",
+          description:
+            "Cancel the operation and return to the pre-sequence state",
+        },
+      ],
+      args: [
+        {
+          name: "commit",
+          description: "Commits to cherry-pick",
+          isVariadic: true,
+          generators: gitGenerators.commits,
+        },
+      ],
+      options: [
+        {
+          name: ["-e", "--edit"],
+          description:
+            "With this option, git cherry-pick will let you edit the commit message prior to committing",
+        },
+        {
+          name: "--cleanup",
+          description:
+            "This option determines how the commit message will be cleaned up before being passed on to the commit machinery",
+          args: {
+            name: "mode",
+            description:
+              "Determines how the supplied commit messaged should be cleaned up before committing",
+            suggestions: [
+              {
+                name: "strip",
+                description:
+                  "Strip leading and trailing empty lines, trailing whitepace, commentary and collapse consecutive empty lines",
+              },
+              {
+                name: "whitespace",
+                description: "Same as strip except #commentary is not removed",
+              },
+              {
+                name: "verbatim",
+                description: "Do not change the message at all",
+              },
+              {
+                name: "scissors",
+                description:
+                  "Same as whitespace except that everything from (and including) the line found below is truncated",
+              },
+              {
+                name: "default",
+                description:
+                  "Same as strip if the message is to be edited. Otherwise whitespace.",
+              },
+            ],
+          },
+        },
+        {
+          name: "-x",
+          description:
+            'When recording the commit, append a line that says "(cherry picked from commit ...)" to the original commit message in order to indicate which commit this change was cherry-picked from',
+        },
+        {
+          name: ["-m", "--mainline"],
+          description:
+            "Specifies the parent number (starting from 1) of the mainline and allows cherry-pick to replay the change relative to the specified parent",
+          args: {
+            name: "parent-number",
+          },
+        },
+        {
+          name: ["-n", "--no-commit"],
+          description:
+            "Applies changes necessary to cherry-pick each named commit to your working tree and the index without making any commit",
+        },
+        {
+          name: ["-s", "--signoff"],
+          description:
+            "Add a Signed-off-by trailer at the end of the commit message",
+        },
+        {
+          name: ["-S", "--gpg-sign"],
+          exclusiveOn: ["--no-gpg-sign"],
+          description: "GPG-sign commits",
+          args: {
+            name: "keyid",
+            description: "Must be stuck to the option without a space",
+            isOptional: true,
+          },
+        },
+        {
+          name: "--no-gpg-sign",
+          exclusiveOn: ["-S", "--gpg-sign"],
+          description:
+            "Useful to countermand both commit.gpgSign configuration variable, and earlier --gpg-sign",
+        },
+        {
+          name: "--ff",
+          description:
+            "If the current HEAD is the same as the parent of the cherry-pick'ed commit, the a fast forward to this commit will be performed",
+        },
+        {
+          name: "--allow-empty",
+          description:
+            "Allow empty commits to be preserved automatically in a cherry-pick",
+        },
+        {
+          name: "--allow-empty-message",
+          description: "Allow commits with empty messages to be cherry picked",
+        },
+        {
+          name: "--keep-redundant-commits",
+          description: "Creates an empty commit object. Implies --allow-empty.",
+        },
+        {
+          name: "--strategy",
+          description:
+            "Use the given merge strategy. Should only be used once.",
+          args: {
+            name: "strategy",
+            suggestions: ["resolve", "recursive", "octopus", "ours", "subtree"],
+          },
+        },
+        {
+          name: ["-X", "--strategy-option"],
+          description:
+            "Pass the merge strategy-specific option through to the merge strategy",
+          args: {
+            name: "option",
+            suggestions: [
+              "ours",
+              "theirs",
+              "patience",
+              "diff-algorithm",
+              "diff-algorithm=patience",
+              "diff-algorithm=minimal",
+              "diff-algorithm=histogram",
+              "diff-algorithm=myers",
+              "ignore-space-change",
+              "ignore-all-space",
+              "ignore-space-at-eol",
+              "ignore-cr-at-eol",
+              "renormalize",
+              "no-renormalize",
+              "no-renames",
+              "find-renames",
+              "subtree",
+            ],
+          },
+        },
+        {
+          name: "--rerere-autoupdate",
+          exclusiveOn: ["--no-rerere-autoupdate"],
+          description:
+            "Allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
+        },
+        {
+          name: "--no-rerere-autoupdate",
+          exclusiveOn: ["--rerere-autoupdate"],
+          description:
+            "Do not allow the rerere mechanism to update the index with the result of auto-conflict resolution if possible",
         },
       ],
     },
