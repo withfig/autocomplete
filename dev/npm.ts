@@ -50,7 +50,8 @@ const workspaceGenerator: Fig.Generator = {
 };
 
 const dependenciesGenerator: Fig.Generator = {
-  script: "cat package.json",
+  script:
+    "until [[ -f package.json ]] || [[ $PWD = '/' ]]; do cd ..; done; cat package.json",
   postProcess: function (out, context) {
     if (out.trim() === "") {
       return [];
@@ -723,7 +724,47 @@ const completionSpec: Fig.Spec = {
     { name: "token", description: "manage your authentication tokens" },
     { name: "tst", description: "test a package" },
     {
-      name: ["uninstall", "remove", "rm", "r", "unlink", "un"],
+      name: "uninstall",
+      description: "uninstall a package",
+      args: {
+        name: "package",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
+      options: npmInstallOptions,
+    },
+    {
+      name: "remove",
+      description: "uninstall a package",
+      args: {
+        name: "package",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
+      options: npmInstallOptions,
+    },
+    {
+      name: ["r", "rm"],
+      description: "uninstall a package",
+      args: {
+        name: "package",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
+      options: npmInstallOptions,
+    },
+    {
+      name: "un",
+      description: "uninstall a package",
+      args: {
+        name: "package",
+        generators: dependenciesGenerator,
+        isVariadic: true,
+      },
+      options: npmInstallOptions,
+    },
+    {
+      name: "unlink",
       description: "uninstall a package",
       args: {
         name: "package",
