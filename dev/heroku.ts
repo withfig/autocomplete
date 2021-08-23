@@ -1,471 +1,542 @@
-const getAppGenerator: Fig.Generator = {
-  script: "heroku apps --all --json",
-  postProcess: function (out) {
-    try {
-      return JSON.parse(out).map((app) => {
-        return {
-          name: app.name,
-          description: app.name,
-          icon: "https://www.herokucdn.com/favicon.ico",
-        };
-      });
-    } catch (e) {
-      return [];
-    }
-  },
-};
-
 const completionSpec: Fig.Spec = {
   name: "heroku",
+  description: "",
   subcommands: [
     {
-      name: "addons:attach",
-      description: "attach an existing add-on resource to an app",
-      options: [
-        {
-          name: "--as",
-          description: "name for add-on attachment",
-          args: {},
-        },
-        {
-          name: "--credential",
-          description: "credential name for scoped access to Heroku Postgres",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "overwrite existing add-on attachment with same name",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon_name",
-      },
-    },
-    {
-      name: "addons:create",
-      description: "create a new add-on resource",
-      options: [
-        {
-          name: "--name",
-          description: "name for the add-on resource",
-          args: {},
-        },
-        {
-          name: "--as",
-          description: "name for the initial add-on attachment",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description:
-            "overwrite existing config vars or existing add-on attachments",
-          args: {},
-        },
-        {
-          name: "--wait",
-          description: "watch add-on creation status and exit when complete",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "service:plan",
-        },
-        {
-          name: "addon",
-          isVariadic: true,
-        },
-      ],
-    },
-    {
-      name: "addons:add",
-      description: "create a new add-on resource",
-      options: [
-        {
-          name: "--name",
-          description: "name for the add-on resource",
-          args: {},
-        },
-        {
-          name: "--as",
-          description: "name for the initial add-on attachment",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description:
-            "overwrite existing config vars or existing add-on attachments",
-          args: {},
-        },
-        {
-          name: "--wait",
-          description: "watch add-on creation status and exit when complete",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "service:plan",
-        },
-        {
-          name: "addon",
-          isVariadic: true,
-        },
-      ],
-    },
-    {
-      name: "addons:destroy",
-      description: "permanently destroy an add-on resource",
-      options: [
-        {
-          name: "--force",
-          description: "allow destruction even if connected to other apps",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "addons:remove",
-      description: "permanently destroy an add-on resource",
-      options: [
-        {
-          name: "--force",
-          description: "allow destruction even if connected to other apps",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "addons:detach",
-      description: "detach an existing add-on resource from an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "attachment_name",
-      },
-    },
-    {
-      name: "addons:docs",
-      description: "open an add-on's Dev Center documentation in your browser",
-      options: [
-        {
-          name: "--show-url",
-          description: "show URL, do not open browser",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-      },
-    },
-    {
-      name: "addons",
-      description: "lists your add-ons and attachments",
-      options: [
-        {
-          name: "--all",
-          description: "show add-ons and attachments for all accessible apps",
-        },
-        {
-          name: "--json",
-          description: "return add-ons in json format",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "addons:info",
-      description: "show detailed add-on resource and attachment information",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-      },
-    },
-    {
-      name: "addons:open",
-      description: "open an add-on's dashboard in your browser",
-      options: [
-        {
-          name: "--show-url",
-          description: "show URL, do not open browser",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-      },
-    },
-    {
-      name: "addons:plans",
-      description: "list all available plans for an add-on services",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-      args: {
-        name: "service",
-      },
-    },
-    {
-      name: "addons:rename",
-      description: "rename an add-on",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "addon",
-        },
-        {
-          name: "name",
-        },
-      ],
-    },
-    {
-      name: "addons:services",
-      description: "list all available add-on services",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "addons:upgrade",
-      description: "change add-on plan",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "addon",
-        },
-        {
-          name: "plan",
-        },
-      ],
-    },
-    {
-      name: "addons:downgrade",
-      description: "change add-on plan",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "addon",
-        },
-        {
-          name: "plan",
-        },
-      ],
-    },
-    {
-      name: "addons:wait",
-      description: "show provisioning status of the add-ons on the app",
-      options: [
-        {
-          name: "--wait-interval",
-          description: "how frequently to poll in seconds",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "addon",
-      },
-    },
-    {
-      name: "domains:add",
-      description: "add a domain to an app",
-      args: {
-        name: "hostname",
-      },
+      name: "fig-completion",
+      description: "Generate a Fig completion spec",
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-o", "--output"],
+          description:
+            "filepath to export completion spec (do not specify file extension)",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "output",
+            isOptional: false,
           },
         },
         {
-          name: ["-c", "--cert"],
+          name: ["-l", "--lang"],
+          description: "",
+          args: {
+            name: "lang",
+            isOptional: false,
+            suggestions: [" ts", "js"],
+          },
+        },
+      ],
+      args: {
+        name: "file",
+        isOptional: true,
+      },
+    },
+    {
+      name: ["auth:2fa", "2fa", "twofactor"],
+      description: "check 2fa status",
+    },
+    {
+      name: ["auth:2fa:disable", "twofactor:disable", "2fa:disable"],
+      description: "disables 2fa on account",
+    },
+    {
+      name: ["auth:login", "login"],
+      description: "login with your Heroku credentials",
+      options: [
+        {
+          name: "--browser",
           description:
-            "the name of the SSL cert you want to use for this domain",
-          args: {},
+            'browser to open SSO with (example: "firefox", "safari")',
+          args: {
+            name: "browser",
+            isOptional: false,
+          },
         },
         {
-          name: ["-j", "--json"],
-          description: "output in json format",
+          name: ["-i", "--interactive"],
+          description: "login with username/password",
         },
         {
-          name: "wait",
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          name: ["-e", "--expires-in"],
+          description: "duration of token in seconds (default 30 days)",
+          args: {
+            name: "expires-in",
+            isOptional: false,
+          },
         },
       ],
     },
     {
-      name: "domains:clear",
-      description: "remove all domains from an app",
+      name: ["auth:logout", "logout"],
+      description: "clears local login credentials and invalidates API session",
+    },
+    {
+      name: "auth:token",
+      description: "outputs current CLI authentication token.",
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
+      ],
+    },
+    {
+      name: ["auth:whoami", "whoami"],
+      description: "display the current logged in user",
+    },
+    {
+      name: "labs:disable",
+      description: "disables an experimental feature",
+      options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "feature",
+        isOptional: true,
+      },
+    },
+    {
+      name: "buildpacks",
+      description: "display the buildpacks for an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "buildpacks:add",
+      description:
+        "add new app buildpack, inserting into list of buildpacks if necessary",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--index"],
+          description: "the 1-based index of the URL in the list of URLs",
+          args: {
+            name: "index",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "buildpack",
+        description: "namespace/name of the buildpack",
+        isOptional: false,
+      },
+    },
+    {
+      name: "buildpacks:clear",
+      description: "clear all buildpacks set on the app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "buildpacks:info",
+      description: "fetch info about a buildpack",
+
+      args: {
+        name: "buildpack",
+        description: "namespace/name of the buildpack",
+        isOptional: false,
+      },
+    },
+    {
+      name: "buildpacks:remove",
+      description: "remove a buildpack set on the app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--index"],
+          description:
+            "the 1-based index of the URL to remove from the list of URLs",
+          args: {
+            name: "index",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "buildpack",
+        description: "namespace/name of the buildpack",
+        isOptional: true,
+      },
+    },
+    {
+      name: "buildpacks:search",
+      description: "search for buildpacks",
+      options: [
+        {
+          name: "--namespace",
+          description:
+            "buildpack namespaces to filter on using a comma separated list",
+          args: {
+            name: "namespace",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--name",
+          description:
+            "buildpack names to filter on using a comma separated list ",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--description",
+          description: "buildpack description to filter on",
+          args: {
+            name: "description",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "term",
+        description:
+          "search term that searches across name, namespace, and description",
+        isOptional: true,
+      },
+    },
+    {
+      name: "buildpacks:set",
+      description: "",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--index"],
+          description: "the 1-based index of the URL in the list of URLs",
+          args: {
+            name: "index",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "buildpack",
+        description: "namespace/name of the buildpack",
+        isOptional: false,
+      },
+    },
+    {
+      name: "buildpacks:versions",
+      description: "list versions of a buildpack",
+
+      args: {
+        name: "buildpack",
+        description: "namespace/name of the buildpack",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ci:config",
+      description: "display CI config vars",
+      options: [
+        {
+          name: ["-s", "--shell"],
+          description: "output config vars in shell format",
+        },
+        {
+          name: "--json",
+          description: "output config vars in json format",
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ci:config:get",
+      description: "get a CI config var",
+      options: [
+        {
+          name: ["-s", "--shell"],
+          description: "output config var in shell format",
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "key",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ci:config:set",
+      description: "set CI config vars",
+      options: [
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ci:config:unset",
+      description: "unset CI config vars",
+      options: [
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ci:debug",
+      description:
+        "opens an interactive test debugging session with the contents of the current directory",
+      options: [
+        {
+          name: "--no-setup",
+          description: "start test dyno without running test-setup",
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--no-cache",
+          description: "start test run with an empty cache",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ci:migrate-manifest",
+      description:
+        "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key.",
+    },
+    {
+      name: "ci:open",
+      description: "open the Dashboard version of Heroku CI",
+      options: [
+        {
+          name: ["-p", "--pipeline"],
+          description: "pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -475,137 +546,302 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
           name: ["-j", "--json"],
           description: "output in json format",
+        },
+        {
+          name: "--columns",
+          description: "only show provided columns (comma-separated)",
+          args: {
+            name: "columns",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--sort",
+          description: "property to sort by (prepend '-' for descending)",
+          args: {
+            name: "sort",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--filter",
+          description:
+            "filter property by partial string matching, ex: name=foo",
+          args: {
+            name: "filter",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--csv",
+          description: "output is csv format",
+        },
+        {
+          name: ["-x", "--extended"],
+          description: "show extra columns",
+        },
+        {
+          name: "--no-header",
+          description: "hide table header from output",
+        },
+      ],
+    },
+    {
+      name: "domains:add",
+      description: "add a domain to an app",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-c", "--cert"],
+          description:
+            "the name of the SSL cert you want to use for this domain",
+          args: {
+            name: "cert",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-j", "--json"],
+          description: "output in json format",
+        },
+        {
+          name: "--wait",
+          description: "",
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "hostname",
+        isOptional: false,
+      },
+    },
+    {
+      name: "domains:clear",
+      description: "remove all domains from an app",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
     },
     {
       name: "domains:info",
       description: "show detailed information for a domain on an app",
-      args: {
-        name: "hostname",
-      },
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
+      args: {
+        name: "hostname",
+        isOptional: false,
+      },
     },
     {
       name: "domains:remove",
       description: "remove a domain from an app",
-      args: {
-        name: "hostname",
-      },
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
+      args: {
+        name: "hostname",
+        isOptional: false,
+      },
     },
     {
       name: "domains:update",
       description:
         "update a domain to use a different SSL certificate on an app",
-      args: {
-        name: "hostname",
-        isOptional: true,
-      },
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
-          name: "cert",
+          name: "--cert",
           description:
             "the name or id of the certificate you want to use for this domain",
-          args: {},
+          args: {
+            name: "cert",
+            isOptional: false,
+          },
         },
       ],
+      args: {
+        name: "hostname",
+        isOptional: true,
+      },
     },
     {
       name: "domains:wait",
       description: "wait for domain to be active for an app",
-      args: {
-        name: "hostname",
-        isOptional: true,
-      },
       options: [
         {
           name: ["-h", "--help"],
-          description: "Show help for this command",
+          description: "show CLI help",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "hostname",
+        isOptional: true,
+      },
+    },
+    {
+      name: "apps",
+      description: "list your apps",
+      options: [
+        {
+          name: ["-A", "--all"],
+          description: "include apps in all teams",
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: ["-s", "--space"],
+          description: "filter by space",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--personal"],
+          description:
+            "list apps in personal account when a default team is set",
+        },
+        {
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -614,161 +850,78 @@ const completionSpec: Fig.Spec = {
       description: "creates a new app",
       options: [
         {
-          name: "--app",
-          args: {},
-        },
-        {
           name: "--addons",
           description: "comma-delimited list of addons to install",
-          args: {},
+          args: {
+            name: "addons",
+            isOptional: false,
+          },
         },
         {
-          name: "--buildpack",
+          name: ["-b", "--buildpack"],
           description: "buildpack url to use for this app",
-          args: {},
+          args: {
+            name: "buildpack",
+            isOptional: false,
+          },
         },
         {
-          name: "--manifest",
-          description: "use heroku.yml settings for this app",
-        },
-        {
-          name: "--no-remote",
+          name: ["-n", "--no-remote"],
           description: "do not create a git remote",
         },
         {
-          name: "--remote",
+          name: ["-r", "--remote"],
           description: 'the git remote to create, default "heroku"',
-          args: {},
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
-          name: "--stack",
+          name: ["-s", "--stack"],
           description: "the stack to create the app on",
-          args: {},
+          args: {
+            name: "stack",
+            isOptional: false,
+          },
         },
         {
           name: "--space",
           description: "the private space to create the app in",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--region",
           description: "specify region for the app to run in",
-          args: {},
+          args: {
+            name: "region",
+            isOptional: false,
+          },
         },
         {
           name: "--ssh-git",
           description: "use SSH git protocol for local git remote",
         },
         {
-          name: "--internal-routing",
-          description:
-            "private space-only. create as an Internal Web App that is only routable in the local network.",
-        },
-        {
-          name: "--features",
-          args: {},
-        },
-        {
-          name: "--kernel",
-          args: {},
-        },
-        {
-          name: "--locked",
-        },
-        {
           name: "--json",
           description: "output in json format",
         },
         {
-          name: "--team",
+          name: ["-t", "--team"],
           description: "team to use",
-          args: {},
+          args: {
+            name: "team",
+            isOptional: false,
+          },
         },
       ],
       args: {
         name: "app",
-        generators: getAppGenerator,
-      },
-    },
-    {
-      name: "create",
-      description: "creates a new app",
-      options: [
-        {
-          name: "--app",
-          args: {},
-        },
-        {
-          name: "--addons",
-          description: "comma-delimited list of addons to install",
-          args: {},
-        },
-        {
-          name: "--buildpack",
-          description: "buildpack url to use for this app",
-          args: {},
-        },
-        {
-          name: "--manifest",
-          description: "use heroku.yml settings for this app",
-        },
-        {
-          name: "--no-remote",
-          description: "do not create a git remote",
-        },
-        {
-          name: "--remote",
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: "--stack",
-          description: "the stack to create the app on",
-          args: {},
-        },
-        {
-          name: "--space",
-          description: "the private space to create the app in",
-          args: {},
-        },
-        {
-          name: "--region",
-          description: "specify region for the app to run in",
-          args: {},
-        },
-        {
-          name: "--ssh-git",
-          description: "use SSH git protocol for local git remote",
-        },
-        {
-          name: "--internal-routing",
-          description:
-            "private space-only. create as an Internal Web App that is only routable in the local network.",
-        },
-        {
-          name: "--features",
-          args: {},
-        },
-        {
-          name: "--kernel",
-          args: {},
-        },
-        {
-          name: "--locked",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
+        description: "name of app to create",
+        isOptional: true,
       },
     },
     {
@@ -776,69 +929,30 @@ const completionSpec: Fig.Spec = {
       description: "permanently destroy an app",
       options: [
         {
-          name: "--confirm",
-          args: {},
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
-      },
-    },
-    {
-      name: "destroy",
-      description: "permanently destroy an app",
-      options: [
         {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
-      },
-    },
-    {
-      name: "apps:delete",
-      description: "permanently destroy an app",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
-      },
     },
     {
       name: "apps:errors",
@@ -851,7 +965,10 @@ const completionSpec: Fig.Spec = {
         {
           name: "--hours",
           description: "number of hours to look back (default 24)",
-          args: {},
+          args: {
+            name: "hours",
+            isOptional: false,
+          },
         },
         {
           name: "--router",
@@ -866,21 +983,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-    },
-    {
-      name: "apps:favorites:add",
-      description: "favorites an app",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -896,6 +1007,28 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "apps:favorites:add",
+      description: "favorites an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
       name: "apps:favorites:remove",
       description: "unfavorites an app",
       options: [
@@ -904,107 +1037,16 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-    },
-    {
-      name: "apps",
-      description: "list your apps",
-      options: [
         {
-          name: "--all",
-          description: "include apps in all teams",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--space",
-          description: "filter by space",
-          args: {},
-        },
-        {
-          name: "--personal",
-          description:
-            "list apps in personal account when a default team is set",
-        },
-        {
-          name: "--internal-routing",
-          description: "filter to Internal Web Apps",
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "list",
-      description: "list your apps",
-      options: [
-        {
-          name: "--all",
-          description: "include apps in all teams",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--space",
-          description: "filter by space",
-          args: {},
-        },
-        {
-          name: "--personal",
-          description:
-            "list apps in personal account when a default team is set",
-        },
-        {
-          name: "--internal-routing",
-          description: "filter to Internal Web Apps",
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "apps:list",
-      description: "list your apps",
-      options: [
-        {
-          name: "--all",
-          description: "include apps in all teams",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--space",
-          description: "filter by space",
-          args: {},
-        },
-        {
-          name: "--personal",
-          description:
-            "list apps in personal account when a default team is set",
-        },
-        {
-          name: "--internal-routing",
-          description: "filter to Internal Web Apps",
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -1013,58 +1055,30 @@ const completionSpec: Fig.Spec = {
       description: "show detailed app information",
       options: [
         {
-          name: "--shell",
+          name: ["-s", "--shell"],
           description: "output more shell friendly key/value pairs",
         },
         {
-          name: "--extended",
-        },
-        {
-          name: "--json",
+          name: ["-j", "--json"],
+          description: "",
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
-      },
-    },
-    {
-      name: "info",
-      description: "show detailed app information",
-      options: [
         {
-          name: "--shell",
-          description: "output more shell friendly key/value pairs",
-        },
-        {
-          name: "--extended",
-        },
-        {
-          name: "--json",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "app",
-        generators: getAppGenerator,
-      },
     },
     {
       name: "apps:open",
@@ -1075,29 +1089,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "path",
-      },
-    },
-    {
-      name: "open",
-      description: "open the app in a web browser",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "path",
+        isOptional: true,
       },
     },
     {
@@ -1113,33 +1119,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "newname",
-      },
-    },
-    {
-      name: "rename",
-      description: "rename an app",
-      options: [
         {
-          name: "--ssh-git",
-          description: "use ssh git protocol instead of https",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "newname",
+        isOptional: false,
       },
     },
     {
@@ -1151,21 +1145,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-    },
-    {
-      name: "stack",
-      description: "show the list of available stacks",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1179,29 +1167,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "stack",
-      },
-    },
-    {
-      name: "stack:set",
-      description: "set the stack of an app",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "stack",
+        isOptional: false,
       },
     },
     {
@@ -1213,53 +1193,18 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "confi",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "config:add",
-      description: "set one or more config vars",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "confi",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "dashboard",
-      description: "display information about favorite apps",
-    },
-    {
-      name: "drains:add",
-      description: "adds a log drain to an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "url",
-      },
     },
     {
       name: "drains",
@@ -1270,17 +1215,48 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--extended",
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
         },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "drains:add",
+      description: "adds a log drain to an app",
+      options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
+      args: {
+        name: "url",
+        isOptional: false,
+      },
     },
     {
       name: "drains:remove",
@@ -1291,46 +1267,143 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "url",
+        isOptional: false,
       },
     },
     {
-      name: "features:disable",
-      description: "disables an app feature",
+      name: "dyno:kill",
+      description: "stop app dyno",
       options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
-        name: "feature",
+        name: "dyno",
+        isOptional: false,
       },
     },
     {
-      name: "features:enable",
-      description: "enables an app feature",
+      name: "dyno:resize",
+      description: "manage dyno sizes",
       options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "dyno:restart",
+      description: "restart app dynos",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
-        name: "feature",
+        name: "dyno",
+        isOptional: true,
+      },
+    },
+    {
+      name: "dyno:scale",
+      description: "scale dyno quantity up or down",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "dyno:stop",
+      description: "stop app dyno",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "dyno",
+        isOptional: false,
       },
     },
     {
@@ -1346,10 +1419,70 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
+    },
+    {
+      name: "features:disable",
+      description: "disables an app feature",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "feature",
+        isOptional: false,
+      },
+    },
+    {
+      name: "features:enable",
+      description: "enables an app feature",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "feature",
+        isOptional: false,
+      },
     },
     {
       name: "features:info",
@@ -1364,40 +1497,29 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
+        isOptional: false,
       },
-    },
-    {
-      name: "keys:add",
-      description: "add an SSH key for a user",
-      options: [
-        {
-          name: "--quiet",
-        },
-        {
-          name: "--yes",
-          description: "automatically answer yes for all prompts",
-        },
-      ],
-      args: {
-        name: "key",
-      },
-    },
-    {
-      name: "keys:clear",
-      description: "remove all SSH keys for current user",
     },
     {
       name: "keys",
       description: "display your SSH keys",
       options: [
         {
-          name: "--long",
+          name: ["-l", "--long"],
           description: "display full SSH keys",
         },
         {
@@ -1407,29 +1529,30 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "keys:add",
+      description: "add an SSH key for a user",
+      options: [
+        {
+          name: ["-y", "--yes"],
+          description: "automatically answer yes for all prompts",
+        },
+      ],
+      args: {
+        name: "key",
+        isOptional: true,
+      },
+    },
+    {
+      name: "keys:clear",
+      description: "remove all SSH keys for current user",
+    },
+    {
       name: "keys:remove",
       description: "remove an SSH key from the user",
 
       args: {
         name: "key",
-      },
-    },
-    {
-      name: "labs:enable",
-      description: "enables an experimental feature",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "feature",
+        isOptional: false,
       },
     },
     {
@@ -1445,11 +1568,44 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
+    },
+    {
+      name: "labs:enable",
+      description: "enables an experimental feature",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "feature",
+        isOptional: false,
+      },
     },
     {
       name: "labs:info",
@@ -1464,13 +1620,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "feature",
+        isOptional: false,
       },
     },
     {
@@ -1482,7 +1646,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1496,7 +1668,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1510,7 +1690,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1537,8 +1725,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1552,160 +1747,22 @@ const completionSpec: Fig.Spec = {
           description: "display as json",
         },
         {
-          name: "--extended",
-        },
-        {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "p",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "ps:restart",
-      description: "restart app dynos",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "dyno:restart",
-      description: "restart app dynos",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "restart",
-      description: "restart app dynos",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "ps:scale",
-      description: "scale dyno quantity up or down",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "p",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "dyno:scale",
-      description: "scale dyno quantity up or down",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyn",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "scale",
-      description: "scale dyno quantity up or down",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "scal",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "ps:stop",
-      description: "stop app dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "dyno:stop",
-      description: "stop app dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
     },
     {
       name: "ps:kill",
@@ -1716,81 +1773,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "dyno",
-      },
-    },
-    {
-      name: "dyno:kill",
-      description: "stop app dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "stop",
-      description: "stop app dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "kill",
-      description: "stop app dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyno",
-      },
-    },
-    {
-      name: "ps:type",
-      description: "manage dyno sizes",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "p",
-        isVariadic: true,
+        isOptional: false,
       },
     },
     {
@@ -1802,17 +1799,95 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ps:restart",
+      description: "restart app dynos",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
-        name: "p",
-        isVariadic: true,
+        name: "dyno",
+        isOptional: true,
       },
     },
     {
-      name: "resize",
+      name: "ps:scale",
+      description: "scale dyno quantity up or down",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ps:stop",
+      description: "stop app dyno",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "dyno",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ps:type",
       description: "manage dyno sizes",
       options: [
         {
@@ -1820,73 +1895,49 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
-      ],
-      args: {
-        name: "resiz",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "dyno:type",
-      description: "manage dyno sizes",
-      options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "dyn",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "dyno:resize",
-      description: "manage dyno sizes",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "dyn",
-        isVariadic: true,
-      },
     },
     {
       name: "releases",
       description: "display the releases for an app",
       options: [
         {
-          name: "--num",
+          name: ["-n", "--num"],
           description: "number of releases to show",
-          args: {},
+          args: {
+            name: "num",
+            isOptional: false,
+          },
         },
         {
           name: "--json",
           description: "output releases in json format",
         },
         {
-          name: "--extended",
-        },
-        {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -1900,7 +1951,7 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--shell",
+          name: ["-s", "--shell"],
           description: "output in shell format",
         },
         {
@@ -1908,12 +1959,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "release",
+        isOptional: true,
       },
     },
     {
@@ -1925,12 +1985,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "release",
+        isOptional: true,
       },
     },
     {
@@ -1942,278 +2011,369 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "release",
-      },
-    },
-    {
-      name: "rollback",
-      description: "rollback to a previous release",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "release",
-      },
-    },
-    {
-      name: "auth:2fa:disable",
-      description: "disables 2fa on account",
-    },
-    {
-      name: "auth:2fa",
-      description: "check 2fa status",
-    },
-    {
-      name: "auth:login",
-      description: "login with your Heroku credentials",
-      options: [
-        {
-          name: "browser",
-          description:
-            'browser to open SSO with (example: "firefox", "safari")',
-          args: {},
-        },
-        {
-          name: ["-s", "--sso"],
-          description: "login for enterprise users under SSO",
-        },
-        {
-          name: ["-i", "--interactive"],
-          description: "login with username/password",
-        },
-      ],
-    },
-    {
-      name: "auth:logout",
-      description: "clears local login credentials and invalidates API session",
-    },
-    {
-      name: "auth:token",
-      description: "",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Show help for this command",
-        },
-      ],
-    },
-    {
-      name: "auth:whoami",
-      description: "display the current logged in user",
-    },
-    {
-      name: "auth:disable",
-      description: "disables an experimental feature",
-      args: {
-        name: "feature",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: "confirm",
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
+      args: {
+        name: "release",
+        isOptional: true,
+      },
     },
     {
       name: "autocomplete",
-      description: "",
+      description: "display autocomplete installation instructions",
+      options: [
+        {
+          name: ["-r", "--refresh-cache"],
+          description: "refresh cache only (ignores displaying instructions)",
+        },
+      ],
+      args: {
+        name: "shell",
+        description: "shell type",
+        isOptional: true,
+      },
     },
     {
-      name: "buildpacks:add",
+      name: "config",
+      description: "display the config vars for an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--shell"],
+          description: "output config vars in shell format",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "output config vars in json format",
+        },
+      ],
+    },
+    {
+      name: "config:edit",
+      description: "interactively edit config vars",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "key",
+        description: "edit a single key",
+        isOptional: true,
+      },
+    },
+    {
+      name: "config:get",
+      description: "display a single config value for an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--shell"],
+          description: "output config vars in shell format",
+        },
+      ],
+      args: {
+        name: "KEY",
+        isOptional: false,
+      },
+    },
+    {
+      name: ["config:unset", "config:remove"],
+      description: "unset one or more config vars",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: ["local", "local:start"],
+      description: "run heroku app locally",
+      options: [
+        {
+          name: ["-f", "--procfile"],
+          description: "use a different Procfile",
+          args: {
+            name: "procfile",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-e", "--env"],
+          description: "location of env file (defaults to .env)",
+          args: {
+            name: "env",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--port"],
+          description: "port to listen on",
+          args: {
+            name: "port",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "processname",
+        isOptional: true,
+      },
+    },
+    {
+      name: "local:run",
+      description: "run a one-off command",
+      options: [
+        {
+          name: ["-e", "--env"],
+          description: "",
+          args: {
+            name: "env",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--port"],
+          description: "",
+          args: {
+            name: "port",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "local:version",
+      description: "display node-foreman version",
+    },
+    {
+      name: "ci",
+      description: "display the most recent CI runs for the given pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app name",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--watch",
+          description: "keep running and watch for new and update tests",
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "ci:info",
+      description: "show the status of a specific test run",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app name",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--node",
+          description: "the node number to show its setup and output",
+          args: {
+            name: "node",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "test-run",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ci:last",
       description:
-        "add new app buildpack, inserting into list of buildpacks if necessary",
-      args: {
-        name: "buildpack",
-      },
+        "looks for the most recent run and returns the output of that run",
       options: [
         {
           name: ["-a", "--app"],
-          description: "app to run command against",
+          description: "app name",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          name: "--node",
+          description: "the node number to show its setup and output",
+          args: {
+            name: "node",
+            isOptional: false,
+          },
         },
         {
-          name: ["-i", "--index"],
-          description: "the 1-based index of the URL in the list of URLs",
-          args: {},
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
         },
       ],
     },
     {
-      name: "buildpacks:clear",
-      description: "clear all buildpacks set on the app",
+      name: "ci:rerun",
+      description: "rerun tests against current directory",
       options: [
         {
           name: ["-a", "--app"],
-          description: "app to run command against",
+          description: "app name",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "buildpacks",
-      description: "display the buildpacks for an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "pipeline",
+            isOptional: false,
           },
         },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
       ],
-    },
-    {
-      name: "buildpacks:info",
-      description: "fetch info about a buildpack",
       args: {
-        name: "buildpack",
-      },
-    },
-    {
-      name: "buildpacks:remove",
-      description: "remove a buildpack set on the app",
-      args: {
-        name: "buildpack",
+        name: "number",
         isOptional: true,
       },
+    },
+    {
+      name: "ci:run",
+      description: "run tests against current directory",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app name",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "certs",
+      description: "list SSL certificates for an app",
       options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-i", "--index"],
-          description:
-            "the 1-based index of the URL to remove from the list of URLs",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "buildpacks:search",
-      description: "search for buildpacks",
-      args: {
-        name: "term",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: "namespace",
-          description:
-            "buildpack namespaces to filter on using a comma separated list",
-          args: {},
-        },
-        {
-          name: "name",
-          description:
-            "buildpack names to filter on using a comma separated list ",
-          args: {},
-        },
-        {
-          name: "description",
-          description: "buildpack description to filter on",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "buildpacks:set",
-      description: "",
-      args: {
-        name: "buildpack",
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
+          description: "git remote of app to use",
           args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "remote",
+            isOptional: false,
           },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-i", "--index"],
-          description: "the 1-based index of the URL in the list of URLs",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "buildpacks:versions",
-      description: "list versions of a buildpack",
-      args: {
-        name: "buildpack",
-      },
-    },
-    {
-      name: "certs:wait",
-      description: "waits for the certificate to be activated",
-      options: [
-        {
-          name: ["-h", "--help"],
-          description: "Show help for this command",
         },
       ],
     },
@@ -2228,27 +2388,62 @@ const completionSpec: Fig.Spec = {
         {
           name: "--type",
           description: "type to create, either 'sni' or 'endpoint'",
-          args: {},
+          args: {
+            name: "type",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "CRT",
+          isOptional: false,
         },
         {
           name: "KEY",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "certs:auto",
+      description: "show ACM status for an app",
+      options: [
+        {
+          name: "--wait",
+          description: "watch ACM status and display the status when complete",
         },
         {
-          name: "cert",
-          isVariadic: true,
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -2257,15 +2452,19 @@ const completionSpec: Fig.Spec = {
       description: "disable ACM for an app",
       options: [
         {
-          name: "--confirm",
-          args: {},
-        },
-        {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -2275,25 +2474,23 @@ const completionSpec: Fig.Spec = {
       description: "enable ACM status for an app",
       options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
+          name: "--wait",
+          description: "watch ACM status and exit when complete",
         },
-      ],
-    },
-    {
-      name: "certs:auto",
-      description: "show ACM status for an app",
-      options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -2307,7 +2504,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -2321,14 +2526,18 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "cert",
-        isVariadic: true,
-      },
     },
     {
       name: "certs:generate",
@@ -2341,32 +2550,50 @@ const completionSpec: Fig.Spec = {
         {
           name: "--keysize",
           description: "RSA key size in bits (default: 2048)",
-          args: {},
+          args: {
+            name: "keysize",
+            isOptional: false,
+          },
         },
         {
           name: "--owner",
           description: "name of organization certificate belongs to",
-          args: {},
+          args: {
+            name: "owner",
+            isOptional: false,
+          },
         },
         {
           name: "--country",
           description: "country of owner, as a two-letter ISO country code",
-          args: {},
+          args: {
+            name: "country",
+            isOptional: false,
+          },
         },
         {
           name: "--area",
           description: "sub-country area (state, province, etc.) of owner",
-          args: {},
+          args: {
+            name: "area",
+            isOptional: false,
+          },
         },
         {
           name: "--city",
           description: "city of owner",
-          args: {},
+          args: {
+            name: "city",
+            isOptional: false,
+          },
         },
         {
           name: "--subject",
           description: "specify entire certificate subject",
-          args: {},
+          args: {
+            name: "subject",
+            isOptional: false,
+          },
         },
         {
           name: "--now",
@@ -2377,27 +2604,22 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "domain",
+        isOptional: false,
       },
-    },
-    {
-      name: "certs",
-      description: "list SSL certificates for an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
     },
     {
       name: "certs:info",
@@ -2406,12 +2628,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "--name",
           description: "name to check info on",
-          args: {},
+          args: {
+            name: "name",
+            isOptional: false,
+          },
         },
         {
           name: "--endpoint",
           description: "endpoint to check info on",
-          args: {},
+          args: {
+            name: "endpoint",
+            isOptional: false,
+          },
         },
         {
           name: "--show-domains",
@@ -2422,7 +2650,15 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -2436,39 +2672,53 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
-      args: {
-        name: "cert",
-        isVariadic: true,
-      },
     },
     {
       name: "certs:remove",
       description: "remove an SSL certificate from an app",
       options: [
         {
-          name: "--confirm",
-          args: {},
-        },
-        {
           name: "--name",
           description: "name to remove",
-          args: {},
+          args: {
+            name: "name",
+            isOptional: false,
+          },
         },
         {
           name: "--endpoint",
           description: "endpoint to remove",
-          args: {},
+          args: {
+            name: "endpoint",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
@@ -2482,406 +2732,46 @@ const completionSpec: Fig.Spec = {
           description: "bypass the trust chain completion step",
         },
         {
-          name: "--confirm",
-          args: {},
-        },
-        {
           name: "--name",
           description: "name to update",
-          args: {},
+          args: {
+            name: "name",
+            isOptional: false,
+          },
         },
         {
           name: "--endpoint",
           description: "endpoint to update",
-          args: {},
+          args: {
+            name: "endpoint",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: [
         {
           name: "CRT",
+          isOptional: false,
         },
         {
           name: "KEY",
-        },
-        {
-          name: "cert",
-          isVariadic: true,
-        },
-      ],
-    },
-    {
-      name: "ci",
-      description: "display the most recent CI runs for the given pipeline",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: "watch",
-          description: "keep running and watch for new and update tests",
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-        {
-          name: "json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "ci:info",
-      description: "show the status of a specific test run",
-      args: {
-        name: "test-run",
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: "node",
-          description: "the node number to show its setup and output",
-          args: {},
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ci:last",
-      description:
-        "looks for the most recent run and returns the output of that run",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: "node",
-          description: "the node number to show its setup and output",
-          args: {},
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ci:rerun",
-      description: "rerun tests against current directory",
-      args: {
-        name: "number",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ci:run",
-      description: "run tests against current directory",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ci:config:get",
-      description: "get a CI config var",
-      options: [
-        {
-          name: "--shell",
-          description: "output config var in shell format",
-        },
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "key",
-      },
-    },
-    {
-      name: "ci:config",
-      description: "display CI config vars",
-      options: [
-        {
-          name: "--shell",
-          description: "output config vars in shell format",
-        },
-        {
-          name: "--json",
-          description: "output config vars in json format",
-        },
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "ci:config:set",
-      description: "set CI config vars",
-      options: [
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "c",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "ci:config:unset",
-      description: "unset CI config vars",
-      options: [
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "c",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "ci:debug",
-      description:
-        "opens an interactive test debugging session with the contents of the current directory",
-      options: [
-        {
-          name: "--no-setup",
-          description: "start test dyno without running test-setup",
-        },
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: "--no-cache",
-          description: "start test run with an empty cache",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "ci:migrate-manifest",
-      description:
-        "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key.",
-    },
-    {
-      name: "ci:open",
-      description: "open the Dashboard version of Heroku CI",
-      options: [
-        {
-          name: "--pipeline",
-          description: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "config:edit",
-      description: "",
-      args: {
-        name: "key",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "config:get",
-      description: "display a single config value for an app",
-      args: {
-        name: "KEY",
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--shell"],
-          description: "output config vars in shell format",
-        },
-      ],
-    },
-    {
-      name: "config",
-      description: "display the config vars for an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--shell"],
-          description: "output config vars in shell format",
-        },
-        {
-          name: ["-j", "--json"],
-          description: "output config vars in json format",
-        },
-      ],
-    },
-    {
-      name: "config:unset",
-      description: "unset one or more config vars",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          isOptional: false,
         },
       ],
     },
@@ -2889,104 +2779,494 @@ const completionSpec: Fig.Spec = {
       name: "git:clone",
       description:
         "clones a heroku app to your local machine at DIRECTORY (defaults to app name)",
-      args: {
-        name: "DIRECTORY",
-        isOptional: true,
-      },
       options: [
         {
           name: ["-a", "--app"],
-          description: "app to run command against",
+          description: "the Heroku app to use",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
           description: 'the git remote to create, default "heroku"',
-          args: {},
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--ssh-git",
+          description: "use SSH git protocol",
         },
       ],
-    },
-    {
-      name: "git:credentials",
-      description: "internal command for git-credentials",
       args: {
-        name: "command",
+        name: "DIRECTORY",
+        description: "where to clone the app",
+        isOptional: true,
       },
     },
     {
       name: "git:remote",
-      description: "",
+      description: "adds a git remote to an app repo",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "the Heroku app to use",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "the git remote to create",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--ssh-git",
+          description: "use SSH git protocol",
+        },
+      ],
+    },
+    {
+      name: "addons",
+      description: "lists your add-ons and attachments",
+      options: [
+        {
+          name: ["-A", "--all"],
+          description: "show add-ons and attachments for all accessible apps",
+        },
+        {
+          name: "--json",
+          description: "return add-ons in json format",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "addons:attach",
+      description: "attach an existing add-on resource to an app",
+      options: [
+        {
+          name: "--as",
+          description: "name for add-on attachment",
+          args: {
+            name: "as",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--credential",
+          description: "credential name for scoped access to Heroku Postgres",
+          args: {
+            name: "credential",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description: "overwrite existing add-on attachment with same name",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "addon_name",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:create",
+      description: "create a new add-on resource",
+      options: [
+        {
+          name: "--name",
+          description: "name for the add-on resource",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--as",
+          description: "name for the initial add-on attachment",
+          args: {
+            name: "as",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description:
+            "overwrite existing config vars or existing add-on attachments",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--wait",
+          description: "watch add-on creation status and exit when complete",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "service:plan",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:destroy",
+      description: "permanently destroy an add-on resource",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "allow destruction even if connected to other apps",
+        },
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "addons:detach",
+      description: "detach an existing add-on resource from an app",
       options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "attachment_name",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:docs",
+      description: "open an add-on's Dev Center documentation in your browser",
+      options: [
+        {
+          name: "--show-url",
+          description: "show URL, do not open browser",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "addon",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:downgrade",
+      description: "change add-on plan",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "addon",
+          isOptional: false,
+        },
+        {
+          name: "plan",
+          isOptional: true,
         },
       ],
     },
     {
-      name: "local",
-      description:
-        "run heroku app locally\nStart the application specified by a Procfile (defaults to ./Procfile)",
+      name: "addons:info",
+      description: "show detailed add-on resource and attachment information",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
       args: {
-        name: "processname",
+        name: "addon",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:open",
+      description: "open an add-on's dashboard in your browser",
+      options: [
+        {
+          name: "--show-url",
+          description: "show URL, do not open browser",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "addon",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:plans",
+      description: "list all available plans for an add-on services",
+      options: [
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+      args: {
+        name: "service",
+        isOptional: false,
+      },
+    },
+    {
+      name: "addons:rename",
+      description: "rename an add-on",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "addon",
+          isOptional: false,
+        },
+        {
+          name: "name",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "addons:services",
+      description: "list all available add-on services",
+      options: [
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "addons:upgrade",
+      description: "change add-on plan",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "addon",
+          isOptional: false,
+        },
+        {
+          name: "plan",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "addons:wait",
+      description: "show provisioning status of the add-ons on the app",
+      options: [
+        {
+          name: "--wait-interval",
+          description: "how frequently to poll in seconds",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "addon",
         isOptional: true,
       },
-      options: [
-        {
-          name: ["-f", "--procfile"],
-          description: "use a different Procfile",
-          args: {},
-        },
-        {
-          name: ["-e", "--env"],
-          description: "location of env file (defaults to .env)",
-          args: {},
-        },
-        {
-          name: ["-p", "--port"],
-          description: "port to listen on",
-          args: {},
-        },
-        {
-          name: ["-r", "--restart"],
-          description: "restart process if it dies",
-        },
-        {
-          name: ["-c", "--concurrency"],
-          description: "number of processes to start",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "local:run",
-      description: "run a one-off command",
-      options: [
-        {
-          name: ["-e", "--env"],
-          args: {},
-        },
-        {
-          name: ["-p", "--port"],
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "local:version",
-      description: "display node-foreman version",
     },
     {
       name: "authorizations",
@@ -2999,6 +3279,110 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "authorizations:create",
+      description: "create a new OAuth authorization",
+      options: [
+        {
+          name: ["-d", "--description"],
+          description: "set a custom authorization description",
+          args: {
+            name: "description",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--scope"],
+          description: "set custom OAuth scopes",
+          args: {
+            name: "scope",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-e", "--expires-in"],
+          description: "set expiration in seconds (default no expiration)",
+          args: {
+            name: "expires-in",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-S", "--short"],
+          description: "only output token",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "authorizations:info",
+      description: "show an existing OAuth authorization",
+      options: [
+        {
+          name: ["-j", "--json"],
+          description: "output in json format",
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: ["authorizations:revoke", "authorizations:destroy"],
+      description: "revoke OAuth authorization",
+
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "authorizations:rotate",
+      description: "updates an OAuth authorization token",
+
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "authorizations:update",
+      description: "updates an OAuth authorization",
+      options: [
+        {
+          name: ["-d", "--description"],
+          description: "set a custom authorization description",
+          args: {
+            name: "description",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--client-id",
+          description: "identifier of OAuth client to set",
+          args: {
+            name: "client-id",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--client-secret",
+          description: "secret of OAuth client to set",
+          args: {
+            name: "client-secret",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
       name: "clients",
       description: "list your OAuth clients",
       options: [
@@ -3009,11 +3393,41 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "clients:info",
-      description: "show details of an oauth client",
+      name: "clients:create",
+      description: "create a new OAuth client",
+      options: [
+        {
+          name: ["-s", "--shell"],
+          description: "output in shell format",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "output in json format",
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          isOptional: false,
+        },
+        {
+          name: "redirect_uri",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "clients:destroy",
+      description: "delete client by ID",
+
       args: {
         name: "id",
+        isOptional: false,
       },
+    },
+    {
+      name: "clients:info",
+      description: "show details of an oauth client",
       options: [
         {
           name: ["-j", "--json"],
@@ -3024,117 +3438,9 @@ const completionSpec: Fig.Spec = {
           description: "output in shell format",
         },
       ],
-    },
-    {
-      name: "authorizations:create",
-      description: "create a new OAuth authorization",
-      options: [
-        {
-          name: "--description",
-          description: "set a custom authorization description",
-          args: {},
-        },
-        {
-          name: "--scope",
-          description: "set custom OAuth scopes",
-          args: {},
-        },
-        {
-          name: "--expires-in",
-          description: "set expiration in seconds (default no expiration)",
-          args: {},
-        },
-        {
-          name: "--short",
-          description: "only output token",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "authorizations:info",
-      description: "show an existing OAuth authorization",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
       args: {
         name: "id",
-      },
-    },
-    {
-      name: "authorizations:revoke",
-      description: "revoke OAuth authorization",
-
-      args: {
-        name: "id",
-      },
-    },
-    {
-      name: "authorizations:rotate",
-      description: "updates an OAuth authorization token",
-
-      args: {
-        name: "id",
-      },
-    },
-    {
-      name: "authorizations:update",
-      description: "updates an OAuth authorization",
-      options: [
-        {
-          name: "--description",
-          description: "set a custom authorization description",
-          args: {},
-        },
-        {
-          name: "--client-id",
-          description: "identifier of OAuth client to set",
-          args: {},
-        },
-        {
-          name: "--client-secret",
-          description: "secret of OAuth client to set",
-          args: {},
-        },
-      ],
-      args: {
-        name: "id",
-      },
-    },
-    {
-      name: "clients:create",
-      description: "create a new OAuth client",
-      options: [
-        {
-          name: "--shell",
-          description: "output in shell format",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-      args: [
-        {
-          name: "name",
-        },
-        {
-          name: "redirect_uri",
-        },
-      ],
-    },
-    {
-      name: "clients:destroy",
-      description: "delete client by ID",
-
-      args: {
-        name: "id",
+        isOptional: false,
       },
     },
     {
@@ -3142,16 +3448,17 @@ const completionSpec: Fig.Spec = {
       description: "rotate OAuth client secret",
       options: [
         {
-          name: "--json",
+          name: ["-j", "--json"],
           description: "output in json format",
         },
         {
-          name: "--shell",
+          name: ["-s", "--shell"],
           description: "output in shell format",
         },
       ],
       args: {
         name: "id",
+        isOptional: false,
       },
     },
     {
@@ -3159,26 +3466,25 @@ const completionSpec: Fig.Spec = {
       description: "update OAuth client",
       options: [
         {
-          name: "--name",
+          name: ["-n", "--name"],
           description: "change the client name",
-          args: {},
+          args: {
+            name: "name",
+            isOptional: false,
+          },
         },
         {
           name: "--url",
           description: "change the client redirect URL",
-          args: {},
+          args: {
+            name: "url",
+            isOptional: false,
+          },
         },
       ],
       args: {
         name: "id",
-      },
-    },
-    {
-      name: "sessions:destroy",
-      description: "delete (logout) OAuth session by ID",
-
-      args: {
-        name: "id",
+        isOptional: false,
       },
     },
     {
@@ -3186,2046 +3492,18 @@ const completionSpec: Fig.Spec = {
       description: "list your OAuth sessions",
       options: [
         {
-          name: "--json",
+          name: ["-j", "--json"],
           description: "output in json format",
         },
       ],
     },
     {
-      name: "access:add",
-      description: "add new users to your app",
-      options: [
-        {
-          name: "--permissions",
-          description: "list of permissions comma separated",
-          args: {},
-        },
-        {
-          name: "--privileges",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "email",
-      },
-    },
-    {
-      name: "sharing:add",
+      name: "sessions:destroy",
+      description: "delete (logout) OAuth session by ID",
 
       args: {
-        name: "sharin",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "access",
-      description: "list who has access to an app",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "sharing:access",
-
-      args: {
-        name: "sharin",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "access:remove",
-      description: "remove users from a team app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "email",
-      },
-    },
-    {
-      name: "sharing:remove",
-
-      args: {
-        name: "sharin",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "access:update",
-      description: "update existing collaborators on an team app",
-      options: [
-        {
-          name: "--permissions",
-          description:
-            "comma-delimited list of permissions to update (deploy,manage,operate)",
-          args: {},
-        },
-        {
-          name: "--privileges",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "email",
-      },
-    },
-    {
-      name: "apps:join",
-      description: "add yourself to a team app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "join:null",
-      description: "add yourself to a team app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "apps:leave",
-      description: "remove yourself from a team app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "leave:null",
-      description: "remove yourself from a team app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "apps:lock",
-      description: "prevent team members from joining an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "lock",
-      description: "prevent team members from joining an app",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "apps:transfer",
-      description: "transfer applications to another user or team",
-      options: [
-        {
-          name: "--locked",
-          description: "lock the app upon transfer",
-        },
-        {
-          name: "--bulk",
-          description: "transfer applications in bulk",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            isOptional: true,
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "recipient",
-      },
-    },
-    {
-      name: "sharing:transfer",
-
-      args: {
-        name: "sharin",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "apps:unlock",
-      description: "unlock an app so any team member can join",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "unlock:null",
-      description: "unlock an app so any team member can join",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "members",
-      description: "list members of a team",
-      options: [
-        {
-          name: "--role",
-          description: "filter by role",
-          args: {},
-        },
-        {
-          name: "--pending",
-          description: "filter by pending team invitations",
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "members:remove",
-      description: "removes a user from a team",
-      options: [
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-      args: {
-        name: "email",
-      },
-    },
-    {
-      name: "orgs:default",
-    },
-    {
-      name: "orgs",
-      description: "list the teams that you are a member of",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--enterprise",
-          description: "filter by enterprise teams",
-        },
-        {
-          name: "--teams",
-          description: "filter by teams",
-        },
-      ],
-    },
-    {
-      name: "orgs:open",
-      description: "open the team interface in a browser window",
-      options: [
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "teams",
-      description:
-        "list the teams that you are a member of\n\nUse \u001b[36m\u001b[1mheroku members:*\u001b[22m\u001b[39m to manage team members.",
-      options: [
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "pg:backups:cancel",
-      description: "cancel an in-progress backup or restore (default newest)",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups:capture",
-      description: "capture a new backup",
-      options: [
-        {
-          name: "--wait-interval",
-          args: {},
-        },
-        {
-          name: "--snapshot",
-        },
-        {
-          name: "--verbose",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:backups:delete",
-      description: "delete a backup",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups:download",
-      description: "downloads database backup",
-      options: [
-        {
-          name: "--output",
-          description: "location to download to. Defaults to latest.dump",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups",
-      description: "list database backups",
-      options: [
-        {
-          name: "--verbose",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: "--output",
-          args: {},
-        },
-        {
-          name: "--wait-interval",
-          args: {},
-        },
-        {
-          name: "--at",
-          args: {},
-        },
-        {
-          name: "--quiet",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "p",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "pg:backups:info",
-      description: "get information about a specific backup",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups:restore",
-      description: "restore a backup (default latest) to a database",
-      options: [
-        {
-          name: "--wait-interval",
-          args: {},
-        },
-        {
-          name: "--verbose",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "backup",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:backups:schedule",
-      description: "schedule daily backups for given database",
-      options: [
-        {
-          name: "--at",
-          description:
-            "at a specific (24h) hour in the given timezone. Defaults to UTC. --at '[HOUR]:00 [TIMEZONE]'",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:backups:schedules",
-      description: "list backup schedule",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "pg:backups:unschedule",
-      description: "stop daily backups",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:backups:url",
-      description: "get secret but publicly accessible URL of a backup",
-      options: [
-        {
-          name: "--quiet",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups:public-url",
-      description: "get secret but publicly accessible URL of a backup",
-      options: [
-        {
-          name: "--quiet",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:backups:publicurl",
-      description: "get secret but publicly accessible URL of a backup",
-      options: [
-        {
-          name: "--quiet",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "backup_id",
-      },
-    },
-    {
-      name: "pg:bloat",
-      description:
-        "show table and index bloat in your database ordered by most wasteful",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:blocking",
-      description:
-        "display queries holding locks other queries are waiting to be released",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:connection-pooling:attach",
-      description: "add an attachment to a database using connection pooling",
-      options: [
-        {
-          name: "--as",
-          description: "name for add-on attachment",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:copy",
-      description: "copy all data from source db to target",
-      options: [
-        {
-          name: "--wait-interval",
-          args: {},
-        },
-        {
-          name: "--verbose",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "source",
-        },
-        {
-          name: "target",
-        },
-      ],
-    },
-    {
-      name: "pg:credentials:create",
-      description: "create credential within database",
-      options: [
-        {
-          name: "--name",
-          description: "name of the new credential within the database",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:credentials:destroy",
-      description: "destroy credential within database",
-      options: [
-        {
-          name: "--name",
-          description: "unique identifier for the credential",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:credentials:repair-default",
-      description:
-        "repair the permissions of the default credential within database",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:credentials:rotate",
-      description: "rotate the database credentials",
-      options: [
-        {
-          name: "--name",
-          description:
-            "which credential to rotate (default credentials if not specified)",
-          args: {},
-        },
-        {
-          name: "--all",
-          description: "rotate all credentials",
-        },
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: "--force",
-          description: "forces rotating the targeted credentials",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:credentials:url",
-      description: "show information on a database credential",
-      options: [
-        {
-          name: "--name",
-          description:
-            "which credential to show (default credentials if not specified)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:credentials",
-      description: "show information on credentials in the database",
-      options: [
-        {
-          name: "--reset",
-          description: "DEPRECATED",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:diagnose",
-      description: "run or view diagnostics report",
-      options: [
-        {
-          name: "--json",
-          description: "format output as JSON",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "DATABASE|REPORT_ID",
-      },
-    },
-    {
-      name: "pg",
-      description: "show database information",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:info",
-      description: "show database information",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:kill",
-      description: "kill a query",
-      options: [
-        {
-          name: "--force",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "pid",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:killall",
-      description: "terminates all connections for all credentials",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:links:create",
-      description: "create a link between data stores",
-      options: [
-        {
-          name: "--as",
-          description: "name of link to create",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "remote",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:links:destroy",
-      description: "destroys a link between data stores",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "database",
-        },
-        {
-          name: "link",
-        },
-      ],
-    },
-    {
-      name: "pg:links",
-      description: "lists all databases and information on link",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:locks",
-      description: "display queries with active locks",
-      options: [
-        {
-          name: "--truncate",
-          description: "truncates queries to 40 charaters",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:maintenance",
-      description: "show current maintenance information",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:maintenance:run",
-      description: "start maintenance",
-      options: [
-        {
-          name: "--force",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:maintenance:window",
-      description: "set weekly maintenance window",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "database",
-        },
-        {
-          name: "window",
-        },
-      ],
-    },
-    {
-      name: "pg:outliers",
-      description:
-        "show 10 queries that have longest execution time in aggregate",
-      options: [
-        {
-          name: "--reset",
-          description: "resets statistics gathered by pg_stat_statements",
-        },
-        {
-          name: "--truncate",
-          description: "truncate queries to 40 characters",
-        },
-        {
-          name: "--num",
-          description: "the number of queries to display (default: 10)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:promote",
-      description: "sets DATABASE as your DATABASE_URL",
-      options: [
-        {
-          name: "--force",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:ps",
-      description: "view active queries with execution time",
-      options: [
-        {
-          name: "--verbose",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:psql",
-      description: "open a psql shell to the database",
-      options: [
-        {
-          name: "--command",
-          description: "SQL command to run",
-          args: {},
-        },
-        {
-          name: "--file",
-          description: "SQL file to run",
-          args: {},
-        },
-        {
-          name: "--credential",
-          description: "credential to use",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "psql",
-      description: "open a psql shell to the database",
-      options: [
-        {
-          name: "--command",
-          description: "SQL command to run",
-          args: {},
-        },
-        {
-          name: "--file",
-          description: "SQL file to run",
-          args: {},
-        },
-        {
-          name: "--credential",
-          description: "credential to use",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:push",
-      description: "push local or remote into Heroku database",
-      options: [
-        {
-          name: "--exclude-table-data",
-          description:
-            "tables for which data should be excluded (use ';' to split multiple names)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "source",
-        },
-        {
-          name: "target",
-        },
-      ],
-    },
-    {
-      name: "pg:pull",
-      description: "pull Heroku database into local or remote database",
-      options: [
-        {
-          name: "--exclude-table-data",
-          description:
-            "tables for which data should be excluded (use ';' to split multiple names)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "source",
-        },
-        {
-          name: "target",
-        },
-      ],
-    },
-    {
-      name: "pg:repoint",
-      description: "changes which leader a follower is following",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: "--follow",
-          description: "leader database to follow",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:reset",
-      description: "delete all data in DATABASE",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:settings",
-      description: "show your current database settings",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:settings:log-connections",
-      description:
-        "Controls whether a log message is produced when a login attempt is made. Default is true.",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "value",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:settings:log-lock-waits",
-      description:
-        "Controls whether a log message is produced when a session waits longer than the deadlock_timeout to acquire a lock. deadlock_timeout is set to 1 second",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "value",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:settings:log-min-duration-statement",
-      description:
-        "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE.\nVALUE needs to specified as a whole number, in milliseconds.",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "value",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:settings:log-statement",
-      description: "log_statement controls which SQL statements are logged.",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: [
-        {
-          name: "value",
-        },
-        {
-          name: "database",
-        },
-      ],
-    },
-    {
-      name: "pg:unfollow",
-      description:
-        "stop a replica from following and make it a writeable database",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:upgrade",
-      description:
-        "unfollow a database and upgrade it to the latest stable PostgreSQL version",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: "--version",
-          description: "PostgreSQL version to upgrade to",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:vacuum-stats",
-      description:
-        "show dead rows and whether an automatic vacuum is expected to be triggered",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:vacuum_stats",
-      description:
-        "show dead rows and whether an automatic vacuum is expected to be triggered",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pg:wait",
-      description: "blocks until database is available",
-      options: [
-        {
-          name: "--wait-interval",
-          description:
-            "how frequently to poll in seconds (to avoid rate limiting)",
-          args: {},
-        },
-        {
-          name: "--no-notify",
-          description: "do not show OS notification",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "pipelines:add",
-      description: "",
-      args: {
-        name: "pipeline",
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--stage"],
-          description: "stage of first app in pipeline",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:connect",
-      description: "connect a github repo to an existing pipeline",
-      args: {
-        name: "name",
-      },
-      options: [
-        {
-          name: ["-r", "--repo"],
-          description: "the GitHub repository to connect to",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:create",
-      description: "",
-      args: {
-        name: "name",
-        isOptional: true,
-      },
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--stage"],
-          description: "stage of first app in pipeline",
-          args: {},
-        },
-        {
-          name: "team",
-          description: "the team which will own the apps",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:destroy",
-      description: "destroy a pipeline",
-      args: {
-        name: "pipeline",
-      },
-    },
-    {
-      name: "pipelines:diff",
-      description:
-        "compares the latest release of this app to its downstream app(s)",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines",
-      description: "list pipelines you have access to",
-      options: [
-        {
-          name: "json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "pipelines:info",
-      description: "show list of apps in a pipeline",
-      args: {
-        name: "pipeline",
-      },
-      options: [
-        {
-          name: "json",
-          description: "output in json format",
-        },
-      ],
-    },
-    {
-      name: "pipelines:open",
-      description: "open a pipeline in dashboard",
-      args: {
-        name: "pipeline",
-      },
-    },
-    {
-      name: "pipelines:promote",
-      description:
-        "promote the latest release of this app to its downstream app(s)",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-t", "--to"],
-          description: "comma separated list of apps to promote to",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:remove",
-      description: "remove this app from its pipeline",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:rename",
-      description: "rename a pipeline",
-      args: [
-        {
-          name: "pipeline",
-        },
-        {
-          name: "name",
-        },
-      ],
-    },
-    {
-      name: "pipelines:setup",
-      description:
-        "bootstrap a new pipeline with common settings and create a production and staging app (requires a fully formed app.json in the repo)",
-      args: [
-        {
-          name: "name",
-          isOptional: true,
-        },
-        {
-          name: "repo",
-          isOptional: true,
-        },
-      ],
-      options: [
-        {
-          name: "team",
-          description:
-            "the team to assign pipeline ownership to (defaults to current user)",
-          args: {},
-        },
-        {
-          name: ["-y", "--yes"],
-          description: "accept all default settings without prompting",
-        },
-      ],
-    },
-    {
-      name: "pipelines:transfer",
-      description: "transfer ownership of a pipeline",
-      args: {
-        name: "owner",
-      },
-      options: [
-        {
-          name: "pipeline",
-          args: {},
-        },
-        {
-          name: ["-c", "--confirm"],
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:update",
-      description: "update the app's stage in a pipeline",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--stage"],
-          description: "new stage of app",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "pipelines:disable",
-      description:
-        "disable review apps and/or settings on an existing pipeline",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: "pipeline",
-          args: {},
-        },
-        {
-          name: "autodeploy",
-          description: "disable autodeployments",
-        },
-        {
-          name: "autodestroy",
-          description: "disable automatically destroying review apps",
-        },
-      ],
-    },
-    {
-      name: "pipelines:enable",
-      description: "enable review apps and/or settings on an existing pipeline",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-p", "--pipeline"],
-          description: "name of pipeline",
-          args: {},
-        },
-        {
-          name: "autodeploy",
-          description: "autodeploy the review app",
-        },
-        {
-          name: "autodestroy",
-          description: "autodestroy the review app",
-        },
-      ],
-    },
-    {
-      name: "ps:disable",
-      description: "disable web dyno autoscaling",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ps:enable",
-      description: "enable web dyno autoscaling",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: "min",
-          description: "minimum number of dynos",
-          args: {},
-        },
-        {
-          name: "max",
-          description: "maximum number of dynos",
-          args: {},
-        },
-        {
-          name: "p95",
-          description: "desired p95 response time",
-          args: {},
-        },
-        {
-          name: "notifications",
-          description:
-            "receive email notifications when the max dyno limit is reached",
-        },
-      ],
-    },
-    {
-      name: "ps:wait",
-      description:
-        "wait for all dynos to be running latest version after a release",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-t", "--type"],
-          description: "wait for one specific dyno type",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "ps:regions",
-      description: "list available regions for deployment",
-      options: [
-        {
-          name: "json",
-          description: "output in json format",
-        },
-        {
-          name: "private",
-          description: "show regions for private spaces",
-        },
-        {
-          name: "common",
-          description: "show regions for common runtime",
-        },
-      ],
-    },
-    {
-      name: "redis:cli",
-      description: "opens a redis prompt",
-      options: [
-        {
-          name: "--confirm",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
-      },
-    },
-    {
-      name: "redis:credentials",
-      description: "display credentials information",
-      options: [
-        {
-          name: "--reset",
-          description: "reset credentials",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "database",
+        name: "id",
+        isOptional: false,
       },
     },
     {
@@ -5241,12 +3519,85 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "redis:cli",
+      description: "opens a redis prompt",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "redis:credentials",
+      description: "display credentials information",
+      options: [
+        {
+          name: "--reset",
+          description: "reset credentials",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5262,12 +3613,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5275,21 +3635,33 @@ const completionSpec: Fig.Spec = {
       description: "set the keyspace notifications configuration",
       options: [
         {
-          name: "--config",
+          name: ["-c", "--config"],
           description: "set keyspace notifications configuration",
-          args: {},
+          args: {
+            name: "config",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5297,16 +3669,19 @@ const completionSpec: Fig.Spec = {
       description: "manage maintenance windows",
       options: [
         {
-          name: "--window",
+          name: ["-w", "--window"],
           description: "set weekly UTC maintenance window",
-          args: {},
+          args: {
+            name: "window",
+            isOptional: false,
+          },
         },
         {
           name: "--run",
           description: "start maintenance",
         },
         {
-          name: "--force",
+          name: ["-f", "--force"],
           description:
             "start maintenance without entering application maintenance mode",
         },
@@ -5315,12 +3690,21 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5328,21 +3712,33 @@ const completionSpec: Fig.Spec = {
       description: "set the key eviction policy",
       options: [
         {
-          name: "--policy",
+          name: ["-p", "--policy"],
           description: "set policy name",
-          args: {},
+          args: {
+            name: "policy",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5354,12 +3750,56 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: false,
+      },
+    },
+    {
+      name: "redis:stats-reset",
+      description:
+        "reset all stats covered by RESETSTAT (https://redis.io/commands/config-resetstat)",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5368,21 +3808,33 @@ const completionSpec: Fig.Spec = {
         "set the number of seconds to wait before killing idle connections",
       options: [
         {
-          name: "--seconds",
+          name: ["-s", "--seconds"],
           description: "set timeout value",
-          args: {},
+          args: {
+            name: "seconds",
+            isOptional: false,
+          },
         },
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
@@ -5394,116 +3846,318 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
           },
         },
       ],
       args: {
         name: "database",
+        isOptional: true,
       },
     },
     {
-      name: "run:console",
-      description: "",
+      name: "container",
+      description: "Use containers to build and deploy Heroku apps",
+    },
+    {
+      name: "container:login",
+      description: "log in to Heroku Container Registry",
       options: [
         {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--size"],
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: ["-e", "--env"],
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
+          name: ["-v", "--verbose"],
+          description: "",
         },
       ],
     },
     {
-      name: "run:logs",
-      description: "",
+      name: "container:logout",
+      description: "log out from Heroku Container Registry",
+      options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+      ],
+    },
+    {
+      name: "container:pull",
+      description: "pulls an image from an app's process type",
+      options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "container:push",
+      description:
+        "builds, then pushes Docker images to deploy your Heroku app",
+      options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-R", "--recursive"],
+          description:
+            "pushes Dockerfile.<process> found in current and subdirectories",
+        },
+        {
+          name: "--arg",
+          description: "set build-time variables",
+          args: {
+            name: "arg",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--context-path",
+          description:
+            "path to use as build context (defaults to Dockerfile dir)",
+          args: {
+            name: "context-path",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "container:release",
+      description:
+        "Releases previously pushed Docker images to your Heroku app",
+      options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "container:rm",
+      description: "remove the process type from your app",
       options: [
         {
           name: ["-a", "--app"],
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "container:run",
+      description: "builds, then runs the docker image locally",
+      options: [
+        {
+          name: ["-p", "--port"],
+          description: "port the app will run on",
+          args: {
+            name: "port",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "logs",
+      description: "display recent log output",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
           name: ["-n", "--num"],
           description: "number of lines to display",
-          args: {},
-        },
-        {
-          name: ["-p", "--ps"],
-          description: "hidden alias for dyno",
-          args: {},
+          args: {
+            name: "num",
+            isOptional: false,
+          },
         },
         {
           name: ["-d", "--dyno"],
           description:
             'only show output from this dyno type (such as "web" or "worker")',
-          args: {},
+          args: {
+            name: "dyno",
+            isOptional: false,
+          },
         },
         {
           name: ["-s", "--source"],
           description:
             'only show output from this source (such as "app" or "heroku")',
-          args: {},
+          args: {
+            name: "source",
+            isOptional: false,
+          },
         },
         {
           name: ["-t", "--tail"],
           description: "continually stream logs",
         },
+        {
+          name: "--force-colors",
+          description: "force use of colors (even on non-tty output)",
+        },
       ],
     },
     {
-      name: "run:rake",
-      description: "",
+      name: "run",
+      description: "run a one-off process inside a heroku dyno",
       options: [
         {
           name: ["-a", "--app"],
-          description: "app to run command against",
+          description: "parent app used by review apps",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
           name: ["-s", "--size"],
           description: "dyno size",
-          args: {},
+          args: {
+            name: "size",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--type",
+          description: "process type",
+          args: {
+            name: "type",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-x", "--exit-code"],
+          description: "passthrough the exit code of the remote command",
         },
         {
           name: ["-e", "--env"],
           description:
             "environment variables to set (use ';' to split multiple vars)",
-          args: {},
+          args: {
+            name: "env",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--no-tty",
+          description: "force the command to not run in a tty",
+        },
+        {
+          name: "--no-notify",
+          description:
+            "disables notification when dyno is up (alternatively use HEROKU_NOTIFICATIONS=0)",
         },
       ],
     },
@@ -5516,296 +4170,52 @@ const completionSpec: Fig.Spec = {
           description: "app to run command against",
           args: {
             name: "app",
-            generators: getAppGenerator,
+            isOptional: false,
           },
         },
         {
           name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
         },
         {
           name: ["-e", "--env"],
           description:
             "environment variables to set (use ';' to split multiple vars)",
-          args: {},
+          args: {
+            name: "env",
+            isOptional: false,
+          },
         },
         {
           name: ["-s", "--size"],
           description: "dyno size",
-          args: {},
+          args: {
+            name: "size",
+            isOptional: false,
+          },
         },
         {
           name: ["-t", "--tail"],
           description: "continually stream logs",
         },
         {
-          name: "type",
+          name: "--type",
           description: "process type",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "run",
-      description:
-        "run a one-off process inside a heroku dyno\nShows a notification if the dyno takes more than 20 seconds to start.",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
           args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-s", "--size"],
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: "type",
-          description: "process type",
-          args: {},
-        },
-        {
-          name: ["-e", "--env"],
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: "listen",
-          description: "listen on a local port",
-        },
-      ],
-    },
-    {
-      name: "run:inside",
-      description: "run a one-off process inside an existing heroku dyno",
-      options: [
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-        {
-          name: ["-r", "--remote"],
-          description: 'the git remote to create, default "heroku"',
-          args: {},
-        },
-        {
-          name: ["-e", "--env"],
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: "listen",
-          description: "listen on a local port",
-        },
-      ],
-    },
-    {
-      name: "console",
-      options: [
-        {
-          name: "--size",
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: "--env",
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
+            name: "type",
+            isOptional: false,
           },
         },
       ],
     },
     {
-      name: "logs",
-      description:
-        "display recent log output\ndisable colors with --no-color, HEROKU_LOGS_COLOR=0, or HEROKU_COLOR=0",
+      name: "status",
+      description: "display current status of the Heroku platform",
       options: [
-        {
-          name: "--num",
-          description: "number of lines to display",
-          args: {},
-        },
-        {
-          name: "--ps",
-          description: "hidden alias for dyno",
-          args: {},
-        },
-        {
-          name: "--dyno",
-          description:
-            'only show output from this dyno type (such as "web" or "worker")',
-          args: {},
-        },
-        {
-          name: "--source",
-          description:
-            'only show output from this source (such as "app" or "heroku")',
-          args: {},
-        },
-        {
-          name: "--tail",
-          description: "continually stream logs",
-        },
-        {
-          name: "--force-colors",
-          description: "force use of colors (even on non-tty output)",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-    },
-    {
-      name: "rake",
-      options: [
-        {
-          name: "--size",
-          description: "dyno size",
-          args: {},
-        },
-        {
-          name: "--exit-code",
-          description: "passthrough the exit code of the remote command",
-        },
-        {
-          name: "--env",
-          description:
-            "environment variables to set (use ';' to split multiple vars)",
-          args: {},
-        },
-        {
-          name: "--no-tty",
-          description: "force the command to not run in a tty",
-        },
-        {
-          name: ["-a", "--app"],
-          description: "app to run command against",
-          args: {
-            name: "app",
-            generators: getAppGenerator,
-          },
-        },
-      ],
-      args: {
-        name: "rak",
-        isVariadic: true,
-      },
-    },
-    {
-      name: "spaces:create",
-      description: "create a new space",
-      options: [
-        {
-          name: "--space",
-          description: "name of space to create",
-          args: {},
-        },
-        {
-          name: "--channel",
-          args: {},
-        },
-        {
-          name: "--region",
-          description: "region name",
-          args: {},
-        },
-        {
-          name: "--features",
-          description: "a list of features separated by commas",
-          args: {},
-        },
-        {
-          name: "--log-drain-url",
-          description: "direct log drain url",
-          args: {},
-        },
-        {
-          name: "--shield",
-          description: "create a Shield space",
-        },
-        {
-          name: "--cidr",
-          description: "RFC-1918 CIDR the space will use",
-          args: {},
-        },
-        {
-          name: "--kpi-url",
-          description: "self-managed KPI endpoint to use",
-          args: {},
-        },
-        {
-          name: "--data-cidr",
-          description:
-            "RFC-1918 CIDR used by Heroku Data resources for the space",
-          args: {},
-        },
-        {
-          name: "--team",
-          description: "team to use",
-          args: {},
-        },
-      ],
-      args: {
-        name: "space",
-      },
-    },
-    {
-      name: "spaces:destroy",
-      description: "destroy a space",
-      options: [
-        {
-          name: "--space",
-          description: "space to destroy",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "set to space name to bypass confirm prompt",
-          args: {},
-        },
-      ],
-      args: {
-        name: "space",
-      },
-    },
-    {
-      name: "drains:get",
-      description: "display the log drain for a space",
-      options: [
-        {
-          name: "--space",
-          description: "space for which to get log drain",
-          args: {},
-        },
         {
           name: "--json",
           description: "output in json format",
@@ -5813,36 +4223,413 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
-      name: "drains:set",
-      description: "replaces the log drain for a space",
+      name: "pipelines",
+      description: "list pipelines you have access to",
       options: [
         {
-          name: "--space",
-          description: "space for which to set log drain",
-          args: {},
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "pipelines:add",
+      description: "add this app to a pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--stage"],
+          description: "stage of first app in pipeline",
+          args: {
+            name: "stage",
+            isOptional: false,
+          },
         },
       ],
       args: {
-        name: "url",
+        name: "pipeline",
+        description: "name of pipeline",
+        isOptional: false,
       },
     },
     {
-      name: "spaces:hosts",
-      description: "list dedicated hosts for a space",
+      name: "pipelines:connect",
+      description: "connect a github repo to an existing pipeline",
       options: [
         {
-          name: "--space",
-          description: "space to get host list from",
-          args: {},
+          name: ["-r", "--repo"],
+          description: "the GitHub repository to connect to",
+          args: {
+            name: "repo",
+            isOptional: false,
+          },
         },
+      ],
+      args: {
+        name: "name",
+        description: "name of pipeline",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pipelines:create",
+      description: "create a new pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--stage"],
+          description: "stage of first app in pipeline",
+          args: {
+            name: "stage",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--team"],
+          description: "the team which will own the apps",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "name",
+        description: "name of pipeline (defaults to basename of the app)",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pipelines:destroy",
+      description: "destroy a pipeline",
+
+      args: {
+        name: "pipeline",
+        description: "name of pipeline",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pipelines:diff",
+      description:
+        "compares the latest release of this app to its downstream app(s)",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "pipelines:info",
+      description: "show list of apps in a pipeline",
+      options: [
         {
           name: "--json",
           description: "output in json format",
         },
       ],
       args: {
-        name: "space",
+        name: "pipeline",
+        description: "pipeline to show list of apps for",
+        isOptional: false,
       },
+    },
+    {
+      name: "pipelines:open",
+      description: "open a pipeline in dashboard",
+
+      args: {
+        name: "pipeline",
+        description: "name of pipeline",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pipelines:promote",
+      description:
+        "promote the latest release of this app to its downstream app(s)",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--to"],
+          description: "comma separated list of apps to promote to",
+          args: {
+            name: "to",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "pipelines:remove",
+      description: "remove this app from its pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "pipelines:rename",
+      description: "rename a pipeline",
+
+      args: [
+        {
+          name: "pipeline",
+          description: "current name of pipeline",
+          isOptional: false,
+        },
+        {
+          name: "name",
+          description: "new name of pipeline",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pipelines:setup",
+      description:
+        "bootstrap a new pipeline with common settings and create a production and staging app (requires a fully formed app.json in the repo)",
+      options: [
+        {
+          name: ["-t", "--team"],
+          description:
+            "the team to assign pipeline ownership to (defaults to current user)",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-y", "--yes"],
+          description: "accept all default settings without prompting",
+        },
+      ],
+      args: [
+        {
+          name: "name",
+          description: "name of pipeline",
+          isOptional: true,
+        },
+        {
+          name: "repo",
+          description: "a GitHub repository to connect the pipeline to",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pipelines:transfer",
+      description: "transfer ownership of a pipeline",
+      options: [
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "owner",
+        description: "the owner to transfer the pipeline to",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pipelines:update",
+      description: "update the app's stage in a pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--stage"],
+          description: "new stage of app",
+          args: {
+            name: "stage",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "reviewapps:disable",
+      description:
+        "disable review apps and/or settings on an existing pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "parent app used by review apps",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--no-autodeploy",
+          description: "disable autodeployments",
+        },
+        {
+          name: "--no-autodestroy",
+          description: "disable automatically destroying review apps",
+        },
+        {
+          name: "--no-wait-for-ci",
+          description: "disable wait for CI",
+        },
+      ],
+    },
+    {
+      name: "reviewapps:enable",
+      description: "enable review apps and/or settings on an existing pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "parent app used by review apps",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {
+            name: "pipeline",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--autodeploy",
+          description: "autodeploy the review app",
+        },
+        {
+          name: "--autodestroy",
+          description: "autodestroy the review app",
+        },
+        {
+          name: "--wait-for-ci",
+          description: "wait for CI to pass before deploying",
+        },
+      ],
     },
     {
       name: "spaces",
@@ -5853,9 +4640,81 @@ const completionSpec: Fig.Spec = {
           description: "output in json format",
         },
         {
-          name: "--team",
+          name: ["-t", "--team"],
           description: "team to use",
-          args: {},
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:create",
+      description: "create a new space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "name of space to create",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--region",
+          description: "region name",
+          args: {
+            name: "region",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--cidr",
+          description: "RFC-1918 CIDR the space will use",
+          args: {
+            name: "cidr",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--data-cidr",
+          description:
+            "RFC-1918 CIDR used by Heroku Data resources for the space",
+          args: {
+            name: "data-cidr",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:destroy",
+      description: "destroy a space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to destroy",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description: "set to space name to bypass confirm prompt",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -5864,150 +4723,18 @@ const completionSpec: Fig.Spec = {
       description: "show info about a space",
       options: [
         {
-          name: "--space",
+          name: ["-s", "--space"],
           description: "space to get info of",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--json",
           description: "output in json format",
         },
       ],
-      args: {
-        name: "space",
-      },
-    },
-    {
-      name: "outbound-rules:add",
-      description: "Add outbound rules to a Private Space",
-      options: [
-        {
-          name: "--space",
-          description: "space to add rule to",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "set to space name to bypass confirm prompt",
-          args: {},
-        },
-        {
-          name: "--dest",
-          description:
-            "target CIDR block dynos are allowed to communicate with",
-          args: {},
-        },
-        {
-          name: "--protocol",
-          description:
-            'the protocol dynos are allowed to use when communicating with hosts in destination CIDR block. Valid protocols are "tcp", "udp", "icmp", "0-255" and "any".',
-          args: {},
-        },
-        {
-          name: "--port",
-          description:
-            "the port dynos are allowed to use when communicating with hosts in destination CIDR block. Accepts a range in `<lowest port>-<highest port>` format. 0 is the minimum. The maximum port allowed is 65535, except for ICMP with a maximum of 255.",
-          args: {},
-        },
-      ],
-    },
-    {
-      name: "outbound-rules",
-      description: "list Outbound Rules for a space",
-      options: [
-        {
-          name: "--space",
-          description: "space to get outbound rules from",
-          args: {},
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-      args: {
-        name: "space",
-      },
-    },
-    {
-      name: "outbound-rules:remove",
-      description: "Remove a Rules from the list of Outbound Rules",
-      options: [
-        {
-          name: "--space",
-          description: "space to remove rule from",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "set to space name to bypass confirm prompt",
-          args: {},
-        },
-      ],
-      args: {
-        name: "ruleNumber",
-      },
-    },
-    {
-      name: "spaces:peerings:accept",
-      description: "accepts a pending peering request for a private space",
-      options: [
-        {
-          name: "--pcxid",
-          description: "PCX ID of a pending peering",
-          args: {},
-        },
-        {
-          name: "--space",
-          description: "space to get peering info from",
-          args: {},
-        },
-      ],
-      args: {
-        name: "pcxid",
-      },
-    },
-    {
-      name: "spaces:peerings:destroy",
-      description: "destroys an active peering connection in a private space",
-      options: [
-        {
-          name: "--pcxid",
-          description: "PCX ID of a pending peering",
-          args: {},
-        },
-        {
-          name: "--space",
-          description: "space to get peering info from",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "set to PCX ID to bypass confirm prompt",
-          args: {},
-        },
-      ],
-      args: {
-        name: "pcxid",
-      },
-    },
-    {
-      name: "spaces:peerings",
-      description: "list peering connections for a space",
-      options: [
-        {
-          name: "--space",
-          description: "space to get peer list from",
-          args: {},
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-      args: {
-        name: "space",
-      },
     },
     {
       name: "spaces:peering:info",
@@ -6015,36 +4742,106 @@ const completionSpec: Fig.Spec = {
         "display the information necessary to initiate a peering connection",
       options: [
         {
-          name: "--space",
+          name: ["-s", "--space"],
           description: "space to get peering info from",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--json",
           description: "output in json format",
         },
       ],
-      args: {
-        name: "space",
-      },
+    },
+    {
+      name: "spaces:peerings",
+      description: "list peering connections for a space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to get peer list from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "spaces:peerings:accept",
+      description: "accepts a pending peering request for a private space",
+      options: [
+        {
+          name: ["-p", "--pcxid"],
+          description: "PCX ID of a pending peering",
+          args: {
+            name: "pcxid",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--space"],
+          description: "space to get peering info from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:peerings:destroy",
+      description: "destroys an active peering connection in a private space",
+      options: [
+        {
+          name: ["-p", "--pcxid"],
+          description: "PCX ID of a pending peering",
+          args: {
+            name: "pcxid",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--space"],
+          description: "space to get peering info from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description: "set to PCX ID to bypass confirm prompt",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+      ],
     },
     {
       name: "spaces:ps",
       description: "list dynos for a space",
       options: [
         {
-          name: "--space",
+          name: ["-s", "--space"],
           description: "space to get dynos of",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--json",
           description: "output in json format",
         },
       ],
-      args: {
-        name: "space",
-      },
     },
     {
       name: "spaces:rename",
@@ -6053,12 +4850,18 @@ const completionSpec: Fig.Spec = {
         {
           name: "--from",
           description: "current name of space",
-          args: {},
+          args: {
+            name: "from",
+            isOptional: false,
+          },
         },
         {
           name: "--to",
           description: "desired name of space",
-          args: {},
+          args: {
+            name: "to",
+            isOptional: false,
+          },
         },
       ],
     },
@@ -6067,18 +4870,18 @@ const completionSpec: Fig.Spec = {
       description: "show space topology",
       options: [
         {
-          name: "--space",
+          name: ["-s", "--space"],
           description: "space to get topology of",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--json",
           description: "output in json format",
         },
       ],
-      args: {
-        name: "space",
-      },
     },
     {
       name: "spaces:transfer",
@@ -6087,12 +4890,282 @@ const completionSpec: Fig.Spec = {
         {
           name: "--space",
           description: "name of space",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--team",
           description: "desired owner of space",
-          args: {},
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:config",
+      description: "display the configuration information for VPN",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space the VPN connection belongs to",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description:
+            "name or id of the VPN connection to retrieve config from",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:connect",
+      description: "create VPN",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description: "VPN name",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--ip"],
+          description: "public IP of customer gateway",
+          args: {
+            name: "ip",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-c", "--cidrs"],
+          description: "a list of routable CIDRs separated by commas",
+          args: {
+            name: "cidrs",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--space"],
+          description: "space name",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:connections",
+      description: "list the VPN Connections for a space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to get VPN connections from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:destroy",
+      description: "destroys VPN in a private space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to get peering info from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description:
+            "name or id of the VPN connection to retrieve config from",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--confirm",
+          description: "set to VPN connection name to bypass confirm prompt",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:info",
+      description: "display the information for VPN",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space the vpn connection belongs to",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: ["-n", "--name"],
+          description: "name or id of the VPN connection to get info from",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:update",
+      description: "update VPN",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description: "VPN name",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-c", "--cidrs"],
+          description: "a list of routable CIDRs separated by commas",
+          args: {
+            name: "cidrs",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--space"],
+          description: "space name",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:vpn:wait",
+      description: "wait for VPN Connection to be created",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space the vpn connection belongs to",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-n", "--name"],
+          description: "name or id of the vpn connection to wait for",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: ["-i", "--interval"],
+          description: "seconds to wait between poll intervals",
+          args: {
+            name: "interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--timeout"],
+          description: "maximum number of seconds to wait",
+          args: {
+            name: "timeout",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "spaces:wait",
+      description: "wait for a space to be created",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to get info of",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: ["-i", "--interval"],
+          description: "seconds to wait between poll intervals",
+          args: {
+            name: "interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--timeout"],
+          description: "maximum number of seconds to wait",
+          args: {
+            name: "timeout",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "trusted-ips",
+      description: "list trusted IP ranges for a space",
+      options: [
+        {
+          name: ["-s", "--space"],
+          description: "space to get inbound rules from",
+          args: {
+            name: "space",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--json",
+          description: "output in json format",
         },
       ],
     },
@@ -6101,36 +5174,25 @@ const completionSpec: Fig.Spec = {
       description: "Add one range to the list of trusted IP ranges",
       options: [
         {
-          name: "--space",
+          name: ["-s", "--space"],
           description: "space to add rule to",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--confirm",
           description: "set to space name to bypass confirm prompt",
-          args: {},
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
         },
       ],
       args: {
         name: "source",
-      },
-    },
-    {
-      name: "trusted-ips",
-      description: "list trusted IP ranges for a space",
-      options: [
-        {
-          name: "--space",
-          description: "space to get inbound rules from",
-          args: {},
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-      ],
-      args: {
-        name: "space",
+        isOptional: false,
       },
     },
     {
@@ -6140,235 +5202,2933 @@ const completionSpec: Fig.Spec = {
         {
           name: "--space",
           description: "space to remove rule from",
-          args: {},
+          args: {
+            name: "space",
+            isOptional: false,
+          },
         },
         {
           name: "--confirm",
           description: "set to space name to bypass confirm prompt",
-          args: {},
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
         },
       ],
       args: {
         name: "source",
+        isOptional: false,
       },
     },
     {
-      name: "spaces:vpn:config",
-      description: "display the configuration information for VPN",
+      name: "ps:copy",
+      description: "Copy a file from a dyno to the local filesystem",
       options: [
         {
-          name: "--space",
-          description: "space the VPN connection belongs to",
-          args: {},
+          name: ["-d", "--dyno"],
+          description: "specify the dyno to connect to",
+          args: {
+            name: "dyno",
+            isOptional: false,
+          },
         },
         {
-          name: "--name",
+          name: ["-o", "--output"],
+          description: "the name of the output file",
+          args: {
+            name: "output",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "file",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ps:exec",
+      description: "Create an SSH session to a dyno",
+      options: [
+        {
+          name: ["-d", "--dyno"],
+          description: "specify the dyno to connect to",
+          args: {
+            name: "dyno",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--ssh",
+          description: "use native ssh",
+        },
+        {
+          name: "--status",
+          description: "lists the status of the SSH server in the dyno",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ps:forward",
+      description: "Forward traffic on a local port to a dyno",
+      options: [
+        {
+          name: ["-d", "--dyno"],
+          description: "specify the dyno to connect to",
+          args: {
+            name: "dyno",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "port",
+        isOptional: false,
+      },
+    },
+    {
+      name: "ps:socks",
+      description: "Launch a SOCKS proxy into a dyno",
+      options: [
+        {
+          name: ["-d", "--dyno"],
+          description: "specify the dyno to connect to",
+          args: {
+            name: "dyno",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "access",
+      description: "list who has access to an app",
+      options: [
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "access:add",
+      description: "add new users to your app",
+      options: [
+        {
+          name: ["-p", "--permissions"],
+          description: "list of permissions comma separated",
+          args: {
+            name: "permissions",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: false,
+      },
+    },
+    {
+      name: "access:remove",
+      description: "remove users from a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: false,
+      },
+    },
+    {
+      name: "access:update",
+      description: "update existing collaborators on an team app",
+      options: [
+        {
+          name: ["-p", "--permissions"],
           description:
-            "name or id of the VPN connection to retrieve config from",
-          args: {},
+            "comma-delimited list of permissions to update (deploy,manage,operate)",
+          args: {
+            name: "permissions",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: false,
+      },
+    },
+    {
+      name: "apps:join",
+      description: "add yourself to a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "apps:leave",
+      description: "remove yourself from a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "apps:lock",
+      description: "prevent team members from joining an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "apps:transfer",
+      description: "transfer applications to another user or team",
+      options: [
+        {
+          name: ["-l", "--locked"],
+          description: "lock the app upon transfer",
+        },
+        {
+          name: "--bulk",
+          description: "transfer applications in bulk",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "recipient",
+        description: "user or team to transfer applications to",
+        isOptional: false,
+      },
+    },
+    {
+      name: "apps:unlock",
+      description: "unlock an app so any team member can join",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "join",
+      description: "add yourself to a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "leave",
+      description: "remove yourself from a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "lock",
+      description: "prevent team members from joining an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "members",
+      description: "list members of a team",
+      options: [
+        {
+          name: ["-r", "--role"],
+          description: "filter by role",
+          args: {
+            name: "role",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--pending",
+          description: "filter by pending team invitations",
         },
         {
           name: "--json",
           description: "output in json format",
         },
+        {
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "members:add",
+      description: "adds a user to a team",
+      options: [
+        {
+          name: ["-r", "--role"],
+          description: "member role (admin, collaborator, member, owner)",
+          args: {
+            name: "role",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
       ],
       args: {
-        name: "name",
+        name: "email",
+        isOptional: false,
       },
     },
     {
-      name: "spaces:vpn:connect",
-      description: "create VPN",
+      name: "members:remove",
+      description: "removes a user from a team",
       options: [
         {
-          name: "--name",
-          description: "VPN name",
-          args: {},
-        },
-        {
-          name: "--ip",
-          description: "public IP of customer gateway",
-          args: {},
-        },
-        {
-          name: "--cidrs",
-          description: "a list of routable CIDRs separated by commas",
-          args: {},
-        },
-        {
-          name: "--space",
-          description: "space name",
-          args: {},
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
         },
       ],
       args: {
-        name: "name",
+        name: "email",
+        isOptional: false,
       },
     },
     {
-      name: "spaces:vpn:destroy",
-      description: "destroys VPN in a private space",
+      name: "members:set",
+      description: "sets a members role in a team",
       options: [
         {
-          name: "--space",
-          description: "space to get peering info from",
-          args: {},
+          name: ["-r", "--role"],
+          description: "member role (admin, collaborator, member, owner)",
+          args: {
+            name: "role",
+            isOptional: false,
+          },
         },
         {
-          name: "--name",
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "email",
+        isOptional: false,
+      },
+    },
+    {
+      name: "orgs",
+      description: "list the teams that you are a member of",
+      options: [
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+        {
+          name: "--enterprise",
+          description: "filter by enterprise teams",
+        },
+      ],
+    },
+    {
+      name: "orgs:open",
+      description: "open the team interface in a browser window",
+      options: [
+        {
+          name: ["-t", "--team"],
+          description: "team to use",
+          args: {
+            name: "team",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "teams",
+      description: "list the teams that you are a member of",
+      options: [
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "unlock",
+      description: "unlock an app so any team member can join",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ps:autoscale:disable",
+      description: "disable web dyno autoscaling",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "ps:autoscale:enable",
+      description: "enable web dyno autoscaling",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--min",
+          description: "minimum number of dynos",
+          args: {
+            name: "min",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--max",
+          description: "maximum number of dynos",
+          args: {
+            name: "max",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--p95",
+          description: "desired p95 response time",
+          args: {
+            name: "p95",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--notifications",
           description:
-            "name or id of the VPN connection to retrieve config from",
-          args: {},
-        },
-        {
-          name: "--confirm",
-          description: "set to VPN connection name to bypass confirm prompt",
-          args: {},
+            "receive email notifications when the max dyno limit is reached",
         },
       ],
-      args: {
-        name: "name",
-      },
     },
     {
-      name: "spaces:vpn:connections",
-      description: "list the VPN Connections for a space",
+      name: "ps:wait",
+      description:
+        "wait for all dynos to be running latest version after a release",
       options: [
         {
-          name: "--space",
-          description: "space to get VPN connections from",
-          args: {},
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
         },
         {
-          name: "--json",
-          description: "output in json format",
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--type"],
+          description: "wait for one specific dyno type",
+          args: {
+            name: "type",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-w", "--wait-interval"],
+          description:
+            "how frequently to poll in seconds (to avoid hitting Heroku API rate limits)",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-R", "--with-run"],
+          description: "whether to wait for one-off run dynos",
         },
       ],
-      args: {
-        name: "space",
-      },
     },
     {
-      name: "spaces:vpn:info",
-      description: "display the information for VPN",
+      name: "regions",
+      description: "list available regions for deployment",
       options: [
-        {
-          name: "--space",
-          description: "space the vpn connection belongs to",
-          args: {},
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--name",
-          description: "name or id of the VPN connection to get info from",
-          args: {},
-        },
-      ],
-      args: {
-        name: "name",
-      },
-    },
-    {
-      name: "spaces:vpn:update",
-      description: "update VPN",
-      options: [
-        {
-          name: "--name",
-          description: "VPN name",
-          args: {},
-        },
-        {
-          name: "--cidrs",
-          description: "a list of routable CIDRs separated by commas",
-          args: {},
-        },
-        {
-          name: "--space",
-          description: "space name",
-          args: {},
-        },
-      ],
-      args: {
-        name: "name",
-      },
-    },
-    {
-      name: "spaces:vpn:wait",
-      description: "wait for VPN Connection to be created",
-      options: [
-        {
-          name: "--space",
-          description: "space the vpn connection belongs to",
-          args: {},
-        },
-        {
-          name: "--name",
-          description: "name or id of the vpn connection to wait for",
-          args: {},
-        },
         {
           name: "--json",
           description: "output in json format",
         },
         {
-          name: "--interval",
-          description: "seconds to wait between poll intervals",
-          args: {},
+          name: "--private",
+          description: "show regions for private spaces",
         },
         {
-          name: "--timeout",
-          description: "maximum number of seconds to wait",
-          args: {},
-        },
-      ],
-      args: {
-        name: "name",
-      },
-    },
-    {
-      name: "spaces:wait",
-      description: "wait for a space to be created",
-      options: [
-        {
-          name: "--space",
-          description: "space to get info of",
-          args: {},
-        },
-        {
-          name: "--json",
-          description: "output in json format",
-        },
-        {
-          name: "--interval",
-          description: "seconds to wait between poll intervals",
-          args: {},
-        },
-        {
-          name: "--timeout",
-          description: "maximum number of seconds to wait",
-          args: {},
-        },
-      ],
-      args: {
-        name: "space",
-      },
-    },
-    {
-      name: "status",
-      description: "display current status of the Heroku platform",
-      options: [
-        {
-          name: "json",
-          description: "output in json format",
+          name: "--common",
+          description: "show regions for common runtime",
         },
       ],
     },
     {
       name: "webhooks",
-      description: "",
+      description: "list webhooks on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "webhooks:add",
+      description: "add a webhook to an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--include"],
+          description: "comma delimited event types your server will receive ",
+          args: {
+            name: "include",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-l", "--level"],
+          description:
+            "notify does not retry, sync will retry until successful or timeout",
+          args: {
+            name: "level",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--secret"],
+          description:
+            "value to sign delivery with in Heroku-Webhook-Hmac-SHA256 header",
+          args: {
+            name: "secret",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--authorization"],
+          description: "authoriation header to send with webhooks",
+          args: {
+            name: "authorization",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "URL for receiver",
+          args: {
+            name: "url",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "webhooks:deliveries",
+      description: "list webhook deliveries on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--status"],
+          description: "filter deliveries by status",
+          args: {
+            name: "status",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "webhooks:deliveries:info",
+      description: "info for a webhook event on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "webhooks:events",
+      description: "list webhook events on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "webhooks:events:info",
+      description: "info for a webhook event on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "webhooks:info",
+      description: "info for a webhook on an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "webhooks:remove",
+      description: "removes a webhook from an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        description: "id of webhook to remove",
+        isOptional: false,
+      },
+    },
+    {
+      name: "webhooks:update",
+      description: "updates a webhook in an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-i", "--include"],
+          description: "comma delimited event types your server will receive ",
+          args: {
+            name: "include",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-l", "--level"],
+          description:
+            "notify does not retry, sync will retry until successful or timeout",
+          args: {
+            name: "level",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-s", "--secret"],
+          description:
+            "value to sign delivery with in Heroku-Webhook-Hmac-SHA256 header",
+          args: {
+            name: "secret",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-t", "--authorization"],
+          description: "authoriation header to send with webhooks",
+          args: {
+            name: "authorization",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-u", "--url"],
+          description: "URL for receiver",
+          args: {
+            name: "url",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "commands",
+      description: "list all the commands",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-j", "--json"],
+          description: "display unfiltered api data in json format",
+        },
+        {
+          name: "--hidden",
+          description: "show hidden commands",
+        },
+        {
+          name: "--columns",
+          description: "only show provided columns (comma-separated)",
+          args: {
+            name: "columns",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--sort",
+          description: "property to sort by (prepend '-' for descending)",
+          args: {
+            name: "sort",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--filter",
+          description:
+            "filter property by partial string matching, ex: name=foo",
+          args: {
+            name: "filter",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--csv",
+          description: "output is csv format [alias: --output=csv]",
+        },
+        {
+          name: "--output",
+          description: "output in a more machine friendly format",
+          args: {
+            name: "output",
+            isOptional: false,
+            suggestions: ["csv", "json", "yaml"],
+          },
+        },
+        {
+          name: ["-x", "--extended"],
+          description: "show extra columns",
+        },
+        {
+          name: "--no-truncate",
+          description: "do not truncate output to fit screen",
+        },
+        {
+          name: "--no-header",
+          description: "hide table header from output",
+        },
+      ],
+    },
+    {
+      name: "help",
+      description: "display help for <%= config.bin %>",
+      options: [
+        {
+          name: "--all",
+          description: "see all commands in CLI",
+        },
+      ],
+      args: {
+        name: "command",
+        description: "command to show help for",
+        isOptional: true,
+      },
+    },
+    {
+      name: "which",
+      description: "show which plugin a command is in",
+
+      args: {
+        name: "command",
+        isOptional: false,
+      },
+    },
+    {
+      name: "update",
+      description: "update the <%= config.bin %> CLI",
+
+      args: {
+        name: "channel",
+        isOptional: true,
+      },
+    },
+    {
+      name: "plugins",
+      description: "list installed plugins",
+      options: [
+        {
+          name: "--core",
+          description: "show core plugins",
+        },
+      ],
+    },
+    {
+      name: ["plugins:install", "plugins:add"],
+      description: "installs a plugin into the CLI",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-f", "--force"],
+          description: "yarn install with force flag",
+        },
+      ],
+      args: {
+        name: "plugin",
+        description: "plugin to install",
+        isOptional: false,
+      },
+    },
+    {
+      name: "plugins:link",
+      description: "links a plugin into the CLI for development",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+      ],
+      args: {
+        name: "path",
+        description: "path to plugin",
+        isOptional: false,
+      },
+    },
+    {
+      name: ["plugins:uninstall", "plugins:unlink", "plugins:remove"],
+      description: "removes a plugin from the CLI",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+      ],
+      args: {
+        name: "plugin",
+        description: "plugin to uninstall",
+        isOptional: true,
+      },
+    },
+    {
+      name: "plugins:update",
+      description: "update installed plugins",
+      options: [
+        {
+          name: ["-h", "--help"],
+          description: "show CLI help",
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+      ],
+    },
+    {
+      name: "pg",
+      description: "show database information",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups",
+      description: "list database backups",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "pg:backups:cancel",
+      description: "cancel an in-progress backup or restore (default newest)",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "backup_id",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:capture",
+      description: "capture a new backup",
+      options: [
+        {
+          name: "--wait-interval",
+          description: "",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:delete",
+      description: "delete a backup",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "backup_id",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pg:backups:download",
+      description: "downloads database backup",
+      options: [
+        {
+          name: ["-o", "--output"],
+          description: "location to download to. Defaults to latest.dump",
+          args: {
+            name: "output",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "backup_id",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:info",
+      description: "get information about a specific backup",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "backup_id",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:restore",
+      description: "restore a backup (default latest) to a database",
+      options: [
+        {
+          name: "--wait-interval",
+          description: "",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "backup",
+          isOptional: true,
+        },
+        {
+          name: "database",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pg:backups:schedule",
+      description: "schedule daily backups for given database",
+      options: [
+        {
+          name: "--at",
+          description:
+            "at a specific (24h) hour in the given timezone. Defaults to UTC. --at '[HOUR]:00 [TIMEZONE]'",
+          args: {
+            name: "at",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:schedules",
+      description: "list backup schedule",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+    },
+    {
+      name: "pg:backups:unschedule",
+      description: "stop daily backups",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:backups:url",
+      description: "get secret but publicly accessible URL of a backup",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "backup_id",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:bloat",
+      description:
+        "show table and index bloat in your database ordered by most wasteful",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:blocking",
+      description:
+        "display queries holding locks other queries are waiting to be released",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:connection-pooling:attach",
+      description: "add an attachment to a database using connection pooling",
+      options: [
+        {
+          name: "--as",
+          description: "name for add-on attachment",
+          args: {
+            name: "as",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:copy",
+      description: "copy all data from source db to target",
+      options: [
+        {
+          name: "--wait-interval",
+          description: "",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--verbose",
+          description: "",
+        },
+        {
+          name: "--confirm",
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "source",
+          isOptional: false,
+        },
+        {
+          name: "target",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:credentials",
+      description: "show information on credentials in the database",
+      options: [
+        {
+          name: "--reset",
+          description: "DEPRECATED",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:credentials:create",
+      description: "create credential within database",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description: "name of the new credential within the database",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:credentials:destroy",
+      description: "destroy credential within database",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description: "unique identifier for the credential",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:credentials:repair-default",
+      description:
+        "repair the permissions of the default credential within database",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:credentials:rotate",
+      description: "rotate the database credentials",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description:
+            "which credential to rotate (default credentials if not specified)",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--all",
+          description: "rotate all credentials",
+        },
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--force",
+          description: "forces rotating the targeted credentials",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:credentials:url",
+      description: "show information on a database credential",
+      options: [
+        {
+          name: ["-n", "--name"],
+          description:
+            "which credential to show (default credentials if not specified)",
+          args: {
+            name: "name",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:diagnose",
+      description: "run or view diagnostics report",
+      options: [
+        {
+          name: "--json",
+          description: "format output as JSON",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "DATABASE|REPORT_ID",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:info",
+      description: "show database information",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:kill",
+      description: "kill a query",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "pid",
+          isOptional: false,
+        },
+        {
+          name: "database",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pg:killall",
+      description: "terminates all connections for all credentials",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:links",
+      description: "lists all databases and information on link",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:links:create",
+      description: "create a link between data stores",
+      options: [
+        {
+          name: "--as",
+          description: "name of link to create",
+          args: {
+            name: "as",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "remote",
+          isOptional: false,
+        },
+        {
+          name: "database",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:links:destroy",
+      description: "destroys a link between data stores",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "database",
+          isOptional: false,
+        },
+        {
+          name: "link",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:locks",
+      description: "display queries with active locks",
+      options: [
+        {
+          name: ["-t", "--truncate"],
+          description: "truncates queries to 40 charaters",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:maintenance",
+      description: "show current maintenance information",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:maintenance:run",
+      description: "start maintenance",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:maintenance:window",
+      description: "set weekly maintenance window",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "database",
+          isOptional: false,
+        },
+        {
+          name: "window",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:outliers",
+      description:
+        "show 10 queries that have longest execution time in aggregate",
+      options: [
+        {
+          name: "--reset",
+          description: "resets statistics gathered by pg_stat_statements",
+        },
+        {
+          name: ["-t", "--truncate"],
+          description: "truncate queries to 40 characters",
+        },
+        {
+          name: ["-n", "--num"],
+          description: "the number of queries to display (default: 10)",
+          args: {
+            name: "num",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:promote",
+      description: "sets DATABASE as your DATABASE_URL",
+      options: [
+        {
+          name: ["-f", "--force"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pg:ps",
+      description: "view active queries with execution time",
+      options: [
+        {
+          name: ["-v", "--verbose"],
+          description: "",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:psql",
+      description: "open a psql shell to the database",
+      options: [
+        {
+          name: ["-c", "--command"],
+          description: "SQL command to run",
+          args: {
+            name: "command",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-f", "--file"],
+          description: "SQL file to run",
+          args: {
+            name: "file",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--credential",
+          description: "credential to use",
+          args: {
+            name: "credential",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:pull",
+      description: "pull Heroku database into local or remote database",
+      options: [
+        {
+          name: "--exclude-table-data",
+          description:
+            "tables for which data should be excluded (use ';' to split multiple names)",
+          args: {
+            name: "exclude-table-data",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "source",
+          isOptional: false,
+        },
+        {
+          name: "target",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:push",
+      description: "push local or remote into Heroku database",
+      options: [
+        {
+          name: "--exclude-table-data",
+          description:
+            "tables for which data should be excluded (use ';' to split multiple names)",
+          args: {
+            name: "exclude-table-data",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "source",
+          isOptional: false,
+        },
+        {
+          name: "target",
+          isOptional: false,
+        },
+      ],
+    },
+    {
+      name: "pg:reset",
+      description: "delete all data in DATABASE",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:settings",
+      description: "show your current database settings",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:settings:log-lock-waits",
+      description:
+        "Controls whether a log message is produced when a session waits longer than the deadlock_timeout to acquire a lock. deadlock_timeout is set to 1 second",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "value",
+          isOptional: true,
+        },
+        {
+          name: "database",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pg:settings:log-min-duration-statement",
+      description:
+        "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE.",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "value",
+          isOptional: true,
+        },
+        {
+          name: "database",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pg:settings:log-statement",
+      description: "log_statement controls which SQL statements are logged.",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: [
+        {
+          name: "value",
+          isOptional: true,
+        },
+        {
+          name: "database",
+          isOptional: true,
+        },
+      ],
+    },
+    {
+      name: "pg:unfollow",
+      description:
+        "stop a replica from following and make it a writeable database",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: false,
+      },
+    },
+    {
+      name: "pg:upgrade",
+      description:
+        "unfollow a database and upgrade it to the latest stable PostgreSQL version",
+      options: [
+        {
+          name: ["-c", "--confirm"],
+          description: "",
+          args: {
+            name: "confirm",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-v", "--version"],
+          description: "PostgreSQL version to upgrade to",
+          args: {
+            name: "version",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:vacuum-stats",
+      description:
+        "show dead rows and whether an automatic vacuum is expected to be triggered",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "pg:wait",
+      description: "blocks until database is available",
+      options: [
+        {
+          name: "--wait-interval",
+          description:
+            "how frequently to poll in seconds (to avoid rate limiting)",
+          args: {
+            name: "wait-interval",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--no-notify",
+          description: "do not show OS notification",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
+    },
+    {
+      name: "psql",
+      description: "open a psql shell to the database",
+      options: [
+        {
+          name: ["-c", "--command"],
+          description: "SQL command to run",
+          args: {
+            name: "command",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-f", "--file"],
+          description: "SQL file to run",
+          args: {
+            name: "file",
+            isOptional: false,
+          },
+        },
+        {
+          name: "--credential",
+          description: "credential to use",
+          args: {
+            name: "credential",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: false,
+          },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: "git remote of app to use",
+          args: {
+            name: "remote",
+            isOptional: false,
+          },
+        },
+      ],
+      args: {
+        name: "database",
+        isOptional: true,
+      },
     },
   ],
 };
