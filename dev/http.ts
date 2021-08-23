@@ -118,10 +118,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--unsorted",
       description: "Disables all sorting while formatting output.",
+      exclusiveOn: ["--sorted"],
     },
     {
       name: "--sorted",
       description: "Re-enables all sorting options while formatting output.",
+      exclusiveOn: ["--unsorted"],
     },
     {
       name: "--format-options",
@@ -344,6 +346,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--chunked",
+      description: "Enable streaming via chunked transfer encoding",
     },
     {
       name: "--verify",

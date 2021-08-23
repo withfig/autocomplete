@@ -1,3 +1,5 @@
 import completionSpec from "./http";
-completionSpec.name = "https";
-export default completionSpec;
+export default {
+  ...completionSpec,
+  name: "https",
+};
