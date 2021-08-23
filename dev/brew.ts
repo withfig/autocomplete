@@ -94,7 +94,8 @@ const completionSpec: Fig.Spec = {
               custom: async (ctx) => {
                 // if anything provided after the command does not begin with '-'
                 // then a formula has been provided and we should provide info on it
-                if (ctx.slice(2).some((token) => token[0] !== "-")) {
+                console.log({ctx}, ctx.slice(2, ctx.length - 1))
+                if (ctx.slice(2, ctx.length - 1).some((token) => token[0] !== "-")) {
                   return ["install", "install-on-request", "build-error"].map(
                     (sugg) => ({
                       name: sugg,
