@@ -40,11 +40,13 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--sup",
+          description: "Generate an OTP application skeleton including a supervision tree. Normally an app is generated without a supervisor and without the app callback"
           description:
             "Generate an OTP application skeleton including a supervision tree. Normally an app is generated without a supervisor and without the app callback",
         },
         {
           name: "--umbrella",
+          description: "Generate an umbrella project",
         },
       ],
     },
