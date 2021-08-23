@@ -11,7 +11,6 @@ const completionSpec: Fig.Spec = {
     {
       name: "new",
       description: "Creates a new Elixir project at the given path",
-      priority: 64,
       args: [
         {
           name: "path",
