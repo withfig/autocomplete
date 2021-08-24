@@ -14,7 +14,8 @@ const generators: Record<string, Fig.Generator> = {
 };
 
 // brew info is equiv to brew abv. Everything but 'name' is shared.
-const brewInfo: Omit<Fig.Subcommand, "name"> = {
+const brewInfo = (name: string): Fig.Subcommand => ({
+  name,
   description: "Display brief statistics for your Homebrew installation",
   args: {
     isVariadic: true,
@@ -49,11 +50,14 @@ const brewInfo: Omit<Fig.Subcommand, "name"> = {
       name: "--days",
       description: "How many days of analytics data to retrieve",
       exclusiveOn: ["--analytics"],
-      args: {},
+      args: {
+        name: "days",
+        description: "Number of days of data to retrieve",
+      },
     },
     {
       name: "--category",
-      description: "How many days of analytics data to retrieve",
+      description: "Which type of analytics data to retrieve",
       exclusiveOn: ["--analytics"],
       args: {
         generators: {
@@ -109,7 +113,7 @@ const brewInfo: Omit<Fig.Subcommand, "name"> = {
       description: "Treat all named arguments as casks",
     },
   ],
-};
+});
 
 const completionSpec: Fig.Spec = {
   name: "brew",
@@ -145,14 +149,8 @@ const completionSpec: Fig.Spec = {
         },
       ],
     },
-    {
-      name: "info",
-      ...brewInfo,
-    },
-    {
-      name: "abv",
-      ...brewInfo,
-    },
+    brewInfo("info"),
+    brewInfo("abv"),
     {
       name: "update",
       description: "Fetch the newest version of Homebrew and all formulae",
