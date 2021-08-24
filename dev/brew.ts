@@ -14,7 +14,7 @@ const generators: Record<string, Fig.Generator> = {
 };
 
 // brew info is equiv to brew abv. Everything but 'name' is shared.
-const brewInfo = {
+const brewInfo: Omit<Fig.Subcommand, "name"> = {
   description: "Display brief statistics for your Homebrew installation",
   args: {
     isVariadic: true,
