@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
       description: "Evaluates the given command",
       isRepeatable: true,
       args: {
-        name: "COMMAND",
+        name: "EXPRESSION",
       },
     },
     {
@@ -50,6 +50,7 @@ const completionSpec: Fig.Spec = {
       description: "Requires the given files/patterns",
       args: {
         name: "FILE",
+        template: "filepaths",
       },
     },
     {
