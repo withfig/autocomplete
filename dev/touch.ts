@@ -1,50 +1,55 @@
 const completionSpec: Fig.Spec = {
   name: "touch",
-  description: "change file timestamps",
+  description: "Change file access and modification times",
   args: {
     name: "file",
+    isVariadic: true,
   },
   options: [
-    { name: "-a", description: "change only the access time" },
     {
-      name: ["-c", "--no-create"],
-      description: "do not create any files",
-    },
-    {
-      name: ["-d", "--date"],
-      description: "parse string and use it instead of current time",
-      args: { name: "string" },
-    },
-    {
-      name: ["-h", "--no-dereference"],
+      name: "-A",
       description:
-        "affect each symbolic link instead of any referenced file (useful only on systems that can change the timestamps of a symlink)",
+        "Adjust the access and modification time stamps for the file by the specified value",
+      args: {
+        name: "time",
+        description: "[-][[hh]mm]SS",
+      },
+    },
+    { name: "-a", description: "Change the access time of the file" },
+    {
+      name: "-c",
+      description: "Do not create the file if it does not exist",
+    },
+    {
+      name: "-f",
+      description:
+        "Attempt to force the update, even if the file permissions do not currently permit it",
+    },
+    {
+      name: "-h",
+      description:
+        "If the file is a symbolic link, change the times of the link itself rather than the file that the link points to",
     },
     {
       name: "-m",
-      description: "change only the modification time",
+      description: "Change the modification time of the file",
     },
     {
-      name: ["-r", "--reference"],
-      description: "use this file's times instead of current time",
-      args: { name: "file" },
-    },
-    {
-      name: "-t",
-      description: "use [[CC]YY]MMDDhhmm[.ss] instead of current time",
+      name: "-r",
+      description:
+        "Use the access and modifications times from the specified file instead of the current time of day",
       args: {
-        name: "stamp",
+        name: "file",
       },
     },
     {
-      name: "--time",
-      description: "change the specified time",
-      args: { name: "WORD" },
-    },
-    { name: "--help", description: "display this help and exit" },
-    {
-      name: "--version",
-      description: "output version information and exit",
+      name: "-t",
+      description:
+        "Change the access and modification times to the specified time instead of the current time of day",
+      args: {
+        name: "timestamp",
+        description: "[[CC]YY]MMDDhhmm[.SS]",
+      },
     },
   ],
 };
