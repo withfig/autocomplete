@@ -37,6 +37,10 @@ const suggestions: Fig.Suggestion[] = [
     icon:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/240px-Typescript_logo_2020.svg.png",
   },
+  {
+    name: "typeorm",
+    icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4",
+  },
 ];
 
 const completionSpec: Fig.Spec = {
