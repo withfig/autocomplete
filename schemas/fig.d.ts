@@ -488,7 +488,7 @@ declare namespace Fig {
      * @example
      * ```
      * const generator: Fig.Generator = {
-     *   custom: (tokens) => {
+     *   custom: async (tokens, executeShellCommand) => {
      *     const out = await executeShellCommand("ls");
      *     return out.split("\n").map((elm) => ({ name: elm }));
      *   },
