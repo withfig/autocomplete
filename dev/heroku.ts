@@ -1149,6 +1149,35 @@ const completionSpec: Fig.Spec = {
       ],
     },
     {
+      name: "drains:get",
+      description: "display the log drain for a space",
+      options: [
+        {
+          name: "--space",
+          description: "space for which to get log drain",
+          args: {},
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+    },
+    {
+      name: "drains:set",
+      description: "replaces the log drain for a space",
+      options: [
+        {
+          name: "--space",
+          description: "space for which to set log drain",
+          args: {},
+        },
+      ],
+      args: {
+        name: "url",
+      },
+    },
+    {
       name: "drains:add",
       description: "adds a log drain to an app",
       options: [
@@ -3947,6 +3976,77 @@ const completionSpec: Fig.Spec = {
           },
         },
       ],
+    },
+    {
+      name: "outbound-rules:add",
+      description: "Add outbound rules to a Private Space",
+      options: [
+        {
+          name: "--space",
+          description: "space to add rule to",
+          args: {},
+        },
+        {
+          name: "--confirm",
+          description: "set to space name to bypass confirm prompt",
+          args: {},
+        },
+        {
+          name: "--dest",
+          description:
+            "target CIDR block dynos are allowed to communicate with",
+          args: {},
+        },
+        {
+          name: "--protocol",
+          description:
+            'the protocol dynos are allowed to use when communicating with hosts in destination CIDR block. Valid protocols are "tcp", "udp", "icmp", "0-255" and "any".',
+          args: {},
+        },
+        {
+          name: "--port",
+          description:
+            "the port dynos are allowed to use when communicating with hosts in destination CIDR block. Accepts a range in `<lowest port>-<highest port>` format. 0 is the minimum. The maximum port allowed is 65535, except for ICMP with a maximum of 255.",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "outbound-rules",
+      description: "list Outbound Rules for a space",
+      options: [
+        {
+          name: "--space",
+          description: "space to get outbound rules from",
+          args: {},
+        },
+        {
+          name: "--json",
+          description: "output in json format",
+        },
+      ],
+      args: {
+        name: "space",
+      },
+    },
+    {
+      name: "outbound-rules:remove",
+      description: "Remove a Rules from the list of Outbound Rules",
+      options: [
+        {
+          name: "--space",
+          description: "space to remove rule from",
+          args: {},
+        },
+        {
+          name: "--confirm",
+          description: "set to space name to bypass confirm prompt",
+          args: {},
+        },
+      ],
+      args: {
+        name: "ruleNumber",
+      },
     },
     {
       name: "status",
