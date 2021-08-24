@@ -1,6 +1,6 @@
 import elixirSpec from "./elixir";
 
-export default {
+const completionSpec: Fig.Spec = {
   ...elixirSpec,
   name: "iex",
   description: "Elixir Interactive Shell",
@@ -24,3 +24,5 @@ export default {
     },
   ],
 };
+
+export default completionSpec;
