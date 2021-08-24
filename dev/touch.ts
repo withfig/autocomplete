@@ -1,6 +1,6 @@
 const completionSpec: Fig.Spec = {
   name: "touch",
-  description: "change file access and modification times",
+  description: "Change file access and modification times",
   args: {
     name: "file",
     isVariadic: true,
