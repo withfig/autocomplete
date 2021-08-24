@@ -6,7 +6,7 @@ const searchGenerator: Fig.Generator = {
   },
   postProcess: function (out) {
     try {
-      var temp = JSON.parse(out).results.map(
+      return JSON.parse(out).results.map(
         (item) =>
           ({
             name: item.package.name,
@@ -16,8 +16,6 @@ const searchGenerator: Fig.Generator = {
     } catch (e) {
       return [];
     }
-
-    return temp;
   },
 };
 
