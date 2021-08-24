@@ -100,7 +100,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--vulnerable",
           description:
-            "Lists packages that have known vulnerabilities. Cannot be combined with --deprecated or --outdated options.,",
+            "Lists packages that have known vulnerabilities. Cannot be combined with --deprecated or --outdated options.",
         },
       ],
     },

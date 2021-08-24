@@ -27,7 +27,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--format-report-file-json",
       description:
-        "Output migration report file as JSON rather than user messages.,",
+        "Output migration report file as JSON rather than user messages.",
       args: {
         name: "file",
         template: "filepaths",

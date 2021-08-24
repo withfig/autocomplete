@@ -163,6 +163,7 @@ const completionSpec: Fig.Spec = {
       description: "Path containing probing policy and assemblies to probe.",
       args: {
         name: "path",
+        template: "folders",
       },
     },
     {
