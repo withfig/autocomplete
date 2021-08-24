@@ -166,6 +166,7 @@ const toolInstallCommonOptions: Fig.Option[] = [
       "The version of the tool to install. By default, the latest stable package version is installed. Use this option to install preview or older versions of the tool.",
     args: {
       name: "version",
+      debounce: true,
       generators: versionSearchGenerator,
     },
   },
@@ -180,6 +181,7 @@ const completionSpec: Fig.Spec = {
       name: "install",
       args: {
         name: "package",
+        debounce: true,
         generators: packageGenerator,
       },
       options: toolInstallCommonOptions,
