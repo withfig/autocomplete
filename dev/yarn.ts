@@ -1119,62 +1119,45 @@ const completionSpec: Fig.Spec = {
     {
       name: "workspace",
       description: "Manage workspace",
-      generateSpec: async (_tokens, executeShellCommand) => {
-        const { postProcess } = scriptList;
-        const subcommands = [];
+      generateSpec: async (_, executeShellCommand) => {
+        const subcommands: Fig.Subcommand[] = [];
 
         try {
           const out = await executeShellCommand("cat package.json");
 
-          if (out.trim() == "") {
-            return { name: "workspaces" };
+          if (!out.trim()) {
+            return { name: "workspace" };
           }
           const packageContent = JSON.parse(out);
-          const workspaces = packageContent["workspaces"];
+          const workspaces = packageContent["workspaces"] || [];
 
-          if (workspaces) {
-            for (const workspace of workspaces) {
-              if (workspace.includes("*")) {
+          for (const workspaceFolder of workspaces) {
+            try {
+              if (workspaceFolder.includes("*")) {
                 const out = await executeShellCommand(
-                  `ls ${workspace.slice(0, -1)}`
+                  `for directory in ./${workspaceFolder}/; do (cd "$directory" && cat 'package.json' | grep '"name"'); done`
                 );
-                const workspaceList = out.split("\n");
-
-                for (const space of workspaceList) {
-                  subcommands.push({
-                    name: space,
-                    description: "Workspaces",
-                    args: {
-                      name: "script",
-                      generators: {
-                        script: `cat ${workspace.slice(
-                          0,
-                          -1
-                        )}/${space}/package.json`,
-                        postProcess,
-                      },
-                    },
-                  });
+                const names = out.split("\n"); // "name": "@babel/preset-env"
+                for (const _name of names) {
+                  try {
+                    subcommands.push({
+                      name: _name.match(/"name"[:\s]+"(.*)"/)[1],
+                    });
+                  } catch {
+                    continue;
+                  }
                 }
               } else {
-                subcommands.push({
-                  name: workspace,
-                  description: "Workspaces",
-                  args: {
-                    name: "script",
-                    generators: {
-                      script: `cat ${workspace}/package.json`,
-                      postProcess,
-                    },
-                  },
-                });
+                continue;
+                // TODO
               }
+            } catch {
+              continue;
             }
           }
-        } catch (e) {
-          return { name: "workspaces" };
+        } catch {
+          return { name: "workspace" };
         }
-
         return {
           name: "workspace",
           subcommands,
