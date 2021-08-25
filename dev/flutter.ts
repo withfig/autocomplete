@@ -21,9 +21,7 @@ const flutterGenerators: Record<string, Fig.Generator> = {
     filterTemplateSuggestions: function (suggestions) {
       return suggestions.filter(
         (suggestion) =>
-          suggestion.type === "folder" ||
-          (typeof suggestion.name === "string" &&
-            suggestion.name.endsWith(".dart"))
+          suggestion.type === "folder" || suggestion.name.endsWith(".dart")
       );
     },
   },

@@ -22,14 +22,10 @@ const completionSpec: Fig.Spec = {
       filterTemplateSuggestions: function (paths) {
         return paths
           .filter((file) => {
-            if (typeof file.name === "string") {
-              return file.name.endsWith(".py") || file.name.endsWith("/");
-            }
-            return false;
+            return file.name.endsWith(".py") || file.name.endsWith("/");
           })
           .map((file) => {
-            const isPyFile =
-              typeof file.name === "string" && file.name.endsWith(".js");
+            const isPyFile = file.name.endsWith(".py");
 
             return {
               ...file,
