@@ -7747,6 +7747,741 @@ const completionSpec: Fig.Spec = {
         isVariadic: true,
       },
     },
+    {
+      name: "addons:add",
+      description: "create a new add-on resource",
+      options: [
+        {
+          name: "--name",
+          description: "name for the add-on resource",
+          args: {},
+        },
+        {
+          name: "--as",
+          description: "name for the initial add-on attachment",
+          args: {},
+        },
+        {
+          name: "--confirm",
+          description:
+            "overwrite existing config vars or existing add-on attachments",
+          args: {},
+        },
+        {
+          name: "--wait",
+          description: "watch add-on creation status and exit when complete",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: [{ name: "service:plan" }, { name: "addon", isVariadic: true }],
+    },
+    {
+      name: "addons:remove",
+      description: "permanently destroy an add-on resource",
+      options: [
+        {
+          name: "--force",
+          description: "allow destruction even if connected to other apps",
+        },
+        { name: "--confirm", args: {} },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: true,
+            generators: getAppGenerator,
+          },
+        },
+      ],
+      args: { name: "addon", isVariadic: true },
+    },
+    {
+      name: "create",
+      description: "creates a new app",
+      options: [
+        { name: "--app", args: {} },
+        {
+          name: "--addons",
+          description: "comma-delimited list of addons to install",
+          args: {},
+        },
+        {
+          name: "--buildpack",
+          description: "buildpack url to use for this app",
+          args: {},
+        },
+        {
+          name: "--manifest",
+          description: "use heroku.yml settings for this app",
+        },
+        { name: "--no-remote", description: "do not create a git remote" },
+        {
+          name: "--remote",
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        {
+          name: "--stack",
+          description: "the stack to create the app on",
+          args: {},
+        },
+        {
+          name: "--space",
+          description: "the private space to create the app in",
+          args: {},
+        },
+        {
+          name: "--region",
+          description: "specify region for the app to run in",
+          args: {},
+        },
+        {
+          name: "--ssh-git",
+          description: "use SSH git protocol for local git remote",
+        },
+        {
+          name: "--internal-routing",
+          description:
+            "private space-only. create as an Internal Web App that is only routable in the local network.",
+        },
+        { name: "--features", args: {} },
+        { name: "--kernel", args: {} },
+        { name: "--locked" },
+        { name: "--json", description: "output in json format" },
+        { name: "--team", description: "team to use", args: {} },
+      ],
+      args: { name: "app", generators: getAppGenerator },
+    },
+    {
+      name: "destroy",
+      description: "permanently destroy an app",
+      options: [
+        { name: "--confirm", args: {} },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: true,
+            generators: getAppGenerator,
+          },
+        },
+      ],
+      args: { name: "app", generators: getAppGenerator },
+    },
+    {
+      name: "apps:delete",
+      description: "permanently destroy an app",
+      options: [
+        { name: "--confirm", args: {} },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: true,
+            generators: getAppGenerator,
+          },
+        },
+      ],
+      args: { name: "app", generators: getAppGenerator },
+    },
+    {
+      name: "list",
+      description: "list your apps",
+      options: [
+        { name: "--all", description: "include apps in all teams" },
+        { name: "--json", description: "output in json format" },
+        { name: "--space", description: "filter by space", args: {} },
+        {
+          name: "--personal",
+          description:
+            "list apps in personal account when a default team is set",
+        },
+        {
+          name: "--internal-routing",
+          description: "filter to Internal Web Apps",
+        },
+        { name: "--team", description: "team to use", args: {} },
+      ],
+    },
+    {
+      name: "apps:list",
+      description: "list your apps",
+      options: [
+        { name: "--all", description: "include apps in all teams" },
+        { name: "--json", description: "output in json format" },
+        { name: "--space", description: "filter by space", args: {} },
+        {
+          name: "--personal",
+          description:
+            "list apps in personal account when a default team is set",
+        },
+        {
+          name: "--internal-routing",
+          description: "filter to Internal Web Apps",
+        },
+        { name: "--team", description: "team to use", args: {} },
+      ],
+    },
+    {
+      name: "info",
+      description: "show detailed app information",
+      options: [
+        {
+          name: "--shell",
+          description: "output more shell friendly key/value pairs",
+        },
+        { name: "--extended" },
+        { name: "--json" },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: {
+            name: "app",
+            isOptional: true,
+            generators: getAppGenerator,
+          },
+        },
+      ],
+      args: { name: "app", generators: getAppGenerator },
+    },
+    {
+      name: "open",
+      description: "open the app in a web browser",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "path" },
+    },
+    {
+      name: "rename",
+      description: "rename an app",
+      options: [
+        {
+          name: "--ssh-git",
+          description: "use ssh git protocol instead of https",
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "newname" },
+    },
+    {
+      name: "stack",
+      description: "show the list of available stacks",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+    },
+    {
+      name: "stack:set",
+      description: "set the stack of an app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "stack" },
+    },
+    {
+      name: "config:add",
+      description: "set one or more config vars",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "confi", isVariadic: true },
+    },
+    {
+      name: "dashboard",
+      description: "display information about favorite apps",
+    },
+    {
+      name: "restart",
+      description: "restart app dynos",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "dyno" },
+    },
+    {
+      name: "scale",
+      description: "scale dyno quantity up or down",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "scal", isVariadic: true },
+    },
+    {
+      name: "stop",
+      description: "stop app dyno",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "dyno" },
+    },
+    {
+      name: "kill",
+      description: "stop app dyno",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "dyno" },
+    },
+    {
+      name: "resize",
+      description: "manage dyno sizes",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "resiz", isVariadic: true },
+    },
+    {
+      name: "dyno:type",
+      description: "manage dyno sizes",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "dyn", isVariadic: true },
+    },
+    {
+      name: "rollback",
+      description: "rollback to a previous release",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "release" },
+    },
+    {
+      name: "auth:disable",
+      description: "disables an experimental feature",
+      args: { name: "feature", isOptional: true },
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        { name: "confirm", args: {} },
+      ],
+    },
+    {
+      name: "certs:wait",
+      description: "waits for the certificate to be activated",
+      options: [
+        { name: ["-h", "--help"], description: "Show help for this command" },
+      ],
+    },
+    {
+      name: "git:credentials",
+      description: "internal command for git-credentials",
+      args: { name: "command" },
+    },
+    { name: "sharing:add", args: { name: "sharin", isVariadic: true } },
+    {
+      name: "sharing:access",
+      args: { name: "sharin", isVariadic: true },
+    },
+    {
+      name: "sharing:remove",
+      args: { name: "sharin", isVariadic: true },
+    },
+    {
+      name: "join:null",
+      description: "add yourself to a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+    },
+    {
+      name: "leave:null",
+      description: "remove yourself from a team app",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+    },
+    {
+      name: "sharing:transfer",
+      args: { name: "sharin", isVariadic: true },
+    },
+    {
+      name: "unlock:null",
+      description: "unlock an app so any team member can join",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+    },
+    { name: "orgs:default" },
+    {
+      name: "pg:backups:public-url",
+      description: "get secret but publicly accessible URL of a backup",
+      options: [
+        { name: "--quiet" },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "backup_id" },
+    },
+    {
+      name: "pg:backups:publicurl",
+      description: "get secret but publicly accessible URL of a backup",
+      options: [
+        { name: "--quiet" },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "backup_id" },
+    },
+    {
+      name: "pg:repoint",
+      description: "changes which leader a follower is following",
+      options: [
+        { name: "--confirm", args: {} },
+        {
+          name: "--follow",
+          description: "leader database to follow",
+          args: {},
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "database" },
+    },
+    {
+      name: "pg:settings:log-connections",
+      description:
+        "Controls whether a log message is produced when a login attempt is made. Default is true.",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: [{ name: "value" }, { name: "database" }],
+    },
+    {
+      name: "pg:vacuum_stats",
+      description:
+        "show dead rows and whether an automatic vacuum is expected to be triggered",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+      args: { name: "database" },
+    },
+    {
+      name: "pipelines:disable",
+      description:
+        "disable review apps and/or settings on an existing pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        { name: "pipeline", args: {} },
+        { name: "autodeploy", description: "disable autodeployments" },
+        {
+          name: "autodestroy",
+          description: "disable automatically destroying review apps",
+        },
+      ],
+    },
+    {
+      name: "pipelines:enable",
+      description: "enable review apps and/or settings on an existing pipeline",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        {
+          name: ["-p", "--pipeline"],
+          description: "name of pipeline",
+          args: {},
+        },
+        { name: "autodeploy", description: "autodeploy the review app" },
+        { name: "autodestroy", description: "autodestroy the review app" },
+      ],
+    },
+    {
+      name: "ps:disable",
+      description: "disable web dyno autoscaling",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "ps:enable",
+      description: "enable web dyno autoscaling",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        { name: "min", description: "minimum number of dynos", args: {} },
+        { name: "max", description: "maximum number of dynos", args: {} },
+        { name: "p95", description: "desired p95 response time", args: {} },
+        {
+          name: "notifications",
+          description:
+            "receive email notifications when the max dyno limit is reached",
+        },
+      ],
+    },
+    {
+      name: "ps:regions",
+      description: "list available regions for deployment",
+      options: [
+        { name: "json", description: "output in json format" },
+        { name: "private", description: "show regions for private spaces" },
+        { name: "common", description: "show regions for common runtime" },
+      ],
+    },
+    {
+      name: "run:console",
+      description: "",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        { name: ["-s", "--size"], description: "dyno size", args: {} },
+        {
+          name: ["-e", "--env"],
+          description:
+            "environment variables to set (use ';' to split multiple vars)",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "run:logs",
+      description: "",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        {
+          name: ["-n", "--num"],
+          description: "number of lines to display",
+          args: {},
+        },
+        {
+          name: ["-p", "--ps"],
+          description: "hidden alias for dyno",
+          args: {},
+        },
+        {
+          name: ["-d", "--dyno"],
+          description:
+            'only show output from this dyno type (such as "web" or "worker")',
+          args: {},
+        },
+        {
+          name: ["-s", "--source"],
+          description:
+            'only show output from this source (such as "app" or "heroku")',
+          args: {},
+        },
+        { name: ["-t", "--tail"], description: "continually stream logs" },
+      ],
+    },
+    {
+      name: "run:rake",
+      description: "",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        { name: ["-s", "--size"], description: "dyno size", args: {} },
+        {
+          name: ["-e", "--env"],
+          description:
+            "environment variables to set (use ';' to split multiple vars)",
+          args: {},
+        },
+      ],
+    },
+    {
+      name: "run:inside",
+      description: "run a one-off process inside an existing heroku dyno",
+      options: [
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+        {
+          name: ["-r", "--remote"],
+          description: 'the git remote to create, default "heroku"',
+          args: {},
+        },
+        {
+          name: ["-e", "--env"],
+          description:
+            "environment variables to set (use ';' to split multiple vars)",
+          args: {},
+        },
+        { name: "listen", description: "listen on a local port" },
+      ],
+    },
+    {
+      name: "console",
+      options: [
+        { name: "--size", description: "dyno size", args: {} },
+        {
+          name: "--env",
+          description:
+            "environment variables to set (use ';' to split multiple vars)",
+          args: {},
+        },
+        {
+          name: ["-a", "--app"],
+          description: "app to run command against",
+          args: { name: "app", generators: getAppGenerator },
+        },
+      ],
+    },
+    {
+      name: "spaces:hosts",
+      description: "list dedicated hosts for a space",
+      options: [
+        {
+          name: "--space",
+          description: "space to get host list from",
+          args: {},
+        },
+        { name: "--json", description: "output in json format" },
+      ],
+      args: { name: "space" },
+    },
   ],
 };
 
