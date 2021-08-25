@@ -18,7 +18,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "project",
     description:
-      "Specifies the project file. If not specified, the command searches the current directory for one.",
+      "Specifies the project file. If not specified, the command searches the current directory for one",
     isOptional: true,
     generators: projectGenerator,
   },
@@ -26,7 +26,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "package",
       description:
-        "The dotnet remove package command provides a convenient option to remove a NuGet package reference from a project.",
+        "The dotnet remove package command provides a convenient option to remove a NuGet package reference from a project",
       args: {
         name: "id",
       },
@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reference",
       description:
-        "The dotnet remove reference command provides a convenient option to remove project references from a project.",
+        "The dotnet remove reference command provides a convenient option to remove project references from a project",
       args: {
         name: "ref",
         generators: projectGenerator,

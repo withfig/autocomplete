@@ -334,7 +334,7 @@ const commonOptions: Fig.Option[] = [
   {
     name: "--focus",
     description:
-      "Focus on a single workspace by installing remote copies of its sibling workspaces.",
+      "Focus on a single workspace by installing remote copies of its sibling workspaces",
   },
   {
     name: "--otp",
@@ -406,7 +406,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--focus",
       description:
-        "Focus on a single workspace by installing remote copies of its sibling workspaces.",
+        "Focus on a single workspace by installing remote copies of its sibling workspaces",
     },
     {
       name: "--force",
@@ -611,7 +611,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "add",
-      description: "Installs a package and any packages that it depends on.",
+      description: "Installs a package and any packages that it depends on",
       args: {
         name: "package",
         generators: searchGenerator,
@@ -663,7 +663,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--summary",
-          description: "Only print the summary.",
+          description: "Only print the summary",
         },
         {
           name: "--groups",
@@ -914,7 +914,7 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-E", "--exact"],
               description:
-                "install exact version. Only used when --latest is specified.",
+                "install exact version. Only used when --latest is specified",
               dependsOn: ["--latest"],
             },
             {
@@ -925,12 +925,12 @@ const completionSpec: Fig.Spec = {
             {
               name: ["-T", "--tilde"],
               description:
-                "install most recent release with the same minor version. Only used when --latest is specified.",
+                "install most recent release with the same minor version. Only used when --latest is specified",
             },
             {
               name: ["-C", "--caret"],
               description:
-                "install most recent release with the same major version. Only used when --latest is specified.",
+                "install most recent release with the same major version. Only used when --latest is specified",
               dependsOn: ["--latest"],
             },
 

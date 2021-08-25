@@ -11,7 +11,7 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "port",
-  description: "Print the public port for a port binding.",
+  description: "Print the public port for a port binding",
   options: [
     {
       name: "--protocol",

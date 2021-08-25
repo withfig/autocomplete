@@ -609,7 +609,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--sourceRoot",
       description:
-        "Specify the root path for debuggers to find the reference source code.",
+        "Specify the root path for debuggers to find the reference source code",
       args: {
         name: "string",
         template: ["filepaths", "folders"],
@@ -700,7 +700,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--types",
       description:
-        "Specify type package names to be included without being referenced in a source file.",
+        "Specify type package names to be included without being referenced in a source file",
       args: {
         name: "package names",
         isVariadic: true,

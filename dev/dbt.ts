@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--models",
           description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
+            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -251,7 +251,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--resource-type",
           description:
-            "This flag limits the 'resource types' that dbt will return in the dbt ls command. By default, the following resources are included in the results of dbt ls: models, snapshots, seeds, tests, and sources.",
+            "This flag limits the 'resource types' that dbt will return in the dbt ls command. By default, the following resources are included in the results of dbt ls: models, snapshots, seeds, tests, and sources",
           args: {
             name: "resource-type",
             suggestions: [
@@ -278,7 +278,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--models",
           description:
-            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command.",
+            "Like the --select flag, this flag is used to select nodes. It implies --resource-type=model, and will only return models in the results of the dbt ls command",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -287,7 +287,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--exclude",
           description:
-            "Specify selectors that should be excluded from the list of returned nodes.",
+            "Specify selectors that should be excluded from the list of returned nodes",
           args: {
             name: "SELECTOR",
             isVariadic: true,
@@ -296,7 +296,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--selector",
           description:
-            "This flag specifies one or more named selectors, defined in a selectors.yml file.",
+            "This flag specifies one or more named selectors, defined in a selectors.yml file",
           args: {
             name: "YML_SELECTOR_NAME",
             isVariadic: true,
@@ -305,7 +305,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--output",
           description:
-            "This flag controls the format of output from the dbt ls command.",
+            "This flag controls the format of output from the dbt ls command",
           args: {
             name: "output",
             suggestions: ["json", "name", "path", "selector"],

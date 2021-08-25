@@ -1,7 +1,7 @@
 const completionSpec = {
   name: "ionic",
   description:
-    "The Ionic command-line interface (CLI) is the go-to tool for developing Ionic apps.",
+    "The Ionic command-line interface (CLI) is the go-to tool for developing Ionic apps",
   subcommands: [
     {
       name: "build",
@@ -48,7 +48,7 @@ const completionSpec = {
     },
     {
       name: "completion",
-      description: "Enables tab-completion for Ionic CLI commands.",
+      description: "Enables tab-completion for Ionic CLI commands",
     },
     {
       name: "docs",
@@ -148,7 +148,7 @@ const completionSpec = {
         {
           name: "--cordova",
           description:
-            "Only perform the repair steps for Cordova platforms and plugins.",
+            "Only perform the repair steps for Cordova platforms and plugins",
         },
       ],
       description: "Remove and recreate dependencies and generated files",
@@ -719,7 +719,7 @@ const completionSpec = {
             {
               name: "--channel",
               description:
-                "The channel you want to auto deploy the build to. This can be repeated multiple times if multiple channels need to be specified.",
+                "The channel you want to auto deploy the build to. This can be repeated multiple times if multiple channels need to be specified",
               args: {
                 name: "name",
               },
@@ -734,7 +734,7 @@ const completionSpec = {
             {
               name: "--skip-download",
               description:
-                "Skip downloading build artifacts after command succeeds.",
+                "Skip downloading build artifacts after command succeeds",
             },
           ],
           description: "Create a deploy build on Appflow",
@@ -910,7 +910,7 @@ const completionSpec = {
             {
               name: "--skip-download",
               description:
-                "Skip downloading build artifacts after command succeeds.",
+                "Skip downloading build artifacts after command succeeds",
             },
           ],
           args: [

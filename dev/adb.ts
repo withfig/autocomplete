@@ -187,7 +187,7 @@ const completionSpec: Fig.Spec = {
         },
       ],
       description:
-        "remount partitions read-write. if a reboot is required, -R will automatically reboot the device.",
+        "remount partitions read-write. if a reboot is required, -R will automatically reboot the device",
     },
     {
       name: "jdwp",
@@ -262,7 +262,7 @@ const completionSpec: Fig.Spec = {
         ],
       },
       description:
-        "reboot the device; defaults to booting system image but supports bootloader and recovery too. sideload reboots into recovery and automatically starts sideload mode, sideload-auto-reboot is the same but reboots after sideloading.",
+        "reboot the device; defaults to booting system image but supports bootloader and recovery too. sideload reboots into recovery and automatically starts sideload mode, sideload-auto-reboot is the same but reboots after sideloading",
     },
     {
       name: "disable-verity",

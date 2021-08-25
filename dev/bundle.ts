@@ -332,50 +332,50 @@ const completionSpec: Fig.Spec = {
         {
           name: "--print",
           description:
-            "Prints the lockfile to STDOUT instead of writing to the file\n system.",
+            "Prints the lockfile to STDOUT instead of writing to the file\n system",
         },
         {
           name: "--lockfile",
-          description: "The path where the lockfile should be written to.",
+          description: "The path where the lockfile should be written to",
           args: { name: "path" },
         },
         {
           name: "--full-index",
-          description: "Fall back to using the single-file index of all gems.",
+          description: "Fall back to using the single-file index of all gems",
         },
         {
           name: "--add-platform",
           description:
-            "Add a new platform to the lockfile, re-resolving for the addi-\n tion of that platform.",
+            "Add a new platform to the lockfile, re-resolving for the addi-\n tion of that platform",
         },
         {
           name: "--remove-platform",
-          description: "Remove a platform from the lockfile.",
+          description: "Remove a platform from the lockfile",
         },
         {
           name: "--patch",
           description:
-            "If updating, prefer updating only to next patch version.",
+            "If updating, prefer updating only to next patch version",
         },
         {
           name: "--minor",
           description:
-            "If updating, prefer updating only to next minor version.",
+            "If updating, prefer updating only to next minor version",
         },
         {
           name: "--major",
           description:
-            "If updating, prefer updating to next major version (default).",
+            "If updating, prefer updating to next major version (default)",
         },
         {
           name: "--strict",
           description:
-            "If updating, do not allow any gem to be updated past latest --patch | --minor | --major.",
+            "If updating, do not allow any gem to be updated past latest --patch | --minor | --major",
         },
         {
           name: "--conservative",
           description:
-            "If updating, use bundle install conservative update behavior and do not allow shared dependencies to be updated.",
+            "If updating, use bundle install conservative update behavior and do not allow shared dependencies to be updated",
         },
       ],
     },
@@ -394,16 +394,16 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["--requirements", "-R"],
-          description: "Set to show the version of each required dependency.",
+          description: "Set to show the version of each required dependency",
         },
         {
           name: ["--version", "-v"],
-          description: "Set to show each gem version.",
+          description: "Set to show each gem version",
         },
         {
           name: ["--without", "-W"],
           description:
-            "Exclude gems that are part of the specified named group.",
+            "Exclude gems that are part of the specified named group",
         },
       ],
     },
@@ -474,7 +474,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ruby",
           description:
-            "It will display the ruby directive information so you don't have to parse it from the Gemfile.",
+            "It will display the ruby directive information so you don't have to parse it from the Gemfile",
         },
       ],
     },
@@ -484,11 +484,11 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--dry-run",
-          description: "Print the changes, but do not clean the unused gems.",
+          description: "Print the changes, but do not clean the unused gems",
         },
         {
           name: "--force",
-          description: "Force a clean even if --path is not set.",
+          description: "Force a clean even if --path is not set",
         },
       ],
     },
@@ -496,7 +496,7 @@ const completionSpec: Fig.Spec = {
       name: "doctor",
       description: "Display warnings about common problems",
       options: [
-        { name: "--quiet", description: "Only output warnings and errors." },
+        { name: "--quiet", description: "Only output warnings and errors" },
         {
           name: "--gemfile",
           description: "The location of the Gemfile which Bundler should use",

@@ -94,7 +94,7 @@ const workSpaceOptions: Fig.Option[] = [
   {
     name: "-wsl--workspaces",
     description:
-      "Enable running a command in the context of all the configured workspaces.",
+      "Enable running a command in the context of all the configured workspaces",
   },
 ];
 
@@ -155,11 +155,11 @@ const npmListOptions: Fig.Option[] = [
   {
     name: ["-g", "--global"],
     description:
-      "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
+      "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
   },
   {
     name: "--omit",
-    description: "Dependency types to omit from the installation tree on disk.",
+    description: "Dependency types to omit from the installation tree on disk",
     args: {
       name: "Package type",
       default: "dev",
@@ -190,7 +190,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-P", "--save-prod"],
           description:
-            "Package will appear in your `dependencies`. This is the default unless `-D` or `-O` are present.",
+            "Package will appear in your `dependencies`. This is the default unless `-D` or `-O` are present",
         },
         {
           name: ["-D", "--save-dev"],
@@ -212,36 +212,36 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-B", "--save-bundle"],
           description:
-            "Saved dependencies will also be added to your bundleDependencies list.",
+            "Saved dependencies will also be added to your bundleDependencies list",
         },
         {
           name: ["-g", "--global"],
           description:
-            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory.",
+            "Operates in 'global' mode, so that packages are installed into the prefix folder instead of the current working directory",
         },
         {
           name: "--global-style",
           description:
-            "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder.",
+            "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder",
         },
         {
           name: "--legacy-bundling",
           description:
-            "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package.",
+            "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package",
         },
         {
           name: "--strict-peer-deps",
           description:
-            "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure.",
+            "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure",
         },
         {
           name: "--no-package-lock",
-          description: "Ignores package-lock.json files when installing.",
+          description: "Ignores package-lock.json files when installing",
         },
         {
           name: "--omit",
           description:
-            "Dependency types to omit from the installation tree on disk.",
+            "Dependency types to omit from the installation tree on disk",
           args: {
             name: "Package type",
             default: "dev",
@@ -251,27 +251,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-scripts",
           description:
-            "If true, npm does not run scripts specified in package.json files.",
+            "If true, npm does not run scripts specified in package.json files",
         },
         {
           name: "--no-audit",
           description:
-            "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes.",
+            "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes",
         },
         {
           name: "--no-bin-links",
           description:
-            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables.",
+            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables",
         },
         {
           name: "--no-fund",
           description:
-            "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding.",
+            "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
         {
           name: "--dry-run",
           description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
         ...workSpaceOptions,
       ],
@@ -385,7 +385,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--omit",
           description:
-            "Dependency types to omit from the installation tree on disk.",
+            "Dependency types to omit from the installation tree on disk",
           args: {
             name: "Package type",
             default: "dev",
@@ -594,7 +594,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dry-run",
           description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
         { name: "--json", description: "show output in json format" },
         {
@@ -625,7 +625,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--dry-run",
           description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
         {
           name: "--otp",
@@ -654,7 +654,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-g",
           description:
-            "Print the effective global node_modules folder to standard out.",
+            "Print the effective global node_modules folder to standard out",
         },
       ],
     },
@@ -676,7 +676,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-scripts",
           description:
-            "If true, npm does not run scripts specified in package.json files.",
+            "If true, npm does not run scripts specified in package.json files",
         },
         {
           name: "--script-shell",
@@ -692,7 +692,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-scripts",
           description:
-            "If true, npm does not run scripts specified in package.json files.",
+            "If true, npm does not run scripts specified in package.json files",
         },
         {
           name: "--script-shell",
@@ -711,7 +711,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-scripts",
           description:
-            "If true, npm does not run scripts specified in package.json files.",
+            "If true, npm does not run scripts specified in package.json files",
         },
         {
           name: "--script-shell",
@@ -782,26 +782,26 @@ const completionSpec: Fig.Spec = {
         {
           name: "--global-style",
           description:
-            "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder.",
+            "Causes npm to install the package into your local node_modules folder with the same layout it uses with the global node_modules folder",
         },
         {
           name: "--legacy-bundling",
           description:
-            "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package.",
+            "Causes npm to install the package such that versions of npm prior to 1.4, such as the one included with node 0.8, can install the package",
         },
         {
           name: "--strict-peer-deps",
           description:
-            "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure.",
+            "If set to true, and --legacy-peer-deps is not set, then any conflicting peerDependencies will be treated as an install failure",
         },
         {
           name: "--no-package-lock",
-          description: "Ignores package-lock.json files when installing.",
+          description: "Ignores package-lock.json files when installing",
         },
         {
           name: "--omit",
           description:
-            "Dependency types to omit from the installation tree on disk.",
+            "Dependency types to omit from the installation tree on disk",
           args: {
             name: "Package type",
             default: "dev",
@@ -811,27 +811,27 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ignore-scripts",
           description:
-            "If true, npm does not run scripts specified in package.json files.",
+            "If true, npm does not run scripts specified in package.json files",
         },
         {
           name: "--no-audit",
           description:
-            "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes.",
+            "Submit audit reports alongside the current npm command to the default registry and all registries configured for scopes",
         },
         {
           name: "--no-bin-links",
           description:
-            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables.",
+            "Tells npm to not create symlinks (or .cmd shims on Windows) for package executables",
         },
         {
           name: "--no-fund",
           description:
-            "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding.",
+            "Hides the message at the end of each npm install acknowledging the number of dependencies looking for funding",
         },
         {
           name: "--dry-run",
           description:
-            "Indicates that you don't want npm to make any changes and that it should only report what it would have done.",
+            "Indicates that you don't want npm to make any changes and that it should only report what it would have done",
         },
         ...workSpaceOptions,
       ],

@@ -9,7 +9,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "help",
-      description: "Show help.",
+      description: "Show help",
     },
     {
       name: "acl",
@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--service-id",
@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--service-id",
@@ -171,7 +171,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--service-id",
@@ -410,7 +410,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -545,7 +545,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ssl-cert-hostname",
               description:
-                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
+                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all",
               args: {
                 name: "ssl-cert-hostname",
               },
@@ -553,7 +553,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ssl-sni-hostname",
               description:
-                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
+                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all",
               args: {
                 name: "ssl-sni-hostname",
               },
@@ -608,7 +608,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -697,7 +697,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -839,7 +839,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ssl-cert-hostname",
               description:
-                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all.",
+                "Overrides ssl_hostname, but only for cert verification. Does not affect SNI at all",
               args: {
                 name: "ssl-cert-hostname",
               },
@@ -847,7 +847,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--ssl-sni-hostname",
               description:
-                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all.",
+                "Overrides ssl_hostname, but only for SNI in the handshake. Does not affect cert validation at all",
               args: {
                 name: "ssl-sni-hostname",
               },
@@ -1266,7 +1266,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--path",
@@ -1337,7 +1337,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -1381,7 +1381,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -1470,7 +1470,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -1728,7 +1728,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
           ],
         },
@@ -1763,7 +1763,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
           ],
         },
@@ -1845,7 +1845,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -1900,7 +1900,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -2015,7 +2015,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -2104,7 +2104,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--name",
@@ -2242,7 +2242,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--container",
@@ -2364,7 +2364,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -2388,7 +2388,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -2481,7 +2481,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -2619,7 +2619,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -2658,7 +2658,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--project-id",
@@ -2684,7 +2684,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--user",
                   description:
-                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
                   args: {
                     name: "user",
                   },
@@ -2692,7 +2692,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--secret-key",
                   description:
-                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
                   args: {
                     name: "secret-key",
                   },
@@ -2763,7 +2763,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -2854,7 +2854,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -2902,7 +2902,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--user",
                   description:
-                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON.",
+                    "Your Google Cloud Platform service account email address. The client_email field in your service account authentication JSON",
                   args: {
                     name: "user",
                   },
@@ -2910,7 +2910,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--secret-key",
                   description:
-                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON.",
+                    "Your Google Cloud Platform account secret key. The private_key field in your service account authentication JSON",
                   args: {
                     name: "secret-key",
                   },
@@ -2988,7 +2988,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--user",
@@ -3108,7 +3108,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -3132,7 +3132,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -3223,7 +3223,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -3357,7 +3357,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -3396,7 +3396,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--auth-token",
@@ -3472,7 +3472,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -3562,7 +3562,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -3667,7 +3667,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--bucket",
@@ -3787,7 +3787,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -3811,7 +3811,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -3904,7 +3904,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -4040,7 +4040,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -4079,7 +4079,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--index",
@@ -4091,7 +4091,7 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--url",
-                  description: "The URL to stream logs to. Must use HTTPS.",
+                  description: "The URL to stream logs to. Must use HTTPS",
                   args: {
                     name: "url",
                   },
@@ -4211,7 +4211,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -4302,7 +4302,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -4336,7 +4336,7 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--url",
-                  description: "The URL to stream logs to. Must use HTTPS.",
+                  description: "The URL to stream logs to. Must use HTTPS",
                   args: {
                     name: "url",
                   },
@@ -4463,7 +4463,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--address",
@@ -4568,7 +4568,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -4592,7 +4592,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -4682,7 +4682,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -4809,7 +4809,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -4848,7 +4848,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--user",
@@ -4954,7 +4954,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -4978,7 +4978,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5068,7 +5068,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5188,7 +5188,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -5227,7 +5227,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--user",
@@ -5318,7 +5318,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5411,7 +5411,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5533,7 +5533,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--url",
@@ -5608,7 +5608,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5698,7 +5698,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5802,7 +5802,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--dataset",
@@ -5878,7 +5878,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -5969,7 +5969,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -6074,7 +6074,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--url",
@@ -6239,7 +6239,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -6329,7 +6329,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -6523,7 +6523,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--topic",
@@ -6692,7 +6692,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -6782,7 +6782,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7017,7 +7017,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--service-id",
@@ -7077,7 +7077,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7167,7 +7167,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7350,7 +7350,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
               ],
             },
@@ -7371,7 +7371,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7462,7 +7462,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7571,7 +7571,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--auth-token",
@@ -7639,7 +7639,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7729,7 +7729,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7826,7 +7826,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--url",
@@ -7901,7 +7901,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -7992,7 +7992,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -8104,7 +8104,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--format",
@@ -8173,7 +8173,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--service-id",
@@ -8266,7 +8266,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--format",
@@ -8358,7 +8358,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--bucket",
@@ -8477,7 +8477,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -8501,7 +8501,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -8592,7 +8592,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -8632,14 +8632,14 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--user",
-                  description: "The username for your OpenStack account.",
+                  description: "The username for your OpenStack account",
                   args: {
                     name: "user",
                   },
                 },
                 {
                   name: "--url",
-                  description: "Your OpenStack auth url.",
+                  description: "Your OpenStack auth url",
                   args: {
                     name: "url",
                   },
@@ -8725,7 +8725,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -8737,7 +8737,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "papertrail",
           description:
-            "Manipulate Fastly service version Papertrail logging endpoints.",
+            "Manipulate Fastly service version Papertrail logging endpoints",
           subcommands: [
             {
               name: "create",
@@ -8764,7 +8764,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--address",
@@ -8838,7 +8838,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -8929,7 +8929,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -9031,7 +9031,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--bucket",
@@ -9181,7 +9181,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -9205,7 +9205,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -9295,7 +9295,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -9459,7 +9459,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -9498,7 +9498,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--auth-token",
@@ -9574,7 +9574,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -9664,7 +9664,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -9769,7 +9769,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--address",
@@ -9906,7 +9906,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -9930,7 +9930,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10020,7 +10020,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10171,7 +10171,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--compression-codec",
                   description:
-                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error.',
+                    'The codec used for compression of your logs. Valid values are zstd, snappy, and gzip. If the specified codec is "gzip", gzip_level will default to 3. To specify a different level, leave compression_codec blank and explicitly set the level using gzip_level. Specifying both compression_codec and gzip_level in the same API request will result in an error',
                   args: {
                     name: "compression-codec",
                   },
@@ -10210,7 +10210,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--url",
@@ -10317,7 +10317,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10407,7 +10407,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10433,7 +10433,7 @@ const completionSpec: Fig.Spec = {
                 },
                 {
                   name: "--url",
-                  description: "The URL to POST to.",
+                  description: "The URL to POST to",
                   args: {
                     name: "url",
                   },
@@ -10542,7 +10542,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--url",
@@ -10617,7 +10617,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10708,7 +10708,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -10812,7 +10812,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--address",
@@ -10939,7 +10939,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -11029,7 +11029,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--name",
@@ -11285,7 +11285,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--type",
               description:
-                'Service type. Can be one of "wasm" or "vcl", defaults to "wasm".',
+                'Service type. Can be one of "wasm" or "vcl", defaults to "wasm"',
               args: {
                 name: "type",
               },
@@ -11410,7 +11410,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
           ],
         },
@@ -11522,7 +11522,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--autoclone",
               description:
-                "If the selected service version is not editable, clone it and use the clone.",
+                "If the selected service version is not editable, clone it and use the clone",
             },
             {
               name: "--comment",
@@ -11662,7 +11662,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--main",
@@ -11702,7 +11702,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--service-id",
@@ -11793,7 +11793,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--new-name",
@@ -11867,7 +11867,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--dynamic",
@@ -11916,7 +11916,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--service-id",
@@ -12012,7 +12012,7 @@ const completionSpec: Fig.Spec = {
                 {
                   name: "--autoclone",
                   description:
-                    "If the selected service version is not editable, clone it and use the clone.",
+                    "If the selected service version is not editable, clone it and use the clone",
                 },
                 {
                   name: "--content",
@@ -12090,7 +12090,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "--help",
-      description: "Show context-sensitive help.",
+      description: "Show context-sensitive help",
     },
     {
       name: "--token",

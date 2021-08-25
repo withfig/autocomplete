@@ -46,7 +46,7 @@ const warningModeArg: Fig.Arg = {
     {
       name: "none",
       description:
-        "Suppress all warnings, including the summary at the end of the build.",
+        "Suppress all warnings, including the summary at the end of the build",
     },
   ],
 };
@@ -235,7 +235,7 @@ const sharedOptions: Fig.Option[] = [
   {
     name: "--offline",
     description:
-      "Specifies that the build should operate without accessing network resources.",
+      "Specifies that the build should operate without accessing network resources",
   },
   {
     name: "--refresh-dependencies",

@@ -1739,7 +1739,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["info", "server-info"],
-      description: "Show every session, window, pane, etc...",
+      description: "Show every session, window, pane, etc",
     },
     {
       name: ["setb", "set-buffer"],

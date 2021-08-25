@@ -46,7 +46,7 @@ const completionSpec: Fig.Spec = {
   args: {
     name: "project",
     description:
-      "Specifies the project file. If not specified, the command searches the current directory for one.",
+      "Specifies the project file. If not specified, the command searches the current directory for one",
     isOptional: true,
     generators: {
       template: "filepaths",
@@ -66,7 +66,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "package",
-      description: "The package reference to add.",
+      description: "The package reference to add",
       args: {
         name: "id",
         debounce: true,
@@ -76,7 +76,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--framework"],
           description:
-            "Adds a package reference only when targeting a specific framework.",
+            "Adds a package reference only when targeting a specific framework",
           args: {
             name: "framework",
           },
@@ -84,17 +84,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--interactive",
           description:
-            "Allows the command to stop and wait for user input or action. For example, to complete authentication.",
+            "Allows the command to stop and wait for user input or action. For example, to complete authentication",
         },
         {
           name: ["-n", "--no-restore"],
           description:
-            "Adds a package reference without performing a restore preview and compatibility check.",
+            "Adds a package reference without performing a restore preview and compatibility check",
         },
         {
           name: "--package-directory",
           description:
-            "The directory where to restore the packages. The default package restore location is %userprofile%.nugetpackages on Windows and ~/.nuget/packages on macOS and Linux.",
+            "The directory where to restore the packages. The default package restore location is %userprofile%.nugetpackages on Windows and ~/.nuget/packages on macOS and Linux",
           args: {
             name: "directory",
             template: "folders",
@@ -112,7 +112,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-v", "--version"],
-          description: "Version of the package.",
+          description: "Version of the package",
           args: {
             name: "version",
             debounce: true,
@@ -124,7 +124,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "reference",
       description:
-        "The dotnet add reference command provides a convenient option to add project references to a project. After running the command, the <ProjectReference> elements are added to the project file.",
+        "The dotnet add reference command provides a convenient option to add project references to a project. After running the command, the <ProjectReference> elements are added to the project file",
       args: {
         name: "path",
         isVariadic: true,
@@ -147,7 +147,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--framework"],
           description:
-            "Adds a package reference only when targeting a specific framework.",
+            "Adds a package reference only when targeting a specific framework",
           args: {
             name: "framework",
           },

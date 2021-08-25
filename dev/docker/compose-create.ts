@@ -11,26 +11,26 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "create",
-  description: "Creates containers for a service.",
+  description: "Creates containers for a service",
   args: { generators: getServices },
   options: [
     {
       name: "--force-recreate",
       description:
-        "Recreate containers even if their configuration and image haven't changed. Incompatible with --no-recreate.",
+        "Recreate containers even if their configuration and image haven't changed. Incompatible with --no-recreate",
     },
     {
       name: "--no-recreate",
       description:
-        "If containers already exist, don't recreate them. Incompatible with --force-recreate.",
+        "If containers already exist, don't recreate them. Incompatible with --force-recreate",
     },
     {
       name: "--no-build",
-      description: "Don't build an image, even if it's missing.",
+      description: "Don't build an image, even if it's missing",
     },
     {
       name: "--build",
-      description: "Build images before creating containers.",
+      description: "Build images before creating containers",
     },
   ],
 };

@@ -23,7 +23,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-i",
       description:
-        "Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that are idled or zombied will not be displayed.",
+        "Starts top with the last remembered 'i' state reversed. When this toggle is Off, tasks that are idled or zombied will not be displayed",
       args: {
         name: "toggle",
       },

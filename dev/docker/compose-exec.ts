@@ -16,15 +16,15 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-d", "--detach"],
-      description: "Detached mode: Run command in the background.",
+      description: "Detached mode: Run command in the background",
     },
     {
       name: "--privileged",
-      description: "Give extended privileges to the process.",
+      description: "Give extended privileges to the process",
     },
     {
       name: ["-u", "--user"],
-      description: "Run the command as this user.",
+      description: "Run the command as this user",
       args: {
         name: "user",
       },
@@ -32,7 +32,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-T",
       description:
-        "Disable pseudo-tty allocation. By default `docker-compose exec` allocates a TTY.",
+        "Disable pseudo-tty allocation. By default `docker-compose exec` allocates a TTY",
     },
     {
       name: "--index",
@@ -52,7 +52,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-w", "--workdir"],
-      description: "DIR Path to workdir directory for this command.",
+      description: "DIR Path to workdir directory for this command",
       args: {
         name: "DIR PATH",
       },

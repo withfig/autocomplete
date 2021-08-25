@@ -4,61 +4,61 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "init",
-      description: "Create a fresh knexfile.",
+      description: "Create a fresh knexfile",
       args: {},
     },
     {
       name: "migrate:make",
-      description: "Create a named migration file.",
+      description: "Create a named migration file",
       args: { name: "migration name" },
     },
     {
       name: "migrate:latest",
-      description: "Run all migrations that have not yet been run.",
+      description: "Run all migrations that have not yet been run",
       args: {},
     },
     {
       name: "migrate:up",
       description:
-        "Run the next or the specified migration that has not yet been run.",
+        "Run the next or the specified migration that has not yet been run",
       args: {},
     },
     {
       name: "migrate:rollback",
-      description: "Rollback the last batch of migrations performed.",
+      description: "Rollback the last batch of migrations performed",
       args: {},
     },
     {
       name: "migrate:down",
       description:
-        "Undo the last or the specified migration that was already run.",
+        "Undo the last or the specified migration that was already run",
       args: {},
     },
     {
       name: "migrate:currentVersion",
-      description: "View the current version for the  migration.",
+      description: "View the current version for the  migration",
       args: {},
     },
     {
       name: "migrate:list|migrate:status",
-      description: "List all migrations files with status.",
+      description: "List all migrations files with status",
       args: {},
     },
     {
       name: "migrate:unlock",
-      description: "Forcibly unlocks the migrations lock table.",
+      description: "Forcibly unlocks the migrations lock table",
       args: {},
     },
     {
       name: "seed:make",
-      description: "Create a named seed file.",
+      description: "Create a named seed file",
       args: {
         name: "seed name",
       },
     },
     {
       name: "seed:run",
-      description: "Run seed files.",
+      description: "Run seed files",
       args: {},
     },
     {
@@ -75,42 +75,42 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--debug",
-      description: "Run with debugging.",
+      description: "Run with debugging",
       args: {},
     },
     {
       name: "--knexfile",
-      description: "Specify the knexfile path.",
+      description: "Specify the knexfile path",
       args: {},
     },
     {
       name: "--knexpath",
-      description: "Specify the path to knex instance.",
+      description: "Specify the path to knex instance",
       args: {},
     },
     {
       name: "--cwd",
-      description: "Specify the working directory.",
+      description: "Specify the working directory",
       args: {},
     },
     {
       name: "--client",
-      description: "Set DB client without a knexfile.",
+      description: "Set DB client without a knexfile",
       args: {},
     },
     {
       name: "--connection",
-      description: "Set DB connection without a knexfile.",
+      description: "Set DB connection without a knexfile",
       args: {},
     },
     {
       name: "--migrations-directory",
-      description: "Set migrations directory without a knexfile.",
+      description: "Set migrations directory without a knexfile",
       args: {},
     },
     {
       name: "--migrations-table-name",
-      description: "Set migrations table name without a knexfile.",
+      description: "Set migrations table name without a knexfile",
       args: {},
     },
     {
@@ -122,17 +122,17 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--esm",
-      description: "Enable ESM interop.",
+      description: "Enable ESM interop",
       args: {},
     },
     {
       name: "--specific",
-      description: "Specify one seed file to execute.",
+      description: "Specify one seed file to execute",
       args: {},
     },
     {
       name: "--timestamp-filename-prefix",
-      description: "Enable a timestamp prefix on name of generated seed files.",
+      description: "Enable a timestamp prefix on name of generated seed files",
       args: {},
     },
     {

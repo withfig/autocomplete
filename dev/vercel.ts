@@ -122,16 +122,16 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-e", "--env"],
       description:
-        "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times.",
+        "Include an env var during run time (e.g.: '-e KEY=value'). Can appear many times",
     },
     {
       name: ["-b", "--build-env"],
-      description: "Similar to `--env` but for build time only.",
+      description: "Similar to `--env` but for build time only",
     },
     {
       name: ["-m", "--meta"],
       description:
-        "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times.",
+        "Add metadata for the deployment (e.g.: `-m KEY=value`). Can appear many times",
     },
     {
       name: ["-C", "--no-clipboard"],

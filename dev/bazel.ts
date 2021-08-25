@@ -40,7 +40,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "run",
-      description: "Runs the specified target.",
+      description: "Runs the specified target",
       args: {
         name: "BUILD file",
         generators: bazelBuildFiles,
@@ -48,7 +48,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "test",
-      description: "Builds and runs the specified test targets.",
+      description: "Builds and runs the specified test targets",
       args: {
         name: "BUILD file",
         generators: bazelBuildFiles,
@@ -56,7 +56,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "build",
-      description: "Builds the specified targets..",
+      description: "Builds the specified targets",
       args: {
         name: "BUILD file",
         generators: bazelBuildFiles,

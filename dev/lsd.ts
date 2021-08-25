@@ -13,11 +13,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-A", "--almost-all"],
-      description: "Do not list implied . and ..",
+      description: "Do not list implied . and ",
     },
     {
       name: ["-a", "--all"],
-      description: "Do not ignore entries starting with .",
+      description: "Do not ignore entries starting with ",
     },
     {
       name: ["-d", "--directory-only"],

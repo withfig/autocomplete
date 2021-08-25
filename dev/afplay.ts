@@ -22,7 +22,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--leaks",
-      description: "Run leaks analysis.",
+      description: "Run leaks analysis",
     },
     {
       name: ["-t", "--time"],

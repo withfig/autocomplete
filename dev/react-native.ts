@@ -129,17 +129,17 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       description:
-        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues.",
+        "[EXPERIMENTAL] Diagnose and fix common Node.js, iOS, Android & React Native issues",
       name: "doctor",
       options: [
         {
           name: "--fix",
-          description: "Attempt to fix all diagnosed issues.",
+          description: "Attempt to fix all diagnosed issues",
         },
         {
           name: "--contributor",
           description:
-            "Add healthchecks required to installations required for contributing to React Native.",
+            "Add healthchecks required to installations required for contributing to React Native",
         },
         {
           name: ["-h", "--help"],
@@ -203,7 +203,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
           args: {
             name: "boolean",
             isOptional: true,
@@ -243,7 +243,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -307,7 +307,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
           name: "--config",
@@ -326,7 +326,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description:
-        "Initialize a new React Native project named <projectName> in a directory of the same name.",
+        "Initialize a new React Native project named <projectName> in a directory of the same name",
       name: "init",
       options: [
         {
@@ -352,7 +352,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--directory",
-          description: "Uses a custom directory instead of `<projectName>`.",
+          description: "Uses a custom directory instead of `<projectName>`",
           args: {
             template: "folders",
             name: "string",
@@ -461,7 +461,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -591,7 +591,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--minify",
           description:
-            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes.",
+            "Allows overriding whether bundle is minified. This defaults to false if dev is true, and true if dev is false. Disabling minification can be useful for speeding up production builds for testing purposes",
           args: {
             name: "boolean",
             isOptional: true,
@@ -631,7 +631,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--max-workers",
           description:
-            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine.",
+            "Specifies the maximum number of workers the worker-pool will spawn for transforming files. This defaults to the number of the cores available on your machine",
           args: {
             name: "Number of workers",
             generators: workerGenerator,
@@ -695,7 +695,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--read-global-cache",
           description:
-            "Try to fetch transformed JS code from the global cache, if configured.",
+            "Try to fetch transformed JS code from the global cache, if configured",
         },
         {
           name: "--config",
@@ -744,7 +744,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       description:
-        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed.",
+        "Upgrade your app's template files to the specified or latest npm version using `rn-diff-purge` project. Only valid semver versions are allowed",
       name: "upgrade",
       options: [
         {
@@ -949,7 +949,7 @@ const completionSpec: Fig.Spec = {
           name: "--deviceId",
           icon: ANDROID_ICON,
           description:
-            'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line).',
+            'builds your app and starts it on a specific device/simulator with the given device id (listed by running "adb devices" on the command line)',
           args: {
             name: "deviceId",
             generators: androidGetDevicesGenerator,
@@ -988,7 +988,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--no-jetifier",
           description:
-            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier.',
+            'Do not run "jetifier" – the AndroidX transition tool. By default it runs before Gradle to ease working with libraries that don\'t support AndroidX yet. See more at: https://www.npmjs.com/package/jetifier',
         },
         {
           name: ["-h", "--help"],
@@ -1039,7 +1039,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--device",
-          description: "Explicitly set device to use by name.",
+          description: "Explicitly set device to use by name",
           args: {
             name: "device name",
             isOptional: true,

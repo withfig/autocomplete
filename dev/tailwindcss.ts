@@ -1,29 +1,29 @@
 const commonOptions: Fig.Option[] = [
   {
     name: ["--help", "-h"],
-    description: "Display usage information.",
+    description: "Display usage information",
   },
 ];
 
 const buildOptions: Fig.Option[] = [
   {
     name: ["-i", "--input"],
-    description: "Specify input file.",
+    description: "Specify input file",
     args: { name: "input file", template: "filepaths" },
   },
   {
     name: ["-o", "--output"],
-    description: "Specify output file.",
+    description: "Specify output file",
     args: { name: "output file", template: "filepaths" },
   },
   {
     name: ["-c", "--config"],
-    description: "Specify config file to use.",
+    description: "Specify config file to use",
     args: { name: "config file", template: "filepaths" },
   },
   {
     name: "--postcss",
-    description: "Load custom PostCSS configuration.",
+    description: "Load custom PostCSS configuration",
     args: {
       name: "postcss config file",
       template: "filepaths",
@@ -32,23 +32,23 @@ const buildOptions: Fig.Option[] = [
   },
   {
     name: "--purge",
-    description: "Content paths to use for removing unused classes.",
+    description: "Content paths to use for removing unused classes",
   },
   {
     name: ["--watch", "-w"],
-    description: "Watch for changes and rebuild as needed.",
+    description: "Watch for changes and rebuild as needed",
   },
   {
     name: "--jit",
-    description: "Build using JIT mode.",
+    description: "Build using JIT mode",
   },
   {
     name: ["--minify", "-m"],
-    description: "Minify the output.",
+    description: "Minify the output",
   },
   {
     name: "--no-autoprefixer",
-    description: "Disable autoprefixer.",
+    description: "Disable autoprefixer",
   },
   ...commonOptions,
 ];
@@ -61,7 +61,7 @@ const completionSpec: Fig.Spec = {
   subcommands: [
     {
       name: "init",
-      description: "Creates Tailwind config file. Default: tailwind.config.js.",
+      description: "Creates Tailwind config file. Default: tailwind.config.js",
       args: {
         name: "filename",
         isOptional: true,
@@ -73,7 +73,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: ["-p", "--postcss"],
-          description: "Initialize a 'postcss.config.js' file.",
+          description: "Initialize a 'postcss.config.js' file",
         },
         {
           name: ["-f", "--full"],
@@ -84,7 +84,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "build",
-      description: "Build CSS file.",
+      description: "Build CSS file",
       options: buildOptions,
     },
   ],

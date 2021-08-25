@@ -649,7 +649,7 @@ const completionSpec: Fig.Spec = {
           name: "jekyll",
           displayName: "jekyll",
           description:
-            "Import from Jekyll requires two paths, e.g. ` + `hugo import jekyll jekyll_root_path target_path`.",
+            "Import from Jekyll requires two paths, e.g. ` + `hugo import jekyll jekyll_root_path target_path`",
           args: [
             {
               name: "jekyll_root_path",
@@ -741,7 +741,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-f",
               description:
-                "valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original.",
+                "valid only when -u is set, forces get -u not to verify that each package has been checked out from the source control repository implied by its import path. This can be useful if the source is a local fork of the original",
             },
             {
               name: "-fix",
@@ -751,7 +751,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-insecure",
               description:
-                "permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution.",
+                "permits fetching from repositories and resolving custom domains using insecure schemes such as HTTP. Use with caution",
             },
             {
               name: "-t",
@@ -761,7 +761,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-u",
               description:
-                "recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages.",
+                "recursively update modules. Use network to update the named packages and their dependencies. By default, get uses the network to check out missing packages but does not use it to look for updates to existing packages",
             },
             {
               name: "-v",
@@ -772,7 +772,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "graph",
           description:
-            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status.",
+            "Use `hugo mod graph` from the relevant module directory and it will print the dependency graph, including vendoring, module replacement or disabled status",
           options: [help("graph")],
         },
         {
@@ -787,7 +787,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "pack",
               description:
-                "Experimental: Prepares and writes a composite package.json file for your project.",
+                "Experimental: Prepares and writes a composite package.json file for your project",
               options: [help("pack")],
             },
           ],

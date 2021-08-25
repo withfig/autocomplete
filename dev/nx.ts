@@ -247,7 +247,7 @@ const completionSpec: Fig.Spec = {
           name: "--allowedHosts",
           args: {},
           description:
-            "This option allows you to whitelist services that are allowed to access the dev server.",
+            "This option allows you to whitelist services that are allowed to access the dev server",
         },
         {
           name: "--host",
@@ -258,7 +258,7 @@ const completionSpec: Fig.Spec = {
           name: "--liveReload",
           args: { suggestions: ["true", "false"] },
           description:
-            "Whether to reload the page on change, using live-reload.",
+            "Whether to reload the page on change, using live-reload",
         },
         {
           name: ["--open", "-o"],
@@ -276,17 +276,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--ssl",
           args: { suggestions: ["true", "false"] },
-          description: "Serve using HTTPS.",
+          description: "Serve using HTTPS",
         },
         {
           name: "--sslKey",
           args: {},
-          description: "SSL key to use for serving HTTPS.",
+          description: "SSL key to use for serving HTTPS",
         },
         {
           name: "--sslCert",
           args: {},
-          description: "SSL certificate to use for serving HTTPS.",
+          description: "SSL certificate to use for serving HTTPS",
         },
         {
           name: "--watch",
@@ -302,12 +302,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--memoryLimit",
           args: {},
-          description: "Memory limit for type checking service process in MB.",
+          description: "Memory limit for type checking service process in MB",
         },
         {
           name: "--maxWorkers",
           args: {},
-          description: "Number of workers to use for type checking.",
+          description: "Number of workers to use for type checking",
         },
         ...defaultOptions,
       ],
@@ -411,7 +411,7 @@ const completionSpec: Fig.Spec = {
           name: "--exclude",
           args: {},
           description:
-            "List of projects delimited by commas to exclude from the dependency graph.",
+            "List of projects delimited by commas to exclude from the dependency graph",
         },
         {
           name: "--file",
@@ -423,7 +423,7 @@ const completionSpec: Fig.Spec = {
           name: "--focus",
           args: {},
           description:
-            "Use to show the dependency graph for a particular project and every node that is either an ancestor or a descendant.",
+            "Use to show the dependency graph for a particular project and every node that is either an ancestor or a descendant",
         },
         {
           name: "--groupByFolder",
@@ -432,12 +432,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--host",
           args: {},
-          description: "Bind the dep graph server to a specific ip address.",
+          description: "Bind the dep graph server to a specific ip address",
         },
         {
           name: "--port",
           args: {},
-          description: "Bind the dep graph server to a specific port.",
+          description: "Bind the dep graph server to a specific port",
         },
         ...defaultOptions,
       ],

@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--default-search",
       description:
-        'Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for youtube-dl "large apple".',
+        'Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for youtube-dl "large apple"',
       args: {
         name: "PREFIX",
       },
@@ -115,11 +115,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--ignore-config",
-      description: "Do not read configuration files.",
+      description: "Do not read configuration files",
     },
     {
       name: "--flat-playlist",
-      description: "Do not extract the videos of a playlist, only list them.",
+      description: "Do not extract the videos of a playlist, only list them",
     },
     {
       name: "--mark-watched",
@@ -136,7 +136,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--proxy",
       description:
-        "Use the specified HTTP/HTTPS/SOCKS proxy. Pass in an empty string for direct connection.",
+        "Use the specified HTTP/HTTPS/SOCKS proxy. Pass in an empty string for direct connection",
       insertValue: '--proxy "{cursor}"',
       args: {
         name: "URL",
@@ -309,12 +309,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-playlist",
       description:
-        "Download only the video, if the URL refers to a video and a playlist.",
+        "Download only the video, if the URL refers to a video and a playlist",
     },
     {
       name: "--yes-playlist",
       description:
-        "Download the playlist, if the URL refers to a video and a playlist.",
+        "Download the playlist, if the URL refers to a video and a playlist",
     },
     {
       name: "--age-limit",
@@ -326,7 +326,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--download-archive",
       description:
-        "Download only videos not listed in the archive file. Record the IDs of all downloaded videos in it.",
+        "Download only videos not listed in the archive file. Record the IDs of all downloaded videos in it",
       args: {
         name: "FILE",
       },
@@ -444,7 +444,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-a", "--batch-file"],
       description:
-        "File containing URLs to download ('-' for stdin), one URL per line. Lines starting with '#', ';' or ']' are considered as comments and ignored.",
+        "File containing URLs to download ('-' for stdin), one URL per line. Lines starting with '#', ';' or ']' are considered as comments and ignored",
       args: {
         name: "FILE",
         suggestions: ["-"],
@@ -710,7 +710,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--sleep-interval",
       description:
-        "Number of seconds to sleep before each download when used alone or a lower bound of a range for randomized sleep before each download when used along with --max-sleep-interval.",
+        "Number of seconds to sleep before each download when used alone or a lower bound of a range for randomized sleep before each download when used along with --max-sleep-interval",
       args: {
         name: "SECONDS",
       },
@@ -719,7 +719,7 @@ const completionSpec: Fig.Spec = {
       name: "--max-sleep-interval",
       dependsOn: ["--sleep-interval"],
       description:
-        "Upper bound of a range for randomized sleep before each download. Must only be used along with --min- sleep-interval.",
+        "Upper bound of a range for randomized sleep before each download. Must only be used along with --min- sleep-interval",
       args: {
         name: "SECONDS",
       },
@@ -914,7 +914,7 @@ const completionSpec: Fig.Spec = {
     {
       name: ["-p", "--password"],
       description:
-        "Account password. If this option is left out, youtube-dl will ask interactively.",
+        "Account password. If this option is left out, youtube-dl will ask interactively",
       args: {
         name: "PASSWORD",
       },
@@ -1054,7 +1054,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--metadata-from-title",
       description:
-        "Parse additional metadata like song title / artist from teh video title. The format syntax is the same as --output. Regular expressions with named capture groups may also be used. The parsed parameters replace existing values.",
+        "Parse additional metadata like song title / artist from teh video title. The format syntax is the same as --output. Regular expressions with named capture groups may also be used. The parsed parameters replace existing values",
       args: {
         name: "FORMAT",
       },

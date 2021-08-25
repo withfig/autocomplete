@@ -3012,7 +3012,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "create",
           description:
-            "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory.",
+            "Create a plugin from a rootfs and configuration. Plugin data directory must contain config.json and rootfs directory",
           args: [
             { name: "PLUGIN" },
             { name: "PLUGIN-DATA-DIR", template: "filepaths" },
@@ -4884,7 +4884,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "--data-path-port",
               description:
-                "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used.",
+                "Port number to use for data path traffic (1024 - 49151). If no value is set or is set to 0, the default port (4789) is used",
               args: {
                 name: "uint32",
               },
@@ -5361,7 +5361,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "compose",
-      description: "Define and run multi-container applications with Docker.",
+      description: "Define and run multi-container applications with Docker",
       loadSpec: "docker-compose",
     },
   ],

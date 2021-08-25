@@ -11,7 +11,7 @@ const getServices: Fig.Generator = {
 
 const completionSpec: Fig.Spec = {
   name: "ps",
-  description: "List containers.",
+  description: "List containers",
   args: { generators: getServices },
   options: [
     {

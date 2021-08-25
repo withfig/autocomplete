@@ -4,7 +4,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: "--analyzer-output",
-      description: "Static analyzer report output format.",
+      description: "Static analyzer report output format",
       args: {
         name: "value",
         description: "value",
@@ -44,56 +44,56 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-cl-denorms-are-zero",
-      description: "OpenCL only. Allow denormals to be flushed to zero.",
+      description: "OpenCL only. Allow denormals to be flushed to zero",
     },
     {
       name: "-cl-fast-relaxed-math",
       description:
-        "OpenCL only. Sets -cl-finite-math-only and -cl-unsafe-math-optimizations, and defines __FAST_RELAXED_MATH__.",
+        "OpenCL only. Sets -cl-finite-math-only and -cl-unsafe-math-optimizations, and defines __FAST_RELAXED_MATH__",
     },
     {
       name: "-cl-finite-math-only",
       description:
-        "OpenCL only. Allow floating-point optimizations that assume arguments and results are not NaNs or +-Inf.",
+        "OpenCL only. Allow floating-point optimizations that assume arguments and results are not NaNs or +-Inf",
     },
     {
       name: "-cl-fp32-correctly-rounded-divide-sqrt",
       description:
-        "OpenCL only. Specify that single precision floating-point divide and sqrt used in the program source are correctly rounded.",
+        "OpenCL only. Specify that single precision floating-point divide and sqrt used in the program source are correctly rounded",
     },
     {
       name: "-cl-kernel-arg-info",
-      description: "OpenCL only. Generate kernel argument metadata.",
+      description: "OpenCL only. Generate kernel argument metadata",
     },
     {
       name: "-cl-mad-enable",
       description:
-        "OpenCL only. Allow use of less precise MAD computations in the generated binary.",
+        "OpenCL only. Allow use of less precise MAD computations in the generated binary",
     },
     {
       name: "-cl-no-signed-zeros",
       description:
-        "OpenCL only. Allow use of less precise no signed zeros computations in the generated binary.",
+        "OpenCL only. Allow use of less precise no signed zeros computations in the generated binary",
     },
     {
       name: "-cl-opt-disable",
       description:
-        "OpenCL only. This option disables all optimizations. By default optimizations are enabled.",
+        "OpenCL only. This option disables all optimizations. By default optimizations are enabled",
     },
     {
       name: "-cl-single-precision-constant",
       description:
-        "OpenCL only. Treat double precision floating-point constant as single precision constant.",
+        "OpenCL only. Treat double precision floating-point constant as single precision constant",
     },
     {
       name: "-cl-std",
-      description: "OpenCL language standard to compile for.",
+      description: "OpenCL language standard to compile for",
       args: { name: "value", description: "value" },
     },
     {
       name: "-cl-strict-aliasing",
       description:
-        "OpenCL only. This option is added for compatibility with OpenCL 1.0.",
+        "OpenCL only. This option is added for compatibility with OpenCL 1.0",
     },
     {
       name: "-cl-uniform-work-group-size",
@@ -102,7 +102,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-cl-unsafe-math-optimizations",
-      description: "OpenCL only. Allow unsafe floating-point optimizations.",
+      description: "OpenCL only. Allow unsafe floating-point optimizations",
     },
     {
       name: "--config",
@@ -111,7 +111,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--cuda-compile-host-device",
-      description: "Compile CUDA code for both host and device (default).",
+      description: "Compile CUDA code for both host and device (default)",
     },
     {
       name: "--cuda-device-only",
@@ -119,18 +119,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--cuda-host-only",
-      description: "Compile CUDA code for host only.",
+      description: "Compile CUDA code for host only",
     },
     {
       name: "--cuda-include-ptx",
       description:
-        "Include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once.",
+        "Include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once",
       args: { name: "value", description: "value", isVariadic: true },
     },
     {
       name: "--cuda-noopt-device-debug",
       description:
-        "Enable device-side debug info generation. Disables ptxas optimizations.",
+        "Enable device-side debug info generation. Disables ptxas optimizations",
     },
     {
       name: "--cuda-path-ignore-env",
@@ -196,7 +196,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-emit-interface-stubs",
-      description: "Generate Inteface Stub Files.",
+      description: "Generate Inteface Stub Files",
     },
     {
       name: "-emit-llvm",
@@ -204,12 +204,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-emit-merged-ifs",
-      description:
-        "Generate Interface Stub Files, emit merged text not binary.",
+      description: "Generate Interface Stub Files, emit merged text not binary",
     },
     {
       name: "--emit-static-lib",
-      description: "Enable linker job to emit a static library.",
+      description: "Enable linker job to emit a static library",
     },
     {
       name:
@@ -221,7 +220,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fAAPCSBitfieldLoad",
       description:
-        "Follows the AAPCS standard that all volatile bit-field write generates at least one load. (ARM only).",
+        "Follows the AAPCS standard that all volatile bit-field write generates at least one load. (ARM only)",
     },
     { name: "-faddrsig", description: "Emit an address-significance table" },
     {
@@ -305,7 +304,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fbuiltin-module-map",
-      description: "Load the clang builtins module map file.",
+      description: "Load the clang builtins module map file",
     },
     { name: "-fc++-static-destructors", description: "" },
     {
@@ -405,7 +404,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fcuda-flush-denormals-to-zero",
       description:
-        "Flush denormal floating point values to zero in CUDA device mode.",
+        "Flush denormal floating point values to zero in CUDA device mode",
     },
     {
       name: "-fcuda-short-ptr",
@@ -419,7 +418,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fdebug-compilation-dir",
-      description: "The compilation directory to embed in the debug info.",
+      description: "The compilation directory to embed in the debug info",
       args: { name: "value", description: "value", template: "folders" },
     },
     {
@@ -545,7 +544,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fexperimental-new-pass-manager",
-      description: "Enables an experimental new pass manager in LLVM.",
+      description: "Enables an experimental new pass manager in LLVM",
     },
     {
       name: "-fexperimental-relative-c++-abi-vtables",
@@ -554,7 +553,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fexperimental-strict-floating-point",
-      description: "Enables experimental strict floating point in LLVM.",
+      description: "Enables experimental strict floating point in LLVM",
     },
     {
       name: "-ffast-math",
@@ -569,7 +568,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ffine-grained-bitfield-accesses",
       description:
-        "Use separate accesses for consecutive bitfield runs with legal widths and alignments.",
+        "Use separate accesses for consecutive bitfield runs with legal widths and alignments",
     },
     { name: "-ffixed-point", description: "Enable fixed point types" },
     {
@@ -716,7 +715,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ffp-contract",
       description:
-        "Form fused FP ops (e.g. FMAs): fast (everywhere) | on (according to FP_CONTRACT pragma) | off (never fuse). Default is 'fast' for CUDA/HIP and 'on' otherwise.",
+        "Form fused FP ops (e.g. FMAs): fast (everywhere) | on (according to FP_CONTRACT pragma) | off (never fuse). Default is 'fast' for CUDA/HIP and 'on' otherwise",
       args: {
         name: "value",
         description: "value",
@@ -726,12 +725,12 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ffp-exception-behavior",
       description:
-        "Specifies the exception behavior of floating-point operations.",
+        "Specifies the exception behavior of floating-point operations",
       args: { name: "value", description: "value" },
     },
     {
       name: "-ffp-model",
-      description: "Controls the semantics of floating-point calculations.",
+      description: "Controls the semantics of floating-point calculations",
       args: { name: "value", description: "value" },
     },
     {
@@ -781,7 +780,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fimplicit-module-maps",
-      description: "Implicitly search the file system for module map files.",
+      description: "Implicitly search the file system for module map files",
     },
     { name: "-finline-functions", description: "Inline suitable functions" },
     { name: "-finline-hint-functions", description: "Inline" },
@@ -844,7 +843,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fmax-tokens",
-      description: "Max total number of preprocessed tokens for -Wmax-tokens.",
+      description: "Max total number of preprocessed tokens for -Wmax-tokens",
       args: { name: "value", description: "value" },
     },
     {
@@ -866,7 +865,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fmodule-file",
       description:
-        "Specify the mapping of module name to precompiled module file, or load a module file if name is omitted.",
+        "Specify the mapping of module name to precompiled module file, or load a module file if name is omitted",
       args: { name: "<name", description: "<name" },
     },
     {
@@ -1113,7 +1112,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fno-experimental-new-pass-manager",
-      description: "Disables an experimental new pass manager in LLVM.",
+      description: "Disables an experimental new pass manager in LLVM",
     },
     {
       name: "-fno-experimental-relative-c++-abi-vtables",
@@ -1123,7 +1122,7 @@ const completionSpec: Fig.Spec = {
     { name: "-fno-fast-math", description: "" },
     {
       name: "-fno-fine-grained-bitfield-accesses",
-      description: "Use large-integer access for consecutive bitfield runs.",
+      description: "Use large-integer access for consecutive bitfield runs",
     },
     { name: "-fno-fixed-point", description: "Disable fixed point types" },
     { name: "-fno-force-dwarf-frame", description: "" },
@@ -1202,11 +1201,11 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fno-profile-generate",
-      description: "Disable generation of profile instrumentation.",
+      description: "Disable generation of profile instrumentation",
     },
     {
       name: "-fno-profile-instr-generate",
-      description: "Disable generation of profile instrumentation.",
+      description: "Disable generation of profile instrumentation",
     },
     {
       name: "-fno-profile-instr-use",
@@ -1263,7 +1262,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fno-sanitize-cfi-cross-dso",
       description:
-        "Disable control flow integrity (CFI) checks for cross-DSO calls.",
+        "Disable control flow integrity (CFI) checks for cross-DSO calls",
     },
     {
       name: "-fno-sanitize-coverage",
@@ -1286,7 +1285,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fno-sanitize-stats",
-      description: "Disable sanitizer statistics gathering.",
+      description: "Disable sanitizer statistics gathering",
     },
     {
       name: "-fno-sanitize-thread-atomics",
@@ -1433,7 +1432,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fopenmp-simd",
-      description: "Emit OpenMP code only for SIMD-based constructs.",
+      description: "Emit OpenMP code only for SIMD-based constructs",
     },
     {
       name: "-fopenmp-targets",
@@ -1443,12 +1442,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fopenmp",
-      description: "Parse OpenMP pragmas and generate parallel code.",
+      description: "Parse OpenMP pragmas and generate parallel code",
     },
     {
       name: "-foptimization-record-file",
       description:
-        "Specify the output name of the file containing the optimization remarks. Implies -fsave-optimization-record. On Darwin platforms, this cannot be used with multiple -arch <arch> options.",
+        "Specify the output name of the file containing the optimization remarks. Implies -fsave-optimization-record. On Darwin platforms, this cannot be used with multiple -arch <arch> options",
       args: { name: "file", description: "file", template: "filepaths" },
     },
     {
@@ -1474,7 +1473,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fpass-plugin",
       description:
-        "Load pass plugin from a dynamic shared object file (only with new pass manager).",
+        "Load pass plugin from a dynamic shared object file (only with new pass manager)",
       args: { name: "dsopath", description: "dsopath" },
     },
     {
@@ -1579,7 +1578,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fprofile-use",
       description:
-        "Use instrumentation data for profile-guided optimization. If pathname is a directory, it reads from <pathname>/default.profdata. Otherwise, it reads from file <pathname>.",
+        "Use instrumentation data for profile-guided optimization. If pathname is a directory, it reads from <pathname>/default.profdata. Otherwise, it reads from file <pathname>",
       args: { name: "pathname", description: "pathname" },
     },
     {
@@ -1719,7 +1718,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-cfi-cross-dso",
       description:
-        "Enable control flow integrity (CFI) checks for cross-DSO calls.",
+        "Enable control flow integrity (CFI) checks for cross-DSO calls",
     },
     {
       name: "-fsanitize-cfi-icall-generalize-pointers",
@@ -1757,7 +1756,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-hwaddress-abi",
       description:
-        "Select the HWAddressSanitizer ABI to target (interceptor or platform, default interceptor). This option is currently unused.",
+        "Select the HWAddressSanitizer ABI to target (interceptor or platform, default interceptor). This option is currently unused",
       args: { name: "value", description: "value" },
     },
     {
@@ -1776,7 +1775,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fsanitize-stats",
-      description: "Enable sanitizer statistics gathering.",
+      description: "Enable sanitizer statistics gathering",
     },
     {
       name: "-fsanitize-system-blacklist",
@@ -1806,7 +1805,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fsanitize-undefined-strip-path-components",
       description:
-        "Strip (or keep only, if negative) a given number of path components when emitting check metadata.",
+        "Strip (or keep only, if negative) a given number of path components when emitting check metadata",
       args: { name: "number", description: "number" },
     },
     {
@@ -1942,7 +1941,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-ftime-trace",
       description:
-        "Turn on time profiler. Generates JSON file based on output filename.",
+        "Turn on time profiler. Generates JSON file based on output filename",
     },
     {
       name: "-ftrap-function",
@@ -2061,13 +2060,13 @@ const completionSpec: Fig.Spec = {
     {
       name: "-fxray-always-instrument",
       description:
-        "DEPRECATED: Filename defining the whitelist for imbuing the 'always instrument' XRay attribute.",
+        "DEPRECATED: Filename defining the whitelist for imbuing the 'always instrument' XRay attribute",
       args: { name: "value", description: "value" },
     },
     {
       name: "-fxray-attr-list",
       description:
-        "Filename defining the list of functions/types for imbuing XRay attributes.",
+        "Filename defining the list of functions/types for imbuing XRay attributes",
       args: { name: "value", description: "value" },
     },
     { name: "-fxray-function-index", description: "" },
@@ -2084,7 +2083,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "'function' includes both 'function-entry' and 'function-exit'.",
       description:
-        "Select which XRay instrumentation points to emit. Options: all, none, function-entry, function-exit, function, custom. Default is 'all'.",
+        "Select which XRay instrumentation points to emit. Options: all, none, function-entry, function-exit, function, custom. Default is 'all'",
       args: {
         name: "fxray-instrumentation-bundl",
         description: "fxray-instrumentation-bundl",
@@ -2097,18 +2096,18 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-fxray-link-deps",
-      description: "Tells clang to add the link dependencies for XRay.",
+      description: "Tells clang to add the link dependencies for XRay",
     },
     {
       name: "-fxray-modes",
       description:
-        "List of modes to link in by default into XRay instrumented binaries.",
+        "List of modes to link in by default into XRay instrumented binaries",
       args: { name: "value", description: "value" },
     },
     {
       name: "-fxray-never-instrument",
       description:
-        "DEPRECATED: Filename defining the whitelist for imbuing the 'never instrument' XRay attribute.",
+        "DEPRECATED: Filename defining the whitelist for imbuing the 'never instrument' XRay attribute",
       args: { name: "value", description: "value" },
     },
     { name: "-fzero-initialized-in-bss", description: "" },
@@ -2408,7 +2407,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-mcmodel",
-      description: "Equivalent to -mcmodel=medium, compatible with RISC-V gcc.",
+      description: "Equivalent to -mcmodel=medium, compatible with RISC-V gcc",
       args: { name: "edan", description: "edan", isOptional: true },
     },
     {
@@ -2449,7 +2448,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-menable-experimental-extensions",
-      description: "Enable use of experimental RISC-V extensions.",
+      description: "Enable use of experimental RISC-V extensions",
     },
     {
       name: "-mexec-model",
@@ -2547,7 +2546,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mlong-calls",
       description:
-        "Generate branches with extended addressability, usually via indirect jumps.",
+        "Generate branches with extended addressability, usually via indirect jumps",
     },
     {
       name: "-mlong-double-128",
@@ -2579,7 +2578,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mmadd4",
       description:
-        "Enable the generation of 4-operand madd.s, madd.d and related instructions.",
+        "Enable the generation of 4-operand madd.s, madd.d and related instructions",
     },
     { name: "-MMD", description: "Write a depfile containing user headers" },
     {
@@ -2669,7 +2668,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mno-madd4",
       description:
-        "Disable the generation of 4-operand madd.s, madd.d and related instructions.",
+        "Disable the generation of 4-operand madd.s, madd.d and related instructions",
     },
     {
       name: "-mno-memops",
@@ -2689,7 +2688,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mno-neg-immediates",
       description:
-        "Disallow converting instructions with negative immediates to their negation or inversion.",
+        "Disallow converting instructions with negative immediates to their negation or inversion",
     },
     { name: "-mno-nvj", description: "Disable generation of new-value jumps" },
     { name: "-mno-nvs", description: "Disable generation of new-value stores" },
@@ -2739,7 +2738,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mnop-mcount",
       description:
-        "Generate mcount/__fentry__ calls as nops. To activate they need to be patched in.",
+        "Generate mcount/__fentry__ calls as nops. To activate they need to be patched in",
     },
     { name: "-mnvj", description: "Enable generation of new-value jumps" },
     { name: "-mnvs", description: "Enable generation of new-value stores" },
@@ -2762,7 +2761,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-mpacked-stack",
-      description: "Use packed stack layout (SystemZ only).",
+      description: "Use packed stack layout (SystemZ only)",
     },
     {
       name: "-mpackets",
@@ -2780,7 +2779,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mprefer-vector-width",
       description:
-        "Specifies preferred vector width for auto-vectorization. Defaults to 'none' which allows target specific decisions.",
+        "Specifies preferred vector width for auto-vectorization. Defaults to 'none' which allows target specific decisions",
       args: { name: "value", description: "value" },
     },
     {
@@ -2800,7 +2799,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mrecord-mcount",
       description:
-        "Generate a __mcount_loc section entry for each __fentry__ call.",
+        "Generate a __mcount_loc section entry for each __fentry__ call",
     },
     {
       name: "-mrelax-all",
@@ -2810,7 +2809,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mrestrict-it",
       description:
-        "Disallow generation of deprecated IT blocks for ARMv8. It is on by default for ARMv8 Thumb mode.",
+        "Disallow generation of deprecated IT blocks for ARMv8. It is on by default for ARMv8 Thumb mode",
     },
     {
       name: "-mrtd",
@@ -2886,7 +2885,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-mtune",
       description:
-        "Accepted for compatibility with GCC. Currently has no effect.",
+        "Accepted for compatibility with GCC. Currently has no effect",
       args: { name: "value", description: "value" },
     },
     {
@@ -2910,20 +2909,20 @@ const completionSpec: Fig.Spec = {
     {
       name: "--no-cuda-include-ptx",
       description:
-        "Do not include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once.",
+        "Do not include PTX for the following GPU architecture (e.g. sm_35) or 'all'. May be specified more than once",
       args: { name: "value", description: "value", isVariadic: true },
     },
     { name: "--no-cuda-version-check", description: "Don't" },
     {
       name: "--no-offload-arch",
       description:
-        "Remove CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. 'all' resets the list to its default value.",
+        "Remove CUDA/HIP offloading device architecture (e.g. sm_35, gfx906) from the list of devices to compile for. 'all' resets the list to its default value",
       args: { name: "value", description: "value" },
     },
     {
       name: "--no-system-header-prefix",
       description:
-        "Treat all #include paths starting with <prefix> as not including a system header.",
+        "Treat all #include paths starting with <prefix> as not including a system header",
       args: { name: "prefix", description: "prefix" },
     },
     {
@@ -3096,13 +3095,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "--rocm-device-lib-path",
-      description: "ROCm device library path. Alternative to rocm-path.",
+      description: "ROCm device library path. Alternative to rocm-path",
       args: { name: "value", description: "value" },
     },
     {
       name: "--rocm-path",
       description:
-        "ROCm installation path, used for finding and automatically linking required bitcode libraries.",
+        "ROCm installation path, used for finding and automatically linking required bitcode libraries",
       args: { name: "value", description: "value" },
     },
     {
@@ -3135,12 +3134,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-save-stats",
-      description: "Save llvm statistics.",
+      description: "Save llvm statistics",
       args: { name: "value", description: "value", isOptional: true },
     },
     {
       name: "-save-temps",
-      description: "Save intermediate compilation results.",
+      description: "Save intermediate compilation results",
       args: { name: "value", description: "value", isOptional: true },
     },
     {
@@ -3158,7 +3157,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-static-openmp",
-      description: "Use the static host OpenMP runtime while linking.",
+      description: "Use the static host OpenMP runtime while linking",
     },
     {
       name: "-std",
@@ -3181,13 +3180,13 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "-sycl-std",
-      description: "SYCL language standard to compile for.",
+      description: "SYCL language standard to compile for",
       args: { name: "value", description: "value" },
     },
     {
       name: "--system-header-prefix",
       description:
-        "Treat all #include paths starting with <prefix> as including a system header.",
+        "Treat all #include paths starting with <prefix> as including a system header",
       args: { name: "prefix", description: "prefix" },
     },
     { name: "-S", description: "Only run preprocess and compilation steps" },
@@ -3304,7 +3303,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-Xopenmp-target",
       description:
-        "Pass <arg> to the target offloading toolchain identified by <triple>.",
+        "Pass <arg> to the target offloading toolchain identified by <triple>",
       args: { name: "triple", description: "triple", isOptional: true },
     },
     {

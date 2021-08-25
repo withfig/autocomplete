@@ -3,23 +3,23 @@ const semverRegex = /((([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9a-zA-Z-]+(?:\.[0-9a-
 const globalOptions: Fig.Option[] = [
   {
     name: ["-h", "--help"],
-    description: "Print this usage information.",
+    description: "Print this usage information",
   },
 ];
 
 const completionSpec: Fig.Spec = {
   name: "fvm",
   description:
-    "Flutter Version Management: A cli to manage Flutter SDK versions.",
+    "Flutter Version Management: A cli to manage Flutter SDK versions",
   options: [
     ...globalOptions,
     {
       name: "--verbose",
-      description: "Print verbose output.",
+      description: "Print verbose output",
     },
     {
       name: "--version",
-      description: "Current FVM version.",
+      description: "Current FVM version",
     },
   ],
   subcommands: [
@@ -31,21 +31,21 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-c", "--cache-path"],
           description:
-            "Set the path which FVM will cache the version. Priority over FVM_HOME.",
+            "Set the path which FVM will cache the version. Priority over FVM_HOME",
           args: {
             name: "path",
-            description: "Path to the Flutter versions cache.",
+            description: "Path to the Flutter versions cache",
             template: "filepaths",
           },
         },
         {
           name: ["-s", "--skip-setup", "--no-skip-setup"],
-          description: "Skip setup after a version install.",
+          description: "Skip setup after a version install",
         },
         {
           name: ["-g", "--git-cache", "--no-git-cache"],
           description:
-            "ADVANCED: Will cache a local version of Flutter repo for faster version install.",
+            "ADVANCED: Will cache a local version of Flutter repo for faster version install",
         },
       ],
     },
@@ -56,27 +56,27 @@ const completionSpec: Fig.Spec = {
     {
       name: "doctor",
       description:
-        "Shows information about environment, and project configuration.",
+        "Shows information about environment, and project configuration",
     },
     {
       name: "flavor",
-      description: "Switches between different project flavors.",
+      description: "Switches between different project flavors",
       args: {
         name: "flavor-name",
-        description: "The flavor to switch to.",
+        description: "The flavor to switch to",
       },
     },
     {
       name: "flutter",
-      description: "Proxies Flutter commands.",
+      description: "Proxies Flutter commands",
       loadSpec: "flutter",
     },
     {
       name: "global",
-      description: "Sets Flutter SDK version as global.",
+      description: "Sets Flutter SDK version as global",
       args: {
         name: "version",
-        description: "Flutter SDK to set for global flutter command.",
+        description: "Flutter SDK to set for global flutter command",
       },
     },
     {
@@ -114,32 +114,32 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         {
           name: ["-s", "--skip-setup"],
-          description: "Skips Flutter setup after install.",
+          description: "Skips Flutter setup after install",
         },
       ],
     },
     {
       name: "list",
-      description: "Lists installed Flutter SDK versions.",
+      description: "Lists installed Flutter SDK versions",
       options: [...globalOptions],
     },
     {
       name: "releases",
-      description: "View all Flutter SDK releases available for install.",
+      description: "View all Flutter SDK releases available for install",
       options: [...globalOptions],
     },
     {
       name: "remove",
-      description: "Removes Flutter SDK version.",
+      description: "Removes Flutter SDK version",
       args: {
         name: "version",
-        description: "The installed Flutter version to remove.",
+        description: "The installed Flutter version to remove",
       },
       options: [
         ...globalOptions,
         {
           name: "--force",
-          description: "Skips version global check.",
+          description: "Skips version global check",
         },
       ],
     },
@@ -148,7 +148,7 @@ const completionSpec: Fig.Spec = {
       description: "Spawn a Flutter SDK version command",
       args: {
         name: "version",
-        description: "The Flutter version from which to spawn a command.",
+        description: "The Flutter version from which to spawn a command",
       },
     },
     {
@@ -162,16 +162,16 @@ const completionSpec: Fig.Spec = {
         ...globalOptions,
         {
           name: ["-f", "--force"],
-          description: "Skips command guards that does Flutter project checks.",
+          description: "Skips command guards that does Flutter project checks",
         },
         {
           name: ["-p", "--pin"],
           description:
-            "If version provided is a channel. Will pin the latest release of the channel.",
+            "If version provided is a channel. Will pin the latest release of the channel",
         },
         {
           name: "--flavor",
-          description: "Sets version for a project flavor.",
+          description: "Sets version for a project flavor",
         },
       ],
     },

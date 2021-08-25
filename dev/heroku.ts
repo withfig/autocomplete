@@ -60,7 +60,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "auth:token",
-      description: "outputs current CLI authentication token.",
+      description: "outputs current CLI authentication token",
       options: [
         {
           name: ["-h", "--help"],
@@ -465,7 +465,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "ci:migrate-manifest",
       description:
-        "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key.",
+        "app-ci.json is deprecated. Run this command to migrate to app.json with an environments key",
     },
     {
       name: "ci:open",
@@ -4002,13 +4002,13 @@ const completionSpec: Fig.Spec = {
         {
           name: "--protocol",
           description:
-            'the protocol dynos are allowed to use when communicating with hosts in destination CIDR block. Valid protocols are "tcp", "udp", "icmp", "0-255" and "any".',
+            'the protocol dynos are allowed to use when communicating with hosts in destination CIDR block. Valid protocols are "tcp", "udp", "icmp", "0-255" and "any"',
           args: {},
         },
         {
           name: "--port",
           description:
-            "the port dynos are allowed to use when communicating with hosts in destination CIDR block. Accepts a range in `<lowest port>-<highest port>` format. 0 is the minimum. The maximum port allowed is 65535, except for ICMP with a maximum of 255.",
+            "the port dynos are allowed to use when communicating with hosts in destination CIDR block. Accepts a range in `<lowest port>-<highest port>` format. 0 is the minimum. The maximum port allowed is 65535, except for ICMP with a maximum of 255",
           args: {},
         },
       ],
@@ -7473,7 +7473,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "pg:settings:log-min-duration-statement",
       description:
-        "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE.",
+        "The duration of each completed statement will be logged if the statement completes after the time specified by VALUE",
       options: [
         {
           name: ["-a", "--app"],
@@ -7504,7 +7504,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "pg:settings:log-statement",
-      description: "log_statement controls which SQL statements are logged.",
+      description: "log_statement controls which SQL statements are logged",
       options: [
         {
           name: ["-a", "--app"],
@@ -7850,7 +7850,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--internal-routing",
           description:
-            "private space-only. create as an Internal Web App that is only routable in the local network.",
+            "private space-only. create as an Internal Web App that is only routable in the local network",
         },
         { name: "--features", args: {} },
         { name: "--kernel", args: {} },
@@ -8229,7 +8229,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "pg:settings:log-connections",
       description:
-        "Controls whether a log message is produced when a login attempt is made. Default is true.",
+        "Controls whether a log message is produced when a login attempt is made. Default is true",
       options: [
         {
           name: ["-a", "--app"],

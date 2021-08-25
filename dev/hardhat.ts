@@ -16,7 +16,7 @@ const completionSpec: Fig.Spec = {
     { name: "--network", description: "The network to connect to" },
     { name: "---show-stack-traces", description: "Show stack traces" },
     { name: "--verbose", description: "Enables Hardhat verbose logging" },
-    { name: "--version", description: "Shows hardhat's version." },
+    { name: "--version", description: "Shows hardhat's version" },
   ],
   subcommands: [
     { name: "accounts", description: "Prints the list of accounts" },

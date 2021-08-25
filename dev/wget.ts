@@ -193,7 +193,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: ["-P", "--directory-prefix=PREFIX"],
-      description: "save files to PREFIX/..",
+      description: "save files to PREFIX/",
     },
     {
       name: "--cut-dirs=NUMBER",
@@ -312,7 +312,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "--ciphers=STR",
       description:
-        "Set the priority string (GnuTLS) or cipher list string (OpenSSL) directly.",
+        "Set the priority string (GnuTLS) or cipher list string (OpenSSL) directly",
     },
     { name: ["-r", "--recursive"], description: "specify recursive download" },
     {

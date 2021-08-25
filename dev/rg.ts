@@ -34,7 +34,7 @@ const completionSpec: Fig.Spec = {
   options: [
     {
       name: ["-A", "--after-context"],
-      description: "Shows NUM lines after each match.",
+      description: "Shows NUM lines after each match",
       args: {
         name: "Num",
       },

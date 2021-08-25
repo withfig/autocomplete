@@ -1,23 +1,23 @@
 const completionSpec: Fig.Spec = {
   name: "iot-data",
   description:
-    "AWS IoT AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete shadows. A shadow is a persistent representation of your things and their state in the AWS cloud. Find the endpoint address for actions in the AWS IoT data plane by running this CLI command:  aws iot describe-endpoint --endpoint-type iot:Data-ATS  The service name used by AWS Signature Version 4 to sign requests is: iotdevicegateway.",
+    "AWS IoT AWS IoT-Data enables secure, bi-directional communication between Internet-connected things (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. It implements a broker for applications and things to publish messages over HTTP (Publish) and retrieve, update, and delete shadows. A shadow is a persistent representation of your things and their state in the AWS cloud. Find the endpoint address for actions in the AWS IoT data plane by running this CLI command:  aws iot describe-endpoint --endpoint-type iot:Data-ATS  The service name used by AWS Signature Version 4 to sign requests is: iotdevicegateway",
   subcommands: [
     {
       name: "delete-thing-shadow",
       description:
-        "Deletes the shadow for the specified thing. For more information, see DeleteThingShadow in the AWS IoT Developer Guide.",
+        "Deletes the shadow for the specified thing. For more information, see DeleteThingShadow in the AWS IoT Developer Guide",
       options: [
         {
           name: "--thing-name",
-          description: "The name of the thing.",
+          description: "The name of the thing",
           args: {
             name: "string",
           },
         },
         {
           name: "--shadow-name",
-          description: "The name of the shadow.",
+          description: "The name of the shadow",
           args: {
             name: "string",
           },
@@ -34,18 +34,18 @@ const completionSpec: Fig.Spec = {
     {
       name: "get-thing-shadow",
       description:
-        "Gets the shadow for the specified thing. For more information, see GetThingShadow in the AWS IoT Developer Guide.",
+        "Gets the shadow for the specified thing. For more information, see GetThingShadow in the AWS IoT Developer Guide",
       options: [
         {
           name: "--thing-name",
-          description: "The name of the thing.",
+          description: "The name of the thing",
           args: {
             name: "string",
           },
         },
         {
           name: "--shadow-name",
-          description: "The name of the shadow.",
+          description: "The name of the shadow",
           args: {
             name: "string",
           },
@@ -61,25 +61,25 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "list-named-shadows-for-thing",
-      description: "Lists the shadows for the specified thing.",
+      description: "Lists the shadows for the specified thing",
       options: [
         {
           name: "--thing-name",
-          description: "The name of the thing.",
+          description: "The name of the thing",
           args: {
             name: "string",
           },
         },
         {
           name: "--next-token",
-          description: "The token to retrieve the next set of results.",
+          description: "The token to retrieve the next set of results",
           args: {
             name: "string",
           },
         },
         {
           name: "--page-size",
-          description: "The result page size.",
+          description: "The result page size",
           args: {
             name: "integer",
           },
@@ -87,7 +87,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -95,7 +95,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -106,25 +106,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "publish",
       description:
-        "Publishes state information. For more information, see HTTP Protocol in the AWS IoT Developer Guide.",
+        "Publishes state information. For more information, see HTTP Protocol in the AWS IoT Developer Guide",
       options: [
         {
           name: "--topic",
-          description: "The name of the MQTT topic.",
+          description: "The name of the MQTT topic",
           args: {
             name: "string",
           },
         },
         {
           name: "--qos",
-          description: "The Quality of Service (QoS) level.",
+          description: "The Quality of Service (QoS) level",
           args: {
             name: "integer",
           },
         },
         {
           name: "--payload",
-          description: "The state information, in JSON format.",
+          description: "The state information, in JSON format",
           args: {
             name: "blob",
           },
@@ -132,7 +132,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--cli-input-json",
           description:
-            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally.",
+            "Performs service operation based on the JSON string provided. The JSON string follows the format provided by ``--generate-cli-skeleton``. If other arguments are provided on the command line, the CLI values will override the JSON-provided values. It is not possible to pass arbitrary binary values using a JSON-provided value as the string will be taken literally",
           args: {
             name: "string",
           },
@@ -140,7 +140,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--generate-cli-skeleton",
           description:
-            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command.",
+            "Prints a JSON skeleton to standard output without sending an API request. If provided with no value or the value ``input``, prints a sample input JSON that can be used as an argument for ``--cli-input-json``. If provided with the value ``output``, it validates the command inputs and returns a sample output JSON for that command",
           args: {
             name: "string",
             suggestions: ["input", "output"],
@@ -151,25 +151,25 @@ const completionSpec: Fig.Spec = {
     {
       name: "update-thing-shadow",
       description:
-        "Updates the shadow for the specified thing. For more information, see UpdateThingShadow in the AWS IoT Developer Guide.",
+        "Updates the shadow for the specified thing. For more information, see UpdateThingShadow in the AWS IoT Developer Guide",
       options: [
         {
           name: "--thing-name",
-          description: "The name of the thing.",
+          description: "The name of the thing",
           args: {
             name: "string",
           },
         },
         {
           name: "--shadow-name",
-          description: "The name of the shadow.",
+          description: "The name of the shadow",
           args: {
             name: "string",
           },
         },
         {
           name: "--payload",
-          description: "The state information, in JSON format.",
+          description: "The state information, in JSON format",
           args: {
             name: "blob",
           },

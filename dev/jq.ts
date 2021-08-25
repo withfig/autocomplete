@@ -141,7 +141,7 @@ const sharedOptions: Fig.Option[] = [
   {
     name: "--rawfile",
     description:
-      "This option reads in the named file and binds its contents to the given global variable.",
+      "This option reads in the named file and binds its contents to the given global variable",
     args: [
       {
         name: "variable name",

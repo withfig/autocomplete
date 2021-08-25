@@ -4,7 +4,7 @@ const FILTER_OPTION: Fig.Option = {
     template: "filepaths",
     name: "Filepath / Package",
     description:
-      "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+      "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
   },
   description: `Filtering allows you to restrict commands to specific subsets of packages.
      pnpm supports a rich selector syntax for picking packages by name or by relation.
@@ -196,7 +196,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--offline",
         description:
-          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail.",
+          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail",
       },
       {
         name: "--prefer-offline",
@@ -206,7 +206,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--ignore-scripts",
         description:
-          "Do not execute any scripts defined in the project package.json and its dependencies.",
+          "Do not execute any scripts defined in the project package.json and its dependencies",
       },
       {
         name: ["-P", "--save-prod"],
@@ -216,7 +216,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["-D", "--save-dev"],
         description:
-          "Only devDependencies are installed regardless of the NODE_ENV.",
+          "Only devDependencies are installed regardless of the NODE_ENV",
       },
       {
         name: "--no-optional",
@@ -225,12 +225,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--lockfile-only",
         description:
-          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies.",
+          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies",
       },
       {
         name: "--frozen-lockfile",
         description:
-          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present.",
+          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present",
       },
       {
         name: "--reporter",
@@ -248,7 +248,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--shamefully-hoist",
         description:
-          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged.",
+          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged",
       },
       {
         name: "--filter",
@@ -256,7 +256,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
           template: "filepaths",
           name: "Filepath / Package",
           description:
-            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
         },
         description: `Filtering allows you to restrict commands to specific subsets of packages.
            pnpm supports a rich selector syntax for picking packages by name or by relation.
@@ -272,7 +272,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--offline",
         description:
-          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail.",
+          "If true, pnpm will use only packages already available in the store. If a package won't be found locally, the installation will fail",
       },
       {
         name: "--prefer-offline",
@@ -282,7 +282,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--ignore-scripts",
         description:
-          "Do not execute any scripts defined in the project package.json and its dependencies.",
+          "Do not execute any scripts defined in the project package.json and its dependencies",
       },
       {
         name: ["-P", "--save-prod"],
@@ -292,7 +292,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["-D", "--save-dev"],
         description:
-          "Only devDependencies are installed regardless of the NODE_ENV.",
+          "Only devDependencies are installed regardless of the NODE_ENV",
       },
       {
         name: "--no-optional",
@@ -301,12 +301,12 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--lockfile-only",
         description:
-          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies.",
+          "When used, only updates pnpm-lock.yaml and package.json instead of checking node_modules and downloading dependencies",
       },
       {
         name: "--frozen-lockfile",
         description:
-          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present.",
+          "If true, pnpm doesn't generate a lockfile and fails to install if the lockfile is out of sync with the manifest / an update is needed or no lockfile is present",
       },
       {
         name: "--reporter",
@@ -324,7 +324,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--shamefully-hoist",
         description:
-          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged.",
+          "Creates a flat node_modules structure, similar to that of npm or yarn. WARNING: This is highly discouraged",
       },
       FILTER_OPTION,
     ],
@@ -348,11 +348,11 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["--latest", "-L"],
         description:
-          "Ignores the version range specified in package.json. Instead, the version specified by the latest tag will be used (potentially upgrading the packages across major versions).",
+          "Ignores the version range specified in package.json. Instead, the version specified by the latest tag will be used (potentially upgrading the packages across major versions)",
       },
       {
         name: "--global",
-        description: "Update global packages.",
+        description: "Update global packages",
       },
       {
         name: ["-P", "--save-prod"],
@@ -369,7 +369,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: ["--interactive", "-i"],
         description:
-          "Show outdated dependencies and select which ones to update.",
+          "Show outdated dependencies and select which ones to update",
       },
       {
         name: "--workspace",
@@ -382,7 +382,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
           template: "filepaths",
           name: "Filepath / Package",
           description:
-            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format.",
+            "To only select packages under the specified directory, you may specify any absolute path, typically in POSIX format",
         },
         description: `Filtering allows you to restrict commands to specific subsets of packages.
              pnpm supports a rich selector syntax for picking packages by name or by relation.
@@ -406,7 +406,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       },
       {
         name: "--global",
-        description: "Remove a global package.",
+        description: "Remove a global package",
       },
       {
         name: ["-P", "--save-prod"],
@@ -442,7 +442,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
       {
         name: "--global",
         description:
-          "Links the specified package (<pkg>) from global node_modules to the node_nodules of package from where this command was executed or specified via --dir option.",
+          "Links the specified package (<pkg>) from global node_modules to the node_nodules of package from where this command was executed or specified via --dir option",
       },
     ],
   },
@@ -470,7 +470,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
   {
     name: "import",
     description:
-      "pnpm import generates a pnpm-lock.yaml from an npm package-lock.json (or npm-shrinkwrap.json) file.",
+      "pnpm import generates a pnpm-lock.yaml from an npm package-lock.json (or npm-shrinkwrap.json) file",
   },
   {
     name: ["rebuild", "rb"],
@@ -524,7 +524,7 @@ const SUBCOMMANDS_MANAGE_DEPENDENCIES: Fig.Subcommand[] = [
 const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
   {
     name: ["run", "run-script"],
-    description: "Runs a script defined in the package's manifest file.",
+    description: "Runs a script defined in the package's manifest file",
     args: {
       name: "Scripts",
       generators: searchScriptsGenerator,
@@ -538,17 +538,17 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
       {
         name: "--if-present",
         description:
-          "You can use the --if-present flag to avoid exiting with a non-zero exit code when the script is undefined. This lets you run potentially undefined scripts without breaking the execution chain.",
+          "You can use the --if-present flag to avoid exiting with a non-zero exit code when the script is undefined. This lets you run potentially undefined scripts without breaking the execution chain",
       },
       {
         name: "--parallel",
         description:
-          "Completely disregard concurrency and topological sorting, running a given script immediately in all matching packages with prefixed streaming output. This is the preferred flag for long-running processes over many packages, for instance, a lengthy build process.",
+          "Completely disregard concurrency and topological sorting, running a given script immediately in all matching packages with prefixed streaming output. This is the preferred flag for long-running processes over many packages, for instance, a lengthy build process",
       },
       {
         name: "--stream",
         description:
-          "Stream output from child processes immediately, prefixed with the originating package directory. This allows output from different packages to be interleaved.",
+          "Stream output from child processes immediately, prefixed with the originating package directory. This allows output from different packages to be interleaved",
       },
       FILTER_OPTION,
     ],
@@ -571,7 +571,7 @@ const SUBCOMMANDS_RUN_SCRIPTS: Fig.Subcommand[] = [
       {
         name: "--parallel",
         description:
-          "Completely disregard concurrency and topological sorting, running a given script immediately in all matching packages with prefixed streaming output. This is the preferred flag for long-running processes over many packages, for instance, a lengthy build process.",
+          "Completely disregard concurrency and topological sorting, running a given script immediately in all matching packages with prefixed streaming output. This is the preferred flag for long-running processes over many packages, for instance, a lengthy build process",
       },
       FILTER_OPTION,
     ],
@@ -840,7 +840,7 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       {
         name: "start",
         description:
-          "Starts a server that performs all interactions with the store. Other commands will delegate any store-related tasks to this server.",
+          "Starts a server that performs all interactions with the store. Other commands will delegate any store-related tasks to this server",
         options: [
           {
             name: "--background",
@@ -889,17 +889,17 @@ const SUBCOMMANDS_MISC: Fig.Subcommand[] = [
       },
       {
         name: "stop",
-        description: "Stops the store server.",
+        description: "Stops the store server",
       },
       {
         name: "status",
-        description: "Prints information about the running server.",
+        description: "Prints information about the running server",
       },
     ],
   },
   {
     name: "store",
-    description: "Managing the package store.",
+    description: "Managing the package store",
     subcommands: [
       {
         name: "status",

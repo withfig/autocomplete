@@ -38,7 +38,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-d",
       description:
-        "use delim as the field delimiter character instead of the tab character.",
+        "use delim as the field delimiter character instead of the tab character",
       args: {
         name: "delim",
         description: "field deliminator to use instead of the tab character",
@@ -48,7 +48,7 @@ const completionSpec: Fig.Spec = {
     {
       name: "-s",
       description:
-        "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified.",
+        "suppress lines with no field delimiter characters.  unless specified, lines with no delimiters are passed through unmodified",
     },
   ],
 };

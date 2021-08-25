@@ -99,7 +99,7 @@ const valueArgs = [
 
 const completionSpec: Fig.Spec = {
   name: "defaults",
-  description: "Command line interface to a user's defaults.",
+  description: "Command line interface to a user's defaults",
 
   subcommands: [
     {
@@ -140,7 +140,7 @@ const completionSpec: Fig.Spec = {
       description: "lists all entries containing word",
       args: {
         name: "word",
-        description: "The word to search for...",
+        description: "The word to search for",
       },
     },
     {

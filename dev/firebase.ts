@@ -75,7 +75,7 @@ const completionSpec: Fig.Spec = {
 
     {
       name: "apps:android:sha:create",
-      description: "add a SHA certificate hash for a given app id.",
+      description: "add a SHA certificate hash for a given app id",
       args: [
         {
           name: "appId",
@@ -93,7 +93,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "apps:android:sha:delete",
-      description: "delete a SHA certificate hash for a given app id.",
+      description: "delete a SHA certificate hash for a given app id",
       args: [
         {
           name: "appId",
@@ -111,7 +111,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "apps:create",
-      description: "create a new Firebase app.",
+      description: "create a new Firebase app",
       args: [
         {
           name: "platform",
@@ -154,7 +154,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--format",
           description:
-            "Format of exported data (csv, json). Ignored if [dataFile] has format extension.",
+            "Format of exported data (csv, json). Ignored if [dataFile] has format extension",
           args: {
             suggestions: [
               {
@@ -195,12 +195,12 @@ const completionSpec: Fig.Spec = {
         {
           name: "--salt-separator",
           description:
-            "specify the salt separator which will be appended to salt when verifying password. only used by SCRYPT now.",
+            "specify the salt separator which will be appended to salt when verifying password. only used by SCRYPT now",
           args: {},
         },
         {
           name: "--rounds",
-          description: "specify how many rounds for hash calculation.",
+          description: "specify how many rounds for hash calculation",
           args: {},
         },
         {
@@ -211,24 +211,24 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--parallelization",
-          description: "specify the parallelization for standard scrypt.",
+          description: "specify the parallelization for standard scrypt",
           args: {},
         },
         {
           name: "--block-size",
           description:
-            "specify the block size (normally is 8) for standard scrypt.",
+            "specify the block size (normally is 8) for standard scrypt",
           args: {},
         },
         {
           name: "--dk-len",
-          description: "specify derived key length for standard scrypt.",
+          description: "specify derived key length for standard scrypt",
           args: {},
         },
         {
           name: "--hash-input-order",
           description:
-            "specify the order of password and salt. Possible values are SALT_FIRST and PASSWORD_FIRST. MD5, SHA1, SHA256, SHA512, HMAC_MD5, HMAC_SHA1, HMAC_SHA256, HMAC_SHA512 support this flag.",
+            "specify the order of password and salt. Possible values are SALT_FIRST and PASSWORD_FIRST. MD5, SHA1, SHA256, SHA512, HMAC_MD5, HMAC_SHA1, HMAC_SHA256, HMAC_SHA512 support this flag",
           args: {},
         },
         {
@@ -420,7 +420,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "database:settings:set",
-      description: "set the realtime database setting at path.",
+      description: "set the realtime database setting at path",
       args: [
         {
           name: "path",
@@ -564,7 +564,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "--force",
-          description: "Overwrite any export data in the target directory.",
+          description: "Overwrite any export data in the target directory",
         },
         {
           name: ["-h", "--help"],
@@ -606,7 +606,7 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "experimental:functions:shell",
-      description: "launch full Node shell with emulated functions.",
+      description: "launch full Node shell with emulated functions",
       options: [
         {
           name: ["-p", "--port"],
@@ -629,7 +629,7 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "--params",
-          description: "path of params file with .env format.",
+          description: "path of params file with .env format",
           args: {},
         },
         {
@@ -668,7 +668,7 @@ const completionSpec: Fig.Spec = {
         {
           name: ["-f", "--force"],
           description:
-            "No confirmation. Otherwise, a confirmation prompt will appear.",
+            "No confirmation. Otherwise, a confirmation prompt will appear",
         },
         {
           name: ["-h", "--help"],
@@ -705,17 +705,17 @@ const completionSpec: Fig.Spec = {
         {
           name: "--shallow",
           description:
-            "Shallow. Delete only documents at the specified level and ignore documents in subcollections. This action can potentially orphan documents nested in subcollections. May not be passed along with -r.",
+            "Shallow. Delete only documents at the specified level and ignore documents in subcollections. This action can potentially orphan documents nested in subcollections. May not be passed along with -r",
         },
         {
           name: "--all-collections",
           description:
-            "Delete all. Deletes the entire Firestore database, including all collections and documents. Any other flags or arguments will be ignored.",
+            "Delete all. Deletes the entire Firestore database, including all collections and documents. Any other flags or arguments will be ignored",
         },
         {
           name: ["-y", "--yes"],
           description:
-            "No confirmation. Otherwise, a confirmation prompt will appear.",
+            "No confirmation. Otherwise, a confirmation prompt will appear",
         },
         {
           name: ["-h", "--help"],
@@ -725,12 +725,12 @@ const completionSpec: Fig.Spec = {
     },
     {
       name: "firestore:indexes",
-      description: "List indexes in your project's Cloud Firestore database.",
+      description: "List indexes in your project's Cloud Firestore database",
       options: [
         {
           name: "--pretty",
           description:
-            "Pretty print. When not specified the indexes are printed in the JSON specification format.",
+            "Pretty print. When not specified the indexes are printed in the JSON specification format",
         },
         {
           name: ["-h", "--help"],
@@ -1261,7 +1261,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "--limit",
           description:
-            "limit the number of versions being returned. Pass '0' to fetch all versions.",
+            "limit the number of versions being returned. Pass '0' to fetch all versions",
           args: {},
         },
         {

@@ -43,20 +43,20 @@ const buildModeSuggestions: Fig.Suggestion[] = [
 const resolutionAndExecutionOptions: Fig.Option[] = [
   {
     name: "-n",
-    description: "print the commands but do not run them.",
+    description: "print the commands but do not run them",
   },
   {
     name: "-v",
-    description: "print the names of packages as they are compiled.",
+    description: "print the names of packages as they are compiled",
   },
   {
     name: "-x",
-    description: "print the commands.",
+    description: "print the commands",
   },
   {
     name: "-tags",
     description:
-      "a comma-separated list of build tags to consider satisfied during the build.",
+      "a comma-separated list of build tags to consider satisfied during the build",
     args: {
       name: "tags",
     },
@@ -65,7 +65,7 @@ const resolutionAndExecutionOptions: Fig.Option[] = [
     name: "-toolexec",
     insertValue: "-toolexec '{cursor}'",
     description:
-      "a program to use to invoke toolchain programs like vet and asm.",
+      "a program to use to invoke toolchain programs like vet and asm",
     args: {
       name: "cmd",
     },
@@ -76,7 +76,7 @@ const globalOptions: Fig.Option[] = [
   ...resolutionAndExecutionOptions,
   {
     name: "-a",
-    description: "force rebuilding of packages that are already up-to-date.",
+    description: "force rebuilding of packages that are already up-to-date",
   },
 
   {
@@ -107,7 +107,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-asmflags",
     insertValue: "-asmflags='{cursor}'",
-    description: "arguments to pass on each go tool asm invocation.",
+    description: "arguments to pass on each go tool asm invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -115,7 +115,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "-buildmode",
-    description: "build mode to use. See 'go help buildmode' for more.",
+    description: "build mode to use. See 'go help buildmode' for more",
     args: {
       name: "mode",
       suggestions: buildModeSuggestions,
@@ -124,7 +124,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-compiler",
     description:
-      "name of compiler to use, as in runtime.Compiler (gccgo or gc).",
+      "name of compiler to use, as in runtime.Compiler (gccgo or gc)",
     args: {
       name: "name",
     },
@@ -132,7 +132,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-gccgoflags",
     insertValue: "--gccgoflags='{cursor}'",
-    description: "arguments to pass on each gccgo compiler/linker invocation.",
+    description: "arguments to pass on each gccgo compiler/linker invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -141,7 +141,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-gcflags",
     insertValue: "-gcflags='{cursor}'",
-    description: "arguments to pass on each go tool compile invocation.",
+    description: "arguments to pass on each go tool compile invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -158,7 +158,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-ldflags",
     insertValue: "-ldflags='{cursor}'",
-    description: "arguments to pass on each go tool link invocation..",
+    description: "arguments to pass on each go tool link invocation",
     args: {
       name: "flag",
       isVariadic: true,
@@ -171,7 +171,7 @@ const globalOptions: Fig.Option[] = [
   },
   {
     name: "-mod",
-    description: "module download mode to use: readonly, vendor, or mod.",
+    description: "module download mode to use: readonly, vendor, or mod",
     args: {
       name: "mode",
       suggestions: [
@@ -195,7 +195,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-modfile",
     description:
-      "in module aware mode, read (and possibly write) an alternate go.mod file instead of the one in the module root directory.",
+      "in module aware mode, read (and possibly write) an alternate go.mod file instead of the one in the module root directory",
     args: {
       name: "file",
     },
@@ -203,7 +203,7 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-overlay",
     description:
-      "read a JSON config file that provides an overlay for build operations.",
+      "read a JSON config file that provides an overlay for build operations",
     args: {
       name: "file",
     },
@@ -211,14 +211,14 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-pkgdir",
     description:
-      "install and load all packages from dir instead of the usual locations.",
+      "install and load all packages from dir instead of the usual locations",
     args: {
       name: "dir",
     },
   },
   {
     name: "-trimpath",
-    description: "remove all file system paths from the resulting executable.",
+    description: "remove all file system paths from the resulting executable",
   },
 ];
 
@@ -230,7 +230,7 @@ const packagesArg: Fig.Arg = {
 
 const completionSpec: Fig.Spec = {
   name: "go",
-  description: "Go is a tool for managing Go source code.",
+  description: "Go is a tool for managing Go source code",
   parserDirectives: {
     flagsArePosixNoncompliant: true,
   },
@@ -272,7 +272,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-r",
           description:
-            "apply recursively to all the dependencies of the packages named by the import paths.",
+            "apply recursively to all the dependencies of the packages named by the import paths",
         },
         {
           name: "-cache",
@@ -280,12 +280,12 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-testcache",
-          description: "expire all test results in the go build cache.",
+          description: "expire all test results in the go build cache",
         },
         {
           name: "-modcache",
           description:
-            "remove the entire module download cache, including unpacked source code of versioned dependencies.",
+            "remove the entire module download cache, including unpacked source code of versioned dependencies",
         },
       ],
     },
@@ -295,29 +295,29 @@ const completionSpec: Fig.Spec = {
       options: [
         {
           name: "-all",
-          description: "Show all the documentation for the package.",
+          description: "Show all the documentation for the package",
         },
         {
           name: "-c",
-          description: "Respect case when matching symbols.",
+          description: "Respect case when matching symbols",
         },
         {
           name: "-cmd",
           description:
-            "Treat a command (package main) like a regular package. Otherwise package main's exported symbols are hidden when showing the package's top-level documentation.",
+            "Treat a command (package main) like a regular package. Otherwise package main's exported symbols are hidden when showing the package's top-level documentation",
         },
         {
           name: "-short",
-          description: "One-line representation for each symbol.",
+          description: "One-line representation for each symbol",
         },
         {
           name: "-src",
-          description: "Show the full source code for the symbol.",
+          description: "Show the full source code for the symbol",
         },
         {
           name: "-u",
           description:
-            "Show documentation for unexported as well as exported symbols, methods, and fields.",
+            "Show documentation for unexported as well as exported symbols, methods, and fields",
         },
       ],
       args: {
@@ -331,7 +331,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-json",
           description:
-            "prints the environment in JSON format instead of as a shell script.",
+            "prints the environment in JSON format instead of as a shell script",
         },
         {
           name: "-u",
@@ -344,7 +344,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-w",
           description:
-            "change the default settings of the named environment variables to the given values.",
+            "change the default settings of the named environment variables to the given values",
           args: {
             isVariadic: true,
           },
@@ -395,7 +395,7 @@ const completionSpec: Fig.Spec = {
           name: "-run",
           insertValue: '-run "{cursor}"',
           description:
-            "specifies a regular expression to select directives whose full original source text matches the expression.",
+            "specifies a regular expression to select directives whose full original source text matches the expression",
         },
       ],
     },
@@ -407,7 +407,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-t",
           description:
-            "modules needed to build tests of packages specified on the command line.",
+            "modules needed to build tests of packages specified on the command line",
         },
         {
           name: "-u",
@@ -429,7 +429,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-d",
           description:
-            "only update go.mod and download source code needed to build packages.",
+            "only update go.mod and download source code needed to build packages",
         },
       ],
       args: {
@@ -476,7 +476,7 @@ const completionSpec: Fig.Spec = {
         {
           name: "-export",
           description:
-            "set the Export field to the name of a file containing up-to-date export information for the given package.",
+            "set the Export field to the name of a file containing up-to-date export information for the given package",
         },
         {
           name: "-find",
@@ -525,7 +525,7 @@ const completionSpec: Fig.Spec = {
             {
               name: "-x",
               description:
-                " print the commands download executes to standard error.",
+                " print the commands download executes to standard error",
             },
           ],
           args: {
@@ -744,7 +744,7 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "-i",
-          description: "install packages that are dependencies of the test.",
+          description: "install packages that are dependencies of the test",
         },
         {
           name: "-json",

@@ -45,7 +45,7 @@ const generalSubCommandOptions: Fig.Option[] = [
     name: "-force",
     insertValue: "-force=",
     description:
-      "Delete the workspace even if its state is not empty. Defaults to false.",
+      "Delete the workspace even if its state is not empty. Defaults to false",
     args: {
       name: "true or false",
       suggestions: ["true", "false"],
@@ -54,7 +54,7 @@ const generalSubCommandOptions: Fig.Option[] = [
   {
     name: "-lock-timeout",
     insertValue: "-lock-timeout=",
-    description: "Duration to retry a state lock. Default 0s.",
+    description: "Duration to retry a state lock. Default 0s",
     args: {
       name: "seconds",
     },
@@ -62,7 +62,7 @@ const generalSubCommandOptions: Fig.Option[] = [
   {
     name: "-input",
     insertValue: "-input=",
-    description: "Ask for input for variables if not directly set.",
+    description: "Ask for input for variables if not directly set",
     args: {
       name: "true or false",
       suggestions: ["true", "false"],
@@ -70,7 +70,7 @@ const generalSubCommandOptions: Fig.Option[] = [
   },
   {
     name: "-no-color",
-    description: "Disables output with coloring.",
+    description: "Disables output with coloring",
   },
 ];
 
@@ -78,12 +78,12 @@ const globalOptions: Fig.Option[] = [
   {
     name: "-help",
     description:
-      "Show this help output, or the help for a specified subcommand.",
+      "Show this help output, or the help for a specified subcommand",
   },
   {
     name: "-chdir",
     description:
-      "Switch to a different working directory before executing the given subcommand.",
+      "Switch to a different working directory before executing the given subcommand",
     insertValue: "-chdir=",
     args: {
       template: "filepaths",
@@ -103,7 +103,7 @@ const mainCommands: Fig.Subcommand[] = [
       {
         name: "-upgrade",
         description:
-          "Opt to upgrade modules and plugins as part of their respective installation steps.",
+          "Opt to upgrade modules and plugins as part of their respective installation steps",
       },
       ...generalSubCommandOptions,
       ...globalOptions,
@@ -121,26 +121,26 @@ const mainCommands: Fig.Subcommand[] = [
       {
         name: "-compact-warnings",
         description:
-          "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages.",
+          "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages",
       },
       {
         name: "-destroy",
         description:
-          "If set, generates a plan to destroy all the known resources.",
+          "If set, generates a plan to destroy all the known resources",
       },
       {
         name: "-detailed-exitcode",
-        description: "Return a detailed exit code when the command exits.",
+        description: "Return a detailed exit code when the command exits",
       },
       {
         name: "-out",
         insertValue: "-out=",
-        description: "The path to save the generated execution plan.",
+        description: "The path to save the generated execution plan",
       },
       {
         name: "-parallelism",
         description:
-          "Limit the number of concurrent operation as Terraform walks the graph. Defaults to 10.",
+          "Limit the number of concurrent operation as Terraform walks the graph. Defaults to 10",
         args: {
           name: "number",
         },
@@ -148,7 +148,7 @@ const mainCommands: Fig.Subcommand[] = [
       {
         name: "-refresh",
         insertValue: "-refresh=",
-        description: "Update the state prior to checking for differences.",
+        description: "Update the state prior to checking for differences",
         args: {
           name: "true or false",
           suggestions: ["true", "false"],
@@ -158,7 +158,7 @@ const mainCommands: Fig.Subcommand[] = [
         name: "-state",
         insertValue: "-state=",
         description:
-          "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used.",
+          "Path to the state file. Defaults to 'terraform.tfstate'. Ignored when remote state is used",
         args: {
           template: "filepaths",
         },
@@ -167,14 +167,14 @@ const mainCommands: Fig.Subcommand[] = [
         name: "-target",
         displayName: "-target=resource",
         description:
-          "A Resource Address to target. This flag can be used multiple times.",
+          "A Resource Address to target. This flag can be used multiple times",
         isRepeatable: true,
       },
       {
         name: "-var",
         insertValue: "-var {cursor}",
         description:
-          "Set a variable in the Terraform configuration. This flag can be set multiple times.",
+          "Set a variable in the Terraform configuration. This flag can be set multiple times",
         isRepeatable: true,
         args: {
           name: "foo=bar",
@@ -185,7 +185,7 @@ const mainCommands: Fig.Subcommand[] = [
         name: "-var-file",
         insertValue: "-var-file=",
         description:
-          "Set variables in the Terraform configuration from a variable file.",
+          "Set variables in the Terraform configuration from a variable file",
         args: {
           template: "filepaths",
         },
@@ -229,7 +229,7 @@ const otherCommands: Fig.Subcommand[] = [
       {
         name: "-update",
         description:
-          "If specified, modules that are already downloaded will be checked for updates and the updates will be downloaded if present.",
+          "If specified, modules that are already downloaded will be checked for updates and the updates will be downloaded if present",
       },
       ...globalOptions,
     ],
@@ -285,13 +285,13 @@ const otherCommands: Fig.Subcommand[] = [
       {
         name: "-allow-missing",
         description:
-          "If specified, the command will succeed (exit code 0) even if the resource is missing. The command might still return an error for other situations, such as if there is a problem reading or writing the state.",
+          "If specified, the command will succeed (exit code 0) even if the resource is missing. The command might still return an error for other situations, such as if there is a problem reading or writing the state",
       },
       {
         name: "-lock",
         insertValue: "-lock=",
         description:
-          "Disables Terraform's default behavior of attempting to take a read/write lock on the state for the duration of the operation if set to false. Defaults to true.",
+          "Disables Terraform's default behavior of attempting to take a read/write lock on the state for the duration of the operation if set to false. Defaults to true",
         args: {
           name: "true or false",
           suggestions: ["true", "false"],
@@ -301,7 +301,7 @@ const otherCommands: Fig.Subcommand[] = [
         name: "-lock-timeout",
         insertValue: "-lock-timeout=",
         description:
-          "Unless locking is disabled with -lock=false, instructs Terraform to retry acquiring a lock for a period of time before returning an error. The duration syntax is a number followed by a time unit letter, such as 3s for three seconds.",
+          "Unless locking is disabled with -lock=false, instructs Terraform to retry acquiring a lock for a period of time before returning an error. The duration syntax is a number followed by a time unit letter, such as 3s for three seconds",
         args: {
           name: "seconds",
         },
@@ -309,7 +309,7 @@ const otherCommands: Fig.Subcommand[] = [
       {
         name: "-ignore-remote-version",
         description:
-          "When using the enhanced remote backend with Terraform Cloud, continue even if remote and local Terraform versions differ. This may result in an unusable Terraform Cloud workspace, and should be used with extreme caution.",
+          "When using the enhanced remote backend with Terraform Cloud, continue even if remote and local Terraform versions differ. This may result in an unusable Terraform Cloud workspace, and should be used with extreme caution",
         args: {
           name: "seconds",
         },
@@ -350,7 +350,7 @@ const otherCommands: Fig.Subcommand[] = [
           },
           {
             name: "-lock-timeout",
-            description: "Duration to retry a stae lock. Default 0s.",
+            description: "Duration to retry a stae lock. Default 0s",
             args: {
               name: "seconds",
             },
@@ -359,7 +359,7 @@ const otherCommands: Fig.Subcommand[] = [
             name: "-state",
             insertValue: "-state=",
             description:
-              "Path to an existing state file to initialize the state of this environment.",
+              "Path to an existing state file to initialize the state of this environment",
             args: {
               name: "path",
               template: "filepaths",
@@ -380,7 +380,7 @@ const otherCommands: Fig.Subcommand[] = [
       },
       {
         name: "delete",
-        description: "delete the specified workspace.",
+        description: "delete the specified workspace",
         args: {
           generators: workspaceList,
           name: "workspace name",

@@ -19,21 +19,21 @@ const completionSpec: Fig.Spec = {
       subcommands: [
         {
           name: "add",
-          description: "Adds a new environment.",
+          description: "Adds a new environment",
         },
         {
           name: "pull",
-          description: "Pulls the current env from the cloud.",
+          description: "Pulls the current env from the cloud",
           options: [
             {
               name: "--restore",
-              description: "Overwrite your local changes.",
+              description: "Overwrite your local changes",
             },
           ],
         },
         {
           name: "checkout",
-          description: "Switches to selected environment.",
+          description: "Switches to selected environment",
           args: {
             name: "env-name",
             description: "Env name",
@@ -42,31 +42,31 @@ const completionSpec: Fig.Spec = {
           options: [
             {
               name: "--restore",
-              description: "Overwrite your local changes.",
+              description: "Overwrite your local changes",
             },
           ],
         },
         {
           name: "list",
-          description: "Displays a list of all the environments.",
+          description: "Displays a list of all the environments",
           options: [
             {
               name: "--details",
-              description: "See more details.",
+              description: "See more details",
             },
             {
               name: "--json",
-              description: "Format the output.",
+              description: "Format the output",
             },
           ],
         },
         {
           name: "get",
-          description: "Displays the environment details.",
+          description: "Displays the environment details",
           options: [
             {
               name: "--name",
-              description: "Mandatory flag.",
+              description: "Mandatory flag",
               isRequired: true,
               args: {
                 name: "env-name",
@@ -78,11 +78,11 @@ const completionSpec: Fig.Spec = {
         },
         {
           name: "import",
-          description: "Imports an environment.",
+          description: "Imports an environment",
           options: [
             {
               name: "--name",
-              description: "Mandatory flag.",
+              description: "Mandatory flag",
               isRequired: true,
               args: {
                 name: "env-name",
@@ -92,20 +92,20 @@ const completionSpec: Fig.Spec = {
             },
             {
               name: "--config",
-              description: "Specify provider configs.",
+              description: "Specify provider configs",
               isRequired: true,
               args: {},
             },
             {
               name: "--awsInfo",
-              description: "Specify AWS configs.",
+              description: "Specify AWS configs",
               args: {},
             },
           ],
         },
         {
           name: "remove",
-          description: "Removes an environment.",
+          description: "Removes an environment",
           args: {
             name: "env-name",
             description: "Env name",
